@@ -53,7 +53,7 @@ namespace Acelera.Domain.Layouts
 
         public void AlterarLinha(int posicaoLinha, string campo,  string textoNovo)
         {
-            ObterLinha(posicaoLinha - 1).ObterCampo(campo).AlterarValor(textoNovo);
+            ObterLinha(posicaoLinha).ObterCampo(campo).AlterarValor(textoNovo);
         }
 
         public void AdicionarLinha(Linha linha, int? posicaoLinha)
@@ -64,18 +64,24 @@ namespace Acelera.Domain.Layouts
                 Linhas.Add(linha);
         }
 
-        public void CopiarLinha(int posicaoLinha, bool inserirAbaixo = true)
+        public void ReplicarLinha(int posicaoLinha, int quantidadeVezes)
         {
-            var posicaoNovaLinha = posicaoLinha + 1;
-            if (!inserirAbaixo)
-                posicaoNovaLinha = posicaoLinha - 1;
-
-            AdicionarLinha(ObterLinha(posicaoLinha), posicaoNovaLinha);
+            for (int i = 0; i < quantidadeVezes; i++)
+            {
+                AdicionarLinha(ObterLinha(posicaoLinha), posicaoLinha + 1);
+            }
+            
         }
 
         public void RemoverLinha(int posicaoLinha)
         {
-            Linhas.RemoveAt(posicaoLinha - 1);
+            Linhas.RemoveAt(posicaoLinha);
+        }
+
+        public void RemoverLinhas(int posicaoLinhaInicial, int quantidadeLinhas)
+        {
+            int posicao = posicaoLinhaInicial;
+            //for
         }
 
         protected abstract void CarregaCamposDoLayout(Linha linha);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acelera.Testes.Adapters;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Acelera.Testes
 {
     public abstract class TesteBase
     {
+        IntegracaoCMD integracao;
         private string pastaOrigem
         {
             get
@@ -41,6 +43,18 @@ namespace Acelera.Testes
         protected string ObterArquivoDestino(string nomeArquivo)
         {
             return pastaDestino + nomeArquivo;
+        }
+
+        protected string ChamarExecucao()
+        {
+            integracao = new IntegracaoCMD();
+            integracao.AbrirCMD();
+            return integracao.ChamarAplicativo();
+        }
+
+        protected string ObterRetornoUltimoMetodo()
+        {
+            return "";
         }
     }
 }

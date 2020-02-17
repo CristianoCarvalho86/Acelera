@@ -50,6 +50,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\IntegracaoCMD.cs" />
+    <Compile Include="Adapters\Validadores\IntegracaoCMD_Validacao.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG00\PROC94\Com Critica\Layout 9_3 Vivo\Teste_FG00_PROC94_ComCritica_Layout93_Vivo.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG00\PROC94\Sem Critica\Layout 9_3 Vivo\Teste.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG01\PROC110\Com Critica\Layout 9_3\Testes.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG01\PROC14\Com Critica\Layout 9_3\Teste.cs" />
     <Compile Include="Layout942.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TesteBase.cs" />
@@ -64,6 +70,7 @@
       <Name>Acelera.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

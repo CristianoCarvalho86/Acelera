@@ -19,12 +19,13 @@ namespace Acelera.Testes
 
             //ALTERAR O VALOR SELECIONADO
             arquivo.AlterarLinha(50, "NM_BENEFICIARIO", "TESTANDO BLABLA");
+            arquivo.ReplicarLinha(50, 10);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-000001-20200209-ALTERADO.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
-
+            var a = ChamarExecucao();
             //VALIDAR NO BANCO A ALTERACAO
 
 
