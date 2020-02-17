@@ -44,6 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Arquivo.cs" />
+    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Cliente.cs" />
+    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_EmsComissao.cs" />
+    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_LanctoComissao.cs" />
+    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_OcrCobranca.cs" />
+    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_ParcEmissao.cs" />
+    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_ParcEmissaoAuto.cs" />
+    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Sinistro.cs" />
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_ParcEmissaoAuto.cs" />
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_OcrCobranca.cs" />
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_LanctoComissao.cs" />
@@ -60,8 +67,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Layouts\9_3\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
