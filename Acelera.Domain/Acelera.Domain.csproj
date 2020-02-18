@@ -44,7 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Arquivo.cs" />
+    <Compile Include="Entidades\Stages\ClienteStage.cs" />
+    <Compile Include="Entidades\Stages\ComissaoStage.cs" />
+    <Compile Include="Entidades\Stages\LanctoComissaoStage.cs" />
+    <Compile Include="Entidades\Stages\OCRCobrancaStage.cs" />
+    <Compile Include="Entidades\Stages\ParcEmissaoStage.cs" />
+    <Compile Include="Entidades\Stages\ParcEmissaoAutoStage.cs" />
+    <Compile Include="Entidades\Stages\SinistroStage.cs" />
+    <Compile Include="Entidades\Stages\Stage.cs" />
     <Compile Include="Enums\OperacaoEnum.cs" />
+    <Compile Include="Extensions\DocumentationExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Cliente.cs" />
     <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_EmsComissao.cs" />

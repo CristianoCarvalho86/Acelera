@@ -10,12 +10,15 @@ namespace Acelera.Domain.Layouts
     public abstract class Arquivo
     {
         protected string textoArquivo;
-        public  Linha Header { get; set; }
+        public Linha Header { get; set; }
         public IList<Linha> Linhas { get; set; }
         public Linha Footer { get; set; }
 
+        public string NomeArquivo {get; private set;}
+
         public Arquivo Carregar(string enderecoArquivo)
         {
+            NomeArquivo = enderecoArquivo.Split('\\').LastOrDefault();
             textoArquivo = File.ReadAllText(enderecoArquivo);
             CarregarEstrutura();
             return this;

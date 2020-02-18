@@ -26,15 +26,15 @@ namespace Acelera.Testes.Adapters
         {
             process.StandardInput.WriteLine(comandoExecutar);
             process.StandardInput.Flush();
-            process.StandardInput.Close();
+            //process.StandardInput.Close();
             //process.WaitForExit();
         }
 
         public void ChamarValidacao(string queryValidacao)
         {
-            process.StandardInput.WriteLine(queryValidacao);
+            process.StandardInput.WriteLine(ObterComandoSelect(queryValidacao));
             process.StandardInput.Flush();
-            process.StandardInput.Close();
+            //process.StandardInput.Close();
         }
 
         public string ObterTextoCMD()
@@ -45,6 +45,7 @@ namespace Acelera.Testes.Adapters
         public void FecharCMD()
         {
             process.StandardInput.Close();
+            //process.Dispose();
         }
     }
 }

@@ -17,11 +17,11 @@ namespace Acelera.Testes.Adapters
             }
         }
 
-        protected string comandoSelect
+        private string comandoSelect
         {
             get
             {
-                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"select host from m_database\"";
+                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"[ALTERAR]\"";
             }
         }
 
@@ -67,6 +67,11 @@ namespace Acelera.Testes.Adapters
                     throw new Exception("Endereco do HDB Client nao definido");
                 return hdb;
             }
+        }
+
+        protected string ObterComandoSelect(string select)
+        {
+            return comandoSelect.Replace("[ALTERAR]", select);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace Acelera.Testes
 {
-    public abstract class TesteItens
+    public abstract class TesteItens : TesteArquivoOperacoes
     {
         protected string pastaOrigem
         {

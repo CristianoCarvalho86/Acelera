@@ -22,6 +22,7 @@ namespace Acelera.Logger
         public void Escrever(string texto)
         {
             writer.WriteLine(texto);
+            writer.Flush();
         }
 
         public void EscreverBloco(string texto)
@@ -29,6 +30,20 @@ namespace Acelera.Logger
             writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy - mm:ss") + " - " + texto);
             writer.WriteLine("");
             writer.WriteLine("----------------------------------");
+            writer.Flush();
+        }
+
+        public void AbrirBloco(string texto)
+        {
+            writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy - mm:ss") + " - " + texto);
+            writer.Flush();
+        }
+
+        public void FecharBloco()
+        {
+            writer.WriteLine("");
+            writer.WriteLine("----------------------------------");
+            writer.Flush();
         }
 
         public void InicioOperacao(OperacaoEnum operacao)
@@ -70,6 +85,15 @@ namespace Acelera.Logger
         public void TesteComFalha()
         {
             EscreverBloco($"Teste com falha");
+        }
+
+        public void ResultadoDaConsulta(string resultado)
+        {
+            EscreverBloco($"Resultado obtido: {resultado}");
+        }
+        public void EscreveValidacao(string resultadoObtido, string resultadoEsperado)
+        {
+            EscreverBloco($"Resultado obtido: {resultadoObtido} {Environment.NewLine} Resultado esperado : {resultadoEsperado}");
         }
     }
 }

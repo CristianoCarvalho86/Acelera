@@ -59,6 +59,7 @@
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC14\Com Critica\Layout 9_3\Teste.cs" />
     <Compile Include="Layout942.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TesteArquivoOperacoes.cs" />
     <Compile Include="TesteBase.cs" />
     <Compile Include="TesteItens.cs" />
   </ItemGroup>

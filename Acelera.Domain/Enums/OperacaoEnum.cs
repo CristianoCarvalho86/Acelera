@@ -15,6 +15,8 @@ namespace Acelera.Domain.Enums
         SalvarArquivo,
         [Description("Processar Arquivo")]
         Processar,
+        [Description("Consultar Banco")]
+        ConsultaBanco,
         [Description("Verificar Resultado")]
         ValidarResultado
     }
