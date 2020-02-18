@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.Adapters
 {
-    public class IntegracaoCMD
+    public class IntegracaoCMD : IntegracaoCMDItens
     {
         Process process;
         public void AbrirCMD()
@@ -18,19 +18,27 @@ namespace Acelera.Testes.Adapters
             process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.UseShellExecute = false;
+            process.StartInfo.WorkingDirectory = EnderecoHDB;
             process.Start();
         }
 
-        public string ChamarAplicativo()
+        public void ChamarExecucao()
         {
-            process.StandardInput.WriteLine("ipconfig");
-            process.StandardInput.Flush();
-            process.StandardInput.WriteLine("cd AppData");
-            process.StandardInput.Flush();
-            process.StandardInput.WriteLine("dir");
+            process.StandardInput.WriteLine(comandoExecutar);
             process.StandardInput.Flush();
             process.StandardInput.Close();
             //process.WaitForExit();
+        }
+
+        public void ChamarValidacao(string queryValidacao)
+        {
+            process.StandardInput.WriteLine(queryValidacao);
+            process.StandardInput.Flush();
+            process.StandardInput.Close();
+        }
+
+        public string ObterTextoCMD()
+        {
             return process.StandardOutput.ReadToEnd();
         }
 

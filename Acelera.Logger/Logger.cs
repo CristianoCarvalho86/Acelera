@@ -21,22 +21,29 @@ namespace Acelera.Logger
 
         public void Escrever(string texto)
         {
-            writer.Write(texto);
+            writer.WriteLine(texto);
+        }
+
+        public void EscreverBloco(string texto)
+        {
+            writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy - mm:ss") + " - " + texto);
+            writer.WriteLine("");
+            writer.WriteLine("----------------------------------");
         }
 
         public void InicioOperacao(OperacaoEnum operacao)
         {
-            Escrever("Inicio da Operacao : " + operacao.GetEnumDescription());
+            EscreverBloco("Inicio da Operacao : " + operacao.GetEnumDescription());
         }
 
         public void SucessoDaOperacao(OperacaoEnum operacao)
         {
-            Escrever($"Operacao : {operacao.GetEnumDescription()} --- Ok");
+            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} --- Ok");
         }
 
         public void ErroNaOperacao(OperacaoEnum operacao)
         {
-            Escrever($"Operacao : {operacao.GetEnumDescription()} --- Falha");
+            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} --- Falha");
         }
 
         public void Erro(string descricao)
@@ -49,20 +56,20 @@ namespace Acelera.Logger
             Escrever($"Houve um erro: {ex.ToString()}");
         }
 
-        public void LogComando(string comandoEnviado, string retornoComando)
+        public void LogRetornoCMD(string retorno)
         {
-            Escrever($"Comando enviado : {comandoEnviado}");
-            Escrever($"Retorno {retornoComando}");
+            Escrever($"Tela de execução :");
+            EscreverBloco(retorno);
         }
 
         public void TesteSucesso()
         {
-            Escrever($"Teste passado com sucesso");
+            EscreverBloco($"Teste passado com sucesso");
         }
 
         public void TesteComFalha()
         {
-            Escrever($"Teste com falha");
+            EscreverBloco($"Teste com falha");
         }
     }
 }

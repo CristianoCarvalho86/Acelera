@@ -12,114 +12,61 @@ using System.Threading.Tasks;
 namespace Acelera.Testes
 {
     [TestClass]
-    public abstract class TesteBase
+    public abstract class TesteBase : TesteItens
     {
 
-        IntegracaoCMD integracao;
-        private string pastaOrigem
+
+        protected string ObterArquivoOrigem(string nomeArquivo, MyLogger logger)
         {
-            get
-            {
-                var origem = ConfigurationManager.AppSettings.Get("PastaOrigem");
-                if (string.IsNullOrEmpty(origem))
-                    throw new Exception("Pasta de Origem nao definida");
-                if (!origem.EndsWith("\\"))
-                    origem += "\\";
-                return origem;
-            }
-        }
-        private string pastaDestino
-        {
-            get
-            {
-                var origem = ConfigurationManager.AppSettings.Get("PastaDestino");
-                if (string.IsNullOrEmpty(origem))
-                    throw new Exception("Pasta de Destino nao definida");
-                if (!origem.EndsWith("\\"))
-                    origem += "\\";
-                return origem;
-            }
+            var path = pastaOrigem + nomeArquivo;
+            logger.EscreverBloco("Obtendo arquivo origem : " + path);
+            return path;
         }
 
-        private string comandoExecutar
+        protected string ObterArquivoDestino(string nomeArquivo, MyLogger logger)
         {
-            get
-            {
-                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"select host from m_database\"";
-            }
+            var path = pastaDestino + nomeArquivo;
+            logger.EscreverBloco("Salvando arquivo modificado : " + path);
+            return path;
         }
 
-        private string comandoSelect
-        {
-            get
-            {
-                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"select host from m_database\"";
-            }
-        }
-
-        private string usuarioHana
-        {
-            get
-            {
-                var usuario = ConfigurationManager.AppSettings.Get("UsuarioHana");
-                if (string.IsNullOrEmpty(usuario))
-                    throw new Exception("Usuario Hana nao definido");
-                return usuario;
-            }
-        }
-
-        private string senhaHana
-        {
-            get
-            {
-                var senha = ConfigurationManager.AppSettings.Get("SenhaHana");
-                if (string.IsNullOrEmpty(senha))
-                    throw new Exception("Senha Hana nao definida");
-                return senha;
-            }
-        }
-
-        private string serverHana
-        {
-            get
-            {
-                var server = ConfigurationManager.AppSettings.Get("ServerHana");
-                if (string.IsNullOrEmpty(server))
-                    throw new Exception("Endereco do Servidor Hana nao definido");
-                return server;
-            }
-        }
-
-        protected string ObterArquivoOrigem(string nomeArquivo)
-        {
-            return pastaOrigem + nomeArquivo;
-        }
-
-        protected string ObterArquivoDestino(string nomeArquivo)
-        {
-            return pastaDestino + nomeArquivo;
-        }
-
-        protected void ChamarExecucao(MyLogger logger)
+        protected string ChamarExecucao(MyLogger logger, string queryValidacao)
         {
             logger.InicioOperacao(OperacaoEnum.Processar);
+            IntegracaoCMD integracao = new IntegracaoCMD();
+            var retorno = string.Empty;
             try
             {
-                integracao = new IntegracaoCMD();
                 integracao.AbrirCMD();
-                integracao.ChamarAplicativo();
+                integracao.ChamarExecucao();
                 logger.SucessoDaOperacao(OperacaoEnum.Processar);
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado);
+                logger.LogRetornoCMD(integracao.ObterTextoCMD());
+                //integracao.ChamarValidacao(queryValidacao);
+                retorno = integracao.ObterTextoCMD();
             }
             catch (Exception ex)
             {
                 logger.Erro(ex);
                 throw;
             }
+            finally
+            {
+                integracao.FecharCMD();
+            }
+            integracao.FecharCMD();
+            return retorno;
         }
 
-        protected string ObterRetornoUltimoMetodo()
+        protected MyLogger ObterLogger(string numeroDoTeste)
         {
-            return "";
+            return new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
+        }
+
+        protected void Validar(string esperado, string obtido)
+        {
+            throw new NotImplementedException();
+            Assert.IsTrue(esperado == obtido);
         }
     }
 }
