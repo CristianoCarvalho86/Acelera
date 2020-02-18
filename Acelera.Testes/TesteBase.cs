@@ -1,4 +1,7 @@
-﻿using Acelera.Testes.Adapters;
+﻿using Acelera.Domain.Enums;
+using Acelera.Logger;
+using Acelera.Testes.Adapters;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,53 +11,62 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes
 {
-    public abstract class TesteBase
+    [TestClass]
+    public abstract class TesteBase : TesteItens
     {
-        IntegracaoCMD integracao;
-        private string pastaOrigem
+
+
+        protected string ObterArquivoOrigem(string nomeArquivo, MyLogger logger)
         {
-            get
+            var path = pastaOrigem + nomeArquivo;
+            logger.EscreverBloco("Obtendo arquivo origem : " + path);
+            return path;
+        }
+
+        protected string ObterArquivoDestino(string nomeArquivo, MyLogger logger)
+        {
+            var path = pastaDestino + nomeArquivo;
+            logger.EscreverBloco("Salvando arquivo modificado : " + path);
+            return path;
+        }
+
+        protected string ChamarExecucao(MyLogger logger, string queryValidacao)
+        {
+            logger.InicioOperacao(OperacaoEnum.Processar);
+            IntegracaoCMD integracao = new IntegracaoCMD();
+            var retorno = string.Empty;
+            try
             {
-                var origem = ConfigurationManager.AppSettings.Get("PastaOrigem");
-                if (string.IsNullOrEmpty(origem))
-                    throw new Exception("Pasta de Origem nao definida");
-                if (!origem.EndsWith("\\"))
-                    origem += "\\";
-                return origem;
+                integracao.AbrirCMD();
+                integracao.ChamarExecucao();
+                logger.SucessoDaOperacao(OperacaoEnum.Processar);
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado);
+                logger.LogRetornoCMD(integracao.ObterTextoCMD());
+                //integracao.ChamarValidacao(queryValidacao);
+                retorno = integracao.ObterTextoCMD();
             }
-        }
-        private string pastaDestino
-        {
-            get
+            catch (Exception ex)
             {
-                var origem = ConfigurationManager.AppSettings.Get("PastaDestino");
-                if (string.IsNullOrEmpty(origem))
-                    throw new Exception("Pasta de Destino nao definida");
-                if (!origem.EndsWith("\\"))
-                    origem += "\\";
-                return origem;
+                logger.Erro(ex);
+                throw;
             }
-        }
-        protected string ObterArquivoOrigem(string nomeArquivo)
-        {
-            return pastaOrigem + nomeArquivo;
-        }
-
-        protected string ObterArquivoDestino(string nomeArquivo)
-        {
-            return pastaDestino + nomeArquivo;
+            finally
+            {
+                integracao.FecharCMD();
+            }
+            integracao.FecharCMD();
+            return retorno;
         }
 
-        protected string ChamarExecucao()
+        protected MyLogger ObterLogger(string numeroDoTeste)
         {
-            integracao = new IntegracaoCMD();
-            integracao.AbrirCMD();
-            return integracao.ChamarAplicativo();
+            return new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
         }
 
-        protected string ObterRetornoUltimoMetodo()
+        protected void Validar(string esperado, string obtido)
         {
-            return "";
+            throw new NotImplementedException();
+            Assert.IsTrue(esperado == obtido);
         }
     }
 }

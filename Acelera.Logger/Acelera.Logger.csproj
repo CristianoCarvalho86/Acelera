@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E2564765-084E-4573-973F-2E1A3BC798B9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Acelera.Domain</RootNamespace>
-    <AssemblyName>Acelera.Domain</AssemblyName>
+    <ProjectGuid>{A31F4CF3-5E4C-4F12-9D99-AD5DC5DE6604}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Acelera.Logger</RootNamespace>
+    <AssemblyName>Acelera.Logger</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,32 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entidades\Arquivo.cs" />
-    <Compile Include="Enums\OperacaoEnum.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Cliente.cs" />
-    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_EmsComissao.cs" />
-    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_LanctoComissao.cs" />
-    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_OcrCobranca.cs" />
-    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_ParcEmissao.cs" />
-    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_ParcEmissaoAuto.cs" />
-    <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Sinistro.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_ParcEmissaoAuto.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_OcrCobranca.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_LanctoComissao.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_Sinistro.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_Cliente_EmsComissao.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_ParcEmissao.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_Cliente.cs" />
-    <Compile Include="Layouts\9_4_2\Arquivo_Layout_9_4_2.cs" />
-    <Compile Include="Entidades\Campo.cs" />
-    <Compile Include="Entidades\Linha.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj">
+      <Project>{E2564765-084E-4573-973F-2E1A3BC798B9}</Project>
+      <Name>Acelera.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
