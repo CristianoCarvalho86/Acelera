@@ -13,7 +13,20 @@ namespace Acelera.Domain.Entidades.Tabelas
 
         protected override void CarregarCampos()
         {
-            throw new NotImplementedException();
+            AddCampo("CD_ARQUIVO");
+            AddCampo("NM_ARQUIVO_TPA");
+            AddCampo("ST_STATUS");
+            AddCampo("DS_ERRO");
+            AddCampo("FL_ARQUIVO_RETORNO");
+            AddCampo("QT_REGISTRO");
+            AddCampo("QT_REGISTRO_CARGA");
+            AddCampo("TP_ARQUIVO");
+            AddCampo("CD_VERSAO_ARQUIVO");
+            AddCampo("NM_TPA");
+            AddCampo("CD_OPERACAO");
+            AddCampo("DT_INCLUSAO");
+            AddCampo("NM_USUARIO");
+            
         }
     }
 }
