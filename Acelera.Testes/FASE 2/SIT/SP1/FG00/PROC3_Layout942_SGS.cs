@@ -1,5 +1,4 @@
-﻿using Acelera.Testes.TestesTipoArquivo;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +8,24 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 {
     [TestClass]
-    public class PROC101_Layout942_SGS : TesteBase
+    public class PROC3_Layout942_SGS : TesteBase
     {
         /// <summary>
-        /// No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9
+        /// No Trailler do arquivo SINISTRO no campo QT_LIN informar valor diferente da soma de linhas do Detalhe
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1197_SINISTRO_2xTrailler_2xHeader()
+        public void SAP_1192_SINISTRO_QT_LIN_Diferente()
         {
         }
 
+
         /// <summary>
-        /// No arquivo SINISTRO apresentar somente um registro do Header
+        /// No Trailler do arquivo SINISTRO no campo QT_LIN informar valor igual da soma de linhas do Detalhe
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1208_SINISTRO()
+        public void SAP_1200_SINISTRO_QT_LIN()
         {
         }
 
