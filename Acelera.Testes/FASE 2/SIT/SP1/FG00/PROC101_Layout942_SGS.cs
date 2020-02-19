@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 {
     [TestClass]
-    public class PROC100_Layout942_SGS : TesteBase
+    public class PROC101_Layout942_SGS : TesteBase
     {
         /// <summary>
         /// No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9

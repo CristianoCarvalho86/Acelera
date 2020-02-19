@@ -27,6 +27,7 @@ namespace Acelera.Testes.Adapters
         {
             process.StandardInput.WriteLine(comandoExecutar);
             process.StandardInput.Flush();
+            
         }
 
         public void ExecutarQuery(string queryValidacao)
@@ -38,14 +39,14 @@ namespace Acelera.Testes.Adapters
 
         public string ObterTextoCMD()
         {
-            process.Close();
+            process.StandardInput.Close();
             return process.StandardOutput.ReadToEnd();
         }
 
         public void FecharCMD()
         {
             process.StandardInput.Close();
-            //process.Dispose();
+            process.Dispose();
         }
     }
 }

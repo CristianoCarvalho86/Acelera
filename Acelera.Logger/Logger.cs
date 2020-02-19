@@ -95,5 +95,10 @@ namespace Acelera.Logger
         {
             EscreverBloco($"Resultado obtido: {resultadoObtido} {Environment.NewLine} Resultado esperado : {resultadoEsperado}");
         }
+        public void EscreveValidacao(string resultadoObtido, string resultadoEsperado, string tituloValidacao)
+        {
+
+            EscreverBloco($"{tituloValidacao} {Environment.NewLine} Resultado obtido: {resultadoObtido} {Environment.NewLine} Resultado esperado : {resultadoEsperado}");
+        }
     }
 }

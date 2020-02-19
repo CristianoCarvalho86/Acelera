@@ -92,7 +92,7 @@
     <Compile Include="TesteArquivoOperacoes.cs" />
     <Compile Include="TesteBase.cs" />
     <Compile Include="TesteItens.cs" />
-    <Compile Include="TestesTipoArquivo\TesteSinistro.cs" />
+    <Compile Include="TestesFG00.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FASE 2\SIT\SP1\FG01\" />
+    <Folder Include="TestesTipoArquivo\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

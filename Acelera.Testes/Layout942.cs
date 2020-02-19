@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
+using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Logger;
-using Acelera.Testes.TestesTipoArquivo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes
 {
     [TestClass]
-    public class Layout942 : TesteSinistro
+    public class Layout942 : TestesFG00
     {
         [TestMethod]
         public void Altera_NM_BENEFICIARIO_Valor_Incorreto()
@@ -33,7 +35,8 @@ namespace Acelera.Testes
             //VALIDAR NO BANCO A ALTERACAO
 
             //VALIDAR O LOG_PROCESSAMENTO_8000
-            Validar("abacaxi", linhaDeValidacao.ObterPorColuna("Nome Da Coluna").Valor, logger);
+
+
 
         }
         [TestMethod]

@@ -24,7 +24,7 @@ namespace Acelera.Domain.Entidades.Consultas
             var sql = " WHERE ";
             foreach (var item in Valores)
             {
-                sql += item.Key + $" '{item.Value}' AND ";
+                sql += item.Key + $" = '{item.Value}' AND ";
             }
             sql = sql.Remove(sql.Length - 4);
             return sql;

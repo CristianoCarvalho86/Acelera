@@ -19,7 +19,6 @@ namespace Acelera.Testes
     [TestClass]
     public abstract class TesteBase : TesteItens
     {
-        public abstract LinhaTabela LinhaDeValidacao {get;}
         protected string ObterArquivoOrigem(string nomeArquivo, MyLogger logger)
         {
             var path = pastaOrigem + nomeArquivo;
@@ -46,8 +45,8 @@ namespace Acelera.Testes
                 integracao.AbrirCMD();
                 integracao.ChamarExecucao();
                 logger.SucessoDaOperacao(OperacaoEnum.Processar);
-                integracao.FecharCMD();
                 textoCompletoCMD = integracao.ObterTextoCMD();
+                integracao.FecharCMD();
             }
             catch (Exception ex)
             {
@@ -60,19 +59,29 @@ namespace Acelera.Testes
             return linhaDeValidacao;
         }
 
-        public IList<LinhaLogProcessamento> ChamarValidacaoLogProcessamento(Arquivo arquivo, Consulta consulta, MyLogger logger)
+        public IList<T> ChamarValidacao<T>(Consulta consulta, MyLogger logger) where T : LinhaTabela, new()
         {
+            var tabela = new Tabela<T>();
+            try
+            {
             logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
             var integracao = new IntegracaoCMD();
             integracao.AbrirCMD();
-            var tabela = new Tabela<LinhaLogProcessamento>();
+            
             integracao.ExecutarQuery(tabela.ObterQuery(consulta));
             var resultado = integracao.ObterTextoCMD();
             tabela.ObterRetornoQuery(resultado);
+            
             logger.LogRetornoCMD(resultado);
             logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
 
             integracao.FecharCMD();
+
+            }
+            catch(Exception ex)
+            {
+                logger.Erro(ex);
+            }
             return tabela.Linhas;
         }
 
@@ -83,16 +92,14 @@ namespace Acelera.Testes
             return logger;
         }
 
-        protected void Validar(string esperado, string obtido , MyLogger logger)
+        protected bool Validar(string esperado, string obtido ,string tituloValidacao, MyLogger logger)
         {
             logger.InicioOperacao(OperacaoEnum.ValidarResultado);
             logger.EscreveValidacao(obtido, esperado);
 
             if(esperado == obtido)
-                logger.TesteSucesso();
-
-            logger.TesteComFalha();
-            Assert.Fail();
+                return true;
+            return false;
         }
     }
 }
