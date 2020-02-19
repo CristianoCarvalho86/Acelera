@@ -27,19 +27,18 @@ namespace Acelera.Testes.Adapters
         {
             process.StandardInput.WriteLine(comandoExecutar);
             process.StandardInput.Flush();
-            //process.StandardInput.Close();
-            //process.WaitForExit();
         }
 
-        public void ChamarValidacao(string queryValidacao)
+        public void ExecutarQuery(string queryValidacao)
         {
             process.StandardInput.WriteLine(ObterComandoSelect(queryValidacao));
             process.StandardInput.Flush();
-            //process.StandardInput.Close();
+
         }
 
         public string ObterTextoCMD()
         {
+            process.Close();
             return process.StandardOutput.ReadToEnd();
         }
 

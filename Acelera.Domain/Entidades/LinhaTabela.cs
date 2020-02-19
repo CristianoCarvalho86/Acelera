@@ -74,8 +74,11 @@ namespace Acelera.Domain.Entidades
             foreach (var i in Campos)
                 sql += $"(CONCAT('{i.Coluna}:',{i.Coluna})) as {i.Coluna},";
             sql = sql.Remove(sql.Length - 1);
-            sql += $" from {ObterNomeTabela()}";
+            sql += $" from {ObterNomeTabela()} ";
+            sql += ObterClausulaConsulta();
             return sql;
         }
+
+        protected abstract string ObterClausulaConsulta();
     }
 }

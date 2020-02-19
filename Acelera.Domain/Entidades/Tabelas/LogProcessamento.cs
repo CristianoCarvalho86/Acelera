@@ -15,5 +15,10 @@ namespace Acelera.Domain.Entidades.Tabelas
         {
             throw new NotImplementedException();
         }
+
+        protected override string ObterClausulaConsulta()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

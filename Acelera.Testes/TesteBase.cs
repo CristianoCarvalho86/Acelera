@@ -1,6 +1,8 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,7 +45,6 @@ namespace Acelera.Testes
                 integracao.AbrirCMD();
                 integracao.ChamarExecucao();
                 logger.SucessoDaOperacao(OperacaoEnum.Processar);
-                linhaDeValidacao = ChamarValidacao(logger, integracao);
                 integracao.FecharCMD();
                 textoCompletoCMD = integracao.ObterTextoCMD();
             }
@@ -62,11 +63,13 @@ namespace Acelera.Testes
             return linhaDeValidacao;
         }
 
-        private LinhaTabela ChamarValidacao(MyLogger logger, IntegracaoCMD integracao)
+        public LinhaTabela ChamarValidacaoLogProcessamento(Arquivo arquivo, MyLogger logger)
         {
             logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
-            var linhaValidacao = LinhaDeValidacao;
-            integracao.ChamarValidacao(linhaValidacao.ObterQuery());
+            var integracao = new IntegracaoCMD();
+            integracao.AbrirCMD();
+            var linhaValidacao = new LogProcessamento().ObterQuery();
+            integracao.ExecutarQuery(linhaValidacao.ObterQuery());
             logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
             return linhaValidacao;
         }
