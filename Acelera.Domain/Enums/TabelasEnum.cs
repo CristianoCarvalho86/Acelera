@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Enums
 {
-    public enum TiposArquivosEnum
+    public enum TabelasEnum
     {
         [Description("TAB_STG_CLIENTE_1000")]
         Cliente,
@@ -24,6 +24,10 @@ namespace Acelera.Domain.Enums
         [Description("TAB_STG_PARCELA_AUTO_1002")]
         ParcEmissaoAuto,
         [Description("TAB_ARQ_RETORNO_8002")]
-        NaoSeAplica,
+        TabelaRetorno,
+        [Description("TAB_LOG_PROCESSAMENTO_8000")]
+        TabelaLogProcessamento,
+        [Description("TAB_LOG_CONTROLE_ARQUIVO_8001")]
+        ControleArquivo
     }
 }

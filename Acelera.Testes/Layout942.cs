@@ -31,6 +31,8 @@ namespace Acelera.Testes
              var linhaDeValidacao  = ChamarExecucao(logger);
 
             //VALIDAR NO BANCO A ALTERACAO
+
+            //VALIDAR O LOG_PROCESSAMENTO_8000
             Validar("abacaxi", linhaDeValidacao.ObterPorColuna("Nome Da Coluna").Valor, logger);
 
         }

@@ -9,7 +9,7 @@ namespace Acelera.Domain.Entidades.Stages
 {
     public class OCRCobrancaStage : LinhaTabela
     {
-        public override TiposArquivosEnum TipoArquivo => TiposArquivosEnum.OCRCobranca;
+        public override TabelasEnum TabelaReferente => TabelasEnum.OCRCobranca;
 
         protected override void CarregarCampos()
         {

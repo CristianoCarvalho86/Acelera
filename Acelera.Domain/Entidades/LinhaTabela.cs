@@ -10,7 +10,7 @@ namespace Acelera.Domain.Entidades
 {
     public abstract class LinhaTabela
     {
-        public abstract TiposArquivosEnum TipoArquivo { get; }
+        public abstract TabelasEnum TabelaReferente { get; }
 
         public List<CampoTabela> Campos;
 
@@ -22,7 +22,7 @@ namespace Acelera.Domain.Entidades
 
         public string ObterNomeTabela()
         {
-            return TipoArquivo.GetEnumDescription();
+            return TabelaReferente.GetEnumDescription();
         }
 
         protected abstract void CarregarCampos();

@@ -9,7 +9,7 @@ namespace Acelera.Domain.Entidades.Stages
 {
     public class SinistroStage : LinhaTabela
     {
-        public override TiposArquivosEnum TipoArquivo { get => TiposArquivosEnum.Sinistro; }
+        public override TabelasEnum TabelaReferente { get => TabelasEnum.Sinistro; }
 
         protected override void CarregarCampos()
         {

@@ -128,5 +128,10 @@ namespace Acelera.Domain.Layouts
             footer.CarregaTexto(linha);
             return footer;
         }
+
+        private void AddCampoAlterado()
+        {
+
+        }
     }
 }

@@ -54,8 +54,10 @@
     <Compile Include="Entidades\Stages\ParcEmissaoAutoStage.cs" />
     <Compile Include="Entidades\Stages\SinistroStage.cs" />
     <Compile Include="Entidades\TabelaRetorno\TabelaRetorno.cs" />
+    <Compile Include="Entidades\Tabelas\ControleArquivo.cs" />
+    <Compile Include="Entidades\Tabelas\LogProcessamento.cs" />
     <Compile Include="Enums\OperacaoEnum.cs" />
-    <Compile Include="Enums\TiposArquivosEnum.cs" />
+    <Compile Include="Enums\TabelasEnum.cs" />
     <Compile Include="Extensions\DocumentationExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Cliente.cs" />
