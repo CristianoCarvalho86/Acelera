@@ -9,60 +9,60 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 {
     [TestClass]
-    public class PROC101_Layout93_VIVO : TesteBase
+    public class PROC101_Layout94_TIM : TesteBase
     {
         /// <summary>
-        /// No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 3X o Header
+        /// No arquivo OCR_COBRANCA repetir 2x o registro do Header, onde o TIPO REGISTRO é igual a 9. Repetir também 4X o Trailler
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1112_SINISTRO_2xTrailler_3xHeader()
+        public void SAP_1282_OCR_COBRANCA_2xHeader_4xTrailler()
         {
         }
 
         /// <summary>
-        /// No arquivo LANCTO_COMISSAO repetir 2x o registro do Header, onde o TIPO REGISTRO é igual a 9. Não repetir trailer
+        /// No arquivo LANCTO_COMISSAO repetir 1x o registro do Header, onde o TIPO REGISTRO é igual a 9. Não repetir trailer
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1109_LANCTO_COMISSAO_2xHeader()
+        public void SAP_1284_LANCTO_COMISSAO_1xHeader()
         {
         }
 
         /// <summary>
-        /// No arquivo OCR_COBRANCA repetir 1x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header
+        /// No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1108_OCR_COBRANCA_1xTrailler()
+        public void SAP_1287_SINISTRO_2xTrailler()
         {
         }
 
         /// <summary>
-        /// No arquivo EMS_COMISSAO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 2X o Header
+        /// No arquivo EMS_COMISSAO repetir 2x o registro do Header, onde o TIPO REGISTRO é igual a 9. Não repetir o Trailler
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1106_EMS_COMISSAO_2xTrailler_2xHeader()
+        public void SAP_1280_EMS_COMISSAO_2xHeader()
         {
         }
 
 
         /// <summary>
-        /// No arquivo PARC_EMISSAO_AUTO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 1X o Header
+        /// No arquivo PARC_EMISSAO repetir 5x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 5X o Header
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1104_PARC_EMISSAO_AUTO_2xTrailler_1xHeader()
+        public void SAP_1279_PARC_EMISSAO_5xTrailler_5xHeader()
         {
         }
 
         /// <summary>
-        /// No arquivo CLIENTE repetir 1x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 1X o Header
+        /// No arquivo CLIENTE repetir 3x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir o Header
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1102_CLIENTE_1xTrailler_1xHeader()
+        public void SAP_1277_CLIENTE_3xTrailler()
         {
         }
 
@@ -71,7 +71,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1174_OCR_COBRANCA()
+        public void SAP_2595_OCR_COBRANCA()
         {
         }
 
@@ -80,7 +80,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1176_LANCTO_COMISSAO()
+        public void SAP_2596_LANCTO_COMISSAO()
         {
         }
 
@@ -89,16 +89,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1208_SINISTRO()
+        public void SAP_2597_SINISTRO()
         {
         }
-
+        
         /// <summary>
         /// No arquivo EMS_COMISSAO apresentar somente um registro do Trailler e Header
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1172_EMS_COMISSAO()
+        public void SAP_2594_EMS_COMISSAO()
         {
         }
 
@@ -107,7 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1170_PARC_EMISSAO_AUTO()
+        public void SAP_2593_PARC_EMISSAO_AUTO()
         {
         }
 
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1168_CLIENTE()
+        public void SAP_2592_CLIENTE()
         {
         }
     }
