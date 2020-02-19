@@ -7,7 +7,7 @@ using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Entidades.Stages
 {
-    public class ClienteStage : LinhaTabela
+    public class LinhaClienteStage : LinhaTabela
     {
         public override TabelasEnum TabelaReferente => TabelasEnum.Cliente;
 

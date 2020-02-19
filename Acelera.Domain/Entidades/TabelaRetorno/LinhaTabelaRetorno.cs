@@ -7,7 +7,7 @@ using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Entidades.TabelaRetorno
 {
-    public class TabelaRetorno : LinhaTabela
+    public class LinhaTabelaRetorno : LinhaTabela
     {
         public override TabelasEnum TabelaReferente => TabelasEnum.TabelaRetorno;
 

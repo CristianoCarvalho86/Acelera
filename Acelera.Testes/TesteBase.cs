@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -56,31 +57,23 @@ namespace Acelera.Testes
 
             logger.LogRetornoCMD(textoCompletoCMD);
 
-            var retornoQuery = ObterRetornoQuery(textoCompletoCMD, linhaDeValidacao);
-
-            logger.ResultadoDaConsulta(retornoQuery);
-
             return linhaDeValidacao;
         }
 
-        public LinhaTabela ChamarValidacaoLogProcessamento(Arquivo arquivo, MyLogger logger)
+        public IList<LinhaLogProcessamento> ChamarValidacaoLogProcessamento(Arquivo arquivo, Consulta consulta, MyLogger logger)
         {
             logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
             var integracao = new IntegracaoCMD();
             integracao.AbrirCMD();
-            var linhaValidacao = new LogProcessamento().ObterQuery();
-            integracao.ExecutarQuery(linhaValidacao.ObterQuery());
+            var tabela = new Tabela<LinhaLogProcessamento>();
+            integracao.ExecutarQuery(tabela.ObterQuery(consulta));
+            var resultado = integracao.ObterTextoCMD();
+            tabela.ObterRetornoQuery(resultado);
+            logger.LogRetornoCMD(resultado);
             logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
-            return linhaValidacao;
-        }
 
-
-        private string ObterRetornoQuery(string resultadoCMD, LinhaTabela linhaTabela)
-        {
-            var linhas = resultadoCMD.Split(new string[]{ Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
-            var linhaResultado = linhas.Where(x => x.Contains(linhaTabela.Campos[0].Coluna) && !x.Contains("CONCAT")).FirstOrDefault();
-            linhaTabela.CarregarLinha(linhaResultado);
-            return linhaResultado;
+            integracao.FecharCMD();
+            return tabela.Linhas;
         }
 
         protected MyLogger ObterLogger(string numeroDoTeste, string nomeDoTeste)

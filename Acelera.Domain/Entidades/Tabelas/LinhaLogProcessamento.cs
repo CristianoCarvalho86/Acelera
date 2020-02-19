@@ -7,9 +7,9 @@ using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Entidades.Tabelas
 {
-    public class LogProcessamento : LinhaTabela
+    public class LinhaLogProcessamento : LinhaTabela
     {
-        public override TabelasEnum TabelaReferente => throw new NotImplementedException();
+        public override TabelasEnum TabelaReferente => TabelasEnum.TabelaLogProcessamento;
 
         protected override void CarregarCampos()
         {
@@ -26,9 +26,5 @@ namespace Acelera.Domain.Entidades.Tabelas
             AddCampo("NM_USUARIO");
         }
 
-        protected override string ObterClausulaConsulta()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

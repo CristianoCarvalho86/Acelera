@@ -7,7 +7,7 @@ using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Entidades.Tabelas
 {
-    public class ControleArquivo : LinhaTabela
+    public class LinhaControleArquivo : LinhaTabela
     {
         public override TabelasEnum TabelaReferente => throw new NotImplementedException();
 

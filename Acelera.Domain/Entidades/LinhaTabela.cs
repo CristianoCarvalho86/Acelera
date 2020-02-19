@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using System;
 using System.Collections.Generic;
@@ -67,18 +68,5 @@ namespace Acelera.Domain.Entidades
         {
             return Campos.Where(x => x.Coluna == coluna.ToUpper()).FirstOrDefault();
         }
-
-        public string ObterQuery()
-        {
-            var sql = "select ";
-            foreach (var i in Campos)
-                sql += $"(CONCAT('{i.Coluna}:',{i.Coluna})) as {i.Coluna},";
-            sql = sql.Remove(sql.Length - 1);
-            sql += $" from {ObterNomeTabela()} ";
-            sql += ObterClausulaConsulta();
-            return sql;
-        }
-
-        protected abstract string ObterClausulaConsulta();
     }
 }

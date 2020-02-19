@@ -7,9 +7,9 @@ using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Entidades.Stages
 {
-    public class ParcEmissaoStage : LinhaTabela
+    public class LinhaParcEmissaoAutoStage : LinhaTabela
     {
-        public override TabelasEnum TabelaReferente => TabelasEnum.ParcEmissao;
+        public override TabelasEnum TabelaReferente => TabelasEnum.ParcEmissaoAuto;
 
         protected override void CarregarCampos()
         {
@@ -76,6 +76,18 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("ID_TRANSACAO_CANC");
             AddCampo("CD_PLANO");
             AddCampo("CD_UF_RISCO");
+            AddCampo("CD_MODALIDADE");
+            AddCampo("CD_MODELO");
+            AddCampo("ANO_MODELO");
+            AddCampo("VL_PERC_FATOR");
+            AddCampo("VL_PERC_BONUS");
+            AddCampo("CD_CLASSE_BONUS");
+            AddCampo("SEXO_CONDUTOR");
+            AddCampo("DT_NASC_CONDUTOR");
+            AddCampo("TEMPO_HAB");
+            AddCampo("CD_UTILIZACAO");
+            AddCampo("CEP_UTILIZACAO");
+            AddCampo("CEP_PERNOITE");
             AddCampo("ID_REGISTRO");
             
         }

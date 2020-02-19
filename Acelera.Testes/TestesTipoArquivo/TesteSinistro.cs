@@ -10,6 +10,6 @@ namespace Acelera.Testes.TestesTipoArquivo
 {
     public class TesteSinistro : TesteBase
     {
-        public override LinhaTabela LinhaDeValidacao => new SinistroStage();
+        public override LinhaTabela LinhaDeValidacao => new LinhaSinistroStage();
     }
 }
