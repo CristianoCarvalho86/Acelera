@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
@@ -15,6 +16,7 @@ namespace Acelera.Testes
     [TestClass]
     public abstract class TesteBase : TesteItens
     {
+        public abstract LinhaTabela LinhaDeValidacao {get;}
         protected string ObterArquivoOrigem(string nomeArquivo, MyLogger logger)
         {
             var path = pastaOrigem + nomeArquivo;
@@ -29,20 +31,19 @@ namespace Acelera.Testes
             return path;
         }
 
-        protected string ChamarExecucao(MyLogger logger, string queryValidacao)
+        protected LinhaTabela ChamarExecucao(MyLogger logger)
         {
             logger.InicioOperacao(OperacaoEnum.Processar);
             IntegracaoCMD integracao = new IntegracaoCMD();
             var retorno = string.Empty;
             var textoCompletoCMD = string.Empty;
+            LinhaTabela linhaDeValidacao = null;
             try
             {
                 integracao.AbrirCMD();
                 integracao.ChamarExecucao();
                 logger.SucessoDaOperacao(OperacaoEnum.Processar);
-                logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
-                integracao.ChamarValidacao(queryValidacao);
-                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
+                linhaDeValidacao = ChamarValidacao(logger, integracao);
                 integracao.FecharCMD();
                 textoCompletoCMD = integracao.ObterTextoCMD();
             }
@@ -51,25 +52,32 @@ namespace Acelera.Testes
                 logger.Erro(ex);
                 throw;
             }
-            finally
-            {
-                
-            }
+
             logger.LogRetornoCMD(textoCompletoCMD);
 
-            var retornoQuery = ObterRetornoQuery(textoCompletoCMD);
+            var retornoQuery = ObterRetornoQuery(textoCompletoCMD, linhaDeValidacao);
 
             logger.ResultadoDaConsulta(retornoQuery);
 
-            return retornoQuery;
+            return linhaDeValidacao;
         }
 
-        private string ObterRetornoQuery(string resultadoCMD)
+        private LinhaTabela ChamarValidacao(MyLogger logger, IntegracaoCMD integracao)
+        {
+            logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
+            var linhaValidacao = LinhaDeValidacao;
+            integracao.ChamarValidacao(linhaValidacao.ObterQuery());
+            logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
+            return linhaValidacao;
+        }
+
+
+        private string ObterRetornoQuery(string resultadoCMD, LinhaTabela linhaTabela)
         {
             var linhas = resultadoCMD.Split(new string[]{ Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
-            var linhaResultado = linhas.Where(x => x.Contains("resultado:") && !x.Contains("CONCAT")).FirstOrDefault();
-            int startIndex = linhaResultado.IndexOf("resultado:") + 10;
-            return linhaResultado.Substring(startIndex, linhaResultado.IndexOf("\",\"fim") - startIndex);
+            var linhaResultado = linhas.Where(x => x.Contains(linhaTabela.Campos[0].Coluna) && !x.Contains("CONCAT")).FirstOrDefault();
+            linhaTabela.CarregarLinha(linhaResultado);
+            return linhaResultado;
         }
 
         protected MyLogger ObterLogger(string numeroDoTeste, string nomeDoTeste)

@@ -70,6 +70,7 @@
     <Compile Include="TesteArquivoOperacoes.cs" />
     <Compile Include="TesteBase.cs" />
     <Compile Include="TesteItens.cs" />
+    <Compile Include="TestesTipoArquivo\TesteSinistro.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
