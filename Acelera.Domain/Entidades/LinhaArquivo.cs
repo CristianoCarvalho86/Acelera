@@ -3,10 +3,10 @@ using System.Linq;
 
 namespace Acelera.Domain.Layouts
 {
-    public class Linha
+    public class LinhaArquivo
     {
         public List<Campo> Campos { get; set; }
-        public Linha()
+        public LinhaArquivo()
         {
             Campos = new List<Campo>();
         }

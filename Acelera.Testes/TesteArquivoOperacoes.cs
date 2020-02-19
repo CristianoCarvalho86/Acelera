@@ -20,7 +20,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void AdicionarLinha(Arquivo arquivo, int posicaoLinha, Linha linhaNova, MyLogger logger)
+        public void AdicionarLinha(Arquivo arquivo, int posicaoLinha, LinhaArquivo linhaNova, MyLogger logger)
         {
             logger.AbrirBloco($"Alterando arquivo - Adicionando linha na posicao {posicaoLinha}");
             arquivo.AdicionarLinha(linhaNova, posicaoLinha);

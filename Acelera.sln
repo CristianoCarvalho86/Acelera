@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acelera.Testes", "Acelera.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acelera.Logger", "Acelera.Logger\Acelera.Logger.csproj", "{A31F4CF3-5E4C-4F12-9D99-AD5DC5DE6604}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acelera.Utils", "Acelera.Utils\Acelera.Utils.csproj", "{2DC50378-CD97-4910-BE49-737DD530345E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A31F4CF3-5E4C-4F12-9D99-AD5DC5DE6604}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A31F4CF3-5E4C-4F12-9D99-AD5DC5DE6604}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A31F4CF3-5E4C-4F12-9D99-AD5DC5DE6604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC50378-CD97-4910-BE49-737DD530345E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC50378-CD97-4910-BE49-737DD530345E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC50378-CD97-4910-BE49-737DD530345E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC50378-CD97-4910-BE49-737DD530345E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

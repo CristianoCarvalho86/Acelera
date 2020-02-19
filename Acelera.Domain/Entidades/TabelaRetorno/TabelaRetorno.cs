@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Acelera.Domain.Enums;
 
-namespace Acelera.Domain.Entidades.Stages
+namespace Acelera.Domain.Entidades.TabelaRetorno
 {
-    public class SinistroStage : LinhaTabela
+    public class TabelaRetorno : LinhaTabela
     {
-        public override TiposArquivosEnum TipoArquivo { get => TiposArquivosEnum.Sinistro; }
+        public override TiposArquivosEnum TipoArquivo => TiposArquivosEnum.NaoSeAplica;
 
         protected override void CarregarCampos()
         {
-            throw new NotImplementedException();
+            AddCampo();
         }
     }
 }

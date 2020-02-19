@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Arquivo.cs" />
+    <Compile Include="Entidades\CampoTabela.cs" />
+    <Compile Include="Entidades\LinhaTabela.cs" />
     <Compile Include="Entidades\Stages\ClienteStage.cs" />
     <Compile Include="Entidades\Stages\ComissaoStage.cs" />
     <Compile Include="Entidades\Stages\LanctoComissaoStage.cs" />
@@ -51,8 +53,9 @@
     <Compile Include="Entidades\Stages\ParcEmissaoStage.cs" />
     <Compile Include="Entidades\Stages\ParcEmissaoAutoStage.cs" />
     <Compile Include="Entidades\Stages\SinistroStage.cs" />
-    <Compile Include="Entidades\Stages\Stage.cs" />
+    <Compile Include="Entidades\TabelaRetorno\TabelaRetorno.cs" />
     <Compile Include="Enums\OperacaoEnum.cs" />
+    <Compile Include="Enums\TiposArquivosEnum.cs" />
     <Compile Include="Extensions\DocumentationExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Cliente.cs" />
@@ -71,7 +74,7 @@
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_Cliente.cs" />
     <Compile Include="Layouts\9_4_2\Arquivo_Layout_9_4_2.cs" />
     <Compile Include="Entidades\Campo.cs" />
-    <Compile Include="Entidades\Linha.cs" />
+    <Compile Include="Entidades\LinhaArquivo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

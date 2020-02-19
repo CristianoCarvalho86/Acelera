@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acelera.Domain.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Acelera.Testes.Adapters
         {
             get
             {
-                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"select host from m_database\"";
+                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"EXEC 'START TASK FGR_XXXXXX'\"";
             }
         }
 
@@ -69,9 +70,9 @@ namespace Acelera.Testes.Adapters
             }
         }
 
-        protected string ObterComandoSelect(string select)
+        protected string ObterComandoSelect(string queryValidacao)
         {
-            return comandoSelect.Replace("[ALTERAR]", select);
+            return comandoSelect.Replace("[ALTERAR]", queryValidacao);
         }
     }
 }

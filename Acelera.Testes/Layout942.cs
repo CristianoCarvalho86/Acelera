@@ -3,12 +3,13 @@ using System.Configuration;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Logger;
+using Acelera.Testes.TestesTipoArquivo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes
 {
     [TestClass]
-    public class Layout942 : TesteBase
+    public class Layout942 : TesteSinistro
     {
         [TestMethod]
         public void Altera_NM_BENEFICIARIO_Valor_Incorreto()
@@ -27,10 +28,10 @@ namespace Acelera.Testes
             arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-000001-20200209-ALTERADO.txt", logger));
 
             //PROCESSAR O ARQUIVO CRIADO
-             var retorno  = ChamarExecucao(logger, "select (CONCAT('resultado:',host)) as host, 'fim' from m_database");
+             var linhaDeValidacao  = ChamarExecucao(logger);
 
             //VALIDAR NO BANCO A ALTERACAO
-            Validar("abacaxi", retorno , logger);
+            Validar("abacaxi", linhaDeValidacao.ObterPorColuna("Nome Da Coluna").Valor, logger);
 
         }
         [TestMethod]

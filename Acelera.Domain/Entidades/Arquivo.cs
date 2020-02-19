@@ -10,9 +10,9 @@ namespace Acelera.Domain.Layouts
     public abstract class Arquivo
     {
         protected string textoArquivo;
-        public Linha Header { get; set; }
-        public IList<Linha> Linhas { get; set; }
-        public Linha Footer { get; set; }
+        public LinhaArquivo Header { get; set; }
+        public IList<LinhaArquivo> Linhas { get; set; }
+        public LinhaArquivo Footer { get; set; }
 
         public string NomeArquivo {get; private set;}
 
@@ -49,7 +49,7 @@ namespace Acelera.Domain.Layouts
             file.Close();
         }
 
-        public Linha ObterLinha(int posicaoLinha)
+        public LinhaArquivo ObterLinha(int posicaoLinha)
         {
             return Linhas.ToList()[posicaoLinha];
         }
@@ -59,7 +59,7 @@ namespace Acelera.Domain.Layouts
             ObterLinha(posicaoLinha).ObterCampo(campo).AlterarValor(textoNovo);
         }
 
-        public void AdicionarLinha(Linha linha, int? posicaoLinha)
+        public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha)
         {
             if(posicaoLinha.HasValue)
                 Linhas.Insert(posicaoLinha.Value,linha);
@@ -87,15 +87,15 @@ namespace Acelera.Domain.Layouts
             //for
         }
 
-        protected abstract void CarregaCamposDoLayout(Linha linha);
+        protected abstract void CarregaCamposDoLayout(LinhaArquivo linha);
 
-        protected IList<Linha> CarregaLinhas(IEnumerable<string> linhas)
+        protected IList<LinhaArquivo> CarregaLinhas(IEnumerable<string> linhas)
         {
-            var linhasPreenchidas = new List<Linha>();
-            Linha linha;
+            var linhasPreenchidas = new List<LinhaArquivo>();
+            LinhaArquivo linha;
             foreach (var l in linhas)
             {
-                linha = new Linha();
+                linha = new LinhaArquivo();
                 CarregaCamposDoLayout(linha);
                 linha.CarregaTexto(l);
                 linhasPreenchidas.Add(linha);
@@ -103,9 +103,9 @@ namespace Acelera.Domain.Layouts
             return linhasPreenchidas;
         }
     
-        protected virtual Linha CarregaHeader(string linha)
+        protected virtual LinhaArquivo CarregaHeader(string linha)
         {
-            var header = new Linha();
+            var header = new LinhaArquivo();
             header.Campos.Add(new Campo("TIPO REGISTRO", 2));
             header.Campos.Add(new Campo("NM_ARQ", 30));
             header.Campos.Add(new Campo("DT_ARQ", 10));
@@ -118,9 +118,9 @@ namespace Acelera.Domain.Layouts
             header.CarregaTexto(linha);
             return header;
         }
-        protected virtual Linha CarregaFooter(string linha)
+        protected virtual LinhaArquivo CarregaFooter(string linha)
         {
-            var footer = new Linha();
+            var footer = new LinhaArquivo();
             footer.Campos.Add(new Campo("TIPO REGISTRO", 2));
             footer.Campos.Add(new Campo("NM_ARQ", 30));
             footer.Campos.Add(new Campo("QT_LIN", 6));

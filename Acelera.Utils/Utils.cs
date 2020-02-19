@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Domain.Entidades.Stages
+namespace Acelera.Utils
 {
-    public class Stage
+    public class Utils
     {
-        public string NomeTabela { get; set; }
     }
 }

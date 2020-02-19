@@ -8,7 +8,7 @@ namespace Acelera.Domain.Layouts._9_3
 {
     public class Arquivo_Layout_9_3_ParcEmissaoAuto : Arquivo
     {
-        protected override void CarregaCamposDoLayout(Linha linha)
+        protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
             linha.Campos.Add(new Campo("TIPO REGISTRO", 2));
             linha.Campos.Add(new Campo("CD_INTERNO_RESSEGURADOR", 5));
