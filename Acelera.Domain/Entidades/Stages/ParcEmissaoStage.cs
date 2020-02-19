@@ -9,7 +9,7 @@ namespace Acelera.Domain.Entidades.Stages
 {
     public class ParcEmissaoStage : LinhaTabela
     {
-        public override TiposArquivosEnum TipoArquivo => TiposArquivosEnum.ParcEmissao;
+        public override TabelasEnum TabelaReferente => TabelasEnum.ParcEmissao;
 
         protected override void CarregarCampos()
         {
