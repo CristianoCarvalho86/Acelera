@@ -14,6 +14,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No arquivo SINISTRO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2300_SINISTRO_1xBody()
@@ -23,6 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No arquivo LANCTO_COMISSAO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2299_LANCTO_COMISSAO_1xBody()
@@ -32,6 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No arquivo CLIENTE repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2295_CLIENTE_1xBody()
@@ -41,6 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No arquivo PARC_EMISSAO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2296_PARC_EMISSAO_1xBody()
@@ -50,6 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No arquivo EMS_COMISSAO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2297_EMS_COMISSAO_1xBody()
@@ -59,6 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No arquivo OCR_COBRANCA repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2298_OCR_COBRANCA_1xBody()
@@ -68,6 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2443_CLIENTE()
@@ -77,6 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2445_EMS_COMISSAO()
@@ -86,6 +94,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2446_OCR_COBRANCA()
@@ -95,6 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2447_LANCTO_COMISSAO()
@@ -104,6 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2448_SINISTRO()
@@ -113,6 +124,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2444_PARC_EMISSAO()

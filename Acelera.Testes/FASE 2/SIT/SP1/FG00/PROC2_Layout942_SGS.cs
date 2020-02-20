@@ -13,6 +13,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1191_SINISTRO_MesmoNome()
@@ -23,6 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1199_SINISTRO()

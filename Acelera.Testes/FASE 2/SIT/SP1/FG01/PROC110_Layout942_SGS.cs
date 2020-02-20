@@ -14,6 +14,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No arquivo LANCTO_COMISSAO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2281_SINISTRO_3xBody()
@@ -23,6 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2455_SINISTRO()

@@ -13,6 +13,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1197_SINISTRO_2xTrailler_2xHeader()
@@ -22,6 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No arquivo SINISTRO apresentar somente um registro do Header
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1208_SINISTRO()

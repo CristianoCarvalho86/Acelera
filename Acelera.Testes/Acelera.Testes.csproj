@@ -93,6 +93,9 @@
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC94_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC94_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC94_Layout942_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG01\PROC01_Layout94_Pompeia.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG01\PROC01_Layout94_TIM.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout942_SGS.cs" />
