@@ -8,187 +8,176 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class PROC01_Layout94_Pompeia : TesteBase
+    public class PROC06_Layout94_Pompeia : TesteBase
     {
 
         /// <summary>
-        /// No Header do arquivo CLIENTE no campo CD_TPA informar código 9.3
+        /// No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2375_CLIENTE_CD_TPA_9_3()
+        public void SAP_2404_CLIENTE_DataInv_Header()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo PARC_EMISSAO no campo CD_TPA informar código 9.3
+        /// No Header do arquivo PARC_EMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2376_PARC_EMISSAO_CD_TPA_9_3()
+        public void SAP_2405_PARC_EMISSAO_DataInv_Header()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.3
+        /// No Header do arquivo EMS_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2377_EMS_COMISSAO_CD_TPA_9_3()
+        public void SAP_2406_EMS_COMISSAO_DataInv_Header()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.3
+        /// No Header do arquivo OCR_COBRANCA no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2378_OCR_COBRANCA_CD_TPA_9_3()
+        public void SAP_2407_OCR_COBRANCA_DataInv_Header()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo LANCTO_COMISSAO no campo CD_TPA informar código 9.3
+        /// No Header do arquivo LANCTO_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2379_LANCTO_COMISSAO_CD_TPA_9_3()
+        public void SAP_2408_LANCTO_COMISSAO_DataInv_Header()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo SINISTRO no campo CD_TPA informar código 9.3
+        /// No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2380_SINISTRO_CD_TPA_9_3()
+        public void SAP_2409_SINISTRO_DataInv_Header()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
+        /// No Body do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2381_CLIENTE_SemCD_TPA()
+        public void SAP_2399_CLIENTE_DataInv_Body()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo PARC_EMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
+        /// No Body do arquivo PARC_EMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_INICIO_VIGENCIA DT_FIM_VIGENCIA DT_VENCIMENTO DT_NASC_CONDUTOR
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2382_PARC_EMISSAO_SemCD_TPA()
+        public void SAP_2400_PARC_EMISSAO_DataInv_Body()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo EMS_COMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
+        /// No Body do arquivo OCR_COBRANCA nos campos abaixo informar data inválida (Ex. 32131234) DT_OCORRENCIA
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2383_EMS_COMISSAO_CD_TPA_999()
+        public void SAP_2401_OCR_COBRANCA_DataInv_Body()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
+        /// No Body do arquivo LANCTO_COMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_PAGAMENTO DT_BAIXA
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2384_OCR_COBRANCA_SemCD_TPA()
+        public void SAP_2402_LANCTO_COMISSAO_DataInv_Body()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo LANCTO_COMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
+        /// No Body do arquivo SINISTRO nos campos abaixo informar data inválida (Ex. 32131234) DT_REGISTRO DT_NASC_BENEFICIARIO DT_PAGAMENTO
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2385_LANCTO_COMISSAO_SemCD_TPA()
+        public void SAP_2403_SINISTRO_DataInv_Body()
         {
         }
 
         /// <summary>
-        /// No Header do arquivo SINISTRO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2386_SINISTRO_SemCD_TPA()
-        {
-        }
-
-
-        /// <summary>
-        /// Importar arquivo c/ CD_TPA válido
+        /// Arquivo c/ tds datas válidas
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2462_CLIENTE()
+        public void SAP_2506_CLIENTE()
         {
         }
 
         /// <summary>
-        /// Importar arquivo c/ CD_TPA válido
+        /// Arquivo c/ tds datas válidas
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2463_PARC_EMISSAO()
+        public void SAP_2507_PARC_EMISSAO()
         {
         }
 
         /// <summary>
-        /// Importar arquivo c/ CD_TPA válido
+        /// Arquivo c/ tds datas válidas
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2464_EMS_COMISSAO()
+        public void SAP_2508_EMS_COMISSAO()
         {
         }
 
         /// <summary>
-        /// Importar arquivo c/ CD_TPA válido
+        /// Arquivo c/ tds datas válidas
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2465_OCR_COBRANCA()
+        public void SAP_2509_OCR_COBRANCA()
         {
         }
 
         /// <summary>
-        /// Importar arquivo c/ CD_TPA válido
+        /// Arquivo c/ tds datas válidas
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2466_LANCTO_COMISSAO()
+        public void SAP_2510_LANCTO_COMISSAO()
         {
         }
 
         /// <summary>
-        /// Importar arquivo c/ CD_TPA válido
+        /// Arquivo c/ tds datas válidas
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2467_SINISTRO()
+        public void SAP_2511_SINISTRO()
         {
         }
 
