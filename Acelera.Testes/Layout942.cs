@@ -5,6 +5,7 @@ using Acelera.Data;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Layouts;
+using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Logger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -36,6 +37,32 @@ namespace Acelera.Testes
             //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
             ValidarControleArquivo(new string[] { "campo nao encontrado" , "outro erro"});
+            //VALIDAR O LOG_PROCESSAMENTO_8000
+
+
+
+        }
+        
+        [TestMethod]
+        public void ABC()
+        {
+            IniciarTeste("NUMERO_DO_TESTE", "teste");
+            //CARREGAR O ARQUIVO BASE
+            var arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader(arquivo, "CD_TPA", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-1847-20200207-ALTERADO.txt"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            // var linhaDeValidacao  = ChamarExecucao();
+
+            //VALIDAR NO BANCO A ALTERACAO
+            //ValidarLogProcessamento(true);
+            //ValidarControleArquivo(new string[] { "campo nao encontrado" , "outro erro"});
             //VALIDAR O LOG_PROCESSAMENTO_8000
 
 

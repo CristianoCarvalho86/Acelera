@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,16 @@ namespace Acelera.Testes
     {
         protected string nomeArquivo;
         protected MyLogger logger;
-        protected List<LinhaArquivo> linhasAlteradas;
+        protected AlteracoesArquivo valoresAlteradosBody;
+        protected AlteracoesArquivo valoresAlteradosHeader;
+        protected AlteracoesArquivo valoresAlteradosFooter;
+
+        public TesteItens()
+        {
+            valoresAlteradosBody = new AlteracoesArquivo();
+            valoresAlteradosHeader = new AlteracoesArquivo();
+            valoresAlteradosFooter = new AlteracoesArquivo();
+        }
 
         protected string pastaOrigem
         {

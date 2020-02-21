@@ -45,7 +45,7 @@ namespace Acelera.Testes
             var lista = ChamarConsultaAoBanco<LinhaControleArquivo>(consulta);
 
             var falha = false;
-            if (!Validar("10", lista.Count.ToString(), "Quantidade de Procedures executadas"))
+            if (!Validar(10, lista.Count.ToString(), "Quantidade de Procedures executadas"))
                 falha = true;
             if (!Validar((lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E")).ToString(), "false", "Todos os CD_STATUS sao igual a 'S'"))
                 falha = true;
@@ -64,9 +64,60 @@ namespace Acelera.Testes
         public void ValidarStages(TabelasEnum tabela)
         {
             var consulta = new Consulta();
-            if (tabela == TabelasEnum.Cliente)
-                consulta.AdicionarConsulta("CD_CLIENTE")
 
+            if (tabela == TabelasEnum.Cliente)
+            {
+                consulta.AdicionarConsulta("CD_CLIENTE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_CLIENTE").Valor);
+                AdicionaConsultaDoBody(consulta);
+            }
+            else if (tabela == TabelasEnum.ParcEmissao || tabela == TabelasEnum.ParcEmissaoAuto)
+            {
+                consulta.AdicionarConsulta("CD_CONTRATO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_CONTRATO").Valor);
+                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_PARCELA").Valor);
+                consulta.AdicionarConsulta("CD_COBERTURA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_COBERTURA").Valor);
+                AdicionaConsultaDoBody(consulta);
+            }
+            else if (tabela == TabelasEnum.Comissao)
+            {
+                consulta.AdicionarConsulta("CD_CONTRATO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_CONTRATO").Valor);
+                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_PARCELA").Valor);
+                consulta.AdicionarConsulta("CD_COBERTURA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_COBERTURA").Valor);
+                consulta.AdicionarConsulta("CD_TIPO_COMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_TIPO_COMISSAO").Valor);
+                AdicionaConsultaDoBody(consulta);
+            }
+            else if (tabela == TabelasEnum.OCRCobranca)
+            {
+                consulta.AdicionarConsulta("CD_CONTRATO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_CONTRATO").Valor);
+                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_PARCELA").Valor);
+                AdicionaConsultaDoBody(consulta);
+            }
+            else if (tabela == TabelasEnum.LanctoComissao)
+            {
+                consulta.AdicionarConsulta("CD_CONTRATO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_CONTRATO").Valor);
+                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_PARCELA").Valor);
+                consulta.AdicionarConsulta("CD_TIPO_COMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_TIPO_COMISSAO").Valor);
+                AdicionaConsultaDoBody(consulta);
+            }
+            else if (tabela == TabelasEnum.Sinistro)
+            {
+                consulta.AdicionarConsulta("CD_CONTRATO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_CONTRATO").Valor);
+                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("CD_COBERTURA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_COBERTURA").Valor);
+                consulta.AdicionarConsulta("CD_SINISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_SINISTRO").Valor);
+                AdicionaConsultaDoBody(consulta);
+            }
+
+        }
+
+        private void AdicionaConsultaDoBody(Consulta consulta)
+        {
+            foreach (var c in valoresAlteradosBody.Alteracoes)
+                foreach (var item in c.CamposAlterados)
+                    consulta.AdicionarConsulta(item.Coluna, item.Valor);
         }
 
         private IList<string> ObterProceduresASeremExecutadas()

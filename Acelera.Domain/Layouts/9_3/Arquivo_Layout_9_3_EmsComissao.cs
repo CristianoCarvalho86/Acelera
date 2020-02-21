@@ -10,23 +10,23 @@ namespace Acelera.Domain.Layouts._9_3
     {
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
-            linha.Campos.Add(new Campo("TIPO REGISTRO", 2));
-            linha.Campos.Add(new Campo("CD_INTERNO_RESSEGURADOR", 5));
-            linha.Campos.Add(new Campo("CD_SEGURADORA", 5));
-            linha.Campos.Add(new Campo("CD_CORRETOR", 7));
-            linha.Campos.Add(new Campo("CD_RAMO", 2));
-            linha.Campos.Add(new Campo("CD_CONTRATO", 20));
-            linha.Campos.Add(new Campo("NR_SEQUENCIAL_EMISSAO", 5));
-            linha.Campos.Add(new Campo("NR_PARCELA", 4));
-            linha.Campos.Add(new Campo("CD_ITEM", 4));
-            linha.Campos.Add(new Campo("CD_TIPO_COMISSAO", 3));
-            linha.Campos.Add(new Campo("CD_COBERTURA", 10));
-            linha.Campos.Add(new Campo("VL_COMISSAO", 16));
-            linha.Campos.Add(new Campo("VL_BASE_CALCULO", 16));
-            linha.Campos.Add(new Campo("PC_COMISSAO", 8));
-            linha.Campos.Add(new Campo("PC_PARTICIPACAO", 8));
-            linha.Campos.Add(new Campo("CD_SISTEMA", 3));
-            linha.Campos.Add(new Campo("FILLER", 582));
+            linha.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 2));
+            linha.Campos.Add(new CampoDoArquivo("CD_INTERNO_RESSEGURADOR", 5));
+            linha.Campos.Add(new CampoDoArquivo("CD_SEGURADORA", 5));
+            linha.Campos.Add(new CampoDoArquivo("CD_CORRETOR", 7));
+            linha.Campos.Add(new CampoDoArquivo("CD_RAMO", 2));
+            linha.Campos.Add(new CampoDoArquivo("CD_CONTRATO", 20));
+            linha.Campos.Add(new CampoDoArquivo("NR_SEQUENCIAL_EMISSAO", 5));
+            linha.Campos.Add(new CampoDoArquivo("NR_PARCELA", 4));
+            linha.Campos.Add(new CampoDoArquivo("CD_ITEM", 4));
+            linha.Campos.Add(new CampoDoArquivo("CD_TIPO_COMISSAO", 3));
+            linha.Campos.Add(new CampoDoArquivo("CD_COBERTURA", 10));
+            linha.Campos.Add(new CampoDoArquivo("VL_COMISSAO", 16));
+            linha.Campos.Add(new CampoDoArquivo("VL_BASE_CALCULO", 16));
+            linha.Campos.Add(new CampoDoArquivo("PC_COMISSAO", 8));
+            linha.Campos.Add(new CampoDoArquivo("PC_PARTICIPACAO", 8));
+            linha.Campos.Add(new CampoDoArquivo("CD_SISTEMA", 3));
+            linha.Campos.Add(new CampoDoArquivo("FILLER", 582));
         }
     }
 }

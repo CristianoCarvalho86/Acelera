@@ -4,28 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Domain.Layouts
+namespace Acelera.Domain.Entidades
 {
     public class Campo
     {
-        public int Posicoes { get; set; }
-        public string Texto { get; private set; }
-        public string NomeCampo { get; set; }
+        public string Coluna { get; set; }
+        public string Valor { get; set; }
 
-        public Campo(string nomeCampo,int posicoes)
+        public Campo(string coluna)
         {
-            Posicoes = posicoes;
-            NomeCampo = nomeCampo;
+            Coluna = coluna;
         }
 
-        public void AlterarValor(string novoValor)
+        public Campo(string coluna, string valor)
         {
-            var numEspacosVazios = this.Posicoes - novoValor.Length;
-            var espacosBrancos = string.Empty;
-            for (int i = 0; i < numEspacosVazios; i++)
-                espacosBrancos += " ";
-
-            Texto = espacosBrancos + novoValor;
+            Coluna = coluna;
+            Valor = valor;
         }
     }
 }

@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Utils
 {
-    public class Utils
+    public static class Assertions
     {
-
     }
 }

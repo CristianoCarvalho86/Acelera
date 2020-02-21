@@ -1,19 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Acelera.Domain.Layouts
 {
     public class LinhaArquivo
     {
-        public List<Campo> Campos { get; set; }
+        public List<CampoDoArquivo> Campos { get; set; }
         public LinhaArquivo()
         {
-            Campos = new List<Campo>();
+            Campos = new List<CampoDoArquivo>();
         }
 
-        public Campo ObterCampo(string nomeCampo)
+        public CampoDoArquivo ObterCampo(string nomeCampo)
         {
-            return Campos.Where(x => x.NomeCampo.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
+            var campo = Campos.Where(x => x.Coluna.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
+            Assert.IsNotNull(campo, "CAMPO NAO ENCONTRADO");
+            return campo;
         }
 
         public void CarregaTexto(string texto)
@@ -31,7 +34,7 @@ namespace Acelera.Domain.Layouts
             var texto = "";
             foreach (var campo in Campos)
             {
-                texto += campo.Texto;
+                texto += campo.Valor;
             }
             return texto;
         }

@@ -9,6 +9,7 @@ namespace Acelera.Domain.Entidades.Consultas
     public class Consulta
     {
         protected Dictionary<string, string> Valores { get; set; }
+        string consulta;
 
         public Consulta()
         {
@@ -16,18 +17,27 @@ namespace Acelera.Domain.Entidades.Consultas
         }
         public void AdicionarConsulta(string campo, string valor)
         {
-            Valores.Add(campo, valor);
+            if(!Valores.Any(x => x.Key == campo))
+                Valores.Add(campo, valor);
         }
 
         public virtual string MontarConsulta()
         {
-            var sql = " WHERE ";
+            var sql = " WHERE (";
+            sql = ObterWhereItens();
+            return sql + ")"; ;
+        }
+
+        private string ObterWhereItens()
+        {
+            var sql = string.Empty;
             foreach (var item in Valores)
             {
                 sql += item.Key + $" = '{item.Value}' AND ";
             }
-            sql = sql.Remove(sql.Length - 4);
-            return sql;
+            return sql.Remove(sql.Length - 4);
         }
+
+
     }
 }

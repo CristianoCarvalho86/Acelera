@@ -13,11 +13,11 @@ namespace Acelera.Domain.Entidades
     {
         public abstract TabelasEnum TabelaReferente { get; }
 
-        public List<CampoTabela> Campos;
+        public List<Campo> Campos;
 
         public LinhaTabela()
         {
-            Campos = new List<CampoTabela>();
+            Campos = new List<Campo>();
             CarregarCampos();
         }
 
@@ -30,7 +30,7 @@ namespace Acelera.Domain.Entidades
 
         protected void AddCampo(string campo)
         {
-            Campos.Add(new CampoTabela(campo.ToUpper()));
+            Campos.Add(new Campo(campo.ToUpper()));
         }
 
         public void CarregarLinha(string retornoQuery)
@@ -64,7 +64,7 @@ namespace Acelera.Domain.Entidades
             return Campos.Any(x => x.Coluna.Contains(campoValor));
         }
 
-        public CampoTabela ObterPorColuna(string coluna)
+        public Campo ObterPorColuna(string coluna)
         {
             return Campos.Where(x => x.Coluna == coluna.ToUpper()).FirstOrDefault();
         }

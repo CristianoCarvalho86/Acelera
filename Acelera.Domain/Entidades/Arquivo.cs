@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -54,8 +55,19 @@ namespace Acelera.Domain.Layouts
             return Linhas.ToList()[posicaoLinha];
         }
 
+        public LinhaArquivo ObterLinhaHeader(int posicaoLinha = 0)
+        {
+            return Header[posicaoLinha];
+        }
+
+        public LinhaArquivo ObterLinhaFooter(int posicaoLinha = 0)
+        {
+            return Header[posicaoLinha];
+        }
+
         public void AlterarLinha(int posicaoLinha, string campo,  string textoNovo)
         {
+            Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
             ObterLinha(posicaoLinha).ObterCampo(campo).AlterarValor(textoNovo);
         }
 
@@ -132,15 +144,15 @@ namespace Acelera.Domain.Layouts
             foreach (var linha in linhas)
             {
                 var header = new LinhaArquivo();
-                header.Campos.Add(new Campo("TIPO REGISTRO", 2));
-                header.Campos.Add(new Campo("NM_ARQ", 30));
-                header.Campos.Add(new Campo("DT_ARQ", 10));
-                header.Campos.Add(new Campo("NR_ARQ", 6));
-                header.Campos.Add(new Campo("NM_BRIDGE", 30));
-                header.Campos.Add(new Campo("CD_TPA", 3));
-                header.Campos.Add(new Campo("NOMEARQ", 40));
-                header.Campos.Add(new Campo("VERSAO", 4));
-                header.Campos.Add(new Campo("FILLER", 575));
+                header.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 2));
+                header.Campos.Add(new CampoDoArquivo("NM_ARQ", 30));
+                header.Campos.Add(new CampoDoArquivo("DT_ARQ", 10));
+                header.Campos.Add(new CampoDoArquivo("NR_ARQ", 6));
+                header.Campos.Add(new CampoDoArquivo("NM_BRIDGE", 30));
+                header.Campos.Add(new CampoDoArquivo("CD_TPA", 3));
+                header.Campos.Add(new CampoDoArquivo("NOMEARQ", 40));
+                header.Campos.Add(new CampoDoArquivo("VERSAO", 4));
+                header.Campos.Add(new CampoDoArquivo("FILLER", 575));
                 header.CarregaTexto(linha);
                 listaHeader.Add(header);
             }
@@ -152,10 +164,10 @@ namespace Acelera.Domain.Layouts
             foreach (var linha in linhas)
             {
                 var footer = new LinhaArquivo();
-                footer.Campos.Add(new Campo("TIPO REGISTRO", 2));
-                footer.Campos.Add(new Campo("NM_ARQ", 30));
-                footer.Campos.Add(new Campo("QT_LIN", 6));
-                footer.Campos.Add(new Campo("Filler", 662));
+                footer.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 2));
+                footer.Campos.Add(new CampoDoArquivo("NM_ARQ", 30));
+                footer.Campos.Add(new CampoDoArquivo("QT_LIN", 6));
+                footer.Campos.Add(new CampoDoArquivo("Filler", 662));
                 footer.CarregaTexto(linha);
                 listaFooter.Add(footer);
             }
