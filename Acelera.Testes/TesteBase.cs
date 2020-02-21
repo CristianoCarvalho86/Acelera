@@ -17,23 +17,24 @@ using System.Threading.Tasks;
 namespace Acelera.Testes
 {
     [TestClass]
-    public abstract class TesteBase : TesteItens
+    public abstract class TesteBase : TesteArquivoOperacoes
     {
-        protected string ObterArquivoOrigem(string nomeArquivo, MyLogger logger)
+        protected string ObterArquivoOrigem(string nomeArquivo)
         {
+            this.nomeArquivo = nomeArquivo;
             var path = pastaOrigem + nomeArquivo;
             logger.EscreverBloco("Obtendo arquivo origem : " + path);
             return path;
         }
 
-        protected string ObterArquivoDestino(string nomeArquivo, MyLogger logger)
+        protected string ObterArquivoDestino(string nomeArquivo)
         {
             var path = pastaDestino + nomeArquivo;
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
         }
 
-        protected LinhaTabela ChamarExecucao(MyLogger logger)
+        protected LinhaTabela ChamarExecucao()
         {
             logger.InicioOperacao(OperacaoEnum.Processar);
             IntegracaoCMD integracao = new IntegracaoCMD();
@@ -59,43 +60,42 @@ namespace Acelera.Testes
             return linhaDeValidacao;
         }
 
-        public IList<T> ChamarValidacao<T>(Consulta consulta, MyLogger logger) where T : LinhaTabela, new()
+        public IList<T> ChamarConsultaAoBanco<T>(Consulta consulta) where T : LinhaTabela, new()
         {
             var tabela = new Tabela<T>();
             try
             {
-            logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
-            var integracao = new IntegracaoCMD();
-            integracao.AbrirCMD();
-            
-            integracao.ExecutarQuery(tabela.ObterQuery(consulta));
-            var resultado = integracao.ObterTextoCMD();
-            tabela.ObterRetornoQuery(resultado);
-            
-            logger.LogRetornoCMD(resultado);
-            logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
+                var integracao = new IntegracaoCMD();
+                integracao.AbrirCMD();
 
-            integracao.FecharCMD();
+                integracao.ExecutarQuery(tabela.ObterQuery(consulta));
+                var resultado = integracao.ObterTextoCMD();
+                tabela.ObterRetornoQuery(resultado);
+
+                logger.LogRetornoCMD(resultado);
+                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
+
+                integracao.FecharCMD();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.Erro(ex);
             }
             return tabela.Linhas;
         }
 
-        protected MyLogger ObterLogger(string numeroDoTeste, string nomeDoTeste)
+        protected void IniciarTeste(string numeroDoTeste, string nomeDoTeste)
         {
-            var logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
+            logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
             logger.EscreverBloco($"Nome do Teste : {nomeDoTeste}");
-            return logger;
         }
 
-        protected bool Validar(string esperado, string obtido ,string tituloValidacao, MyLogger logger)
+        protected bool Validar(object esperado, object obtido ,string tituloValidacao)
         {
             logger.InicioOperacao(OperacaoEnum.ValidarResultado);
-            logger.EscreveValidacao(obtido, esperado);
+            logger.EscreveValidacao(obtido.ToString(), esperado.ToString());
 
             if(esperado == obtido)
                 return true;

@@ -1,5 +1,7 @@
 ﻿using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Tabelas;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -12,16 +14,21 @@ namespace Acelera.Testes
 {
     public abstract class TestesFG00 : TesteBase
     {
-        public void ValidarLogProcessamento(string nomeArquivo, bool devePassar, MyLogger logger)
+        public void ValidarLogProcessamento(bool devePassar)
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            var lista = ChamarValidacao<LinhaLogProcessamento>(consulta, logger);
+            var lista = ChamarConsultaAoBanco<LinhaLogProcessamento>(consulta);
 
             var falha = false;
-            if (!Validar("10", lista.Count.ToString(), "Quantidade de Procedures executadas", logger))
+            if (!Validar(10, lista.Count, "Quantidade de Procedures executadas"))
                 falha = true;
-            if (!Validar((lista.Any(x => x.ObterPorColuna("CD_STATUS").Valor == "N")).ToString(), "false", "Todos os CD_STATUS sao igual a 'S'", logger))
+            if (!Validar((lista.Any(x => x.ObterPorColuna("CD_STATUS").Valor == "N")).ToString(), false, "Todos os CD_STATUS sao igual a 'S'"))
+                falha = true;
+
+            var proceduresEsperadas = ObterProceduresASeremExecutadas();
+            var procedureNaoEncontrada = lista.Where(x => proceduresEsperadas.Any(z => z == x.ObterPorColuna("CD_PROCEDURE").Valor) == false);
+            if (!Validar(procedureNaoEncontrada.Count() == 0, true, $"PROCEDURES {procedureNaoEncontrada.Select(x => x.ObterPorColuna("CD_PROCEDURE").Valor).ToList().ObterListaConcatenada(" ,")} NAO ENCONTRADAS"))
                 falha = true;
 
             if (devePassar && falha || !devePassar && !falha)
@@ -31,16 +38,16 @@ namespace Acelera.Testes
             }
         }
 
-        public void ValidarControleArquivo(string nomeArquivo, string[] descricaoErroSeHouver, MyLogger logger)
+        public void ValidarControleArquivo(string[] descricaoErroSeHouver)
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            var lista = ChamarValidacao<LinhaControleArquivo>(consulta, logger);
+            var lista = ChamarConsultaAoBanco<LinhaControleArquivo>(consulta);
 
             var falha = false;
-            if (!Validar("10", lista.Count.ToString(), "Quantidade de Procedures executadas", logger))
+            if (!Validar("10", lista.Count.ToString(), "Quantidade de Procedures executadas"))
                 falha = true;
-            if (!Validar((lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E")).ToString(), "false", "Todos os CD_STATUS sao igual a 'S'", logger))
+            if (!Validar((lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E")).ToString(), "false", "Todos os CD_STATUS sao igual a 'S'"))
                 falha = true;
 
             if (falha && descricaoErroSeHouver.Length == 0 || !falha && descricaoErroSeHouver.Length > 0)
@@ -52,6 +59,14 @@ namespace Acelera.Testes
                     if (!lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()))
                         ExplodeFalha(logger);
             }
+        }
+
+        public void ValidarStages(TabelasEnum tabela)
+        {
+            var consulta = new Consulta();
+            if (tabela == TabelasEnum.Cliente)
+                consulta.AdicionarConsulta("CD_CLIENTE")
+
         }
 
         private IList<string> ObterProceduresASeremExecutadas()

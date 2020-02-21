@@ -1,10 +1,17 @@
-﻿using System;
+﻿using Acelera.Domain.Layouts;
+using Acelera.Logger;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace Acelera.Testes
 {
-    public abstract class TesteItens : TesteArquivoOperacoes
+    public abstract class TesteItens
     {
+        protected string nomeArquivo;
+        protected MyLogger logger;
+        protected List<LinhaArquivo> linhasAlteradas;
+
         protected string pastaOrigem
         {
             get

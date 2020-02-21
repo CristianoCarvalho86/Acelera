@@ -1,5 +1,10 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Tabelas;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Layouts;
 using Acelera.Logger;
+using Acelera.Testes.Adapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +13,10 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes
 {
-    public class TesteArquivoOperacoes
+    public class TesteArquivoOperacoes : TesteItens
     {
-        public void AlterarLinha(Arquivo arquivo, int posicaoLinha, string campo, string valorNovo, MyLogger logger)
+        //Adicionar em linhas alteradas a linha completa.
+        public void AlterarLinha(Arquivo arquivo, int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
             logger.Escrever("Valor Antigo :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
@@ -20,7 +26,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void AdicionarLinha(Arquivo arquivo, int posicaoLinha, LinhaArquivo linhaNova, MyLogger logger)
+        public void AdicionarLinha(Arquivo arquivo, int posicaoLinha, LinhaArquivo linhaNova)
         {
             logger.AbrirBloco($"Alterando arquivo - Adicionando linha na posicao {posicaoLinha}");
             arquivo.AdicionarLinha(linhaNova, posicaoLinha);
@@ -28,7 +34,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void ReplicarLinha(Arquivo arquivo, int posicaoLinha, int quantidadeVezes, MyLogger logger)
+        public void ReplicarLinha(Arquivo arquivo, int posicaoLinha, int quantidadeVezes)
         {
             logger.AbrirBloco($"Alterando arquivo - Replicando linha {posicaoLinha} , {quantidadeVezes} vezes.");
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
@@ -36,7 +42,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void RemoverLinha(Arquivo arquivo, int posicaoLinha,  MyLogger logger)
+        public void RemoverLinha(Arquivo arquivo, int posicaoLinha)
         {
             logger.AbrirBloco($"Alterando arquivo - removendo linha {posicaoLinha}");
             logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
@@ -44,7 +50,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void RemoverLinha(Arquivo arquivo, int posicaoLinhaInicial, int posicaoLinhaFinal, MyLogger logger)
+        public void RemoverLinha(Arquivo arquivo, int posicaoLinhaInicial, int posicaoLinhaFinal)
         {
             logger.AbrirBloco($"Alterando arquivo - removendo linhas - Da linha : {posicaoLinhaInicial} ate linha : {posicaoLinhaFinal}");
             logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinhaInicial).ObterTexto());

@@ -17,26 +17,25 @@ namespace Acelera.Testes
         [TestMethod]
         public void Altera_NM_BENEFICIARIO_Valor_Incorreto()
         {
-            DBHelper helper = DBHelper.Instance;
-            var t = helper.GetData("select now() from dummy");
-            var logger = ObterLogger("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             var arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt", logger));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(arquivo, 50, "NM_BENEFICIARIO", "TESTANDO BLABLA", logger);
-            ReplicarLinha(arquivo, 50, 10, logger);
-            RemoverLinha(arquivo, 50, logger);
+            AlterarLinha(arquivo, 50, "NM_BENEFICIARIO", "TESTANDO BLABLA");
+            ReplicarLinha(arquivo, 50, 10);
+            RemoverLinha(arquivo, 50);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-000001-20200209-ALTERADO.txt", logger));
+            arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-000001-20200209-ALTERADO.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
-             var linhaDeValidacao  = ChamarExecucao(logger);
+             var linhaDeValidacao  = ChamarExecucao();
 
             //VALIDAR NO BANCO A ALTERACAO
-
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo(new string[] { "campo nao encontrado" , "outro erro"});
             //VALIDAR O LOG_PROCESSAMENTO_8000
 
 
