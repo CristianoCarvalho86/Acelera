@@ -48,11 +48,11 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\IntegracaoCMD.cs" />
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
-    <Compile Include="Adapters\Validadores\IntegracaoCMD_Validacao.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC100_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC101_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC101_Layout94_TIM.cs" />
@@ -105,6 +105,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Acelera.Data\Acelera.Data.csproj">
+      <Project>{D87FCB24-4A72-418F-8F43-F2212AE2FACA}</Project>
+      <Name>Acelera.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj">
       <Project>{E2564765-084E-4573-973F-2E1A3BC798B9}</Project>
       <Name>Acelera.Domain</Name>

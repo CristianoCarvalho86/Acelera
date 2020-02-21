@@ -47,14 +47,14 @@
     <Compile Include="Entidades\CampoTabela.cs" />
     <Compile Include="Entidades\Consultas\Consulta.cs" />
     <Compile Include="Entidades\LinhaTabela.cs" />
-    <Compile Include="Entidades\Stages\LinhaClienteStage.cs" />
-    <Compile Include="Entidades\Stages\LinhaComissaoStage.cs" />
-    <Compile Include="Entidades\Stages\LinhaLanctoComissaoStage.cs" />
-    <Compile Include="Entidades\Stages\LinhaOCRCobrancaStage.cs" />
-    <Compile Include="Entidades\Stages\LinhaParcEmissaoStage.cs" />
-    <Compile Include="Entidades\Stages\LinhaParcEmissaoAutoStage.cs" />
-    <Compile Include="Entidades\Stages\LinhaSinistroStage.cs" />
-    <Compile Include="Entidades\TabelaRetorno\LinhaTabelaRetorno.cs" />
+    <Compile Include="Entidades\Tabelas\Stages\LinhaClienteStage.cs" />
+    <Compile Include="Entidades\Tabelas\Stages\LinhaComissaoStage.cs" />
+    <Compile Include="Entidades\Tabelas\Stages\LinhaLanctoComissaoStage.cs" />
+    <Compile Include="Entidades\Tabelas\Stages\LinhaOCRCobrancaStage.cs" />
+    <Compile Include="Entidades\Tabelas\Stages\LinhaParcEmissaoStage.cs" />
+    <Compile Include="Entidades\Tabelas\Stages\LinhaParcEmissaoAutoStage.cs" />
+    <Compile Include="Entidades\Tabelas\Stages\LinhaSinistroStage.cs" />
+    <Compile Include="Entidades\Tabelas\TabelaRetorno\LinhaTabelaRetorno.cs" />
     <Compile Include="Entidades\Tabelas\LinhaControleArquivo.cs" />
     <Compile Include="Entidades\Tabelas\LinhaLogProcessamento.cs" />
     <Compile Include="Entidades\Tabelas\Tabela.cs" />
@@ -85,6 +85,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,7 +30,7 @@ namespace Acelera.Domain.Entidades.Tabelas
             foreach (var i in linha.Campos)
                 sql += $"(CONCAT('{i.Coluna}:',{i.Coluna})) as {i.Coluna},";
             sql = sql.Remove(sql.Length - 1);
-            sql += $" from {linha.ObterNomeTabela()} ";
+            sql += $" from HDIQAS_1.{linha.ObterNomeTabela()} ";
             sql += consulta.MontarConsulta();
             return sql;
         }
