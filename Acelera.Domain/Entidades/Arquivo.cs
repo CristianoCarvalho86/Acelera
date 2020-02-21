@@ -10,25 +10,25 @@ namespace Acelera.Domain.Layouts
     public abstract class Arquivo
     {
         protected string textoArquivo;
-        public LinhaArquivo Header { get; set; }
+        public IList<LinhaArquivo> Header { get; set; }
         public IList<LinhaArquivo> Linhas { get; set; }
-        public LinhaArquivo Footer { get; set; }
+        public IList<LinhaArquivo> Footer { get; set; }
 
         public string NomeArquivo {get; private set;}
 
-        public Arquivo Carregar(string enderecoArquivo)
+        public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1)
         {
             NomeArquivo = enderecoArquivo.Split('\\').LastOrDefault();
             textoArquivo = File.ReadAllText(enderecoArquivo);
-            CarregarEstrutura();
+            CarregarEstrutura(qtdHeader.HasValue ? qtdHeader.Value : 1, qtdFooter.HasValue ? qtdFooter.Value : 1);
             return this;
         }
 
-        protected void CarregarEstrutura()
+        protected void CarregarEstrutura(int qtdHeader, int qtdFooter)
         {
             var linhas = textoArquivo.Split(new[] { Environment.NewLine },StringSplitOptions.None).Where(x => x != string.Empty);
-            Header = CarregaHeader(linhas.First());
-            Footer = CarregaFooter(linhas.Last());
+            Header = CarregaHeader(linhas.Take(qtdHeader));
+            Footer = CarregaFooter(linhas.Reverse().Take(qtdFooter).Reverse());
             var linhasBody = linhas.Skip(1).ToList();
             linhasBody.RemoveAt(linhasBody.Count - 1);
             Linhas = CarregaLinhas(linhasBody);
@@ -38,14 +38,14 @@ namespace Acelera.Domain.Layouts
         public void Salvar(string endereco)
         {
             var file = File.CreateText(endereco);
-            file.WriteLine(Header.ObterTexto());
-            int count = 1;
+
+            foreach(var header in Header)
+                file.WriteLine(header.ObterTexto());
             foreach (var item in Linhas)
-            {
                 file.WriteLine(item.ObterTexto());
-                count++;
-            }
-            file.WriteLine(Footer.ObterTexto());
+            foreach (var footer in Footer)
+                file.WriteLine(footer.ObterTexto());
+
             file.Close();
         }
 
@@ -57,6 +57,27 @@ namespace Acelera.Domain.Layouts
         public void AlterarLinha(int posicaoLinha, string campo,  string textoNovo)
         {
             ObterLinha(posicaoLinha).ObterCampo(campo).AlterarValor(textoNovo);
+        }
+
+        public void AlterarHeader(string campo, string textoNovo, int posicaoLinhaHeader = 0)
+        {
+            Header[posicaoLinhaHeader].ObterCampo(campo).AlterarValor(textoNovo);
+        }
+
+        public void ReplicarHeader(int quantidadeVezes, int posicaoLinhaHeader = 0)
+        {
+            Header.Add(Header[posicaoLinhaHeader]);
+        }
+
+        public void ReplicarFooter(int quantidadeVezes, int posicaoLinhaFooter = 0)
+        {
+            for (int i = 0; i < quantidadeVezes; i++)
+                Footer.Add(Footer[posicaoLinhaFooter]);
+        }
+
+        public void AlterarFooter(string campo, string textoNovo, int posicaoLinhaFooter = 0)
+        {
+            Footer[posicaoLinhaFooter].ObterCampo(campo).AlterarValor(textoNovo);
         }
 
         public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha)
@@ -83,8 +104,10 @@ namespace Acelera.Domain.Layouts
 
         public void RemoverLinhas(int posicaoLinhaInicial, int quantidadeLinhas)
         {
-            int posicao = posicaoLinhaInicial;
-            //for
+            for (int i = posicaoLinhaInicial; i < posicaoLinhaInicial + quantidadeLinhas; i++)
+            {
+                RemoverLinha(i);
+            }
         }
 
         protected abstract void CarregaCamposDoLayout(LinhaArquivo linha);
@@ -103,30 +126,40 @@ namespace Acelera.Domain.Layouts
             return linhasPreenchidas;
         }
     
-        protected virtual LinhaArquivo CarregaHeader(string linha)
+        protected virtual IList<LinhaArquivo> CarregaHeader(IEnumerable<string> linhas)
         {
-            var header = new LinhaArquivo();
-            header.Campos.Add(new Campo("TIPO REGISTRO", 2));
-            header.Campos.Add(new Campo("NM_ARQ", 30));
-            header.Campos.Add(new Campo("DT_ARQ", 10));
-            header.Campos.Add(new Campo("NR_ARQ", 6));
-            header.Campos.Add(new Campo("NM_BRIDGE", 30));
-            header.Campos.Add(new Campo("CD_TPA", 3));
-            header.Campos.Add(new Campo("NOMEARQ", 40));
-            header.Campos.Add(new Campo("VERSAO", 4));
-            header.Campos.Add(new Campo("FILLER", 575));
-            header.CarregaTexto(linha);
-            return header;
+            var listaHeader = new List<LinhaArquivo>();
+            foreach (var linha in linhas)
+            {
+                var header = new LinhaArquivo();
+                header.Campos.Add(new Campo("TIPO REGISTRO", 2));
+                header.Campos.Add(new Campo("NM_ARQ", 30));
+                header.Campos.Add(new Campo("DT_ARQ", 10));
+                header.Campos.Add(new Campo("NR_ARQ", 6));
+                header.Campos.Add(new Campo("NM_BRIDGE", 30));
+                header.Campos.Add(new Campo("CD_TPA", 3));
+                header.Campos.Add(new Campo("NOMEARQ", 40));
+                header.Campos.Add(new Campo("VERSAO", 4));
+                header.Campos.Add(new Campo("FILLER", 575));
+                header.CarregaTexto(linha);
+                listaHeader.Add(header);
+            }
+            return listaHeader;
         }
-        protected virtual LinhaArquivo CarregaFooter(string linha)
+        protected virtual IList<LinhaArquivo> CarregaFooter(IEnumerable<string> linhas)
         {
-            var footer = new LinhaArquivo();
-            footer.Campos.Add(new Campo("TIPO REGISTRO", 2));
-            footer.Campos.Add(new Campo("NM_ARQ", 30));
-            footer.Campos.Add(new Campo("QT_LIN", 6));
-            footer.Campos.Add(new Campo("Filler", 662));
-            footer.CarregaTexto(linha);
-            return footer;
+            var listaFooter = new List<LinhaArquivo>();
+            foreach (var linha in linhas)
+            {
+                var footer = new LinhaArquivo();
+                footer.Campos.Add(new Campo("TIPO REGISTRO", 2));
+                footer.Campos.Add(new Campo("NM_ARQ", 30));
+                footer.Campos.Add(new Campo("QT_LIN", 6));
+                footer.Campos.Add(new Campo("Filler", 662));
+                footer.CarregaTexto(linha);
+                listaFooter.Add(footer);
+            }
+            return listaFooter;
         }
 
         private void AddCampoAlterado()

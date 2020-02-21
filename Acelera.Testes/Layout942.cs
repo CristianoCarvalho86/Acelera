@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq;
+using Acelera.Data;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Layouts;
@@ -16,6 +17,8 @@ namespace Acelera.Testes
         [TestMethod]
         public void Altera_NM_BENEFICIARIO_Valor_Incorreto()
         {
+            DBHelper helper = DBHelper.Instance;
+            var t = helper.GetData("select now() from dummy");
             var logger = ObterLogger("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             var arquivo = new Arquivo_Layout_9_4_2();
@@ -39,6 +42,7 @@ namespace Acelera.Testes
 
 
         }
+        [Ignore]
         [TestMethod]
         public void Altera_EN_BENEFICIARIO_Valor_Incorreto()
         {
