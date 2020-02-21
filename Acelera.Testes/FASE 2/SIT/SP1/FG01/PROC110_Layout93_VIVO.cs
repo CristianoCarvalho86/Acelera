@@ -5,128 +5,129 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
+namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class PROC2_Layout94_Pompeia : TesteBase
+    public class PROC110_Layout93_VIVO : TesteBase
     {
+
         /// <summary>
-        /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
+        /// No arquivo CLIENTE repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1365_SINISTRO_MesmoNome()
+        public void SAP_2204_CLIENTE_3xBody()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
+        /// No arquivo PARC_EMISSAO_AUTO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1364_LANCTO_COMISSAO_MesmoNome()
+        public void SAP_2205_PARC_EMISSAO_AUTO_3xBody()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
+        /// No arquivo EMS_COMISSAO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1363_OCR_COBRANCA_MesmoNome()
+        public void SAP_2206_EMS_COMISSAO_3xBody()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
+        /// No arquivo OCR_COBRANCA repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1362_COMISSAO_MesmoNome()
+        public void SAP_2207_OCR_COBRANCA_3xBody()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
+        /// No arquivo LANCTO_COMISSAO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1361_PARC_EMISSAO_MesmoNome()
+        public void SAP_2208_LANCTO_COMISSAO_1xBody()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
+        /// No arquivo SINISTRO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1360_CLIENTE_MesmoNome()
+        public void SAP_2209_SINISTRO_1xBody()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
+        /// Importar arquivo s/ registro duplicado
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1455_SINISTRO()
+        public void SAP_2437_CLIENTE()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
+        /// Importar arquivo s/ registro duplicado
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1454_LANCTO_COMISSAO()
+        public void SAP_2438_PARC_EMISSAO_AUTO()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
+        /// Importar arquivo s/ registro duplicado
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1453_OCR_COBRANCA()
+        public void SAP_2439_EMS_COMISSAO()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
+        /// Importar arquivo s/ registro duplicado
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1452_EMS_COMISSAO()
+        public void SAP_2440_OCR_COBRANCA()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
+        /// Importar arquivo s/ registro duplicado
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1451_PARC_EMISSAO()
+        public void SAP_2441_LANCTO_COMISSAO()
         {
         }
 
         /// <summary>
-        /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
+        /// Importar arquivo s/ registro duplicado
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_1450_CLIENTE()
+        public void SAP_2442_SINISTRO()
         {
         }
 

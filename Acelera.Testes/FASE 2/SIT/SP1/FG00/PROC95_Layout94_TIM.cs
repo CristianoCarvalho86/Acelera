@@ -13,6 +13,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Header no arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1266_COMISSAO_SemHeader()
@@ -22,6 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Header no arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1269_SINISTRO_SemHeader()
@@ -31,6 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Header no arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1268_LANCTO_COMISSAO_SemHeader()
@@ -40,6 +43,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Header no arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1267_OCR_COBRANCA_SemHeader()
@@ -49,6 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Header no arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1265_PARC_EMISSAO_SemHeader()
@@ -58,6 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Header no arquivo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1264_CLIENTE_SemHeader()
@@ -67,6 +73,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1260_EMS_COMISSAO_SemTipoRegistro()
@@ -76,6 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1263_EMS_SINISTRO_SemTipoRegistro()
@@ -85,6 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1262_LANCTO_COMISSAO_SemTipoRegistro()
@@ -94,6 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1261_OCR_COBRANCA_SemTipoRegistro()
@@ -103,6 +113,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo PARC_EMISSAO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campopo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1259_PARC_EMISSAO_SemTipoRegistro()
@@ -112,6 +123,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1258_CLIENTE_SemTipoRegistro()
@@ -121,6 +133,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo CLIENTE no campo TIPO_REGISTRO informar código 01
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Semm Critica")]
         public void SAP_1330_CLIENTE_TipoRegistro01()
@@ -130,6 +143,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo PARC_EMISSAO no campo TIPO_REGISTRO informar código 01
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Semm Critica")]
         public void SAP_1331_PARC_EMISSAO_TipoRegistro01()
@@ -139,6 +153,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 01
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Semm Critica")]
         public void SAP_1332_EMS_COMISSAO_TipoRegistro01()
@@ -148,6 +163,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 01
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Semm Critica")]
         public void SAP_1333_OCR_COBRANCA_TipoRegistro01()
@@ -157,6 +173,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO informar código 01
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Semm Critica")]
         public void SAP_1334_LANCTO_COMISSAO_TipoRegistro01()
@@ -166,6 +183,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 01
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Semm Critica")]
         public void SAP_1335_SINISTRO_TipoRegistro01()
