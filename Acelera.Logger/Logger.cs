@@ -2,6 +2,7 @@
 using Acelera.Domain.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,19 +47,19 @@ namespace Acelera.Logger
             writer.Flush();
         }
 
-        public void InicioOperacao(OperacaoEnum operacao)
+        public void InicioOperacao(OperacaoEnum operacao, string complemento = "")
         {
-            EscreverBloco("Inicio da Operacao : " + operacao.GetEnumDescription());
+            EscreverBloco("Inicio da Operacao : " + operacao.GetEnumDescription() + " " + complemento);
         }
 
-        public void SucessoDaOperacao(OperacaoEnum operacao)
+        public void SucessoDaOperacao(OperacaoEnum operacao, string complemento = "")
         {
-            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} --- Ok");
+            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} {complemento} --- Ok");
         }
 
-        public void ErroNaOperacao(OperacaoEnum operacao)
+        public void ErroNaOperacao(OperacaoEnum operacao, string complemento = "")
         {
-            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} --- Falha");
+            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} {complemento} --- Falha");
         }
 
         public void Erro(string descricao)
@@ -75,6 +76,15 @@ namespace Acelera.Logger
         {
             Escrever($"Tela de execução :");
             EscreverBloco(retorno);
+        }
+
+        public void LogRetornoQuery(DataTable retorno)
+        {
+            AbrirBloco($"Retorno do Banco :");
+            foreach(DataRow row in retorno.Rows)
+                foreach(DataColumn column in row.Table.Columns)
+                    Escrever($"{column.ColumnName} : {row[column.ColumnName]}");
+            FecharBloco();
         }
 
         public void TesteSucesso()

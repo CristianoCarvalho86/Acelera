@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Data;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
@@ -10,6 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,7 @@ namespace Acelera.Testes
     [TestClass]
     public abstract class TesteBase : TesteArquivoOperacoes
     {
+        private DBHelper helper = DBHelper.Instance;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;
@@ -34,7 +37,17 @@ namespace Acelera.Testes
             return path;
         }
 
-        protected LinhaTabela ChamarExecucao()
+        protected void ChamarExecucao(string taskName)
+        {
+            helper.Execute($"EXEC 'START TASK {taskName}'");
+        }
+
+        protected DataTable ChamarConsulta(string sql)
+        {
+            return helper.GetData(sql);
+        }
+
+        protected LinhaTabela ChamarExecucaoViaCMD()
         {
             logger.InicioOperacao(OperacaoEnum.Processar);
             IntegracaoCMD integracao = new IntegracaoCMD();
@@ -66,12 +79,36 @@ namespace Acelera.Testes
             try
             {
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
+
+                var resultado = helper.GetData(tabela.ObterQuery(consulta));
+
+                logger.LogRetornoQuery(resultado);
+
+                tabela.ObterRetornoQuery(resultado);
+
+                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
+
+            }
+            catch (Exception ex)
+            {
+                logger.Erro(ex);
+            }
+            return tabela.Linhas;
+        }
+
+
+        public IList<T> ChamarConsultaAoBancoViaCMD<T>(Consulta consulta) where T : LinhaTabela, new()
+        {
+            var tabela = new Tabela<T>();
+            try
+            {
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
                 var integracao = new IntegracaoCMD();
                 integracao.AbrirCMD();
 
-                integracao.ExecutarQuery(tabela.ObterQuery(consulta));
+                integracao.ExecutarQuery(tabela.ObterQueryParaCMD(consulta));
                 var resultado = integracao.ObterTextoCMD();
-                tabela.ObterRetornoQuery(resultado);
+                tabela.ObterRetornoQueryCMD(resultado);
 
                 logger.LogRetornoCMD(resultado);
                 logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
@@ -94,8 +131,7 @@ namespace Acelera.Testes
 
         protected bool Validar(object esperado, object obtido ,string tituloValidacao)
         {
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado);
-            logger.EscreveValidacao(obtido.ToString(), esperado.ToString());
+            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
 
             if(esperado == obtido)
                 return true;
