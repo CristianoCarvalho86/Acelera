@@ -87,7 +87,7 @@ namespace Acelera.Testes
                 var linhas = string.Empty;
                 foreach (var l in lista)
                     linhas += "LINHA : " + l.ToString() + Environment.NewLine;
-                logger.EscreverBloco($"NAO ERA ESPERADO REGISTRO NA TABELA STAGE DE {tabela.GetEnumDescription()}" +
+                logger.EscreverBloco($"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabela.GetEnumDescription()}" +
                     $"{Environment.NewLine} LINHAS ENCONTRADAS : { linhas })");
                 ExplodeFalha(logger);
             }
@@ -210,7 +210,9 @@ namespace Acelera.Testes
             else if (tabela == TabelasEnum.Sinistro)
             {
                 consulta.AdicionarConsulta("CD_CONTRATO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_CONTRATO").Valor);
-                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_SEQUENCIAL_EMISSAO").Valor);
+                //consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("VL_MOVIMENTO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("VL_MOVIMENTO").Valor);
+                consulta.AdicionarConsulta("NM_BENEFICIARIO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("NM_BENEFICIARIO").Valor);
                 consulta.AdicionarConsulta("CD_COBERTURA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_COBERTURA").Valor);
                 consulta.AdicionarConsulta("CD_SINISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_SINISTRO").Valor);
                 AdicionaConsultaDoBody(consulta);

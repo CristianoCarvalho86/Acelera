@@ -114,6 +114,16 @@ namespace Acelera.Domain.Layouts
             Linhas.RemoveAt(posicaoLinha);
         }
 
+        public void RemoverHeader()
+        {
+            Header.RemoveAt(0);
+        }
+
+        public void RemoverFooter()
+        {
+            Footer.RemoveAt(0);
+        }
+
         public void RemoverLinhas(int posicaoLinhaInicial, int quantidadeLinhas)
         {
             for (int i = posicaoLinhaInicial; i < posicaoLinhaInicial + quantidadeLinhas; i++)

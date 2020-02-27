@@ -3,9 +3,12 @@ using System.Configuration;
 using System.Linq;
 using Acelera.Data;
 using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Entidades.Tabelas;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Logger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,28 +24,85 @@ namespace Acelera.Testes
             IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             var arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(arquivo, 50, "NM_BENEFICIARIO", "TESTANDO BLABLA");
-            ReplicarLinha(arquivo, 50, 10);
-            RemoverLinha(arquivo, 50);
+            //AlterarLinha(arquivo, 0, "CD_CONTRATO", "");
+            //ReplicarLinha(arquivo, 50, 10);
+            //RemoverLinha(arquivo, 50);
+            //SelecionarLinhaParaValidacao(arquivo, 2);
+            RemoverHeader(arquivo);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-000001-20200209-ALTERADO.txt"));
+            arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao("FG00");
+            ChamarExecucao("FGR_00_SINISTRO");
 
             //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo(new string[] { "campo nao encontrado" , "outro erro"});
+            ValidarStages<LinhaSinistroStage>(Domain.Enums.TabelasEnum.Sinistro, true, 110);
+            //ValidarLogProcessamento(true);
+            ValidarControleArquivo(new string[] { "Estrutura de header (01) nao encontrada" });
+            ValidarTabelaDeRetorno(new string[] { "95" });
             //VALIDAR O LOG_PROCESSAMENTO_8000
 
 
 
         }
-        
+
+        [TestMethod]
+        public void TesteOCRCObranca()
+        {
+            IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            //CARREGAR O ARQUIVO BASE
+            var arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9994-20191230.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            //RemoverHeader(arquivo);
+            SelecionarLinhaParaValidacao(arquivo, 0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-9994-20191230.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao("FGR_00_BAIXA_PARCELA");
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, true, 110);
+            //ValidarLogProcessamento(true);
+            ValidarControleArquivo(new string[] {});
+            ValidarTabelaDeRetorno(new string[] {});
+
+
+        } 
+        [TestMethod]
+        public void TesteCliente()
+        {
+            IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            //CARREGAR O ARQUIVO BASE
+            var arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            RemoverHeader(arquivo);
+            //SelecionarLinhaParaValidacao(arquivo, 0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-1847-20200207.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao("FGR_00_CLIENTE");
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.Cliente, false);
+            //ValidarLogProcessamento(true);
+            ValidarControleArquivo(new string[] { "Estrutura de header (01) nao encontrada" });
+            ValidarTabelaDeRetorno(new string[] {"95"});
+
+
+        }
+
         [TestMethod]
         public void ABC()
         {

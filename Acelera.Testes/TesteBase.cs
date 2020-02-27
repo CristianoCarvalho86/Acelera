@@ -39,7 +39,7 @@ namespace Acelera.Testes
 
         protected void ChamarExecucao(string taskName)
         {
-            helper.Execute($"EXEC 'START TASK {taskName}'");
+            helper.Execute($"START TASK HDIQAS_1.{taskName}");
         }
 
         protected DataTable ChamarConsulta(string sql)

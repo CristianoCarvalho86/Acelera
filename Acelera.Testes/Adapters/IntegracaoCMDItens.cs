@@ -14,7 +14,7 @@ namespace Acelera.Testes.Adapters
         {
             get
             {
-                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"EXEC 'START TASK FGR_XXXXXX'\"";
+                return $"hdbsql -n {serverHana} -u {usuarioHana} -p {senhaHana} -e \"EXEC 'START TASK FGR_001'\"";
             }
         }
 

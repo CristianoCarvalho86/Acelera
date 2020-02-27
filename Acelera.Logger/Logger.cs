@@ -81,6 +81,9 @@ namespace Acelera.Logger
         public void LogRetornoQuery(DataTable retorno)
         {
             AbrirBloco($"Retorno do Banco :");
+            if (retorno.Rows.Count == 0)
+                Escrever("Nenhuma linha encontrada.");
+
             foreach(DataRow row in retorno.Rows)
                 foreach(DataColumn column in row.Table.Columns)
                     Escrever($"{column.ColumnName} : {row[column.ColumnName]}");

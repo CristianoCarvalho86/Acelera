@@ -108,8 +108,24 @@ namespace Acelera.Testes
             arquivo.RemoverLinha(posicaoLinha);
             logger.FecharBloco();
         }
+        public void RemoverHeader(Arquivo arquivo)
+        {
+            logger.AbrirBloco($"Alterando arquivo - removendo HEADER");
+            logger.Escrever("Linha Removida :" + arquivo.ObterLinhaHeader().ObterTexto());
+            arquivo.RemoverHeader();
+            logger.FecharBloco();
+        }
 
-        public void RemoverLinha(Arquivo arquivo, int posicaoLinhaInicial, int posicaoLinhaFinal)
+        public void RemoverFooter(Arquivo arquivo)
+        {
+            logger.AbrirBloco($"Alterando arquivo - removendo FOOTER");
+            logger.Escrever("Linha Removida :" + arquivo.ObterLinhaFooter().ObterTexto());
+            arquivo.RemoverFooter();
+            logger.FecharBloco();
+        }
+
+
+        public void RemoverLinhas(Arquivo arquivo, int posicaoLinhaInicial, int posicaoLinhaFinal)
         {
             logger.AbrirBloco($"Alterando arquivo - removendo linhas - Da linha : {posicaoLinhaInicial} ate linha : {posicaoLinhaFinal}");
             logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinhaInicial).ObterTexto());
