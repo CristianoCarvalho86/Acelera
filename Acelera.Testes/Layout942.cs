@@ -22,37 +22,33 @@ namespace Acelera.Testes
         [TestMethod]
         public void Altera_NM_BENEFICIARIO_Valor_Incorreto()
         {
-            IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            IniciarTeste(TipoArquivo.Cliente,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            //AlterarLinha(arquivo, 0, "CD_CONTRATO", "");
-            //ReplicarLinha(arquivo, 50, 10);
-            //RemoverLinha(arquivo, 50);
-            //SelecionarLinhaParaValidacao(arquivo, 2);
             RemoverHeader();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-{controleNomeArquivo.ObtemValor(TipoArquivo.Sinistro)}-20200211.txt"));
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+            //ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
 
 
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Estrutura de header (01) nao encontrada");
-            ValidarTabelaDeRetorno("95");
+            ////VALIDAR NO BANCO A ALTERACAO
+            //ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
+            //ValidarLogProcessamento(true);
+            //ValidarControleArquivo("Estrutura de header (01) nao encontrada");
+            //ValidarTabelaDeRetorno("95");
 
         }
 
         [TestMethod]
         public void TesteOCRCObranca()
         {
-            IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            IniciarTeste(TipoArquivo.OCRCobranca,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             var arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9994-20191230.txt"));
@@ -62,7 +58,7 @@ namespace Acelera.Testes
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-9994-20191230.TXT"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191230.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao("FGR_00_BAIXA_PARCELA");
@@ -78,7 +74,7 @@ namespace Acelera.Testes
         [TestMethod]
         public void TesteCliente()
         {
-            IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            IniciarTeste(TipoArquivo.Cliente,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             var arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
@@ -88,7 +84,7 @@ namespace Acelera.Testes
             //SelecionarLinhaParaValidacao(arquivo, 0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-1847-20200207.TXT"));
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao("FGR_00_CLIENTE");

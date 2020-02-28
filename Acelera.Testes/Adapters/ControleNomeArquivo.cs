@@ -50,7 +50,7 @@ namespace Acelera.Testes.Adapters
 
         public string ObtemValor(TipoArquivo tipo)
         {
-            var valoresAtuais = File.ReadAllText(enderecoArquivo).Split(new string[] { "," },StringSplitOptions.RemoveEmptyEntries);
+            var valoresAtuais = File.ReadAllText(enderecoArquivo).Split(new string[] { "," },StringSplitOptions.RemoveEmptyEntries).Select(x => x.Replace(Environment.NewLine,""));
             var registroAtual = valoresAtuais.Where(x => x.Contains(tipo.ObterTexto())).FirstOrDefault();
             if (string.IsNullOrEmpty(registroAtual))
                 throw new Exception("NAO FOI ENCONTRADO O NUMERO PARA SER COLOCADO NO ARQUIVO.");
@@ -61,7 +61,7 @@ namespace Acelera.Testes.Adapters
 
             AtualizaResultado(tipo, resultado, resultado + 1);
 
-            return (resultado + 1).ToString().PadLeft(6,'0');
+            return (resultado + 1).ToString().PadLeft(4,'0');
         }
 
         private void AtualizaResultado(TipoArquivo tipo, int valorAnterior, int valorNovo)

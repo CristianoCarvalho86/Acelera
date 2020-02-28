@@ -23,6 +23,7 @@ namespace Acelera.Testes
     {
         private DBHelper helper = DBHelper.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
+        private TipoArquivo Tipo;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;
@@ -33,6 +34,8 @@ namespace Acelera.Testes
 
         protected string ObterArquivoDestino(string nomeArquivo)
         {
+            nomeArquivo = nomeArquivo.Replace("/*R*/", controleNomeArquivo.ObtemValor(Tipo));
+
             var path = pastaDestino + nomeArquivo;
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
@@ -124,8 +127,9 @@ namespace Acelera.Testes
             return tabela.Linhas;
         }
 
-        protected void IniciarTeste(string numeroDoTeste, string nomeDoTeste)
+        protected void IniciarTeste(TipoArquivo tipo ,string numeroDoTeste, string nomeDoTeste)
         {
+            Tipo = tipo;
             logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
             logger.EscreverBloco($"Nome do Teste : {nomeDoTeste}");
         }

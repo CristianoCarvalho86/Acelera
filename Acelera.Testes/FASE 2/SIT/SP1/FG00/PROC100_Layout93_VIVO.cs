@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1065_CLIENTE_SemCD_TPA()
         {
-            IniciarTeste("1065", "No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.Cliente,"1065", "No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
             
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarLinha(0, "CD_TPA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-{controleNomeArquivo.ObtemValor(TipoArquivo.Cliente)}-20200211.txt"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1070_SINISTRO_SemCD_TPA()
         {
-            IniciarTeste("1070", "No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro ,"1070", "No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -63,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarLinha(1, "CD_TPA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-{controleNomeArquivo.ObtemValor(TipoArquivo.Sinistro)}-20200209.txt"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
