@@ -53,6 +53,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1070_SINISTRO_SemCD_TPA()
         {
+            IniciarTeste("1070", "No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "CD_TPA", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-{controleNomeArquivo.ObtemValor(TipoArquivo.Sinistro)}-20200209.txt"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Codigo do tpa nao encontrado.");
+            ValidarTabelaDeRetorno("100");
+            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
         }
 
         /// <summary>
