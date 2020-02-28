@@ -41,10 +41,10 @@ namespace Acelera.Domain.Entidades.Consultas
             foreach (var item in Valores)
             {
                 var valor = string.Empty;
-                if (CamposQueNaoModificamZero().Contains(item.Key))
+                //if (CamposQueNaoModificamZero().Contains(item.Key))
                     valor = item.Value.TrimStart();
-                else
-                    valor = item.Value.TrimStart().TrimStart('0').Length > 0 ? item.Value.TrimStart().TrimStart('0') : item.Value.TrimStart();
+                //else
+                //    valor = item.Value.TrimStart().TrimStart('0').Length > 0 ? item.Value.TrimStart().TrimStart('0') : item.Value.TrimStart();
 
                 sql += item.Key + $" = '{valor}' AND ";
             }

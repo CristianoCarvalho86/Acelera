@@ -10,7 +10,7 @@ namespace Acelera.Domain.Extensions
 {
     public static class EnumExtensions
     {
-        public static string GetEnumDescription(this Enum value)
+        public static string ObterTexto(this Enum value)
         {
             FieldInfo fi = value.GetType().GetField(value.ToString());
 

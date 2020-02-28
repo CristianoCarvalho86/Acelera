@@ -24,7 +24,7 @@ namespace Acelera.Domain.Entidades
 
         public string ObterNomeTabela()
         {
-            return TabelaReferente.GetEnumDescription();
+            return TabelaReferente.ObterTexto();
         }
 
         protected abstract void CarregarCampos();

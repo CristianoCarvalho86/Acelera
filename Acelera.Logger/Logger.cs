@@ -49,17 +49,17 @@ namespace Acelera.Logger
 
         public void InicioOperacao(OperacaoEnum operacao, string complemento = "")
         {
-            EscreverBloco("Inicio da Operacao : " + operacao.GetEnumDescription() + " " + complemento);
+            EscreverBloco("Inicio da Operacao : " + operacao.ObterTexto() + " " + complemento);
         }
 
         public void SucessoDaOperacao(OperacaoEnum operacao, string complemento = "")
         {
-            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} {complemento} --- Ok");
+            EscreverBloco($"Operacao : {operacao.ObterTexto()} {complemento} --- Ok");
         }
 
         public void ErroNaOperacao(OperacaoEnum operacao, string complemento = "")
         {
-            EscreverBloco($"Operacao : {operacao.GetEnumDescription()} {complemento} --- Falha");
+            EscreverBloco($"Operacao : {operacao.ObterTexto()} {complemento} --- Falha");
         }
 
         public void Erro(string descricao)

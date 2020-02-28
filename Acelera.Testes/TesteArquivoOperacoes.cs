@@ -16,7 +16,7 @@ namespace Acelera.Testes
     public class TesteArquivoOperacoes : TesteItens
     {
 
-        public void SelecionarLinhaParaValidacao(Arquivo arquivo, int posicaoLinha)
+        public void SelecionarLinhaParaValidacao(int posicaoLinha)
         {
             var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
             logger.AbrirBloco($"Linha Selecionada para validacao : linha {posicaoLinha}");
@@ -27,7 +27,7 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, posicaoLinha);
         }
 
-        public void AlterarLinha(Arquivo arquivo, int posicaoLinha, string campo, string valorNovo)
+        public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
             logger.Escrever("Valor Antigo :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
@@ -41,7 +41,7 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campo, valorNovo);
         }
 
-        public void AlterarHeader(Arquivo arquivo, string campo, string valorNovo, int posicaoLinha = 0)
+        public void AlterarHeader(string campo, string valorNovo, int posicaoLinha = 0)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha} do HEADER");
             logger.Escrever("Valor Antigo :" + arquivo.ObterLinhaHeader(posicaoLinha).ObterTexto());
@@ -55,7 +55,7 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosHeader, linhaAlterada, posicaoLinha, campo, valorNovo);
         }
 
-        public void AlterarFooter(Arquivo arquivo, string campo, string valorNovo, int posicaoLinha = 0)
+        public void AlterarFooter(string campo, string valorNovo, int posicaoLinha = 0)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha} do Footer");
             logger.Escrever("Valor Antigo :" + arquivo.ObterLinhaFooter(posicaoLinha).ObterTexto());
@@ -69,7 +69,7 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosFooter, linhaAlterada, posicaoLinha, campo, valorNovo);
         }
 
-        public void AdicionarLinha(Arquivo arquivo, int posicaoLinha, LinhaArquivo linhaNova)
+        public void AdicionarLinha(int posicaoLinha, LinhaArquivo linhaNova)
         {
             logger.AbrirBloco($"Alterando arquivo - Adicionando linha na posicao {posicaoLinha}");
             arquivo.AdicionarLinha(linhaNova, posicaoLinha);
@@ -77,7 +77,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void ReplicarLinha(Arquivo arquivo, int posicaoLinha, int quantidadeVezes)
+        public void ReplicarLinha(int posicaoLinha, int quantidadeVezes)
         {
             logger.AbrirBloco($"Alterando arquivo - Replicando linha {posicaoLinha} , {quantidadeVezes} vezes.");
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
@@ -85,7 +85,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void ReplicarHeader(Arquivo arquivo, int quantidadeVezes , int posicaoLinha = 0)
+        public void ReplicarHeader(int quantidadeVezes , int posicaoLinha = 0)
         {
             logger.AbrirBloco($"Alterando arquivo - Replicando HEADER linha {posicaoLinha} , {quantidadeVezes} vezes.");
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaHeader(posicaoLinha).ObterTexto());
@@ -93,7 +93,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void ReplicarFooter(Arquivo arquivo, int quantidadeVezes, int posicaoLinha = 0)
+        public void ReplicarFooter(int quantidadeVezes, int posicaoLinha = 0)
         {
             logger.AbrirBloco($"Alterando arquivo - Replicando FOOTER linha {posicaoLinha} , {quantidadeVezes} vezes.");
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaFooter(posicaoLinha).ObterTexto());
@@ -101,14 +101,14 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void RemoverLinha(Arquivo arquivo, int posicaoLinha)
+        public void RemoverLinha(int posicaoLinha)
         {
             logger.AbrirBloco($"Alterando arquivo - removendo linha {posicaoLinha}");
             logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
             arquivo.RemoverLinha(posicaoLinha);
             logger.FecharBloco();
         }
-        public void RemoverHeader(Arquivo arquivo)
+        public void RemoverHeader()
         {
             logger.AbrirBloco($"Alterando arquivo - removendo HEADER");
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaHeader().ObterTexto());
@@ -116,7 +116,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void RemoverFooter(Arquivo arquivo)
+        public void RemoverFooter()
         {
             logger.AbrirBloco($"Alterando arquivo - removendo FOOTER");
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaFooter().ObterTexto());

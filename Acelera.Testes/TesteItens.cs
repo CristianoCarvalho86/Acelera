@@ -11,6 +11,7 @@ namespace Acelera.Testes
     {
         protected string nomeArquivo;
         protected MyLogger logger;
+        protected Arquivo arquivo;
         protected AlteracoesArquivo valoresAlteradosBody;
         protected AlteracoesArquivo valoresAlteradosHeader;
         protected AlteracoesArquivo valoresAlteradosFooter;

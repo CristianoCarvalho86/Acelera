@@ -24,18 +24,6 @@ namespace Acelera.Domain.Entidades.Tabelas
             Linhas.Add(linha);
         }
 
-        public string ObterQueryParaCMD(Consulta consulta)
-        {
-            var linha = new T();
-            var sql = "select ";
-            foreach (var i in linha.Campos)
-                sql += $"(CONCAT('{i.Coluna}:',{i.Coluna})) as {i.Coluna},";
-            sql = sql.Remove(sql.Length - 1);
-            sql += $" from HDIQAS_1.{linha.ObterNomeTabela()} ";
-            sql += consulta.MontarConsulta();
-            return sql;
-        }
-
         public string ObterQuery(Consulta consulta)
         {
             var linha = new T();
@@ -48,6 +36,32 @@ namespace Acelera.Domain.Entidades.Tabelas
             return sql;
         }
 
+        public void ObterRetornoQuery(DataTable tabela)
+        {
+            foreach (var row in tabela.Rows)
+            {
+                var linhaNova = new T();
+                linhaNova.CarregarLinha((DataRow)row);
+                AddLinha(linhaNova);
+            }
+        }
+
+        [Obsolete("Utilize os metodos de acesso a banco")]
+        public string ObterQueryParaCMD(Consulta consulta)
+        {
+            var linha = new T();
+            var sql = "select ";
+            foreach (var i in linha.Campos)
+                sql += $"(CONCAT('{i.Coluna}:',{i.Coluna})) as {i.Coluna},";
+            sql = sql.Remove(sql.Length - 1);
+            sql += $" from HDIQAS_1.{linha.ObterNomeTabela()} ";
+            sql += consulta.MontarConsulta();
+            return sql;
+        }
+
+
+
+        [Obsolete("Utilize os metodos de acesso a banco")]
         public void ObterRetornoQueryCMD(string resultadoCMD)
         {
             var linhas = resultadoCMD.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
@@ -60,14 +74,5 @@ namespace Acelera.Domain.Entidades.Tabelas
             }
         }
 
-        public void ObterRetornoQuery(DataTable tabela)
-        {
-            foreach (var row in tabela.Rows)
-            {
-                var linhaNova = new T();
-                linhaNova.CarregarLinha((DataRow)row);
-                AddLinha(linhaNova);
-            }
-        }
     }
 }

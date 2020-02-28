@@ -44,8 +44,9 @@ namespace Acelera.Testes
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
         }
 
-        public void ValidarControleArquivo(string[] descricaoErroSeHouver)
+        public void ValidarControleArquivo(params string[] descricaoErroSeHouver)
         {
+            AjustarEntradaErros(ref descricaoErroSeHouver);
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
             var lista = ChamarConsultaAoBanco<LinhaControleArquivo>(consulta);
@@ -77,9 +78,9 @@ namespace Acelera.Testes
             MontarConsultaParaStage(tabela, consulta);
             var lista = ChamarConsultaAoBanco<T>(consulta);
 
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.GetEnumDescription()}");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
 
-            logger.Escrever($"Deve encontrar registros na tabela {tabela.GetEnumDescription()} : {deveHaverRegistro}");
+            logger.Escrever($"Deve encontrar registros na tabela {tabela.ObterTexto()} : {deveHaverRegistro}");
             logger.Escrever($"Foram encontrados {lista.Count} registros.");
 
             if (!deveHaverRegistro && lista.Count > 0)// NAO DEVERIA ENCONTRAR REGISTROS MAS FORAM ENCONTRADOS
@@ -87,7 +88,7 @@ namespace Acelera.Testes
                 var linhas = string.Empty;
                 foreach (var l in lista)
                     linhas += "LINHA : " + l.ToString() + Environment.NewLine;
-                logger.EscreverBloco($"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabela.GetEnumDescription()}" +
+                logger.EscreverBloco($"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabela.ObterTexto()}" +
                     $"{Environment.NewLine} LINHAS ENCONTRADAS : { linhas })");
                 ExplodeFalha(logger);
             }
@@ -97,26 +98,27 @@ namespace Acelera.Testes
                 {
                     if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
                     {
-                        logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabela.GetEnumDescription()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
+                        logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabela.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
                             $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
                         ExplodeFalha(logger);
                     }
                     else
                     {
-                        logger.Escrever($"Codigo Esperado na tabela {tabela.GetEnumDescription()} encontrado com sucesso : {codigoEsperado.ToString()}");
+                        logger.Escrever($"Codigo Esperado na tabela {tabela.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
                     }
                 }
             }
-            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.GetEnumDescription()}");
+            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
 
         }
 
-        public void ValidarTabelaDeRetorno(string[] errosEsperados)
+        public void ValidarTabelaDeRetorno(params string[] errosEsperados)
         {
+            AjustarEntradaErros(ref errosEsperados);
             var consulta = new Consulta();
             MontarConsultaParaTabelaDeRetorno(TabelasEnum.TabelaRetorno, consulta);
             var lista = ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta);
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.GetEnumDescription()}");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             logger.Escrever($"Erros esperados na tabela de retorno {errosEsperados.ToList().ObterListaConcatenada(", ")}");
             foreach (var linhaEncontrada in lista)
             {
@@ -131,7 +133,7 @@ namespace Acelera.Testes
                     ExplodeFalha(logger);
                 }
             }
-            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.GetEnumDescription()}");
+            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
 
         }
 
@@ -247,6 +249,22 @@ namespace Acelera.Testes
         {
             logger.TesteComFalha();
             Assert.Fail();
+        }
+
+        protected bool Validar(object esperado, object obtido, string tituloValidacao)
+        {
+            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
+
+            if (esperado == obtido)
+                return true;
+            return false;
+        }
+
+        private void AjustarEntradaErros(ref string[] erros)
+        {
+            if (erros.Length == 1 && erros.Contains(string.Empty))
+                erros = new string[] { };
+
         }
     }
 }

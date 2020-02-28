@@ -129,13 +129,10 @@ namespace Acelera.Testes
             logger.EscreverBloco($"Nome do Teste : {nomeDoTeste}");
         }
 
-        protected bool Validar(object esperado, object obtido ,string tituloValidacao)
+        protected string[] ErrosEsperados(params string[] erros)
         {
-            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
-
-            if(esperado == obtido)
-                return true;
-            return false;
+            return erros;
         }
+
     }
 }
