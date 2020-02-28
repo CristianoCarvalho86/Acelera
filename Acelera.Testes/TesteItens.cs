@@ -54,11 +54,25 @@ namespace Acelera.Testes
             {
                 var logger = ConfigurationManager.AppSettings.Get("PastaLogger");
                 if (string.IsNullOrEmpty(logger))
-                    throw new Exception("Pasta de Destino nao definida");
+                    throw new Exception("Pasta de Log nao definida");
                 if (!logger.EndsWith("\\"))
                     logger += "\\";
                 return logger;
             }
         }
+        
+        protected string pastaLogArquivo
+        {
+            get
+            {
+                var logger = ConfigurationManager.AppSettings.Get("PastaLoggerArquivos");
+                if (string.IsNullOrEmpty(logger))
+                    throw new Exception("Pasta de Log dos arquivos nao definida");
+                if (!logger.EndsWith("\\"))
+                    logger += "\\";
+                return logger;
+            }
+        }
+
     }
 }

@@ -61,7 +61,7 @@ namespace Acelera.Testes.Adapters
 
             AtualizaResultado(tipo, resultado, resultado + 1);
 
-            return (resultado + 1).ToString().PadLeft(4,'0');
+            return (resultado + 1).ToString().PadLeft(6,'0');
         }
 
         private void AtualizaResultado(TipoArquivo tipo, int valorAnterior, int valorNovo)
