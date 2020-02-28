@@ -8,26 +8,26 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class PROC62_Layout942_VIVO : TesteBase
+    public class PROC74_Layout94_TIM : TesteBase
     {
 
         /// <summary>
-        /// No Body do arquivo SINISTRO no campo CD_SINISTRO não informar o número do sinistro (Será criiticado também plea PROC 5)
+        /// CLIENTE - Não informar CD_CLIENTE
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2291_SINISTRO_SemCD_SINISTRO()
+        public void SAP_2353_CLIENTE_SemCD_CLIENTE()
         {
         }
 
         /// <summary>
-        ///  Importar arquivo com NR_SINISTRO valido
+        ///   SINISTRO - Importar arquivo com Beneficiário ok
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2554_SINISTRO()
+        public void SAP_2556_SINISTRO()
         {
         }
 
