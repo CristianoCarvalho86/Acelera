@@ -1,4 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4_2;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +13,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 {
     [TestClass]
-    public class PROC100_Layout93_VIVO : TesteBase
+    public class PROC100_Layout93_VIVO : TestesFG00
     {
         /// <summary>
         /// No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
@@ -18,6 +23,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1065_CLIENTE_SemCD_TPA()
         {
+            IniciarTeste("1065", "No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
+            
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.CLIENTE-EV-000001-20200211.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "CD_TPA", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-{controleNomeArquivo.ObtemValor(TipoArquivo.Cliente)}-20200211.txt"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Codigo do tpa nao encontrado.");
+            ValidarTabelaDeRetorno("100");
+            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
         }
 
         /// <summary>

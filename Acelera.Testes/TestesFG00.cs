@@ -17,7 +17,7 @@ namespace Acelera.Testes
 {
     public abstract class TestesFG00 : TesteBase
     {
-        public void ValidarLogProcessamento(bool devePassar)
+        public void ValidarLogProcessamento(bool Sucesso)
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
@@ -36,7 +36,7 @@ namespace Acelera.Testes
             if (!Validar(procedureNaoEncontrada.Count() == 0, true, $"PROCEDURES {procedureNaoEncontrada.Select(x => x.ObterPorColuna("CD_PROCEDURE").Valor).ToList().ObterListaConcatenada(" ,")} NAO ENCONTRADAS"))
                 falha = true;
 
-            if (devePassar && falha || !devePassar && !falha)
+            if (Sucesso && falha || !Sucesso && !falha)
             {
                 logger.TesteComFalha();
                 Assert.Fail();

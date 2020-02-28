@@ -22,6 +22,7 @@ namespace Acelera.Testes
     public abstract class TesteBase : TesteArquivoOperacoes
     {
         private DBHelper helper = DBHelper.Instance;
+        protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;

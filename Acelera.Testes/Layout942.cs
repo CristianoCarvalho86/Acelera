@@ -25,7 +25,7 @@ namespace Acelera.Testes
             IniciarTeste("NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-/*R*/-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             //AlterarLinha(arquivo, 0, "CD_CONTRATO", "");
@@ -35,19 +35,17 @@ namespace Acelera.Testes
             RemoverHeader();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-{controleNomeArquivo.ObtemValor(TipoArquivo.Sinistro)}-20200211.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
 
-            ChamarExecucao("FGR_00_SINISTRO");
 
             //VALIDAR NO BANCO A ALTERACAO
             ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de header (01) nao encontrada");
             ValidarTabelaDeRetorno("95");
-            //VALIDAR O LOG_PROCESSAMENTO_8000
 
         }
 
