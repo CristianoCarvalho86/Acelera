@@ -139,5 +139,11 @@ namespace Acelera.Testes
             return erros;
         }
 
+        [TestCleanup]
+        public void FimDoTeste()
+        {
+            logger.FimDoArquivo();
+        }
+
     }
 }

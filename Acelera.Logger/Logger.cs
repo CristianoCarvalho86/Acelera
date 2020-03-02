@@ -113,5 +113,12 @@ namespace Acelera.Logger
 
             EscreverBloco($"{tituloValidacao} {Environment.NewLine} Resultado obtido: {resultadoObtido} {Environment.NewLine} Resultado esperado : {resultadoEsperado}");
         }
+
+        public void FimDoArquivo()
+        {
+            writer.Flush();
+            writer.Close();
+            writer.Dispose();
+        }
     }
 }
