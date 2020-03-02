@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Especificos do projeto
 ControleArquivo.txt
+!Acelera.Data/DriverHana/Sap.Data.Hana.v4.5.dll
