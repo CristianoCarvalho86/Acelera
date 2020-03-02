@@ -77,7 +77,9 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("CD_PLANO");
             AddCampo("CD_UF_RISCO");
             AddCampo("ID_REGISTRO");
-            
+            AddCampo("TP_MUDANCA");
+            AddCampo("DT_MUDANCA");
+
         }
     }
 }

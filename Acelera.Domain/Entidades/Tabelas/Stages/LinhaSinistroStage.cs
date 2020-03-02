@@ -79,7 +79,9 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("VL_CORRECAO_MONETARIA");
             AddCampo("VL_JUROS");
             AddCampo("ID_REGISTRO");
-            
+            AddCampo("TP_MUDANCA");
+            AddCampo("DT_MUDANCA");
+
         }
     }
 }

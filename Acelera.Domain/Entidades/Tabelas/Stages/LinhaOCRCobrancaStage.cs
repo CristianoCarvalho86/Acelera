@@ -40,7 +40,10 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("VL_DIF_PREMIO");
             AddCampo("CD_SISTEMA");
             AddCampo("ID_REGISTRO");
-            
+            AddCampo("TP_MUDANCA");
+            AddCampo("DT_MUDANCA");
+            AddCampo("NR_ENDOSSO");
+
         }
     }
 }

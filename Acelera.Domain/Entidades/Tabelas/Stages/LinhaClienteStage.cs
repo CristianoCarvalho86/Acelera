@@ -34,7 +34,7 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("EN_CIDADE");
             AddCampo("EN_UF");
             AddCampo("EN_CEP");
-            AddCampo("EM_PAIS");
+            AddCampo("EN_PAIS");
             AddCampo("TP_PESSOA");
             AddCampo("CD_SEXO");
             AddCampo("DT_NASCIMENTO");
@@ -46,7 +46,9 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("NR_DDD_CELULAR");
             AddCampo("NR_TELEFONE_CELULAR");
             AddCampo("ID_REGISTRO");
-            
+            AddCampo("TP_MUDANCA");
+            AddCampo("DT_MUDANCA");
+
         }
     }
 }

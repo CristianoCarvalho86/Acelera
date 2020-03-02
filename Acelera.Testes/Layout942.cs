@@ -24,24 +24,24 @@ namespace Acelera.Testes
         {
             IniciarTeste(TipoArquivo.Cliente,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_2();
+            arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            RemoverHeader();
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.txt"));
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
-            //ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
 
 
             ////VALIDAR NO BANCO A ALTERACAO
-            //ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
-            //ValidarLogProcessamento(true);
-            //ValidarControleArquivo("Estrutura de header (01) nao encontrada");
-            //ValidarTabelaDeRetorno("95");
+            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, true, 110);
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Estrutura de header (01) nao encontrada");
+            ValidarTabelaDeRetorno("95");
 
         }
 

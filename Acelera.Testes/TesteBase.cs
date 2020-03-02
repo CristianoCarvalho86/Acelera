@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace Acelera.Testes
         private DBHelper helper = DBHelper.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
         private TipoArquivo Tipo;
+        private string numeroDoTeste;
+        protected bool sucessoDoTeste;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;
@@ -34,7 +37,7 @@ namespace Acelera.Testes
 
         protected string ObterArquivoDestino(string nomeArquivo)
         {
-            nomeArquivo = nomeArquivo.Replace("/*R*/", controleNomeArquivo.ObtemValor(Tipo));
+            this.nomeArquivo = nomeArquivo.Replace("/*R*/", controleNomeArquivo.ObtemValor(Tipo)).Replace(".txt",".TXT");
 
             var path = pastaDestino + nomeArquivo;
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
@@ -129,6 +132,8 @@ namespace Acelera.Testes
 
         protected void IniciarTeste(TipoArquivo tipo ,string numeroDoTeste, string nomeDoTeste)
         {
+            sucessoDoTeste = true;
+            this.numeroDoTeste = numeroDoTeste;
             Tipo = tipo;
             logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
             logger.EscreverBloco($"Nome do Teste : {nomeDoTeste}");
@@ -142,6 +147,9 @@ namespace Acelera.Testes
         [TestCleanup]
         public void FimDoTeste()
         {
+            var nomeArquivoDeLog = nomeArquivo.Replace(".TXT", $"-Teste-{numeroDoTeste}-Data-{DateTime.Now.ToString("ddMMYY_hhmm")}.TXT");
+            File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
+            logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
             logger.FimDoArquivo();
         }
 

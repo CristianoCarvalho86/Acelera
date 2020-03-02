@@ -8,7 +8,7 @@ namespace Acelera.Domain.Entidades
 {
     public class Campo
     {
-        public string Coluna { get; set; }
+        public virtual string Coluna { get; set; }
         public string Valor { get; set; }
 
         public Campo(string coluna)

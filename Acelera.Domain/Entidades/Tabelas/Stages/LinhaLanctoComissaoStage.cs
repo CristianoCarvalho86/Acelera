@@ -41,7 +41,8 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("CD_SISTEMA");
             AddCampo("CD_TIPO_LANCAMENTO");
             AddCampo("ID_REGISTRO");
-        
+            AddCampo("TP_MUDANCA");
+            AddCampo("DT_MUDANCA");
 
         }
     }

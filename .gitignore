@@ -352,4 +352,3 @@ MigrationBackup/
 # Especificos do projeto
 ControleArquivo.txt
 App.config
-!Acelera.Data/DriverHana/*

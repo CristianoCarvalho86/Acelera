@@ -58,6 +58,11 @@ namespace Acelera.Domain.Entidades.Consultas
             return lista;
         }
 
+        public void ContemCampo(string campo)
+        {
+            Valores.ContainsKey(campo);
+        }
+
 
     }
 }

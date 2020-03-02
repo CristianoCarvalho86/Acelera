@@ -89,7 +89,9 @@ namespace Acelera.Domain.Entidades.Stages
             AddCampo("CEP_UTILIZACAO");
             AddCampo("CEP_PERNOITE");
             AddCampo("ID_REGISTRO");
-            
+            AddCampo("TP_MUDANCA");
+            AddCampo("DT_MUDANCA");
+
         }
     }
 }

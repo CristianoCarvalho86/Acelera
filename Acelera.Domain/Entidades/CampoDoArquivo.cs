@@ -11,9 +11,27 @@ namespace Acelera.Domain.Layouts
     {
         public int Posicoes { get; set; }
 
+        public string NomeBanco { get; set; }
+
+        public override string Coluna { get => ObterColuna(); set => base.Coluna = value; }
+
         public CampoDoArquivo(string nomeCampo,int posicoes): base(nomeCampo)
         {
             Posicoes = posicoes;
+        }
+
+        public CampoDoArquivo(string nomeCampo, int posicoes, string nomeNoBanco) : base(nomeCampo)
+        {
+            Posicoes = posicoes;
+            NomeBanco = nomeNoBanco;
+        }
+
+        private string ObterColuna()
+        {
+            if (!string.IsNullOrEmpty(NomeBanco))
+                return base.Coluna;
+            else
+                return NomeBanco;
         }
 
         public void AlterarValor(string novoValor)

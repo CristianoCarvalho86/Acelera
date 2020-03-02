@@ -53,6 +53,7 @@
     <Compile Include="Entidades\Arquivo.cs" />
     <Compile Include="Entidades\Campo.cs" />
     <Compile Include="Entidades\Consultas\Consulta.cs" />
+    <Compile Include="Entidades\Consultas\FabricaConsulta.cs" />
     <Compile Include="Entidades\LinhaTabela.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaClienteStage.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaComissaoStage.cs" />

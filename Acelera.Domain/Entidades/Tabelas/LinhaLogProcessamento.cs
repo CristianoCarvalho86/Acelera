@@ -20,8 +20,8 @@ namespace Acelera.Domain.Entidades.Tabelas
             AddCampo("NM_ARQUIVO_TPA");
             AddCampo("CD_STATUS");
             AddCampo("CD_VERSAO_ARQUIVO");
-            AddCampo("CD_PN_TPA");
-            AddCampo("CD_PN_OPERACAO");
+            AddCampo("TP_MUDANCA");
+            AddCampo("DT_MUDANCA");
             AddCampo("DT_INCLUSAO");
             AddCampo("NM_USUARIO");
         }
