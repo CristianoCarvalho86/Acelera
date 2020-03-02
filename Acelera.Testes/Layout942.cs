@@ -34,7 +34,7 @@ namespace Acelera.Testes
             arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
+            //ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
 
 
             ////VALIDAR NO BANCO A ALTERACAO

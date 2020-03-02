@@ -8,17 +8,18 @@ namespace Acelera.Domain.Entidades
 {
     public class Campo
     {
-        public virtual string Coluna { get; set; }
+        protected string coluna;
+        public virtual string Coluna { get { return coluna; } set { coluna = value; } }
         public string Valor { get; set; }
 
-        public Campo(string coluna)
+        public Campo(string _coluna)
         {
-            Coluna = coluna;
+            Coluna = _coluna;
         }
 
-        public Campo(string coluna, string valor)
+        public Campo(string _coluna, string valor)
         {
-            Coluna = coluna;
+            Coluna = _coluna;
             Valor = valor;
         }
     }
