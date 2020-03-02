@@ -1,7 +1,0 @@
-Sinistro:1,
-Cliente:2,
-Comissao:0,
-LanctoComissao:0,
-OCRCobranca:0,
-ParcEmissao:0,
-ParcEmissaoAuto:0,
