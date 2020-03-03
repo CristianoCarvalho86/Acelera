@@ -32,13 +32,13 @@ namespace Acelera.Testes
                 falha = true;
 
             if (falha && descricaoErroSeHouver.Length == 0 || !falha && descricaoErroSeHouver.Length > 0)
-                ExplodeFalha(logger);
+                ExplodeFalha();
 
             if (falha)
             {
                 foreach (var descricao in descricaoErroSeHouver)
                     if (!Validar(lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()),true,"Descricao de erro em CONTROLE ARQUIVO esperada foi encontrada:"))
-                        ExplodeFalha(logger);
+                        ExplodeFalha();
             }
 
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
@@ -63,7 +63,7 @@ namespace Acelera.Testes
                     linhas += "LINHA : " + l.ToString() + Environment.NewLine;
                 logger.EscreverBloco($"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabela.ObterTexto()}" +
                     $"{Environment.NewLine} LINHAS ENCONTRADAS : { linhas })");
-                ExplodeFalha(logger);
+                ExplodeFalha();
             }
             if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
             {
@@ -74,7 +74,7 @@ namespace Acelera.Testes
                     {
                         logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabela.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
                             $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
-                        ExplodeFalha(logger);
+                        ExplodeFalha();
                     }
                     else
                     {

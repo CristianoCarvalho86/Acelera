@@ -10,6 +10,9 @@ namespace Acelera.Domain.Extensions
     {
         public static string ObterListaConcatenada(this List<string> lista, string separador)
         {
+            if (lista.Count == 0)
+                return string.Empty;
+
             var retorno = string.Empty;
             foreach (var l in lista)
                 retorno += l + separador;

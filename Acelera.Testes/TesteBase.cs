@@ -35,9 +35,9 @@ namespace Acelera.Testes
             return path;
         }
 
-        protected string ObterArquivoDestino(string nomeArquivo)
+        protected string ObterArquivoDestino(string _nomeArquivo)
         {
-            this.nomeArquivo = nomeArquivo.Replace("/*R*/", controleNomeArquivo.ObtemValor(Tipo)).Replace(".txt",".TXT");
+            this.nomeArquivo = _nomeArquivo.Replace("/*R*/", controleNomeArquivo.ObtemValor(Tipo)).Replace(".txt",".TXT");
 
             var path = pastaDestino + nomeArquivo;
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
