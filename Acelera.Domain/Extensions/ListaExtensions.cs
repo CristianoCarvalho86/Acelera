@@ -16,7 +16,7 @@ namespace Acelera.Domain.Extensions
             var retorno = string.Empty;
             foreach (var l in lista)
                 retorno += l + separador;
-            return retorno.Remove(separador.Length - 1);
+            return retorno.Remove(retorno.Length - separador.Length);
         }
     }
 }

@@ -28,18 +28,32 @@ namespace Acelera.Testes
 
             var falha = false;
 
-            if (!Validar((lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E")), false, "Todos os ST_STATUS sao igual a 'S'"))
+            if (lista.Count == 0)
+            {
+                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"Arquivo nao encontrado na {TabelasEnum.ControleArquivo.ObterTexto()}");
+                ExplodeFalha();
+            }
+
+            if (!Validar((lista.All(x => x.ObterPorColuna("ST_STATUS").Valor == "S")),
+                descricaoErroSeHouver.Length > 0 ? true : false,
+                "Existe ST_STATUS diferente de 'S'"))
                 falha = true;
 
-            if (falha && descricaoErroSeHouver.Length == 0 || !falha && descricaoErroSeHouver.Length > 0)
-                ExplodeFalha();
-
-            if (falha)
+            if (falha && descricaoErroSeHouver.Length == 0)
             {
-                foreach (var descricao in descricaoErroSeHouver)
-                    if (!Validar(lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()),true,"Descricao de erro em CONTROLE ARQUIVO esperada foi encontrada:"))
-                        ExplodeFalha();
+                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, "NAO ERAM ESPERADAS FALHAS NO TESTE");
+                ExplodeFalha();
             }
+            else if (!falha && descricaoErroSeHouver.Length > 0)
+            {
+                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"AS FALHAS ESPERADAS NAO FORAM ENCONTRADAS : {descricaoErroSeHouver.ToList().ObterListaConcatenada(",")}");
+                ExplodeFalha();
+            }
+
+            foreach (var descricao in descricaoErroSeHouver)
+                if (!Validar(lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()), true, $"Buscando Erro - {descricao} - em {TabelasEnum.ControleArquivo.ObterTexto()}:"))
+                    ExplodeFalha();
+
 
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
         }
@@ -61,25 +75,30 @@ namespace Acelera.Testes
                 var linhas = string.Empty;
                 foreach (var l in lista)
                     linhas += "LINHA : " + l.ToString() + Environment.NewLine;
-                logger.EscreverBloco($"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabela.ObterTexto()}" +
+                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabela.ObterTexto()}" +
                     $"{Environment.NewLine} LINHAS ENCONTRADAS : { linhas })");
                 ExplodeFalha();
             }
-            if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
+            else if (deveHaverRegistro && lista.Count == 0)//DEVERIAM HAVER REGISTROS, MAS NAO FORAM ENCONTRADOS
+            {
+                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"NAO FORAM ENCONTRADOS REGISTROS NA TABELA {tabela.ObterTexto()}");
+                ExplodeFalha();
+            }
+            else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
             {
                 var linha = lista.First();
                 //foreach (var linha in lista)
                 //{
-                    if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
-                    {
-                        logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabela.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
-                            $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
-                        ExplodeFalha();
-                    }
-                    else
-                    {
-                        logger.Escrever($"Codigo Esperado na tabela {tabela.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
-                    }
+                if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
+                {
+                    logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabela.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
+                        $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
+                    ExplodeFalha();
+                }
+                else
+                {
+                    logger.Escrever($"Codigo Esperado na tabela {tabela.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
+                }
                 //}
             }
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
@@ -92,7 +111,7 @@ namespace Acelera.Testes
                 throw new Exception("NENHUMA LINHA ALTERADA OU SELECIONADA.");
 
 
-            AdicionaConsultaDoBody(FabricaConsulta.MontarConsultaParaStage(tabela,nomeArquivo, valoresAlteradosBody, consulta));
+            AdicionaConsultaDoBody(FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, consulta));
             consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
         }
 

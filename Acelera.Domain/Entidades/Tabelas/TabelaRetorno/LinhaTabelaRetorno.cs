@@ -13,7 +13,6 @@ namespace Acelera.Domain.Entidades.TabelaRetorno
 
         protected override void CarregarCampos()
         {
-            AddCampo("cd_registro");
             AddCampo("nm_arquivo_tpa");
             AddCampo("nm_tpa");
             AddCampo("cd_operacao");
@@ -37,6 +36,14 @@ namespace Acelera.Domain.Entidades.TabelaRetorno
             AddCampo("cd_origem_msg");
             AddCampo("fl_status_envio");
             
+        }
+
+        public override Campo ObterPorColuna(string coluna)
+        {
+            var campo = coluna;
+            if (coluna == "TIPO_REGISTRO")
+                campo = "TP_REGISTRO";
+            return base.ObterPorColuna(campo);
         }
     }
 }

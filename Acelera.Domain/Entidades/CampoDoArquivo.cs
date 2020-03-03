@@ -29,7 +29,7 @@ namespace Acelera.Domain.Layouts
         private string ObterColuna()
         {
             if (string.IsNullOrEmpty(NomeBanco))
-                return coluna;
+                return base.Coluna;
             else
                 return NomeBanco;
         }

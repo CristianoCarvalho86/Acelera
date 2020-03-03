@@ -35,12 +35,12 @@ namespace Acelera.Testes
 
             //PROCESSAR O ARQUIVO CRIADO
             //ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
-            ValidarLogProcessamento(true);
+            //ValidarLogProcessamento(true);
 
 
             ////VALIDAR NO BANCO A ALTERACAO
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, true, 110);
-            ValidarControleArquivo("Estrutura de header (01) nao encontrada");
+            //ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, true, 110);
+            //ValidarControleArquivo("Estrutura de header (01) nao encontrada");
             ValidarTabelaDeRetorno("95");
 
         }

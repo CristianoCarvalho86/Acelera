@@ -26,14 +26,14 @@ namespace Acelera.Testes
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
 
             var falha = false;
-            if (!Validar(ObterProceduresASeremExecutadas().Count * vezesExecutado, lista.Count, "Quantidade de Procedures executadas"))
+            if (!Validar(lista.Count, ObterProceduresASeremExecutadas().Count * vezesExecutado, "Quantidade de Procedures executadas"))
                 falha = true;
-            if (!Validar((lista.Any(x => x.ObterPorColuna("CD_STATUS").Valor == "E")), false, "Todos os CD_STATUS sao igual a 'S'"))
+            if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
                 falha = true;
 
             var proceduresEsperadas = ObterProceduresASeremExecutadas();
-            var procedureNaoEncontrada = lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
-            if (!Validar(procedureNaoEncontrada.Count() == 0, true, $"PROCEDURES {procedureNaoEncontrada.Select(x => x.ObterPorColuna("CD_PROCEDURE").Valor).ToList().ObterListaConcatenada(" ,")} NAO ENCONTRADAS"))
+            var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
+            if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
                 falha = true;
 
             if (Sucesso && falha || !Sucesso && !falha)
@@ -43,24 +43,34 @@ namespace Acelera.Testes
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
         }
 
-        public void ValidarTabelaDeRetorno(params string[] errosEsperados)
+        public void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
         {
-            AjustarEntradaErros(ref errosEsperados);
+            AjustarEntradaErros(ref codigosDeErroEsperados);
 
-            var consulta = MontarConsultaParaTabelaDeRetorno(TabelasEnum.TabelaRetorno);
+            var consulta = MontarConsultaParaTabelaDeRetorno(tipoArquivoTeste.ObterTabelaEnum());
 
             var lista = ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta);
+
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-            logger.Escrever($"Erros esperados na tabela de retorno {errosEsperados.ToList().ObterListaConcatenada(", ")}");
+
+            var txtErrosEsperados = codigosDeErroEsperados.Length == 0 ? "NENHUM" : codigosDeErroEsperados.ToList().ObterListaConcatenada(", ");
+            var txtErrosEncontrados = lista.Select(x => x.ObterPorColuna("CD_MENSAGEM").Valor).ToList().ObterListaConcatenada(", ");
+            logger.Escrever($"Erros esperados na tabela de retorno: {txtErrosEsperados}");
+            logger.Escrever($"Erros encontrados na tabela de retorno: {txtErrosEncontrados}");
+
+            if(codigosDeErroEsperados.Length == 0 && lista.Count > 0 || codigosDeErroEsperados.Length > 0 && codigosDeErroEsperados.Length == 0)
+            {
+                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, "ERROS ESPERADOS NÃO FORAM OS ERROS OBTIDOS.");
+                ExplodeFalha();
+            }
+
             foreach (var linhaEncontrada in lista)
             {
-                if (!errosEsperados.Contains(linhaEncontrada.ObterPorColuna("CD_MENSAGEM").Valor.ToUpper()))
+                if (!codigosDeErroEsperados.Contains(linhaEncontrada.ObterPorColuna("CD_MENSAGEM").Valor.ToUpper()))
                 {
-                    var mensagesObtidas = lista.Select(x => x.ObterPorColuna("CD_MENSAGEM").Valor).ToList().ObterListaConcatenada(", ");
-
                     logger.EscreverBloco("VALIDAÇÃO ESPERADA NA TABELA DE RETORNO NAO ENCONTRADA."
-                       + $"{Environment.NewLine} MENSAGENS ESPERADAS : {errosEsperados.ToList().ObterListaConcatenada(", ")}"
-                       + $"{Environment.NewLine} MENSAGENS OBTIDAS : {mensagesObtidas}");
+                       + $"{Environment.NewLine} MENSAGENS ESPERADAS : {txtErrosEsperados}"
+                       + $"{Environment.NewLine} MENSAGENS OBTIDAS : {txtErrosEncontrados}");
 
                     ExplodeFalha();
                 }
@@ -73,7 +83,7 @@ namespace Acelera.Testes
             if (valoresAlteradosBody.Alteracoes.Count == 0)
                 throw new Exception("NENHUMA LINHA ALTERADA OU SELECIONADA.");
 
-            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, valoresAlteradosBody);
+            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
             AdicionaConsultaDoBody(consulta);
             return consulta;
         }
@@ -99,7 +109,16 @@ namespace Acelera.Testes
             Assert.Fail();
         }
 
-        protected bool Validar(object obtido, object esperado, string tituloValidacao)
+        protected bool Validar(bool obtido, bool esperado, string tituloValidacao)
+        {
+            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
+
+            if (esperado == obtido)
+                return true;
+            return false;
+        }
+
+        protected bool Validar(int obtido, int esperado, string tituloValidacao)
         {
             logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
 

@@ -9,11 +9,10 @@ namespace Acelera.Domain.Entidades.Tabelas
 {
     public class LinhaControleArquivo : LinhaTabela
     {
-        public override TabelasEnum TabelaReferente => throw new NotImplementedException();
+        public override TabelasEnum TabelaReferente => TabelasEnum.ControleArquivo;
 
         protected override void CarregarCampos()
         {
-            AddCampo("CD_ARQUIVO");
             AddCampo("NM_ARQUIVO_TPA");
             AddCampo("ST_STATUS");
             AddCampo("DS_ERRO");

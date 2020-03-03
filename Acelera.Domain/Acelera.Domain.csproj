@@ -66,6 +66,7 @@
     <Compile Include="Entidades\Tabelas\LinhaControleArquivo.cs" />
     <Compile Include="Entidades\Tabelas\LinhaLogProcessamento.cs" />
     <Compile Include="Entidades\Tabelas\Tabela.cs" />
+    <Compile Include="Enums\CodigoStage.cs" />
     <Compile Include="Enums\FGs.cs" />
     <Compile Include="Enums\OperacaoEnum.cs" />
     <Compile Include="Enums\TabelasEnum.cs" />

@@ -28,7 +28,7 @@ namespace Acelera.Logger
 
         public void EscreverBloco(string texto)
         {
-            writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy - mm:ss") + " - " + texto);
+            writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy-hh:mm:ss") + " - " + texto);
             writer.WriteLine("");
             writer.WriteLine("----------------------------------");
             writer.Flush();
@@ -36,7 +36,7 @@ namespace Acelera.Logger
 
         public void AbrirBloco(string texto)
         {
-            writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy - mm:ss") + " - " + texto);
+            writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy-hh:mm:ss") + " - " + texto);
             writer.Flush();
         }
 
@@ -59,7 +59,7 @@ namespace Acelera.Logger
 
         public void ErroNaOperacao(OperacaoEnum operacao, string complemento = "")
         {
-            EscreverBloco($"Operacao : {operacao.ObterTexto()} {complemento} --- Falha");
+            EscreverBloco($"Operacao : {operacao.ObterTexto()} - {complemento} --- Falha");
         }
 
         public void Erro(string descricao)

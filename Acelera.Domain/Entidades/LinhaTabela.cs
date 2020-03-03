@@ -83,7 +83,7 @@ namespace Acelera.Domain.Entidades
             return Campos.Any(x => x.Coluna.Contains(campoValor));
         }
 
-        public Campo ObterPorColuna(string coluna)
+        public virtual Campo ObterPorColuna(string coluna)
         {
             return Campos.Where(x => x.Coluna == coluna.ToUpper()).FirstOrDefault();
         }

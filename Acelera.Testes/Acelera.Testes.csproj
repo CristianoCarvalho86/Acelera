@@ -159,6 +159,7 @@
     <Compile Include="TesteFG.cs" />
     <Compile Include="TesteItens.cs" />
     <Compile Include="TestesFG00.cs" />
+    <Compile Include="TestesFG01.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -24,7 +24,7 @@ namespace Acelera.Testes
     {
         private DBHelper helper = DBHelper.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
-        private TipoArquivo Tipo;
+        protected TipoArquivo tipoArquivoTeste;
         private string numeroDoTeste;
         protected bool sucessoDoTeste;
         protected string ObterArquivoOrigem(string nomeArquivo)
@@ -37,9 +37,13 @@ namespace Acelera.Testes
 
         protected string ObterArquivoDestino(string _nomeArquivo)
         {
-            this.nomeArquivo = _nomeArquivo.Replace("/*R*/", controleNomeArquivo.ObtemValor(Tipo)).Replace(".txt",".TXT");
+            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
+            this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt",".TXT");
 
             var path = pastaDestino + nomeArquivo;
+
+            arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
+
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
         }
@@ -99,6 +103,7 @@ namespace Acelera.Testes
             catch (Exception ex)
             {
                 logger.Erro(ex);
+                throw ex;
             }
             return tabela.Linhas;
         }
@@ -134,7 +139,7 @@ namespace Acelera.Testes
         {
             sucessoDoTeste = true;
             this.numeroDoTeste = numeroDoTeste;
-            Tipo = tipo;
+            tipoArquivoTeste = tipo;
             logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
             logger.EscreverBloco($"Nome do Teste : {nomeDoTeste}");
         }

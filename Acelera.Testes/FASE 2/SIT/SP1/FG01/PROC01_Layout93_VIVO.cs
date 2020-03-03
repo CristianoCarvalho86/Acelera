@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Layouts._9_3;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class PROC01_Layout93_VIVO : TesteBase
+    public class PROC01_Layout93_VIVO : TestesFG01
     {
 
         /// <summary>
@@ -19,6 +22,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2213_OCR_COBRANCA_SemCD_TPA()
         {
+            IniciarTeste(TipoArquivo.OCRCobranca, "2213", "No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
+            arquivo = new Arquivo_Layout_9_3_OcrCobranca();
+            arquivo.Carregar(ObterArquivoOrigem("enderecoOrigem"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0,"CD_TPA","");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("enderecoDestino"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //VALIDAR NA FG01
+            ValidarStages<LinhaOCRCobrancaStage>(CodigoStage.RecusadoNaFG01);
+
         }
 
         /// <summary>

@@ -25,4 +25,23 @@ namespace Acelera.Domain.Enums
         ParcEmissaoAuto,
 
     }
+
+    public enum FG01_Tarefas
+    {
+        [Description("FGR_01_CLIENTE")]
+        Cliente,
+        [Description("FGR_01_COMISSAO")]
+        Comissao,
+        [Description("FGR_01_BAIXA_COMISSAO")]
+        LanctoComissao,
+        [Description("FGR_01_BAIXA_PARCELA")]
+        OCRCobranca,
+        [Description("FGR_01_PARCELA")]
+        ParcEmissao,
+        [Description("FGR_01_SINISTRO")]
+        Sinistro,
+        [Description("FGR_01_PARCELA_AUTO")]
+        ParcEmissaoAuto,
+
+    }
 }
