@@ -1,14 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts._9_4_2;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 {
     [TestClass]
-    public class PROC3_Layout942_SGS : TesteBase
+    public class PROC3_Layout942_SGS : TestesFG00
     {
         /// <summary>
         /// No Trailler do arquivo SINISTRO no campo QT_LIN informar valor diferente da soma de linhas do Detalhe
@@ -18,6 +17,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1192_SINISTRO_QT_LIN_Diferente()
         {
+            IniciarTeste(TipoArquivo.Sinistro, "1192", "No Trailler do arquivo SINISTRO no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_2();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarFooter("QT_LIN", "10", 0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Linhas do arquivo diferente do numero verificador no footer.");
+            ValidarTabelaDeRetorno("3");
+            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
         }
 
 
@@ -29,6 +48,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SAP_1200_SINISTRO_QT_LIN()
         {
+            IniciarTeste(TipoArquivo.Sinistro, "1200", "No Trailler do arquivo SINISTRO no campo QT_LIN informar valor igual da soma de linhas do Detalhe");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_2();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("");
+            ValidarTabelaDeRetorno("");
+            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
         }
 
     }
