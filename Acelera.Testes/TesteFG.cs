@@ -28,18 +28,17 @@ namespace Acelera.Testes
             var falha = false;
             if (!Validar(ObterProceduresASeremExecutadas().Count * vezesExecutado, lista.Count, "Quantidade de Procedures executadas"))
                 falha = true;
-            if (!Validar((lista.Any(x => x.ObterPorColuna("CD_STATUS").Valor == "E")).ToString(), false, "Todos os CD_STATUS sao igual a 'S'"))
+            if (!Validar((lista.Any(x => x.ObterPorColuna("CD_STATUS").Valor == "E")), false, "Todos os CD_STATUS sao igual a 'S'"))
                 falha = true;
 
             var proceduresEsperadas = ObterProceduresASeremExecutadas();
-            var procedureNaoEncontrada = lista.Where(x => proceduresEsperadas.Any(z => z == x.ObterPorColuna("CD_PROCEDURE").Valor) == false);
+            var procedureNaoEncontrada = lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
             if (!Validar(procedureNaoEncontrada.Count() == 0, true, $"PROCEDURES {procedureNaoEncontrada.Select(x => x.ObterPorColuna("CD_PROCEDURE").Valor).ToList().ObterListaConcatenada(" ,")} NAO ENCONTRADAS"))
                 falha = true;
 
             if (Sucesso && falha || !Sucesso && !falha)
             {
-                logger.TesteComFalha();
-                Assert.Fail();
+                ExplodeFalha();
             }
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
         }
@@ -63,7 +62,7 @@ namespace Acelera.Testes
                        + $"{Environment.NewLine} MENSAGENS ESPERADAS : {errosEsperados.ToList().ObterListaConcatenada(", ")}"
                        + $"{Environment.NewLine} MENSAGENS OBTIDAS : {mensagesObtidas}");
 
-                    ExplodeFalha(logger);
+                    ExplodeFalha();
                 }
             }
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
@@ -93,14 +92,14 @@ namespace Acelera.Testes
                     consulta.AdicionarConsulta(item.Coluna, item.Valor);
         }
 
-        protected void ExplodeFalha(MyLogger logger)
+        protected void ExplodeFalha()
         {
             sucessoDoTeste = false;
             logger.TesteComFalha();
             Assert.Fail();
         }
 
-        protected bool Validar(object esperado, object obtido, string tituloValidacao)
+        protected bool Validar(object obtido, object esperado, string tituloValidacao)
         {
             logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
 
