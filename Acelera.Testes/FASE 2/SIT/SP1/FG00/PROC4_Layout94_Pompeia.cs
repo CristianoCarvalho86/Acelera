@@ -12,7 +12,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Trailler no arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1377_SINISTRO_SemTrailler()
@@ -53,7 +52,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Trailler no arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1375_OCR_COBRANCA_SemTrailler()
@@ -83,7 +81,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Trailler no arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1374_COMISSAO_SemTrailler()
@@ -113,7 +110,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Trailler no arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1373_PARC_EMISSAO_SemTrailler()
@@ -143,7 +139,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Trailler no arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1372_CLIENTE_SemTrailler()

@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TPA", "");
+            AlterarHeader("CD_TPA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT"));

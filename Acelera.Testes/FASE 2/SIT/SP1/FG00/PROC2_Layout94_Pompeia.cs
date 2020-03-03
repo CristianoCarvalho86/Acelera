@@ -12,7 +12,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1365_SINISTRO_MesmoNome()
@@ -56,7 +55,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1363_OCR_COBRANCA_MesmoNome()
@@ -89,7 +87,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1362_COMISSAO_MesmoNome()
@@ -122,7 +119,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1361_PARC_EMISSAO_MesmoNome()
@@ -155,7 +151,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1360_CLIENTE_MesmoNome()
