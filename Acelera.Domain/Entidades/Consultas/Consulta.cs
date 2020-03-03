@@ -9,6 +9,7 @@ namespace Acelera.Domain.Entidades.Consultas
     public class Consulta
     {
         protected Dictionary<string, string> Valores { get; set; }
+        protected string OrderBy { get; set; }
 
         public Consulta()
         {
@@ -20,11 +21,16 @@ namespace Acelera.Domain.Entidades.Consultas
                 Valores.Add(campo, valor);
         }
 
+        public void AdicionarOrderBy(string valor)
+        {
+            OrderBy = valor;
+        }
+
         public virtual string MontarConsulta()
         {
             var sql = " WHERE (";
             sql += ObterWhereItens();
-            return sql + ")/*R*/" ;
+            return sql + ")/*R*/" + OrderBy ;
         }
 
         public virtual string AdicionarNovaConsulta(Consulta consulta)

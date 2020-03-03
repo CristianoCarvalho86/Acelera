@@ -147,8 +147,14 @@ namespace Acelera.Testes
         [TestCleanup]
         public void FimDoTeste()
         {
-            var nomeArquivoDeLog = nomeArquivo.Replace(".TXT", $"-Teste-{numeroDoTeste}-Data-{DateTime.Now.ToString("ddMMYY_hhmm")}.TXT");
+            var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
+            var nomeArquivoDeLog = nomeArquivo.Replace(".TXT", $"-Teste-{numeroDoTeste}-{sucesso}-Data-{DateTime.Now.ToString("ddMMYY_hhmm")}.TXT");
             File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
+            if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
+                File.Delete(pastaDestino + nomeArquivo);
+            else
+                logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
+
             logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
             logger.FimDoArquivo();
         }

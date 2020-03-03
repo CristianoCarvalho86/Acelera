@@ -17,8 +17,6 @@ namespace Acelera.Testes
 {
     public abstract class TestesFG00 : TesteFG
     {
-
-
         public void ValidarControleArquivo(params string[] descricaoErroSeHouver)
         {
             AjustarEntradaErros(ref descricaoErroSeHouver);
@@ -69,8 +67,9 @@ namespace Acelera.Testes
             }
             if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
             {
-                foreach (var linha in lista)
-                {
+                var linha = lista.First();
+                //foreach (var linha in lista)
+                //{
                     if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
                     {
                         logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabela.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
@@ -81,7 +80,7 @@ namespace Acelera.Testes
                     {
                         logger.Escrever($"Codigo Esperado na tabela {tabela.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
                     }
-                }
+                //}
             }
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
 
@@ -93,7 +92,8 @@ namespace Acelera.Testes
                 throw new Exception("NENHUMA LINHA ALTERADA OU SELECIONADA.");
 
 
-            AdicionaConsultaDoBody(FabricaConsulta.MontarConsultaParaStage(tabela, valoresAlteradosBody, consulta));
+            AdicionaConsultaDoBody(FabricaConsulta.MontarConsultaParaStage(tabela,nomeArquivo, valoresAlteradosBody, consulta));
+            consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
         }
 
 

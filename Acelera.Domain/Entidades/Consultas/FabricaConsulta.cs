@@ -9,7 +9,7 @@ namespace Acelera.Domain.Entidades.Consultas
 {
     public static class FabricaConsulta
     {
-       public static Consulta  MontarConsultaParaStage(TabelasEnum tabela, AlteracoesArquivo valoresAlteradosBody, Consulta consulta)
+       public static Consulta  MontarConsultaParaStage(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, Consulta consulta)
         {
             if (tabela == TabelasEnum.Cliente)
             {
@@ -53,6 +53,7 @@ namespace Acelera.Domain.Entidades.Consultas
                 consulta.AdicionarConsulta("CD_SINISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampo("CD_SINISTRO").Valor);
 
             }
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
             return consulta;
         }
 

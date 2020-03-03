@@ -17,7 +17,7 @@ namespace Acelera.Testes
     {
         protected abstract IList<string> ObterProceduresASeremExecutadas();
 
-        public void ValidarLogProcessamento(bool Sucesso)
+        public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1)
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
@@ -26,7 +26,7 @@ namespace Acelera.Testes
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
 
             var falha = false;
-            if (!Validar(ObterProceduresASeremExecutadas().Count, lista.Count, "Quantidade de Procedures executadas"))
+            if (!Validar(ObterProceduresASeremExecutadas().Count * vezesExecutado, lista.Count, "Quantidade de Procedures executadas"))
                 falha = true;
             if (!Validar((lista.Any(x => x.ObterPorColuna("CD_STATUS").Valor == "E")).ToString(), false, "Todos os CD_STATUS sao igual a 'S'"))
                 falha = true;
