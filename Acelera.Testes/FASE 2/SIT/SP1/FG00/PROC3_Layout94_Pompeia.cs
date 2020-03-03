@@ -217,7 +217,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //ALTERAR O VALOR SELECIONADO
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMSAUTO-EV-/*R*/-20200211.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
