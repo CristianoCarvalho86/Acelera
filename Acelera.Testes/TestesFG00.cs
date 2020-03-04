@@ -115,6 +115,11 @@ namespace Acelera.Testes
             consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
         }
 
+        public void ValidarStages<T>(bool deveEncontrarRegistro ,int codigoEsperado) where T : LinhaTabela, new()
+        {
+            ValidarStages<T>(tipoArquivoTeste.ObterTabelaEnum(), deveEncontrarRegistro, codigoEsperado);
+        }
+
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
