@@ -35,14 +35,20 @@ namespace Acelera.Testes
             return path;
         }
 
-        protected string ObterArquivoDestino(string _nomeArquivo)
+        protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
             var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
-            this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt",".TXT");
+            if (AlterarNomeArquivo)
+            {
+                this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
+                arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
+            }
+            else
+                this.nomeArquivo = _nomeArquivo;
 
             var path = pastaDestino + nomeArquivo;
 
-            arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
+            
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;

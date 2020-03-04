@@ -22,24 +22,23 @@ namespace Acelera.Testes
         [TestMethod]
         public void Altera_NM_BENEFICIARIO_Valor_Incorreto()
         {
-            IniciarTeste(TipoArquivo.Cliente,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            IniciarTeste(TipoArquivo.Comissao,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
+            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200212.txt"));
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-/*R*/-20200212.txt"));
 
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
             ValidarLogProcessamento(true);
 
-
             ////VALIDAR NO BANCO A ALTERACAO
-            ValidarStages<LinhaClienteStage>(true, 110);
+            ValidarStages<LinhaComissaoStage>(true, 110);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
 
