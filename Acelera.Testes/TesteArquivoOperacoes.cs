@@ -125,7 +125,7 @@ namespace Acelera.Testes
         }
 
 
-        public void RemoverLinhas(Arquivo arquivo, int posicaoLinhaInicial, int posicaoLinhaFinal)
+        public void RemoverLinhas(int posicaoLinhaInicial, int posicaoLinhaFinal)
         {
             logger.AbrirBloco($"Alterando arquivo - removendo linhas - Da linha : {posicaoLinhaInicial} ate linha : {posicaoLinhaFinal}");
             logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinhaInicial).ObterTexto());

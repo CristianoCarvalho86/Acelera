@@ -159,7 +159,7 @@ namespace Acelera.Testes
         public void FimDoTeste()
         {
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
-            var nomeArquivoDeLog = nomeArquivo.Replace(".TXT", $"-Teste-{numeroDoTeste}-{sucesso}-Data-{DateTime.Now.ToString("ddMMYY_hhmm")}.TXT");
+            var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{sucesso}-Data-{DateTime.Now.ToString("ddMMYY_hhmm")}.TXT");
             File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
             if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
                 File.Delete(pastaDestino + nomeArquivo);

@@ -26,6 +26,12 @@ namespace Acelera.Logger
             writer.Flush();
         }
 
+        public void LinhaEmBranco()
+        {
+            writer.WriteLine("");
+            writer.Flush();
+        }
+
         public void EscreverBloco(string texto)
         {
             writer.WriteLine(DateTime.Now.ToString("dd/MM/yyyy-hh:mm:ss") + " - " + texto);
@@ -84,20 +90,25 @@ namespace Acelera.Logger
             if (retorno.Rows.Count == 0)
                 Escrever("Nenhuma linha encontrada.");
 
-            foreach(DataRow row in retorno.Rows)
-                foreach(DataColumn column in row.Table.Columns)
+            var count = 1;
+            foreach (DataRow row in retorno.Rows)
+            {
+                Escrever($"Linha {count++}:");
+                foreach (DataColumn column in row.Table.Columns)
                     Escrever($"{column.ColumnName} : {row[column.ColumnName]}");
+                LinhaEmBranco();
+            }
             FecharBloco();
         }
 
         public void TesteSucesso()
         {
-            EscreverBloco($"Teste passado com sucesso");
+            EscreverBloco($"Resultado do Teste : Teste passado com sucesso");
         }
 
         public void TesteComFalha()
         {
-            EscreverBloco($"Teste com falha");
+            EscreverBloco($"Resultado do Teste : Teste com falha");
         }
 
         public void ResultadoDaConsulta(string resultado)

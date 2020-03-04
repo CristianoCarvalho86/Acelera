@@ -15,7 +15,7 @@ namespace Acelera.Domain.Layouts._9_3
             linha.Campos.Add(new CampoDoArquivo("CD_SEGURADORA", 5));
             linha.Campos.Add(new CampoDoArquivo("CD_CORRETOR", 7));
             linha.Campos.Add(new CampoDoArquivo("CD_RAMO", 2));
-            linha.Campos.Add(new CampoDoArquivo("CD_CONTRATO", 20));
+            linha.Campos.Add(new CampoDoArquivo("CD_CONTRATO", 20,"NR_APOLICE"));
             linha.Campos.Add(new CampoDoArquivo("NR_SEQUENCIAL_EMISSAO", 5));
             linha.Campos.Add(new CampoDoArquivo("NR_PARCELA", 4));
             linha.Campos.Add(new CampoDoArquivo("CD_ITEM", 4));

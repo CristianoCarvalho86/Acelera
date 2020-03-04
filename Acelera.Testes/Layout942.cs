@@ -25,16 +25,16 @@ namespace Acelera.Testes
             IniciarTeste(TipoArquivo.Comissao,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-0001-20200130.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-/*R*/-20200212.txt"));
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-0001-20200130.txt", false));
 
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
+            //ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
             ValidarLogProcessamento(true);
 
             ////VALIDAR NO BANCO A ALTERACAO

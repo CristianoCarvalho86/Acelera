@@ -15,6 +15,8 @@ namespace Acelera.Domain.Layouts
 
         public override string Coluna { get => ObterColuna(); set => base.Coluna = value; }
 
+        public override string ColunaArquivo { get => base.Coluna; }
+
         public CampoDoArquivo(string nomeCampo,int posicoes): base(nomeCampo)
         {
             Posicoes = posicoes;

@@ -12,6 +12,8 @@ namespace Acelera.Domain.Entidades
         public virtual string Coluna { get { return coluna; } set { coluna = value; } }
         public string Valor { get; set; }
 
+        public virtual string ColunaArquivo { get; }
+
         public Campo(string _coluna)
         {
             Coluna = _coluna;

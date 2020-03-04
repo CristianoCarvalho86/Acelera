@@ -35,8 +35,8 @@ namespace Acelera.Testes
             }
 
             if (!Validar((lista.All(x => x.ObterPorColuna("ST_STATUS").Valor == "S")),
-                descricaoErroSeHouver.Length > 0 ? true : false,
-                "Existe ST_STATUS diferente de 'S'"))
+                descricaoErroSeHouver.Length > 0 ? false : true,
+                "O Campo ST_STATUS dos registros é igual a 'S'"))
                 falha = true;
 
             if (falha && descricaoErroSeHouver.Length == 0)
@@ -134,6 +134,7 @@ namespace Acelera.Testes
             var lista = new List<string>();
             lista.Add("PRC_0093_IMP");
             lista.Add("PRC_0094_IMP");
+            lista.Add("PRC_0101_IMP");
             lista.Add("PRC_0101_IMP");
             lista.Add("PRC_0002_IMP");
             lista.Add("PRC_0091_IMP");

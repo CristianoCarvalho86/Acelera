@@ -16,20 +16,45 @@ namespace Acelera.Testes
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
             var lista = new List<string>();
+            switch (tipoArquivoTeste)
+            {
+                case TipoArquivo.Cliente:
+                    lista.Add("PRC_0008");
+                    lista.Add("PRC_0041");
+                    lista.Add("PRC_0074");
+                    lista.Add("PRC_0126");
+                    break;
+                case TipoArquivo.ParcEmissao:
+                case TipoArquivo.ParcEmissaoAuto:
+                    lista.Add("PRC_0008");
+                    lista.Add("PRC_0014");
+                    lista.Add("PRC_0015");
+                    lista.Add("PRC_0126");
+                    lista.Add("PRC_200000");
+                    break;
+                case TipoArquivo.Comissao:
+                case TipoArquivo.LanctoComissao:
+                case TipoArquivo.OCRCobranca:
+                    lista.Add("PRC_200000");
+                    break;
+                case TipoArquivo.Sinistro:
+                    lista.Add("PRC_0008");
+                    lista.Add("PRC_0062");
+                    lista.Add("PRC_0066");
+                    lista.Add("PRC_0126");
+                    lista.Add("PRC_200000");
+                    break;
+                default:
+                    throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
+
+            }
             lista.Add("PRC_0110");
             lista.Add("PRC_0001");
             lista.Add("PRC_0005");
             lista.Add("PRC_0006");
             lista.Add("PRC_0007");
-            lista.Add("PRC_0008");
-            lista.Add("PRC_0014");
-            lista.Add("PRC_0015");
-            lista.Add("PRC_0062");
-            lista.Add("PRC_0066");
-            lista.Add("PRC_0074");
             lista.Add("PRC_0092");
-            lista.Add("PRC_0126");
-            lista.Add("PRC_200000");
+
             return lista;
         }
 

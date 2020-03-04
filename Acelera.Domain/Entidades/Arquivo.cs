@@ -68,12 +68,12 @@ namespace Acelera.Domain.Layouts
         public void AlterarLinha(int posicaoLinha, string campo,  string textoNovo)
         {
             Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
-            ObterLinha(posicaoLinha).ObterCampo(campo).AlterarValor(textoNovo);
+            ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
         }
 
         public void AlterarHeader(string campo, string textoNovo, int posicaoLinhaHeader = 0)
         {
-            Header[posicaoLinhaHeader].ObterCampo(campo).AlterarValor(textoNovo);
+            Header[posicaoLinhaHeader].ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
         }
 
         public void ReplicarHeader(int quantidadeVezes, int posicaoLinhaHeader = 0)
@@ -89,7 +89,7 @@ namespace Acelera.Domain.Layouts
 
         public void AlterarFooter(string campo, string textoNovo, int posicaoLinhaFooter = 0)
         {
-            Footer[posicaoLinhaFooter].ObterCampo(campo).AlterarValor(textoNovo);
+            Footer[posicaoLinhaFooter].ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
         }
 
         public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha)
