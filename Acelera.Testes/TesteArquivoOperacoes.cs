@@ -128,8 +128,19 @@ namespace Acelera.Testes
         public void RemoverLinhas(int posicaoLinhaInicial, int posicaoLinhaFinal)
         {
             logger.AbrirBloco($"Alterando arquivo - removendo linhas - Da linha : {posicaoLinhaInicial} ate linha : {posicaoLinhaFinal}");
-            logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinhaInicial).ObterTexto());
+            for (int i = posicaoLinhaInicial; i < posicaoLinhaFinal; i++)
+            {
+                logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinhaInicial).ObterTexto());
+            }
             arquivo.RemoverLinhas(posicaoLinhaInicial, posicaoLinhaFinal);
+            logger.FecharBloco();
+        }
+
+        public void RemoverTodasAsLinhas()
+        {
+            logger.AbrirBloco($"Alterando arquivo - removendo TODAS as linhas - Da linha : {0} ate linha : {arquivo.Linhas.Count - 1}");
+            arquivo.RemoverLinhas(0, arquivo.Linhas.Count - 1);
+            logger.Escrever("Todas as linhas do Body Removidas");
             logger.FecharBloco();
         }
 

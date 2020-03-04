@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -27,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("enderecoOrigem"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0,"CD_TPA","");
+            AlterarHeader("CD_TPA","");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("enderecoDestino"));
@@ -35,7 +36,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG00
             ValidarFG00();
 
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
+
             //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
             ValidarStages<LinhaOCRCobrancaStage>(CodigoStage.RecusadoNaFG01);
 
         }
