@@ -6,6 +6,7 @@ using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
+using Acelera.Testes.Validadores.FG00;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -58,62 +59,36 @@ namespace Acelera.Testes
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
         }
 
+        [Obsolete]
         public void ValidarStages<T>(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
         {
-            //TODO : INCLUIR POSSIBILIDADE DE CONSULTA PARA VARIAS ALTERAÇÕES NUM ARQUIVO (CLAUSULA 'OR'), PODE SER QUE CODIGO ESPERADO TENHA QUE VIRAR UM ARRAY
-            var consulta = new Consulta();
-            MontarConsultaParaStage(tabela, consulta);
-            var lista = ChamarConsultaAoBanco<T>(consulta);
-
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-
-            logger.Escrever($"Deve encontrar registros na tabela {tabela.ObterTexto()} : {deveHaverRegistro}");
-            logger.Escrever($"Foram encontrados {lista.Count} registros.");
-
-            if (!deveHaverRegistro && lista.Count > 0)// NAO DEVERIA ENCONTRAR REGISTROS MAS FORAM ENCONTRADOS
-            {
-                var linhas = string.Empty;
-                foreach (var l in lista)
-                    linhas += "LINHA : " + l.ToString() + Environment.NewLine;
-                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabela.ObterTexto()}" +
-                    $"{Environment.NewLine} LINHAS ENCONTRADAS : { linhas })");
-                ExplodeFalha();
-            }
-            else if (deveHaverRegistro && lista.Count == 0)//DEVERIAM HAVER REGISTROS, MAS NAO FORAM ENCONTRADOS
-            {
-                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"NAO FORAM ENCONTRADOS REGISTROS NA TABELA {tabela.ObterTexto()}");
-                ExplodeFalha();
-            }
-            else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
-            {
-                var linha = lista.First();
-                //foreach (var linha in lista)
-                //{
-                if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
-                {
-                    logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabela.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
-                        $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
-                    ExplodeFalha();
-                }
-                else
-                {
-                    logger.Escrever($"Codigo Esperado na tabela {tabela.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
-                }
-                //}
-            }
-            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-
+            ValidarStages(tabela, deveHaverRegistro, codigoEsperado);
         }
 
-        private void MontarConsultaParaStage(TabelasEnum tabela, Consulta consulta)
+        public void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
-            if (valoresAlteradosBody.Alteracoes.Count == 0)
-                throw new Exception("NENHUMA LINHA ALTERADA OU SELECIONADA.");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            var validador = new ValidadorStagesFG00(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
+                valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
-
-            AdicionaConsultaDoBody(FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, consulta));
-            consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
+            if (validador.ValidarTabela(deveHaverRegistro, codigoEsperado))
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            else
+                ExplodeFalha();
         }
+
+        public override void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
+        {
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            var validador = new ValidadorTabelaRetornoFG00(tipoArquivoTeste.ObterTabelaEnum(),nomeArquivo,logger,
+                valoresAlteradosBody,valoresAlteradosHeader,valoresAlteradosFooter);
+            
+            if (validador.ValidarTabela(1,codigosDeErroEsperados))
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            else
+                ExplodeFalha();
+        }
+
 
         public void ValidarStages<T>(bool deveEncontrarRegistro ,int codigoEsperado = 0) where T : LinhaTabela, new()
         {

@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.Tabelas
 {
-    public class Tabela<T> where T : LinhaTabela, new()
+    public class Tabela<T> where T : ILinhaTabela, new()
     {
         public List<T> Linhas { get; set; }
         private T linhaReferencia;

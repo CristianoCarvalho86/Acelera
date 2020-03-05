@@ -10,7 +10,8 @@ namespace Acelera.Domain.Enums
     {
         AprovadoNAFG00 = 110,
         AprovadoNaFG01 = 120,
-        RecusadoNaFG01 = 150
+        RecusadoNaFG01 = 130,
+        PlanoB = 150
 
     }
 }

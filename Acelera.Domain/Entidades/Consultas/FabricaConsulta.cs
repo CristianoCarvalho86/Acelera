@@ -9,8 +9,15 @@ namespace Acelera.Domain.Entidades.Consultas
 {
     public static class FabricaConsulta
     {
-       public static Consulta  MontarConsultaParaStage(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, Consulta consulta)
+       public static Consulta  MontarConsultaParaStage(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
         {
+            var consulta = new Consulta();
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+            if (valoresAlteradosBody == null || valoresAlteradosBody.Alteracoes.Count == 0)
+            {
+                return consulta;
+            }
+
             if (tabela == TabelasEnum.Cliente)
             {
                 consulta.AdicionarConsulta("CD_CLIENTE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("CD_CLIENTE").Valor);
@@ -53,16 +60,17 @@ namespace Acelera.Domain.Entidades.Consultas
                 consulta.AdicionarConsulta("CD_SINISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("CD_SINISTRO").Valor);
 
             }
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
             return consulta;
         }
 
         public static Consulta MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
         {
-            if (valoresAlteradosBody.Alteracoes.Count == 0)
-                throw new Exception("NENHUMA LINHA ALTERADA OU SELECIONADA.");
-
             var consulta = new Consulta();
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+            if (valoresAlteradosBody.Alteracoes.Count == 0)
+            {
+                return consulta;
+            }
 
             if (tabela == TabelasEnum.Cliente)
             {
@@ -83,7 +91,6 @@ namespace Acelera.Domain.Entidades.Consultas
                 consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
                 consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_PARCELA").Valor);
             }
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
             return consulta;
         }
     }

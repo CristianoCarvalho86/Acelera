@@ -43,63 +43,14 @@ namespace Acelera.Testes
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
         }
 
-        public void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
-        {
-            AjustarEntradaErros(ref codigosDeErroEsperados);
+        public abstract void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados);
 
-            var consulta = MontarConsultaParaTabelaDeRetorno(tipoArquivoTeste.ObterTabelaEnum());
-
-            var lista = ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta);
-
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-
-            var txtErrosEsperados = codigosDeErroEsperados.Length == 0 ? "NENHUM" : codigosDeErroEsperados.ToList().ObterListaConcatenada(", ");
-            var txtErrosEncontrados = lista.Select(x => x.ObterPorColuna("CD_MENSAGEM").Valor).ToList().ObterListaConcatenada(", ");
-            logger.Escrever($"Erros esperados na tabela de retorno: {txtErrosEsperados}");
-            logger.Escrever($"Erros encontrados na tabela de retorno: {txtErrosEncontrados}");
-
-            if(codigosDeErroEsperados.Length == 0 && lista.Count > 0 || codigosDeErroEsperados.Length > 0 && codigosDeErroEsperados.Length == 0)
-            {
-                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, "ERROS ESPERADOS NÃO FORAM OS ERROS OBTIDOS.");
-                ExplodeFalha();
-            }
-
-            foreach (var linhaEncontrada in lista)
-            {
-                if (!codigosDeErroEsperados.Contains(linhaEncontrada.ObterPorColuna("CD_MENSAGEM").Valor.ToUpper()))
-                {
-                    logger.EscreverBloco("VALIDAÇÃO ESPERADA NA TABELA DE RETORNO NAO ENCONTRADA."
-                       + $"{Environment.NewLine} MENSAGENS ESPERADAS : {txtErrosEsperados}"
-                       + $"{Environment.NewLine} MENSAGENS OBTIDAS : {txtErrosEncontrados}");
-
-                    ExplodeFalha();
-                }
-            }
-            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-
-        }
-        private Consulta MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela)
-        {
-            if (valoresAlteradosBody.Alteracoes.Count == 0)
-                throw new Exception("NENHUMA LINHA ALTERADA OU SELECIONADA.");
-
-            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
-            AdicionaConsultaDoBody(consulta);
-            return consulta;
-        }
 
         protected void AjustarEntradaErros(ref string[] erros)
         {
             if (erros.Length == 1 && erros.Contains(string.Empty))
                 erros = new string[] { };
 
-        }
-
-        protected void AdicionaConsultaDoBody(Consulta consulta)
-        {
-            foreach (var c in valoresAlteradosBody.Alteracoes)
-                foreach (var item in c.CamposAlterados)
-                    consulta.AdicionarConsulta(item.Coluna, item.Valor);
         }
 
         protected void ExplodeFalha()

@@ -53,6 +53,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
 
             AdicionaAlteracao(valoresAlteradosHeader, linhaAlterada, posicaoLinha, campo, valorNovo);
+            SelecionarLinhaParaValidacao(0);
         }
 
         public void AlterarFooter(string campo, string valorNovo, int posicaoLinha = 0)
@@ -67,6 +68,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
 
             AdicionaAlteracao(valoresAlteradosFooter, linhaAlterada, posicaoLinha, campo, valorNovo);
+            SelecionarLinhaParaValidacao(0);
         }
 
         public void AdicionarLinha(int posicaoLinha, LinhaArquivo linhaNova)
@@ -91,6 +93,8 @@ namespace Acelera.Testes
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaHeader(posicaoLinha).ObterTexto());
             arquivo.ReplicarHeader(quantidadeVezes, posicaoLinha);
             logger.FecharBloco();
+            
+            SelecionarLinhaParaValidacao(0);
         }
 
         public void ReplicarFooter(int quantidadeVezes, int posicaoLinha = 0)
@@ -99,6 +103,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaFooter(posicaoLinha).ObterTexto());
             arquivo.ReplicarFooter(quantidadeVezes, posicaoLinha);
             logger.FecharBloco();
+            SelecionarLinhaParaValidacao(0);
         }
 
         public void RemoverLinha(int posicaoLinha)
@@ -114,6 +119,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaHeader().ObterTexto());
             arquivo.RemoverHeader();
             logger.FecharBloco();
+            SelecionarLinhaParaValidacao(0);
         }
 
         public void RemoverFooter()
@@ -122,6 +128,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaFooter().ObterTexto());
             arquivo.RemoverFooter();
             logger.FecharBloco();
+            SelecionarLinhaParaValidacao(0);
         }
 
 
