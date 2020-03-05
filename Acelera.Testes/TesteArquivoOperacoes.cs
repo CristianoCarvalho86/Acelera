@@ -16,7 +16,7 @@ namespace Acelera.Testes
     public class TesteArquivoOperacoes : TesteItens
     {
 
-        public void SelecionarLinhaParaValidacao(int posicaoLinha)
+        public void SelecionarLinhaParaValidacao(int posicaoLinha, int qtdRepeticoes = 0, bool semHeaderOuFooter = false)
         {
             var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
             logger.AbrirBloco($"Linha Selecionada para validacao : linha {posicaoLinha}");
@@ -24,7 +24,7 @@ namespace Acelera.Testes
             logger.Escrever(Environment.NewLine);
             logger.FecharBloco();
 
-            AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, posicaoLinha);
+            AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, posicaoLinha,"","",0,semHeaderOuFooter);
         }
 
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
@@ -85,6 +85,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
             arquivo.ReplicarLinha(posicaoLinha, quantidadeVezes);
             logger.FecharBloco();
+            SelecionarLinhaParaValidacao(posicaoLinha, quantidadeVezes);
         }
 
         public void ReplicarHeader(int quantidadeVezes , int posicaoLinha = 0)
@@ -119,7 +120,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaHeader().ObterTexto());
             arquivo.RemoverHeader();
             logger.FecharBloco();
-            SelecionarLinhaParaValidacao(0);
+            SelecionarLinhaParaValidacao(0,0,true);
         }
 
         public void RemoverFooter()
@@ -128,7 +129,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaFooter().ObterTexto());
             arquivo.RemoverFooter();
             logger.FecharBloco();
-            SelecionarLinhaParaValidacao(0);
+            SelecionarLinhaParaValidacao(0, 0, true);
         }
 
 
@@ -152,12 +153,14 @@ namespace Acelera.Testes
         }
 
         private void AdicionaAlteracao(AlteracoesArquivo alteracoes, LinhaArquivo linhaAlterada, int posicaoLinha,
-            string campo = "", string valor = "" )
+            string campo = "", string valor = "", int repeticoes = 0, bool semHeaderOuFooter = false )
         {
             var alteracao = new Alteracao(linhaAlterada, posicaoLinha);
             if(campo != "")
                 alteracao.AdicionarAlteracao(campo, valor);
-            valoresAlteradosBody.AdicionaAlteracao(alteracao);
+            alteracao.DefinirQtdRepeticoes(repeticoes);
+            alteracao.DefinirSemHeaderOuFooter(semHeaderOuFooter);
+            alteracoes.AdicionaAlteracao(alteracao);
         }
     }
 }

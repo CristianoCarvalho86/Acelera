@@ -28,6 +28,8 @@ namespace Acelera.Domain.Entidades
     {
         public LinhaArquivo LinhaAlterada { get; set; }
         public List<Campo> CamposAlterados { get; set; }
+        public int RepeticoesLinha { get; set; }
+        public bool SemHeaderOuFooter { get; set; }
 
         public int PosicaoDaLinha { get; set; }
         public Alteracao(LinhaArquivo linhaAlterada, int posicaoLinha)
@@ -35,11 +37,23 @@ namespace Acelera.Domain.Entidades
             LinhaAlterada = linhaAlterada;
             PosicaoDaLinha = posicaoLinha;
             CamposAlterados = new List<Campo>();
+            RepeticoesLinha = 0;
+            SemHeaderOuFooter = false;
         }
 
         public void AdicionarAlteracao(string campo, string valor)
         {
             CamposAlterados.Add(new Campo(campo, valor));
+        }
+
+        public void DefinirQtdRepeticoes(int qtdRepeticoes)
+        {
+            RepeticoesLinha = qtdRepeticoes;
+        }
+
+        public void DefinirSemHeaderOuFooter(bool semHeaderOuFooter)
+        {
+            SemHeaderOuFooter = semHeaderOuFooter;
         }
     }
 }

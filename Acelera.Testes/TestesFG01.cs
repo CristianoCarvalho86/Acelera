@@ -1,8 +1,10 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
+using Acelera.Testes.Validadores.FG01;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,6 +67,19 @@ namespace Acelera.Testes
             ValidarLogProcessamento(true);
             ValidarControleArquivo();
             ValidarTabelaDeRetorno();
+        }
+
+        public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
+        {
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
+                valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
+
+            var linhasEncontradas = new List<ILinhaTabela>();
+            if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado))
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            else
+                ExplodeFalha();
         }
 
     }

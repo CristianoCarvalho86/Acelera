@@ -13,7 +13,7 @@ namespace Acelera.Domain.Entidades.Consultas
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            if (valoresAlteradosBody == null || valoresAlteradosBody.Alteracoes.Count == 0)
+            if (valoresAlteradosBody == null || valoresAlteradosBody.Alteracoes.Count == 0 || valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter)
             {
                 return consulta;
             }
@@ -67,7 +67,7 @@ namespace Acelera.Domain.Entidades.Consultas
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            if (valoresAlteradosBody.Alteracoes.Count == 0)
+            if (valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter)
             {
                 return consulta;
             }

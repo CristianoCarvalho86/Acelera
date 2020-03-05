@@ -26,7 +26,7 @@ namespace Acelera.Testes.Validadores.FG00
             return consulta;
         }
 
-        public bool ValidarTabela(int qtdRegistrosEsperados = 1, params string[] codigosDeErroEsperados)
+        public bool ValidarTabela(int qtdRegistrosEsperados = 0, params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 

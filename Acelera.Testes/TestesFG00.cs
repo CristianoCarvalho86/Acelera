@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Entidades.TabelaRetorno;
 using Acelera.Domain.Entidades.Tabelas;
@@ -23,7 +24,7 @@ namespace Acelera.Testes
             AjustarEntradaErros(ref descricaoErroSeHouver);
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            var lista = ChamarConsultaAoBanco<LinhaControleArquivo>(consulta);
+            var lista = DataAccess.ChamarConsultaAoBanco<LinhaControleArquivo>(consulta, logger);
 
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
 
@@ -36,7 +37,7 @@ namespace Acelera.Testes
             }
 
             if (!Validar((lista.All(x => x.ObterPorColuna("ST_STATUS").Valor == "S")),
-                descricaoErroSeHouver.Length > 0 ? false : true,
+                descricaoErroSeHouver.Length > 0 ? true : false,
                 "O Campo ST_STATUS dos registros é igual a 'S'"))
                 falha = true;
 
@@ -59,19 +60,14 @@ namespace Acelera.Testes
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
         }
 
-        [Obsolete]
-        public void ValidarStages<T>(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
-        {
-            ValidarStages(tabela, deveHaverRegistro, codigoEsperado);
-        }
-
-        public void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
+        public virtual void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             var validador = new ValidadorStagesFG00(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
-            if (validador.ValidarTabela(deveHaverRegistro, codigoEsperado))
+            var linhasEncontradas = new List<ILinhaTabela>();
+            if (validador.ValidarTabelaFG00(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             else
                 ExplodeFalha();
@@ -102,7 +98,16 @@ namespace Acelera.Testes
         {
             ValidarStages<T>((int)codigo);
         }
+        public void ValidarStages(bool deveEncontrarRegistro, int codigoEsperado = 0)
+        {
+            ValidarStages(tipoArquivoTeste.ObterTabelaEnum(), deveEncontrarRegistro, codigoEsperado);
+        }
 
+        [Obsolete]
+        public void ValidarStages<T>(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
+        {
+            ValidarStages(tabela, deveHaverRegistro, codigoEsperado);
+        }
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {

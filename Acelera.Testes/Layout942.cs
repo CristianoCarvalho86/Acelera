@@ -24,23 +24,24 @@ namespace Acelera.Testes
         {
             IniciarTeste(TipoArquivo.Comissao,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-0001-20200130.txt"));
+            arquivo = new Arquivo_Layout_9_4_2();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-0002-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            SelecionarLinhaParaValidacao(0);
+            //SelecionarLinhaParaValidacao(0);
+            RemoverHeader();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-0001-20200130.txt", false));
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-0002-20200212.txt", false));
 
             //PROCESSAR O ARQUIVO CRIADO
-            //ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
-            ValidarLogProcessamento(true);
+            //ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+            //ValidarLogProcessamento(true);
 
             ////VALIDAR NO BANCO A ALTERACAO
-            ValidarStages<LinhaComissaoStage>(true, 110);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
+            ValidarStages<LinhaComissaoStage>(false);
+            ValidarControleArquivo("Estrutura de header (01) nao encontrada");
+            ValidarTabelaDeRetorno("95");
 
         }
 

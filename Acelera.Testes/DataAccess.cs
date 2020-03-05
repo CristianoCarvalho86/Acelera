@@ -23,7 +23,9 @@ namespace Acelera.Testes
             {
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
 
-                var resultado = DBHelper.Instance.GetData(tabela.ObterQuery(consulta));
+                var c = tabela.ObterQuery(consulta);
+                logger.Escrever("Consulta Realizada :" + c);
+                var resultado = DBHelper.Instance.GetData(c);
 
                 logger.LogRetornoQuery(resultado);
 
