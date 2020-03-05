@@ -134,7 +134,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1441_LANCTO_COMISSAO_3xTrailler_2xHeader()
         {
-            //---------------------------------------------SEM MASSA---------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "1441", "No arquivo LANCTO_COMISSAO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir o Header");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ReplicarFooter(3);
+            ReplicarHeader(2);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Mais de um header ou footer encontrado no arquivo");
+            ValidarTabelaDeRetorno("101");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
         }
 
         /// <summary>

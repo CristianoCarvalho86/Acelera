@@ -99,12 +99,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Trailler do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO informar código 01
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1244_LANCTO_COMISSAO_TipoRegistro01()
         {
-            //------------------------------------------SEM MASSA-----------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "1243", "No Trailler do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO informar código 01");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarFooter("TIPO_REGISTRO", "01");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
+            ValidarTabelaDeRetorno("93");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
         }
 
         /// <summary>
@@ -197,12 +215,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Trailler do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1238_LANCTO_COMISSAO_SemTipoRegistro()
         {
-            //------------------------------------------SEM MASSA-----------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "1239", "No Trailler do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO não informar valor");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarFooter("TIPO_REGISTRO", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
+            ValidarTabelaDeRetorno("93");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
         }
 
         /// <summary>

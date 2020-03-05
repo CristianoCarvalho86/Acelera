@@ -132,7 +132,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1448_LANCTO_COMISSAO_SemNOMEARQ()
         {
-            //----------------------------------------------SEM MASSA-------------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "1448", "No Header do arquivo LANCTO_COMISSAO no campo NOMEARQ não informar valor");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("NOMEARQ", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Nome do arquivo diferente do header");
+            ValidarTabelaDeRetorno("400");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
         }
 
         /// <summary>

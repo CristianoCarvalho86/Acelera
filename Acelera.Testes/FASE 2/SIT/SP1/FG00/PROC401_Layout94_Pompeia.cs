@@ -119,12 +119,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar arquivo com número de partes separadas por hifen na nomenclatura diferente de 4
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2634_LANCTO_COMISSAO_HifenDif()
         {
-            //----------------------------------------------SEM MASSA-------------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "2634", "Importar arquivo com número de partes separadas por hifen na nomenclatura diferente de 4");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9999-20190531.txt"));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV/*R*/20190531.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
+            ValidarTabelaDeRetorno("401");
+            ValidarStages<LinhaLanctoComissaoStage>(false);
         }
 
         /// <summary>
@@ -141,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA-SINISTRO-EV-/*R*/-20200211.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA-SINISTRO-EV/*R*/-20200211.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());

@@ -75,7 +75,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1274_LANCTO_COMISSAO_SemCD_TPA()
         {
-            //------------------------------------------SEM MASSA-----------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "1274", "No Header do arquivo LANCTO_COMISSAO no campo CD_TPA não informar valor");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("CD_TPA", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Codigo do tpa nao encontrado.");
+            ValidarTabelaDeRetorno("100");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
         }
 
         /// <summary>

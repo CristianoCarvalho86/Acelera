@@ -39,6 +39,35 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
+        /// No Header do arquivo LANCTO_COMISSAO no campo NOMEARQ informar o valor TESTE respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_1292_LANCTO_COMISSAO_NOMEARQ_TESTE()
+        {
+            IniciarTeste(TipoArquivo.LanctoComissao, "1292", "No Header do arquivo LANCTO_COMISSAO no campo NOMEARQ informar o valor TESTE");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("NOMEARQ", "TESTE");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Nome do arquivo diferente do header");
+            ValidarTabelaDeRetorno("400");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
+        }
+
+        /// <summary>
         /// No Header do arquivo OCR_COBRANCA no campo NOMEARQ informar o valor TESTE respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
         /// </summary>
         [TestMethod]

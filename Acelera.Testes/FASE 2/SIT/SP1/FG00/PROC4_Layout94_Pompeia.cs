@@ -41,12 +41,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar o registro do Trailler no arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1376_LANCTO_COMISSAO_SemTrailler()
         {
-            //----------------------------------------------SEM MASSA-------------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "1376", "Não informar o registro do Trailler no arquivo");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9999-20190531.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            RemoverFooter();
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Erro no numero verificador no footer.");
+            ValidarTabelaDeRetorno("4");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
         }
 
         /// <summary>
