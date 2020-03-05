@@ -107,7 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarFooter("QT_LIN", "10", 0);

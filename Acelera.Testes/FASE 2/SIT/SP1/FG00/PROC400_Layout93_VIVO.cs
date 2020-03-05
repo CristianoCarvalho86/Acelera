@@ -12,7 +12,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo SINISTRO no campo NOMEARQ informar o nome EMSCMS respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1118_SINISTRO_NOMEARQ_EMSCMS()
@@ -21,13 +20,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NOMEARQ", "EMSCMS");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200212.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200211.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
@@ -53,7 +52,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo OCR_COBRANCA no campo NOMEARQ informar o nome PARCEMSAUTO respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1116_OCR_COBRANCA_NOMEARQ_PARCEMSAUTO()
@@ -62,7 +60,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NOMEARQ", "PARCEMSAUTO");
@@ -83,7 +81,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo EMS_COMISSAO no campo NOMEARQ informar o nome SINISTRO respeitando a tamanho do campo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1115_EMS_COMISSAO_NOMEARQ_SINISTRO()
@@ -92,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NOMEARQ", "SINISTRO");
@@ -113,7 +110,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo PARC_EMISSAO_AUTO no campo NOMEARQ informar o nome COBRANCA respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1114_PARC_EMISSAO_AUTO_NOMEARQ_COBRANCA()
@@ -143,7 +139,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo CLIENTE no campo NOMEARQ informar o nome LCTCMS respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1113_CLIENTE_NOMEARQ_LCTCMS()

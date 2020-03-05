@@ -170,6 +170,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo SINISTRO no campo CD_TPA informar código 004
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1166_SINISTRO_CD_TPA_004()
@@ -209,6 +210,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 004
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1164_OCR_COBRANCA_CD_TPA_004()
@@ -237,6 +239,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 004
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1163_EMS_COMISSAO_CD_TPA_004()
@@ -265,6 +268,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA informar código 004
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1162_PARC_EMISSAO_AUTO_CD_TPA_004()
@@ -293,6 +297,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo CLIENTE no campo CD_TPA informar código 004
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1161_CLIENTE_CD_TPA_004()
