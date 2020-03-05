@@ -116,12 +116,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// LANCTO_COMISSAO - Importar arquivo com parceiro inexistente
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2628_LANCTO_COMISSAO_ParceiroInex()
         {
-            //----------------------------------------------SEM MASSA-------------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "2628", "Importar arquivo com parceiro inexistente");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.LCTCMS-EV-/*R*/-20190531.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
+            ValidarTabelaDeRetorno("401");
+            ValidarStages<LinhaLanctoComissaoStage>(false);
         }
 
         /// <summary>

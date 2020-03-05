@@ -44,12 +44,33 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1214_LANCTO_COMISSAO_MesmoNome()
         {
-            //-------------------------------------------SEM MASSA---------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "1214", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+            ValidarLogProcessamento(true);
+
+            //REPROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+            ValidarLogProcessamento(true, 2);
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarControleArquivo("Arquivo ja importado.");
+            ValidarTabelaDeRetorno("2");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
 
         }
 

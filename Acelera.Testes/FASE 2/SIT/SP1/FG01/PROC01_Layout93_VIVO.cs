@@ -3,11 +3,6 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
@@ -16,22 +11,108 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
     {
 
         /// <summary>
-        /// No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
+        /// No Header do arquivo CLIENTE no campo CD_TPA informar código 9.33
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2213_OCR_COBRANCA_SemCD_TPA()
+        public void SAP_2216_CLIENTE_CD_TPA_9_33()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2213", "No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
-            arquivo = new Arquivo_Layout_9_3_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("enderecoOrigem"));
+            IniciarTeste(TipoArquivo.Cliente, "2216", "No Header do arquivo CLIENTE no campo CD_TPA informar código 9.33");
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA","");
+            AlterarHeader("CD_TPA", "9.33");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("enderecoDestino"));
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200212"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaClienteStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("1");
+        }
+
+        /// <summary>
+        /// No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA informar código 9.33
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_2217_PARC_EMISSAO_AUTO_CD_TPA_9_33()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2217", "No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA informar código 9.33");
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("CD_TPA", "9.33");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaParcEmissaoAutoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("1");
+        }
+
+        /// <summary>
+        /// No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.33
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_2218_EMS_COMISSAO_CD_TPA_9_33()
+        {
+            IniciarTeste(TipoArquivo.Comissao, "2218", "No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.33");
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("CD_TPA", "9.33");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-/*R*/-20200212"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaComissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("1");
+        }
+
+        /// <summary>
+        /// No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.33
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_2219_OCR_COBRANCA_CD_TPA_9_33()
+        {
+            IniciarTeste(TipoArquivo.OCRCobranca, "2219", "No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.33");
+            arquivo = new Arquivo_Layout_9_3_OcrCobranca();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("CD_TPA", "9.33");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.COBRANCA-EV-/*R*/-20200211"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -42,97 +123,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages<LinhaOCRCobrancaStage>(CodigoStage.RecusadoNaFG01);
-
-        }
-
-        /// <summary>
-        /// No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2210_CLIENTE_SemCD_TPA()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2211_PARC_EMISSAO_AUTO_SemCD_TPA()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo EMS_COMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2212_EMS_COMISSAO_SemCD_TPA()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo LANCTO_COMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2214_LANCTO_COMISSAO_SemCD_TPA()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2215_SINISTRO_SemCD_TPA()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo CLIENTE no campo CD_TPA informar código 9.33
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2216_CLIENTE_CD_TPA_9_33()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA informar código 9.33
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2217_PARC_EMISSAO_AUTO_CD_TPA_9_33()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.33
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2218_EMS_COMISSAO_CD_TPA_9_33()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.33
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2219_OCR_COBRANCA_CD_TPA_9_33()
-        {
+            ValidarTabelaDeRetorno("1");
         }
 
         /// <summary>
@@ -143,16 +134,36 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2220_LANCTO_COMISSAO_CD_TPA_9_33()
         {
+            //-------------------------------------------SEM MASSA--------------------------------------------------
         }
 
         /// <summary>
         /// No Header do arquivo SINISTRO no campo CD_TPA informar código 9.33
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2221_SINISTRO_CD_TPA_9_33()
         {
+            IniciarTeste(TipoArquivo.Sinistro, "2221", "No Header do arquivo SINISTRO no campo CD_TPA informar código 9.33");
+            arquivo = new Arquivo_Layout_9_3_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("CD_TPA", "9.33");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.SINISTRO-EV-/*R*/-20200211"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaSinistroStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("1");
         }
 
 
@@ -172,7 +183,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2457_PARC_EMISSAO()
+        public void SAP_2457_PARC_EMISSAO_AUTO()
         {
         }
 

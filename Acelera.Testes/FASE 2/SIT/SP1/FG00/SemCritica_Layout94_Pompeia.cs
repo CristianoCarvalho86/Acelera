@@ -127,7 +127,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_LANCTO_COMISSAO()
         {
-            //------------------------------------------------SEM MASSA------------------------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "SemCritica_Geral", "LANCTO_COMISSAO - Sem Critica");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("");
+            ValidarTabelaDeRetorno("");
+            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, true, 110);
         }
 
         /// <summary>
