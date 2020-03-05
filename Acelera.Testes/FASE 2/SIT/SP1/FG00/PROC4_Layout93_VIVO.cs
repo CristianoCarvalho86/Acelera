@@ -60,7 +60,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarFooter("QT_LIN", "&&", 0);
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarFooter("QT_LIN", "##", 0);
@@ -118,7 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarFooter("QT_LIN", "1%", 0);
@@ -147,7 +147,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarFooter("QT_LIN", "(8)", 0);

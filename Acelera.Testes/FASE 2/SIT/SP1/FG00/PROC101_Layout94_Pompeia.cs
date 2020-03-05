@@ -130,7 +130,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No arquivo LANCTO_COMISSAO repetir 3x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 2X o Header
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1441_LANCTO_COMISSAO_3xTrailler_2xHeader()
