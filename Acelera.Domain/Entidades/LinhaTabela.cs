@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using System;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades
 {
-    public abstract class LinhaTabela
+    public abstract class LinhaTabela :ILinhaTabela
     {
         public abstract TabelasEnum TabelaReferente { get; }
+        public List<Campo> Campos { get ; set ; }
 
-        public List<Campo> Campos;
 
         public LinhaTabela()
         {
