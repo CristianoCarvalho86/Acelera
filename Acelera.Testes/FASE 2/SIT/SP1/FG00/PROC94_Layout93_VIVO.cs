@@ -68,35 +68,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1058_SINISTRO_SemBody()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1058", "No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor, campo em branco");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            RemoverTodasAsLinhas();
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Estrutura de body (03) nao encontrada");
-            ValidarTabelaDeRetorno("94");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
-
-        /// <summary>
         /// No Body do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
         [Ignore]
@@ -173,17 +144,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1090_PARC_EMISSAO_AUTO_TipoRegistro11()
         {
-            
-        }
 
-        /// <summary>
-        /// No Body do arquivo SINISTRO no campo TIPO_REGISTRO informar código 15
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1094_SINISTRO_TipoRegistro15()
-        {
         }
 
         /// <summary>
@@ -223,18 +184,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1089_CLIENTE_TipoRegistro10()
-        {
-            
-        }
-
-
-        /// <summary>
-        /// No Body do arquivo SINISTRO no campo TIPO_REGISTRO informar código 03
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1154_SINISTRO_TipoRegistro03()
         {
 
         }

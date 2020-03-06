@@ -137,36 +137,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //-------------------------------------------SEM MASSA--------------------------------------------------
         }
 
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo CD_TPA informar código 9.33
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2221_SINISTRO_CD_TPA_9_33()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2221", "No Header do arquivo SINISTRO no campo CD_TPA informar código 9.33");
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.33");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.SINISTRO-EV-/*R*/-20200211"));
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages<LinhaSinistroStage>(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("1");
-        }
-
-
+        
         /// <summary>
         /// Importar arquivo c/ CD_TPA válido
         /// </summary>
@@ -214,16 +185,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2460_LANCTO_COMISSAO()
-        {
-        }
-
-        /// <summary>
-        /// Importar arquivo c/ CD_TPA válido
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2461_SINISTRO()
         {
         }
 

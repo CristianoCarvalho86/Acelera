@@ -32,16 +32,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        ///  No Body do arquivo SINISTRO no campo EN_UF_BENEFICIARIO informar código SS
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2277_SINISTRO_EN_UF_BENEFICIARIO_SS()
-        {
-        }
-
-        /// <summary>
         ///  No Body do arquivo CLIENTE no campo EN_UF não informar valor, ou seja, campos em branco, respeitando a tamanho do campos
         /// </summary>
         [Ignore]
@@ -58,16 +48,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2279_PARC_EMISSAO_AUTO_SemEN_UF()
-        {
-        }
-
-        /// <summary>
-        ///  No Body do arquivo SINISTRO no campo EN_UF_BENEFICIARIO não informar valor, ou seja, campos em branco, respeitando a tamanho do campos
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2280_SINISTRO_SemEN_UF_BENEFICIARIO()
         {
         }
 
@@ -91,14 +71,5 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
         }
 
-        /// <summary>
-        ///  Importar arquivo com UF válido
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2584_PSINISTRO()
-        {
-        }
     }
 }

@@ -134,7 +134,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2334_LANCTO_COMISSAO_DataInv_Header()
         {
-            //-------------------------------------------SEM MASSA--------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "2334", "No Header do arquivo LANCTO_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("DT_ARQ", "32131234");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaLanctoComissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("6");
         }
 
         /// <summary>
@@ -264,7 +283,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2328_LANCTO_COMISSAO_DataInv_Body()
         {
-            //-------------------------------------------SEM MASSA--------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "2328", "No Header do arquivo LANCTO_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "DT_PAGAMENTO", "32131234");
+            AlterarLinha(0, "DT_BAIXA", "32131234");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaLanctoComissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("6");
         }
 
         /// <summary>

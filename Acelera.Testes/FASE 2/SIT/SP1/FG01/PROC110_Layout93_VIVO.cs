@@ -62,16 +62,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        /// No arquivo SINISTRO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2209_SINISTRO_1xBody()
-        {
-        }
-
-        /// <summary>
         /// Importar arquivo s/ registro duplicado
         /// </summary>
         [Ignore]
@@ -118,16 +108,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2441_LANCTO_COMISSAO()
-        {
-        }
-
-        /// <summary>
-        /// Importar arquivo s/ registro duplicado
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2442_SINISTRO()
         {
         }
 

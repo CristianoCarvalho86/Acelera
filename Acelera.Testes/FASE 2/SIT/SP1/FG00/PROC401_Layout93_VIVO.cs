@@ -72,32 +72,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //-------------------------------------------SEM MASSA--------------------------------------------------
         }
 
-        /// <summary>
-        /// Não informar ponto na nomenclatura do arquivo. Ex.: C01POMPEIACLIENTE-EV-1927-20200211TXT
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2622_SINISTRO_NomeIncorreto()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2622", "Não informar ponto na nomenclatura do arquivo. Ex.: C01POMPEIACLIENTE-EV-1927-20200211TXT");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01VIVOSINISTRO-EV-/*R*/-20200209TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
-            ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
-
+        
         /// <summary>
         /// Não informar ponto entre a segunda e terceira partes. Ex.: C01.POMPEIACLIENTE-EV-1927-20200211.TXT
         /// </summary>
@@ -200,14 +175,5 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         {
         }
 
-        /// <summary>
-        ///  SINISTRO - Importar arquivo com nomenclatura correta
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2647_SINISTRO()
-        {
-        }
     }
 }

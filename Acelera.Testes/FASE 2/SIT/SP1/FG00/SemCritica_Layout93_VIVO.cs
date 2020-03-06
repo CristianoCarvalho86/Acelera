@@ -36,32 +36,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// SINISTRO - Sem Critica
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_SINISTRO()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "SINISTRO - Sem Critica");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
-        }
-
-        /// <summary>
         /// LANCTO_COMISSAO - Sem Critica
         /// </summary>
         [TestMethod]

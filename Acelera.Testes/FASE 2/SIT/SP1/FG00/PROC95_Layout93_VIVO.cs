@@ -39,35 +39,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Header do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1064_SINISTRO_SemHeader()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1064", "No Header do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200211.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Estrutura de header (01) nao encontrada");
-            ValidarTabelaDeRetorno("95");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
-
-        /// <summary>
         /// No Header do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
         [Ignore]
@@ -164,35 +135,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de header (01) nao encontrada");
             ValidarTabelaDeRetorno("95");
             ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
-        }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 15
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1100_SINISTRO_AUTO_TipoRegistro15()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1100", "No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 15");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "15");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200211.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Estrutura de header (01) nao encontrada");
-            ValidarTabelaDeRetorno("95");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
         }
 
         /// <summary>
@@ -329,16 +271,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1157_EMS_COMISSAO_TipoRegistro01()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 01
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1160_EMS_SINISTRO_TipoRegistro01()
         {
         }
 

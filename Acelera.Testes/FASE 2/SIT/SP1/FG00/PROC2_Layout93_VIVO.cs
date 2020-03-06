@@ -9,37 +9,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
     [TestClass]
     public class PROC2_Layout93_VIVO : TestesFG00
     {
-        /// <summary>
-        /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1076_SINISTRO_MesmoNome()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1076", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-            ValidarLogProcessamento(true);
-
-            //REPROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-            ValidarLogProcessamento(true,2);
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarControleArquivo("Arquivo ja importado.");
-            ValidarTabelaDeRetorno("2");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
 
         /// <summary>
         /// Importar um arquivo já importado - sem alterar a nomenclatura do arquivo
@@ -179,35 +148,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
             ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
-        }
-
-        /// <summary>
-        /// Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1124_SINISTRO()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1070", "Importar um arquivo somente uma vez - sem alterar a nomenclatura do arquivo");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
         }
 
         /// <summary>

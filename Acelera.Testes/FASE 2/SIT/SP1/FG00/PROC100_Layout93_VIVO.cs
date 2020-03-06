@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader( "CD_TPA", "");
+            AlterarHeader("CD_TPA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
@@ -37,35 +37,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Codigo do tpa nao encontrado.");
             ValidarTabelaDeRetorno("100");
             ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
-        }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1070_SINISTRO_SemCD_TPA()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1070", "No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader( "CD_TPA", "");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Codigo do tpa nao encontrado.");
-            ValidarTabelaDeRetorno("100");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
         }
 
         /// <summary>
@@ -93,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader( "CD_TPA", "");
+            AlterarHeader("CD_TPA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.COBRANCA-EV-/*R*/-20200211.TXT"));
@@ -164,36 +135,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Codigo do tpa nao encontrado.");
             ValidarTabelaDeRetorno("100");
             ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, false);
-        }
-
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo CD_TPA informar código 004
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1166_SINISTRO_CD_TPA_004()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1166", "No Header do arquivo SINISTRO no campo CD_TPA informar código 004");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
         }
 
         /// <summary>

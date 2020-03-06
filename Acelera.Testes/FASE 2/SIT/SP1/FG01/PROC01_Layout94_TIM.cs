@@ -41,12 +41,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No Header do arquivo LANCTO_COMISSAO no campo CD_TPA informar código 999
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2311_LANCTO_COMISSAO_CD_TPA_999()
         {
-            //-------------------------------------------SEM MASSA--------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "2311", "No Header do arquivo LANCTO_COMISSAO no campo CD_TPA informar código 999");
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("CD_TPA", "999");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190531"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaLanctoComissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("1");
         }
 
         /// <summary>

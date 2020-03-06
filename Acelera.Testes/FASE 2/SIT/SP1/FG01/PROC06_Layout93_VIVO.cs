@@ -138,35 +138,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        /// No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2250_SINISTRO_DataInv_Header()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2250", "No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("DT_ARQ", "32131234");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.SINISTRO-EV-/*R*/-20200209"));
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages<LinhaSinistroStage>(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("6");
-        }
-
-        /// <summary>
         /// No Body do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO
         /// </summary>
         [TestMethod]
@@ -268,37 +239,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        /// No Body do arquivo SINISTRO nos campos abaixo informar data inválida (Ex. 32131234) DT_REGISTRO DT_NASC_BENEFICIARIO DT_PAGAMENTO
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2403_SINISTRO_DataInv_Body()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2403", "No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_REGISTRO DT_NASC_BENEFICIARIO DT_PAGAMENTO");
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0,"DT_REGISTRO", "32131234");
-            AlterarLinha(0,"DT_NASC_BENEFICIARIO", "32131234");
-            AlterarLinha(0, "DT_PAGAMENTO", "32131234");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.SINISTRO-EV-/*R*/-20200209"));
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages<LinhaSinistroStage>(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("6");
-        }
-
-        /// <summary>
         /// Arquivo c/ tds datas válidas
         /// </summary>
         [Ignore]
@@ -345,16 +285,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2498_LANCTO_COMISSAO()
-        {
-        }
-
-        /// <summary>
-        /// Arquivo c/ tds datas válidas
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2499_SINISTRO()
         {
         }
 

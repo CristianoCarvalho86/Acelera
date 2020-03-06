@@ -10,35 +10,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
     public class PROC4_Layout93_VIVO : TestesFG00
     {
         /// <summary>
-        /// No Trailler do arquivo SINISTRO no campo QT_LIN informar valor com um ou mais caracter especial, respeitando a tamanho do campo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1082_SINISTRO_QT_LIN_CarEsp()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1082", "No Trailler do arquivo SINISTRO no campo QT_LIN informar valor com um ou mais caracter especial");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarFooter("QT_LIN", "@@", 0);
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Erro no numero verificador no footer.");
-            ValidarTabelaDeRetorno("4");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
-
-        /// <summary>
         /// No Trailler do arquivo LANCTO_COMISSAO no campo QT_LIN informar valor com um ou mais caracter especial, respeitando a tamanho do campo
         /// </summary>
         [Ignore]
@@ -163,37 +134,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Erro no numero verificador no footer.");
             ValidarTabelaDeRetorno("4");
             ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
-        }
-
-
-        /// <summary>
-        /// No Trailler do arquivo SINISTRO no campo QT_LIN informar valor igual da soma de linhas do Detalhe, sem caracteres inválidos
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1136_SINISTRO_QT_LIN()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1136", "No Trailler do arquivo SINISTRO no campo QT_LIN informar valor igual da soma de linhas do Detalhe");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
         }
 
         /// <summary>
