@@ -75,11 +75,12 @@ namespace Acelera.Testes
 
         public override void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
         {
+            AjustarEntradaErros(ref codigosDeErroEsperados);
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             var validador = new ValidadorTabelaRetornoFG00(tipoArquivoTeste.ObterTabelaEnum(),nomeArquivo,logger,
                 valoresAlteradosBody,valoresAlteradosHeader,valoresAlteradosFooter);
             
-            if (validador.ValidarTabela(1,codigosDeErroEsperados))
+            if (validador.ValidarTabela(codigosDeErroEsperados.Length, codigosDeErroEsperados))
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             else
                 ExplodeFalha();

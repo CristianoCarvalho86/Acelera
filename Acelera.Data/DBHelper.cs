@@ -91,6 +91,7 @@ namespace Acelera.Data
             }
             catch (Exception ex)
             {
+                if(!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL"))
                 throw new Exception("ERRO AO EXECUTAR : " + ex.ToString());
             }
         }

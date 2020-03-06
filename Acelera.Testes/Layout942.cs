@@ -22,26 +22,26 @@ namespace Acelera.Testes
         [TestMethod]
         public void Altera_NM_BENEFICIARIO_Valor_Incorreto()
         {
-            IniciarTeste(TipoArquivo.Comissao,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
+            IniciarTeste(TipoArquivo.ParcEmissao,"NUMERO_DO_TESTE", "Altera_NM_BENEFICIARIO_Valor_Incorreto");
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-0002-20200212.txt"));
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20200103.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            //SelecionarLinhaParaValidacao(0);
-            RemoverHeader();
+            SelecionarLinhaParaValidacao(1);
+            //ReplicarFooter(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-0002-20200212.txt", false));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-0005-20200103.txt", false));
 
             //PROCESSAR O ARQUIVO CRIADO
-            //ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
             //ValidarLogProcessamento(true);
 
             ////VALIDAR NO BANCO A ALTERACAO
-            ValidarStages<LinhaComissaoStage>(false);
-            ValidarControleArquivo("Estrutura de header (01) nao encontrada");
-            ValidarTabelaDeRetorno("95");
+            ValidarStages(true, (int)CodigoStage.AprovadoNAFG00);
+            ValidarControleArquivo("");
+            ValidarTabelaDeRetorno("");
 
         }
 
