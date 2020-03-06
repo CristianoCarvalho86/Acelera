@@ -9,35 +9,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
     [TestClass]
     public class PROC101_Layout93_VIVO : TestesFG00
     {
-        /// <summary>
-        /// No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 3X o Header
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1112_SINISTRO_2xTrailler_3xHeader()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1112", "No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Repetir também 3X o Header");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            ReplicarHeader(3);
-            ReplicarFooter(2);
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200211.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Mais de um header ou footer encontrado no arquivo");
-            ValidarTabelaDeRetorno("101");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
 
         /// <summary>
         /// No arquivo LANCTO_COMISSAO repetir 2x o registro do Header, onde o TIPO REGISTRO é igual a 9. Não repetir trailer
@@ -209,36 +180,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         public void SAP_1176_LANCTO_COMISSAO()
         {
             //------------------------------------------------SEM MASSA------------------------------------------------------------------
-        }
-
-        /// <summary>
-        /// No arquivo SINISTRO apresentar somente um registro do Trailler e Header
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1178_SINISTRO()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1178", "No arquivo SINISTRO apresentar somente um registro do Trailler e Header");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200211.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
         }
 
         /// <summary>

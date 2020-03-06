@@ -62,17 +62,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        ///  No Header do arquivo SINISTRO no campo VERSAO informar o código 9.4
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2274_SINISTRO_VERSAO_9_7()
-        {
-        }
-
-        
-        /// <summary>
         ///  Importar arquivo com Versão Layout correta
         /// </summary>
         [Ignore]
@@ -122,14 +111,5 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
         }
 
-        /// <summary>
-        ///  Importar arquivo com Versão Layout correta
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2568_SINISTRO()
-        {
-        }
     }
 }

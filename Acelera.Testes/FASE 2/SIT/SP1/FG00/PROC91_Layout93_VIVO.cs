@@ -10,35 +10,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
     public class PROC91_Layout93_VIVO : TestesFG00
     {
         /// <summary>
-        /// No Header do arquivo SINISTRO no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1146_SINISTRO_SemVERSAO()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1146", "No Header do arquivo SINISTRO no campo VERSAO não informar valor");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200211.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Versao layout nao informada no header");
-            ValidarTabelaDeRetorno("91");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
-
-        /// <summary>
         /// No Header do arquivo LANCTO_COMISSAO no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
         [Ignore]
@@ -182,16 +153,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1138_PARC_EMISSAO_AUTO_VERSAO_9_3()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo VERSAO informar código 9.3
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1142_SINISTRO_VERSAO_9_3()
         {
         }
 

@@ -10,35 +10,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
     public class PROC400_Layout93_VIVO : TestesFG00
     {
         /// <summary>
-        /// No Header do arquivo SINISTRO no campo NOMEARQ informar o nome EMSCMS respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1118_SINISTRO_NOMEARQ_EMSCMS()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "1118", "No Header do arquivo SINISTRO no campo NOMEARQ informar o nome EMSCMS");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("NOMEARQ", "EMSCMS");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200211.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Nome do arquivo diferente do header");
-            ValidarTabelaDeRetorno("400");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
-        }
-
-        /// <summary>
         /// No Header do arquivo LANCTO_COMISSAO no campo NOMEARQ informar o nome CLIENTE respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
         /// </summary>
         [Ignore]
@@ -76,35 +47,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Nome do arquivo diferente do header");
             ValidarTabelaDeRetorno("400");
             ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
-        }
-
-        /// <summary>
-        /// No Header do arquivo EMS_COMISSAO no campo NOMEARQ informar o nome SINISTRO respeitando a tamanho do campo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_1115_EMS_COMISSAO_NOMEARQ_SINISTRO()
-        {
-            IniciarTeste(TipoArquivo.Comissao, "1115", "No Header do arquivo EMS_COMISSAO no campo NOMEARQ informar o nome SINISTRO respeitando a tamanho do campo");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("NOMEARQ", "SINISTRO");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.EMSCMS-EV-/*R*/-20200211.TXT"));
-
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
-
-            //VALIDAR NO BANCO A ALTERACAO
-            ValidarLogProcessamento(true);
-            ValidarControleArquivo("Nome do arquivo diferente do header");
-            ValidarTabelaDeRetorno("400");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, false);
         }
 
         /// <summary>
@@ -212,16 +154,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_1183_LANCTO_COMISSAO_NOMEARQ()
-        {
-        }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no campo NOMEARQ informar o código SINISTRO Não alterar a nomenclatura do arquivo
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_1184_SINISTRO_NOMEARQ()
         {
         }
 

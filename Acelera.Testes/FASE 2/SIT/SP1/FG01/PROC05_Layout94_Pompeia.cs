@@ -184,14 +184,40 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        /// No Body do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: CD_EXTRATO_COMISSAO NR_MES_REFERENCIA CD_LANCAMENTO VL_COMISSAO_PAGO DT_PAGAMENTO DT_BAIXA CD_SISTEMA CD_TIPO_LANCAMENTO
+        /// No Body do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: 
+        /// CD_EXTRATO_COMISSAO NR_MES_REFERENCIA CD_LANCAMENTO VL_COMISSAO_PAGO DT_PAGAMENTO DT_BAIXA CD_SISTEMA CD_TIPO_LANCAMENTO
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2397_LANCTO_COMISSAO_SemCampObrig_Body()
         {
-            //-------------------------------------------SEM MASSA--------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "2397", "No Body do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: CD_EXTRATO_COMISSAO NR_MES_REFERENCIA CD_LANCAMENTO VL_COMISSAO_PAGO DT_PAGAMENTO DT_BAIXA CD_SISTEMA CD_TIPO_LANCAMENTO");
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "CD_EXTRATO_COMISSAO", "");
+            AlterarLinha(0, "NR_MES_REFERENCIA", "");
+            AlterarLinha(0, "CD_LANCAMENTO", "");
+            AlterarLinha(0, "VL_COMISSAO_PAGO", "");
+            AlterarLinha(0, "DT_PAGAMENTO", "");
+            AlterarLinha(0, "DT_BAIXA", "");
+            AlterarLinha(0, "CD_SISTEMA", "");
+            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaLanctoComissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("5");
         }
 
         /// <summary>
@@ -279,12 +305,34 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// No Header do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE
         /// No Trailler do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2391_LANCTO_COMISSAO_SemCampObrig_Header_Trailler()
         {
-            //-------------------------------------------SEM MASSA--------------------------------------------------
+            IniciarTeste(TipoArquivo.LanctoComissao, "2391", "No Header do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ");
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9999-20190531"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("NM_ARQ", "");
+            AlterarHeader("DT_ARQ", "");
+            AlterarHeader("NR_ARQ", "");
+            AlterarHeader("NM_BRIDGE", "");
+            AlterarFooter("NM_ARQ", "");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190531"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaLanctoComissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("5");
         }
 
         /// <summary>

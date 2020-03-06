@@ -200,86 +200,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //-------------------------------------------SEM MASSA--------------------------------------------------
         }
 
-        /// <summary>
-        /// No Body do arquivo SINISTRO não informar valor nos seguintes campos: 
-        /// CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_TIPO_MOVIMENTO DT_MOVIMENTO CD_AVISO CD_SINISTRO CD_RAMO CD_CLIENTE DT_AVISO 
-        /// DT_OCORRENCIA DT_REGISTRO CD_CAUSA CD_CONTRATO NR_SEQ_EMISSAO NR_APOLICE CD_ITEM CD_MOVIMENTO VL_MOVIMENTO TP_SINISTRO
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2233_OCR_SINISTRO_SemCampObrig_Body()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2233", "No Body do arquivo SINISTRO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_TIPO_MOVIMENTO DT_MOVIMENTO CD_AVISO CD_SINISTRO CD_RAMO CD_CLIENTE DT_AVISO DT_OCORRENCIA DT_REGISTRO CD_CAUSA CD_CONTRATO NR_SEQ_EMISSAO NR_APOLICE CD_ITEM CD_MOVIMENTO VL_MOVIMENTO TP_SINISTRO");
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
-            AlterarLinha(0, "CD_SEGURADORA", "");
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "");
-            AlterarLinha(0, "DT_MOVIMENTO", "");
-            AlterarLinha(0, "CD_AVISO", "");
-            AlterarLinha(0, "CD_SINISTRO", "");
-            AlterarLinha(0, "CD_RAMO", "");
-            AlterarLinha(0, "CD_CLIENTE", "");
-            AlterarLinha(0, "DT_AVISO", "");
-            AlterarLinha(0, "DT_OCORRENCIA", "");
-            AlterarLinha(0, "DT_REGISTRO", "");
-            AlterarLinha(0, "CD_CAUSA", "");
-            AlterarLinha(0, "CD_CONTRATO", "");
-            AlterarLinha(0, "NR_SEQ_EMISSAO", "");
-            AlterarLinha(0, "NR_APOLICE", "");
-            AlterarLinha(0, "CD_ITEM", "");
-            AlterarLinha(0, "CD_MOVIMENTO", "");
-            AlterarLinha(0, "VL_MOVIMENTO", "");
-            AlterarLinha(0, "TP_SINISTRO", "");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.SINISTRO-EV-/*R*/-20200211"));
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages<LinhaSinistroStage>(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("5");
-        }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2227_SINISTRO_SemCampObrig_Header()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2227", "No Header do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE");
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("NM_ARQ", "");
-            AlterarHeader("DT_ARQ", "");
-            AlterarHeader("NR_ARQ", "");
-            AlterarHeader("NM_BRIDGE", "");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.SINISTRO-EV-/*R*/-20200211"));
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages<LinhaSinistroStage>(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("5");
-        }
 
         /// <summary>
         /// No Header do arquivo EMS_COMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE
@@ -433,7 +353,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarFooter("NM_ARQ", "");
-         
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207"));
 
@@ -576,35 +496,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        /// No Trailler do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2239_SINISTRO_SemCampObrig_Trailler()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2239", "No Trailler do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ");
-            arquivo = new Arquivo_Layout_9_3_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.SINISTRO-EV-000001-20200211"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarFooter("NM_ARQ", "");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.SINISTRO-EV-/*R*/-20200211"));
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages<LinhaSinistroStage>(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("5");
-        }
-
-        /// <summary>
         /// Arquivo c/ tds os campos obrig. preenchidos
         /// </summary>
         [Ignore]
@@ -651,16 +542,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2479_LANCTO_COMISSAO()
-        {
-        }
-
-        /// <summary>
-        /// Arquivo c/ tds os campos obrig. preenchidos
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2480_SINISTRO()
         {
         }
 
