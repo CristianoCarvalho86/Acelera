@@ -96,7 +96,7 @@ namespace Acelera.Testes
             this.numeroDoTeste = numeroDoTeste;
             tipoArquivoTeste = tipo;
             logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
-            logger.EscreverBloco($"Nome do Teste : {nomeDoTeste}");
+            logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
         }
 
         protected string[] ErrosEsperados(params string[] erros)
@@ -108,6 +108,7 @@ namespace Acelera.Testes
         public void FimDoTeste()
         {
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
+            logger.EscreverBloco($"RESULTADO DO TESTE : {sucesso}");
             var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{sucesso}-Data-{DateTime.Now.ToString("ddMMYY_hhmm")}.TXT");
             File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
             if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))

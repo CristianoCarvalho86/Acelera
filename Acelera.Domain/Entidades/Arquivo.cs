@@ -62,7 +62,7 @@ namespace Acelera.Domain.Layouts
 
         public LinhaArquivo ObterLinhaFooter(int posicaoLinha = 0)
         {
-            return Header[posicaoLinha];
+            return Footer[posicaoLinha];
         }
 
         public void AlterarLinha(int posicaoLinha, string campo,  string textoNovo)
@@ -154,7 +154,7 @@ namespace Acelera.Domain.Layouts
             foreach (var linha in linhas)
             {
                 var header = new LinhaArquivo();
-                header.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 2));
+                header.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
                 header.Campos.Add(new CampoDoArquivo("NM_ARQ", 30));
                 header.Campos.Add(new CampoDoArquivo("DT_ARQ", 10));
                 header.Campos.Add(new CampoDoArquivo("NR_ARQ", 6));
@@ -174,7 +174,7 @@ namespace Acelera.Domain.Layouts
             foreach (var linha in linhas)
             {
                 var footer = new LinhaArquivo();
-                footer.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 2));
+                footer.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
                 footer.Campos.Add(new CampoDoArquivo("NM_ARQ", 30));
                 footer.Campos.Add(new CampoDoArquivo("QT_LIN", 6));
                 footer.Campos.Add(new CampoDoArquivo("Filler", 662));
