@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Erro no numero verificador no footer.");
             ValidarTabelaDeRetorno("4");
-            ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, false);
+            ValidarStages( false);
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, true, 110);
+            ValidarStages( true, 110);
         }
 
     }
