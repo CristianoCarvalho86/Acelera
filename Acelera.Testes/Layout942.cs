@@ -90,7 +90,7 @@ namespace Acelera.Testes
             ChamarExecucao("FGR_00_CLIENTE");
 
             //VALIDAR NO BANCO A ALTERACAO
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.Cliente, false);
+            ValidarStages(TabelasEnum.Cliente, false);
             //ValidarLogProcessamento(true);
             ValidarControleArquivo(new string[] { "Estrutura de header (01) nao encontrada" });
             ValidarTabelaDeRetorno(new string[] {"95"});
