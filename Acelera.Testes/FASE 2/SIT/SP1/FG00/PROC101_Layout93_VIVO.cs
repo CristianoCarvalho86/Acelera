@@ -108,7 +108,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Mais de um header ou footer encontrado no arquivo");
             ValidarTabelaDeRetorno("101");
-            ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, false);
+            ValidarStages( false);
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, true, 110);
+            ValidarStages( true, 110);
         }
 
         /// <summary>

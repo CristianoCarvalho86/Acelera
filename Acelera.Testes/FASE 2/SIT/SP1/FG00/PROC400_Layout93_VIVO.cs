@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Nome do arquivo diferente do header");
             ValidarTabelaDeRetorno("400");
-            ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, false);
+            ValidarStages( false);
         }
 
         /// <summary>

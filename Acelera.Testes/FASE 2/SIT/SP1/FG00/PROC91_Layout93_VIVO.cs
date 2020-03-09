@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Versao layout nao informada no header");
             ValidarTabelaDeRetorno("91");
-            ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, false);
+            ValidarStages( false);
         }
 
         /// <summary>
