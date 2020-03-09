@@ -18,6 +18,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2346_PARC_EMISSAO_ID_TRANSACAO_Dif()
         {
+            IniciarTeste(TipoArquivo.ParcEmissao, "2346", "No Body do arquivo PARC_EMISSAO no campo ID_TRANSACAO informar o número na sequência: CD_RAMO, NR_PARCELA, NR_ENDOSSO, NR_APOLICE");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200212.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "ID_TRANSACAO", "7700797700210057146");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages<LinhaParcEmissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("14");
         }
 
         /// <summary>
