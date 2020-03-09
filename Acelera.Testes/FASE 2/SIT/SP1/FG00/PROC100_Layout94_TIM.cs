@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1272_EMS_COMISSAO_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1272", "No Header do arquivo EMS_COMISSAO no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1272", "FG00 - PROC100 - No Header do arquivo EMS_COMISSAO no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1273_OCR_COBRANCA_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1273", "No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1273", "FG00 - PROC100 - No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1274_LANCTO_COMISSAO_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1274", "No Header do arquivo LANCTO_COMISSAO no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1274", "FG00 - PROC100 - No Header do arquivo LANCTO_COMISSAO no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1275_SINISTRO_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1275", "No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "1275", "FG00 - PROC100 - No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -133,7 +133,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1271_PARC_EMISSAO_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1271", "No Header do arquivo PARC_EMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1271", "FG00 - PROC100 - No Header do arquivo PARC_EMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -162,7 +162,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1270_CLIENTE_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1270", "No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.Cliente, "1270", "FG00 - PROC100 - No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();

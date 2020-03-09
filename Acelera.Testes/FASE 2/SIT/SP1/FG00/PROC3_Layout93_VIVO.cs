@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1035_CLIENTE_QT_LIN_Diferente()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1035", "No Trailler do arquivo CLIENTE no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
+            IniciarTeste(TipoArquivo.Cliente, "1035", "FG00 - PROC3 - No Trailler do arquivo CLIENTE no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1036_PARC_EMISSAO_AUTO_QT_LIN_Diferente()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1036", "No Trailler do arquivo PARC_EMISSAO_AUTO no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1036", "FG00 - PROC3 - No Trailler do arquivo PARC_EMISSAO_AUTO no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1037_EMS_COMISSAO_QT_LIN_Diferente()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1037", "No Trailler do arquivo EMS_COMISSAO no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
+            IniciarTeste(TipoArquivo.Comissao, "1037", "FG00 - PROC3 - No Trailler do arquivo EMS_COMISSAO no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1038_OCR_COBRANCA_QT_LIN_Diferente()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1038", "No Trailler do arquivo OCR_COBRANCA no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1038", "FG00 - PROC3 - No Trailler do arquivo OCR_COBRANCA no campo QT_LIN informar valor diferente da soma de linhas do Detalhe");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -143,7 +143,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SAP_1125_CLIENTE_QT_LIN()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1125", "No Trailler do arquivo CLIENTE no campo QT_LIN informar valor igual da soma de linhas do Detalhe");
+            IniciarTeste(TipoArquivo.Cliente, "1125", "FG00 - PROC3 - No Trailler do arquivo CLIENTE no campo QT_LIN informar valor igual da soma de linhas do Detalhe");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

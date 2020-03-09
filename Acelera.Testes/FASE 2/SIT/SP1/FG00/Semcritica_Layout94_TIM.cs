@@ -16,13 +16,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "SemCritica_Geral", "CLIENTE - Sem Critica");
+            IniciarTeste(TipoArquivo.Cliente, "SemCritica_Geral", "FG00 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
@@ -44,13 +45,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_PARC_EMISSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "SemCritica_Geral", "Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "SemCritica_Geral", "FG00 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
@@ -72,13 +74,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "FG00 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT"));
@@ -100,12 +103,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_COBRANCA()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "SemCritica_Geral", "OCR_COBRANCA - Sem Critica");
+            IniciarTeste(TipoArquivo.OCRCobranca, "SemCritica_Geral", "FG00 - OCR_COBRANCA - Sem Critica");
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9994-20191230.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.TIM.COBRANCA-EV-/*R*/-20191230.TXT"));
@@ -127,13 +131,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_LANCTO_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "SemCritica_Geral", "LANCTO_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.LanctoComissao, "SemCritica_Geral", "FG00 - LANCTO_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
@@ -155,13 +160,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_SINISTRO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "SINISTRO - Sem Critica");
+            IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "FG00 - SINISTRO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT"));

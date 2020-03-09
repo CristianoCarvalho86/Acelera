@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1377_SINISTRO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1377", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Sinistro, "1377", "FG00 - PROC4 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1376_LANCTO_COMISSAO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1376", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1376", "FG00 - PROC4 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1375_OCR_COBRANCA_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1375", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1375", "FG00 - PROC4 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1374_COMISSAO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1374", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Comissao, "1374", "FG00 - PROC4 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1373_PARC_EMISSAO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1373", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1373", "FG00 - PROC4 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1372_CLIENTE_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1372", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Cliente, "1372", "FG00 - PROC4 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();

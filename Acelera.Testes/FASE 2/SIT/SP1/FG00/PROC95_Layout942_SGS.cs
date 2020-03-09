@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1195_SINISTRO_TipoRegistro13()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1195", "No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 13");
+            IniciarTeste(TipoArquivo.Sinistro, "1195", "FG00 - PROC95 - No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 13");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1189_SINISTRO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1189", "No Header do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "1189", "FG00 - PROC95 - No Header do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();

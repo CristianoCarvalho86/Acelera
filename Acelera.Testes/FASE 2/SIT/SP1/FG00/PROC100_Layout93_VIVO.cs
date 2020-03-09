@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1065_CLIENTE_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1065", "No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.Cliente, "1065", " FG00 - PROC100 - No Header do arquivo CLIENTE no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -57,7 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1068_OCR_COBRANCA_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1068", "No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1068", "FG00 - PROC100 - No Header do arquivo OCR_COBRANCA no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -86,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1067_EMS_COMISSAO_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1067", "No Header do arquivo EMS_COMISSAO no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1067", "FG00 - PROC100 - No Header do arquivo EMS_COMISSAO no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1066_PARC_EMISSAO_AUTO_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1066", "No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1066", "FG00 - PROC100 - No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();

@@ -4,11 +4,13 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
+
+namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class SemCritica_Layout93_VIVO : TestesFG00
+    public class SemCritica_Layout93_VIVO : TestesFG01
     {
+
         /// <summary>
         /// PARC_EMISSAO_AUTO - Sem Critica
         /// </summary>
@@ -28,14 +30,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.ParcEmissaoAuto.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaParcEmissaoAutoStage>(TabelasEnum.ParcEmissaoAuto, true, 110);
+            ValidarStages<LinhaParcEmissaoAutoStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -68,14 +71,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.COBRANCA-EV-/*R*/-20200212.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaOCRCobrancaStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -97,14 +101,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.EMSCMS-EV-/*R*/-20200212.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaComissaoStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -126,14 +131,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaClienteStage>(CodigoStage.AprovadoNaFG01);
+
         }
     }
 }

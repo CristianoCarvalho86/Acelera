@@ -16,13 +16,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1365_SINISTRO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1365", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Sinistro, "1365", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT"));
@@ -48,13 +49,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1364_LANCTO_COMISSAO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1364", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1364", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9999-20190531.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT"));
@@ -80,13 +82,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1363_OCR_COBRANCA_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1363", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1363", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1770-20191220.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT"));
@@ -112,13 +115,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1362_COMISSAO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1362", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Comissao, "1362", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT"));
@@ -144,13 +148,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1361_PARC_EMISSAO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1361", " Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1361", " FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
@@ -176,13 +181,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1360_CLIENTE_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1360", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Cliente, "1360", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1927-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));
@@ -216,6 +222,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT"));
@@ -261,6 +268,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1770-20191220.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT"));
@@ -290,6 +298,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT"));
@@ -319,6 +328,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
@@ -348,6 +358,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1927-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));

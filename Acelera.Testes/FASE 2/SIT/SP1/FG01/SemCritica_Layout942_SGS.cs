@@ -4,10 +4,11 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4_2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
+
+namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class SemCritica_Layout942_SGS : TestesFG00
+    public class SemCritica_Layout942_SGS : TestesFG01
     {
         /// <summary>
         /// SINISTRO - Sem Critica
@@ -28,15 +29,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaSinistroStage>(CodigoStage.AprovadoNaFG01);
         }
-
     }
 }
+

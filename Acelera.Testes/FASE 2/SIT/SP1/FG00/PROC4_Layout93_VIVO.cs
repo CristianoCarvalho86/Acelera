@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1080_OCR_COBRANCA_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1080", "No Trailler do arquivo OCR_COBRANCA no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1080", "FG00 - PROC4 - No Trailler do arquivo OCR_COBRANCA no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1079_EMS_COMISSAO_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1079", "No Trailler do arquivo EMS_COMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.Comissao, "1079", "FG00 - PROC4 - No Trailler do arquivo EMS_COMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1078_PARC_EMISSAO_AUTO_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1078", "No Trailler do arquivo PARC_EMISSAO_AUTO no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1078", "FG00 - PROC4 - No Trailler do arquivo PARC_EMISSAO_AUTO no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1077_CLIENTE_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1077", "No Trailler do arquivo CLIENTE no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.Cliente, "1077", "FG00 - PROC4 - No Trailler do arquivo CLIENTE no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

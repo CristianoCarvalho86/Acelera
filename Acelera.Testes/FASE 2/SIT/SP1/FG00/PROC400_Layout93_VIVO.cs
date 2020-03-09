@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1116_OCR_COBRANCA_NOMEARQ_PARCEMSAUTO()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1116", "No Header do arquivo OCR_COBRANCA no campo NOMEARQ informar o nome PARCEMSAUTO");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1116", "FG00 - PROC400 - No Header do arquivo OCR_COBRANCA no campo NOMEARQ informar o nome PARCEMSAUTO");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1114_PARC_EMISSAO_AUTO_NOMEARQ_COBRANCA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1114", "No Header do arquivo PARC_EMISSAO_AUTO no campo NOMEARQ informar o nome COBRANCA");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1114", "FG00 - PROC400 - No Header do arquivo PARC_EMISSAO_AUTO no campo NOMEARQ informar o nome COBRANCA");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1113_CLIENTE_NOMEARQ_LCTCMS()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1113", "No Header do arquivo CLIENTE no campo NOMEARQ informar o nome LCTCMS");
+            IniciarTeste(TipoArquivo.Cliente, "1113", "FG00 - PROC400 - No Header do arquivo CLIENTE no campo NOMEARQ informar o nome LCTCMS");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

@@ -18,9 +18,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2323_LANCTO_COMISSAO_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2323", "No Body do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: CD_RAMO CD_CORRETOR CD_CONTRATO NR_SEQ_EMISSAO CD_TIPO_COMISSAO NR_PARCELA NR_APOLICE NR_ENDOSSO");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2323", "FG01 - PROC5 - No Body do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: CD_RAMO CD_CORRETOR CD_CONTRATO NR_SEQ_EMISSAO CD_TIPO_COMISSAO NR_PARCELA NR_APOLICE NR_ENDOSSO");
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_RAMO", "");
@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_ENDOSSO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311"));
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -55,9 +55,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2321_COMISSAO_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2321", "No Body do arquivo COMISSAO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
+            IniciarTeste(TipoArquivo.Comissao, "2321", "FG01 - PROC5 - No Body do arquivo COMISSAO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
@@ -70,7 +70,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_ITEM", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200213"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -91,9 +91,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2319_CLIENTE_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2319", "No Body do arquivo CLIENTE não informar valor nos seguintes campos: CD_CLIENTE NM_CLIENTE NR_CNPJ_CPF EN_ENDERECO EN_NUMERO");
+            IniciarTeste(TipoArquivo.Cliente, "2319", "FG01 - PROC5 - No Body do arquivo CLIENTE não informar valor nos seguintes campos: CD_CLIENTE NM_CLIENTE NR_CNPJ_CPF EN_ENDERECO EN_NUMERO");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CLIENTE", "");
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "EN_NUMERO", "");
             
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200213"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -126,9 +126,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2320_PARC_EMISSAO_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2320", "No Body do arquivo PARC_EMISSAO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_RAMO CD_MOVTO_COBRANCA CD_SEGURADORA CD_SUCURSAL CD_CORRETOR CD_TIPO_OPERACAO CD_TIPO_EMISSAO CD_FORMA_PAGTO CD_CATEGORIA CD_FRANQUIA CD_SUSEP_CONTRATO CD_SISTEMA CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_COBERTURA CD_ITEM CD_CLIENTE CD_MOEDA");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2320", "FG01 - PROC5 - No Body do arquivo PARC_EMISSAO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_RAMO CD_MOVTO_COBRANCA CD_SEGURADORA CD_SUCURSAL CD_CORRETOR CD_TIPO_OPERACAO CD_TIPO_EMISSAO CD_FORMA_PAGTO CD_CATEGORIA CD_FRANQUIA CD_SUSEP_CONTRATO CD_SISTEMA CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_COBERTURA CD_ITEM CD_CLIENTE CD_MOEDA");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
@@ -153,7 +153,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_MOEDA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -175,9 +175,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2324_SINISTRO_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2324", "No Body do arquivo SINISTRO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
+            IniciarTeste(TipoArquivo.Sinistro, "2324", "FG01 - PROC5 - No Body do arquivo SINISTRO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_ITEM", "");
   
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200213"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -211,9 +211,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2322_OCR_COBRANCA_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2322", "No Body do arquivo OCR_COBRANCA não informar valor nos seguintes campos: CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2322", "FG01 - PROC5 - No Body do arquivo OCR_COBRANCA não informar valor nos seguintes campos: CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9995-20191229"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9995-20191229.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CONTRATO", "");
@@ -221,7 +221,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_PARCELA", "");
             
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191229"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -243,9 +243,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2318_SINISTRO_SemCampObrig_Header_Trailler()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2318", "No Header do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ");
+            IniciarTeste(TipoArquivo.Sinistro, "2318", "FG01 - PROC5 - No Header do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -255,7 +255,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200213"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -277,9 +277,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2315_EMS_COMISSAO_SemCampObrig_Header_Trailler()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2389", "No Header do arquivo EMS_COMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo EMS_COMISSAO não informar valor nos seguintes campos: NM_ARQ");
+            IniciarTeste(TipoArquivo.Comissao, "2389", "FG01 - PROC5 - No Header do arquivo EMS_COMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo EMS_COMISSAO não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -289,7 +289,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200213"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -311,9 +311,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2316_OCR_COBRANCA_SemCampObrig_Header_Trailler()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2316", "No Header do arquivo OCR_COBRANCA não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo OCR_COBRANCA não informar valor nos seguintes campos: NM_ARQ");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2316", "FG01 - PROC5 - No Header do arquivo OCR_COBRANCA não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo OCR_COBRANCA não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9995-20191229"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9995-20191229.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -323,7 +323,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191229"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -346,9 +346,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2317_LANCTO_COMISSAO_SemCampObrig_Header_Trailler()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2317", "No Header do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2317", "FG01 - PROC5 - No Header do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -358,7 +358,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190531"));
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -380,9 +380,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2314_PARC_EMISSAO_SemCampObrig_Header_Trailler()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2388", "No Header do arquivo PARC_EMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo PARC_EMISSAO não informar valor nos seguintes campos: NM_ARQ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2388", "FG01 - PROC5 - No Header do arquivo PARC_EMISSAO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo PARC_EMISSAO não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -393,7 +393,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -415,9 +415,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2313_CLIENTE_SemCampObrig_Header_Trailler()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2313", "No Header do arquivo CLIENTE não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo CLIENTE não informar valor nos seguintes campos: NM_ARQ");
+            IniciarTeste(TipoArquivo.Cliente, "2313", "FG01 - PROC5 - No Header do arquivo CLIENTE não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo CLIENTE não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -427,7 +427,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-0001-20200213"));
+            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-0001-20200213.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();

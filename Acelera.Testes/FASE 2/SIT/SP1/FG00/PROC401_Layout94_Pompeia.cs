@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2630_CLIENTE_HifenDif()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2630", "Importar arquivo sem hifen entre a primeira e segunda partes.");
+            IniciarTeste(TipoArquivo.Cliente, "2630", "FG00 - PROC401 - Importar arquivo sem hifen entre a primeira e segunda partes.");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
@@ -24,6 +24,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTEEV-/*R*/-20200210.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
@@ -42,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2631_PARC_EMISSAO_HifenDif()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2631", "Importar arquivo sem hifen entre a segunda e terceira partes");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2631", "FG00 - PROC401 - Importar arquivo sem hifen entre a segunda e terceira partes");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -50,6 +52,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV/*R*/-20200211.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
@@ -68,7 +72,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2632_EMS_COMISSAO_HifenDif()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2632", "Importar arquivo sem hifen entre a terceira e quarta partes");
+            IniciarTeste(TipoArquivo.Comissao, "2632", "FG00 - PROC401 - Importar arquivo sem hifen entre a terceira e quarta partes");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -79,6 +83,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/20200210.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
@@ -97,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2633_OCR_COBRANCA_HifenDif()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2633", "Importar arquivo sem hifen na nomenclatura");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2633", "FG00 - PROC401 - Importar arquivo sem hifen na nomenclatura");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -105,6 +111,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.COBRANCAEV/*R*/20191128.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
@@ -123,7 +131,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2634_LANCTO_COMISSAO_HifenDif()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2634", "Importar arquivo com número de partes separadas por hifen na nomenclatura diferente de 4");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2634", "FG00 - PROC401 - Importar arquivo com número de partes separadas por hifen na nomenclatura diferente de 4");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -131,6 +139,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV/*R*/20190531.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
@@ -149,7 +159,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2635_SINISTRO_HifenDif()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2635", "Importar arquivo com número de partes separadas por hifen na nomenclatura diferente de 4");
+            IniciarTeste(TipoArquivo.Sinistro, "2635", "FG00 - PROC401 - Importar arquivo com número de partes separadas por hifen na nomenclatura diferente de 4");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -157,6 +167,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA-SINISTRO-EV/*R*/-20200211.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());

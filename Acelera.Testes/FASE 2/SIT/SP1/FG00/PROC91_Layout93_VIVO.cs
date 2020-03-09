@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1144_OCR_COBRANCA_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1144", "No Header do arquivo OCR_COBRANCA no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1144", "FG00 - PROC91 - No Header do arquivo OCR_COBRANCA no campo VERSAO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1143_EMS_COMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1143", "No Header do arquivo EMS_COMISSAO no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1143", "FG00 - PROC91 - No Header do arquivo EMS_COMISSAO no campo VERSAO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1142_PARC_EMISSAO_AUTO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1142", "No Header do arquivo PARC_EMISSAO_AUTO no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1142", "FG00 - PROC91 - No Header do arquivo PARC_EMISSAO_AUTO no campo VERSAO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1141_CLIENTE_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1141", "No Header do arquivo CLIENTE no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.Cliente, "1141", "FG00 - PROC91 - No Header do arquivo CLIENTE no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

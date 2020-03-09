@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1054_PARC_EMISSAO_AUTO_SemBody()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1054", "No Body do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1054", "FG00 - PROC94 - No Body do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1053_CLIENTE_SemBody()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1053", "No Body do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Cliente, "1053", "FG00 - PROC94 - No Body do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1056_OCR_COBRANCA_SemBody()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1056", "No Body do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1056", "FG00 - PROC94 - No Body do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1055_COMISSAO_SemBody()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1055", "No Body do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1055", "FG00 - PROC94 - No Body do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();

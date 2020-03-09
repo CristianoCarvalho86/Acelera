@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1190_SINISTRO_SemCD_TPA()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1190", "No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "1190", "FG00 - PROC100 - No Header do arquivo SINISTRO no campo CD_TPA não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();

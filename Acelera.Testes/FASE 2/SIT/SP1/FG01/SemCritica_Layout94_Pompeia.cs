@@ -4,12 +4,12 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
+
+namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class SemCritica_Layout94_Pompeia : TestesFG00
+    public class SemCritica_Layout94_Pompeia : TestesFG01
     {
-        
         /// <summary>
         /// CLIENTE - Sem Critica
         /// </summary>
@@ -29,14 +29,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaClienteStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_PARC_EMISSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "SemCritica_Geral", "FG00 - PARC_EMISSAO -Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "SemCritica_Geral", "FG00 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -58,14 +59,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaParcEmissaoStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -87,14 +89,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaComissaoStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -116,14 +119,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaOCRCobrancaStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -145,14 +149,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaLanctoComissaoStage>(CodigoStage.AprovadoNaFG01);
         }
 
         /// <summary>
@@ -174,15 +179,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT"));
 
-            //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
+            //VALIDAR NA FG00
+            ValidarFG00();
 
-            //VALIDAR NO BANCO A ALTERACAO
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("");
-            ValidarTabelaDeRetorno("");
-            ValidarStages(true, 110);
+            ValidarStages<LinhaSinistroStage>(CodigoStage.AprovadoNaFG01);
         }
-
     }
 }

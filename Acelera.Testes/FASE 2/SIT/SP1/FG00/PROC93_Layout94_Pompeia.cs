@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1384_CLIENTE_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1384", "No Trailler do arquivo CLIENTE no campo TIPO_REGISTRO não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.Cliente, "1384", "FG00 - PROC93 - No Trailler do arquivo CLIENTE no campo TIPO_REGISTRO não informar valor, campo em branco, respeitando a tamanho do campo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1385_PARC_EMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1385", "No Trailler do arquivo PARC_EMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1385", "FG00 - PROC93 - No Trailler do arquivo PARC_EMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1386_COMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1386", "No Trailler do arquivo EMS_COMISSAO no campo TIPO_REGISTRO não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1386", "FG00 - PROC93 - No Trailler do arquivo EMS_COMISSAO no campo TIPO_REGISTRO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1387_OCR_COBRANCA_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1387", "No Trailler do arquivo OCR_COBRANCA no campo TIPO_REGISTRO não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1387", "FG00 - PROC93 - No Trailler do arquivo OCR_COBRANCA no campo TIPO_REGISTRO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1388_LANCTO_COMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1388", "No Trailler do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO não informar valor");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1388", "FG00 - PROC93 - No Trailler do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1389_SINISTRO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1389", "No Trailler do arquivo SINISTRO no campo TIPO_REGISTRO não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "1389", "FG00 - PROC93 - No Trailler do arquivo SINISTRO no campo TIPO_REGISTRO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1390_CLIENTE_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1390", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Sinistro, "1390", "FG00 - PROC93 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -219,7 +219,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1391_PARC_EMISSAO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1391", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1391", "FG00 - PROC93 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -248,7 +248,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1392_COMISSAO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1392", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Comissao, "1392", "FG00 - PROC93 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -277,7 +277,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1393_OCR_COBRANCA_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1393", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1393", "FG00 - PROC93 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -306,7 +306,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1394_LANCTO_COMISSAO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1394", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1394", "FG00 - PROC93 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -335,7 +335,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1395_SINISTRO_SemTrailler()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1395", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Sinistro, "1395", "FG00 - PROC93 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();

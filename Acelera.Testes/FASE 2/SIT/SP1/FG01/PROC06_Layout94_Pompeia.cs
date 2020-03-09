@@ -17,15 +17,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2404_CLIENTE_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2404", "No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.Cliente, "2404", "FG01 - PROC6 - No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("DT_ARQ", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200212"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -46,15 +46,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2405_PARC_EMISSAO_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2405", "No Header do arquivo PARC_EMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2405", "FG01 - PROC6 - No Header do arquivo PARC_EMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("DT_ARQ", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200212"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -75,15 +75,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2406_EMS_COMISSAO_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2406", "No Header do arquivo EMS_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.Comissao, "2406", "FG01 - PROC6 - No Header do arquivo EMS_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1926-20200210"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1926-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("DT_ARQ", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.EMSCMS-EV-/*R*/-20200210"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.EMSCMS-EV-/*R*/-20200210.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -104,15 +104,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2407_OCR_COBRANCA_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2407", "No Header do arquivo OCR_COBRANCA no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2407", "FG01 - PROC6 - No Header do arquivo OCR_COBRANCA no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("DT_ARQ", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -133,15 +133,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2408_LANCTO_COMISSAO_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2408", "No Header do arquivo LANCTO_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2408", "FG01 - PROC6 - No Header do arquivo LANCTO_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("DT_ARQ", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311"));
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -162,15 +162,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2409_SINISTRO_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2409", "No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.Sinistro, "2409", "FG01 - PROC6 - No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("DT_ARQ", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -191,15 +191,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2399_CLIENTE_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2399", "No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO");
+            IniciarTeste(TipoArquivo.Cliente, "2399", "FG01 - PROC6 - No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_NASCIMENTO", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200212"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -220,9 +220,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2400_PARC_EMISSAO_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2400", "No Body do arquivo PARC_EMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_REFERENCIA DT_PROPOSTA DT_EMISSAO DT_EMISSAO_ORIGINAL");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2400", "FG01 - PROC6 - No Body do arquivo PARC_EMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_REFERENCIA DT_PROPOSTA DT_EMISSAO DT_EMISSAO_ORIGINAL");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0,"DT_REFERENCIA", "32131234");
@@ -231,7 +231,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "DT_EMISSAO_ORIGINAL", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200212"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -252,15 +252,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2401_OCR_COBRANCA_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2401", "No Body do arquivo OCR_COBRANCA nos campos abaixo informar data inválida (Ex. 32131234) DT_OCORRENCIA");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2401", "FG01 - PROC6 - No Body do arquivo OCR_COBRANCA nos campos abaixo informar data inválida (Ex. 32131234) DT_OCORRENCIA");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_OCORRENCIA", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -281,16 +281,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2402_LANCTO_COMISSAO_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2402", "No Body do arquivo LANCTO_COMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_PAGAMENTO DT_BAIXA");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2402", "FG01 - PROC6 - No Body do arquivo LANCTO_COMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_PAGAMENTO DT_BAIXA");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_PAGAMENTO", "32131234");
             AlterarLinha(0, "DT_BAIXA", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311"));
+            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -311,9 +311,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2403_SINISTRO_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2403", "No Body do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_REGISTRO DT_NASC_BENEFICIARIO DT_PAGAMENTO");
+            IniciarTeste(TipoArquivo.Sinistro, "2403", "FG01 - PROC6 - No Body do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_REGISTRO DT_NASC_BENEFICIARIO DT_PAGAMENTO");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0,"DT_REGISTRO", "32131234");
@@ -321,7 +321,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "DT_PAGAMENTO", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();

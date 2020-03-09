@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1083_CLIENTE_TipoRegistro10()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1083", "No Trailler do arquivo CLIENTE no campo TIPO_REGISTRO informar código 10");
+            IniciarTeste(TipoArquivo.Cliente, "1083", "FG00 - PROC93 - No Trailler do arquivo CLIENTE no campo TIPO_REGISTRO informar código 10");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1086_OCR_COBRANCA_TipoRegistro13()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1086", " No Trailler do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 13");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1086", " FG00 - PROC93 - No Trailler do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 13");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1085_EMS_COMISSAO_TipoRegistro12()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1085", "No Trailler do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 12");
+            IniciarTeste(TipoArquivo.Comissao, "1085", "FG00 - PROC93 - No Trailler do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 12");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1084_PARC_EMISSAO_AUTO_TipoRegistro11()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1084", "No Trailler do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO informar código 11");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1084", "FG00 - PROC93 - No Trailler do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO informar código 11");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -143,7 +143,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1050_OCR_COBRANCA_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1050", "No Trailler do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor, campo em branco");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1050", "FG00 - PROC93 - No Trailler do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor, campo em branco");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -183,7 +183,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1049_EMS_COMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1049", "No Trailler do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1049", "FG00 - PROC93 - No Trailler do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -212,7 +212,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1048_OCR_PARC_EMISSAO_AUTO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1048", "No Trailler do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1048", "FG00 - PROC93 - No Trailler do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -241,7 +241,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1047_CLIENTE_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1047", "No Trailler do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Cliente, "1047", "FG00 - PROC93 - No Trailler do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

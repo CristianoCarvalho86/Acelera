@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1185_SINISTRO_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1185", "No Trailler do arquivo SINISTRO no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.Sinistro, "1185", "FG00 - PROC4 - No Trailler do arquivo SINISTRO no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();
