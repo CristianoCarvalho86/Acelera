@@ -25,6 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.SGS.ARQUIVO-EV-/*R*/-20200209.TXT"));
 
+            AlterarNomeArquivo();
+
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
 

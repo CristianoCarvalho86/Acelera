@@ -25,6 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.EMSCMS-EV-/*R*/-20200211TXT"));
 
+            AlterarNomeArquivo();
+
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
 
@@ -50,6 +52,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01VIVOCOBRANCA-EV-/*R*/-20200211TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
@@ -116,6 +120,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());

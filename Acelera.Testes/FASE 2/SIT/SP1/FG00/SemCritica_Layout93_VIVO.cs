@@ -22,6 +22,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200212.txt"));
 
+            //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT"));
 
@@ -59,6 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -87,6 +91,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
 
+            //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.EMSCMS-EV-/*R*/-20200212.TXT"));
 
@@ -112,6 +119,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));

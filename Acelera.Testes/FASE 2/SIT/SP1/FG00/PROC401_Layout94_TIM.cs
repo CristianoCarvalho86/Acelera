@@ -25,6 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.CLIENTE-EV-/*R*/-20200213.TXT"));
 
+            AlterarNomeArquivo();
+
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
 
@@ -50,6 +52,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.PARCEMS-EV-/*R*/-20200213.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
@@ -77,6 +81,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.EMSCMS-EV-/*R*/-20200213.TXT"));
 
+            AlterarNomeArquivo();
+
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
 
@@ -102,6 +108,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.COBRANCA-EV-/*R*/-20191227.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
@@ -129,6 +137,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.LCTCMS-EV-/*R*/-20190531.TXT"));
 
+            AlterarNomeArquivo();
+
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
 
@@ -154,6 +164,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.SINISTRO-EV-/*R*/-20200214.TXT"));
+
+            AlterarNomeArquivo();
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
