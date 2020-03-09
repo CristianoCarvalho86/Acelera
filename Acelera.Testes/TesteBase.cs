@@ -66,7 +66,7 @@ namespace Acelera.Testes
 
         protected LinhaTabela ChamarExecucaoViaCMD()
         {
-            logger.InicioOperacao(OperacaoEnum.Processar);
+            logger.InicioOperacao(OperacaoEnum.Processar,"");
             IntegracaoCMD integracao = new IntegracaoCMD();
             var retorno = string.Empty;
             var textoCompletoCMD = string.Empty;
@@ -75,7 +75,7 @@ namespace Acelera.Testes
             {
                 integracao.AbrirCMD();
                 integracao.ChamarExecucao();
-                logger.SucessoDaOperacao(OperacaoEnum.Processar);
+                logger.SucessoDaOperacao(OperacaoEnum.Processar,"");
                 textoCompletoCMD = integracao.ObterTextoCMD();
                 integracao.FecharCMD();
             }

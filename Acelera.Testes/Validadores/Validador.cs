@@ -45,12 +45,12 @@ namespace Acelera.Testes.Validadores
                     consulta.AdicionarConsulta(item.Coluna, item.Valor);
         }
 
-        protected bool ValidarCodigosDeErro(IList<ILinhaTabela> lista, string colunaMsg,params string[] codigosDeErroEsperados)
+        protected bool ValidarCodigosDeErro(TabelasEnum tabelaDaValidacao ,IList<ILinhaTabela> lista, string colunaMsg,params string[] codigosDeErroEsperados)
         {
             var txtErrosEsperados = codigosDeErroEsperados.Length == 0 ? "NENHUM" : codigosDeErroEsperados.ToList().ObterListaConcatenada(", ");
             var txtErrosEncontrados = lista.Select(x => x.ObterPorColuna(colunaMsg).Valor).ToList().ObterListaConcatenada(", ");
-            logger.Escrever($"Erros esperados na {tabelaEnum.ObterTexto()}: {txtErrosEsperados}");
-            logger.Escrever($"Erros encontrados na tabela de {tabelaEnum.ObterTexto()}: {txtErrosEncontrados}");
+            logger.Escrever($"Erros esperados na {tabelaDaValidacao.ObterTexto()}: {txtErrosEsperados}");
+            logger.Escrever($"Erros encontrados na tabela de {tabelaDaValidacao.ObterTexto()}: {txtErrosEncontrados}");
 
             if (codigosDeErroEsperados.Length == 0 && lista.Count > 0 || codigosDeErroEsperados.Length > 0 && lista.Count == 0)
             {
@@ -58,14 +58,17 @@ namespace Acelera.Testes.Validadores
                 return false;
             }
 
-            foreach (var linhaEncontrada in lista)
+            foreach (var erro in codigosDeErroEsperados)
             {
-                if (!codigosDeErroEsperados.Contains(linhaEncontrada.ObterPorColuna(colunaMsg).Valor.ToUpper()))
+                var encontrados = lista.Where(x => x.ObterPorColuna(colunaMsg).Valor.ToUpper() == erro.ToUpper());
+                if (encontrados.Count() == 0)
                 {
-                    logger.EscreverBloco($"VALIDAÇÃO ESPERADA NA {tabelaEnum.ObterTexto()} NAO ENCONTRADA."
-                       + $"{Environment.NewLine} MENSAGENS ESPERADAS : {txtErrosEsperados}"
-                       + $"{Environment.NewLine} MENSAGENS OBTIDAS : {txtErrosEncontrados}");
-
+                    logger.EscreverBloco($"Mensagem de erro esperada não encontrada :'{erro}'");
+                    return false;
+                }
+                if (encontrados.Count() > 1)
+                {
+                    logger.EscreverBloco($"Mensagem de erro esperada encontrada {encontrados.Count()} vezes :'{erro}'");
                     return false;
                 }
             }
@@ -112,6 +115,15 @@ namespace Acelera.Testes.Validadores
             if (valoresAlteradosFooter != null && valoresAlteradosFooter.Alteracoes.Count > 0 && valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha > 1)
                 qtd = valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha - 1;
             return qtd;
+        }
+
+        protected bool ExisteAlteracaoHeaderOuFooter()
+        {
+            if ((valoresAlteradosHeader != null && valoresAlteradosHeader.Alteracoes.Count > 0) ||
+                (valoresAlteradosFooter != null && valoresAlteradosFooter.Alteracoes.Count > 0) ||
+                (valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter || valoresAlteradosBody.Alteracoes.First().NomeArquivoAlterado))
+                return true;
+            return false;
         }
 
         public abstract Consulta MontarConsulta(TabelasEnum tabela);

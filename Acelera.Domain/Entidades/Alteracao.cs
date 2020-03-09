@@ -41,6 +41,7 @@ namespace Acelera.Domain.Entidades
             CamposAlterados = new List<Campo>();
             RepeticoesLinha = 0;
             SemHeaderOuFooter = false;
+            NomeArquivoAlterado = false;
         }
 
         public void AdicionarAlteracao(string campo, string valor)
@@ -56,6 +57,11 @@ namespace Acelera.Domain.Entidades
         public void DefinirSemHeaderOuFooter(bool semHeaderOuFooter)
         {
             SemHeaderOuFooter = semHeaderOuFooter;
+        }
+
+        public void DefinirAlteracaoNomeArquivo(bool nomeArquivoAlterado)
+        {
+            NomeArquivoAlterado = nomeArquivoAlterado;
         }
     }
 }

@@ -36,10 +36,10 @@ namespace Acelera.Testes
                 ExplodeFalha();
             }
 
-            if (!Validar((lista.All(x => x.ObterPorColuna("ST_STATUS").Valor == "S")),
-                descricaoErroSeHouver.Length > 0 ? true : false,
+            if (Validar((lista.All(x => x.ObterPorColuna("ST_STATUS").Valor == "S")),
+                descricaoErroSeHouver.Length > 0 ? false : true,
                 "O Campo ST_STATUS dos registros é igual a 'S'"))
-                falha = true;
+                falha = true;//TODO acerto do obtido e recebido
 
             if (falha && descricaoErroSeHouver.Length == 0)
             {
@@ -62,13 +62,13 @@ namespace Acelera.Testes
 
         public virtual void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
             var validador = new ValidadorStagesFG00(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
             var linhasEncontradas = new List<ILinhaTabela>();
             if (validador.ValidarTabelaFG00(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
             else
                 ExplodeFalha();
         }

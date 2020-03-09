@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Codigo do tpa nao encontrado.");
             ValidarTabelaDeRetorno("100");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
+            ValidarStages(false);
         }
 
 
@@ -65,7 +65,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
+            ValidarStages(true, 110);
         }
 
     }

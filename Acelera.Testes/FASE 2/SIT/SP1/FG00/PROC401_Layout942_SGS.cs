@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
+            ValidarStages(false);
         }
 
 

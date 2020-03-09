@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Versao layout nao informada no header");
             ValidarTabelaDeRetorno("91");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Versao layout nao informada no header");
             ValidarTabelaDeRetorno("91");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Versao layout nao informada no header");
             ValidarTabelaDeRetorno("91");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
+            ValidarStages(false);
         }
 
         /// <summary>

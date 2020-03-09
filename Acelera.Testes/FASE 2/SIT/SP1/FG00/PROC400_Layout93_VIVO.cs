@@ -37,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarHeader("NOMEARQ", "PARCEMSAUTO");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.COBRANCA-EV-/*R*/-20200212.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.COBRANCA-EV-0008-20200212.TXT",false));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Nome do arquivo diferente do header");
             ValidarTabelaDeRetorno("400");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Nome do arquivo diferente do header");
             ValidarTabelaDeRetorno("400");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
+            ValidarStages(false);
         }
 
         /// <summary>

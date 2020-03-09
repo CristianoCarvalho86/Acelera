@@ -20,6 +20,7 @@ namespace Acelera.Testes
         {
             var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
             logger.AbrirBloco($"Linha Selecionada para validacao : linha {posicaoLinha}");
+            logger.LinhaEmBranco();
             logger.Escrever("Valores da Linha :" + linhaParaValidacao.ObterTexto());
             logger.Escrever(Environment.NewLine);
             logger.FecharBloco();
@@ -29,13 +30,13 @@ namespace Acelera.Testes
 
         public void AlterarNomeArquivo()
         {
-            var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
-            logger.AbrirBloco($"Linha Selecionada para validacao : linha {posicaoLinha}");
+            var linhaParaValidacao = arquivo.ObterLinha(0);
+            logger.AbrirBloco($"Linha Selecionada para validacao : linha {0}");
             logger.Escrever("Valores da Linha :" + linhaParaValidacao.ObterTexto());
             logger.Escrever(Environment.NewLine);
             logger.FecharBloco();
 
-            AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, posicaoLinha, "", "", 0, semHeaderOuFooter);
+            AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, 0, "", "", 0, false, true);
         }
 
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
@@ -72,7 +73,7 @@ namespace Acelera.Testes
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha} do Footer");
             logger.Escrever("Valor Antigo :" + arquivo.ObterLinhaFooter(posicaoLinha).ObterTexto());
             logger.Escrever(Environment.NewLine);
-            arquivo.AlterarHeader(campo, valorNovo, posicaoLinha);
+            arquivo.AlterarFooter(campo, valorNovo, posicaoLinha);
 
             var linhaAlterada = arquivo.ObterLinhaFooter(posicaoLinha);
             logger.Escrever("Valor Atualizado :" + linhaAlterada.ObterTexto());
@@ -151,6 +152,7 @@ namespace Acelera.Testes
         public void RemoverLinhas(int posicaoLinhaInicial, int posicaoLinhaFinal)
         {
             logger.AbrirBloco($"Alterando arquivo - removendo linhas - Da linha : {posicaoLinhaInicial} ate linha : {posicaoLinhaFinal}");
+            logger.LinhaEmBranco();
             for (int i = posicaoLinhaInicial; i < posicaoLinhaFinal; i++)
             {
                 logger.Escrever("Linha Removida :" + arquivo.ObterLinha(posicaoLinhaInicial).ObterTexto());
@@ -168,13 +170,14 @@ namespace Acelera.Testes
         }
 
         private void AdicionaAlteracao(AlteracoesArquivo alteracoes, LinhaArquivo linhaAlterada, int posicaoLinha,
-            string campo = "", string valor = "", int repeticoes = 0, bool semHeaderOuFooter = false )
+            string campo = "", string valor = "", int repeticoes = 0, bool semHeaderOuFooter = false , bool nomeArquivoAlterado = false)
         {
             var alteracao = new Alteracao(linhaAlterada, posicaoLinha);
             if(campo != "")
                 alteracao.AdicionarAlteracao(campo, valor);
             alteracao.DefinirQtdRepeticoes(repeticoes);
             alteracao.DefinirSemHeaderOuFooter(semHeaderOuFooter);
+            alteracao.DefinirAlteracaoNomeArquivo(nomeArquivoAlterado);
             alteracoes.AdicionaAlteracao(alteracao);
         }
     }

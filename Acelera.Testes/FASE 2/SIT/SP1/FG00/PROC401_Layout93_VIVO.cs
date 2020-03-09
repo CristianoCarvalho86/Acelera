@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVOPARCEMSAUTO-EV-0006-20200211.TXT",false));
+            arquivo.Salvar(ObterArquivoDestino($"C01.VIVOPARCEMSAUTO-EV-/*R*/-20200211.TXT",false));
 
             AlterarNomeArquivo();
 
@@ -124,7 +124,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
+            ValidarStages(false);
         }
 
         /// <summary>

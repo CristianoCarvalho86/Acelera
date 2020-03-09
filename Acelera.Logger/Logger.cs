@@ -14,6 +14,7 @@ namespace Acelera.Logger
     {
         private string path;
         private StreamWriter writer;
+        private string TextoFimArquivo;
         public MyLogger(string _path)
         {
             path = _path;
@@ -53,17 +54,17 @@ namespace Acelera.Logger
             writer.Flush();
         }
 
-        public void InicioOperacao(OperacaoEnum operacao, string complemento = "")
+        public void InicioOperacao(OperacaoEnum operacao, string complemento)
         {
             EscreverBloco("Inicio da Operacao : " + operacao.ObterTexto() + " " + complemento);
         }
 
-        public void SucessoDaOperacao(OperacaoEnum operacao, string complemento = "")
+        public void SucessoDaOperacao(OperacaoEnum operacao, string complemento)
         {
             EscreverBloco($"Operacao : {operacao.ObterTexto()} {complemento} --- Ok");
         }
 
-        public void ErroNaOperacao(OperacaoEnum operacao, string complemento = "")
+        public void ErroNaOperacao(OperacaoEnum operacao, string complemento)
         {
             EscreverBloco($"Operacao : {operacao.ObterTexto()} - {complemento} --- Falha");
         }
@@ -84,22 +85,24 @@ namespace Acelera.Logger
             EscreverBloco(retorno);
         }
 
-        public void LogRetornoQuery(DataTable retorno)
+        public void LogRetornoQuery(DataTable retorno, string consulta)
         {
-            AbrirBloco($"Retorno do Banco :");
+            EscreverNoFimDoArquivo($"Consulta Realizada : " + consulta);
+            EscreverNoFimDoArquivo($"Retorno do Banco :");
             if (retorno.Rows.Count == 0)
-                Escrever("Nenhuma linha encontrada.");
+                EscreverNoFimDoArquivo("Nenhuma linha encontrada.");
 
             var count = 1;
             foreach (DataRow row in retorno.Rows)
             {
-                Escrever($"Linha {count++}:");
+                EscreverNoFimDoArquivo($"Linha {count++}:");
                 foreach (DataColumn column in row.Table.Columns)
-                    Escrever($"{column.ColumnName} : {row[column.ColumnName]}");
-                LinhaEmBranco();
+                    EscreverNoFimDoArquivo($"{column.ColumnName} : {row[column.ColumnName]}");
+                EscreverNoFimDoArquivo(Environment.NewLine);
             }
-            FecharBloco();
+            EscreverNoFimDoArquivo("-----------------------------------------");
         }
+
 
         public void TesteSucesso()
         {
@@ -125,9 +128,16 @@ namespace Acelera.Logger
             EscreverBloco($"{tituloValidacao} {Environment.NewLine} Resultado obtido: {resultadoObtido} {Environment.NewLine} Resultado esperado : {resultadoEsperado}");
         }
 
+        public void EscreverNoFimDoArquivo(string texto)
+        {
+            TextoFimArquivo += Environment.NewLine + texto;
+        }
+
         public void FimDoArquivo()
         {
+            writer.WriteLine(TextoFimArquivo);
             writer.Flush();
+            TextoFimArquivo = "";
             writer.Close();
             writer.Dispose();
         }

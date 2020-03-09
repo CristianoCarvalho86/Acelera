@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de header (01) nao encontrada");
             ValidarTabelaDeRetorno("95");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de header (01) nao encontrada");
             ValidarTabelaDeRetorno("95");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
+            ValidarStages(false);
         }
 
         /// <summary>

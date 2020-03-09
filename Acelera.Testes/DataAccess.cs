@@ -21,17 +21,17 @@ namespace Acelera.Testes
             var tabela = new Tabela<T>();
             try
             {
-                logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
 
                 var c = tabela.ObterQuery(consulta);
                 logger.Escrever("Consulta Realizada :" + c);
                 var resultado = DBHelper.Instance.GetData(c);
 
-                logger.LogRetornoQuery(resultado);
+                logger.LogRetornoQuery(resultado,c);
 
                 tabela.ObterRetornoQuery(resultado);
 
-                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
+                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
 
             }
             catch (Exception ex)
@@ -48,7 +48,7 @@ namespace Acelera.Testes
             var tabela = new Tabela<T>();
             try
             {
-                logger.InicioOperacao(OperacaoEnum.ConsultaBanco);
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco,tabela.ObterNomeTabela());
                 var integracao = new IntegracaoCMD();
                 integracao.AbrirCMD();
 
@@ -57,7 +57,7 @@ namespace Acelera.Testes
                 tabela.ObterRetornoQueryCMD(resultado);
 
                 logger.LogRetornoCMD(resultado);
-                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco);
+                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
 
                 integracao.FecharCMD();
 

@@ -51,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, true, 110);
+            ValidarStages(true, 110);
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, true, 110);
+            ValidarStages(true, 110);
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, true, 110);
+            ValidarStages(true, 110);
         }
 
     }

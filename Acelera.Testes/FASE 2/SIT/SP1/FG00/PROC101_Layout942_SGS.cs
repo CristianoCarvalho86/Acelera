@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Mais de um header ou footer encontrado no arquivo");
             ValidarTabelaDeRetorno("101");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
+            ValidarStages(true, 110);
         }
 
     }

@@ -64,7 +64,7 @@ namespace Acelera.Testes
             ChamarExecucao("FGR_00_BAIXA_PARCELA");
 
             //VALIDAR NO BANCO A ALTERACAO
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, true, 110);
+            ValidarStages(true, 110);
             //ValidarLogProcessamento(true);
             ValidarControleArquivo(new string[] {});
             ValidarTabelaDeRetorno(new string[] {});

@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de body (03) nao encontrada");
             ValidarTabelaDeRetorno("94");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de body (03) nao encontrada");
             ValidarTabelaDeRetorno("94");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de body (03) nao encontrada");
             ValidarTabelaDeRetorno("94");
-            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de body (03) nao encontrada");
             ValidarTabelaDeRetorno("94");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de body (03) nao encontrada");
             ValidarTabelaDeRetorno("94");
-            ValidarStages<LinhaParcEmissaoStage>(TabelasEnum.ParcEmissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de body (03) nao encontrada");
             ValidarTabelaDeRetorno("94");
-            ValidarStages<LinhaParcEmissaoStage>(TabelasEnum.ParcEmissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>

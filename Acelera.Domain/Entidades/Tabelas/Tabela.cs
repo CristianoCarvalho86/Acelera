@@ -20,6 +20,11 @@ namespace Acelera.Domain.Entidades.Tabelas
             linhaReferencia = new T();
         }
 
+        public string ObterNomeTabela()
+        {
+            return linhaReferencia.ObterNomeTabela();
+        }
+
         public void  AddLinha(T linha)
         {
             Linhas.Add(linha);

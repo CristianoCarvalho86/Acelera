@@ -34,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, true, 110);
+            ValidarStages(true, 110);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaParcEmissaoStage>(TabelasEnum.ParcEmissao, true, 110);
+            ValidarStages(true, 110);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, true, 110);
+            ValidarStages(true, 110);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, true, 110);
+            ValidarStages(true, 110);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaLanctoComissaoStage>(TabelasEnum.LanctoComissao, true, 110);
+            ValidarStages(true, 110);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
-            ValidarStages<LinhaSinistroStage>(TabelasEnum.Sinistro, true, 110);
+            ValidarStages(true, 110);
         }
     }
 }

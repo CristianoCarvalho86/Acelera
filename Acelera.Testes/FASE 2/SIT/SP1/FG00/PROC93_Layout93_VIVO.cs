@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
+            ValidarStages(false);
         }
         
         /// <summary>
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
-            ValidarStages<LinhaOCRCobrancaStage>(TabelasEnum.OCRCobranca, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
-            ValidarStages<LinhaComissaoStage>(TabelasEnum.Comissao, false);
+            ValidarStages(false);
         }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
-            ValidarStages<LinhaClienteStage>(TabelasEnum.Cliente, false);
+            ValidarStages(false);
 
         }
 

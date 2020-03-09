@@ -9,11 +9,11 @@ namespace Acelera.Domain.Entidades.Consultas
 {
     public static class FabricaConsulta
     {
-       public static Consulta  MontarConsultaParaStage(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
+       public static Consulta  MontarConsultaParaStage(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool existeAlteracaoDeHeaderOuFooter)
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            if (valoresAlteradosBody == null || valoresAlteradosBody.Alteracoes.Count == 0 || valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter)
+            if (existeAlteracaoDeHeaderOuFooter)
             {
                 return consulta;
             }
@@ -63,11 +63,11 @@ namespace Acelera.Domain.Entidades.Consultas
             return consulta;
         }
 
-        public static Consulta MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
+        public static Consulta MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool alteracaoDeHeaderOuFooter)
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 1 && valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter)
+            if (valoresAlteradosBody == null || valoresAlteradosBody.Alteracoes.Count == 0 ||  alteracaoDeHeaderOuFooter)
             {
                 return consulta;
             }

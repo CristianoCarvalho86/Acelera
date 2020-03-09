@@ -22,7 +22,7 @@ namespace Acelera.Testes.Validadores.FG00
 
         public override Consulta MontarConsulta(TabelasEnum tabela)
         {
-            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
+            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter());
             return consulta;
         }
 
@@ -39,14 +39,14 @@ namespace Acelera.Testes.Validadores.FG00
             if (qtd == 0)
                 qtd = 1;
 
-            if (linhas.Count != qtd)
+            if (linhas.Count < qtd)
             {
                 logger.EscreverBloco($"ERAM ESPERADOS :{qtd}, FORAM ENCONTRADOS: {linhas.Count} ERROS");
                 return false;
             }
 
 
-            return ValidarCodigosDeErro(linhas, "CD_MENSAGEM", codigosDeErroEsperados);
+            return ValidarCodigosDeErro(TabelasEnum.TabelaRetorno,linhas, "CD_MENSAGEM", codigosDeErroEsperados);
         }
     }
 }

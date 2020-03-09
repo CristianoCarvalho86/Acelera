@@ -23,7 +23,7 @@ namespace Acelera.Testes.Validadores.FG01
 
         public override Consulta MontarConsulta(TabelasEnum tabela)
         {
-            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody);
+            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter());
             AdicionaConsulta(consulta, valoresAlteradosHeader);
             AdicionaConsulta(consulta, valoresAlteradosFooter);
             consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
