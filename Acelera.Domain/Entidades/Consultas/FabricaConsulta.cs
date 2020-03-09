@@ -67,7 +67,7 @@ namespace Acelera.Domain.Entidades.Consultas
         {
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            if (valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter)
+            if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 1 && valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter)
             {
                 return consulta;
             }

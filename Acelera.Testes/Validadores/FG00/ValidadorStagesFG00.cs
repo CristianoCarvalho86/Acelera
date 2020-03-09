@@ -20,6 +20,25 @@ namespace Acelera.Testes.Validadores.FG00
         {
         }
 
+        public bool ValidarTabelaFG00(bool deveHaverRegistro, out List<ILinhaTabela> linhas, int codigoEsperado = 0)
+        {
+            linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum)).ToList();
+
+            logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
+            logger.Escrever($"Foram encontrados {linhas.Count} registros.");
+
+            if (!ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count))
+            {
+                return false;
+            }
+            else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
+            {
+                return ValidaStatusProcessamento(linhas.First(), codigoEsperado);
+            }
+
+            return true;
+        }
+
         public override Consulta MontarConsulta(TabelasEnum tabela)
         {
             var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody);
@@ -31,71 +50,41 @@ namespace Acelera.Testes.Validadores.FG00
         }
 
 
-        public bool ValidarTabelaFG00(bool deveHaverRegistro,out List<ILinhaTabela> linhas, int codigoEsperado = 0)
+
+
+        public virtual bool ValidaQuantidadeDeLinhas(bool deveHaverRegistros, int linhasEncontradas)
         {
-            linhas = ObterLinhas(MontarConsulta(tabelaEnum)).ToList();
-
-            logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
-            logger.Escrever($"Foram encontrados {linhas.Count} registros.");
-
-            if (!deveHaverRegistro && linhas.Count > 0)// NAO DEVERIA ENCONTRAR REGISTROS MAS FORAM ENCONTRADOS
+            if (!deveHaverRegistros && linhasEncontradas > 0)// NAO DEVERIA ENCONTRAR REGISTROS MAS FORAM ENCONTRADOS
             {
                 var linhasTexto = string.Empty;
                 foreach (var l in linhasTexto)
                     linhasTexto += "LINHA : " + l.ToString() + Environment.NewLine;
                 logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"NAO ERAM ESPERADOS REGISTRO NA TABELA STAGE DE {tabelaEnum.ObterTexto()}" +
-                    $"{Environment.NewLine} LINHAS ENCONTRADAS : { linhas })");
+                    $"{Environment.NewLine} LINHAS ENCONTRADAS : { linhasEncontradas })");
                 return false;
             }
-            else if (deveHaverRegistro && linhas.Count == 0)//DEVERIAM HAVER REGISTROS, MAS NAO FORAM ENCONTRADOS
+            else if (deveHaverRegistros && linhasEncontradas == 0)//DEVERIAM HAVER REGISTROS, MAS NAO FORAM ENCONTRADOS
             {
                 logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"NAO FORAM ENCONTRADOS REGISTROS NA TABELA {tabelaEnum.ObterTexto()}");
                 return false;
             }
-            else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
-            {
-                var linha = linhas.First();
-                //foreach (var linha in lista)
-                //{
-                if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
-                {
-                    logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabelaEnum.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
-                        $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
-                    return false;
-                }
-                else
-                {
-                    logger.Escrever($"Codigo Esperado na tabela {tabelaEnum.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
-                }
-            }
-
             return true;
         }
 
-        private IList<ILinhaTabela> ObterLinhas(Consulta consulta)
+        public virtual bool ValidaStatusProcessamento(ILinhaTabela linha, int codigoEsperado)
         {
-            var linhas = new List<ILinhaTabela>();
-            if (tabelaEnum == TabelasEnum.Cliente)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaClienteStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
-            else if (tabelaEnum == TabelasEnum.Comissao)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
-            else if (tabelaEnum == TabelasEnum.LanctoComissao)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaLanctoComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
-            else if (tabelaEnum == TabelasEnum.OCRCobranca)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaOCRCobrancaStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
-            else if (tabelaEnum == TabelasEnum.ParcEmissao)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
-            else if (tabelaEnum == TabelasEnum.ParcEmissaoAuto)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
-            else if (tabelaEnum == TabelasEnum.Sinistro)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaSinistroStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
+            {
+                logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabelaEnum.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
+                    $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
+                return false;
+            }
             else
-                throw new Exception("TIPO DE TABELA DE CONSULTA NAO ENCONTRADO.");
-
-            return linhas;
-
+            {
+                logger.Escrever($"Codigo Esperado na tabela {tabelaEnum.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
+            }
+            return true;
         }
-
 
     }
 }

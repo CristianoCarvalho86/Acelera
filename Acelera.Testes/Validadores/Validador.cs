@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
+using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
@@ -70,6 +71,47 @@ namespace Acelera.Testes.Validadores
             }
             return true;
 
+        }
+
+        protected IList<ILinhaTabela> ObterLinhasParaStage(Consulta consulta)
+        {
+            var linhas = new List<ILinhaTabela>();
+            if (tabelaEnum == TabelasEnum.Cliente)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaClienteStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.Comissao)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.LanctoComissao)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaLanctoComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.OCRCobranca)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaOCRCobrancaStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.ParcEmissao)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.ParcEmissaoAuto)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.Sinistro)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaSinistroStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else
+                throw new Exception("TIPO DE TABELA DE CONSULTA NAO ENCONTRADO.");
+
+            return linhas;
+
+        }
+
+        protected int ObterQtdRegistrosDuplicadosDoBody()
+        {
+            if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0 && valoresAlteradosBody.Alteracoes.First().RepeticoesLinha > 1)
+                return valoresAlteradosBody.Alteracoes.First().RepeticoesLinha - 1;
+            return 1;
+        }
+
+        protected int ObterQtdRegistrosDuplicadosHeaderAndFooter()
+        {
+            var qtd = 0;
+            if (valoresAlteradosHeader != null && valoresAlteradosHeader.Alteracoes.Count > 0 && valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha > 1)
+                qtd = valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha - 1;
+            if (valoresAlteradosFooter != null && valoresAlteradosFooter.Alteracoes.Count > 0 && valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha > 1)
+                qtd = valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha - 1;
+            return qtd;
         }
 
         public abstract Consulta MontarConsulta(TabelasEnum tabela);

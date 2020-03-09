@@ -27,6 +27,17 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, posicaoLinha,"","",0,semHeaderOuFooter);
         }
 
+        public void AlterarNomeArquivo()
+        {
+            var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
+            logger.AbrirBloco($"Linha Selecionada para validacao : linha {posicaoLinha}");
+            logger.Escrever("Valores da Linha :" + linhaParaValidacao.ObterTexto());
+            logger.Escrever(Environment.NewLine);
+            logger.FecharBloco();
+
+            AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, posicaoLinha, "", "", 0, semHeaderOuFooter);
+        }
+
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
@@ -93,6 +104,8 @@ namespace Acelera.Testes
             logger.AbrirBloco($"Alterando arquivo - Replicando HEADER linha {posicaoLinha} , {quantidadeVezes} vezes.");
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaHeader(posicaoLinha).ObterTexto());
             arquivo.ReplicarHeader(quantidadeVezes, posicaoLinha);
+
+            AdicionaAlteracao(valoresAlteradosHeader, arquivo.ObterLinhaHeader(), 0, "", "", quantidadeVezes, false);
             logger.FecharBloco();
             
             SelecionarLinhaParaValidacao(0);
@@ -103,6 +116,8 @@ namespace Acelera.Testes
             logger.AbrirBloco($"Alterando arquivo - Replicando FOOTER linha {posicaoLinha} , {quantidadeVezes} vezes.");
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaFooter(posicaoLinha).ObterTexto());
             arquivo.ReplicarFooter(quantidadeVezes, posicaoLinha);
+
+            AdicionaAlteracao(valoresAlteradosFooter, arquivo.ObterLinhaHeader(), 0, "", "", quantidadeVezes, false);
             logger.FecharBloco();
             SelecionarLinhaParaValidacao(0);
         }
@@ -147,7 +162,7 @@ namespace Acelera.Testes
         public void RemoverTodasAsLinhas()
         {
             logger.AbrirBloco($"Alterando arquivo - removendo TODAS as linhas - Da linha : {0} ate linha : {arquivo.Linhas.Count - 1}");
-            arquivo.RemoverLinhas(0, arquivo.Linhas.Count - 1);
+            arquivo.RemoverLinhas(0, arquivo.Linhas.Count);
             logger.Escrever("Todas as linhas do Body Removidas");
             logger.FecharBloco();
         }

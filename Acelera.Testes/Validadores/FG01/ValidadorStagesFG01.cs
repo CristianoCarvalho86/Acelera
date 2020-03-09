@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -20,13 +21,25 @@ namespace Acelera.Testes.Validadores.FG01
 
         }
 
+        public override Consulta MontarConsulta(TabelasEnum tabela)
+        {
+            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody);
+            AdicionaConsulta(consulta, valoresAlteradosHeader);
+            AdicionaConsulta(consulta, valoresAlteradosFooter);
+            consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
+
+            return consulta;
+        }
+
         public bool ValidarTabelaFG01(bool deveHaverRegistro, int codigoEsperado = 0)
         {
             var linhas = new List<ILinhaTabela>();
-            if (!ValidarTabelaFG00(deveHaverRegistro, out linhas, codigoEsperado))
+            linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum)).ToList();
+
+            if (!(ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count) && ValidaStatusProcessamento(linhas.First(), codigoEsperado)))
                 return false;
 
-            var qtdRegistrosEsperados = ObterQtdRegistrosEsperados();
+            var qtdRegistrosEsperados = ObterQtdRegistrosDuplicadosDoBody();
             if (linhas.Count != qtdRegistrosEsperados)
             {
                 logger.EscreverBloco($"Eram esperados {qtdRegistrosEsperados} registros na tabela : {tabelaEnum.ObterTexto()}" +
@@ -35,13 +48,6 @@ namespace Acelera.Testes.Validadores.FG01
             }
             return true;
 
-        }
-
-        private int ObterQtdRegistrosEsperados()
-        {
-            if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0)
-                return valoresAlteradosBody.Alteracoes.First().RepeticoesLinha - 1;
-            return 1;
         }
 
     }

@@ -26,7 +26,7 @@ namespace Acelera.Testes.Validadores.FG00
             return consulta;
         }
 
-        public bool ValidarTabela(int qtdRegistrosEsperados = 0, params string[] codigosDeErroEsperados)
+        public bool ValidarTabela(params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
@@ -34,11 +34,17 @@ namespace Acelera.Testes.Validadores.FG00
 
             List<ILinhaTabela> linhas;
             linhas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
-            if (linhas.Count != qtdRegistrosEsperados)
+
+            var qtd = ObterQtdRegistrosDuplicadosHeaderAndFooter();
+            if (qtd == 0)
+                qtd = 1;
+
+            if (linhas.Count != qtd)
             {
-                logger.EscreverBloco($"ERAM ESPERADOS :{qtdRegistrosEsperados}, FORAM ENCONTRADOS: {linhas.Count} ERROS");
+                logger.EscreverBloco($"ERAM ESPERADOS :{qtd}, FORAM ENCONTRADOS: {linhas.Count} ERROS");
                 return false;
             }
+
 
             return ValidarCodigosDeErro(linhas, "CD_MENSAGEM", codigosDeErroEsperados);
         }

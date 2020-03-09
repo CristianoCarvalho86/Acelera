@@ -31,6 +31,8 @@ namespace Acelera.Domain.Entidades
         public int RepeticoesLinha { get; set; }
         public bool SemHeaderOuFooter { get; set; }
 
+        public bool NomeArquivoAlterado { get; set; }
+
         public int PosicaoDaLinha { get; set; }
         public Alteracao(LinhaArquivo linhaAlterada, int posicaoLinha)
         {
