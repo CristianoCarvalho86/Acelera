@@ -34,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaParcEmissaoStage>( false);
+            ValidarStages( false);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaParcEmissaoStage>( false);
+            ValidarStages( false);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaComissaoStage>( false);
+            ValidarStages( false);
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaOCRCobrancaStage>( false);
+            ValidarStages( false);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages<LinhaLanctoComissaoStage>(false);
+            ValidarStages(false);
         }
 
         /// <summary>

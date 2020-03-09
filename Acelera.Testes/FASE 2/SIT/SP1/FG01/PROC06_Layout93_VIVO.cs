@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages<LinhaClienteStage>(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("6");
         }
 
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages<LinhaParcEmissaoAutoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("6");
         }
 
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages<LinhaComissaoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("6");
         }
 
@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages<LinhaOCRCobrancaStage>(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("6");
         }
 
@@ -162,7 +162,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages<LinhaClienteStage>(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("6");
         }
 
@@ -194,7 +194,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages<LinhaParcEmissaoAutoStage>(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("6");
         }
 
@@ -223,7 +223,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages<LinhaOCRCobrancaStage>(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("6");
         }
 
