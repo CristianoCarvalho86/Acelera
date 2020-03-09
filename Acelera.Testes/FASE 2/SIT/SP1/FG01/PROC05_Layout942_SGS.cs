@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2284_SINISTRO_SemCampObrig_Header()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2284", "No Header do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ DT_ARQ");
+            IniciarTeste(TipoArquivo.Sinistro, "2284", "FG01 - PROC5 - No Header do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ DT_ARQ");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2285_SINISTRO_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2285", "No Body do arquivo SINISTRO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
+            IniciarTeste(TipoArquivo.Sinistro, "2285", "FG01 - PROC5 - No Body do arquivo SINISTRO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2286_SINISTRO_SemCampObrig_Trailler()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2285", "No Trailler do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ");
+            IniciarTeste(TipoArquivo.Sinistro, "2285", "FG01 - PROC5 - No Trailler do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 

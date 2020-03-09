@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2260_PARC_EMISSAO_AUTO_ID_TRANSACAO_Dif()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2260", "No Body do arquivo PARC_EMISSAO_AUTO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: ID_TRANSACAO");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2260", "FG01 - PROC14 - No Body do arquivo PARC_EMISSAO_AUTO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: ID_TRANSACAO");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2261_PARC_EMISSAO_AUTO_ID_TRANSACAO_Dif()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2261", "No Body do arquivo PARC_EMISSAO_AUTO no campo ID_TRANSACAO informar o número na sequência: CD_RAMO, NR_PARCELA, NR_ENDOSSO, NR_APOLICE");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2261", "FG01 - PROC14 - No Body do arquivo PARC_EMISSAO_AUTO no campo ID_TRANSACAO informar o número na sequência: CD_RAMO, NR_PARCELA, NR_ENDOSSO, NR_APOLICE");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 

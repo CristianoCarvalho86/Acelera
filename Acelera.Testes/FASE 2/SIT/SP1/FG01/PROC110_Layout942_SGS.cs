@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2281_SINISTRO_3xBody()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2281", "No arquivo SINISTRO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
+            IniciarTeste(TipoArquivo.Sinistro, "2281", "FG01 - PROC110 - No arquivo SINISTRO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 

@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2623_SINISTRO_TipoNomeArq_Dif()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2623", "Importar arquivo com campo Tipo Nome do Arquivo (segundo campo da nomenclatura) diferente do parametrizado");
+            IniciarTeste(TipoArquivo.Sinistro, "2623", "FG00 - PROC401 - Importar arquivo com campo Tipo Nome do Arquivo (segundo campo da nomenclatura) diferente do parametrizado");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();

@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2292_SINISTRO_SemCD_AVISO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2292", "Não informar CD_AVISO ");
+            IniciarTeste(TipoArquivo.Sinistro, "2292", "FG01 - PROC66 - Não informar CD_AVISO ");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 

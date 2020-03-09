@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2283_SINISTRO_CD_TPA_00()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2283", "No Header do arquivo SINISTRO no campo CD_TPA informar código 00");
+            IniciarTeste(TipoArquivo.Sinistro, "2283", "FG01 - PROC01 - No Header do arquivo SINISTRO no campo CD_TPA informar código 00");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 

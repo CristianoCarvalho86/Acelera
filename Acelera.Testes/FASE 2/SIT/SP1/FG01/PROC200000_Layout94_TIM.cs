@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2363_CLIENTE_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2363", "CLIENTE - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.Cliente, "2363", "FG01 - PROC200000 - CLIENTE - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
 
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2364_PARC_EMISSAO_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2364", "PARC_EMISSAO - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2364", "FG01 - PROC200000 - PARC_EMISSAO - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
 
@@ -73,7 +73,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2365_EMS_COMISSAO_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2365", "EMS_COMISSAO - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.Comissao, "2365", "FG01 - PROC200000 - EMS_COMISSAO - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200214.txt"));
 
@@ -101,7 +101,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2366_OCR_COBRANCA_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2367", "OCR_COBRANCA - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2367", "FG01 - PROC200000 - OCR_COBRANCA - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9996-20191227.txt"));
 
@@ -129,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2367_LANCTO_COMISSAO_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2367", "LANCTO_COMISSAO - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2367", "FG01 - PROC200000 - LANCTO_COMISSAO - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
@@ -158,7 +158,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2368_SINISTRO_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2368", "SINISTRO - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.Sinistro, "2368", "FG01 - PROC200000 - SINISTRO - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200212.txt"));
 

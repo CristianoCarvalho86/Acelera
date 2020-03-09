@@ -29,7 +29,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1074_OCR_COBRANCA_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1074", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1074", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1073_COMISSAO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1073", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Comissao, "1073", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -95,7 +95,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1072_PARC_EMISSAO_AUTO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1072", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1072", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -128,7 +128,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1071_CLIENTE_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1071", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Cliente, "1071", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

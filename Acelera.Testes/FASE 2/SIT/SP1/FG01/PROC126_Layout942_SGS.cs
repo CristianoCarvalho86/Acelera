@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2294_SINISTRO_EN_UF_BENEFICIARIO_56()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2294", "No Body do arquivo SINISTRO no campo EN_UF_BENEFICIARIO informar código 56");
+            IniciarTeste(TipoArquivo.Sinistro, "2294", "FG01 - PROC126 - No Body do arquivo SINISTRO no campo EN_UF_BENEFICIARIO informar código 56");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 

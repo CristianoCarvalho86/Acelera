@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2375_CLIENTE_CD_TPA_9_3()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2375", "No Header do arquivo CLIENTE no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.Cliente, "2375", "FG01 - PROC01 - No Header do arquivo CLIENTE no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1924-20200210.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2376_PARC_EMISSAO_CD_TPA_9_3()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2376", "No Header do arquivo PARC_EMISSAO no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2376", "FG01 - PROC01 - No Header do arquivo PARC_EMISSAO no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2377_EMS_COMISSAO_CD_TPA_9_3()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2377", "No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.Comissao, "2377", "FG01 - PROC01 - No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1917-20200207.txt"));
 
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2378_OCR_COBRANCA_CD_TPA_9_3()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2378", "No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2378", "FG01 - PROC01 - No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1693-20191128.txt"));
 
@@ -133,7 +133,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2379_LANCTO_COMISSAO_CD_TPA_9_3()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2379", "No Header do arquivo LANCTO_COMISSAO no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2379", "FG01 - PROC01 - No Header do arquivo LANCTO_COMISSAO no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
@@ -162,7 +162,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2380_SINISTRO_CD_TPA_9_3()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2380", "No Header do arquivo SINISTRO no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.Sinistro, "2380", "FG01 - PROC01 - No Header do arquivo SINISTRO no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 

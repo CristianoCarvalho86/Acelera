@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1233_SINISTRO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1233", "No Header do arquivo SINISTRO no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "1233", "FG00 - PROC91 - No Header do arquivo SINISTRO no campo VERSAO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1232_LANCTO_COMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1232", "No Header do arquivo LANCTO_COMISSAO no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1232", "FG00 - PROC91 - No Header do arquivo LANCTO_COMISSAO no campo VERSAO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1231_OCR_COBRANCA_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1231", "No Header do arquivo OCR_COBRANCA no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1231", "FG00 - PROC91 - No Header do arquivo OCR_COBRANCA no campo VERSAO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1230_EMS_COMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1230", "No Header do arquivo EMS_COMISSAO no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1230", "FG00 - PROC91 - No Header do arquivo EMS_COMISSAO no campo VERSAO não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1229_PARC_EMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1229", "No Header do arquivo PARC_EMISSAO no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1229", "FG00 - PROC91 - No Header do arquivo PARC_EMISSAO no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1228_CLIENTE_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1228", "No Header do arquivo CLIENTE no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo");
+            IniciarTeste(TipoArquivo.Cliente, "1228", "FG00 - PROC91 - No Header do arquivo CLIENTE no campo VERSAO não informar valor, campo em branco, respeitando a tamanho do campo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();

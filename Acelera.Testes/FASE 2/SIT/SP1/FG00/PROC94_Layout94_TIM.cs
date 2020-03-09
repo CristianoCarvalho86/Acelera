@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1254_COMISSAO_SemBody()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1254", "Não informar nenhum registro do Body no arquivo");
+            IniciarTeste(TipoArquivo.Comissao, "1254", "FG00 - PROC94 - Não informar nenhum registro do Body no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1257_SINISTRO_SemBody()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1257", "Não informar nenhum registro do Body no arquivo");
+            IniciarTeste(TipoArquivo.Sinistro, "1257", "FG00 - PROC94 - Não informar nenhum registro do Body no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1256_LANCTO_COMISSAO_SemBody()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1256", "Não informar nenhum registro do Body no arquivo");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1256", "FG00 - PROC94 - Não informar nenhum registro do Body no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1255_OCR_COBRANCA_SemBody()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1255", "Não informar nenhum registro do Body no arquivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1255", "FG00 - PROC94 - Não informar nenhum registro do Body no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1253_PARC_EMISSAO_SemBody()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1253", "Não informar nenhum registro do Body no arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1253", "FG00 - PROC94 - Não informar nenhum registro do Body no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1252_CLIENTE_SemBody()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1252", "Não informar nenhum registro do Body no arquivo");
+            IniciarTeste(TipoArquivo.Cliente, "1252", "FG00 - PROC94 - Não informar nenhum registro do Body no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();

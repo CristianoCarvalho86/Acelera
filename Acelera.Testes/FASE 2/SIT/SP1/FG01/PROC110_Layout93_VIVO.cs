@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2204_CLIENTE_3xBody()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2204", "No arquivo CLIENTE repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
+            IniciarTeste(TipoArquivo.Cliente, "2204", "FG01 - PROC110 - No arquivo CLIENTE repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2205_PARC_EMISSAO_AUTO_3xBody()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2205", "No arquivo PARC_EMISSAO_AUTO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2205", "FG01 - PROC110 - No arquivo PARC_EMISSAO_AUTO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2206_EMS_COMISSAO_3xBody()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2206", "No arquivo EMS_COMISSAO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
+            IniciarTeste(TipoArquivo.Comissao, "2206", "FG01 - PROC110 - No arquivo EMS_COMISSAO repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2207_OCR_COBRANCA_3xBody()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2207", "No arquivo OCR_COBRANCA repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2207", "FG01 - PROC110 - No arquivo OCR_COBRANCA repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 

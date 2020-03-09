@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2619_EMS_COMISSAO_NomeIncorreto()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2619", "Não informar ponto entre a terceira e quarta partes.");
+            IniciarTeste(TipoArquivo.Comissao, "2619", "FG00 - PROC401 - Não informar ponto entre a terceira e quarta partes.");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2620_OCR_COBRANCA_NomeIncorreto()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2620", "Não informar ponto na nomenclatura do arquivo. Ex.: C01POMPEIACLIENTE-EV-1927-20200211TXT");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2620", "FG00 - PROC401 - Não informar ponto na nomenclatura do arquivo. Ex.: C01POMPEIACLIENTE-EV-1927-20200211TXT");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2618_PARC_EMISSAO_AUTO_NomeIncorreto()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2618", "Não informar ponto entre a segunda e terceira partes. Ex.: C01.POMPEIACLIENTE-EV-1927-20200211.TXT");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2618", "FG00 - PROC401 - Não informar ponto entre a segunda e terceira partes. Ex.: C01.POMPEIACLIENTE-EV-1927-20200211.TXT");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -112,7 +112,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2617_CLIENTE_NomeIncorreto()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2617", "Não informar ponto entre a primeira e segunda partes. Ex.: C01POMPEIA.CLIENTE-EV-1927-20200211.TXT");
+            IniciarTeste(TipoArquivo.Cliente, "2617", "FG00 - PROC401 - Não informar ponto entre a primeira e segunda partes. Ex.: C01POMPEIA.CLIENTE-EV-1927-20200211.TXT");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

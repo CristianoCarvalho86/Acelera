@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1293_SINISTRO_NOMEARQ_TESTE()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1293", "No Header do arquivo SINISTRO no campo NOMEARQ informar o valor TESTE");
+            IniciarTeste(TipoArquivo.Sinistro, "1293", "FG00 - PROC400 - No Header do arquivo SINISTRO no campo NOMEARQ informar o valor TESTE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1292_LANCTO_COMISSAO_NOMEARQ_TESTE()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1292", "No Header do arquivo LANCTO_COMISSAO no campo NOMEARQ informar o valor TESTE");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1292", "FG00 - PROC400 - No Header do arquivo LANCTO_COMISSAO no campo NOMEARQ informar o valor TESTE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1291_OCR_COBRANCA_NOMEARQ_TESTE()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1291", "No Header do arquivo OCR_COBRANCA no campo NOMEARQ informar o valor TESTE");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1291", "FG00 - PROC400 - No Header do arquivo OCR_COBRANCA no campo NOMEARQ informar o valor TESTE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1290_COMISSAO_NOMEARQ_TESTE()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1290", "No Header do arquivo COMISSAO no campo NOMEARQ informar o valor TESTE");
+            IniciarTeste(TipoArquivo.Comissao, "1290", "FG00 - PROC400 - No Header do arquivo COMISSAO no campo NOMEARQ informar o valor TESTE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1289_PARC_EMISSAO_NOMEARQ_TESTE()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1289", " No Header do arquivo PARC_EMISSAO no campo NOMEARQ informar o valor TESTE");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1289", " FG00 - PROC400 - No Header do arquivo PARC_EMISSAO no campo NOMEARQ informar o valor TESTE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1288_CLIENTE_NOMEARQ_TESTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1288", "No Header do arquivo CLIENTE no campo NOMEARQ informar o valor TESTE");
+            IniciarTeste(TipoArquivo.Cliente, "1288", "FG00 - PROC400 - No Header do arquivo CLIENTE no campo NOMEARQ informar o valor TESTE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();

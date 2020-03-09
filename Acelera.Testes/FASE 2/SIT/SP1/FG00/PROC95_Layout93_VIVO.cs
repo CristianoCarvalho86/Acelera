@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1059_CLIENTE_SemHeader()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1059", "No Header do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Cliente, "1059", "FG00 - PROC95 - No Header do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -57,7 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1061_EMS_COMISSAO_SemHeader()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1061", "No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1061", "FG00 - PROC95 - No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -86,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1060_PARC_EMISSAO_AUTO_SemHeader()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1060", "No Header do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1060", "FG00 - PROC95 - No Header do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1062_OCR_COBRANCA_TipoRegistro13()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1060", "No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1060", "FG00 - PROC95 - No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -155,7 +155,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1098_OCR_COBRANCA_TipoRegistro13()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1098", "No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 13");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1098", "FG00 - PROC95 - No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 13");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -184,7 +184,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1097_EMS_COMISSAO_TipoRegistro12()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1097", "No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 12");
+            IniciarTeste(TipoArquivo.Comissao, "1097", "FG00 - PROC95 - No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 12");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -213,7 +213,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1096_PARC_EMISSAO_AUTO_TipoRegistro11()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1096", "No Header do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO informar código 11");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "1096", "FG00 - PROC95 - No Header do arquivo PARC_EMISSAO_AUTO no campo TIPO_REGISTRO informar código 11");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -242,7 +242,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1095_CLIENTE_TipoRegistro10()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1095", "No Header do arquivo CLIENTE no campo TIPO_REGISTRO informar código 10");
+            IniciarTeste(TipoArquivo.Cliente, "1095", "FG00 - PROC95 - No Header do arquivo CLIENTE no campo TIPO_REGISTRO informar código 10");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

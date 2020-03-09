@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1396_CLIENTE_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1396", "Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Cliente, "1396", "FG00 - PROC94 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1397_PARC_EMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1397", "No Body do arquivo PARC_EMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1397", "FG00 - PROC94 - No Body do arquivo PARC_EMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1398_COMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1398", "No Body do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "1398", "FG00 - PROC94 - No Body do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1399_OCR_COBRANCA_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1399", "No Body do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1399", "FG00 - PROC94 - No Body do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1400_LANCTO_COMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1400", "No Body do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1400", "FG00 - PROC94 - No Body do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1401_SINISTRO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1401", "No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "1401", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();

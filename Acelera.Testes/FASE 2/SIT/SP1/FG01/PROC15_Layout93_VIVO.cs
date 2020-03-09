@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2262_PARC_EMISSAO_AUTO_SemID_TRANSACAO_CANC()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2262", "No Body do arquivo PARC_EMISSAO_AUTO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: ID_TRANSACAO_CANC");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2262", "FG01 - PROC15 - No Body do arquivo PARC_EMISSAO_AUTO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: ID_TRANSACAO_CANC");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 

@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2353_CLIENTE_SemCD_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2353", "CLIENTE - Não informar CD_CLIENTE");
+            IniciarTeste(TipoArquivo.Cliente, "2353", "FG01 - PROC74 - CLIENTE - Não informar CD_CLIENTE");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
 

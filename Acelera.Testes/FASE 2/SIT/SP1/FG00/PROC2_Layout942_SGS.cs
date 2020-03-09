@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1191_SINISTRO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1191", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Sinistro, "1191", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();

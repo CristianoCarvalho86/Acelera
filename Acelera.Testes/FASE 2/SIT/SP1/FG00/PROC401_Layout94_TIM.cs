@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2624_CLIENTE_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2624", "Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.Cliente, "2624", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2625_PARC_EMISSAO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2625", "Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2625", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -72,7 +72,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2626_EMS_COMISSAO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2626", "Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.Comissao, "2626", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -100,7 +100,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2627_OCR_COBRANCA_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2627", "Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2627", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -128,7 +128,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2628_LANCTO_COMISSAO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2628", "Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2628", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -156,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_2629_SINISTRO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2629", "Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.Sinistro, "2629", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();

@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2348_CLIENTE_NR_CNPJ_CPF_8Dig()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2348", "No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com 8 dígitos");
+            IniciarTeste(TipoArquivo.Cliente, "2348", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com 8 dígitos");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2349_CLIENTE_NR_CNPJ_CPF_DigInv()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2349", "No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CNPJ com dígito verificador inválido");
+            IniciarTeste(TipoArquivo.Cliente, "2349", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CNPJ com dígito verificador inválido");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
 
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2350_PARC_EMISSAO_SemNR_CNPJ_CPF()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2350", "No Body do arquivo PARC_EMISSAO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: NR_CNPJ_CPF");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2350", "FG01 - PROC41 - No Body do arquivo PARC_EMISSAO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: NR_CNPJ_CPF");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
 

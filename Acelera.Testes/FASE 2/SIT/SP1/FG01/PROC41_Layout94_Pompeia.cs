@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2422_CLIENTE_NR_CNPJ_CPF_10Dig()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2422", "No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com 10 dígitos");
+            IniciarTeste(TipoArquivo.Cliente, "2422", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com 10 dígitos");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2423_CLIENTE_NR_CNPJ_CPF_15Dig()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2423", "No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CNPJ com 15 dígitos");
+            IniciarTeste(TipoArquivo.Cliente, "2423", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CNPJ com 15 dígitos");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212.txt"));
 
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2424_PARC_EMISSAO_SemNR_CNPJ_CPF()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2424", "No Body do arquivo PARC_EMISSAO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: NR_CNPJ_CPF");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2424", "FG01 - PROC41 - No Body do arquivo PARC_EMISSAO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: NR_CNPJ_CPF");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 

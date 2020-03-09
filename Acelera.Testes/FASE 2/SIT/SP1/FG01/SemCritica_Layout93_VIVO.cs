@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_PARC_EMISSAO_AUTO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "SemCritica_Geral", "Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "SemCritica_Geral", "FG00 - PARC_EMISSAO_AUTO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_COBRANCA()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "SemCritica_Geral", "OCR_COBRANCA - Sem Critica");
+            IniciarTeste(TipoArquivo.OCRCobranca, "SemCritica_Geral", "FG00 - OCR_COBRANCA - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "FG00 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -119,7 +119,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "SemCritica_Geral", "CLIENTE - Sem Critica");
+            IniciarTeste(TipoArquivo.Cliente, "SemCritica_Geral", "FG00 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();

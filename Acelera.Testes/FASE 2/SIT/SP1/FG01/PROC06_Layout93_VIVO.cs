@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2245_CLIENTE_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2245", "No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.Cliente, "2245", "FG01 - PROC6 - No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2246_PARC_EMISSAO_AUTO_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2246", "No Header do arquivo PARC_EMISSAO_AUTO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2246", "FG01 - PROC6 - No Header do arquivo PARC_EMISSAO_AUTO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2247_EMS_COMISSAO_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2247", "No Header do arquivo EMS_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.Comissao, "2247", "FG01 - PROC6 - No Header do arquivo EMS_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2248_OCR_COBRANCA_DataInv_Header()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2248", "No Header do arquivo OCR_COBRANCA no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2248", "FG01 - PROC6 - No Header do arquivo OCR_COBRANCA no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 
@@ -144,7 +144,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2399_CLIENTE_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2399", "No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO");
+            IniciarTeste(TipoArquivo.Cliente, "2399", "FG01 - PROC6 - No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
@@ -173,7 +173,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2400_PARC_EMISSAO_AUTO_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2400", "No Header do arquivo PARC_EMISSAO_AUTO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_INICIO_VIGENCIA DT_FIM_VIGENCIA DT_VENCIMENTO DT_NASC_CONDUTOR");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2400", "FG01 - PROC6 - No Header do arquivo PARC_EMISSAO_AUTO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_INICIO_VIGENCIA DT_FIM_VIGENCIA DT_VENCIMENTO DT_NASC_CONDUTOR");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
@@ -205,7 +205,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2401_OCR_COBRANCA_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2401", "No Body do arquivo OCR_COBRANCA nos campos abaixo informar data inválida (Ex. 32131234) DT_OCORRENCIA");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2401", "FG01 - PROC6 - No Body do arquivo OCR_COBRANCA nos campos abaixo informar data inválida (Ex. 32131234) DT_OCORRENCIA");
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 

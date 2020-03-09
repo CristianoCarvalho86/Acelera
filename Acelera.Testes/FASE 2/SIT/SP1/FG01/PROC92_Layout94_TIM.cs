@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2354_CLIENTE_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2354", "No Header do arquivo CLIENTE no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.Cliente, "2354", "FG01 - PROC92 - No Header do arquivo CLIENTE no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
 
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2355_PARC_EMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2355", "No Header do arquivo PARC_EMISSAO no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2355", "FG01 - PROC92 - No Header do arquivo PARC_EMISSAO no campo VERSAO não informar valor");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
 
@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2356_EMS_COMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2356", " No Header do arquivo EMS_COMISSAO no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "2356", " FG01 - PROC92 - No Header do arquivo EMS_COMISSAO no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213.txt"));
 
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2357_OCR_COBRANCA_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2357", "No Header do arquivo OCR_COBRANCA no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2357", "FG01 - PROC92 - No Header do arquivo OCR_COBRANCA no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9995-20191229.txt"));
 
@@ -134,7 +134,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2357_LANCTO_COMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2357", " No Header do arquivo LANCTO_COMISSAO no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2357", " FG01 - PROC92 - No Header do arquivo LANCTO_COMISSAO no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
@@ -163,7 +163,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2358_SINISTRO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2358", "No Header do arquivo SINISTRO no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "2358", "FG01 - PROC92 - No Header do arquivo SINISTRO no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
 

@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2293_SINISTRO_VERSAO_9()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2293", "No Header do arquivo SINISTRO no campo VERSAO informar o código 9");
+            IniciarTeste(TipoArquivo.Sinistro, "2293", "FG01 - PROC92 - No Header do arquivo SINISTRO no campo VERSAO informar o código 9");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 

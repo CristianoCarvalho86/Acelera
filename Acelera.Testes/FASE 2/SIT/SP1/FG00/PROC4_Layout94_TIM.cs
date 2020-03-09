@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1227_SINISTRO_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1227", "No Trailler do arquivo SINISTRO no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.Sinistro, "1227", "FG00 - PROC4 - No Trailler do arquivo SINISTRO no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1226_LANCTO_COMISSAO_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1226", "No Trailler do arquivo LANCTO_COMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1226", "FG00 - PROC4 - No Trailler do arquivo LANCTO_COMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1225_OCR_COBRANCA_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1225", "No Trailler do arquivo OCR_COBRANCA no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1225", "FG00 - PROC4 - No Trailler do arquivo OCR_COBRANCA no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1224_EMS_COMISSAO_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1224", "No Trailler do arquivo EMS_COMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.Comissao, "1224", "FG00 - PROC4 - No Trailler do arquivo EMS_COMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1223_PARC_EMISSAO_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1223", "No Trailler do arquivo PARC_EMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1223", "FG00 - PROC4 - No Trailler do arquivo PARC_EMISSAO no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1222_CLIENTE_QT_LIN_CarEsp()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1222", "No Trailler do arquivo CLIENTE no campo QT_LIN informar valor com um ou mais caracter especial");
+            IniciarTeste(TipoArquivo.Cliente, "1222", "FG00 - PROC4 - No Trailler do arquivo CLIENTE no campo QT_LIN informar valor com um ou mais caracter especial");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();

@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2275_CLIENTE_EN_UF_CC()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2275", "No Body do arquivo CLIENTE no campo EN_UF informar código CC");
+            IniciarTeste(TipoArquivo.Cliente, "2275", "FG01 - PROC126 - No Body do arquivo CLIENTE no campo EN_UF informar código CC");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2276_PARC_EMISSAO_AUTO_EN_UF_RISCO_PP()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2276", "No Body do arquivo PARC_EMISSAO_AUTO no campo CD_UF_RISCO informar código PP");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2276", "FG01 - PROC126 - No Body do arquivo PARC_EMISSAO_AUTO no campo CD_UF_RISCO informar código PP");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2278_CLIENTE_SemEN_UF()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2278", "No Body do arquivo CLIENTE no campo EN_UF não informar valor");
+            IniciarTeste(TipoArquivo.Cliente, "2278", "FG01 - PROC126 - No Body do arquivo CLIENTE no campo EN_UF não informar valor");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2279_PARC_EMISSAO_AUTO_SemEN_UF()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2279", "No Body do arquivo PARC_EMISSAO_AUTO não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2279", "FG01 - PROC126 - No Body do arquivo PARC_EMISSAO_AUTO não informar valor");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 

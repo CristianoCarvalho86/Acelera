@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2263_SINISTRO_CD_SINISTRO_NumInv()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2263", "No Body do arquivo SINISTRO no campo CD_SINISTRO não informar o número do sinistro");
+            IniciarTeste(TipoArquivo.Sinistro, "2263", "FG01 - PROC62 - No Body do arquivo SINISTRO no campo CD_SINISTRO não informar o número do sinistro");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0002-20200212.txt"));
 

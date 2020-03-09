@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2360_CLIENTE_EN_UF_01()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2360", "No Body do arquivo CLIENTE no campo EN_UF informar valor o código 01");
+            IniciarTeste(TipoArquivo.Cliente, "2360", "FG01 - PROC126 - No Body do arquivo CLIENTE no campo EN_UF informar valor o código 01");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200213.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2361_PARC_EMISSAO_EN_UF_RISCO_01()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2361", " No Body do arquivo PARC_EMISSAO no campo CD_UF_RISCO informar valor o código 01");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2361", " FG01 - PROC126 - No Body do arquivo PARC_EMISSAO no campo CD_UF_RISCO informar valor o código 01");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
 
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2362_SINISTRO_EN_UF_BENEFICIARIO_01()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2362", "No Body do arquivo SINISTRO no campo EN_UF_BENEFICIARIO informar código 01");
+            IniciarTeste(TipoArquivo.Sinistro, "2362", "FG01 - PROC126 - No Body do arquivo SINISTRO no campo EN_UF_BENEFICIARIO informar código 01");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0002-20200212.txt"));
 

@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_SINISTRO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "SINISTRO - Sem Critica");
+            IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "FG00 - SINISTRO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();

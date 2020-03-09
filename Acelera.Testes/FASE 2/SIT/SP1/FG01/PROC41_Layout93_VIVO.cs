@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2263_CLIENTE_NR_CNPJ_CPF_DigInv()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2263", "No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com dígito verificador inválido");
+            IniciarTeste(TipoArquivo.Cliente, "2263", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com dígito verificador inválido");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2264_CLIENTE_NR_CNPJ_CPF_DigInv()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2264", "No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CNPJ com dígito verificador inválido");
+            IniciarTeste(TipoArquivo.Cliente, "2264", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CNPJ com dígito verificador inválido");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2265_PARC_EMISSAO_AUTO_SemNR_CNPJ_CPF()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2265", "No Body do arquivo PARC_EMISSAO_AUTO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: NR_CNPJ_CPF");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2265", "FG01 - PROC41 - No Body do arquivo PARC_EMISSAO_AUTO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: NR_CNPJ_CPF");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 

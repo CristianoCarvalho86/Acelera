@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1432_CLIENTE_2xHeader_2xTrailler()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1432", "No arquivo CLIENTE repetir 2x o registro do Header, onde o TIPO REGISTRO é igual a 9. Repetir também 2X o Trailler");
+            IniciarTeste(TipoArquivo.Cliente, "1432", "FG00 - PROC101 - No arquivo CLIENTE repetir 2x o registro do Header, onde o TIPO REGISTRO é igual a 9. Repetir também 2X o Trailler");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1434_PARC_EMISSAO_4xTrailler()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1134", "No arquivo PARC_EMISSAO repetir 4x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1134", "FG00 - PROC101 - No arquivo PARC_EMISSAO repetir 4x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1436_EMS_COMISSAO_3xTrailler()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1436", "No arquivo EMS_COMISSAO repetir 3x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
+            IniciarTeste(TipoArquivo.Comissao, "1436", "FG00 - PROC101 - No arquivo EMS_COMISSAO repetir 3x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1439_OCR_COBRANCA_2xTrailler()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1439", "No arquivo OCR_COBRANCA repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir o Header");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1439", "FG00 - PROC101 - No arquivo OCR_COBRANCA repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir o Header");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -134,7 +134,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1441_LANCTO_COMISSAO_3xTrailler_2xHeader()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1441", "No arquivo LANCTO_COMISSAO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir o Header");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1441", "FG00 - PROC101 - No arquivo LANCTO_COMISSAO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir o Header");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -164,7 +164,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1442_SINISTRO_1xHeader()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1442", "No arquivo SINISTRO repetir 1x o registro do Header, onde o TIPO REGISTRO é igual a 9. Não repetir o Trailler");
+            IniciarTeste(TipoArquivo.Sinistro, "1442", "FG00 - PROC101 - No arquivo SINISTRO repetir 1x o registro do Header, onde o TIPO REGISTRO é igual a 9. Não repetir o Trailler");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();

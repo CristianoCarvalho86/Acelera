@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1215_SINISTRO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1215", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Sinistro, "1215", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -49,7 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1214_LANCTO_COMISSAO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1214", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1214", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1213_OCR_COBRANCA_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1213", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1213", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1212_COMISSAO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1212", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Comissao, "1212", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -149,7 +149,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1211_PARC_EMISSAO_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1211", " Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1211", " FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -182,7 +182,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1210_CLIENTE_MesmoNome()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1210", "Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
+            IniciarTeste(TipoArquivo.Cliente, "1210", "FG00 - PROC2 - Importar um arquivo já importado - sem alterar a nomenclatura do arquivo");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();

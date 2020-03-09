@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2346_PARC_EMISSAO_ID_TRANSACAO_Dif()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2346", "No Body do arquivo PARC_EMISSAO no campo ID_TRANSACAO informar o número na sequência: CD_RAMO, NR_PARCELA, NR_ENDOSSO, NR_APOLICE");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2346", "FG01 - PROC14 - No Body do arquivo PARC_EMISSAO no campo ID_TRANSACAO informar o número na sequência: CD_RAMO, NR_PARCELA, NR_ENDOSSO, NR_APOLICE");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200212.txt"));
 
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2345_PARC_EMISSAO_ID_TRANSACAO_Dif()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2345", "No Body do arquivo PARC_EMISSAO nos campos abaixo informado o código 1234567");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2345", "FG01 - PROC14 - No Body do arquivo PARC_EMISSAO nos campos abaixo informado o código 1234567");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200212.txt"));
 

@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1197_SINISTRO_2xTrailler_2xHeader()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1197", "No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9");
+            IniciarTeste(TipoArquivo.Sinistro, "1197", "FG00 - PROC101 - No arquivo SINISTRO repetir 2x o registro do Trailler, onde o TIPO REGISTRO é igual a 9");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();

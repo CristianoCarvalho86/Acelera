@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2347_PARC_EMISSAO_ID_TRANSACAO_CANC_Dif()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2347", "No Body do arquivo PARC_EMISSAO nos campos abaixo informado o código 1234567");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2347", "FG01 - PROC15 - No Body do arquivo PARC_EMISSAO nos campos abaixo informado o código 1234567");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200212.txt"));
 
