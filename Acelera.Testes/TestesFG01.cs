@@ -81,6 +81,10 @@ namespace Acelera.Testes
             else
                 ExplodeFalha();
         }
+        public void ValidarStages(CodigoStage codigo)
+        {
+            ValidarStages(tipoArquivoTeste.ObterTabelaEnum(),true,(int)codigo);
+        }
 
     }
 }
