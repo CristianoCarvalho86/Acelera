@@ -7,9 +7,11 @@ namespace Acelera.Domain.Layouts
     public class LinhaArquivo
     {
         public List<CampoDoArquivo> Campos { get; set; }
-        public LinhaArquivo()
+        public int Index { get; set; }
+        public LinhaArquivo(int index)
         {
             Campos = new List<CampoDoArquivo>();
+            Index = index;
         }
 
         public CampoDoArquivo ObterCampoDoBanco(string nomeCampo)
