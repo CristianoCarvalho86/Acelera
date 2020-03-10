@@ -42,7 +42,8 @@ namespace Acelera.Testes
             if (AlterarNomeArquivo)
             {
                 this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
-                arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
+                if(arquivo.Header.Count > 0)
+                    arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
             }
             else
                 this.nomeArquivo = _nomeArquivo;
