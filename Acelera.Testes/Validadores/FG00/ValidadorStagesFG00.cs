@@ -42,7 +42,7 @@ namespace Acelera.Testes.Validadores.FG00
         public override Consulta MontarConsulta(TabelasEnum tabela)
         {
             var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter());
-            var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.First().CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
+            var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
             if (alteracaoHeader != null)
                 AdicionaConsulta(consulta,valoresAlteradosHeader);
             consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
