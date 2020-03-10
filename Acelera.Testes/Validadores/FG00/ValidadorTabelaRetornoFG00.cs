@@ -26,6 +26,11 @@ namespace Acelera.Testes.Validadores.FG00
             return consulta;
         }
 
+        public override void TratarConsulta(Consulta consulta)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool ValidarTabela(params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);

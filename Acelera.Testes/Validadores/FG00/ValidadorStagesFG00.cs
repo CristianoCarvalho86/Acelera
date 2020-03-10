@@ -42,8 +42,9 @@ namespace Acelera.Testes.Validadores.FG00
         public override Consulta MontarConsulta(TabelasEnum tabela)
         {
             var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter());
-            AdicionaConsulta(consulta,valoresAlteradosHeader);
-            AdicionaConsulta(consulta,valoresAlteradosFooter);
+            var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.First().CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
+            if (alteracaoHeader != null)
+                AdicionaConsulta(consulta,valoresAlteradosHeader);
             consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
 
             return consulta;
@@ -84,6 +85,11 @@ namespace Acelera.Testes.Validadores.FG00
                 logger.Escrever($"Codigo Esperado na tabela {tabelaEnum.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
             }
             return true;
+        }
+
+        public override void TratarConsulta(Consulta consulta)
+        {
+
         }
 
     }

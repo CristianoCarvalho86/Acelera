@@ -128,5 +128,7 @@ namespace Acelera.Testes.Validadores
 
         public abstract Consulta MontarConsulta(TabelasEnum tabela);
 
+        public abstract void TratarConsulta(Consulta consulta);
+
     }
 }

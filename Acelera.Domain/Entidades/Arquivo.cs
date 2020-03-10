@@ -159,7 +159,7 @@ namespace Acelera.Domain.Layouts
                 header.Campos.Add(new CampoDoArquivo("DT_ARQ", 10));
                 header.Campos.Add(new CampoDoArquivo("NR_ARQ", 6));
                 header.Campos.Add(new CampoDoArquivo("NM_BRIDGE", 30));
-                header.Campos.Add(new CampoDoArquivo("CD_TPA", 3));
+                header.Campos.Add(new CampoDoArquivo("CD_TPA", 3, "CD_OPERACAO"));
                 header.Campos.Add(new CampoDoArquivo("NOMEARQ", 40));
                 header.Campos.Add(new CampoDoArquivo("VERSAO", 4));
                 header.Campos.Add(new CampoDoArquivo("FILLER", 575));
