@@ -121,7 +121,8 @@ namespace Acelera.Testes.Validadores
         {
             if ((valoresAlteradosHeader != null && valoresAlteradosHeader.Alteracoes.Count > 0) ||
                 (valoresAlteradosFooter != null && valoresAlteradosFooter.Alteracoes.Count > 0) ||
-                (valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter || valoresAlteradosBody.Alteracoes.First().NomeArquivoAlterado))
+                (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0 &&
+                (valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter || valoresAlteradosBody.Alteracoes.First().NomeArquivoAlterado)))
                 return true;
             return false;
         }
