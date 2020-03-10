@@ -56,7 +56,16 @@ namespace Acelera.Testes
 
         protected void ChamarExecucao(string taskName)
         {
-            helper.Execute($"START TASK HDIQAS_1.{taskName}");
+            try
+            {
+                helper.Execute($"START TASK HDIQAS_1.{taskName}");
+            }
+            catch (Exception ex)
+            {
+                sucessoDoTeste = false;
+                throw ex;
+            }
+            
         }
 
         protected DataTable ChamarConsulta(string sql)
@@ -109,7 +118,7 @@ namespace Acelera.Testes
         {
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
             logger.EscreverBloco($"RESULTADO DO TESTE : {sucesso}");
-            var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{sucesso}-Data-{DateTime.Now.ToString("ddMMYY_hhmm")}.TXT");
+            var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
             File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
             if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
                 File.Delete(pastaDestino + nomeArquivo);
