@@ -36,10 +36,11 @@ namespace Acelera.Testes
                 ExplodeFalha();
             }
 
-            if (Validar((lista.All(x => x.ObterPorColuna("ST_STATUS").Valor == "S")),
-                descricaoErroSeHouver.Length > 0 ? false : true,
-                "O Campo ST_STATUS dos registros é igual a 'S'"))
-                falha = true;//TODO acerto do obtido e recebido
+            if(lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E"))
+            {
+                logger.EscreverBloco("Foram encontrados erros na tabela ControleArquivo. (ST_STATUS = 'E')");
+                falha = true;
+            }
 
             if (falha && descricaoErroSeHouver.Length == 0)
             {
