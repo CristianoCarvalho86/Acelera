@@ -127,6 +127,13 @@ namespace Acelera.Testes.Validadores
             return false;
         }
 
+        protected bool ExistemLinhasNoArquivo()
+        {
+            if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0)
+                return true;
+            return false;
+        }
+
         public abstract Consulta MontarConsulta(TabelasEnum tabela);
 
         public abstract void TratarConsulta(Consulta consulta);
