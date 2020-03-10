@@ -44,9 +44,12 @@ namespace Acelera.Testes.Validadores.FG00
             if (qtd == 0)
                 qtd = 1;
 
+            if (codigosDeErroEsperados.Length == 0)
+                qtd = 0;
+
             if (linhas.Count < qtd)
             {
-                logger.EscreverBloco($"ERAM ESPERADOS :{qtd}, FORAM ENCONTRADOS: {linhas.Count} ERROS");
+                logger.EscreverBloco($"ERAM ESPERADOS :{qtd}, FORAM ENCONTRADOS: {linhas.Count} registros");
                 return false;
             }
 
