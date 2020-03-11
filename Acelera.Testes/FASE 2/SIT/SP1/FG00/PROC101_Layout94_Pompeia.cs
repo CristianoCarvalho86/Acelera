@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [TestCategory("Com Critica")]
         public void SAP_1434_PARC_EMISSAO_4xTrailler()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1134", "FG00 - PROC101 - No arquivo PARC_EMISSAO repetir 4x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1434", "FG00 - PROC101 - No arquivo PARC_EMISSAO repetir 4x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
