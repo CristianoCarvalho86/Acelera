@@ -31,7 +31,7 @@ namespace Acelera.Testes.Validadores.FG00
             throw new NotImplementedException();
         }
 
-        public bool ValidarTabela(params string[] codigosDeErroEsperados)
+        public bool ValidarTabela(bool validaQuantidadeErros = false,params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
@@ -51,6 +51,11 @@ namespace Acelera.Testes.Validadores.FG00
             {
                 logger.EscreverBloco($"ERAM ESPERADOS :{qtd}, FORAM ENCONTRADOS: {linhas.Count} registros");
                 return false;
+            }
+
+            if(validaQuantidadeErros && linhas.Count != codigosDeErroEsperados.Length)
+            {
+                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} MAS FORAM ENCONTRADAS :{linhas.Count}");
             }
 
 

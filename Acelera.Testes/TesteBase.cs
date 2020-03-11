@@ -26,7 +26,7 @@ namespace Acelera.Testes
         private DBHelper helper = DBHelper.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
         protected TipoArquivo tipoArquivoTeste;
-        private string numeroDoTeste;
+        protected string numeroDoTeste;
         protected bool sucessoDoTeste;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
@@ -114,22 +114,6 @@ namespace Acelera.Testes
         protected string[] ErrosEsperados(params string[] erros)
         {
             return erros;
-        }
-
-        [TestCleanup]
-        public void FimDoTeste()
-        {
-            var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
-            logger.EscreverBloco($"RESULTADO DO TESTE : {sucesso}");
-            var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
-            File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
-            if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
-                File.Delete(pastaDestino + nomeArquivo);
-            else
-                logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
-
-            logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
-            logger.FimDoArquivo();
         }
 
     }

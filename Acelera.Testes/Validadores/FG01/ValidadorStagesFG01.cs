@@ -34,20 +34,7 @@ namespace Acelera.Testes.Validadores.FG01
         public bool ValidarTabelaFG01(bool deveHaverRegistro, int codigoEsperado = 0)
         {
             var linhas = new List<ILinhaTabela>();
-            linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum)).ToList();
-
-            if (!(ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count) && ValidaStatusProcessamento(linhas.First(), codigoEsperado)))
-                return false;
-
-            var qtdRegistrosEsperados = ObterQtdRegistrosDuplicadosDoBody();
-            if (linhas.Count != qtdRegistrosEsperados)
-            {
-                logger.EscreverBloco($"Eram esperados {qtdRegistrosEsperados} registros na tabela : {tabelaEnum.ObterTexto()}" +
-                    $" {Environment.NewLine} Foram encontrados: {linhas.Count}");
-                return false;
-            }
-            return true;
-
+            return base.ValidarTabelaFG00(deveHaverRegistro,out linhas, codigoEsperado);
         }
 
     }
