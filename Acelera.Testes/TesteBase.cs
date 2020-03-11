@@ -60,7 +60,7 @@ namespace Acelera.Testes
         {
             try
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(15000);
                 helper.Execute($"START TASK HDIQAS_1.{taskName}");
             }
             catch (Exception ex)
