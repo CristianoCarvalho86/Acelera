@@ -19,6 +19,7 @@ namespace Acelera.Testes
 {
     public abstract class TestesFG00 : TesteFG
     {
+        protected override string NomeFG => "FG00";
         public void ValidarControleArquivo(params string[] descricaoErroSeHouver)
         {
             AjustarEntradaErros(ref descricaoErroSeHouver);
@@ -74,14 +75,14 @@ namespace Acelera.Testes
                 ExplodeFalha();
         }
 
-        public override void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             var validador = new ValidadorTabelaRetornoFG00(tipoArquivoTeste.ObterTabelaEnum(),nomeArquivo,logger,
                 valoresAlteradosBody,valoresAlteradosHeader,valoresAlteradosFooter);
             
-            if (validador.ValidarTabela(codigosDeErroEsperados))
+            if (validador.ValidarTabela(validaQuantidadeErros,codigosDeErroEsperados))
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             else
                 ExplodeFalha();

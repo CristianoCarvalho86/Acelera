@@ -7,6 +7,7 @@ using Acelera.Logger;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Acelera.Testes
 {
     public abstract class TesteFG : TesteBase
     {
+        protected abstract string NomeFG { get; }
         protected abstract IList<string> ObterProceduresASeremExecutadas();
 
         public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1)
@@ -43,7 +45,11 @@ namespace Acelera.Testes
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
         }
 
-        public abstract void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados);
+        public abstract void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
+        public virtual void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
+        {
+            ValidarTabelaDeRetorno(false, codigosDeErroEsperados);
+        }
 
 
         protected void AjustarEntradaErros(ref string[] erros)
@@ -76,6 +82,22 @@ namespace Acelera.Testes
             if (esperado == obtido)
                 return true;
             return false;
+        }
+
+        [TestCleanup]
+        public void FimDoTeste()
+        {
+            var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
+            logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
+            var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+            File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
+            if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
+                File.Delete(pastaDestino + nomeArquivo);
+            else
+                logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
+
+            logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
+            logger.FimDoArquivo();
         }
     }
 }

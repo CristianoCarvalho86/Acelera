@@ -111,9 +111,9 @@ namespace Acelera.Testes.Validadores
         {
             var qtd = 0;
             if (valoresAlteradosHeader != null && valoresAlteradosHeader.Alteracoes.Count > 0 && valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha > 1)
-                qtd = valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha - 1;
+                qtd += valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha - 1;
             if (valoresAlteradosFooter != null && valoresAlteradosFooter.Alteracoes.Count > 0 && valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha > 1)
-                qtd = valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha - 1;
+                qtd += valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha - 1;
             return qtd;
         }
 

@@ -15,6 +15,8 @@ namespace Acelera.Testes
 {
     public class TestesFG01 : TestesFG00
     {
+        protected override string NomeFG => "FG01";
+
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
             var lista = new List<string>();
@@ -62,22 +64,25 @@ namespace Acelera.Testes
 
         public void ValidarFG00() 
         {
+            logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(tipoArquivoTeste.ObterTarefaFG00Enum().ObterTexto());
             ValidarLogProcessamento(true);
             ValidarControleArquivo();
             ValidarTabelaDeRetorno();
+            logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
+            logger.EscreverBloco("Inicio da FG01.");
         }
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
             var linhasEncontradas = new List<ILinhaTabela>();
             if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado))
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             else
                 ExplodeFalha();
         }
@@ -86,5 +91,9 @@ namespace Acelera.Testes
             ValidarStages(tipoArquivoTeste.ObterTabelaEnum(),true,(int)codigo);
         }
 
+        public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        {
+            base.ValidarTabelaDeRetorno(validaQuantidadeErros, codigosDeErroEsperados);
+        }
     }
 }
