@@ -15,6 +15,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Acelera.Testes
@@ -59,6 +60,7 @@ namespace Acelera.Testes
         {
             try
             {
+                Thread.Sleep(5000);
                 helper.Execute($"START TASK HDIQAS_1.{taskName}");
             }
             catch (Exception ex)

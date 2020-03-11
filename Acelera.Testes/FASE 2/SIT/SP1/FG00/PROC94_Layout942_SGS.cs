@@ -14,9 +14,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1194_SINISTRO_TipoRegistro13()
+        public void SAP_1188_SINISTRO_TipoRegistro13()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1194", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "1188", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();
@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1188_SINISTRO_SemTipoRegistro()
+        public void SAP_1194_SINISTRO_SemTipoRegistro()
         {
         }
 
