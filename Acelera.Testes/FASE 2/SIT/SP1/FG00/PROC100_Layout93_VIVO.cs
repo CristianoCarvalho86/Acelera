@@ -34,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("Codigo do tpa nao encontrado.");
+            ValidarControleArquivo("Identificador de operacao TPA não encontrado");
             ValidarTabelaDeRetorno("100");
             ValidarStages(false);
         }
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("Codigo do tpa nao encontrado.");
+            ValidarControleArquivo("Identificador de operacao TPA não encontrado");
             ValidarTabelaDeRetorno("100");
             ValidarStages(false);
         }
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("Codigo do tpa nao encontrado.");
+            ValidarControleArquivo("Identificador de operacao TPA não encontrado");
             ValidarTabelaDeRetorno("100");
             ValidarStages(false);
         }
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarControleArquivo("Codigo do tpa nao encontrado.");
+            ValidarControleArquivo("Identificador de operacao TPA não encontrado");
             ValidarTabelaDeRetorno("100");
             ValidarStages( false);
         }
