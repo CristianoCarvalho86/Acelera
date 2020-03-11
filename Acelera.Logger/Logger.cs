@@ -15,6 +15,7 @@ namespace Acelera.Logger
         private string path;
         private StreamWriter writer;
         private string TextoFimArquivo;
+        private bool sucessoExecucao;
         public MyLogger(string _path)
         {
             path = _path;
@@ -133,6 +134,11 @@ namespace Acelera.Logger
             TextoFimArquivo += Environment.NewLine + texto;
         }
 
+        public void DefinirSucesso(bool sucesso)
+        {
+            sucessoExecucao = sucesso;
+        }
+
         public void FimDoArquivo()
         {
             writer.WriteLine(TextoFimArquivo);
@@ -140,6 +146,8 @@ namespace Acelera.Logger
             TextoFimArquivo = "";
             writer.Close();
             writer.Dispose();
+
+            File.Move(path, path.Remove(path.Length - 4,4) + "-" + (sucessoExecucao ? "SUCESSO" : "FALHA" ) + ".txt");
         }
     }
 }

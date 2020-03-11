@@ -87,6 +87,7 @@ namespace Acelera.Testes
         [TestCleanup]
         public void FimDoTeste()
         {
+            logger.DefinirSucesso(sucessoDoTeste);
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");

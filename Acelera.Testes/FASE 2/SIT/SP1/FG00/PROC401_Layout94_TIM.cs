@@ -20,10 +20,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200219.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.CLIENTE-EV-/*R*/-20200213.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.CLIENTE-EV-/*R*/-20200219.TXT"));
 
             AlterarNomeArquivo();
 

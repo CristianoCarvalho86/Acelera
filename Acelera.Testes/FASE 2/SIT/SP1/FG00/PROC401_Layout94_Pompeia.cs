@@ -20,10 +20,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1924-20200210.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1927-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTEEV-/*R*/-20200210.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTEEV-/*R*/-20200211.TXT"));
 
             AlterarNomeArquivo();
 
@@ -76,13 +76,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1926-20200210.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1974-20200227.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarFooter("QT_LIN", "10", 0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/20200210.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/20200227.TXT"));
 
             AlterarNomeArquivo();
 
