@@ -41,8 +41,7 @@ namespace Acelera.Testes
             var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
             if (AlterarNomeArquivo)
             {
-                // TODO alteracao para validar teste pelo numero, depois trocar para numeroArquivoNovo
-                this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
+                this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
                 if(arquivo.Header.Count > 0)
                     arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
             }
@@ -61,8 +60,8 @@ namespace Acelera.Testes
         {
             try
             {
-                //Thread.Sleep(15000);
-                //helper.Execute($"START TASK HDIQAS_1.{taskName}");
+                Thread.Sleep(15000);
+                helper.Execute($"START TASK HDIQAS_1.{taskName}");
             }
             catch (Exception ex)
             {
