@@ -81,14 +81,14 @@ namespace Acelera.Domain.Entidades.Consultas
             {
                 consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").Valor);
                 consulta.AdicionarConsulta("NR_APOLICE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_APOLICE").Valor);
-                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("NR_SEQ_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
                 consulta.AdicionarConsulta("CD_SINISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("CD_SINISTRO").Valor);
             }
             else
             {
                 consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").Valor);
                 consulta.AdicionarConsulta("NR_APOLICE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_APOLICE").Valor);
-                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+                consulta.AdicionarConsulta("NR_SEQ_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
                 consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_PARCELA").Valor);
             }
             return consulta;
