@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarFooter("TIPO_REGISTRO", "01");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.EMSCMS-EV-/*R*/-2020113.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.EMSCMS-EV-/*R*/-20200109.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
