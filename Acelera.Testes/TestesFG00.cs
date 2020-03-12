@@ -87,6 +87,9 @@ namespace Acelera.Testes
             {
                 sucessoDoTeste = false;
             }
+
+            if (sucessoDoTeste == false)
+                ExplodeFalha();
         }
 
         public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
