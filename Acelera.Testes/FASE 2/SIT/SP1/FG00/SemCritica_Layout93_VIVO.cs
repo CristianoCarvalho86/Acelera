@@ -41,6 +41,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// LANCTO_COMISSAO - Sem Critica
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SemCritica_Geral_LANCTO_COMISSAO()
