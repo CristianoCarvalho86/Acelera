@@ -108,6 +108,35 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
+        /// No Header do arquivo COMISSAO no campo NOMEARQ informar o nome SINISTRO respeitando a tamanho do campo Não alterar a nomenclatura do arquivo
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_1115_COMISSAO_NOMEARQ_LCTCMS()
+        {
+            IniciarTeste(TipoArquivo.Comissao, "1115", "FG00 - PROC400 - No Header do arquivo COMISSAO no campo NOMEARQ informar o nome LCTCMS");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1821-20200201.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarHeader("NOMEARQ", "SINISTRO");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.EMSCMS-EV-/*R*/-20200201.TXT"));
+
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
+
+            //VALIDAR NO BANCO A ALTERACAO
+            ValidarLogProcessamento(true);
+            ValidarControleArquivo("Nome do arquivo diferente do header");
+            ValidarTabelaDeRetorno("400");
+            ValidarStages(false);
+        }
+
+        /// <summary>
         /// No Header do arquivo CLIENTE no campo NOMEARQ informar o código CLIENTE Não alterar a nomenclatura do arquivo
         /// </summary>
         [Ignore]

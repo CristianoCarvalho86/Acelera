@@ -163,10 +163,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA-SINISTRO-EV/*R*/-20200211.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA-SINISTRO-EV/*R*/-20200117.TXT"));
 
             AlterarNomeArquivo();
 

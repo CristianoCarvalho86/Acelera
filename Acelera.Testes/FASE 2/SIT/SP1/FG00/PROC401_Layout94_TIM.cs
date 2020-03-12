@@ -48,10 +48,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0003-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20200103.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.PARCEMS-EV-/*R*/-20200213.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.PARCEMS-EV-/*R*/-20200103.TXT"));
 
             AlterarNomeArquivo();
 
@@ -160,10 +160,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0002-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0003-20200219.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.SINISTRO-EV-/*R*/-20200214.TXT"));
+            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.SINISTRO-EV-/*R*/-20200219.TXT"));
 
             AlterarNomeArquivo();
 
