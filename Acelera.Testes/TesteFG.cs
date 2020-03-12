@@ -21,34 +21,34 @@ namespace Acelera.Testes
 
         public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1)
         {
-            //var consulta = new Consulta();
-            //consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            //var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consulta,logger);
+            var consulta = new Consulta();
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+            var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consulta, logger);
 
-            //logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
 
-            //var falha = false;
-            //if (!Validar(lista.Count, ObterProceduresASeremExecutadas().Count * vezesExecutado, "Quantidade de Procedures executadas"))
-            //    falha = true;
-            //if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
-            //    falha = true;
+            var falha = false;
+            if (!Validar(lista.Count, ObterProceduresASeremExecutadas().Count * vezesExecutado, "Quantidade de Procedures executadas"))
+                falha = true;
+            if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
+                falha = true;
 
-            //var proceduresEsperadas = ObterProceduresASeremExecutadas();
-            //var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
-            //if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
-            //    falha = true;
+            var proceduresEsperadas = ObterProceduresASeremExecutadas();
+            var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
+            if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
+                falha = true;
 
-            //if (Sucesso && falha || !Sucesso && !falha)
-            //{
-            //    ExplodeFalha();
-            //}
-            //logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
+            if (Sucesso && falha || !Sucesso && !falha)
+            {
+                ExplodeFalha();
+            }
+            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
         }
 
         public abstract void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
         public virtual void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
         {
-            //ValidarTabelaDeRetorno(false, codigosDeErroEsperados);
+            ValidarTabelaDeRetorno(false, codigosDeErroEsperados);
         }
 
 
@@ -88,16 +88,16 @@ namespace Acelera.Testes
         public void FimDoTeste()
         {
             logger.DefinirSucesso(sucessoDoTeste);
-            //var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
-            //logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
-            //var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
-            //File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
-            //if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
-            //    File.Delete(pastaDestino + nomeArquivo);
-            //else
-            //    logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
+            var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
+            logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
+            var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+            File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
+            if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
+                File.Delete(pastaDestino + nomeArquivo);
+            else
+                logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
 
-            //logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
+            logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
             logger.FimDoArquivo();
         }
     }

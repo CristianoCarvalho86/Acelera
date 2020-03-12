@@ -15,11 +15,9 @@ namespace Acelera.Domain.Layouts
         public IList<LinhaArquivo> Linhas { get; set; }
         public IList<LinhaArquivo> Footer { get; set; }
 
-        public string NomeArquivo {get; private set;}
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1)
         {
-            NomeArquivo = enderecoArquivo.Split('\\').LastOrDefault();
             textoArquivo = File.ReadAllText(enderecoArquivo);
             CarregarEstrutura(qtdHeader.HasValue ? qtdHeader.Value : 1, qtdFooter.HasValue ? qtdFooter.Value : 1);
             return this;
@@ -38,16 +36,16 @@ namespace Acelera.Domain.Layouts
 
         public void Salvar(string endereco)
         {
-            var file = File.CreateText(endereco);
+            //var file = File.CreateText(endereco);
 
-            foreach(var header in Header)
-                file.WriteLine(header.ObterTexto());
-            foreach (var item in Linhas)
-                file.WriteLine(item.ObterTexto());
-            foreach (var footer in Footer)
-                file.WriteLine(footer.ObterTexto());
+            //foreach(var header in Header)
+            //    file.WriteLine(header.ObterTexto());
+            //foreach (var item in Linhas)
+            //    file.WriteLine(item.ObterTexto());
+            //foreach (var footer in Footer)
+            //    file.WriteLine(footer.ObterTexto());
 
-            file.Close();
+            //file.Close();
         }
 
         public LinhaArquivo ObterLinha(int posicaoLinha)
