@@ -21,28 +21,35 @@ namespace Acelera.Testes
 
         public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1)
         {
-            var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consulta, logger);
-
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
-
-            var falha = false;
-            if (!Validar(lista.Count, ObterProceduresASeremExecutadas().Count * vezesExecutado, "Quantidade de Procedures executadas"))
-                falha = true;
-            if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
-                falha = true;
-
-            var proceduresEsperadas = ObterProceduresASeremExecutadas();
-            var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
-            if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
-                falha = true;
-
-            if (Sucesso && falha || !Sucesso && !falha)
+            try
             {
-                ExplodeFalha();
+                var consulta = new Consulta();
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+                var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consulta, logger);
+
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
+
+                var falha = false;
+                if (!Validar(lista.Count, ObterProceduresASeremExecutadas().Count * vezesExecutado, "Quantidade de Procedures executadas"))
+                    falha = true;
+                if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
+                    falha = true;
+
+                var proceduresEsperadas = ObterProceduresASeremExecutadas();
+                var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
+                if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
+                    falha = true;
+
+                if (Sucesso && falha || !Sucesso && !falha)
+                {
+                    ExplodeFalha();
+                }
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
             }
-            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
+            catch(Exception)
+            {
+                sucessoDoTeste = false;
+            }
         }
 
         public abstract void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);

@@ -76,6 +76,7 @@ namespace Acelera.Testes
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
+            try { 
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
@@ -85,6 +86,11 @@ namespace Acelera.Testes
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             else
                 ExplodeFalha();
+            }
+            catch (Exception)
+            {
+                sucessoDoTeste = false;
+            }
         }
         public void ValidarStages(CodigoStage codigo)
         {

@@ -76,7 +76,8 @@ namespace Acelera.Domain.Layouts
 
         public void ReplicarHeader(int quantidadeVezes, int posicaoLinhaHeader = 0)
         {
-            Header.Add(Header[posicaoLinhaHeader]);
+            for (int i = 0; i < quantidadeVezes; i++)
+                Header.Add(Header[posicaoLinhaHeader]);
         }
 
         public void ReplicarFooter(int quantidadeVezes, int posicaoLinhaFooter = 0)

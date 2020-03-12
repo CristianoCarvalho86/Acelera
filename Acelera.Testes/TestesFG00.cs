@@ -22,6 +22,8 @@ namespace Acelera.Testes
         protected override string NomeFG => "FG00";
         public void ValidarControleArquivo(params string[] descricaoErroSeHouver)
         {
+            try
+            { 
             AjustarEntradaErros(ref descricaoErroSeHouver);
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
@@ -60,10 +62,17 @@ namespace Acelera.Testes
 
 
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
+            }
+            catch (Exception)
+            {
+                sucessoDoTeste = false;
+            }
         }
 
         public virtual void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
+            try
+            { 
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
             var validador = new ValidadorStagesFG00(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
@@ -73,10 +82,16 @@ namespace Acelera.Testes
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
             else
                 ExplodeFalha();
+            }
+            catch (Exception)
+            {
+                sucessoDoTeste = false;
+            }
         }
 
         public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
+            try { 
             AjustarEntradaErros(ref codigosDeErroEsperados);
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             var validador = new ValidadorTabelaRetornoFG00(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
@@ -86,6 +101,11 @@ namespace Acelera.Testes
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
             else
                 ExplodeFalha();
+            }
+            catch (Exception)
+            {
+                sucessoDoTeste = false;
+            }
         }
 
 
