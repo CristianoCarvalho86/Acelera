@@ -15,7 +15,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_SINISTRO()
+        public void SAP_9006_SemCritica_SINISTRO()
         {
             IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "FG00 - SINISTRO - Sem Critica");
 

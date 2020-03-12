@@ -15,7 +15,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_CLIENTE()
+        public void SAP_9007_SemCritica_CLIENTE()
         {
             IniciarTeste(TipoArquivo.Cliente, "SemCritica_Geral", "FG00 - CLIENTE - Sem Critica");
 
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_PARC_EMISSAO()
+        public void SAP_9008_SemCritica_PARC_EMISSAO()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "SemCritica_Geral", "FG00 - PARC_EMISSAO - Sem Critica");
 
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_COMISSAO()
+        public void SAP_9009_SemCritica_COMISSAO()
         {
             IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "FG00 - EMS_COMISSAO - Sem Critica");
 
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_COBRANCA()
+        public void SAP_9010_SemCritica_COBRANCA()
         {
             IniciarTeste(TipoArquivo.OCRCobranca, "SemCritica_Geral", "FG00 - OCR_COBRANCA - Sem Critica");
 
@@ -135,7 +135,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_LANCTO_COMISSAO()
+        public void SAP_9011_SemCritica_LANCTO_COMISSAO()
         {
             IniciarTeste(TipoArquivo.LanctoComissao, "SemCritica_Geral", "FG00 - LANCTO_COMISSAO - Sem Critica");
 
@@ -165,7 +165,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_SINISTRO()
+        public void SAP_9012_SemCritica_SINISTRO()
         {
             IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "FG00 - SINISTRO - Sem Critica");
 
