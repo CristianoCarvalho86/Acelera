@@ -46,9 +46,10 @@ namespace Acelera.Testes
                 }
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                logger.EscreverBloco("Houve um erro no teste de ControleArquivo");
+                if(ex is AssertFailedException)     
+                    logger.EscreverBloco("Houve um erro no teste de ControleArquivo");
                 sucessoDoTeste = false;
             }
         }
