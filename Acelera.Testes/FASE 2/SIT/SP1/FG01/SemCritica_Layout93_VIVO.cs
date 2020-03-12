@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_PARC_EMISSAO_AUTO()
+        public void SAP_9002_SemCritica_PARC_EMISSAO_AUTO()
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "SemCritica_Geral", "FG00 - PARC_EMISSAO_AUTO - Sem Critica");
 
@@ -46,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_LANCTO_COMISSAO()
+        public void SAP_9005_SemCritica_LANCTO_COMISSAO()
         {
             //------------------------------------------------SEM MASSA------------------------------------------------------------------
         }
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_COBRANCA()
+        public void SAP_9004_SemCritica_COBRANCA()
         {
             IniciarTeste(TipoArquivo.OCRCobranca, "SemCritica_Geral", "FG00 - OCR_COBRANCA - Sem Critica");
 
@@ -87,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_COMISSAO()
+        public void SAP_9003_SemCritica_COMISSAO()
         {
             IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "FG00 - EMS_COMISSAO - Sem Critica");
 
@@ -117,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SemCritica_Geral_CLIENTE()
+        public void SAP_9001_SemCritica_CLIENTE()
         {
             IniciarTeste(TipoArquivo.Cliente, "SemCritica_Geral", "FG00 - CLIENTE - Sem Critica");
 
