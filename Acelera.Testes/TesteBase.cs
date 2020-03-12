@@ -38,12 +38,12 @@ namespace Acelera.Testes
 
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
-            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
+            //var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
             if (AlterarNomeArquivo)
             {
-                this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
+                this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
                 if(arquivo.Header.Count > 0)
-                    arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
+                    arquivo.AlterarHeader("NR_ARQ", numeroDoTeste);
             }
             else
                 this.nomeArquivo = _nomeArquivo;
@@ -60,8 +60,8 @@ namespace Acelera.Testes
         {
             try
             {
-                Thread.Sleep(15000);
-                helper.Execute($"START TASK HDIQAS_1.{taskName}");
+                //Thread.Sleep(15000);
+                //helper.Execute($"START TASK HDIQAS_1.{taskName}");
             }
             catch (Exception ex)
             {
