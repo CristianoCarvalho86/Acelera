@@ -65,6 +65,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
+                logger.EscreverBloco("Houve um erro no teste de ControleArquivo");
                 sucessoDoTeste = false;
             }
         }
@@ -85,6 +86,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
+                logger.EscreverBloco("Houve um erro no teste de Stages");
                 sucessoDoTeste = false;
             }
 
@@ -107,6 +109,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
+                logger.EscreverBloco("Houve um erro no teste na Tabela de Retorno");
                 sucessoDoTeste = false;
             }
         }

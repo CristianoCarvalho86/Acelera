@@ -48,6 +48,7 @@ namespace Acelera.Testes
             }
             catch(Exception)
             {
+                logger.EscreverBloco("Houve um erro no teste de ControleArquivo");
                 sucessoDoTeste = false;
             }
         }
