@@ -143,7 +143,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-5031-20190311.TXT",false));
+            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             //ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
