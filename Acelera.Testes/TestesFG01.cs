@@ -17,7 +17,7 @@ namespace Acelera.Testes
     {
         protected override string NomeFG => "FG01";
 
-        protected override IList<string> ObterProceduresASeremExecutadas()
+        public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
             switch (tipoArquivoTeste)
@@ -62,16 +62,22 @@ namespace Acelera.Testes
             return lista;
         }
 
+        protected override IList<string> ObterProceduresASeremExecutadas()
+        {
+            return TestesFG00.ObterProcedures().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
+        }
+
         public void ValidarFG00() 
         {
             logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(tipoArquivoTeste.ObterTarefaFG00Enum().ObterTexto());
-            ValidarLogProcessamento(true);
+            ValidarLogProcessamento(true,1, TestesFG00.ObterProcedures());
             ValidarControleArquivo();
             ValidarTabelaDeRetorno();
             logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             logger.EscreverBloco("Inicio da FG01.");
+            ValidarTeste();
         }
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)

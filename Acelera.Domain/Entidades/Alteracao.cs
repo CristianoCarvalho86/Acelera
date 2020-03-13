@@ -22,6 +22,11 @@ namespace Acelera.Domain.Entidades
             var alteracaoExistente = Alteracoes.Where(x => x.PosicaoDaLinha == alteracao.PosicaoDaLinha).FirstOrDefault() ?? alteracao;
             Alteracoes.Add(alteracaoExistente);
         }
+
+        public bool ExisteAlteracaoValida()
+        {
+            return Alteracoes.Any(x => x.AlteracaoNula == false);
+        }
     }
 
     public class Alteracao
@@ -33,6 +38,7 @@ namespace Acelera.Domain.Entidades
 
         public bool NomeArquivoAlterado { get; set; }
 
+        public bool AlteracaoNula { get => CamposAlterados.Count == 0; }
         public int PosicaoDaLinha { get; set; }
         public Alteracao(LinhaArquivo linhaAlterada, int posicaoLinha)
         {
@@ -46,7 +52,8 @@ namespace Acelera.Domain.Entidades
 
         public void AdicionarAlteracao(string campo, string valor)
         {
-            CamposAlterados.Add(new Campo(campo, valor));
+            if(!string.IsNullOrEmpty(campo))
+                CamposAlterados.Add(new Campo(campo, valor));
         }
 
         public void DefinirQtdRepeticoes(int qtdRepeticoes)

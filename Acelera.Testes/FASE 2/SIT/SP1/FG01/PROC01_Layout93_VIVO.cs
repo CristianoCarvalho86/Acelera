@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.33");
+            AlterarHeader("CD_TPA", "9.3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT"));
@@ -37,6 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("1");
+            ValidarTeste();
         }
 
         /// <summary>

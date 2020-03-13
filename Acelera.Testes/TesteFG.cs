@@ -17,9 +17,15 @@ namespace Acelera.Testes
     public abstract class TesteFG : TesteBase
     {
         protected abstract string NomeFG { get; }
+
         protected abstract IList<string> ObterProceduresASeremExecutadas();
 
         public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1)
+        {
+            ValidarLogProcessamento(Sucesso, vezesExecutado, ObterProceduresASeremExecutadas());
+        }
+
+        protected void ValidarLogProcessamento(bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
         {
             try
             {
@@ -30,12 +36,12 @@ namespace Acelera.Testes
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
 
                 var falha = false;
-                if (!Validar(lista.Count, ObterProceduresASeremExecutadas().Count * vezesExecutado, "Quantidade de Procedures executadas"))
+                if (!Validar(lista.Count, proceduresASeremExecutadas.Count * vezesExecutado, "Quantidade de Procedures executadas"))
                     falha = true;
                 if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
                     falha = true;
 
-                var proceduresEsperadas = ObterProceduresASeremExecutadas();
+                var proceduresEsperadas = proceduresASeremExecutadas;
                 var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
                 if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
                     falha = true;
@@ -49,7 +55,7 @@ namespace Acelera.Testes
             catch(Exception ex)
             {
                 if(ex is AssertFailedException)     
-                    logger.EscreverBloco("Houve um erro no teste de ControleArquivo");
+                    logger.EscreverBloco("Houve um erro no teste de LogProcessamento");
                 sucessoDoTeste = false;
             }
         }
@@ -91,6 +97,12 @@ namespace Acelera.Testes
             if (esperado == obtido)
                 return true;
             return false;
+        }
+
+        protected void ValidarTeste()
+        {
+            if (!sucessoDoTeste)
+                throw new Exception("Exceção encontrada no fim do teste");
         }
 
         [TestCleanup]
