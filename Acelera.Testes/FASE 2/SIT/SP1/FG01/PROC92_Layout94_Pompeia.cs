@@ -175,7 +175,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("VERSAO", "9.4");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();

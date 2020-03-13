@@ -45,6 +45,16 @@ namespace Acelera.Testes
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
         }
 
+        protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
+        {
+            if (ModoExecucao == ModoExecucaoEnum.Completo)
+                arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
+            else if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
+            else if (ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
+                ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+        }
+
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
             var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
@@ -64,8 +74,24 @@ namespace Acelera.Testes
             return path;
         }
 
+        protected string ObterArquivoDestinoApenasCriacaoOuValidacao(string _nomeArquivo)
+        {
+           this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
+           if (arquivo.Header.Count > 0)
+               arquivo.AlterarHeader("NR_ARQ", numeroDoTeste);
+
+            numeroDoLote = numeroDoTeste;
+
+            var path = pastaDestino + nomeArquivo;
+
+            logger.EscreverBloco("Salvando arquivo modificado : " + path);
+            return path;
+        }
+
         protected void ChamarExecucao(string taskName)
         {
+            if (ModoExecucao != ModoExecucaoEnum.Completo)
+                return;
             try
             {
                 Thread.Sleep(15000);

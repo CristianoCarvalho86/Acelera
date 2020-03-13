@@ -27,6 +27,9 @@ namespace Acelera.Testes
 
         protected void ValidarLogProcessamento(bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
         {
+            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                return;
+
             try
             {
                 var consulta = new Consulta();

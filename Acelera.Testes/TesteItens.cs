@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using System;
@@ -71,6 +72,21 @@ namespace Acelera.Testes
                 if (!logger.EndsWith("\\"))
                     logger += "\\";
                 return logger;
+            }
+        }
+
+        protected ModoExecucaoEnum ModoExecucao
+        {
+            get
+            {
+                var modo = ConfigurationManager.AppSettings.Get("ModoExecucao");
+                if (string.IsNullOrEmpty(modo) || modo == ((int)ModoExecucaoEnum.Completo).ToString())
+                    return ModoExecucaoEnum.Completo;
+                if (modo == ((int)ModoExecucaoEnum.ApenasCriacao).ToString())
+                    return ModoExecucaoEnum.ApenasCriacao;
+                if (modo == ((int)ModoExecucaoEnum.ApenasValidacao).ToString())
+                    return ModoExecucaoEnum.ApenasValidacao;
+                return ModoExecucaoEnum.Completo;
             }
         }
 
