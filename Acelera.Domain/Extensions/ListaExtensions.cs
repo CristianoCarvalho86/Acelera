@@ -8,7 +8,7 @@ namespace Acelera.Domain.Extensions
 {
     public static class ListaExtensions
     {
-        public static string ObterListaConcatenada(this List<string> lista, string separador)
+        public static string ObterListaConcatenada(this IList<string> lista, string separador)
         {
             if (lista.Count == 0)
                 return string.Empty;
@@ -17,6 +17,11 @@ namespace Acelera.Domain.Extensions
             foreach (var l in lista)
                 retorno += l + separador;
             return retorno.Remove(retorno.Length - separador.Length);
+        }
+
+        public static string ObterListaConcatenada(this IEnumerable<string> lista, string separador)
+        {
+            return lista.ToList().ObterListaConcatenada(separador);
         }
     }
 }

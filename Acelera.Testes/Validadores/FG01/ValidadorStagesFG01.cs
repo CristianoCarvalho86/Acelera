@@ -34,21 +34,18 @@ namespace Acelera.Testes.Validadores.FG01
 
         public override bool ValidaStatusProcessamento(IList<ILinhaTabela> linhas, int codigoEsperado)
         {
-            var sucesso = false;
-            foreach (var linha in linhas)
-            {
-                if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
+            var linhasComProblema = linhas.Where(x => x.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString());
+
+                if (linhasComProblema.Count() > 0)
                 {
-                    sucesso = false;
                     logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabelaEnum.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
-                        $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
+                        $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linhasComProblema.Select(x => x.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor).ObterListaConcatenada(",")}");
                     return false;
                 }
                 else
                 {
                     logger.Escrever($"Codigo Esperado na tabela {tabelaEnum.ObterTexto()} encontrado com sucesso : {codigoEsperado.ToString()}");
                 }
-            }
             return true;
         }
 
