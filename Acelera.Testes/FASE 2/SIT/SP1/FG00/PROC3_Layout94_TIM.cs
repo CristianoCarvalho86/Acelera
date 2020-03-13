@@ -139,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarFooter("QT_LIN", "10", 0);
+            AlterarFooter("QT_LIN", "10");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));

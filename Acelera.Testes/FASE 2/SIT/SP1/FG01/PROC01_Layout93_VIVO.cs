@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2216_CLIENTE_CD_TPA_9_33()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2216", "FG01 - PROC01 - No Header do arquivo CLIENTE no campo CD_TPA informar código 9.33");
+            IniciarTeste(TipoArquivo.Cliente, "2216", "FG01 - PROC01 - No Header do arquivo CLIENTE no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
@@ -47,12 +47,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2217_PARC_EMISSAO_AUTO_CD_TPA_9_33()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2217", "FG01 - PROC01 - No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA informar código 9.33");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2217", "FG01 - PROC01 - No Header do arquivo PARC_EMISSAO_AUTO no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.33");
+            AlterarHeader("CD_TPA", "9.3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT"));
@@ -67,6 +67,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("1");
+            ValidarTeste();
         }
 
         /// <summary>
@@ -76,12 +77,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2218_EMS_COMISSAO_CD_TPA_9_33()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2218", "FG01 - PROC01 - No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.33");
+            IniciarTeste(TipoArquivo.Comissao, "2218", "FG01 - PROC01 - No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.33");
+            AlterarHeader("CD_TPA", "9.3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-/*R*/-20200212.TXT"));
@@ -96,6 +97,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("1");
+            ValidarTeste();
         }
 
         /// <summary>
@@ -105,12 +107,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2219_OCR_COBRANCA_CD_TPA_9_33()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2219", "FG01 - PROC01 - No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.33");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2219", "FG01 - PROC01 - No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.33");
+            AlterarHeader("CD_TPA", "9.3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("C01.VIVO.COBRANCA-EV-/*R*/-20200211.TXT"));
@@ -125,6 +127,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("1");
+            ValidarTeste();
         }
 
         /// <summary>

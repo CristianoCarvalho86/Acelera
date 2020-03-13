@@ -70,7 +70,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// No Header do arquivo LANCTO_COMISSAO no campo CD_TPA não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_1274_LANCTO_COMISSAO_SemCD_TPA()
