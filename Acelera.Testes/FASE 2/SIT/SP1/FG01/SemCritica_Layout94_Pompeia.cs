@@ -38,6 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -98,6 +100,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -128,6 +131,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -158,6 +162,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -188,6 +193,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTeste();
         }
     }
 }

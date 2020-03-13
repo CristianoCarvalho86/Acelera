@@ -37,6 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("7");
+            ValidarTeste();
         }
 
         /// <summary>
@@ -89,6 +90,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("7");
+            ValidarTeste();
         }
 
         /// <summary>
@@ -124,6 +126,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("7");
+            ValidarTeste();
         }
 
         /// <summary>
@@ -165,6 +168,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("7");
+            ValidarTeste();
         }
 
         /// <summary>
@@ -199,6 +203,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("7");
+            ValidarTeste();
         }
 
         /// <summary>
@@ -244,6 +249,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("7");
+            ValidarTeste();
         }
 
         /// <summary>
