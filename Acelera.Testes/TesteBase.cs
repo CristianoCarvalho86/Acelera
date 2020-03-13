@@ -28,6 +28,9 @@ namespace Acelera.Testes
         protected TipoArquivo tipoArquivoTeste;
         protected string numeroDoTeste;
         protected bool sucessoDoTeste;
+        protected string numeroDoLote;
+        protected string operacao;
+        protected string nomeDoTeste;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;
@@ -36,9 +39,16 @@ namespace Acelera.Testes
             return path;
         }
 
+        private void CriarLog()
+        {
+            logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM")}-{operacao ?? "OPERACAO"}-{tipoArquivoTeste.ObterTexto()}-{numeroDoLote ?? "NLOTE"}.txt");
+            logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
+        }
+
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
             var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
+            numeroDoLote = numeroArquivoNovo;
             if (AlterarNomeArquivo)
             {
                 this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
@@ -49,8 +59,6 @@ namespace Acelera.Testes
                 this.nomeArquivo = _nomeArquivo;
 
             var path = pastaDestino + nomeArquivo;
-
-            
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
@@ -106,9 +114,9 @@ namespace Acelera.Testes
         {
             sucessoDoTeste = true;
             this.numeroDoTeste = numeroDoTeste;
+            this.nomeDoTeste = nomeDoTeste;
             tipoArquivoTeste = tipo;
-            logger = new MyLogger($"{pastaLog}SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM-yyyy-mmssffff")}.txt");
-            logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
+            CriarLog();
         }
 
         protected string[] ErrosEsperados(params string[] erros)

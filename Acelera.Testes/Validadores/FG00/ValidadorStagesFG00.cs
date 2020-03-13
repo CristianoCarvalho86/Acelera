@@ -33,7 +33,7 @@ namespace Acelera.Testes.Validadores.FG00
             }
             else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
             {
-                return ValidaStatusProcessamento(linhas.First(), codigoEsperado);
+                return ValidaStatusProcessamento(linhas, codigoEsperado);
             }
 
             return true;
@@ -72,12 +72,13 @@ namespace Acelera.Testes.Validadores.FG00
             return true;
         }
 
-        public virtual bool ValidaStatusProcessamento(ILinhaTabela linha, int codigoEsperado)
+        public virtual bool ValidaStatusProcessamento(IList<ILinhaTabela> linhas, int codigoEsperado)
         {
+            var linha = linhas.First();
             if (linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString())
             {
                 logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabelaEnum.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
-                    $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO")}");
+                    $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linha.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor}");
                 return false;
             }
             else

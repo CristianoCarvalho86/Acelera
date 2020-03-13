@@ -119,7 +119,12 @@ namespace Acelera.Testes
                 logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
 
             logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
-            logger.FimDoArquivo();
+
+            operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
+            if (operacao.Length > 5)
+                operacao = operacao.Substring(0, 5);
+
+            logger.FimDoArquivo(numeroDoLote, operacao);
         }
     }
 }

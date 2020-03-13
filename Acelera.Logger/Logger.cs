@@ -139,7 +139,7 @@ namespace Acelera.Logger
             sucessoExecucao = sucesso;
         }
 
-        public void FimDoArquivo()
+        public void FimDoArquivo(string numeroDoLote, string operacao)
         {
             writer.WriteLine(TextoFimArquivo);
             writer.Flush();
@@ -147,7 +147,13 @@ namespace Acelera.Logger
             writer.Close();
             writer.Dispose();
 
-            File.Move(path, path.Remove(path.Length - 4,4) + "-" + (sucessoExecucao ? "SUCESSO" : "FALHA" ) + ".txt");
+            RenomearLog(numeroDoLote,operacao);
+        }
+
+        public void RenomearLog(string numeroDoLote, string operacao)
+        {
+            File.Move(path, (path.Remove(path.Length - 4, 4) + "-" + 
+                (sucessoExecucao ? "SUCESSO" : "FALHA")).Replace("NLOTE",numeroDoLote).Replace("OPERACAO",operacao) + ".txt");
         }
     }
 }
