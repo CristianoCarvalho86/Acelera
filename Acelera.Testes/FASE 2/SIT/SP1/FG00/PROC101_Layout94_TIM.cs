@@ -154,7 +154,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Mais de um header ou footer encontrado no arquivo");
             ValidarTabelaDeRetorno("101");
-            ValidarStages(false);
+            ValidarStages(true);
         }
 
         /// <summary>

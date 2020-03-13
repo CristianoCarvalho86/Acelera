@@ -19,13 +19,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Cliente, "2375", "FG01 - PROC01 - No Header do arquivo CLIENTE no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1924-20200210.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1975-20200228.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("CD_TPA", "9.3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200210.TXT"));
+            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200228.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
