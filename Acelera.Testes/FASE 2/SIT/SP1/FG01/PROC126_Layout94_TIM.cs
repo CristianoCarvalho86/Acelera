@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "EN_UF", "01");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT"));
+            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_UF_RISCO", "01");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "EN_UF_BENEFICIARIO", "01");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

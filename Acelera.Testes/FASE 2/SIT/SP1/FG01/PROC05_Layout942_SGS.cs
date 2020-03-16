@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("DT_ARQ", "");
            
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT"));
+            SalvarArquivo("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_ITEM", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT"));
+            SalvarArquivo("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -94,7 +94,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT"));
+            SalvarArquivo("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

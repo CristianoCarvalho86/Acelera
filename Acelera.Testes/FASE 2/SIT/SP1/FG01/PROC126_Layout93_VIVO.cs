@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "EN_UF", "CC");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_UF_RISCO", "PP");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(1, "EN_UF", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(1, "CD_UF_RISCO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

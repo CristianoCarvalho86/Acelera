@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT"));
+            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

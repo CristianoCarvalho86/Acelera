@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             RemoverTodasAsLinhas();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.ParcEmissaoAuto.ObterTexto());
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             RemoverTodasAsLinhas();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino($"C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
@@ -97,7 +97,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             RemoverTodasAsLinhas();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino($"C01.VIVO.COBRANCA-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo($"C01.VIVO.COBRANCA-EV-/*R*/-20200211.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
@@ -127,7 +127,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             RemoverTodasAsLinhas();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino($"C01.VIVO.EMSCMS-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo($"C01.VIVO.EMSCMS-EV-/*R*/-20200211.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());

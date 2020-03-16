@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_SINISTRO", "01");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

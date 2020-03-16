@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarFooter("TIPO_REGISTRO", "13");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino($"C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo($"C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarFooter("TIPO_REGISTRO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino($"C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo($"C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());

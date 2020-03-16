@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "DT_NASCIMENTO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_UF_RISCO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -120,7 +120,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_SISTEMA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT"));
+            SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -172,7 +172,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT"));
+            SalvarArquivo("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -210,7 +210,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_TIPO_LANCAMENTO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+            SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -258,7 +258,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_ENDOSSO", "");
             
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT"));
+            SalvarArquivo("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -293,7 +293,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT"));
+            SalvarArquivo("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -328,7 +328,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT"));
+            SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -363,7 +363,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT"));
+            SalvarArquivo("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -398,7 +398,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT"));
+            SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -434,7 +434,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -469,7 +469,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

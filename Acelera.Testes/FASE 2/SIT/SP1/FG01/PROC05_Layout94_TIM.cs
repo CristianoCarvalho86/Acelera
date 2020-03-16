@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_ENDOSSO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+            SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -71,7 +71,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_ITEM", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT"));
+            SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "EN_NUMERO", "");
             
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT"));
+            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -156,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_MOEDA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -194,7 +194,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_ITEM", "");
   
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT"));
+            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -226,7 +226,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_PARCELA", "");
             
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT"));
+            SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -261,7 +261,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT"));
+            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -296,7 +296,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT"));
+            SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -331,7 +331,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT"));
+            SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -367,7 +367,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT"));
+            SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -403,7 +403,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -438,7 +438,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.TIM.CLIENTE-EV-0001-20200213.TXT"));
+            SalvarArquivo("C01.TIM.CLIENTE-EV-0001-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
