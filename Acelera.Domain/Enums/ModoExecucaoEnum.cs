@@ -10,6 +10,6 @@ namespace Acelera.Domain.Enums
     {
         Completo = 1,
         ApenasCriacao = 2,
-        ApenasValidacao = 3;
+        ApenasValidacao = 3
     }
 }
