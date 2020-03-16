@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_CLIENTE", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -79,7 +79,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CEP_PERNOITE", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "PC_PARTICIPACAO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.VIVO.EMSCMS-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -164,7 +164,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.COBRANCA-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.VIVO.COBRANCA-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();

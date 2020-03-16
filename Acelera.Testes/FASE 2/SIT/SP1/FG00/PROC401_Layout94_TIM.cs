@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200219.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.CLIENTE-EV-/*R*/-20200219.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.PARCEIRO.CLIENTE-EV-/*R*/-20200219.TXT"));
 
             AlterarNomeArquivo();
 
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20200103.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.PARCEMS-EV-/*R*/-20200103.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.PARCEIRO.PARCEMS-EV-/*R*/-20200103.TXT"));
 
             AlterarNomeArquivo();
 
@@ -81,7 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200109.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.EMSCMS-EV-/*R*/-20200109.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.PARCEIRO.EMSCMS-EV-/*R*/-20200109.TXT"));
 
             AlterarNomeArquivo();
 
@@ -110,7 +110,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9997-20191227.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.COBRANCA-EV-/*R*/-20191227.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.PARCEIRO.COBRANCA-EV-/*R*/-20191227.TXT"));
 
             AlterarNomeArquivo();
 
@@ -139,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.LCTCMS-EV-/*R*/-20190531.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.PARCEIRO.LCTCMS-EV-/*R*/-20190531.TXT"));
 
             AlterarNomeArquivo();
 
@@ -168,7 +168,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0003-20200219.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.PARCEIRO.SINISTRO-EV-/*R*/-20200219.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.PARCEIRO.SINISTRO-EV-/*R*/-20200219.TXT"));
 
             AlterarNomeArquivo();
 

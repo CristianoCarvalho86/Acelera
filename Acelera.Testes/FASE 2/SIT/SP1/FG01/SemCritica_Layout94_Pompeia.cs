@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -120,7 +120,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -151,7 +151,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -182,7 +182,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();

@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "VL_TAXA_PAGTO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.SGS.SINISTRO-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.SGS.SINISTRO-EV-/*R*/-20200211.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();

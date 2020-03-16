@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "ID_TRANSACAO", "7700797700210057146");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -57,7 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "ID_TRANSACAO", "1234567");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();

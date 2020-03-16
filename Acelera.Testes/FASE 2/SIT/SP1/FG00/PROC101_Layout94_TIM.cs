@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ReplicarFooter(4);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
@@ -57,7 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ReplicarHeader(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
@@ -87,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ReplicarFooter(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.SINISTRO-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.SINISTRO-EV-/*R*/-20200207.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
@@ -117,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ReplicarHeader(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.EMSCMS-EV-/*R*/-20200117.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.EMSCMS-EV-/*R*/-20200117.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
@@ -149,7 +149,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ReplicarHeader(5);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
@@ -179,7 +179,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ReplicarFooter(3);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
@@ -210,7 +210,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
@@ -251,7 +251,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //ALTERAR O VALOR SELECIONADO
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.VIVO.SINISTRO-EV-/*R*/-20200209.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
@@ -281,7 +281,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //ALTERAR O VALOR SELECIONADO
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
@@ -311,7 +311,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //ALTERAR O VALOR SELECIONADO
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.ParcEmissaoAuto.ObterTexto());
@@ -341,7 +341,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //ALTERAR O VALOR SELECIONADO
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());

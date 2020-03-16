@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarHeader("TIPO_REGISTRO", "13");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200211.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarHeader("TIPO_REGISTRO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo(ObterArquivoDestino($"C01.SGS.SINISTRO-EV-/*R*/-20200211.TXT"));
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());

@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_CLIENTE", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -78,7 +78,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CEP_PERNOITE", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "PC_PARTICIPACAO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -156,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "VL_DIF_PREMIO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191227.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191227.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -191,7 +191,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_TIPO_LANCAMENTO", "");
  
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -237,7 +237,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_CONTA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT"));
+            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT"));
 
             //VALIDAR NA FG00
             ValidarFG00();
