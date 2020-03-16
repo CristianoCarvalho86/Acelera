@@ -36,6 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Nome do arquivo diferente do header");
             ValidarTabelaDeRetorno("400");
             ValidarStages(false);
+            ValidarTeste();
         }
 
 

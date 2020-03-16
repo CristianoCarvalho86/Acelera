@@ -36,6 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Versao layout nao informada no header");
             ValidarTabelaDeRetorno("91");
             ValidarStages(false);
+            ValidarTeste();
         }
 
         /// <summary>

@@ -36,6 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Linhas do arquivo diferente do numero verificador no footer.");
             ValidarTabelaDeRetorno("3");
             ValidarStages(false);
+            ValidarTeste();
         }
 
 
@@ -67,6 +68,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("");
             ValidarTabelaDeRetorno("");
             ValidarStages(true, 110);
+            ValidarTeste();
         }
 
     }

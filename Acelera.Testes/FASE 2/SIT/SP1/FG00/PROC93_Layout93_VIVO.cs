@@ -36,6 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages(false);
+            ValidarTeste();
         }
         
         /// <summary>
@@ -76,6 +77,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages(false);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -105,6 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages(false);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -134,6 +137,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages( false);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -163,6 +167,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages(false);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -203,6 +208,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages(false);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -232,6 +238,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages( false);
+            ValidarTeste();
         }
 
         /// <summary>
@@ -261,6 +268,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de footer (09) nao encontrada");
             ValidarTabelaDeRetorno("93");
             ValidarStages(false);
+            ValidarTeste();
 
         }
 

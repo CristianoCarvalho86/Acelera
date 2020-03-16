@@ -36,6 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Estrutura de body (03) nao encontrada");
             ValidarTabelaDeRetorno("94");
             ValidarStages(false);
+            ValidarTeste();
         }
 
         /// <summary>
