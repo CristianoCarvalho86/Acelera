@@ -37,6 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarControleArquivo("Identificador de operacao TPA não encontrado");
             ValidarTabelaDeRetorno("100");
             ValidarStages(false);
+            ValidarTeste();
         }
 
         /// <summary>
