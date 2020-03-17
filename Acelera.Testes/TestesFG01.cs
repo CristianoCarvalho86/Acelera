@@ -131,7 +131,7 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Houve um erro no teste na Tabela de Retorno");
                 sucessoDoTeste = false;
-                localDoErro += "Validação da Tabela de Retorno." + ";";
+                localDoErro += "Validação da Tabela de Retorno" + ";";
             }
         }
     }

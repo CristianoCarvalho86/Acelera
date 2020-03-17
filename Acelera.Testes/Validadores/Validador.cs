@@ -69,7 +69,6 @@ namespace Acelera.Testes.Validadores
                 if (encontrados.Count() > 1)
                 {
                     logger.EscreverBloco($"Mensagem de erro esperada encontrada {encontrados.Count()} vezes :'{erro}'");
-                    return false;
                 }
             }
 
