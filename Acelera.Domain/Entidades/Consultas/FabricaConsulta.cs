@@ -63,6 +63,14 @@ namespace Acelera.Domain.Entidades.Consultas
             return consulta;
         }
 
+        public static Consulta MontarConsultaParaTabelaDeRetornoFG01(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
+        {
+            var consulta = new Consulta();
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+
+            return CamposDaConsultaTabelaRetorno(consulta, tabela, valoresAlteradosBody);
+        }
+
         public static Consulta MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool alteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
         {
             var consulta = new Consulta();
@@ -71,7 +79,11 @@ namespace Acelera.Domain.Entidades.Consultas
             {
                 return consulta;
             }
+            return CamposDaConsultaTabelaRetorno(consulta,tabela,valoresAlteradosBody);
+        }
 
+        private static Consulta CamposDaConsultaTabelaRetorno(Consulta consulta, TabelasEnum tabela, AlteracoesArquivo valoresAlteradosBody)
+        {
             if (tabela == TabelasEnum.Cliente)
             {
                 consulta.AdicionarConsulta("CD_CLIENTE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("CD_CLIENTE").Valor);
@@ -91,6 +103,7 @@ namespace Acelera.Domain.Entidades.Consultas
                 consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
                 consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_PARCELA").Valor);
             }
+
             return consulta;
         }
     }

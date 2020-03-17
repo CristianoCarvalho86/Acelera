@@ -112,7 +112,27 @@ namespace Acelera.Testes
 
         public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
-            base.ValidarTabelaDeRetorno(validaQuantidadeErros, codigosDeErroEsperados);
+            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                return;
+
+            try
+            {
+                AjustarEntradaErros(ref codigosDeErroEsperados);
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                var validador = new ValidadorTabelaRetornoFG01(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
+                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
+
+                if (validador.ValidarTabela(validaQuantidadeErros, codigosDeErroEsperados))
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                else
+                    ExplodeFalha();
+            }
+            catch (Exception)
+            {
+                logger.EscreverBloco("Houve um erro no teste na Tabela de Retorno");
+                sucessoDoTeste = false;
+                localDoErro += "Validação da Tabela de Retorno." + ";";
+            }
         }
     }
 }

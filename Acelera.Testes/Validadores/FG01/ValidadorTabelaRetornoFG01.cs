@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.TabelaRetorno;
 using Acelera.Domain.Enums;
@@ -17,6 +18,12 @@ namespace Acelera.Testes.Validadores.FG01
         public ValidadorTabelaRetornoFG01(TabelasEnum tabelaEnum, string nomeArquivo, MyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter) 
             : base(tabelaEnum, nomeArquivo, logger, valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter)
         {
+        }
+
+        public override Consulta MontarConsulta(TabelasEnum tabela)
+        {
+            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetornoFG01(tabela, nomeArquivo, valoresAlteradosBody);
+            return consulta;
         }
 
         public bool ValidarTabela(params string[] codigosDeErroEsperados)
