@@ -137,40 +137,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
         /// <summary>
         /// No Body do arquivo OCR_COBRANCA não informar valor nos seguintes campos: 
-        /// CD_INTERNO_RESSEGURADOR CD_RAMO CD_MOVTO_COBRANCA CD_SEGURADORA CD_SUCURSAL CD_CORRETOR CD_TIPO_OPERACAO CD_TIPO_EMISSAO CD_FORMA_PAGTO 
-        /// CD_CATEGORIA CD_FRANQUIA CD_SUSEP_CONTRATO CD_SISTEMA CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_COBERTURA CD_ITEM CD_CLIENTE CD_MOEDA
+        /// CD_OCORRENCIA DT_OCORRENCIA VL_PREMIO_PAGO CD_SISTEMA
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2396_OCR_COBRANCA_SemCampObrig_Body()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2396", "FG01 - PROC5 - No Body do arquivo OCR_COBRANCA não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_RAMO CD_MOVTO_COBRANCA CD_SEGURADORA CD_SUCURSAL CD_CORRETOR CD_TIPO_OPERACAO CD_TIPO_EMISSAO CD_FORMA_PAGTO CD_CATEGORIA CD_FRANQUIA CD_SUSEP_CONTRATO CD_SISTEMA CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_COBERTURA CD_ITEM CD_CLIENTE CD_MOEDA");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2396", "FG01 - PROC5 - No Body do arquivo OCR_COBRANCA não informar valor nos seguintes campos: CD_OCORRENCIA DT_OCORRENCIA VL_PREMIO_PAGO CD_SISTEMA");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
-            AlterarLinha(0, "CD_RAMO", "");
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "");
-            AlterarLinha(0, "CD_SEGURADORA", "");
-            AlterarLinha(0, "CD_SUCURSAL", "");
-            AlterarLinha(0, "CD_CORRETOR", "");
-            AlterarLinha(0, "CD_TIPO_OPERACAO", "");
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "");
-            AlterarLinha(0, "CD_FORMA_PAGTO", "");
-            AlterarLinha(0, "CD_CATEGORIA", "");
-            AlterarLinha(0, "CD_FRANQUIA", "");
-            AlterarLinha(0, "CD_SUSEP_CONTRATO", "");
+            AlterarLinha(0, "CD_OCORRENCIA", "");
+            AlterarLinha(0, "DT_OCORRENCIA", "");
+            AlterarLinha(0, "VL_PREMIO_PAGO", "");
             AlterarLinha(0, "CD_SISTEMA", "");
-            AlterarLinha(0, "CD_CONTRATO", "");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
-            AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "CD_COBERTURA", "");
-            AlterarLinha(0, "CD_ITEM", "");
-            AlterarLinha(0, "CD_CLIENTE", "");
-            AlterarLinha(0, "CD_MOEDA", "");
-
-
+            
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT"));
 
