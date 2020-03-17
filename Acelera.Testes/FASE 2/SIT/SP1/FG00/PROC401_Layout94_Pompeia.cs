@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1927-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.CLIENTEEV-/*R*/-20200211.TXT"));
+            SalvarArquivo($"C01.POMPEIA.CLIENTEEV-/*R*/-20200211.TXT");
 
             AlterarNomeArquivo();
 
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.PARCEMS-EV/*R*/-20200211.TXT"));
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV/*R*/-20200211.TXT");
 
             AlterarNomeArquivo();
 
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             AlterarFooter("QT_LIN", "10", 0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.EMSCMS-EV-/*R*/20200227.TXT"));
+            SalvarArquivo($"C01.POMPEIA.EMSCMS-EV-/*R*/20200227.TXT");
 
             AlterarNomeArquivo();
 
@@ -113,7 +113,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA.COBRANCAEV/*R*/20191128.TXT"));
+            SalvarArquivo($"C01.POMPEIA.COBRANCAEV/*R*/20191128.TXT");
 
             AlterarNomeArquivo();
 
@@ -142,7 +142,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9999-20190531.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.LASA.LCTCMS-EV/*R*/20190531.TXT"));
+            SalvarArquivo($"C01.LASA.LCTCMS-EV/*R*/20190531.TXT");
 
             AlterarNomeArquivo();
 
@@ -171,7 +171,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.POMPEIA-SINISTRO-EV/*R*/-20200117.TXT"));
+            SalvarArquivo($"C01.POMPEIA-SINISTRO-EV/*R*/-20200117.TXT");
 
             AlterarNomeArquivo();
 

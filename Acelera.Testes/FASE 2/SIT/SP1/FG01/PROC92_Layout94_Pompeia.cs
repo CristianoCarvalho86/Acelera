@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("VERSAO", "6.9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("VERSAO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("VERSAO", "9.6");
             
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT"));
+            SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("VERSAO", "9.8");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT"));
+            SalvarArquivo("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -145,7 +145,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("VERSAO", "9.9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT"));
+            SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -175,7 +175,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("VERSAO", "9.4");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo(ObterArquivoDestino("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT"));
+            SalvarArquivo("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

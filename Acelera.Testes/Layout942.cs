@@ -32,7 +32,7 @@ namespace Acelera.Testes
             //ReplicarFooter(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-0005-20200103.txt", false));
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200103.txt");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
@@ -58,7 +58,7 @@ namespace Acelera.Testes
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191230.TXT"));
+            SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20191230.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao("FGR_00_BAIXA_PARCELA");
@@ -84,7 +84,7 @@ namespace Acelera.Testes
             //SelecionarLinhaParaValidacao(arquivo, 0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
 
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao("FGR_00_CLIENTE");

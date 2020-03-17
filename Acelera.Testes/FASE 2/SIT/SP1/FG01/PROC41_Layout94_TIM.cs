@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_CNPJ_CPF", "1234567808");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200214.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(1, "NR_CNPJ_CPF", "12345678910");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200214.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_CNPJ_CPF", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT"));
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

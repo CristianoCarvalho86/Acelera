@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVO.EMSCMS-EV-/*R*/-20200211TXT"));
+            SalvarArquivo($"C01.VIVO.EMSCMS-EV-/*R*/-20200211TXT");
 
             AlterarNomeArquivo();
 
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01VIVOCOBRANCA-EV-/*R*/-20200211TXT"));
+            SalvarArquivo($"C01VIVOCOBRANCA-EV-/*R*/-20200211TXT");
 
             AlterarNomeArquivo();
 
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.VIVOPARCEMSAUTO-EV-/*R*/-20200211.TXT"));
+            SalvarArquivo($"C01.VIVOPARCEMSAUTO-EV-/*R*/-20200211.TXT");
 
             AlterarNomeArquivo();
 
@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01VIVO.CLIENTE-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo($"C01VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
 
             AlterarNomeArquivo();
 

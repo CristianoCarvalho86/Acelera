@@ -89,13 +89,13 @@ namespace Acelera.Testes
                 return;
 
             try { 
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{tabela.ObterTexto()}");
             var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
             var linhasEncontradas = new List<ILinhaTabela>();
             if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado))
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{tabela.ObterTexto()}");
             else
                 ExplodeFalha();
             }

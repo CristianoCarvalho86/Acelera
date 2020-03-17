@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_CLIENTE", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.POMPEIA.CLIENTE-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo("C01.POMPEIA.CLIENTE-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

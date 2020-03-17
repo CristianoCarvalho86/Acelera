@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("CD_TPA", "999");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("CD_TPA", "999");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT"));
+            SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("CD_TPA", "999");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("CD_TPA", "999");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT"));
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -144,7 +144,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("CD_TPA", "999");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT"));
+            SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -174,7 +174,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("CD_TPA", "999");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino("C01.TIM.COBRANCA-EV-/*R*/-20191230.TXT"));
+            SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20191230.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
