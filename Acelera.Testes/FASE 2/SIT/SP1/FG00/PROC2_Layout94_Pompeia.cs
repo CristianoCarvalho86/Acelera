@@ -39,7 +39,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages(false);
+            ValidarStages(true, 110);
             ValidarTeste();
         }
 
@@ -73,7 +73,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages(false);
+            ValidarStages(true, 110);
             ValidarTeste();
         }
 
@@ -107,7 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages(false);
+            ValidarStages(true, 110);
             ValidarTeste();
         }
 
@@ -141,7 +141,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages(false);
+            ValidarStages(true, 110);
             ValidarTeste();
         }
 
@@ -175,7 +175,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages(false);
+            ValidarStages(true,110);
             ValidarTeste();
         }
 
@@ -209,7 +209,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages(false);
+            ValidarStages(true, 110);
             ValidarTeste();
         }
 
@@ -244,7 +244,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             //VALIDAR NO BANCO A ALTERACAO
             ValidarControleArquivo("Arquivo ja importado.");
             ValidarTabelaDeRetorno("2");
-            ValidarStages(false);
+            ValidarStages(true,110);
             ValidarTeste();
         }
 

@@ -190,20 +190,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Header do arquivo CLIENTE no campo TIPO_REGISTRO informar código 100
+        /// No Header do arquivo CLIENTE no campo TIPO_REGISTRO informar código 99
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1414_CLIENTE_TipoRegistro100()
+        public void SAP_1414_CLIENTE_TipoRegistro99()
         {
-            IniciarTeste(TipoArquivo.Cliente, "1414", "FG00 - PROC95 - No Header do arquivo CLIENTE no campo TIPO_REGISTRO informar código 100");
+            IniciarTeste(TipoArquivo.Cliente, "1414", "FG00 - PROC95 - No Header do arquivo CLIENTE no campo TIPO_REGISTRO informar código 99");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1927-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "100");
+            AlterarHeader("TIPO_REGISTRO", "99");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT");
@@ -220,20 +220,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Header do arquivo PARC_EMISSAO no campo TIPO_REGISTRO informar código 100
+        /// No Header do arquivo PARC_EMISSAO no campo TIPO_REGISTRO informar código 99
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1415_PARC_EMISSAO_TipoRegistro100()
+        public void SAP_1415_PARC_EMISSAO_TipoRegistro99()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "1415", " FG00 - PROC95 - No Header do arquivo PARC_EMISSAO no campo TIPO_REGISTRO informar código 100");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1415", " FG00 - PROC95 - No Header do arquivo PARC_EMISSAO no campo TIPO_REGISTRO informar código 99");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "100");
+            AlterarHeader("TIPO_REGISTRO", "99");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
@@ -250,20 +250,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 100
+        /// No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 99
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1416_EMS_COMISSAO_TipoRegistro100()
+        public void SAP_1416_EMS_COMISSAO_TipoRegistro99()
         {
-            IniciarTeste(TipoArquivo.Comissao, "1416", " FG00 - PROC95 - No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 100");
+            IniciarTeste(TipoArquivo.Comissao, "1416", " FG00 - PROC95 - No Header do arquivo EMS_COMISSAO no campo TIPO_REGISTRO informar código 99");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "100");
+            AlterarHeader("TIPO_REGISTRO", "99");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
@@ -280,20 +280,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 100
+        /// No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 99
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1417_OCR_COBRANCA_TipoRegistro100()
+        public void SAP_1417_OCR_COBRANCA_TipoRegistro99()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "1417", "FG00 - PROC95 - No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 100");
+            IniciarTeste(TipoArquivo.OCRCobranca, "1417", "FG00 - PROC95 - No Header do arquivo OCR_COBRANCA no campo TIPO_REGISTRO informar código 99");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "100");
+            AlterarHeader("TIPO_REGISTRO", "99");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
@@ -310,20 +310,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Header do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO informar código 100
+        /// No Header do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO informar código 99
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1418_LANCTO_COMISSAO_TipoRegistro100()
+        public void SAP_1418_LANCTO_COMISSAO_TipoRegistro99()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "1418", "FG00 - PROC95 - No Header do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO informar código 100");
+            IniciarTeste(TipoArquivo.LanctoComissao, "1418", "FG00 - PROC95 - No Header do arquivo LANCTO_COMISSAO no campo TIPO_REGISTRO informar código 99");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "100");
+            AlterarHeader("TIPO_REGISTRO", "99");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
@@ -340,20 +340,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         }
 
         /// <summary>
-        /// No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 100
+        /// No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 99
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_1419_SINISTRO_TipoRegistro100()
+        public void SAP_1419_SINISTRO_TipoRegistro99()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "1419", "FG00 - PROC95 - No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 100");
+            IniciarTeste(TipoArquivo.Sinistro, "1419", "FG00 - PROC95 - No Header do arquivo SINISTRO no campo TIPO_REGISTRO informar código 99");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("TIPO_REGISTRO", "100");
+            AlterarHeader("TIPO_REGISTRO", "99");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT");
