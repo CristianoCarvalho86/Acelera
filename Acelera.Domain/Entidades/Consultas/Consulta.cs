@@ -47,12 +47,12 @@ namespace Acelera.Domain.Entidades.Consultas
             foreach (var item in Valores)
             {
                 var valor = string.Empty;
-                //if (CamposQueNaoModificamZero().Contains(item.Key))
                     valor = item.Value.TrimStart();
-                //else
-                //    valor = item.Value.TrimStart().TrimStart('0').Length > 0 ? item.Value.TrimStart().TrimStart('0') : item.Value.TrimStart();
 
+                if(!string.IsNullOrEmpty(valor))
                 sql += item.Key + $" = '{valor}' AND ";
+                else
+                    sql += item.Key + $" IS NULL AND ";
             }
             return sql.Remove(sql.Length - 4);
         }
