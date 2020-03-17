@@ -19,8 +19,7 @@ namespace Acelera.Domain.Entidades
         
         public void AdicionaAlteracao(Alteracao alteracao)
         {
-            var alteracaoExistente = Alteracoes.Where(x => x.PosicaoDaLinha == alteracao.PosicaoDaLinha).FirstOrDefault() ?? alteracao;
-            Alteracoes.Add(alteracaoExistente);
+            Alteracoes.Add(alteracao);
         }
 
         public bool ExisteAlteracaoValida()
