@@ -48,7 +48,7 @@ namespace Acelera.Testes.Validadores
         protected bool ValidarCodigosDeErro(TabelasEnum tabelaDaValidacao ,IList<ILinhaTabela> lista, string colunaMsg,params string[] codigosDeErroEsperados)
         {
             var txtErrosEsperados = codigosDeErroEsperados.Length == 0 ? "NENHUM" : codigosDeErroEsperados.ToList().ObterListaConcatenada(", ");
-            var txtErrosEncontrados = lista.Select(x => x.ObterPorColuna(colunaMsg).Valor).ToList().ObterListaConcatenada(", ");
+            var txtErrosEncontrados = lista.Select(x => x.ObterPorColuna(colunaMsg).Valor).Distinct().ToList().ObterListaConcatenada(", ");
             logger.Escrever($"Erros esperados na {tabelaDaValidacao.ObterTexto()}: {txtErrosEsperados}");
             logger.Escrever($"Erros encontrados na tabela de {tabelaDaValidacao.ObterTexto()}: {txtErrosEncontrados}");
 
@@ -72,6 +72,17 @@ namespace Acelera.Testes.Validadores
                     return false;
                 }
             }
+
+            var errosNaoEsperados = lista.Where(x => !codigosDeErroEsperados.Contains(x.ObterPorColuna(colunaMsg).Valor.ToUpper()));
+            if (errosNaoEsperados.Count() > 0)
+            {
+                var listaDeErrosNaoEsperados = errosNaoEsperados.Select(x => x.ObterPorColuna(colunaMsg).Valor).Distinct();
+                foreach (var erro in listaDeErrosNaoEsperados)
+                {
+                    logger.EscreverBloco($"Mensagem de erro NAO ESPERADA encontrada {errosNaoEsperados.Count(x => x.ObterPorColuna(colunaMsg).Valor.ToUpper() == erro)} vezes :'{erro}'");
+                }
+            }
+
             return true;
 
         }
