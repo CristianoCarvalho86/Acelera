@@ -293,6 +293,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("DT_ARQ", "");
             AlterarHeader("NR_ARQ", "");
             AlterarHeader("NM_BRIDGE", "");
+            SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
