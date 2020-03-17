@@ -25,7 +25,6 @@ namespace Acelera.Testes
                 case TipoArquivo.Cliente:
                     lista.Add("PRC_0008");
                     lista.Add("PRC_0041");
-                    lista.Add("PRC_0074");
                     lista.Add("PRC_0126");
                     break;
                 case TipoArquivo.ParcEmissao:
@@ -47,6 +46,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0066");
                     lista.Add("PRC_0126");
                     lista.Add("PRC_200000");
+                    lista.Add("PRC_0074");
                     break;
                 default:
                     throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
@@ -102,6 +102,7 @@ namespace Acelera.Testes
             catch (Exception)
             {
                 sucessoDoTeste = false;
+                localDoErro += $"Validação das Stage : {tabela.ObterTexto()} ; ";
             }
         }
         public void ValidarStages(CodigoStage codigo)

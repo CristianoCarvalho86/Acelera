@@ -23,7 +23,10 @@ namespace Acelera.Testes.Validadores.FG01
 
         public override Consulta MontarConsulta(TabelasEnum tabela)
         {
-            return base.MontarConsulta(tabela);
+            var consulta = base.MontarConsulta(tabela);
+            if(valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())
+                AdicionaConsulta(consulta, valoresAlteradosBody);
+            return consulta;
         }
 
         public bool ValidarTabelaFG01(bool deveHaverRegistro, int codigoEsperado = 0)

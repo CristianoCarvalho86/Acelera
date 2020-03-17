@@ -70,6 +70,7 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Houve um erro no teste de ControleArquivo");
                 sucessoDoTeste = false;
+                localDoErro += "Validação da Controle Arquivo ; ";
             }
         }
 
@@ -94,6 +95,7 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Houve um erro no teste de Stages");
                 sucessoDoTeste = false;
+                localDoErro += "Validação da Stage : " + tabela.ObterTexto() + "; ";
             }
 
             if (sucessoDoTeste == false)
@@ -120,22 +122,10 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Houve um erro no teste na Tabela de Retorno");
                 sucessoDoTeste = false;
+                localDoErro += "Validação da Tabela de Retorno." + ";";
             }
         }
 
-
-        public void ValidarStages<T>(bool deveEncontrarRegistro ,int codigoEsperado = 0) where T : LinhaTabela, new()
-        {
-            ValidarStages<T>(tipoArquivoTeste.ObterTabelaEnum(), deveEncontrarRegistro, codigoEsperado);
-        }
-        public void ValidarStages<T>(int codigoEsperado) where T : LinhaTabela, new()
-        {
-            ValidarStages<T>(tipoArquivoTeste.ObterTabelaEnum(), true, codigoEsperado);
-        }
-        public void ValidarStages<T>(CodigoStage codigo) where T : LinhaTabela, new()
-        {
-            ValidarStages<T>((int)codigo);
-        }
         public void ValidarStages(bool deveEncontrarRegistro, int codigoEsperado = 0)
         {
             ValidarStages(tipoArquivoTeste.ObterTabelaEnum(), deveEncontrarRegistro, codigoEsperado);

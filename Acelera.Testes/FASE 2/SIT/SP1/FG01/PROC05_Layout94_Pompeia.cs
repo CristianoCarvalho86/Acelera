@@ -108,7 +108,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Comissao, "2395", "FG01 - PROC5 - No Body do arquivo EMS_COMISSAO não informar valor nos seguintes campos: CD_TIPO_COMISSAO CD_COBERTURA VL_COMISSAO VL_BASE_CALCULO PC_COMISSAO PC_PARTICIPACAO CD_SISTEMA");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1920-20200208.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1974-20200227.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "");
@@ -120,7 +120,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_SISTEMA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT");
+            SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200227.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

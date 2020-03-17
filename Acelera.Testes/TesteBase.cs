@@ -31,6 +31,7 @@ namespace Acelera.Testes
         protected string numeroDoLote;
         protected string operacao;
         protected string nomeDoTeste;
+        protected string localDoErro = string.Empty;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;
