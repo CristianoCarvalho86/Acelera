@@ -34,10 +34,10 @@ namespace Acelera.Domain.Entidades.Tabelas
         {
             var linha = new T();
             var sql = "select ";
-            foreach (var i in linha.Campos)
-                sql += $"{i.Coluna},";
-            sql = sql.Remove(sql.Length - 1);
-            sql += $" from HDIQAS_1.{linha.ObterNomeTabela()} ";
+            //foreach (var i in linha.Campos)
+            //    sql += $"{i.Coluna},";
+            //sql = sql.Remove(sql.Length - 1);
+            sql += $" * from HDIQAS_1.{linha.ObterNomeTabela()} ";
             sql += consulta.MontarConsulta();
             return sql;
         }

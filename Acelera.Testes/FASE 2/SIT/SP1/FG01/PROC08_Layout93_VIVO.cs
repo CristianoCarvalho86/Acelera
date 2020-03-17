@@ -50,14 +50,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2258", "FG01 - PROC8 - No Body do arquivo PARC_EMISSAO nos campos abaixo informado o código 1234567 respeitando a tamanho do campos: CEP_UTILIZACAO CEP_PERNOITE");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CEP_UTILIZACAO", "1234567");
-            AlterarHeader("CEP_PERNOITE", "1234567");
+            AlterarLinha(0,"CEP_UTILIZACAO", "1234567");
+            AlterarLinha(0, "CEP_PERNOITE", "1234567");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
+            SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
