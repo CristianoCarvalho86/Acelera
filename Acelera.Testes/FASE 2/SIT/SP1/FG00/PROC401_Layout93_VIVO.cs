@@ -2,6 +2,7 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
@@ -70,15 +71,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// <summary>
         /// Não informar ponto na nomenclatura do arquivo. Ex.: C01POMPEIACLIENTE-EV-1927-20200211TXT
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2621_LANCTO_COMISSAO_NomeIncorreto()
         {
-            //-------------------------------------------SEM MASSA--------------------------------------------------
         }
 
-        
+
         /// <summary>
         /// Não informar ponto entre a segunda e terceira partes. Ex.: C01.POMPEIACLIENTE-EV-1927-20200211.TXT
         /// </summary>
@@ -104,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
             ValidarLogProcessamento(true);
             ValidarControleArquivo("Estrutura da Mascara do arquivo não é a esperada.");
             ValidarTabelaDeRetorno("401");
-            ValidarStages( false);
+            ValidarStages(false);
             ValidarTeste();
         }
 

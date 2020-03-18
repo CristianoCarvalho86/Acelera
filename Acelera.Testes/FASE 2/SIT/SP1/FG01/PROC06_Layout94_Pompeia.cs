@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("DT_ARQ", "32131234");
-            SelecionarLinhaParaValidacao(0);
+            AlterarLinha(0,"NR_CNPJ_CPF", "17077754782");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.CLIENTE-EV-/*R*/-20200212.TXT");
