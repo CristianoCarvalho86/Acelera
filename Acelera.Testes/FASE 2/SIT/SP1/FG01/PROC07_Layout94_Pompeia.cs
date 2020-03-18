@@ -186,7 +186,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "CD_OCORRENCIA", "");
             AlterarLinha(0, "VL_DESCONTO", "");
             AlterarLinha(0, "VL_PREMIO_PAGO", "");
             AlterarLinha(0, "VL_MULTA", "");

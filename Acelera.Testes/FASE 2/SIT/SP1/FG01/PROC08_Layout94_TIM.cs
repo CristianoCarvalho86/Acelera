@@ -41,37 +41,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        ///No Body do arquivo PARC_EMISSAO nos campos abaixo informado o código 1234567 respeitando a tamanho do campos: CEP_UTILIZACAO CEP_PERNOITE
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2343_PARC_EMISSAO_CEPInv()
-        {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2343", "FG01 - PROC8 - No Body do arquivo PARC_EMISSAO nos campos abaixo informado o código 1234567 respeitando a tamanho do campos: CEP_UTILIZACAO CEP_PERNOITE");
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CEP_UTILIZACAO", "1234567");
-            AlterarLinha(0, "CEP_PERNOITE", "1234567");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("8");
-            ValidarTeste();
-        }
-
-        /// <summary>
         ///No Body do arquivo SINISTRO nos campos abaixo informado o código 1234567 respeitando a tamanho do campos: EN_CEP_BENEFICIARIO
         /// </summary>
         [TestMethod]

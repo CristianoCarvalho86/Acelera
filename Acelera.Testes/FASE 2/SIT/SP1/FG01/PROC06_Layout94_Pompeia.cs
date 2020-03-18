@@ -292,7 +292,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         public void SAP_2402_LANCTO_COMISSAO_DataInv_Body()
         {
             IniciarTeste(TipoArquivo.LanctoComissao, "2402", "FG01 - PROC6 - No Body do arquivo LANCTO_COMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_PAGAMENTO DT_BAIXA");
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
