@@ -75,6 +75,32 @@ namespace Acelera.Testes
             }
         }
 
+        protected string pastaLogCopia
+        {
+            get
+            {
+                var logger = ConfigurationManager.AppSettings.Get("PastaLoggerCopia");
+                if (string.IsNullOrEmpty(logger))
+                    return null;
+                if (!logger.EndsWith("\\"))
+                    logger += "\\";
+                return logger;
+            }
+        }
+
+        protected string pastaLogArquivoCopia
+        {
+            get
+            {
+                var logger = ConfigurationManager.AppSettings.Get("PastaLoggerArquivosCopia");
+                if (string.IsNullOrEmpty(logger))
+                    return null;
+                if (!logger.EndsWith("\\"))
+                    logger += "\\";
+                return logger;
+            }
+        }
+
         protected ModoExecucaoEnum ModoExecucao
         {
             get

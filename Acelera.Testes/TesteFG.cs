@@ -118,6 +118,10 @@ namespace Acelera.Testes
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
             File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
+
+            if(!string.IsNullOrEmpty(pastaLogArquivoCopia))
+                File.Copy(pastaDestino + nomeArquivo, pastaLogArquivoCopia + nomeArquivoDeLog);
+
             if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
                 File.Delete(pastaDestino + nomeArquivo);
             else
@@ -129,7 +133,7 @@ namespace Acelera.Testes
             if (operacao.Length > 5)
                 operacao = operacao.Substring(0, 5);
 
-            logger.FimDoArquivo(numeroDoLote, operacao);
+            logger.FimDoArquivo(numeroDoLote, operacao, pastaLogCopia);
         }
     }
 }

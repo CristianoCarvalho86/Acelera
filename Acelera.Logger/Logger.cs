@@ -13,13 +13,16 @@ namespace Acelera.Logger
     public class MyLogger
     {
         private string path;
+        private string nomeArquivoLog;
         private StreamWriter writer;
         private string TextoFimArquivo;
         private bool sucessoExecucao;
-        public MyLogger(string _path)
+        public MyLogger(string _path, string nomeArquivo)
         {
             path = _path;
-            writer = File.CreateText(path);
+            nomeArquivoLog = nomeArquivo;
+            writer = File.CreateText(path + nomeArquivoLog);
+            
         }
 
         public void Escrever(string texto)
@@ -139,7 +142,7 @@ namespace Acelera.Logger
             sucessoExecucao = sucesso;
         }
 
-        public void FimDoArquivo(string numeroDoLote, string operacao)
+        public void FimDoArquivo(string numeroDoLote, string operacao, string pastaCopia)
         {
             writer.WriteLine(TextoFimArquivo);
             writer.Flush();
@@ -148,12 +151,21 @@ namespace Acelera.Logger
             writer.Dispose();
 
             RenomearLog(numeroDoLote,operacao);
+            CriarCopia(pastaCopia);
         }
 
         public void RenomearLog(string numeroDoLote, string operacao)
         {
-            File.Move(path, (path.Remove(path.Length - 4, 4) + "-" + 
-                (sucessoExecucao ? "SUCESSO" : "FALHA")).Replace("NLOTE",numeroDoLote).Replace("OPERACAO",operacao) + ".txt");
+            var nomeAntigo = nomeArquivoLog;
+            nomeArquivoLog = (nomeArquivoLog.Remove(nomeArquivoLog.Length - 4, 4) + "-" +
+                (sucessoExecucao ? "SUCESSO" : "FALHA")).Replace("NLOTE", numeroDoLote).Replace("OPERACAO", operacao) + ".txt";
+            File.Move(path + nomeAntigo, path + nomeArquivoLog);
+        }
+
+        public void CriarCopia(string pastaCopia)
+        {
+            if(!string.IsNullOrEmpty(pastaCopia))
+            File.Copy(path + nomeArquivoLog, pastaCopia + nomeArquivoLog);
         }
     }
 }
