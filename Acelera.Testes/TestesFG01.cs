@@ -29,7 +29,6 @@ namespace Acelera.Testes
                     break;
                 case TipoArquivo.ParcEmissao:
                 case TipoArquivo.ParcEmissaoAuto:
-                    lista.Add("PRC_0008");
                     lista.Add("PRC_0014");
                     lista.Add("PRC_0015");
                     lista.Add("PRC_0126");

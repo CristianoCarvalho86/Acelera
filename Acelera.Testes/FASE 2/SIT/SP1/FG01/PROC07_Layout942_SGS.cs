@@ -23,13 +23,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "");
-            AlterarLinha(0, "CD_AVISO", "");
-            AlterarLinha(0, "CD_RAMO", "");
-            AlterarLinha(0, "CD_CLIENTE", "");
-            AlterarLinha(0, "CD_MOVIMENTO", "");
-            AlterarLinha(0, "VL_MOVIMENTO", "");
-            AlterarLinha(0, "VL_TAXA_PAGTO", "");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "A");
+            AlterarLinha(0, "CD_AVISO", "A");
+            AlterarLinha(0, "CD_RAMO", "A");
+            AlterarLinha(0, "CD_CLIENTE", ",");
+            AlterarLinha(0, "CD_MOVIMENTO", "!");
+            AlterarLinha(0, "VL_MOVIMENTO", "A");
+            AlterarLinha(0, "VL_TAXA_PAGTO", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.SGS.SINISTRO-EV-/*R*/-20200211.TXT");
