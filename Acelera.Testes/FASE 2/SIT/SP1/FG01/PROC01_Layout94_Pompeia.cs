@@ -79,13 +79,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Comissao, "2377", "FG01 - PROC01 - No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.3");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1917-20200207.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1980-20200229.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("CD_TPA", "9.3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200207.TXT");
+            SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200229.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
