@@ -41,37 +41,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarTabelaDeRetorno("6");
             ValidarTeste();
         }
-
-        /// <summary>
-        /// No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2288_SINISTRO_DataInv_Header()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2288", "FG01 - PROC6 - No Header do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
-            arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("DT_ARQ", "32131234");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("6");
-            ValidarTeste();
-        }
-
+               
         /// <summary>
         /// Arquivo c/ tds datas válidas
         /// </summary>
