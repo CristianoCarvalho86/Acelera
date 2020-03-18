@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1927-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_CLIENTE", "");
+            AlterarLinha(0, "CD_CLIENTE", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT");
@@ -52,28 +52,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "CD_CLIENTE", "");
-            AlterarLinha(0, "VL_JUROS", "");
-            AlterarLinha(0, "VL_DESCONTO", "");
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "");
-            AlterarLinha(0, "VL_IOF", "");
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", "");
-            AlterarLinha(0, "VL_CUSTO_APOLICE", "");
-            AlterarLinha(0, "VL_PREMIO_TOTAL", "");
-            AlterarLinha(0, "VL_TAXA_MOEDA", "");
-            AlterarLinha(0, "VL_LMI", "");
-            AlterarLinha(0, "VL_IS", "");
-            AlterarLinha(0, "VL_PERCENTUAL_COSSEGURO", "");
-            AlterarLinha(0, "VL_PREMIO_CEDIDO", "");
-            AlterarLinha(0, "VL_COMISSAO_CEDIDO", "");
-            AlterarLinha(0, "VL_FRANQUIA", "");
-            AlterarLinha(0, "ANO_MODELO", "");
-            AlterarLinha(0, "VL_PERC_FATOR", "");
-            AlterarLinha(0, "VL_PERC_BONUS", "");
-            AlterarLinha(0, "TEMPO_HAB", "");
-            AlterarLinha(0, "CEP_UTILIZACAO", "");
-            AlterarLinha(0, "CEP_PERNOITE", "");
+            AlterarLinha(0, "NR_PARCELA", "A");
+            AlterarLinha(0, "CD_CLIENTE", "!");
+            AlterarLinha(0, "VL_JUROS", "A");
+            AlterarLinha(0, "VL_DESCONTO", "A");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "!,");
+            AlterarLinha(0, "VL_IOF", ",");
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", "!!");
+            AlterarLinha(0, "VL_CUSTO_APOLICE", "A");
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "A");
+            AlterarLinha(0, "VL_TAXA_MOEDA", "A,");
+            AlterarLinha(0, "VL_LMI", "A");
+            AlterarLinha(0, "VL_IS", "A");
+            AlterarLinha(0, "VL_PERCENTUAL_COSSEGURO", "A");
+            AlterarLinha(0, "VL_PREMIO_CEDIDO", "A");
+            AlterarLinha(0, "VL_COMISSAO_CEDIDO", "!!");
+            AlterarLinha(0, "VL_FRANQUIA", "A");
+            AlterarLinha(0, "ANO_MODELO", "AAAA");
+            AlterarLinha(0, "VL_PERC_FATOR", "AA");
+            AlterarLinha(0, "VL_PERC_BONUS", "AA");
+            AlterarLinha(0, "TEMPO_HAB", "AA");
+            AlterarLinha(0, "CEP_UTILIZACAO", "AAAA");
+            AlterarLinha(0, "CEP_PERNOITE", "AAAA");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.TXT");
@@ -103,13 +103,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
-            AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "CD_ITEM", "");
-            AlterarLinha(0, "VL_COMISSAO", "");
-            AlterarLinha(0, "VL_BASE_CALCULO", "");
-            AlterarLinha(0, "PC_COMISSAO", "");
-            AlterarLinha(0, "PC_PARTICIPACAO", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "A");
+            AlterarLinha(0, "NR_PARCELA", "A");
+            AlterarLinha(0, "CD_ITEM", "A");
+            AlterarLinha(0, "VL_COMISSAO", "A");
+            AlterarLinha(0, "VL_BASE_CALCULO", "A");
+            AlterarLinha(0, "PC_COMISSAO", "A");
+            AlterarLinha(0, "PC_PARTICIPACAO", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
@@ -139,22 +139,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1694-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "");
-            AlterarLinha(0, "CD_AVISO", "");
-            AlterarLinha(0, "CD_RAMO", "");
-            AlterarLinha(0, "CD_CLIENTE", "");
-            AlterarLinha(0, "CD_MOVIMENTO", "");
-            AlterarLinha(0, "VL_MOVIMENTO", "");
-            AlterarLinha(0, "VL_TAXA_PAGTO", "");
-            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "");
-            AlterarLinha(0, "CD_BANCO_SEG", "");
-            AlterarLinha(0, "NR_AGENCIA_SEG", "");
-            AlterarLinha(0, "NR_CONTA_SEG", "");
-            AlterarLinha(0, "NR_SEQ_MOV", "");
-            AlterarLinha(0, "VL_CEDIDO", "");
-            AlterarLinha(0, "CD_BANCO", "");
-            AlterarLinha(0, "NR_AGENCIA", "");
-            AlterarLinha(0, "NR_CONTA", "");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "A");
+            AlterarLinha(0, "CD_AVISO", "A");
+            AlterarLinha(0, "CD_RAMO", "!");
+            AlterarLinha(0, "CD_CLIENTE", ",");
+            AlterarLinha(0, "CD_MOVIMENTO", "A");
+            AlterarLinha(0, "VL_MOVIMENTO", "A");
+            AlterarLinha(0, "VL_TAXA_PAGTO", ",");
+            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "!");
+            AlterarLinha(0, "CD_BANCO_SEG", ",");
+            AlterarLinha(0, "NR_AGENCIA_SEG", ",");
+            AlterarLinha(0, "NR_CONTA_SEG", ",");
+            AlterarLinha(0, "NR_SEQ_MOV", ",");
+            AlterarLinha(0, "VL_CEDIDO", ",");
+            AlterarLinha(0, "CD_BANCO", ",");
+            AlterarLinha(0, "NR_AGENCIA", ",");
+            AlterarLinha(0, "NR_CONTA", "A");
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -185,17 +185,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "VL_DESCONTO", "");
-            AlterarLinha(0, "VL_PREMIO_PAGO", "");
-            AlterarLinha(0, "VL_MULTA", "");
-            AlterarLinha(0, "VL_IOF_RETIDO", "");
-            AlterarLinha(0, "VL_ADC_FRC", "");
-            AlterarLinha(0, "VL_ADC_FRC_DVI", "");
-            AlterarLinha(0, "VL_MULTA_DEVIDO", "");
-            AlterarLinha(0, "VL_JUROS_COBRADO", "");
-            AlterarLinha(0, "VL_JUROS_DEVIDO", "");
-            AlterarLinha(0, "VL_DIF_PREMIO", "");
+            AlterarLinha(0, "NR_PARCELA", "A");
+            AlterarLinha(0, "VL_DESCONTO", "A");
+            AlterarLinha(0, "VL_PREMIO_PAGO", "!,");
+            AlterarLinha(0, "VL_MULTA", "!,");
+            AlterarLinha(0, "VL_IOF_RETIDO", "A");
+            AlterarLinha(0, "VL_ADC_FRC", "!A");
+            AlterarLinha(0, "VL_ADC_FRC_DVI", "A");
+            AlterarLinha(0, "VL_MULTA_DEVIDO", "A");
+            AlterarLinha(0, "VL_JUROS_COBRADO", "A");
+            AlterarLinha(0, "VL_JUROS_DEVIDO", "A");
+            AlterarLinha(0, "VL_DIF_PREMIO", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
@@ -225,11 +225,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "CD_EXTRATO_COMISSAO", "");
-            AlterarLinha(0, "CD_LANCAMENTO", "");
-            AlterarLinha(0, "VL_COMISSAO_PAGO", "");
-            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "");
+            AlterarLinha(0, "NR_PARCELA", "A,");
+            AlterarLinha(0, "CD_EXTRATO_COMISSAO", "A");
+            AlterarLinha(0, "CD_LANCAMENTO", "A");
+            AlterarLinha(0, "VL_COMISSAO_PAGO", "A");
+            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");

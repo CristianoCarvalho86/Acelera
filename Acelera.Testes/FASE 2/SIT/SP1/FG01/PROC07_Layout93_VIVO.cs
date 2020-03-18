@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_CLIENTE", "");
+            AlterarLinha(0, "CD_CLIENTE", "A");
             AlterarLinha(0, "NR_CNPJ_CPF", "17077754782");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -56,28 +56,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "CD_CLIENTE", "");
-            AlterarLinha(0, "VL_JUROS", "");
-            AlterarLinha(0, "VL_DESCONTO", "");
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "");
-            AlterarLinha(0, "VL_IOF", "");
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", "");
-            AlterarLinha(0, "VL_CUSTO_APOLICE", "");
-            AlterarLinha(0, "VL_PREMIO_TOTAL", "");
-            AlterarLinha(0, "VL_TAXA_MOEDA", "");
-            AlterarLinha(0, "VL_LMI", "");
-            AlterarLinha(0, "VL_IS", "");
-            AlterarLinha(0, "VL_PERCENTUAL_COSSEGURO", "");
-            AlterarLinha(0, "VL_PREMIO_CEDIDO", "");
-            AlterarLinha(0, "VL_COMISSAO_CEDIDO", "");
-            AlterarLinha(0, "VL_FRANQUIA", "");
-            AlterarLinha(0, "ANO_MODELO", "");
-            AlterarLinha(0, "VL_PERC_FATOR", "");
-            AlterarLinha(0, "VL_PERC_BONUS", "");
-            AlterarLinha(0, "TEMPO_HAB", "");
-            AlterarLinha(0, "CEP_UTILIZACAO", "");
-            AlterarLinha(0, "CEP_PERNOITE", "");
+            AlterarLinha(0, "NR_PARCELA", "A");
+            AlterarLinha(0, "CD_CLIENTE", ",,");
+            AlterarLinha(0, "VL_JUROS", ",,");
+            AlterarLinha(0, "VL_DESCONTO", "!!");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "A");
+            AlterarLinha(0, "VL_IOF", "A");
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", "A");
+            AlterarLinha(0, "VL_CUSTO_APOLICE", "A");
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "A");
+            AlterarLinha(0, "VL_TAXA_MOEDA", ",");
+            AlterarLinha(0, "VL_LMI", "A");
+            AlterarLinha(0, "VL_IS", "A");
+            AlterarLinha(0, "VL_PERCENTUAL_COSSEGURO", ",");
+            AlterarLinha(0, "VL_PREMIO_CEDIDO", ",");
+            AlterarLinha(0, "VL_COMISSAO_CEDIDO", ",");
+            AlterarLinha(0, "VL_FRANQUIA", "A!");
+            AlterarLinha(0, "ANO_MODELO", "A!");
+            AlterarLinha(0, "VL_PERC_FATOR", ",");
+            AlterarLinha(0, "VL_PERC_BONUS", ",");
+            AlterarLinha(0, "TEMPO_HAB", ",");
+            AlterarLinha(0, "CEP_UTILIZACAO", "!!");
+            AlterarLinha(0, "CEP_PERNOITE", "A!");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -108,13 +108,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
-            AlterarLinha(0, "NR_PARCELA", "");
-            AlterarLinha(0, "CD_ITEM", "");
-            AlterarLinha(0, "VL_COMISSAO", "");
-            AlterarLinha(0, "VL_BASE_CALCULO", "");
-            AlterarLinha(0, "PC_COMISSAO", "");
-            AlterarLinha(0, "PC_PARTICIPACAO", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "A");
+            AlterarLinha(0, "NR_PARCELA", "!");
+            AlterarLinha(0, "CD_ITEM", "A");
+            AlterarLinha(0, "VL_COMISSAO", "A");
+            AlterarLinha(0, "VL_BASE_CALCULO", "A");
+            AlterarLinha(0, "PC_COMISSAO", "!");
+            AlterarLinha(0, "PC_PARTICIPACAO", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.EMSCMS-EV-/*R*/-20200212.TXT");
@@ -146,22 +146,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "");
-            AlterarLinha(0, "CD_AVISO", "");
-            AlterarLinha(0, "CD_RAMO", "");
-            AlterarLinha(0, "CD_CLIENTE", "");
-            AlterarLinha(0, "CD_MOVIMENTO", "");
-            AlterarLinha(0, "VL_MOVIMENTO", "");
-            AlterarLinha(0, "VL_TAXA_PAGTO", "");
-            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "");
-            AlterarLinha(0, "CD_BANCO_SEG", "");
-            AlterarLinha(0, "NR_AGENCIA_SEG", "");
-            AlterarLinha(0, "NR_CONTA_SEG", "");
-            AlterarLinha(0, "NR_SEQ_MOV", "");
-            AlterarLinha(0, "VL_CEDIDO", "");
-            AlterarLinha(0, "CD_BANCO", "");
-            AlterarLinha(0, "NR_AGENCIA", "");
-            AlterarLinha(0, "NR_CONTA", "");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "A");
+            AlterarLinha(0, "CD_AVISO", "A");
+            AlterarLinha(0, "CD_RAMO", "A");
+            AlterarLinha(0, "CD_CLIENTE", "A");
+            AlterarLinha(0, "CD_MOVIMENTO", "A");
+            AlterarLinha(0, "VL_MOVIMENTO", "A");
+            AlterarLinha(0, "VL_TAXA_PAGTO", "A");
+            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "A");
+            AlterarLinha(0, "CD_BANCO_SEG", "A");
+            AlterarLinha(0, "NR_AGENCIA_SEG", "A");
+            AlterarLinha(0, "NR_CONTA_SEG", "A");
+            AlterarLinha(0, "NR_SEQ_MOV", "A");
+            AlterarLinha(0, "VL_CEDIDO", "A");
+            AlterarLinha(0, "CD_BANCO", "A");
+            AlterarLinha(0, "NR_AGENCIA", "A");
+            AlterarLinha(0, "NR_CONTA", "A");
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
