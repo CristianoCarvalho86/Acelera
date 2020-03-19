@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "ID_TRANSACAO", "");
+            AlterarLinha(1, "ID_TRANSACAO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");

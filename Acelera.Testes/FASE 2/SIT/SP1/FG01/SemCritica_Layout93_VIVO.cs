@@ -126,13 +126,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            SelecionarLinhaParaValidacao(0);
+            AlterarLinha(0, "NR_CNPJ_CPF", "17077754782");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
+            SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -143,6 +143,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno(false);
             ValidarTeste();
 
         }
