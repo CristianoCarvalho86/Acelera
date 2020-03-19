@@ -15,14 +15,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2263_SINISTRO_SemCD_SINISTRO()
+        public void SAP_2351_SINISTRO_SemCD_SINISTRO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2263", "FG01 - PROC62 - No Body do arquivo SINISTRO no campo CD_SINISTRO não informar o número do sinistro");
+            IniciarTeste(TipoArquivo.Sinistro, "2351", "FG01 - PROC62 - No Body do arquivo SINISTRO no campo CD_SINISTRO não informar o número do sinistro");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0002-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SINISTRO", "01");
+            AlterarLinha(0, "CD_SINISTRO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");

@@ -181,16 +181,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Sinistro, "2324", "FG01 - PROC5 - No Body do arquivo SINISTRO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0003-20200220.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
             AlterarLinha(0, "CD_SEGURADORA", "");
-            AlterarLinha(0, "CD_CORRETOR", "");
+            //AlterarLinha(0, "CD_CORRETOR", "");
             AlterarLinha(0, "CD_RAMO", "");
             AlterarLinha(0, "CD_CONTRATO", "");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
-            AlterarLinha(0, "NR_PARCELA", "");
+            AlterarLinha(0, "NR_SEQ_EMISSAO", "");
+            //AlterarLinha(0, "NR_PARCELA", "");
             AlterarLinha(0, "CD_ITEM", "");
   
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -251,7 +251,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Sinistro, "2318", "FG01 - PROC5 - No Header do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo SINISTRO não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0003-20200227.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -261,7 +261,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarFooter("NM_ARQ", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
+            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200227.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -428,7 +428,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Cliente, "2313", "FG01 - PROC5 - No Header do arquivo CLIENTE não informar valor nos seguintes campos: NM_ARQ DT_ARQ NR_ARQ NM_BRIDGE. No Trailler do arquivo CLIENTE não informar valor nos seguintes campos: NM_ARQ");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200226.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("NM_ARQ", "");
@@ -436,9 +436,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("NR_ARQ", "");
             AlterarHeader("NM_BRIDGE", "");
             AlterarFooter("NM_ARQ", "");
+            AlterarLinha(0, "NR_CNPJ_CPF", "05168329721");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.CLIENTE-EV-0001-20200213.TXT");
+            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
