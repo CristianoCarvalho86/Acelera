@@ -44,7 +44,7 @@ namespace Acelera.Testes.Validadores.FG00
             var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter(), ExistemLinhasNoArquivo());
             var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
             if (alteracaoHeader != null)
-                AdicionaConsulta(consulta,valoresAlteradosHeader);
+                AdicionaConsulta(consulta,valoresAlteradosHeader,true);
             consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
 
             return consulta;

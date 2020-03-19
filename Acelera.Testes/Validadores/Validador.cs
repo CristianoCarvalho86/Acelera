@@ -37,12 +37,17 @@ namespace Acelera.Testes.Validadores
 
         }
 
-        protected void AdicionaConsulta(Consulta consulta, AlteracoesArquivo valoresAlterados)
+        protected void AdicionaConsulta(Consulta consulta, AlteracoesArquivo valoresAlterados, bool ehStage)
         {
-            if(valoresAlterados != null)
-            foreach (var c in valoresAlterados.Alteracoes)
-                foreach (var item in c.CamposAlterados)
-                    consulta.AdicionarConsulta(item.Coluna, item.Valor);
+            if (valoresAlterados != null)
+                foreach (var c in valoresAlterados.Alteracoes)
+                    foreach (var item in c.CamposAlterados)
+                    {
+                        var campo = item.Coluna;
+                        if (ehStage && campo == "NR_APOLICE")
+                            campo = "CD_CONTRATO";
+                        consulta.AdicionarConsulta(campo, item.Valor);
+                    }
         }
 
         protected bool ValidarCodigosDeErro(TabelasEnum tabelaDaValidacao ,IList<ILinhaTabela> lista, string colunaMsg,params string[] codigosDeErroEsperados)
