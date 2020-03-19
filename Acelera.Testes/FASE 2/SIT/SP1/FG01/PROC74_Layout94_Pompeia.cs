@@ -42,12 +42,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        ///  SINISTRO - Importar arquivo com Beneficiário ok
+        ///  Cliente - Importar arquivo com Beneficiário ok
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2561_SINISTRO()
+        public void SAP_2561_Cliente()
         {
         }
 
