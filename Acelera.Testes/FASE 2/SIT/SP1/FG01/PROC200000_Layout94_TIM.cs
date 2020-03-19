@@ -19,13 +19,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Cliente, "2363", "FG01 - PROC200000 - CLIENTE - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200221.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "");
+            AlterarLinha(0,"CD_CONTRATO", "797100057833");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200214.TXT");
+            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200221.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -48,13 +48,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2364", "FG01 - PROC200000 - PARC_EMISSAO - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20191212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "");
-
+            AlterarLinha(0, "CD_CONTRATO", "797100057833");
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20191212.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -64,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.PlanoB);
             ValidarTeste();
         }
 
@@ -77,13 +76,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Comissao, "2365", "FG01 - PROC200000 - EMS_COMISSAO - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200109.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("VERSAO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200214.TXT");
+            SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200109.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -106,13 +105,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.OCRCobranca, "2367", "FG01 - PROC200000 - OCR_COBRANCA - Não Informar versão do layout");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9996-20191227.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1818-20200131.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("VERSAO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20191227.TXT");
+            SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20200131.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
