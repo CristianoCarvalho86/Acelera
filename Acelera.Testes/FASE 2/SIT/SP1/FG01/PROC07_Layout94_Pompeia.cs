@@ -49,7 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2411", "FG01 - PROC7 - No Body do arquivo PARC_EMISSAO não informar valor nos seguintes campos, ou seja, campos em branco, respeitando a tamanho do campos NR_PARCELA CD_CLIENTE VL_JUROS VL_DESCONTO VL_PREMIO_LIQUIDO VL_IOF VL_ADIC_FRACIONADO VL_CUSTO_APOLICE VL_PREMIO_TOTAL VL_TAXA_MOEDA VL_LMI VL_IS VL_PERCENTUAL_COSSEGURO VL_PREMIO_CEDIDO VL_COMISSAO_CEDIDO VL_FRANQUIA ANO_MODELO VL_PERC_FATOR VL_PERC_BONUS TEMPO_HAB CEP_UTILIZACAO CEP_PERNOITE");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_PARCELA", "A");
@@ -68,15 +68,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "VL_PREMIO_CEDIDO", "A");
             AlterarLinha(0, "VL_COMISSAO_CEDIDO", "!!");
             AlterarLinha(0, "VL_FRANQUIA", "A");
-            AlterarLinha(0, "ANO_MODELO", "AAAA");
-            AlterarLinha(0, "VL_PERC_FATOR", "AA");
-            AlterarLinha(0, "VL_PERC_BONUS", "AA");
-            AlterarLinha(0, "TEMPO_HAB", "AA");
-            AlterarLinha(0, "CEP_UTILIZACAO", "AAAA");
-            AlterarLinha(0, "CEP_PERNOITE", "AAAA");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.TXT");
+            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

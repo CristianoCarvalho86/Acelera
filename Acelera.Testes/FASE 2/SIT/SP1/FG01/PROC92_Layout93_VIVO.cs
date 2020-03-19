@@ -48,12 +48,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2270_PARC_EMISSAO_AUTO_VERSAO_9_5()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2270", "FG01 - PROC92 - o Header do arquivo PARC_EMISSAO_AUTO no campo VERSAO informar o código 9.4");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2270", "FG01 - PROC92 - o Header do arquivo PARC_EMISSAO_AUTO no campo VERSAO informar o código 9.5");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "9.4");
+            AlterarHeader("VERSAO", "9.5");
       
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -78,12 +78,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2271_EMS_COMISSAO_VERSAO_9_6()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2271", "FG01 - PROC92 - No Header do arquivo EMS_COMISSAO no campo VERSAO informar o código 9.4");
+            IniciarTeste(TipoArquivo.Comissao, "2271", "FG01 - PROC92 - No Header do arquivo EMS_COMISSAO no campo VERSAO informar o código 9.6");
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "9.4");
+            AlterarHeader("VERSAO", "9.6");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.EMSCMS-EV-/*R*/-20200211.TXT");
@@ -108,12 +108,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2272_OCR_COBRANCA_VERSAO_9_8()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2272", " FG01 - PROC92 - No Header do arquivo OCR_COBRANCA no campo VERSAO informar o código 9.4");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2272", " FG01 - PROC92 - No Header do arquivo OCR_COBRANCA no campo VERSAO informar o código 9.8");
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "9.4");
+            AlterarHeader("VERSAO", "9.8");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.COBRANCA-EV-/*R*/-20200212.TXT");

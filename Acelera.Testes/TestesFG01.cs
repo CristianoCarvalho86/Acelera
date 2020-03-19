@@ -16,7 +16,7 @@ namespace Acelera.Testes
     public class TestesFG01 : TestesFG00
     {
         protected override string NomeFG => "FG01";
-
+        protected bool AoMenosUmComCodigoEsperado = false;
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
@@ -28,7 +28,14 @@ namespace Acelera.Testes
                     lista.Add("PRC_0126");
                     break;
                 case TipoArquivo.ParcEmissao:
+                    lista.Add("PRC_0014");
+                    lista.Add("PRC_0015");
+                    lista.Add("PRC_0126");
+                    lista.Add("PRC_200000");
+                    break;
+
                 case TipoArquivo.ParcEmissaoAuto:
+                    lista.Add("PRC_0008");
                     lista.Add("PRC_0014");
                     lista.Add("PRC_0015");
                     lista.Add("PRC_0126");
@@ -93,7 +100,7 @@ namespace Acelera.Testes
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
             var linhasEncontradas = new List<ILinhaTabela>();
-            if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado))
+            if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{tabela.ObterTexto()}");
             else
                 ExplodeFalha();
@@ -107,6 +114,13 @@ namespace Acelera.Testes
         public void ValidarStages(CodigoStage codigo)
         {
             ValidarStages(tipoArquivoTeste.ObterTabelaEnum(),true,(int)codigo);
+        }
+
+        public void ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado)
+        {
+            AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
+            ValidarStages(tipoArquivoTeste.ObterTabelaEnum(), true, (int)codigo);
+            AoMenosUmComCodigoEsperado = false;
         }
 
         public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)

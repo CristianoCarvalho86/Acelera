@@ -327,7 +327,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarHeader("DT_ARQ", "");
             AlterarHeader("NR_ARQ", "");
             AlterarHeader("NM_BRIDGE", "");
-            SelecionarLinhaParaValidacao(0);
+            AlterarLinha(0, "NR_CNPJ_CPF", "05168329721");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");

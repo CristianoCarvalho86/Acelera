@@ -50,7 +50,9 @@ namespace Acelera.Testes
             logger.Escrever("Valor Atualizado :" + linhaAlterada.ObterTexto());
             logger.FecharBloco();
 
-            AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campo, valorNovo);
+            var campoAlterado = linhaAlterada.ObterCampoDoBanco(campo).Coluna;
+
+            AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
         }
 
         public void AlterarHeader(string campo, string valorNovo, int posicaoLinha = 0)
@@ -98,6 +100,14 @@ namespace Acelera.Testes
             arquivo.ReplicarLinha(posicaoLinha, quantidadeVezes);
             logger.FecharBloco();
             SelecionarLinhaParaValidacao(posicaoLinha, quantidadeVezes);
+        }
+
+        public void AumentarLinhasNoFooter(int quantidadeASomar, int indexFooter = 0)
+        {
+            logger.AbrirBloco($"Alterando QT_LIN no FOOTER.");
+            var valor = int.Parse(arquivo.ObterLinhaFooter(indexFooter).ObterCampoDoArquivo("QT_LIN").Valor);
+            arquivo.AlterarFooter("QT_LIN", (valor + quantidadeASomar).ToString(), indexFooter);
+            logger.AbrirBloco($"FOOTER alterado Valor antigo :{valor} , Valor Novo : {valor + quantidadeASomar}.");
         }
 
         public void ReplicarHeader(int quantidadeVezes , int posicaoLinha = 0)

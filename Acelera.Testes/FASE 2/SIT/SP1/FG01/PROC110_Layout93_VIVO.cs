@@ -23,7 +23,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "NR_CNPJ_CPF", "05168329721");
             ReplicarLinha(0, 3);
+            AumentarLinhasNoFooter(3);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
@@ -36,7 +38,39 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01,true);
+            ValidarTabelaDeRetorno("110");
+            ValidarTeste();
+        }
+
+        /// <summary>
+        /// No arquivo CLIENTE repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_2204_1_CLIENTE_3xBody()
+        {
+            IniciarTeste(TipoArquivo.Cliente, "2204", "FG01 - PROC110 - No arquivo CLIENTE repetir 3x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "NR_CNPJ_CPF", "111111111");
+            ReplicarLinha(0, 3);
+            AumentarLinhasNoFooter(3);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.RecusadoNaFG01, true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }
@@ -54,6 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 3);
+            AumentarLinhasNoFooter(3);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -66,7 +101,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01,true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }
@@ -84,7 +119,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 3);
-
+            AumentarLinhasNoFooter(3);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.EMSCMS-EV-/*R*/-20200211.TXT");
 
@@ -114,7 +149,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 3);
-
+            AumentarLinhasNoFooter(3);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.COBRANCA-EV-/*R*/-20200211.TXT");
 
