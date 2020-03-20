@@ -9,49 +9,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
     [TestClass]
     public class PROC200000_Layout94_TIM : TestesFG01
     {
-
-        /// <summary>
-        /// CLIENTE - Não Informar versão do layout
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2363_CLIENTE_SemVersao_layout()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "2363", "FG01 - PROC200000 - CLIENTE - Não Informar versão do layout");
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200221.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0,"CD_CONTRATO", "797100057833");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200221.TXT");
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTeste();
-        }
-
         /// <summary>
         /// PARC_EMISSAO - Não Informar versão do layout
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2364_PARC_EMISSAO_SemVersao_layout()
+        public void SAP_2364_PARC_EMISSAO_PlanoB()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2364", "FG01 - PROC200000 - PARC_EMISSAO - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2364", "FG01 - PROC200000 - PARC_EMISSAO - Testar Plano B para PARC_EMISSAO");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20191212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_CONTRATO", "797100057833");
+            AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20191212.TXT");
 
@@ -74,12 +44,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2365_EMS_COMISSAO_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2365", "FG01 - PROC200000 - EMS_COMISSAO - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.Comissao, "2365", "FG01 - PROC200000 - EMS_COMISSAO - Testar PlanoB");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200109.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "");
+            AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200109.TXT");
@@ -103,12 +73,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2366_OCR_COBRANCA_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2367", "FG01 - PROC200000 - OCR_COBRANCA - Não Informar versão do layout");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2367", "FG01 - PROC200000 - OCR_COBRANCA - Testar Plano B");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1818-20200131.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "");
+            AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20200131.TXT");

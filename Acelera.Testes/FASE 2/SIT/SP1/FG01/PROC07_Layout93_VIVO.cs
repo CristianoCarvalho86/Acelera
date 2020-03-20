@@ -146,22 +146,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "A");
-            AlterarLinha(0, "CD_AVISO", "A");
-            AlterarLinha(0, "CD_RAMO", "A");
-            AlterarLinha(0, "CD_CLIENTE", "A");
-            AlterarLinha(0, "CD_MOVIMENTO", "A");
-            AlterarLinha(0, "VL_MOVIMENTO", "A");
-            AlterarLinha(0, "VL_TAXA_PAGTO", "A");
-            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "A");
-            AlterarLinha(0, "CD_BANCO_SEG", "A");
-            AlterarLinha(0, "NR_AGENCIA_SEG", "A");
-            AlterarLinha(0, "NR_CONTA_SEG", "A");
-            AlterarLinha(0, "NR_SEQ_MOV", "A");
-            AlterarLinha(0, "VL_CEDIDO", "A");
-            AlterarLinha(0, "CD_BANCO", "A");
-            AlterarLinha(0, "NR_AGENCIA", "A");
-            AlterarLinha(0, "NR_CONTA", "A");
+            AlterarLinha(0, "NR_PARCELA", "A");
+            AlterarLinha(0, "CD_OCORRENCIA", "A");
+            AlterarLinha(0, "VL_DESCONTO", "A");
+            AlterarLinha(0, "VL_PREMIO_PAGO", "A");
+            AlterarLinha(0, "VL_MULTA", "$1");
+            AlterarLinha(0, "VL_IOF_RETIDO", "*");
+            AlterarLinha(0, "VL_ADC_FRC", "@!");
+            AlterarLinha(0, "VL_ADC_FRC_DVI", "!");
+            AlterarLinha(0, "VL_MULTA_DEVIDO", ",");
+            AlterarLinha(0, "VL_JUROS_COBRADO", ",");
+            AlterarLinha(0, "VL_JUROS_DEVIDO", "A");
+            AlterarLinha(0, "VL_DIF_PREMIO", "A");
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -178,17 +174,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("7");
             ValidarTeste();
-        }
-
-        /// <summary>
-        /// No Body do arquivo LANCTO_COMISSAO não informar valor nos seguintes campos, ou seja, campos em branco, respeitando a tamanho do campos 
-        /// NR_PARCELA CD_OCORRENCIA VL_DESCONTO VL_PREMIO_PAGO VL_MULTA VL_IOF_RETIDO VL_ADC_FRC VL_ADC_FRC_DVI VL_MULTA_DEVIDO VL_JUROS_COBRADO VL_JUROS_DEVIDO VL_DIF_PREMIO
-        /// </summary>
-        [Ignore]
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2414_LANCTO_COMISSAO_SemCampoNum_Header_Body_Trailler()
-        {
         }
 
         /// <summary>

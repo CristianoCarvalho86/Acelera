@@ -147,5 +147,35 @@ namespace Acelera.Testes
                 localDoErro += "Validação da Tabela de Retorno" + ";";
             }
         }
+
+        public string ObterContratoPlanoB()
+        {
+            List<string> contratos = new List<string>();
+            contratos.Add("797100080017");
+            contratos.Add("797100057833");
+            contratos.Add("797100081000");
+            contratos.Add("797100091793");
+            contratos.Add("797100076022");
+            contratos.Add("797100117528");
+            contratos.Add("797100109524");
+            contratos.Add("797100115144");
+            contratos.Add("797100185781");
+            contratos.Add("797100034609");
+            contratos.Add("797100051107");
+            contratos.Add("797100054693");
+            contratos.Add("797100074423");
+            contratos.Add("797100074556");
+            contratos.Add("797100066644");
+            contratos.Add("797100022581");
+            contratos.Add("797700335243");
+            contratos.Add("797100025590");
+            contratos.Add("797700358855");
+            contratos.Add("797100037587");
+            var r = new Random();
+            var contrato = contratos[r.Next(0, contratos.Count - 1)];
+            logger.EscreverBloco($"CONTRATO USADO PARA PLANO B : {contrato}");
+            return contrato;
+
+        }
     }
 }

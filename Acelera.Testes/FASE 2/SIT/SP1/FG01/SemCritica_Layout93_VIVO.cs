@@ -43,16 +43,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        /// LANCTO_COMISSAO - Sem Critica
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_9005_SemCritica_LANCTO_COMISSAO()
-        {
-            //------------------------------------------------SEM MASSA------------------------------------------------------------------
-        }
-
-        /// <summary>
         /// OCR_COBRANCA - Sem Critica
         /// </summary>
         [TestMethod]
@@ -129,7 +119,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_CNPJ_CPF", "17077754782");
+            AlterarLinha(0, "NR_CNPJ_CPF", "05168329721");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT");

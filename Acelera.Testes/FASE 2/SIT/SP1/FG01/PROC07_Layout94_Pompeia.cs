@@ -133,22 +133,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1694-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "A");
-            AlterarLinha(0, "CD_AVISO", "A");
-            AlterarLinha(0, "CD_RAMO", "!");
-            AlterarLinha(0, "CD_CLIENTE", ",");
-            AlterarLinha(0, "CD_MOVIMENTO", "A");
-            AlterarLinha(0, "VL_MOVIMENTO", "A");
-            AlterarLinha(0, "VL_TAXA_PAGTO", ",");
-            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "!");
-            AlterarLinha(0, "CD_BANCO_SEG", ",");
-            AlterarLinha(0, "NR_AGENCIA_SEG", ",");
-            AlterarLinha(0, "NR_CONTA_SEG", ",");
-            AlterarLinha(0, "NR_SEQ_MOV", ",");
-            AlterarLinha(0, "VL_CEDIDO", ",");
-            AlterarLinha(0, "CD_BANCO", ",");
-            AlterarLinha(0, "NR_AGENCIA", ",");
-            AlterarLinha(0, "NR_CONTA", "A");
+            AlterarLinha(0, "NR_PARCELA", "A");
+            AlterarLinha(0, "CD_OCORRENCIA", "A");
+            AlterarLinha(0, "VL_DESCONTO", "A");
+            AlterarLinha(0, "VL_PREMIO_PAGO", "A");
+            AlterarLinha(0, "VL_MULTA", "$1");
+            AlterarLinha(0, "VL_IOF_RETIDO", "*");
+            AlterarLinha(0, "VL_ADC_FRC", "@!");
+            AlterarLinha(0, "VL_ADC_FRC_DVI", "!");
+            AlterarLinha(0, "VL_MULTA_DEVIDO", ",");
+            AlterarLinha(0, "VL_JUROS_COBRADO", ",");
+            AlterarLinha(0, "VL_JUROS_DEVIDO", "A");
+            AlterarLinha(0, "VL_DIF_PREMIO", "A");
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -180,16 +176,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_PARCELA", "A");
-            AlterarLinha(0, "VL_DESCONTO", "A");
-            AlterarLinha(0, "VL_PREMIO_PAGO", "!,");
-            AlterarLinha(0, "VL_MULTA", "!,");
-            AlterarLinha(0, "VL_IOF_RETIDO", "A");
-            AlterarLinha(0, "VL_ADC_FRC", "!A");
-            AlterarLinha(0, "VL_ADC_FRC_DVI", "A");
-            AlterarLinha(0, "VL_MULTA_DEVIDO", "A");
-            AlterarLinha(0, "VL_JUROS_COBRADO", "A");
-            AlterarLinha(0, "VL_JUROS_DEVIDO", "A");
-            AlterarLinha(0, "VL_DIF_PREMIO", "A");
+            AlterarLinha(0, "CD_EXTRATO_COMISSAO", "A");
+            AlterarLinha(0, "CD_LANCAMENTO", "A");
+            AlterarLinha(0, "VL_COMISSAO_PAGO", "A");
+            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
@@ -216,14 +206,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Sinistro, "2415", "FG01 - PROC7 - No Body do arquivo SINISTRO não informar valor nos seguintes campos, ou seja, campos em branco, respeitando a tamanho do campos NR_PARCELA CD_EXTRATO_COMISSAO CD_LANCAMENTO VL_COMISSAO_PAGO CD_TIPO_LANCAMENTO");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_PARCELA", "A,");
-            AlterarLinha(0, "CD_EXTRATO_COMISSAO", "A");
-            AlterarLinha(0, "CD_LANCAMENTO", "A");
-            AlterarLinha(0, "VL_COMISSAO_PAGO", "A");
-            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "A");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "A");
+            AlterarLinha(0, "CD_AVISO", "A");
+            AlterarLinha(0, "CD_RAMO", "A");
+            AlterarLinha(0, "CD_CLIENTE", "A");
+            AlterarLinha(0, "CD_MOVIMENTO", "A");
+            AlterarLinha(0, "VL_MOVIMENTO", "A");
+            AlterarLinha(0, "VL_TAXA_PAGTO", "A");
+            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "A");
+            AlterarLinha(0, "CD_BANCO_SEG", "A");
+            AlterarLinha(0, "NR_AGENCIA_SEG", "A");
+            AlterarLinha(0, "NR_SEQ_MOV", "A");
+            AlterarLinha(0, "VL_CEDIDO", "A");
+            AlterarLinha(0, "CD_BANCO", "A");
+            AlterarLinha(0, "NR_AGENCIA", "A");
+            AlterarLinha(0, "NR_CONTA", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");
