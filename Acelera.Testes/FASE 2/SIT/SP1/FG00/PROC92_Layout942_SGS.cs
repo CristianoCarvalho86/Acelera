@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class PROC92_Layout942_SGS : TestesFG01
+    public class PROC92_Layout942_SGS : TestesFG00
     {
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2293_SINISTRO_VERSAO_9()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2293", "FG01 - PROC92 - No Header do arquivo SINISTRO no campo VERSAO informar o código 9");
+            IniciarTeste(TipoArquivo.Sinistro, "2293", "FG00 - PROC92 - No Header do arquivo SINISTRO no campo VERSAO informar o código 9");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
@@ -27,16 +27,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");
 
-            //VALIDAR NA FG00
-            ValidarFG00();
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
+            //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarControleArquivo("Versao layout informada nï¿½o existente");
             ValidarTabelaDeRetorno("92");
+            ValidarStages(false);
             ValidarTeste();
         }
 

@@ -126,7 +126,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2587_PSINISTRO()
+        public void SAP_2587_SINISTRO()
         {
         }
     }
