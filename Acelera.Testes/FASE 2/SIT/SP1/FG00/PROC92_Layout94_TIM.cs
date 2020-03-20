@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class PROC92_Layout94_TIM : TestesFG01
+    public class PROC92_Layout94_TIM : TestesFG00
     {
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2354_CLIENTE_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2354", "FG01 - PROC92 - No Header do arquivo CLIENTE no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.Cliente, "2354", "FG00 - PROC92 - No Header do arquivo CLIENTE no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
 
@@ -28,16 +28,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT");
 
-            //VALIDAR NA FG00
-            ValidarFG00();
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG01
+            //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarControleArquivo("Versao layout informada nï¿½o existente");
             ValidarTabelaDeRetorno("92");
+            ValidarStages(false);
             ValidarTeste();
         }
 
@@ -48,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2355_PARC_EMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2355", "FG01 - PROC92 - No Header do arquivo PARC_EMISSAO no campo VERSAO não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2355", "FG00 - PROC92 - No Header do arquivo PARC_EMISSAO no campo VERSAO não informar valor");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
 
@@ -58,16 +56,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
 
-            //VALIDAR NA FG00
-            ValidarFG00();
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-
-            //VALIDAR NA FG01
+            //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarControleArquivo("Versao layout informada nï¿½o existente");
             ValidarTabelaDeRetorno("92");
+            ValidarStages(false);
             ValidarTeste();
         }
 
@@ -78,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2356_EMS_COMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2356", " FG01 - PROC92 - No Header do arquivo EMS_COMISSAO no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "2356", " FG00 - PROC92 - No Header do arquivo EMS_COMISSAO no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213.txt"));
 
@@ -88,16 +84,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT");
 
-            //VALIDAR NA FG00
-            ValidarFG00();
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Comissao.ObterTexto());
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
-
-            //VALIDAR NA FG01
+            //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarControleArquivo("Versao layout informada nï¿½o existente");
             ValidarTabelaDeRetorno("92");
+            ValidarStages(false);
             ValidarTeste();
         }
 
@@ -108,7 +102,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2357_OCR_COBRANCA_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2357", "FG01 - PROC92 - No Header do arquivo OCR_COBRANCA no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2357", "FG00 - PROC92 - No Header do arquivo OCR_COBRANCA no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9995-20191229.txt"));
 
@@ -118,16 +112,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT");
 
-            //VALIDAR NA FG00
-            ValidarFG00();
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.OCRCobranca.ObterTexto());
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
-
-            //VALIDAR NA FG01
+            //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarControleArquivo("Versao layout informada nï¿½o existente");
             ValidarTabelaDeRetorno("92");
+            ValidarStages(false);
             ValidarTeste();
         }
 
@@ -138,7 +130,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2357_LANCTO_COMISSAO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2357", " FG01 - PROC92 - No Header do arquivo LANCTO_COMISSAO no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.LanctoComissao, "2357", " FG00 - PROC92 - No Header do arquivo LANCTO_COMISSAO no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
@@ -148,16 +140,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
 
-            //VALIDAR NA FG00
-            ValidarFG00();
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.LanctoComissao.ObterTexto());
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
-
-            //VALIDAR NA FG01
+            //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarControleArquivo("Versao layout informada nï¿½o existente");
             ValidarTabelaDeRetorno("92");
+            ValidarStages(false);
             ValidarTeste();
         }
 
@@ -168,7 +158,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2358_SINISTRO_SemVERSAO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2358", "FG01 - PROC92 - No Header do arquivo SINISTRO no campo VERSAO informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "2358", "FG00 - PROC92 - No Header do arquivo SINISTRO no campo VERSAO informar valor");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
 
@@ -178,16 +168,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
 
-            //VALIDAR NA FG00
-            ValidarFG00();
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(FG00_Tarefas.Sinistro.ObterTexto());
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG01
+            //VALIDAR NO BANCO A ALTERACAO
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarControleArquivo("Versao layout informada nï¿½o existente");
             ValidarTabelaDeRetorno("92");
+            ValidarStages(false);
             ValidarTeste();
         }
 

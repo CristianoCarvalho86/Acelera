@@ -40,7 +40,38 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarTabelaDeRetorno("8");
             ValidarTeste();
         }
-   
+
+        /// <summary>
+        ///No Body do arquivo PARC_EMISSAO_AUTO nos campos abaixo informado o código 1234567 respeitando a tamanho do campos: EN_CEP
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_2258_PARC_EMISSAO_AUTO_CEPInv()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2258", "FG01 - PROC8 - No Body do arquivo PARC_EMISSAO_AUTO nos campos abaixo informado o código 1234567 respeitando a tamanho do campos: EN_CEP");
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "CEP_UTILIZACAO", "1234567");
+            AlterarLinha(0, "CEP_PERNOITE", "1234567");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarTabelaDeRetorno("8");
+            ValidarTeste();
+        }
+
 
         /// <summary>
         /// Importar arquivo com CEP em formato válido
