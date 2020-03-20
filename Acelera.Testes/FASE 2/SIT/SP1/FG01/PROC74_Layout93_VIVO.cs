@@ -19,13 +19,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Cliente, "2268", "FG01 - PROC74 - CLIENTE - Não informar CD_CLIENTE");
             arquivo = new Arquivo_Layout_9_3_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1819-20200201.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CLIENTE", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT");
+            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200201.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

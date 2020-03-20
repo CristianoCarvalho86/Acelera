@@ -19,13 +19,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2421", "FG01 - PROC15 - No Body do arquivo PARC_EMISSAO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: ID_TRANSACAO_CANC");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1976-20200228.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT");
+            SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200228.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

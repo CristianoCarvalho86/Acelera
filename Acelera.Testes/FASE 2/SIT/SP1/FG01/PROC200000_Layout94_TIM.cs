@@ -34,6 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.PlanoB);
+            ValidarTabelaDeRetorno();
             ValidarTeste();
         }
 
@@ -42,7 +43,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2365_EMS_COMISSAO_SemVersao_layout()
+        public void SAP_2365_EMS_COMISSAO_PlanoB()
         {
             IniciarTeste(TipoArquivo.Comissao, "2365", "FG01 - PROC200000 - EMS_COMISSAO - Testar PlanoB");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();

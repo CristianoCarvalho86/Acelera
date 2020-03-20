@@ -63,7 +63,6 @@ namespace Acelera.Testes
             lista.Add("PRC_0005");
             lista.Add("PRC_0006");
             lista.Add("PRC_0007");
-            lista.Add("PRC_0092");
 
             return lista;
         }
@@ -107,8 +106,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                sucessoDoTeste = false;
-                localDoErro += $"Validação das Stage : {tabela.ObterTexto()} ; ";
+                TratarErro($"FG01: Validação da Stage : {tabela.ObterTexto()}");
             }
         }
         public void ValidarStages(CodigoStage codigo)
@@ -142,9 +140,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                logger.EscreverBloco("Houve um erro no teste na Tabela de Retorno");
-                sucessoDoTeste = false;
-                localDoErro += "Validação da Tabela de Retorno" + ";";
+                TratarErro($"FG01: Validação da Tabela Retorno");
             }
         }
 

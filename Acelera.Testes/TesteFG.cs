@@ -58,10 +58,7 @@ namespace Acelera.Testes
             }
             catch(Exception ex)
             {
-                if(ex is AssertFailedException)     
-                    logger.EscreverBloco("Houve um erro no teste de LogProcessamento");
-                sucessoDoTeste = false;
-                localDoErro += "Validação da LogProcessamento; ";
+                TratarErro("Validação da LogProcessamento");
             }
         }
 
@@ -108,6 +105,13 @@ namespace Acelera.Testes
         {
             if (!sucessoDoTeste)
                 throw new Exception("Exceção encontrada no fim do teste : " + localDoErro);
+        }
+
+        protected void TratarErro(string erro)
+        {
+            logger.EscreverBloco("Houve um erro no teste -> " + erro);
+            sucessoDoTeste = false;
+            localDoErro += erro + ";";
         }
 
         [TestCleanup]

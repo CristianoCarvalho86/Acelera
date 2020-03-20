@@ -69,9 +69,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                logger.EscreverBloco("Houve um erro no teste de ControleArquivo");
-                sucessoDoTeste = false;
-                localDoErro += "Validação da Controle Arquivo ; ";
+                TratarErro($"FG00: Validação da ControleArquivo");
             }
         }
 
@@ -94,9 +92,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                logger.EscreverBloco("Houve um erro no teste de Stages");
-                sucessoDoTeste = false;
-                localDoErro += "Validação da Stage : " + tabela.ObterTexto() + "; ";
+                TratarErro($"FG00: Validação da Stage : {tabela.ObterTexto()}");
             }
 
             if (sucessoDoTeste == false)
@@ -121,9 +117,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                logger.EscreverBloco("Houve um erro no teste na Tabela de Retorno");
-                sucessoDoTeste = false;
-                localDoErro += "Validação da Tabela de Retorno." + ";";
+                TratarErro("FG00: Validação da Tabela de Retorno");
             }
         }
 
@@ -152,6 +146,7 @@ namespace Acelera.Testes
             lista.Add("PRC_0004_IMP");
             lista.Add("PRC_0100_IMP");
             lista.Add("PRC_0095_IMP");
+            lista.Add("PRC_0092_IMP");
             lista.Add("PRC_0401_IMP");
             return lista;
         }
