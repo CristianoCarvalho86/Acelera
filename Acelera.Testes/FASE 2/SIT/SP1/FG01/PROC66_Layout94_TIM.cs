@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 {
     [TestClass]
-    public class PROC74_Layout94_TIM : TestesFG01
+    public class PROC66_Layout94_TIM : TestesFG01
     {
 
         /// <summary>
@@ -40,13 +40,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             ValidarTeste();
         }
 
+
         /// <summary>
-        ///   SINISTRO - Importar arquivo com Beneficiário ok
+        ///  SINISTRO - Importar arquivo com Beneficiário ok
         /// </summary>
         [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2556_SINISTRO()
+        public void SAP_2560_SINISTRO()
         {
         }
 
