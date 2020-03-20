@@ -77,7 +77,7 @@ namespace Acelera.Data
             return table.Copy();
         }
 
-        public void Execute(string sql)
+        public int Execute(string sql)
         {
             if (Conn.State == ConnectionState.Closed)
             {
@@ -87,13 +87,14 @@ namespace Acelera.Data
             {
                 command = new HanaCommand(sql);
                 command.Connection = Conn;
-                command.ExecuteNonQuery();
+                return command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 if(!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL"))
                 throw new Exception("ERRO AO EXECUTAR : " + ex.ToString());
             }
+            return 999;
         }
 
         public void GeraAdapter(string sql)

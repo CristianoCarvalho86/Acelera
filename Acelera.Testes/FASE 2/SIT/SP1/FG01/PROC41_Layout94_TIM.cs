@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Cliente, "2348", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com 8 dígitos");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200219.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_CNPJ_CPF", "1234567808");
@@ -49,7 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Cliente, "2349", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CNPJ com dígito verificador inválido");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200219.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "NR_CNPJ_CPF", "12345678910");
@@ -78,13 +78,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2350", "FG01 - PROC41 - No Body do arquivo PARC_EMISSAO não informar valor no(s) seguinte(s) campo(s), ou seja, campos em branco, respeitando a tamanho do campos: NR_CNPJ_CPF");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20191210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_CNPJ_CPF", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20191210.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

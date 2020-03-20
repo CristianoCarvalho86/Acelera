@@ -97,7 +97,10 @@ namespace Acelera.Testes
             try
             {
                 Thread.Sleep(15000);
-                helper.Execute($"START TASK HDIQAS_1.{taskName}");
+                var comando = $"START TASK HDIQAS_1.{taskName}";
+                logger.EscreverBloco($"EXECUTANDO TAREFA : '{taskName}'");
+                var retorno = helper.Execute(comando);
+                logger.EscreverBloco($"RESULTADO DA TAREFA : '{retorno}'");
             }
             catch (Exception ex)
             {

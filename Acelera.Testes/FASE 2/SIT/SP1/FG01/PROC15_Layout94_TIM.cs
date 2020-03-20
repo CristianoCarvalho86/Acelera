@@ -23,6 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "ID_TRANSACAO_CANC", "1234567");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT");

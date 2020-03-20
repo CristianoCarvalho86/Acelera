@@ -63,7 +63,6 @@ namespace Acelera.Testes
             lista.Add("PRC_0005");
             lista.Add("PRC_0006");
             lista.Add("PRC_0007");
-            lista.Add("PRC_0092");
 
             return lista;
         }
@@ -107,8 +106,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                sucessoDoTeste = false;
-                localDoErro += $"Validação das Stage : {tabela.ObterTexto()} ; ";
+                TratarErro($"FG01: Validação da Stage : {tabela.ObterTexto()}");
             }
         }
         public void ValidarStages(CodigoStage codigo)
@@ -142,10 +140,38 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                logger.EscreverBloco("Houve um erro no teste na Tabela de Retorno");
-                sucessoDoTeste = false;
-                localDoErro += "Validação da Tabela de Retorno" + ";";
+                TratarErro($"FG01: Validação da Tabela Retorno");
             }
+        }
+
+        public string ObterContratoPlanoB()
+        {
+            List<string> contratos = new List<string>();
+            contratos.Add("797100080017");
+            contratos.Add("797100057833");
+            contratos.Add("797100081000");
+            contratos.Add("797100091793");
+            contratos.Add("797100076022");
+            contratos.Add("797100117528");
+            contratos.Add("797100109524");
+            contratos.Add("797100115144");
+            contratos.Add("797100185781");
+            contratos.Add("797100034609");
+            contratos.Add("797100051107");
+            contratos.Add("797100054693");
+            contratos.Add("797100074423");
+            contratos.Add("797100074556");
+            contratos.Add("797100066644");
+            contratos.Add("797100022581");
+            contratos.Add("797700335243");
+            contratos.Add("797100025590");
+            contratos.Add("797700358855");
+            contratos.Add("797100037587");
+            var r = new Random();
+            var contrato = contratos[r.Next(0, contratos.Count - 1)];
+            logger.EscreverBloco($"CONTRATO USADO PARA PLANO B : {contrato}");
+            return contrato;
+
         }
     }
 }

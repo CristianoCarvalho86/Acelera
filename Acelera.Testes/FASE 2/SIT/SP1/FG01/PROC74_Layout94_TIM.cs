@@ -14,23 +14,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2353_CLIENTE_SemCD_CLIENTE()
+        public void SAP_2353_SINISTRO_SemCD_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2353", "FG01 - PROC74 - CLIENTE - Não informar CD_CLIENTE");
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200214.txt"));
+            IniciarTeste(TipoArquivo.Sinistro, "2353", "FG01 - PROC74 - SINISTRO - Não informar CD_CLIENTE");
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0003-20200227.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CLIENTE", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200214.TXT");
+            SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200227.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);

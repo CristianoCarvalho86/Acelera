@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200207.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200109.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -198,6 +198,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno();
             ValidarTeste();
         }
     }
