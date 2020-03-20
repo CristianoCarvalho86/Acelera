@@ -186,11 +186,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
             AlterarLinha(0, "CD_SEGURADORA", "");
-            AlterarLinha(0, "CD_CORRETOR", "");
+            //AlterarLinha(0, "CD_CORRETOR", "");
             AlterarLinha(0, "CD_RAMO", "");
             AlterarLinha(0, "CD_CONTRATO", "");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
-            AlterarLinha(0, "NR_PARCELA", "");
+            AlterarLinha(0, "NR_SEQ_EMISSAO", "");
+            //AlterarLinha(0, "NR_PARCELA", "");
             AlterarLinha(0, "CD_ITEM", "");
   
             //SALVAR O NOVO ARQUIVO ALTERADO

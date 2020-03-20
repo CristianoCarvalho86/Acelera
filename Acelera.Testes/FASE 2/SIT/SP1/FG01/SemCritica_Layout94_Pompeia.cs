@@ -114,13 +114,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1770-20191220.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191220.TXT");
+            SalvarArquivo($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();
@@ -193,6 +193,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno("");
             ValidarTeste();
         }
     }
