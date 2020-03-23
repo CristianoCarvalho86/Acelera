@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Comissao, "2253", "FG01 - PROC7 - No Body do arquivo EMS_COMISSAO não informar valor nos seguintes campos, ou seja, campos em branco, respeitando a tamanho do campos NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM VL_COMISSAO VL_BASE_CALCULO PC_COMISSAO PC_PARTICIPACAO ");
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1821-20200201.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "A");
@@ -117,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "PC_PARTICIPACAO", "A");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.VIVO.EMSCMS-EV-/*R*/-20200201.TXT");
+            SalvarArquivo("C01.VIVO.EMSCMS-EV-/*R*/-20200207.TXT");
 
             //VALIDAR NA FG00
             ValidarFG00();

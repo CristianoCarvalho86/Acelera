@@ -104,11 +104,33 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         ///  Importar arquivo com CPF valido
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2548_CLIENTE()
         {
+       
+            IniciarTeste(TipoArquivo.Cliente, "2263", "FG01 - PROC41 - No Body do arquivo CLIENTE no campo NR_CNPJ_CPF informar CPF com dígito verificador inválido");
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "NR_CNPJ_CPF", "17077754782");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200207.TXT");
+
+            //VALIDAR NA FG00
+            ValidarFG00();
+
+            //Executar FG01
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno("");
+            ValidarTeste();
+
         }
 
     }

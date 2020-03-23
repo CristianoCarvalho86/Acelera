@@ -151,18 +151,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         }
 
         /// <summary>
-        ///  No Header do arquivo SINISTRO no campo VERSAO informar o código 9.4
+        ///  No Header do arquivo SINISTRO no campo VERSAO informar o código 9.9
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2433_SINISTRO_VERSAO_9_4()
+        public void SAP_2433_SINISTRO_VERSAO_9_9()
         {
             IniciarTeste(TipoArquivo.Sinistro, "2433", "FG00 - PROC92 - No Header do arquivo SINISTRO no campo VERSAO informar o código 9.4");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "9.4");
+            AlterarHeader("VERSAO", "9.9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.TXT");
