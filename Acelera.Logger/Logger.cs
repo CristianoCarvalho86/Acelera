@@ -159,7 +159,8 @@ namespace Acelera.Logger
             var nomeAntigo = nomeArquivoLog;
             nomeArquivoLog = (nomeArquivoLog.Remove(nomeArquivoLog.Length - 4, 4) + "-" +
                 (sucessoExecucao ? "SUCESSO" : "FALHA")).Replace("NLOTE", numeroDoLote).Replace("OPERACAO", operacao) + ".txt";
-            File.Move(path + nomeAntigo, path + nomeArquivoLog);
+            if(!File.Exists(path + nomeArquivoLog))
+                File.Move(path + nomeAntigo, path + nomeArquivoLog);
         }
 
         public void CriarCopia(string pastaCopia)

@@ -108,7 +108,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "");
+            AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
@@ -138,7 +138,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("VERSAO", "");
+            AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");

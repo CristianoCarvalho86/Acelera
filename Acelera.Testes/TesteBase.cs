@@ -81,12 +81,20 @@ namespace Acelera.Testes
         protected string ObterArquivoDestinoApenasCriacaoOuValidacao(string _nomeArquivo)
         {
            this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
+
+           if (!string.IsNullOrEmpty(_nomeArquivo))
+           {
+               var dataArquivo = nomeArquivo.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+                nomeArquivo = nomeArquivo.Replace(dataArquivo[3],(dataArquivoParametro + ".TXT"));
+           }
+
            if (arquivo.Header.Count > 0)
                arquivo.AlterarHeader("NR_ARQ", numeroDoTeste);
 
             numeroDoLote = numeroDoTeste;
 
             var path = pastaDestino + nomeArquivo;
+
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;

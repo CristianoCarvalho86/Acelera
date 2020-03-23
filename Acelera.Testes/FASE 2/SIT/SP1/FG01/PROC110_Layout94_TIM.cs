@@ -79,7 +79,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Cliente, "2295", "FG01 - PROC110 - No arquivo CLIENTE repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200226.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 1);

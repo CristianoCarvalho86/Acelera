@@ -18,12 +18,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         public void SAP_2257_CLIENTE_CEPInv()
         {
             IniciarTeste(TipoArquivo.Cliente, "2257", "FG01 - PROC8 - No Body do arquivo CLIENTE nos campos abaixo informado o código 1234567 respeitando a tamanho do campos: EN_CEP");
-            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "EN_CEP", "1234567");
-            AlterarLinha(0, "NR_CNPJ_CPF", "05168329721");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT");

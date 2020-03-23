@@ -101,6 +101,17 @@ namespace Acelera.Testes
             }
         }
 
+        protected string dataArquivoParametro
+        {
+            get
+            {
+                var dataArquivo = ConfigurationManager.AppSettings.Get("DataArquivo");
+                if (string.IsNullOrEmpty(dataArquivo))
+                    return null;
+                return dataArquivo;
+            }
+        }
+
         protected ModoExecucaoEnum ModoExecucao
         {
             get
