@@ -124,7 +124,7 @@ namespace Acelera.Testes
             File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
 
             if(!string.IsNullOrEmpty(pastaLogArquivoCopia))
-                File.Copy(pastaDestino + nomeArquivo, pastaLogArquivoCopia + nomeArquivoDeLog);
+                File.Copy(pathOrigem, pastaLogArquivoCopia + nomeArquivoDeLog);
 
             if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
                 File.Delete(pastaDestino + nomeArquivo);

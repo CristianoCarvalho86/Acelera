@@ -32,11 +32,13 @@ namespace Acelera.Testes
         protected string operacao;
         protected string nomeDoTeste;
         protected string localDoErro = string.Empty;
+        protected string pathOrigem;
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;
             var path = pastaOrigem + nomeArquivo;
             logger.EscreverBloco("Obtendo arquivo origem : " + path);
+            pathOrigem = path;
             return path;
         }
 

@@ -11,36 +11,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
     {
 
         /// <summary>
-        /// CLIENTE - Não informar CD_CLIENTE
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2268_CLIENTE_SemCD_CLIENTE()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "2268", "FG01 - PROC74 - CLIENTE - Não informar CD_CLIENTE");
-            arquivo = new Arquivo_Layout_9_3_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1819-20200201.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_CLIENTE", "");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200201.TXT");
-
-            //VALIDAR NA FG00
-            ValidarFG00();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("74");
-            ValidarTeste();
-        }
-
-        /// <summary>
         ///  SINISTRO - Importar arquivo com Beneficiário ok
         /// </summary>
         [Ignore]
