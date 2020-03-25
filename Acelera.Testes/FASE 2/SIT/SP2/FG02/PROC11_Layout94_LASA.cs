@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_2660_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2660", "FG00 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2660", "FG00 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
