@@ -159,7 +159,7 @@
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout942_SGS.cs" />
-    <Compile Include="FASE 2\TestesFG02.cs" />
+    <Compile Include="TestesFG02.cs" />
     <Compile Include="Layout942.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TesteArquivoOperacoes.cs" />

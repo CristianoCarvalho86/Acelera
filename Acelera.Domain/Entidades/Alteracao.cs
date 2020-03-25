@@ -26,6 +26,11 @@ namespace Acelera.Domain.Entidades
         {
             return Alteracoes.Any(x => x.AlteracaoNula == false);
         }
+
+        public IEnumerable<Alteracao> AlteracoesPorLinha(int linha)
+        {
+            return Alteracoes.Where(x => x.PosicaoDaLinha == linha);
+        }
     }
 
     public class Alteracao
