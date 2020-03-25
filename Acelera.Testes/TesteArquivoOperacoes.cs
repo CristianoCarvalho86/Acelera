@@ -198,7 +198,19 @@ namespace Acelera.Testes
             alteracoes.AdicionaAlteracao(alteracao);
         }
 
-        public void SomarData(string nomeCampo, int posicaoLinha, int diasAdicionados)
+        public string ObterValor(int posicaoLinha, string nomeCampo)
+        {
+            return arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor;
+        }
+
+        public string SomarData(string valorAntigo, int diasAdicionados)
+        {
+            var d = new DateTime(int.Parse(valorAntigo.Substring(0,4)), int.Parse(valorAntigo.Substring(2, 2)), int.Parse(valorAntigo.Substring(4, 2)));
+            d.AddDays(diasAdicionados);
+            return d.ToString("yyyyMMdd");
+        }
+
+        public void SomarData(int posicaoLinha, string nomeCampo, int diasAdicionados)
         {
 
         }
