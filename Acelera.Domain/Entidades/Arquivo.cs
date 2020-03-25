@@ -130,6 +130,11 @@ namespace Acelera.Domain.Layouts
             Linhas = Linhas.TakeWhile(x => x.Index < posicaoLinhaInicial || x.Index > (posicaoLinhaInicial + quantidadeLinhas)).ToList();
         }
 
+        public void RemoverLinhasMenosUma(int posicaoLinhaAManter)
+        {
+            Linhas = Linhas.TakeWhile(x => x.Index == posicaoLinhaAManter).ToList();
+        }
+
         protected abstract void CarregaCamposDoLayout(LinhaArquivo linha);
 
         protected IList<LinhaArquivo> CarregaLinhas(IEnumerable<string> linhas)

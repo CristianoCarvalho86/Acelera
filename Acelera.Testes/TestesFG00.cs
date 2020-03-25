@@ -7,6 +7,7 @@ using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores;
 using Acelera.Testes.Validadores.FG00;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

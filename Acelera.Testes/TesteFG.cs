@@ -1,17 +1,13 @@
 ﻿using Acelera.Domain.Entidades.Consultas;
-using Acelera.Domain.Entidades.TabelaRetorno;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
-using Acelera.Logger;
-using Acelera.Testes.Validadores;
+using Acelera.Testes.DataAccessRep;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acelera.Testes
 {
@@ -40,7 +36,7 @@ namespace Acelera.Testes
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
 
                 var falha = false;
-                if (!Validar(lista.Count, proceduresASeremExecutadas.Count * vezesExecutado, "Quantidade de Procedures executadas"))
+                if (!Validar(lista.Count(), proceduresASeremExecutadas.Count * vezesExecutado, "Quantidade de Procedures executadas"))
                     falha = true;
                 if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
                     falha = true;

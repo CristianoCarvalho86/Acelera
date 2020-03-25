@@ -5,6 +5,7 @@ using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
 using System;
 using System.Collections.Generic;
 using System.Linq;

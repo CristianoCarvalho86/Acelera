@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20191212.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
@@ -51,12 +51,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
+            RemoverTodasAsLinhasMenosUma(0);
+            AlterarFooter("QT_LIN", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200109.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
@@ -80,12 +82,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
+            RemoverTodasAsLinhasMenosUma(0);
+            AlterarFooter("QT_LIN", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20200131.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
@@ -109,12 +113,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
+            RemoverTodasAsLinhasMenosUma(0);
+            AlterarFooter("QT_LIN", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
@@ -144,7 +150,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());

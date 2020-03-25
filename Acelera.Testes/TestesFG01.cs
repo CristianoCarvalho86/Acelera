@@ -72,7 +72,7 @@ namespace Acelera.Testes
             return TestesFG00.ObterProcedures().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
         }
 
-        public void ValidarFG00() 
+        public virtual void ValidarFGsAnteriores() 
         {
             if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;

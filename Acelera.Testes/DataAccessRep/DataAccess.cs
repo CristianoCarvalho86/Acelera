@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes
+namespace Acelera.Testes.DataAccessRep
 {
     public static class DataAccess
     {

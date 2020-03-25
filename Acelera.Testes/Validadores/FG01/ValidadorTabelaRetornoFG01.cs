@@ -4,6 +4,7 @@ using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.TabelaRetorno;
 using Acelera.Domain.Enums;
 using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores.FG00;
 using System;
 using System.Collections.Generic;

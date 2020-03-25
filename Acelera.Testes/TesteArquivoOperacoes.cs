@@ -171,6 +171,14 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
+        public void RemoverTodasAsLinhasMenosUma(int posicaoAManter)
+        {
+            logger.AbrirBloco($"Alterando arquivo - removendo TODAS as linhas com excecao da {posicaoAManter}");
+            arquivo.RemoverLinhasMenosUma(posicaoAManter);
+            logger.Escrever("Linhas do Body Removidas");
+            logger.FecharBloco();
+        }
+
         public void RemoverTodasAsLinhas()
         {
             logger.AbrirBloco($"Alterando arquivo - removendo TODAS as linhas - Da linha : {0} ate linha : {arquivo.Linhas.Count - 1}");
@@ -188,6 +196,17 @@ namespace Acelera.Testes
             alteracao.DefinirSemHeaderOuFooter(semHeaderOuFooter);
             alteracao.DefinirAlteracaoNomeArquivo(nomeArquivoAlterado);
             alteracoes.AdicionaAlteracao(alteracao);
+        }
+
+        public void SomarData(string nomeCampo, int posicaoLinha, int diasAdicionados)
+        {
+
+        }
+
+
+        public void SomarValor(int posicaoLinha, string nomeCampo, int valorAdicionado)
+        {
+
         }
     }
 }

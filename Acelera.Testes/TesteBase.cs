@@ -114,6 +114,7 @@ namespace Acelera.Testes
             }
             catch (Exception ex)
             {
+                logger.Erro(ex);
                 sucessoDoTeste = false;
                 throw ex;
             }

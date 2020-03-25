@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
@@ -63,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
@@ -95,7 +95,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
@@ -126,7 +126,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
@@ -158,7 +158,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());

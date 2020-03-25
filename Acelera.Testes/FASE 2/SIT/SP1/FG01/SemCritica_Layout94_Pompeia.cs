@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
@@ -92,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
@@ -123,7 +123,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
@@ -154,7 +154,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
@@ -185,7 +185,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());

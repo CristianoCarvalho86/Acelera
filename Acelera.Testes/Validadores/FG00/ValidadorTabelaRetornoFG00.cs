@@ -5,11 +5,10 @@ using Acelera.Domain.Entidades.TabelaRetorno;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Acelera.Testes.Validadores.FG00
 {

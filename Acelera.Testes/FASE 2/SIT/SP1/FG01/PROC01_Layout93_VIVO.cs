@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo("C01.VIVO.CLIENTE-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
@@ -59,7 +59,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo("C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo("C01.VIVO.EMSCMS-EV-/*R*/-20200212.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
@@ -119,7 +119,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SalvarArquivo("C01.VIVO.COBRANCA-EV-/*R*/-20200211.TXT");
 
             //VALIDAR NA FG00
-            ValidarFG00();
+            ValidarFGsAnteriores();
 
             //Executar FG01
             ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
