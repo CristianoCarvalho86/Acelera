@@ -6,55 +6,38 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.Consultas
 {
-    public class Consulta
+
+    public class Consultas
     {
-        protected Dictionary<string, string> Valores { get; set; }
+        protected IList<Consulta> ListaConsultas { get; private set; }
         protected string OrderBy { get; set; }
-
-        public Consulta()
+        public Consultas()
         {
-            Valores = new Dictionary<string, string>();
-        }
-        public void AdicionarConsulta(string campo, string valor)
-        {
-            if(!Valores.Any(x => x.Key == campo))
-                Valores.Add(campo, valor);
+            ListaConsultas = new List<Consulta>();
         }
 
-        public void AdicionarOrderBy(string valor)
-        {
-            OrderBy = valor;
-        }
 
         public virtual string MontarConsulta()
         {
-            var sql = " WHERE (";
-            sql += ObterWhereItens();
-            return sql + ")/*R*/" + OrderBy ;
-        }
-
-        public virtual string AdicionarNovaConsulta(Consulta consulta)
-        {
-            var novaCondicao = $" OR ({consulta.ObterWhereItens()})";
-            var sql = MontarConsulta().Replace("/*R*/", novaCondicao) + "/*R*/";
-            return sql ;
-        }
-
-
-        private string ObterWhereItens()
-        {
-            var sql = string.Empty;
-            foreach (var item in Valores)
+            var sql = " WHERE ";
+            foreach (var consulta in ListaConsultas)
             {
-                var valor = string.Empty;
+                foreach (var item in consulta.Valores)
+                {
+                    sql += "(";
+                    var valor = string.Empty;
                     valor = item.Value.TrimStart();
 
-                if(!string.IsNullOrEmpty(valor))
-                sql += item.Key + $" = '{valor}' AND ";
-                else
-                    sql += item.Key + $" IS NULL AND ";
+                    if (!string.IsNullOrEmpty(valor))
+                        sql += item.Key + $" = '{valor}' AND ";
+                    else
+                        sql += item.Key + $" IS NULL AND ";
+                    sql = sql.Remove(sql.Length - 4);
+                    sql += ") ";
+                }
             }
-            return sql.Remove(sql.Length - 4);
+            sql += OrderBy
+            return sql;
         }
 
         private IList<string> CamposQueNaoModificamZero()
@@ -63,6 +46,37 @@ namespace Acelera.Domain.Entidades.Consultas
             lista.Add("CD_COBERTURA");
             return lista;
         }
+
+    }
+
+    public class Consulta
+    {
+        public Dictionary<string, string> Valores { get; set; }
+
+        public Consulta()
+        {
+            Valores = new Dictionary<string, string>();
+        }
+
+        public Consulta Copy()
+        {
+            var consulta = new Consulta();
+            consulta.Valores = this.Valores;
+            consulta.OrderBy = this.OrderBy;
+            return consulta;
+        }
+
+        public void AdicionarConsulta(string campo, string valor)
+        {
+            if (!Valores.Any(x => x.Key == campo))
+                Valores.Add(campo, valor);
+        }
+
+        public void AdicionarOrderBy(string valor)
+        {
+            OrderBy = valor;
+        }
+
 
         public void ContemCampo(string campo)
         {
