@@ -142,7 +142,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SAP_9011_SemCritica_LANCTO_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "SemCritica_Geral", "FG00 - LANCTO_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.LanctoComissao, "9011", "FG00 - LANCTO_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();

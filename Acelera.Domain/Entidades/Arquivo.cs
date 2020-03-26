@@ -127,7 +127,7 @@ namespace Acelera.Domain.Layouts
 
         public void RemoverLinhas(int posicaoLinhaInicial, int quantidadeLinhas)
         {
-            Linhas = Linhas.TakeWhile(x => x.Index < posicaoLinhaInicial || x.Index > (posicaoLinhaInicial + quantidadeLinhas)).ToList();
+            Linhas = Linhas.TakeWhile(x => x.Index >= posicaoLinhaInicial && x.Index < (posicaoLinhaInicial + quantidadeLinhas)).ToList();
         }
 
         public void RemoverLinhasMenosUma(int posicaoLinhaAManter)
