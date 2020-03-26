@@ -107,7 +107,8 @@ namespace Acelera.Testes
             logger.AbrirBloco($"Alterando QT_LIN no FOOTER.");
             var valor = int.Parse(arquivo.ObterLinhaFooter(indexFooter).ObterCampoDoArquivo("QT_LIN").Valor);
             arquivo.AlterarFooter("QT_LIN", (valor + quantidadeASomar).ToString(), indexFooter);
-            logger.AbrirBloco($"FOOTER alterado Valor antigo :{valor} , Valor Novo : {valor + quantidadeASomar}.");
+            logger.Escrever($"FOOTER alterado Valor antigo :{valor} , Valor Novo : {valor + quantidadeASomar}.");
+            logger.FecharBloco();
         }
 
         public void ReplicarHeader(int quantidadeVezes , int posicaoLinha = 0)
