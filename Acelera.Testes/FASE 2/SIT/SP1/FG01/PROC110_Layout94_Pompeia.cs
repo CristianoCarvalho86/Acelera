@@ -18,12 +18,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         public void SAP_2373_LANCTO_COMISSAO_1xBody()
         {
             IniciarTeste(TipoArquivo.LanctoComissao, "2373", "FG01 - PROC110 - No arquivo LANCTO_COMISSAO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 1);
             AumentarLinhasNoFooter(1);
+            RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
@@ -36,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01, true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }
@@ -85,6 +86,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 1);
             AumentarLinhasNoFooter(1);
+
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
 
@@ -96,7 +99,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01,true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }
@@ -126,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01,true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }
