@@ -31,7 +31,9 @@ namespace Acelera.Testes
             {
                 var consulta = new Consulta();
                 consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-                var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consulta, logger);
+                var consultas = new ConjuntoConsultas();
+                consultas.AdicionarConsulta(consulta);
+                var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consultas, logger);
 
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
 

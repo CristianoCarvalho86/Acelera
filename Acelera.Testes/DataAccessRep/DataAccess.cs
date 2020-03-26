@@ -16,7 +16,7 @@ namespace Acelera.Testes.DataAccessRep
 {
     public static class DataAccess
     {
-        public static IList<T> ChamarConsultaAoBanco<T>(Consulta consulta, MyLogger logger) where T : ILinhaTabela, new()
+        public static IList<T> ChamarConsultaAoBanco<T>(ConjuntoConsultas consulta, MyLogger logger) where T : ILinhaTabela, new()
         {
             var tabela = new Tabela<T>();
             try
@@ -43,7 +43,7 @@ namespace Acelera.Testes.DataAccessRep
         }
 
         [Obsolete]
-        public static IList<T> ChamarConsultaAoBancoViaCMD<T>(Consulta consulta, MyLogger logger) where T : LinhaTabela, new()
+        public static IList<T> ChamarConsultaAoBancoViaCMD<T>(ConjuntoConsultas consultas, MyLogger logger) where T : LinhaTabela, new()
         {
             var tabela = new Tabela<T>();
             try
@@ -52,7 +52,7 @@ namespace Acelera.Testes.DataAccessRep
                 var integracao = new IntegracaoCMD();
                 integracao.AbrirCMD();
 
-                integracao.ExecutarQuery(tabela.ObterQueryParaCMD(consulta));
+                integracao.ExecutarQuery(tabela.ObterQueryParaCMD(consultas));
                 var resultado = integracao.ObterTextoCMD();
                 tabela.ObterRetornoQueryCMD(resultado);
 

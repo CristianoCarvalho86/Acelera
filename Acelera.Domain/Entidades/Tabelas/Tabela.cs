@@ -30,7 +30,7 @@ namespace Acelera.Domain.Entidades.Tabelas
             Linhas.Add(linha);
         }
 
-        public string ObterQuery(Consulta consulta)
+        public string ObterQuery(ConjuntoConsultas consulta)
         {
             var linha = new T();
             var sql = "select ";
@@ -53,7 +53,7 @@ namespace Acelera.Domain.Entidades.Tabelas
         }
 
         [Obsolete("Utilize os metodos de acesso a banco")]
-        public string ObterQueryParaCMD(Consulta consulta)
+        public string ObterQueryParaCMD(ConjuntoConsultas consultas)
         {
             var linha = new T();
             var sql = "select ";
@@ -61,7 +61,7 @@ namespace Acelera.Domain.Entidades.Tabelas
                 sql += $"(CONCAT('{i.Coluna}:',{i.Coluna})) as {i.Coluna},";
             sql = sql.Remove(sql.Length - 1);
             sql += $" from HDIQAS_1.{linha.ObterNomeTabela()} ";
-            sql += consulta.MontarConsulta();
+            sql += consultas.MontarConsulta();
             return sql;
         }
 

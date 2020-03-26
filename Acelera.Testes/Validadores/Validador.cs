@@ -38,28 +38,17 @@ namespace Acelera.Testes.Validadores
 
         }
 
-        protected void AdicionaConsulta(Consultas consultas, AlteracoesArquivo valoresAlterados, bool ehStage)
+        protected void AdicionaConsulta(Consulta consulta, AlteracoesArquivo valoresAlterados, bool ehStage)
         {
-            if (valoresAlterados == null)
-                return;
-
-            var linhasAlteradas = valoresAlterados.LinhasAlteradas();
-            var consultaAtual = new Consulta();
-            foreach (var linha in linhasAlteradas)
-            {
-                var alteracoes = valoresAlterados.AlteracoesPorLinha(linha);
-                foreach (var c in alteracoes)
-                {
+            if (valoresAlterados != null)
+                foreach (var c in valoresAlterados.Alteracoes)
                     foreach (var item in c.CamposAlterados)
                     {
                         var campo = item.Coluna;
                         if (ehStage && campo == "NR_APOLICE")
                             campo = "CD_CONTRATO";
-                        consultaAtual.AdicionarConsulta(campo, item.Valor);
+                        consulta.AdicionarConsulta(campo, item.Valor);
                     }
-                    consultas.AdicionarConsulta(consultaAtual);
-                }
-            }
         }
 
         protected bool ValidarCodigosDeErro(TabelasEnum tabelaDaValidacao ,IList<ILinhaTabela> lista, string colunaMsg,params string[] codigosDeErroEsperados)
@@ -103,23 +92,23 @@ namespace Acelera.Testes.Validadores
 
         }
 
-        protected IList<ILinhaTabela> ObterLinhasParaStage(Consulta consulta)
+        protected IList<ILinhaTabela> ObterLinhasParaStage(ConjuntoConsultas consultas)
         {
             var linhas = new List<ILinhaTabela>();
             if (tabelaEnum == TabelasEnum.Cliente)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaClienteStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaClienteStage>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
             else if (tabelaEnum == TabelasEnum.Comissao)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaComissaoStage>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
             else if (tabelaEnum == TabelasEnum.LanctoComissao)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaLanctoComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaLanctoComissaoStage>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
             else if (tabelaEnum == TabelasEnum.OCRCobranca)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaOCRCobrancaStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaOCRCobrancaStage>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
             else if (tabelaEnum == TabelasEnum.ParcEmissao)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
             else if (tabelaEnum == TabelasEnum.ParcEmissaoAuto)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
             else if (tabelaEnum == TabelasEnum.Sinistro)
-                linhas = DataAccess.ChamarConsultaAoBanco<LinhaSinistroStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaSinistroStage>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
             else
                 throw new Exception("TIPO DE TABELA DE CONSULTA NAO ENCONTRADO.");
 
@@ -161,7 +150,7 @@ namespace Acelera.Testes.Validadores
             return false;
         }
 
-        public abstract Consulta MontarConsulta(TabelasEnum tabela);
+        public abstract ConjuntoConsultas MontarConsulta(TabelasEnum tabela);
 
         public abstract void TratarConsulta(Consulta consulta);
 

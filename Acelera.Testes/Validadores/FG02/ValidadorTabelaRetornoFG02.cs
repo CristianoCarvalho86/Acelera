@@ -14,14 +14,14 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.Validadores.FG01
 {
-    public class ValidadorTabelaRetornoFG01 : ValidadorTabelaRetornoFG00
+    public class ValidadorTabelaRetornoFG02 : ValidadorTabelaRetornoFG01
     {
-        public ValidadorTabelaRetornoFG01(TabelasEnum tabelaEnum, string nomeArquivo, MyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter) 
+        public ValidadorTabelaRetornoFG02(TabelasEnum tabelaEnum, string nomeArquivo, MyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter) 
             : base(tabelaEnum, nomeArquivo, logger, valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter)
         {
         }
 
-        public override Consulta MontarConsulta(TabelasEnum tabela)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
             var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetornoFG01(tabela, nomeArquivo, valoresAlteradosBody);
             return consulta;
@@ -32,9 +32,11 @@ namespace Acelera.Testes.Validadores.FG01
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
             var consulta = MontarConsulta(tabelaEnum);
+            var consultas = new ConjuntoConsultas();
+            consultas.AdicionarConsulta(consulta);
 
             List<ILinhaTabela> linhas;
-            linhas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            linhas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
 
             var qtd = ObterQtdRegistrosDuplicadosDoBody();
             if (qtd == 0)

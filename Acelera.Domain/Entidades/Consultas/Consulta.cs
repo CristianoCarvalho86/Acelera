@@ -7,21 +7,48 @@ using System.Threading.Tasks;
 namespace Acelera.Domain.Entidades.Consultas
 {
 
-    public class Consultas
+    public class ConjuntoConsultas
     {
         protected IList<Consulta> ListaConsultas { get; private set; }
         protected string OrderBy { get; set; }
-        public Consultas()
+        public ConjuntoConsultas()
         {
             ListaConsultas = new List<Consulta>();
         }
 
+        public ConjuntoConsultas(Consulta consulta): base()
+        {
+            ListaConsultas.Add(consulta);
+        }
+
+        public void AdicionarOrderBy(string valor)
+        {
+            OrderBy = valor;
+        }
+
+        public void AdicionarConsulta(Consulta consulta)
+        {
+            ListaConsultas.Add(consulta);
+        }
+
+        public Consulta ObterConsultaUnica()
+        {
+            if (ListaConsultas.Count > 1)
+                throw new Exception("MAIS DE UMA CONSULTA ENCONTRADA.");
+            return ListaConsultas.First();
+        }
 
         public virtual string MontarConsulta()
         {
             var sql = " WHERE ";
+            var primeiro = true;
             foreach (var consulta in ListaConsultas)
             {
+                if (!primeiro)
+                    sql += " OR ";
+                else
+                    primeiro = false;
+
                 foreach (var item in consulta.Valores)
                 {
                     sql += "(";
@@ -36,7 +63,7 @@ namespace Acelera.Domain.Entidades.Consultas
                     sql += ") ";
                 }
             }
-            sql += OrderBy
+            sql += OrderBy;
             return sql;
         }
 
@@ -58,23 +85,10 @@ namespace Acelera.Domain.Entidades.Consultas
             Valores = new Dictionary<string, string>();
         }
 
-        public Consulta Copy()
-        {
-            var consulta = new Consulta();
-            consulta.Valores = this.Valores;
-            consulta.OrderBy = this.OrderBy;
-            return consulta;
-        }
-
         public void AdicionarConsulta(string campo, string valor)
         {
             if (!Valores.Any(x => x.Key == campo))
                 Valores.Add(campo, valor);
-        }
-
-        public void AdicionarOrderBy(string valor)
-        {
-            OrderBy = valor;
         }
 
 
