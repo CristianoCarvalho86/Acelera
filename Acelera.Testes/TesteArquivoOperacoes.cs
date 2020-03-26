@@ -179,6 +179,17 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
+        public void RemoverLinhasExcetoAsPrimeiras(int quantidadeAManter)
+        {
+            logger.AbrirBloco($"Alterando arquivo - diminuindo o arquivo para {quantidadeAManter} linhas");
+            arquivo.RemoverLinhas(quantidadeAManter - 1, arquivo.Linhas.Count - quantidadeAManter);
+            logger.Escrever("Linhas do Body Removidas");
+            logger.Escrever("Ajustar Footer - QT_LIN");
+            arquivo.AlterarFooter("QT_LIN", quantidadeAManter.ToString());
+            logger.Escrever("QT_LIN ajustado.");
+            logger.FecharBloco();
+        }
+
         public void RemoverTodasAsLinhas()
         {
             logger.AbrirBloco($"Alterando arquivo - removendo TODAS as linhas - Da linha : {0} ate linha : {arquivo.Linhas.Count - 1}");
