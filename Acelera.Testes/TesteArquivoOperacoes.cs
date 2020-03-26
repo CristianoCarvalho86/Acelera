@@ -183,7 +183,7 @@ namespace Acelera.Testes
         public void RemoverLinhasExcetoAsPrimeiras(int quantidadeAManter)
         {
             logger.AbrirBloco($"Alterando arquivo - diminuindo o arquivo para {quantidadeAManter} linhas");
-            arquivo.RemoverLinhas(quantidadeAManter - 1, arquivo.Linhas.Count - quantidadeAManter);
+            arquivo.RemoverLinhas(0, quantidadeAManter);
             logger.Escrever("Linhas do Body Removidas");
             logger.Escrever("Ajustar Footer - QT_LIN");
             arquivo.AlterarFooter("QT_LIN", quantidadeAManter.ToString());
