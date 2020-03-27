@@ -241,5 +241,14 @@ namespace Acelera.Testes
 
             return Valor1 + Valor2;
         }
+
+        public string MontarCamposConcatenados(int posicaoLinha, params string[] campos)
+        {
+            var linha = arquivo.ObterLinha(posicaoLinha);
+            var resultado = string.Empty;
+            foreach (var campo in campos)
+                resultado += linha.ObterCampoDoArquivo(campo).Valor;
+            return resultado;
+        }
     }
 }
