@@ -37,7 +37,7 @@ namespace Acelera.Testes.Validadores.FG02
                 var linhasAlteradas = valoresAlteradosBody.LinhasAlteradas();
                 foreach(var linha in linhasAlteradas)
                 {
-                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha();
+                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha);
                 }
                 AdicionaConsulta(consulta, valoresAlteradosBody, true);
             }

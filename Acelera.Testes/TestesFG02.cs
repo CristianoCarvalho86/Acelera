@@ -9,7 +9,7 @@ namespace Acelera.Testes.FASE_2
 {
     public class TestesFG02 : TestesFG01
     {
-        public TabelaParametrosData dados;
+        public TabelaParametrosData dados { get; private set; }
 
         public TestesFG02():base()
         {
