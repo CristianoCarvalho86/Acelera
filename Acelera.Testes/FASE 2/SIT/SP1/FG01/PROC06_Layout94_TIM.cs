@@ -105,19 +105,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// <summary>
         /// No Body do arquivo LANCTO_COMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_PAGAMENTO DT_BAIXA
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2328_LANCTO_COMISSAO_DataInv_Body()
         {
             IniciarTeste(TipoArquivo.LanctoComissao, "2328", "FG01 - PROC6 - No Header do arquivo LANCTO_COMISSAO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_ARQ");
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_PAGAMENTO", "32131234");
             AlterarLinha(0, "DT_BAIXA", "32131234");
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 
