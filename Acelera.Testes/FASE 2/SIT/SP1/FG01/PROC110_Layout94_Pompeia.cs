@@ -22,6 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            RemoverLinhasExcetoAsPrimeiras(100);
             ReplicarLinha(0, 1);
             AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -35,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01, true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }
@@ -82,8 +83,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1694-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            RemoverLinhasExcetoAsPrimeiras(100);
             ReplicarLinha(0, 1);
             AumentarLinhasNoFooter(1);
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
 
@@ -95,7 +98,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01,true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }
@@ -109,9 +112,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Comissao, "2371", "FG01 - PROC110 - No arquivo EMS_COMISSAO repetir 1x o mesmo registro do Body onde o TIPO REGISTRO é igual a 03");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1920-20200208.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1983-20200302.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            RemoverLinhasExcetoAsPrimeiras(100);
             ReplicarLinha(0, 1);
             AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -125,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.RecusadoNaFG01,true);
             ValidarTabelaDeRetorno("110");
             ValidarTeste();
         }

@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_PARCELA", "");
             AlterarLinha(0, "NR_APOLICE", "");
             AlterarLinha(0, "NR_ENDOSSO", "");
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Comissao, "2321", "FG01 - PROC5 - No Body do arquivo COMISSAO não informar valor nos seguintes campos: CD_INTERNO_RESSEGURADOR CD_SEGURADORA CD_CORRETOR CD_RAMO CD_CONTRATO NR_SEQUENCIAL_EMISSAO NR_PARCELA CD_ITEM");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200109.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "");
@@ -69,9 +69,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
             AlterarLinha(0, "NR_PARCELA", "");
             AlterarLinha(0, "CD_ITEM", "");
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200213.TXT");
+            SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200109.TXT");
 
             //VALIDAR NA FG00
             ValidarFGsAnteriores();

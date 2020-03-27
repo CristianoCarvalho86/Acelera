@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Com Critica")]
         public void SAP_2366_OCR_COBRANCA_SemVersao_layout()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2367", "FG01 - PROC200000 - OCR_COBRANCA - Testar Plano B");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2366", "FG01 - PROC200000 - OCR_COBRANCA - Testar Plano B");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1818-20200131.txt"));
 

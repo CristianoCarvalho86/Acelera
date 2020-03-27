@@ -7,21 +7,22 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC11_Layout93_LASA : TestesFG02
+    public class PROC11_Layout94_Softbox : TestesFG02
     {
+
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia
+        /// Informar dt_fim_vigencia 30 dias menor que o dt_inicio_vigencia
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2659_PARC_EMISSAO_AUTO_dt_fim_vigência_Menos1()
+        public void SAP_2663_PARC_EMISSAO_AUTO_dt_fim_vigência_Menos10()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2659", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2663", "FG02 - PROC11 - Informar dt_fim_vigencia 30 dias menor que o dt_inicio_vigencia");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -1));
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -30));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("");
@@ -45,16 +46,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2660_PARC_EMISSAO_semcritica()
+        public void SAP_2664_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2660", "FG00 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2664", "FG00 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            SelecionarLinhaParaValidacao(0);
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), 30));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($""));

@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_PAGAMENTO", "32131234");
             AlterarLinha(0, "DT_BAIXA", "32131234");
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 

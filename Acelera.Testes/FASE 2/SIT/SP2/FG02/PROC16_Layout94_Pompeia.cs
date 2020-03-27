@@ -7,21 +7,23 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC11_Layout93_LASA : TestesFG02
+    public class PROC16_Layout94_Pompeia : TestesFG02
     {
+
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=9
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2659_PARC_EMISSAO_AUTO_dt_fim_vigência_Menos1()
+        public void SAP_2675_PARC_EMISSAO_NR_ENDOsSO_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2659", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2675", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=9");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -1));
+            AlterarLinha(3, "NR_ENDOSSO", "0");
+            AlterarLinha(3, "CD_TIPO_EMISSAO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("");
@@ -35,26 +37,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("11");
+            ValidarTabelaDeRetorno("16");
             ValidarTeste();
 
         }
 
         /// <summary>
-        /// PARC_EMISSAO - Sem Critica
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=CD_SUCURSAL+CD_RAMO+0000001 para CD_TIPO_EMISSAO=5
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2660_PARC_EMISSAO_semcritica()
+        public void SAP_2676_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2660", "FG00 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2676", "FG00 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=CD_SUCURSAL+CD_RAMO+0000001 para CD_TIPO_EMISSAO=5");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            SelecionarLinhaParaValidacao(0);
+            AlterarLinha(3, "NR_ENDOSSO", "");
+            AlterarLinha(3, "CD_TIPO_EMISSAO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($""));

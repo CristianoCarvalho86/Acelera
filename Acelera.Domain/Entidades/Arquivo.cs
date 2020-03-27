@@ -130,6 +130,11 @@ namespace Acelera.Domain.Layouts
             Linhas = Linhas.TakeWhile(x => x.Index < posicaoLinhaInicial || x.Index > (posicaoLinhaInicial + quantidadeLinhas)).ToList();
         }
 
+        public void RemoverExcetoEstas(int posicaoLinhaInicial, int quantidadeLinhas)
+        {
+            Linhas = Linhas.TakeWhile(x => x.Index >= posicaoLinhaInicial && x.Index < (posicaoLinhaInicial + quantidadeLinhas)).ToList();
+        }
+
         public void RemoverLinhasMenosUma(int posicaoLinhaAManter)
         {
             Linhas = Linhas.TakeWhile(x => x.Index == posicaoLinhaAManter).ToList();

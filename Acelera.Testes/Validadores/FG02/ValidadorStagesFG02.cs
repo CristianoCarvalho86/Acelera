@@ -33,8 +33,14 @@ namespace Acelera.Testes.Validadores.FG02
                 AdicionaConsulta(consulta, valoresAlteradosHeader,true);
 
             if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())
-                AdicionaConsulta(consulta, valoresAlteradosBody,true);
-            
+            {
+                var linhasAlteradas = valoresAlteradosBody.LinhasAlteradas();
+                foreach(var linha in linhasAlteradas)
+                {
+                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha();
+                }
+                AdicionaConsulta(consulta, valoresAlteradosBody, true);
+            }
             consultas.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
 
             return consultas;

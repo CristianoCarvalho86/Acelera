@@ -107,7 +107,8 @@ namespace Acelera.Testes
             logger.AbrirBloco($"Alterando QT_LIN no FOOTER.");
             var valor = int.Parse(arquivo.ObterLinhaFooter(indexFooter).ObterCampoDoArquivo("QT_LIN").Valor);
             arquivo.AlterarFooter("QT_LIN", (valor + quantidadeASomar).ToString(), indexFooter);
-            logger.AbrirBloco($"FOOTER alterado Valor antigo :{valor} , Valor Novo : {valor + quantidadeASomar}.");
+            logger.Escrever($"FOOTER alterado Valor antigo :{valor} , Valor Novo : {valor + quantidadeASomar}.");
+            logger.FecharBloco();
         }
 
         public void ReplicarHeader(int quantidadeVezes , int posicaoLinha = 0)
@@ -179,6 +180,17 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
+        public void RemoverLinhasExcetoAsPrimeiras(int quantidadeAManter)
+        {
+            logger.AbrirBloco($"Alterando arquivo - diminuindo o arquivo para {quantidadeAManter} linhas");
+            arquivo.RemoverExcetoEstas(0, quantidadeAManter);
+            logger.Escrever("Linhas do Body Removidas");
+            logger.Escrever("Ajustar Footer - QT_LIN");
+            arquivo.AlterarFooter("QT_LIN", arquivo.Linhas.Count().ToString());
+            logger.Escrever("QT_LIN ajustado.");
+            logger.FecharBloco();
+        }
+
         public void RemoverTodasAsLinhas()
         {
             logger.AbrirBloco($"Alterando arquivo - removendo TODAS as linhas - Da linha : {0} ate linha : {arquivo.Linhas.Count - 1}");
@@ -219,6 +231,15 @@ namespace Acelera.Testes
         public void SomarValor(int posicaoLinha, string nomeCampo, int valorAdicionado)
         {
 
+        }
+
+        public int SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
+        {
+            var linha = arquivo.ObterLinha(posicaoLinha);
+            if (!int.TryParse(linha.ObterCampoDoArquivo(campo1).Valor, out int Valor1) || !int.TryParse(linha.ObterCampoDoArquivo(campo1).Valor, out int Valor2))
+                throw new Exception("VALOR DOS CAMPOS A SEREM SOMADOS PRECISA SER INTEIRO");
+
+            return Valor1 + Valor2;
         }
     }
 }
