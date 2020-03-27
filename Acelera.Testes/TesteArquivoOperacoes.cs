@@ -232,5 +232,14 @@ namespace Acelera.Testes
         {
 
         }
+
+        public int SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
+        {
+            var linha = arquivo.ObterLinha(posicaoLinha);
+            if (!int.TryParse(linha.ObterCampoDoArquivo(campo1).Valor, out int Valor1) || !int.TryParse(linha.ObterCampoDoArquivo(campo1).Valor, out int Valor2))
+                throw new Exception("VALOR DOS CAMPOS A SEREM SOMADOS PRECISA SER INTEIRO");
+
+            return Valor1 + Valor2;
+        }
     }
 }
