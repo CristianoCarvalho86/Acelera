@@ -186,7 +186,7 @@ namespace Acelera.Testes
             arquivo.RemoverExcetoEstas(0, quantidadeAManter);
             logger.Escrever("Linhas do Body Removidas");
             logger.Escrever("Ajustar Footer - QT_LIN");
-            arquivo.AlterarFooter("QT_LIN", quantidadeAManter.ToString());
+            arquivo.AlterarFooter("QT_LIN", arquivo.Linhas.Count().ToString());
             logger.Escrever("QT_LIN ajustado.");
             logger.FecharBloco();
         }

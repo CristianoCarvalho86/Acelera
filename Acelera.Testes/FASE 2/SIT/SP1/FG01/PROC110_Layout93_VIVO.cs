@@ -118,6 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            RemoverLinhasExcetoAsPrimeiras(100);
             ReplicarLinha(0, 3);
             AumentarLinhasNoFooter(3);
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -148,6 +149,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            RemoverLinhasExcetoAsPrimeiras(100);
             ReplicarLinha(0, 3);
             AumentarLinhasNoFooter(3);
             //SALVAR O NOVO ARQUIVO ALTERADO

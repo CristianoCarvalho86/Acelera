@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "VL_BASE_CALCULO", "A");
             AlterarLinha(0, "PC_COMISSAO", "A");
             AlterarLinha(0, "PC_PARTICIPACAO", "A");
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
 
@@ -180,7 +180,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             AlterarLinha(0, "CD_LANCAMENTO", "A");
             AlterarLinha(0, "VL_COMISSAO_PAGO", "A");
             AlterarLinha(0, "CD_TIPO_LANCAMENTO", "A");
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
 
