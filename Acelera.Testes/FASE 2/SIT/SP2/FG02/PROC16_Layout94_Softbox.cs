@@ -15,7 +15,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2673_PARC_EMISSAO_NR_APÓLICE_Inv()
+        public void SAP_2673_PARC_EMISSAO_NR_ENDOSSO_Inv()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2673", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=5");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -70,6 +70,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
+            ValidarTabelaDeRetorno(false);
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 

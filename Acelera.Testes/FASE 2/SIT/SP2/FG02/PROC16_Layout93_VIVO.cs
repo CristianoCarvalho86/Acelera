@@ -1,28 +1,29 @@
 ﻿using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
-using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC18_Layout94_LASA : TestesFG02
+    public class PROC16_Layout93_VIVO : TestesFG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345 (16 digitos)
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=5
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2685_PARC_EMISSAO_NR_APÓLICE_Inv()
+        public void SAP_2673_PARC_EMISSAO_NR_ENDOSSO_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2685", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345 (16 digitos)");
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            IniciarTeste(TipoArquivo.ParcEmissao, "2673", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=5");
+            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "NR_APÓLICE", "0123456789012345");
+            AlterarLinha(3, "NR_ENDOSSO", "0");
+            AlterarLinha(3, "CD_TIPO_EMISSAO", "5");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("");
@@ -36,26 +37,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("18");
+            ValidarTabelaDeRetorno("16");
             ValidarTeste();
 
         }
 
         /// <summary>
-        /// Informar no arquivo PARC EMISSAO o campo NR_APÓLICE = 012345678901234 (15 dígitos)
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2686_PARC_EMISSAO_semcritica()
+        public void SAP_2674_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2686", "FG00 - PROC18 - Informar no arquivo PARC EMISSAO o campo NR_APÓLICE = 012345678901234 (15 dígitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2674", "FG00 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(6, "NR_APÓLICE", "012345678901234");
+            AlterarLinha(3, "NR_ENDOSSO", "0");
+            AlterarLinha(3, "CD_TIPO_EMISSAO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($""));
@@ -73,7 +75,5 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
-
-
     }
 }
