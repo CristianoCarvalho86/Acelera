@@ -10,6 +10,37 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     public class PROC11_Layout93_LASA : TestesFG02
     {
         /// <summary>
+        /// Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_2659_PARC_EMISSAO_AUTO_dt_fim_vigência_Menos1()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "2659", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem(""));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -1));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo("");
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno("11");
+            ValidarTeste();
+
+        }
+
+        /// <summary>
         /// PARC_EMISSAO - Sem Critica
         /// </summary>
         [TestMethod]
@@ -36,6 +67,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
+            ValidarTabelaDeRetorno(false);
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 

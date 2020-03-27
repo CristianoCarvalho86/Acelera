@@ -7,22 +7,22 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC11_Layout93_Softbox : TestesFG02
+    public class PROC19_Layout94_Softbox : TestesFG02
     {
 
         /// <summary>
-        /// Informar dt_fim_vigencia 30 dias menor que o dt_inicio_vigencia
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_PROPOSTA=123456
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2663_PARC_EMISSAO_AUTO_dt_fim_vigência_Menos10()
+        public void SAP_2696_PARC_EMISSAO_NR_PROPOSTA_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2663", "FG02 - PROC11 - Informar dt_fim_vigencia 30 dias menor que o dt_inicio_vigencia");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2696", "FG02 - PROC19 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_PROPOSTA=123456");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -30));
+            AlterarLinha(9, "NR_PROPOSTA", "123456");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("");
@@ -36,26 +36,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("11");
+            ValidarTabelaDeRetorno("19");
             ValidarTeste();
 
         }
 
         /// <summary>
-        /// PARC_EMISSAO - Sem Critica
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_PROPOSTA igual ao campo NR_APÓLICE
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2664_PARC_EMISSAO_semcritica()
+        public void SAP_2697_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2664", "FG00 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2697", "FG00 - PROC19 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_PROPOSTA igual ao campo NR_APÓLICE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), 30));
+            AlterarLinha(6, "NR_PROPOSTA", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             arquivo.Salvar(ObterArquivoDestino($""));
@@ -68,9 +68,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
+            ValidarTabelaDeRetorno(false);
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
+        
     }
 }
