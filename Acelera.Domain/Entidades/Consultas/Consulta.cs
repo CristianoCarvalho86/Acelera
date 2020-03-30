@@ -21,6 +21,12 @@ namespace Acelera.Domain.Entidades.Consultas
             ListaConsultas.Add(consulta);
         }
 
+        public ConjuntoConsultas(IList<Consulta> consultas) : this()
+        {
+            foreach(var consulta in consultas)
+                ListaConsultas.Add(consulta);
+        }
+
         public void AdicionarOrderBy(string valor)
         {
             OrderBy = valor;
