@@ -41,17 +41,22 @@ namespace Acelera.Testes.Validadores
         protected void AdicionaConsulta(Consulta consulta, AlteracoesArquivo valoresAlterados, bool ehStage)
         {
             if (valoresAlterados != null)
-                foreach (var c in valoresAlterados.Alteracoes)
-                    foreach (var item in c.CamposAlterados)
-                    {
-                        var campo = item.Coluna;
-                        if (ehStage && campo == "NR_APOLICE")
-                            campo = "CD_CONTRATO";
-                        consulta.AdicionarConsulta(campo, item.Valor);
-                    }
+                foreach (var alteracao in valoresAlterados.Alteracoes)
+                    AdicionaConsulta(consulta, alteracao, ehStage);
         }
 
-        protected bool ValidarCodigosDeErro(TabelasEnum tabelaDaValidacao ,IList<ILinhaTabela> lista, string colunaMsg,params string[] codigosDeErroEsperados)
+        protected void AdicionaConsulta(Consulta consulta, Alteracao valoresAlterados, bool ehStage)
+        {
+            foreach (var item in valoresAlterados.CamposAlterados)
+            {
+                var campo = item.Coluna;
+                if (ehStage && campo == "NR_APOLICE")
+                    campo = "CD_CONTRATO";
+                consulta.AdicionarConsulta(campo, item.Valor);
+            }
+        }
+
+        protected bool ValidarCodigosDeErro(TabelasEnum tabelaDaValidacao, IList<ILinhaTabela> lista, string colunaMsg, params string[] codigosDeErroEsperados)
         {
             var txtErrosEsperados = codigosDeErroEsperados.Length == 0 ? "NENHUM" : codigosDeErroEsperados.ToList().ObterListaConcatenada(", ");
             var txtErrosEncontrados = lista.Select(x => x.ObterPorColuna(colunaMsg).Valor).Distinct().ToList().ObterListaConcatenada(", ");

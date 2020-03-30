@@ -16,7 +16,7 @@ namespace Acelera.Domain.Entidades.Consultas
             ListaConsultas = new List<Consulta>();
         }
 
-        public ConjuntoConsultas(Consulta consulta): base()
+        public ConjuntoConsultas(Consulta consulta) : this()
         {
             ListaConsultas.Add(consulta);
         }
@@ -48,10 +48,10 @@ namespace Acelera.Domain.Entidades.Consultas
                     sql += " OR ";
                 else
                     primeiro = false;
-
+                sql += "(";
                 foreach (var item in consulta.Valores)
                 {
-                    sql += "(";
+                    
                     var valor = string.Empty;
                     valor = item.Value.TrimStart();
 
@@ -59,9 +59,10 @@ namespace Acelera.Domain.Entidades.Consultas
                         sql += item.Key + $" = '{valor}' AND ";
                     else
                         sql += item.Key + $" IS NULL AND ";
-                    sql = sql.Remove(sql.Length - 4);
-                    sql += ") ";
+                    
                 }
+                sql = sql.Remove(sql.Length - 4);
+                sql += ") ";
             }
             sql += OrderBy;
             return sql;
@@ -76,7 +77,7 @@ namespace Acelera.Domain.Entidades.Consultas
 
     }
 
-    public class Consulta
+    public class Consulta : ICloneable
     {
         public Dictionary<string, string> Valores { get; set; }
 
@@ -97,6 +98,12 @@ namespace Acelera.Domain.Entidades.Consultas
             Valores.ContainsKey(campo);
         }
 
-
+        public object Clone()
+        {
+            var consulta = new Consulta();
+            consulta.Valores = this.Valores.ToDictionary(entry => entry.Key,
+                                               entry => entry.Value);
+            return consulta;
+        }
     }
 }

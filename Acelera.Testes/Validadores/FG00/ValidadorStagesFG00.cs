@@ -42,7 +42,7 @@ namespace Acelera.Testes.Validadores.FG00
         public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
 
-            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter(), ExistemLinhasNoArquivo());
+            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter(), ExistemLinhasNoArquivo()).First().Value;
             var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
             if (alteracaoHeader != null)
                 AdicionaConsulta(consulta,valoresAlteradosHeader,true);

@@ -119,12 +119,14 @@ namespace Acelera.Testes
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+            
+            if(ModoExecucao == ModoExecucaoEnum.Completo)
             File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
 
-            if(!string.IsNullOrEmpty(pastaLogArquivoCopia))
+            if(ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(pastaLogArquivoCopia))
                 File.Copy(pathOrigem, pastaLogArquivoCopia + nomeArquivoDeLog);
 
-            if (File.Exists(pastaLogArquivo + nomeArquivoDeLog))
+            if (ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(pastaLogArquivo + nomeArquivoDeLog))
                 File.Delete(pastaDestino + nomeArquivo);
             else
                 logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");

@@ -32,7 +32,7 @@ namespace Acelera.Testes
             AjustarEntradaErros(ref descricaoErroSeHouver);
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            var lista = DataAccess.ChamarConsultaAoBanco<LinhaControleArquivo>(consulta, logger);
+            var lista = DataAccess.ChamarConsultaAoBanco<LinhaControleArquivo>(new ConjuntoConsultas(consulta), logger);
 
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
 
@@ -68,7 +68,7 @@ namespace Acelera.Testes
 
             logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 TratarErro($"FG00: Validação da ControleArquivo");
             }
@@ -101,6 +101,11 @@ namespace Acelera.Testes
         }
 
         public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        {
+            ValidarTabelaDeRetornoFG00(validaQuantidadeErros, codigosDeErroEsperados);
+        }
+
+        public void ValidarTabelaDeRetornoFG00(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;

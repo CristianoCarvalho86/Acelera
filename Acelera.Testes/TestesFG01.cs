@@ -82,7 +82,7 @@ namespace Acelera.Testes
             ChamarExecucao(tipoArquivoTeste.ObterTarefaFG00Enum().ObterTexto());
             ValidarLogProcessamento(true,1, TestesFG00.ObterProcedures());
             ValidarControleArquivo();
-            ValidarTabelaDeRetorno();
+            ValidarTabelaDeRetornoFG00();
             logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             logger.EscreverBloco("Inicio da FG01.");
             ValidarTeste();
@@ -120,8 +120,12 @@ namespace Acelera.Testes
             ValidarStages(tipoArquivoTeste.ObterTabelaEnum(), true, (int)codigo);
             AoMenosUmComCodigoEsperado = false;
         }
-
         public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        {
+            ValidarTabelaDeRetornoFG01(validaQuantidadeErros, codigosDeErroEsperados);
+        }
+
+        public void ValidarTabelaDeRetornoFG01(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;

@@ -14,7 +14,7 @@ namespace Acelera.Testes.FASE_2
     public class TestesFG02 : TestesFG01
     {
         public TabelaParametrosData dados;
-
+        protected override string NomeFG => "FG02";
         public TestesFG02():base()
         {
             dados = new TabelaParametrosData();
@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2
             base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01Enum().ObterTexto());
             base.ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
             base.ValidarStages(CodigoStage.AprovadoNaFG01);
-            base.ValidarTabelaDeRetorno();
+            ValidarTabelaDeRetornoFG01();
             logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             ValidarTeste();
             logger.EscreverBloco("Inicio da FG02.");
@@ -41,6 +41,11 @@ namespace Acelera.Testes.FASE_2
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
             return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
+        }
+
+        public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        {
+            ValidarTabelaDeRetornoFG01(validaQuantidadeErros, codigosDeErroEsperados);
         }
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
@@ -55,7 +60,7 @@ namespace Acelera.Testes.FASE_2
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 var linhasEncontradas = new List<ILinhaTabela>();
-                if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
+                if (validador.ValidarTabelaFG02(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"FG02 - Tabela:{tabela.ObterTexto()}");
                 else
                     ExplodeFalha();
