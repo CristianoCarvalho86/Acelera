@@ -88,6 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            RemoverLinhasExcetoAsPrimeiras(100);
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO

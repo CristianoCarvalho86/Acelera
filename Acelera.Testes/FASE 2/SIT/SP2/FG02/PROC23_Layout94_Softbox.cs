@@ -7,25 +7,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC13_Layout94_LASA : TestesFG02
+    public class PROC23_Layout94_Softbox : TestesFG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)
+        /// Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2687_PARC_EMISSAO_VL_IS_negativo()
+        public void SAP_2712_PARC_EMISSAO_CD_MOEDA_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2712", "FG02 - PROC23 - Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "NR_APÓLICE", "0123456789012345678");
+            AlterarLinha(9, "CD_MOEDA", dados.ObterCDMoeda(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
+            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -36,29 +36,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("13");
+            ValidarTabelaDeRetorno("23");
             ValidarTeste();
 
         }
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS=1
+        /// Informar no campo CD_MOEDA valor parametrizado na tabela TAB_PRM_MOEDA_7030
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2668_PARC_EMISSAO_semcritica()
+        public void SAP_2713_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2668", "FG00 - PROC13 - Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS=1");
-
-            //CARREGAR O ARQUIVO BASE
+            IniciarTeste(TipoArquivo.ParcEmissao, "2713", "FG02 - PROC23 - Informar no campo CD_MOEDA valor parametrizado na tabela TAB_PRM_MOEDA_7030");
+            
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "VL_IS", "1");
+            AlterarLinha(9, "CD_MOEDA", dados.ObterCDMoeda(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
+            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -73,5 +72,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
+        
     }
 }

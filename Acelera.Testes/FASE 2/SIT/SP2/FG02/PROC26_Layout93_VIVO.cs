@@ -7,25 +7,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC13_Layout93_VIVO : TestesFG02
+    public class PROC26_Layout93_VIVO : TestesFG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS = 0.00
+        /// Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2665_PARC_EMISSAO_VL_IS_negativo()
+        public void SAP_2762_PARC_EMISSAO_CD_PRODUTO_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2665", "FG02 - PROC13 - Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS = 0.00");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2762", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "VL_IS", "0.00");
+            AlterarLinha(7, "CD_PRODUTO", dados.ObterProduto(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
+            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -36,29 +36,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("13");
+            ValidarTabelaDeRetorno("26");
             ValidarTeste();
 
         }
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS= 0.01
+        /// Informar no campo CD_PRODUTO valor parametrizado na tabela TAB_PRM_PRODUTO_7003
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2666_PARC_EMISSAO_semcritica()
+        public void SAP_2763_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2666", "FG00 - PROC13 - Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS= 0.01");
-
-            //CARREGAR O ARQUIVO BASE
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2763", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor parametrizado na tabela TAB_PRM_PRODUTO_7003");
+            
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "VL_IS", " 0.01");
+            AlterarLinha(7, "CD_PRODUTO", dados.ObterProduto(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
+            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -73,5 +72,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
+        
     }
 }

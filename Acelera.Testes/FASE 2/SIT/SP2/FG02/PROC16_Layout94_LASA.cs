@@ -19,14 +19,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2677", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=11");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3288-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "NR_ENDOSSO", "0");
             AlterarLinha(3, "CD_TIPO_EMISSAO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("");
+            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200324.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -53,14 +53,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3288-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "NR_ENDOSSO", "0");
             AlterarLinha(3, "CD_TIPO_EMISSAO", "18");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($""));
+            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200324.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

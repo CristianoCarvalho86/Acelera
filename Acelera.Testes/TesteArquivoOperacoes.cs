@@ -217,7 +217,7 @@ namespace Acelera.Testes
 
         public string SomarData(string valorAntigo, int diasAdicionados)
         {
-            var d = new DateTime(int.Parse(valorAntigo.Substring(0,4)), int.Parse(valorAntigo.Substring(2, 2)), int.Parse(valorAntigo.Substring(4, 2)));
+            var d = new DateTime(int.Parse(valorAntigo.Substring(0,4)), int.Parse(valorAntigo.Substring(4, 2)), int.Parse(valorAntigo.Substring(6, 2)));
             d.AddDays(diasAdicionados);
             return d.ToString("yyyyMMdd");
         }

@@ -7,22 +7,22 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC13_Layout94_LASA : TestesFG02
+    public class PROC24_Layout94_LASA : TestesFG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)
+        /// Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2687_PARC_EMISSAO_VL_IS_negativo()
+        public void SAP_2742_PARC_EMISSAO_CD_COBERTURA_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2742", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "NR_APÓLICE", "0123456789012345678");
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
@@ -36,26 +36,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("13");
+            ValidarTabelaDeRetorno("24");
             ValidarTeste();
 
         }
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS=1
+        /// Informar no campo CD_COBERTURA valor parametrizado na tabela TAB_PRM_COBERTURA_7007
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2668_PARC_EMISSAO_semcritica()
+        public void SAP_2743_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2668", "FG00 - PROC13 - Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS=1");
-
-            //CARREGAR O ARQUIVO BASE
+            IniciarTeste(TipoArquivo.ParcEmissao, "2743", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor parametrizado na tabela TAB_PRM_COBERTURA_7007");
+            
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "VL_IS", "1");
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
@@ -73,5 +72,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
+        
     }
 }

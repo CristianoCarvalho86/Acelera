@@ -18,13 +18,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2659", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3321-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("");
+            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200326.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -51,13 +51,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3321-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($""));
+            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200326.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

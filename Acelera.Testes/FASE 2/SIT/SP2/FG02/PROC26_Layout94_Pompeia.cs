@@ -7,25 +7,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC13_Layout94_LASA : TestesFG02
+    public class PROC26_Layout94_Pompeia : TestesFG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)
+        /// Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2687_PARC_EMISSAO_VL_IS_negativo()
+        public void SAP_2764_PARC_EMISSAO_CD_PRODUTO_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2764", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1934-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "NR_APÓLICE", "0123456789012345678");
+            AlterarLinha(9, "CD_PRODUTO", dados.ObterProduto(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -36,29 +36,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("13");
+            ValidarTabelaDeRetorno("26");
             ValidarTeste();
 
         }
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS=1
+        /// Informar no campo CD_PRODUTO valor parametrizado na tabela TAB_PRM_PRODUTO_7003
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2668_PARC_EMISSAO_semcritica()
+        public void SAP_2765_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2668", "FG00 - PROC13 - Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS=1");
-
-            //CARREGAR O ARQUIVO BASE
+            IniciarTeste(TipoArquivo.ParcEmissao, "2765", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor parametrizado na tabela TAB_PRM_PRODUTO_7003");
+            
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1934-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "VL_IS", "1");
+            AlterarLinha(9, "CD_PRODUTO", dados.ObterProduto(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -73,5 +72,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
+        
     }
 }
