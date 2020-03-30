@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SAP_9003_SemCritica_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "FG01 - EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "9003", "FG01 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();

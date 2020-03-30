@@ -75,11 +75,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.Comissao, "2430", "FG00 - PROC92 - No Header do arquivo EMS_COMISSAO no campo VERSAO informar o código 9.6");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1920-20200208.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1977-20200228.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarHeader("VERSAO", "9.6");
-            
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.TXT");
 

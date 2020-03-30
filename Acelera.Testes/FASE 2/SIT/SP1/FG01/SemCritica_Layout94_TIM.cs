@@ -57,7 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.TIM.PARCEMS-EV-/*R*/-20200212.TXT");
 
@@ -81,15 +81,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SAP_9015_SemCritica_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "FG00 - EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "9015", "FG01 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200207.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200109.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT");
 

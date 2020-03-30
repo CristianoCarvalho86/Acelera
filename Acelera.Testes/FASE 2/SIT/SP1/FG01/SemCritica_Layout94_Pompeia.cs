@@ -49,7 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SAP_9008_SemCritica_PARC_EMISSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "SemCritica_Geral", "FG00 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9008", "FG00 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -81,7 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SAP_9009_SemCritica_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "SemCritica_Geral", "FG00 - EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "9009", "FG01 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
