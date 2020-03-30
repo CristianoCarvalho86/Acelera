@@ -19,13 +19,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2655", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO o campo dt_fim_vigencia 365 dias menor que o dt_inicio_vigencia");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1934-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -365));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("");
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -52,13 +52,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1934-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($""));
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

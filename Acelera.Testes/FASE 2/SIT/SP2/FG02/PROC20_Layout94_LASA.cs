@@ -19,13 +19,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2702", "FG02 - PROC20 - Informar no arquivo PARC_EMISSAO o campo CD_CONTRATO=5555");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3208-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(9, "CD_CONTRATO", "5555");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("");
+            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200319.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -52,13 +52,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3208-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(6, "CD_CONTRATO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($""));
+            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200319.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

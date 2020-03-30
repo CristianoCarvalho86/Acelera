@@ -19,13 +19,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "NR_APÓLICE", "0123456789012345678");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("");
+            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -52,13 +52,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(6, "NR_APÓLICE", "01234567890123456");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($""));
+            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
