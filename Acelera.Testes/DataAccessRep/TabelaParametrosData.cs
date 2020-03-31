@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acelera.Logger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,26 @@ namespace Acelera.Testes.DataAccessRep
 {
     public class TabelaParametrosData
     {
+        private MyLogger logger;
+        public TabelaParametrosData(MyLogger logger)
+        {
+            this.logger = logger;
+        }
+
+        private string ObterRetornoPadrao(string campo, string tabela, bool existente)
+        {
+            string select = string.Empty;
+            if (existente)
+                select = $"select top 1 {campo} from {TesteItens.instanciaDB}.{tabela}";
+            else
+                select = $"select (MAX({campo}) + 1) as {campo} from {TesteItens.instanciaDB}.{tabela}";
+
+            return DataAccess.ConsultaUnica(select, campo, logger);
+        }
 
         public string ObterCDMoeda(bool existente)
         {
-            //SELECT NO BANCO, TABELA DE PARAMETRO, TRAZENDO OS CD_MOEDAS DISPONIVEIS
-            return string.Empty;
+           return ObterRetornoPadrao("CD_MOEDA", "TAB_PRM_MOEDA_7030", existente);
         }
 
         /// <summary>
@@ -49,7 +65,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterRamo(bool existente)
         {
-            return string.Empty;
+            return ObterRetornoPadrao("CD_RAMO", "TAB_PRM_RAMO_7002", existente);
         }
 
         /// <summary>
@@ -58,7 +74,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterProduto(bool existente)
         {
-            return string.Empty;
+            return ObterRetornoPadrao("CD_PRODUTO", "TAB_PRM_PRODUTO_7003", existente);
         }
 
         /// <summary>
@@ -67,7 +83,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCobertura(bool existente)
         {
-            return string.Empty;
+            return ObterRetornoPadrao("CD_COBERTURA", "TAB_PRM_COBERTURA_7007", existente);
         }
 
         /// <summary>
@@ -147,13 +163,19 @@ namespace Acelera.Testes.DataAccessRep
             return string.Empty;
         }
 
-        /// <summary>
-        /// SELECT NAS TABELAS DE PARAMETRO
-        /// </summary>
-        /// <returns></returns>
-        public string ObterOperacao(bool existente)
+        public string ObterMovimentoCobranca(bool existente)
         {
-            return string.Empty;
+            return ObterRetornoPadrao("CD_MOVTO_COBRANCA", "TAB_PRM_MOVTO_COBRANCA_7025", existente);
+        }
+
+        public string ObterCDTipoEmissao(string acao, bool ComCritica)
+        {
+            string select = string.Empty;
+            var operador = ComCritica ? " = " : " <> ";
+                select = $"select top 1 CD_TIPO_EMISSAO from {TesteItens.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where TP_ACAO {operador} '{acao}'";
+
+
+            return DataAccess.ConsultaUnica(select, "CD_TIPO_EMISSAO", logger);
         }
 
     }

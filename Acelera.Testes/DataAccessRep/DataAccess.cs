@@ -42,6 +42,46 @@ namespace Acelera.Testes.DataAccessRep
             return tabela.Linhas;
         }
 
+        public static string ConsultaUnica(string sql, string parametroBuscado, MyLogger logger)
+        {
+            if (logger == null)
+                return ConsultaUnica(sql);
+
+            string resultado;
+            try
+            {
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
+
+                logger.Escrever("Consulta Realizada :" + sql);
+                resultado = DBHelper.Instance.ObterResultadoUnico(sql);
+
+                logger.Escrever($"Parametro Buscado encontrado: {resultado}");
+                
+                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
+
+            }
+            catch (Exception ex)
+            {
+                logger.Erro(ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
+        public static string ConsultaUnica(string sql)
+        {
+            string resultado;
+            try
+            {
+                resultado = DBHelper.Instance.ObterResultadoUnico(sql);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return resultado;
+        }
+
         [Obsolete]
         public static IList<T> ChamarConsultaAoBancoViaCMD<T>(ConjuntoConsultas consultas, MyLogger logger) where T : LinhaTabela, new()
         {

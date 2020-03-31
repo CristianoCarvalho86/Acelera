@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2
         protected override string NomeFG => "FG02";
         public TestesFG02():base()
         {
-            dados = new TabelaParametrosData();
+            dados = new TabelaParametrosData(logger);
         }
 
         public override void ValidarFGsAnteriores()
