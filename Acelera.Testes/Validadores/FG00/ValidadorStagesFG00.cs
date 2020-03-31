@@ -39,15 +39,17 @@ namespace Acelera.Testes.Validadores.FG00
             return true;
         }
 
-        public override Consulta MontarConsulta(TabelasEnum tabela)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
-            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter(), ExistemLinhasNoArquivo());
+
+            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter(), ExistemLinhasNoArquivo()).First().Value;
             var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
             if (alteracaoHeader != null)
                 AdicionaConsulta(consulta,valoresAlteradosHeader,true);
-            consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
 
-            return consulta;
+            var consultas = new ConjuntoConsultas(consulta);
+            consultas.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
+            return consultas;
         }
 
 

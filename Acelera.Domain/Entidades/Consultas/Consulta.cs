@@ -6,19 +6,25 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.Consultas
 {
-    public class Consulta
-    {
-        protected Dictionary<string, string> Valores { get; set; }
-        protected string OrderBy { get; set; }
 
-        public Consulta()
+    public class ConjuntoConsultas
+    {
+        protected IList<Consulta> ListaConsultas { get; private set; }
+        protected string OrderBy { get; set; }
+        public ConjuntoConsultas()
         {
-            Valores = new Dictionary<string, string>();
+            ListaConsultas = new List<Consulta>();
         }
-        public void AdicionarConsulta(string campo, string valor)
+
+        public ConjuntoConsultas(Consulta consulta) : this()
         {
-            if(!Valores.Any(x => x.Key == campo))
-                Valores.Add(campo, valor);
+            ListaConsultas.Add(consulta);
+        }
+
+        public ConjuntoConsultas(IList<Consulta> consultas) : this()
+        {
+            foreach(var consulta in consultas)
+                ListaConsultas.Add(consulta);
         }
 
         public void AdicionarOrderBy(string valor)
@@ -26,35 +32,46 @@ namespace Acelera.Domain.Entidades.Consultas
             OrderBy = valor;
         }
 
+        public void AdicionarConsulta(Consulta consulta)
+        {
+            ListaConsultas.Add(consulta);
+        }
+
+        public Consulta ObterConsultaUnica()
+        {
+            if (ListaConsultas.Count > 1)
+                throw new Exception("MAIS DE UMA CONSULTA ENCONTRADA.");
+            return ListaConsultas.First();
+        }
+
         public virtual string MontarConsulta()
         {
-            var sql = " WHERE (";
-            sql += ObterWhereItens();
-            return sql + ")/*R*/" + OrderBy ;
-        }
-
-        public virtual string AdicionarNovaConsulta(Consulta consulta)
-        {
-            var novaCondicao = $" OR ({consulta.ObterWhereItens()})";
-            var sql = MontarConsulta().Replace("/*R*/", novaCondicao) + "/*R*/";
-            return sql ;
-        }
-
-
-        private string ObterWhereItens()
-        {
-            var sql = string.Empty;
-            foreach (var item in Valores)
+            var sql = " WHERE ";
+            var primeiro = true;
+            foreach (var consulta in ListaConsultas)
             {
-                var valor = string.Empty;
+                if (!primeiro)
+                    sql += " OR ";
+                else
+                    primeiro = false;
+                sql += "(";
+                foreach (var item in consulta.Valores)
+                {
+                    
+                    var valor = string.Empty;
                     valor = item.Value.TrimStart();
 
-                if(!string.IsNullOrEmpty(valor))
-                sql += item.Key + $" = '{valor}' AND ";
-                else
-                    sql += item.Key + $" IS NULL AND ";
+                    if (!string.IsNullOrEmpty(valor))
+                        sql += item.Key + $" = '{valor}' AND ";
+                    else
+                        sql += item.Key + $" IS NULL AND ";
+                    
+                }
+                sql = sql.Remove(sql.Length - 4);
+                sql += ") ";
             }
-            return sql.Remove(sql.Length - 4);
+            sql += OrderBy;
+            return sql;
         }
 
         private IList<string> CamposQueNaoModificamZero()
@@ -64,11 +81,35 @@ namespace Acelera.Domain.Entidades.Consultas
             return lista;
         }
 
+    }
+
+    public class Consulta : ICloneable
+    {
+        public Dictionary<string, string> Valores { get; set; }
+
+        public Consulta()
+        {
+            Valores = new Dictionary<string, string>();
+        }
+
+        public void AdicionarConsulta(string campo, string valor)
+        {
+            if (!Valores.Any(x => x.Key == campo))
+                Valores.Add(campo, valor);
+        }
+
+
         public void ContemCampo(string campo)
         {
             Valores.ContainsKey(campo);
         }
 
-
+        public object Clone()
+        {
+            var consulta = new Consulta();
+            consulta.Valores = this.Valores.ToDictionary(entry => entry.Key,
+                                               entry => entry.Value);
+            return consulta;
+        }
     }
 }

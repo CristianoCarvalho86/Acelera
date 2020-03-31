@@ -21,20 +21,20 @@ namespace Acelera.Testes.Validadores.FG01
         {
         }
 
-        public override Consulta MontarConsulta(TabelasEnum tabela)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
             var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetornoFG01(tabela, nomeArquivo, valoresAlteradosBody);
-            return consulta;
+            return new ConjuntoConsultas(consulta);
         }
 
         public bool ValidarTabela(params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
-            var consulta = MontarConsulta(tabelaEnum);
+            var consultas = MontarConsulta(tabelaEnum);
 
             List<ILinhaTabela> linhas;
-            linhas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            linhas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
 
             var qtd = ObterQtdRegistrosDuplicadosDoBody();
             if (qtd == 0)

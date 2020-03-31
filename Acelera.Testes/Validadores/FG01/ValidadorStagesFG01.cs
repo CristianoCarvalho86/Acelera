@@ -22,18 +22,22 @@ namespace Acelera.Testes.Validadores.FG01
 
         }
 
-        public override Consulta MontarConsulta(TabelasEnum tabela)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
-            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, false, ExistemLinhasNoArquivo());
+            var consulta = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, false, ExistemLinhasNoArquivo()).First().Value;
             var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
             if (alteracaoHeader != null)
                 AdicionaConsulta(consulta, valoresAlteradosHeader,true);
 
             if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())
                 AdicionaConsulta(consulta, valoresAlteradosBody,true);
-            consulta.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
 
-            return consulta;
+
+            var consultas = new ConjuntoConsultas();
+            consultas.AdicionarConsulta(consulta);
+            consultas.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
+
+            return consultas;
         }
 
         public bool ValidarTabelaFG01(bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmComCodigoEsperado = false)

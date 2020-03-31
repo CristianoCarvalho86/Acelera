@@ -200,6 +200,7 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\Teste.cs" />
     <Compile Include="TestesFG02.cs" />
     <Compile Include="Layout942.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -213,6 +214,8 @@
     <Compile Include="Validadores\FG00\ValidadorTabelaRetornoFG00.cs" />
     <Compile Include="Validadores\FG01\ValidadorStagesFG01.cs" />
     <Compile Include="Validadores\FG01\ValidadorTabelaRetornoFG01.cs" />
+    <Compile Include="Validadores\FG02\ValidadorStagesFG02.cs" />
+    <Compile Include="Validadores\FG02\ValidadorTabelaRetornoFG02.cs" />
     <Compile Include="Validadores\Validador.cs" />
   </ItemGroup>
   <ItemGroup>

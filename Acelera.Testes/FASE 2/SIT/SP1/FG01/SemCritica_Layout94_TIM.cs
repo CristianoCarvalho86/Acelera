@@ -39,6 +39,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno();
             ValidarTeste();
         }
 
@@ -71,6 +72,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno();
             ValidarTeste();
         }
 
@@ -91,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             SelecionarLinhaParaValidacao(0);
             RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT");
+            SalvarArquivo($"C01.TIM.EMSCMS-EV-/*R*/-20200113.TXT");
 
 
             //VALIDAR NA FG00
@@ -103,6 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno();
             ValidarTeste();
         }
 
@@ -134,6 +137,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno();
             ValidarTeste();
         }
 
@@ -144,7 +148,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         [TestCategory("Sem Critica")]
         public void SAP_9017_SemCritica_LANCTO_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "SemCritica_Geral", "FG00 - LANCTO_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.LanctoComissao, "9017", "FG00 - LANCTO_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
@@ -152,6 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
@@ -166,6 +171,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTabelaDeRetorno();
             ValidarTeste();
         }
 

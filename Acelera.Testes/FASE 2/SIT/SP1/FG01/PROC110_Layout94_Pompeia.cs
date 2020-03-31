@@ -25,7 +25,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             RemoverLinhasExcetoAsPrimeiras(100);
             ReplicarLinha(0, 1);
             AumentarLinhasNoFooter(1);
-
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
 

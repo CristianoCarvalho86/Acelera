@@ -19,10 +19,10 @@ namespace Acelera.Testes.Validadores.FG00
         {
         }
 
-        public override Consulta MontarConsulta(TabelasEnum tabela)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
-            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter(), ExistemLinhasNoArquivo());
-            return consulta;
+            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetornoFG00(tabela, nomeArquivo, valoresAlteradosBody, ExisteAlteracaoHeaderOuFooter(), ExistemLinhasNoArquivo());
+            return new ConjuntoConsultas(consulta);
         }
 
         public override void TratarConsulta(Consulta consulta)
