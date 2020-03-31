@@ -111,6 +111,17 @@ namespace Acelera.Testes
                 return dataArquivo;
             }
         }
+        
+        public static string instanciaDB
+        {
+            get
+            {
+                var instancia = ConfigurationManager.AppSettings.Get("InstanciaDB");
+                if (string.IsNullOrEmpty(instancia))
+                    return "HDIQAS_1";
+                return instancia;
+            }
+        }
 
         protected ModoExecucaoEnum ModoExecucao
         {

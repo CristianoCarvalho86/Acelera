@@ -23,7 +23,7 @@ namespace Acelera.Testes.DataAccessRep
             {
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
 
-                var c = tabela.ObterQuery(consulta).Replace("/*R*/","");
+                var c = tabela.ObterQuery(consulta,TesteItens.instanciaDB).Replace("/*R*/","");
                 logger.Escrever("Consulta Realizada :" + c);
                 var resultado = DBHelper.Instance.GetData(c);
 

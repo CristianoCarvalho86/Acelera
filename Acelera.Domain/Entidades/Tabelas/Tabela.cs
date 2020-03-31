@@ -30,14 +30,14 @@ namespace Acelera.Domain.Entidades.Tabelas
             Linhas.Add(linha);
         }
 
-        public string ObterQuery(Consulta consulta)
+        public string ObterQuery(Consulta consulta, string instanciaDB)
         {
             var linha = new T();
             var sql = "select ";
             //foreach (var i in linha.Campos)
             //    sql += $"{i.Coluna},";
             //sql = sql.Remove(sql.Length - 1);
-            sql += $" * from HDIQAS_1.{linha.ObterNomeTabela()} ";
+            sql += $" * from {instanciaDB}.{linha.ObterNomeTabela()} ";
             sql += consulta.MontarConsulta();
             return sql;
         }

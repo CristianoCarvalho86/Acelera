@@ -77,6 +77,17 @@ namespace Acelera.Data
             return table.Copy();
         }
 
+        public string ObterResultadoUnico(string sql)
+        {
+            var table = GetData(sql);
+            if (table.Rows.Count == 0)
+                throw new Exception("NENHUM VALOR ENCONTRADO PARA A CONSULTA : " + sql);
+            if(table.Rows.Count > 1)
+                throw new Exception("MULTIPLOS VALORES ENCONTRADOS PARA CONSULTA UNICA : " + sql);
+
+            return table.Rows[0][0].ToString();
+        }
+
         public int Execute(string sql)
         {
             if (Conn.State == ConnectionState.Closed)
