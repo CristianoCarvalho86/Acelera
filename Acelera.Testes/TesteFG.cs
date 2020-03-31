@@ -24,7 +24,7 @@ namespace Acelera.Testes
 
         protected void ValidarLogProcessamento(bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try
@@ -120,24 +120,24 @@ namespace Acelera.Testes
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
 
-            if (ModoExecucao == ModoExecucaoEnum.Completo)
-                File.Copy(pastaDestino + nomeArquivo, pastaLogArquivo + nomeArquivoDeLog);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
+                File.Copy(Parametros.pastaDestino + nomeArquivo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
-            if (ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(pastaLogArquivoCopia))
-                File.Copy(pathOrigem, pastaLogArquivoCopia + nomeArquivoDeLog);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(Parametros.pastaLogArquivoCopia))
+                File.Copy(pathOrigem, Parametros.pastaLogArquivoCopia + nomeArquivoDeLog);
 
-            if (ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(pastaLogArquivo + nomeArquivoDeLog))
-                File.Delete(pastaDestino + nomeArquivo);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
+                File.Delete(Parametros.pastaDestino + nomeArquivo);
             else
                 logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
 
-            logger.EscreverBloco("Nome do arquivo de log criado : " + pastaLogArquivo + nomeArquivoDeLog);
+            logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
             operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
             if (operacao.Length > 5)
                 operacao = operacao.Substring(0, 5);
 
-            logger.FimDoArquivo(numeroDoLote, operacao, pastaLogCopia);
+            logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia);
         }
     }
 }

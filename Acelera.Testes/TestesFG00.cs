@@ -24,7 +24,7 @@ namespace Acelera.Testes
         protected override string NomeFG => "FG00";
         public void ValidarControleArquivo(params string[] descricaoErroSeHouver)
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try
@@ -76,7 +76,7 @@ namespace Acelera.Testes
 
         public virtual void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try
@@ -107,7 +107,7 @@ namespace Acelera.Testes
 
         public void ValidarTabelaDeRetornoFG00(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try { 

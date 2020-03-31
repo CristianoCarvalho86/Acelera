@@ -8,23 +8,10 @@ using System.Configuration;
 
 namespace Acelera.Testes
 {
-    public abstract class TesteItens
+    public static class Parametros
     {
-        protected string nomeArquivo;
-        protected MyLogger logger;
-        protected Arquivo arquivo;
-        protected AlteracoesArquivo valoresAlteradosBody;
-        protected AlteracoesArquivo valoresAlteradosHeader;
-        protected AlteracoesArquivo valoresAlteradosFooter;
 
-        public TesteItens()
-        {
-            valoresAlteradosBody = new AlteracoesArquivo();
-            valoresAlteradosHeader = new AlteracoesArquivo();
-            valoresAlteradosFooter = new AlteracoesArquivo();
-        }
-
-        protected string pastaOrigem
+        public static string pastaOrigem
         {
             get
             {
@@ -36,7 +23,7 @@ namespace Acelera.Testes
                 return origem;
             }
         }
-        protected string pastaDestino
+        public static string pastaDestino
         {
             get
             {
@@ -49,7 +36,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected string pastaLog
+        public static string pastaLog
         {
             get
             {
@@ -61,8 +48,8 @@ namespace Acelera.Testes
                 return logger;
             }
         }
-        
-        protected string pastaLogArquivo
+
+        public static string pastaLogArquivo
         {
             get
             {
@@ -75,7 +62,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected string pastaLogCopia
+        public static string pastaLogCopia
         {
             get
             {
@@ -88,7 +75,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected string pastaLogArquivoCopia
+        public static string pastaLogArquivoCopia
         {
             get
             {
@@ -101,7 +88,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected string dataArquivoParametro
+        public static string dataArquivoParametro
         {
             get
             {
@@ -123,7 +110,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected ModoExecucaoEnum ModoExecucao
+        public static ModoExecucaoEnum ModoExecucao
         {
             get
             {

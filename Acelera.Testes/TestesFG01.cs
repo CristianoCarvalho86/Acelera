@@ -74,7 +74,7 @@ namespace Acelera.Testes
 
         public virtual void ValidarFGsAnteriores() 
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             logger.EscreverBloco("Inicio da Validação da FG00.");
@@ -90,7 +90,7 @@ namespace Acelera.Testes
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try { 
@@ -127,7 +127,7 @@ namespace Acelera.Testes
 
         public void ValidarTabelaDeRetornoFG01(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try

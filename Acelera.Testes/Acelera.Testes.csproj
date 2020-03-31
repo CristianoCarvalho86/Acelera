@@ -207,7 +207,7 @@
     <Compile Include="TesteArquivoOperacoes.cs" />
     <Compile Include="TesteBase.cs" />
     <Compile Include="TesteFG.cs" />
-    <Compile Include="TesteItens.cs" />
+    <Compile Include="Parametros.cs" />
     <Compile Include="TestesFG00.cs" />
     <Compile Include="TestesFG01.cs" />
     <Compile Include="Validadores\FG00\ValidadorStagesFG00.cs" />

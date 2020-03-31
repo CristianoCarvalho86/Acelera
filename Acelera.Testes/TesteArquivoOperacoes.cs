@@ -13,9 +13,19 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes
 {
-    public class TesteArquivoOperacoes : TesteItens
+    public class TesteArquivoOperacoes
     {
-
+        protected AlteracoesArquivo valoresAlteradosBody;
+        protected AlteracoesArquivo valoresAlteradosHeader;
+        protected AlteracoesArquivo valoresAlteradosFooter;
+        protected Arquivo arquivo;
+        protected MyLogger logger;
+        public TesteArquivoOperacoes()
+        {
+            valoresAlteradosBody = new AlteracoesArquivo();
+            valoresAlteradosHeader = new AlteracoesArquivo();
+            valoresAlteradosFooter = new AlteracoesArquivo();
+        }
         public void SelecionarLinhaParaValidacao(int posicaoLinha, int qtdRepeticoes = 0, bool semHeaderOuFooter = false)
         {
             var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);

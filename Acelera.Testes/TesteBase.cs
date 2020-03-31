@@ -33,10 +33,13 @@ namespace Acelera.Testes
         protected string nomeDoTeste;
         protected string localDoErro = string.Empty;
         protected string pathOrigem;
+        protected string nomeArquivo;
+
+
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             this.nomeArquivo = nomeArquivo;
-            var path = pastaOrigem + nomeArquivo;
+            var path = Parametros.pastaOrigem + nomeArquivo;
             logger.EscreverBloco("Obtendo arquivo origem : " + path);
             pathOrigem = path;
             return path;
@@ -45,17 +48,17 @@ namespace Acelera.Testes
         private void CriarLog()
         {
             var nomeArquivo = $"SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM")}-{operacao ?? "OPERACAO"}-{tipoArquivoTeste.ObterTexto()}-{numeroDoLote ?? "NLOTE"}.txt";
-            logger = new MyLogger($"{pastaLog}", nomeArquivo);
+            logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
         }
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
-            if (ModoExecucao == ModoExecucaoEnum.Completo)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
-            else if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
-            else if (ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
+            else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
         }
 
@@ -72,7 +75,7 @@ namespace Acelera.Testes
             else
                 this.nomeArquivo = _nomeArquivo;
 
-            var path = pastaDestino + nomeArquivo;
+            var path = Parametros.pastaDestino + nomeArquivo;
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
@@ -85,7 +88,7 @@ namespace Acelera.Testes
            if (!string.IsNullOrEmpty(_nomeArquivo))
            {
                var dataArquivo = nomeArquivo.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
-                nomeArquivo = nomeArquivo.Replace(dataArquivo[3],(dataArquivoParametro + ".TXT"));
+                nomeArquivo = nomeArquivo.Replace(dataArquivo[3],(Parametros.dataArquivoParametro + ".TXT"));
            }
 
            if (arquivo.Header.Count > 0)
@@ -93,7 +96,7 @@ namespace Acelera.Testes
 
             numeroDoLote = numeroDoTeste;
 
-            var path = pastaDestino + nomeArquivo;
+            var path = Parametros.pastaDestino + nomeArquivo;
 
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
@@ -102,12 +105,12 @@ namespace Acelera.Testes
 
         protected void ChamarExecucao(string taskName)
         {
-            if (ModoExecucao != ModoExecucaoEnum.Completo)
+            if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
                 return;
             try
             {
                 Thread.Sleep(15000);
-                var comando = $"START TASK {TesteItens.instanciaDB}.{taskName}";
+                var comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
                 logger.EscreverBloco($"EXECUTANDO TAREFA : '{taskName}'");
                 var retorno = helper.Execute(comando);
                 logger.EscreverBloco($"RESULTADO DA TAREFA : '{retorno}'");

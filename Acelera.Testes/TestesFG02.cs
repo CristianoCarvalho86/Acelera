@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2
 
         public override void ValidarFGsAnteriores()
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             base.ValidarFGsAnteriores();
@@ -51,7 +51,7 @@ namespace Acelera.Testes.FASE_2
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
-            if (ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try

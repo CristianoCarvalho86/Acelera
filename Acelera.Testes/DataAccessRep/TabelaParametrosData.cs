@@ -19,9 +19,9 @@ namespace Acelera.Testes.DataAccessRep
         {
             string select = string.Empty;
             if (existente)
-                select = $"select top 1 {campo} from {TesteItens.instanciaDB}.{tabela}";
+                select = $"select top 1 {campo} from {Parametros.instanciaDB}.{tabela}";
             else
-                select = $"select (MAX({campo}) + 1) as {campo} from {TesteItens.instanciaDB}.{tabela}";
+                select = $"select (MAX({campo}) + 1) as {campo} from {Parametros.instanciaDB}.{tabela}";
 
             return DataAccess.ConsultaUnica(select, campo, logger);
         }
@@ -172,7 +172,7 @@ namespace Acelera.Testes.DataAccessRep
         {
             string select = string.Empty;
             var operador = ComCritica ? " = " : " <> ";
-                select = $"select top 1 CD_TIPO_EMISSAO from {TesteItens.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where TP_ACAO {operador} '{acao}'";
+                select = $"select top 1 CD_TIPO_EMISSAO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where TP_ACAO {operador} '{acao}'";
 
 
             return DataAccess.ConsultaUnica(select, "CD_TIPO_EMISSAO", logger);
