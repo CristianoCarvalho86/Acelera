@@ -22,7 +22,7 @@ namespace Acelera.Logger
             path = _path;
             nomeArquivoLog = nomeArquivo;
             writer = File.CreateText(path + nomeArquivoLog);
-            
+
         }
 
         public void Escrever(string texto)
@@ -150,11 +150,10 @@ namespace Acelera.Logger
             writer.Close();
             writer.Dispose();
 
-            if (modoExecucao == ModoExecucaoEnum.Completo)
-            {
-                RenomearLog(numeroDoLote, operacao);
-                CriarCopia(pastaCopia);
-            }
+
+            RenomearLog(numeroDoLote, operacao);
+            CriarCopia(pastaCopia);
+
         }
 
         public void RenomearLog(string numeroDoLote, string operacao)
@@ -162,14 +161,14 @@ namespace Acelera.Logger
             var nomeAntigo = nomeArquivoLog;
             nomeArquivoLog = (nomeArquivoLog.Remove(nomeArquivoLog.Length - 4, 4) + "-" +
                 (sucessoExecucao ? "SUCESSO" : "FALHA")).Replace("NLOTE", numeroDoLote).Replace("OPERACAO", operacao) + ".txt";
-            if(!File.Exists(path + nomeArquivoLog))
+            if (!File.Exists(path + nomeArquivoLog))
                 File.Move(path + nomeAntigo, path + nomeArquivoLog);
         }
 
         public void CriarCopia(string pastaCopia)
         {
-            if(!string.IsNullOrEmpty(pastaCopia))
-            File.Copy(path + nomeArquivoLog, pastaCopia + nomeArquivoLog);
+            if (!string.IsNullOrEmpty(pastaCopia))
+                File.Copy(path + nomeArquivoLog, pastaCopia + nomeArquivoLog);
         }
     }
 }
