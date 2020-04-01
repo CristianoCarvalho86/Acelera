@@ -54,7 +54,7 @@ namespace Acelera.Testes
                 }
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TratarErro("Validação da LogProcessamento");
             }
@@ -130,18 +130,17 @@ namespace Acelera.Testes
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
                 File.Delete(Parametros.pastaDestino + nomeArquivo);
-            else if(Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
+            else if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-            {
-                operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
-                if (operacao.Length > 5)
-                    operacao = operacao.Substring(0, 5);
-            }
+
+            operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
+            if (operacao.Length > 5)
+                operacao = operacao.Substring(0, 5);
+
 
             logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia, Parametros.ModoExecucao);
         }
