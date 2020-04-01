@@ -108,9 +108,9 @@ namespace Acelera.Testes.DataAccessRep
         /// select now() from dummy
         /// </summary>
         /// <returns></returns>
-        public string ObterDataDoBanco(bool existente)
+        public string ObterDataDoBanco()
         {
-            return Convert.ToDateTime(DataAccess.ConsultaUnica("select now() from dummy", "CD_TIPO_EMISSAO", logger)).ToString("yyyyMMdd");
+            return Convert.ToDateTime(DataAccess.ConsultaUnica("select now() from dummy", "DATA DO BANCO", logger)).ToString("yyyyMMdd");
         }
 
 
