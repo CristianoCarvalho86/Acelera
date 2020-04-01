@@ -8,6 +8,7 @@ using Acelera.Logger;
 using Acelera.Testes.Adapters;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,16 +45,20 @@ namespace Acelera.Testes.DataAccessRep
 
         public static string ConsultaUnica(string sql, string parametroBuscado, IMyLogger logger)
         {
-            if (logger == null)
-                return ConsultaUnica(sql);
-
             string resultado;
             try
             {
+                if (logger == null)
+                    return ConsultaUnica(sql);
+
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
 
                 logger.Escrever("Consulta Realizada :" + sql);
                 resultado = DBHelper.Instance.ObterResultadoUnico(sql);
+
+
+                if (string.IsNullOrEmpty(resultado))
+                    throw new Exception("Resultado nao encontrado");
 
                 logger.Escrever($"Parametro Buscado encontrado: {resultado}");
                 
@@ -74,12 +79,39 @@ namespace Acelera.Testes.DataAccessRep
             try
             {
                 resultado = DBHelper.Instance.ObterResultadoUnico(sql);
+                if (string.IsNullOrEmpty(resultado))
+                    throw new Exception("Resultado nao encontrado");
             }
             catch (Exception ex)
             {
                 throw ex;
             }
             return resultado;
+        }
+
+        public static DataTable Consulta(string sql, string parametroBuscado, IMyLogger logger)
+        {
+            DataTable tabela;
+            try
+            {
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
+                logger.Escrever("Consulta Realizada :" + sql);
+
+                tabela = DBHelper.Instance.GetData(sql);
+
+                if (tabela.Rows.Count == 0)
+                    throw new Exception("NENHUMA LINHA ENCONTRADA");
+
+                logger.LogRetornoQuery(tabela, sql);
+
+                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return tabela;
         }
 
         [Obsolete]
