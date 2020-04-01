@@ -143,8 +143,7 @@ namespace Acelera.Testes
                     operacao = operacao.Substring(0, 5);
             }
 
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia, Parametros.ModoExecucao);
+            logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia, Parametros.ModoExecucao);
         }
     }
 }
