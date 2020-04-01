@@ -27,6 +27,14 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(select, campo, logger);
         }
 
+        private string ObterRetornoParaDiferente(string campoBusca, string campoComparacao, string valor, string tabela)
+        {
+            var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} where {campoComparacao} <> '{valor}'";
+
+
+            return DataAccess.ConsultaUnica(select, campoComparacao + " DIFERENTE DE " + valor, logger);
+        }
+
         public string ObterCDMoeda(bool existente)
         {
            return ObterRetornoPadrao("CD_MOEDA", "TAB_PRM_MOEDA_7030", existente);
@@ -206,6 +214,16 @@ namespace Acelera.Testes.DataAccessRep
 
 
             return DataAccess.ConsultaUnica(select, "CD_TPA_OPERACAO", logger);
+        }
+
+        public string ObterRamoDiferente(string ramo)
+        {
+            return ObterRetornoParaDiferente("CD_RAMO", "CD_RAMO", ramo, "TAB_PRM_RAMO_7002");
+        }
+
+        public string ObterProdutoDiferente(string produto)
+        {
+            return ObterRetornoParaDiferente("CD_PRODUTO", "CD_PRODUTO", produto, "TAB_PRM_PRODUTO_7003");
         }
 
         public Cobertura ObterCobertura()
