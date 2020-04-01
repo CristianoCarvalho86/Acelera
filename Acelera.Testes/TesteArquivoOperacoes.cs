@@ -232,15 +232,15 @@ namespace Acelera.Testes
             return d.ToString("yyyyMMdd");
         }
 
-        public void SomarData(int posicaoLinha, string nomeCampo, int diasAdicionados)
+        public string SomarData(int posicaoLinha, string nomeCampo, int diasAdicionados)
         {
-
+            return SomarData(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor, diasAdicionados);
         }
 
 
-        public void SomarValor(int posicaoLinha, string nomeCampo, int valorAdicionado)
+        public string SomarValor(int posicaoLinha, string nomeCampo, int valorAdicionado)
         {
-
+            return (int.Parse(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor) + valorAdicionado).ToString();
         }
 
         public int SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
