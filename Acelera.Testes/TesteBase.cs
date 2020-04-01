@@ -52,7 +52,7 @@ namespace Acelera.Testes
             //if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
             //    logger = new Mock<IMyLogger>().Object;
             //else
-                logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
+            logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
         }
 
@@ -73,7 +73,7 @@ namespace Acelera.Testes
             if (AlterarNomeArquivo)
             {
                 this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
-                if(arquivo.Header.Count > 0)
+                if (arquivo.Header.Count > 0)
                     arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
             }
             else
@@ -87,21 +87,33 @@ namespace Acelera.Testes
 
         protected string ObterArquivoDestinoApenasCriacaoOuValidacao(string _nomeArquivo)
         {
-           this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
+            //this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
 
-           if (!string.IsNullOrEmpty(_nomeArquivo))
-           {
-               var dataArquivo = nomeArquivo.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
-                nomeArquivo = nomeArquivo.Replace(dataArquivo[3],(Parametros.dataArquivoParametro + ".TXT"));
-           }
+            //if (!string.IsNullOrEmpty(_nomeArquivo))
+            //{
+            //    var dataArquivo = nomeArquivo.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+            //     nomeArquivo = nomeArquivo.Replace(dataArquivo[3],(Parametros.dataArquivoParametro + ".TXT"));
+            //}
 
-           if (arquivo.Header.Count > 0)
-               arquivo.AlterarHeader("NR_ARQ", numeroDoTeste);
+            //if (arquivo.Header.Count > 0)
+            //    arquivo.AlterarHeader("NR_ARQ", numeroDoTeste);
 
-            numeroDoLote = numeroDoTeste;
+            // numeroDoLote = numeroDoTeste;
+
+            // var path = Parametros.pastaDestino + nomeArquivo;
+
+
+            // logger.EscreverBloco("Salvando arquivo modificado : " + path);
+            // return path;
+
+            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
+            numeroDoLote = numeroArquivoNovo;
+
+            nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
+            if (arquivo.Header.Count > 0)
+                arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
             var path = Parametros.pastaDestino + nomeArquivo;
-
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
@@ -125,7 +137,7 @@ namespace Acelera.Testes
                 sucessoDoTeste = false;
                 throw ex;
             }
-            
+
         }
 
         protected DataTable ChamarConsulta(string sql)
@@ -135,7 +147,7 @@ namespace Acelera.Testes
 
         protected LinhaTabela ChamarExecucaoViaCMD()
         {
-            logger.InicioOperacao(OperacaoEnum.Processar,"");
+            logger.InicioOperacao(OperacaoEnum.Processar, "");
             IntegracaoCMD integracao = new IntegracaoCMD();
             var retorno = string.Empty;
             var textoCompletoCMD = string.Empty;
@@ -144,7 +156,7 @@ namespace Acelera.Testes
             {
                 integracao.AbrirCMD();
                 integracao.ChamarExecucao();
-                logger.SucessoDaOperacao(OperacaoEnum.Processar,"");
+                logger.SucessoDaOperacao(OperacaoEnum.Processar, "");
                 textoCompletoCMD = integracao.ObterTextoCMD();
                 integracao.FecharCMD();
             }
@@ -159,7 +171,7 @@ namespace Acelera.Testes
             return linhaDeValidacao;
         }
 
-        protected void IniciarTeste(TipoArquivo tipo ,string numeroDoTeste, string nomeDoTeste)
+        protected void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {
             sucessoDoTeste = true;
             this.numeroDoTeste = numeroDoTeste;
