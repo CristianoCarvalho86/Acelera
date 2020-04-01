@@ -110,7 +110,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterDataDoBanco(bool existente)
         {
-            throw new NotImplementedException();
+            return Convert.ToDateTime(DataAccess.ConsultaUnica("select now() from dummy", "CD_TIPO_EMISSAO", logger)).ToString("yyyyMMdd");
         }
 
 

@@ -44,8 +44,6 @@ namespace Acelera.Testes.DataAccessRep
 
         public static string ConsultaUnica(string sql, string parametroBuscado, IMyLogger logger)
         {
-            if (logger == null)
-                return ConsultaUnica(sql);
 
             string resultado;
             try
@@ -63,20 +61,6 @@ namespace Acelera.Testes.DataAccessRep
             catch (Exception ex)
             {
                 logger.Erro(ex);
-                throw ex;
-            }
-            return resultado;
-        }
-
-        public static string ConsultaUnica(string sql)
-        {
-            string resultado;
-            try
-            {
-                resultado = DBHelper.Instance.ObterResultadoUnico(sql);
-            }
-            catch (Exception ex)
-            {
                 throw ex;
             }
             return resultado;
