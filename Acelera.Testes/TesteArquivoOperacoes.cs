@@ -19,7 +19,7 @@ namespace Acelera.Testes
         protected AlteracoesArquivo valoresAlteradosHeader;
         protected AlteracoesArquivo valoresAlteradosFooter;
         protected Arquivo arquivo;
-        protected MyLogger logger;
+        protected IMyLogger logger;
         public TesteArquivoOperacoes()
         {
             valoresAlteradosBody = new AlteracoesArquivo();

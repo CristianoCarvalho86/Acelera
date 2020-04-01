@@ -16,7 +16,7 @@ namespace Acelera.Testes.DataAccessRep
 {
     public static class DataAccess
     {
-        public static IList<T> ChamarConsultaAoBanco<T>(ConjuntoConsultas consulta, MyLogger logger) where T : ILinhaTabela, new()
+        public static IList<T> ChamarConsultaAoBanco<T>(ConjuntoConsultas consulta, IMyLogger logger) where T : ILinhaTabela, new()
         {
             var tabela = new Tabela<T>();
             try
@@ -42,7 +42,7 @@ namespace Acelera.Testes.DataAccessRep
             return tabela.Linhas;
         }
 
-        public static string ConsultaUnica(string sql, string parametroBuscado, MyLogger logger)
+        public static string ConsultaUnica(string sql, string parametroBuscado, IMyLogger logger)
         {
             if (logger == null)
                 return ConsultaUnica(sql);
@@ -83,7 +83,7 @@ namespace Acelera.Testes.DataAccessRep
         }
 
         [Obsolete]
-        public static IList<T> ChamarConsultaAoBancoViaCMD<T>(ConjuntoConsultas consultas, MyLogger logger) where T : LinhaTabela, new()
+        public static IList<T> ChamarConsultaAoBancoViaCMD<T>(ConjuntoConsultas consultas, IMyLogger logger) where T : LinhaTabela, new()
         {
             var tabela = new Tabela<T>();
             try

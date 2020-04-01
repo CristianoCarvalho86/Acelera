@@ -17,12 +17,12 @@ namespace Acelera.Testes.Validadores
     public abstract class ValidadorTabela
     {
         protected TabelasEnum tabelaEnum;
-        protected MyLogger logger;
+        protected IMyLogger logger;
         protected string nomeArquivo;
         protected AlteracoesArquivo valoresAlteradosBody;
         protected AlteracoesArquivo valoresAlteradosHeader;
         protected AlteracoesArquivo valoresAlteradosFooter;
-        public ValidadorTabela(TabelasEnum tabelasEnum, string nomeArquivo, MyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter)
+        public ValidadorTabela(TabelasEnum tabelasEnum, string nomeArquivo, IMyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter)
         {
             this.tabelaEnum = tabelasEnum;
             this.nomeArquivo = nomeArquivo;

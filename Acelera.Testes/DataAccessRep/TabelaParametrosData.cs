@@ -9,8 +9,8 @@ namespace Acelera.Testes.DataAccessRep
 {
     public class TabelaParametrosData
     {
-        private MyLogger logger;
-        public TabelaParametrosData(MyLogger logger)
+        private IMyLogger logger;
+        public TabelaParametrosData(IMyLogger logger)
         {
             this.logger = logger;
         }

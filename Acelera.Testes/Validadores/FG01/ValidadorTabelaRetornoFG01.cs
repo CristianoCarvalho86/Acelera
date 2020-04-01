@@ -16,7 +16,7 @@ namespace Acelera.Testes.Validadores.FG01
 {
     public class ValidadorTabelaRetornoFG01 : ValidadorTabelaRetornoFG00
     {
-        public ValidadorTabelaRetornoFG01(TabelasEnum tabelaEnum, string nomeArquivo, MyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter) 
+        public ValidadorTabelaRetornoFG01(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter) 
             : base(tabelaEnum, nomeArquivo, logger, valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter)
         {
         }

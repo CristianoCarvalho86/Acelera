@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Logger
 {
-    interface IMyLogger
+    public interface IMyLogger
     {
         void Escrever(string texto);
 

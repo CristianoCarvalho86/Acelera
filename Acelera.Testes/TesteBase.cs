@@ -8,6 +8,7 @@ using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,7 +34,7 @@ namespace Acelera.Testes
         protected string nomeDoTeste;
         protected string localDoErro = string.Empty;
         protected string pathOrigem;
-        protected string nomeArquivo;
+        protected string nomeArquivo = string.Empty;
 
 
         protected string ObterArquivoOrigem(string nomeArquivo)
@@ -48,7 +49,10 @@ namespace Acelera.Testes
         private void CriarLog()
         {
             var nomeArquivo = $"SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM")}-{operacao ?? "OPERACAO"}-{tipoArquivoTeste.ObterTexto()}-{numeroDoLote ?? "NLOTE"}.txt";
-            logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                logger = new Mock<IMyLogger>().Object;
+            else
+                logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
         }
 
