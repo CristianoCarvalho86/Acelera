@@ -7,6 +7,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
+using Acelera.Testes.DataAccessRep;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -54,6 +55,7 @@ namespace Acelera.Testes
             //else
             logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
+
         }
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
@@ -171,7 +173,7 @@ namespace Acelera.Testes
             return linhaDeValidacao;
         }
 
-        protected void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
+        protected virtual void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {
             sucessoDoTeste = true;
             this.numeroDoTeste = numeroDoTeste;

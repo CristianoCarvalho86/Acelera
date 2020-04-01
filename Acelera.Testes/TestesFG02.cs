@@ -18,6 +18,12 @@ namespace Acelera.Testes.FASE_2
         protected override string NomeFG => "FG02";
         public TestesFG02():base()
         {
+            
+        }
+
+        protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
+        {
+            base.IniciarTeste(tipo, numeroDoTeste, nomeDoTeste);
             dados = new TabelaParametrosData(logger);
         }
 
