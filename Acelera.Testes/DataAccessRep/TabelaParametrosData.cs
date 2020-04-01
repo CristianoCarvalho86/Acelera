@@ -37,7 +37,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCDContratoDaStage(bool existente)
         {
-            return string.Empty;
+            throw new Exception();
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCoberturaRamoProduto(bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
 
@@ -56,7 +56,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCDFormaPagamento(bool valido)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCDBancoSeg(bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterOperacao(string produto, bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterDataDoBanco(bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
 
@@ -121,7 +121,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCDSeguradora(bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCDFranquia(bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCDOcorrencia(bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
 
@@ -150,7 +150,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterJurosMaximo()
         {
             //Utiliza  ObterSucursal, cobertura, produto , ramo e operacao
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
 
@@ -160,7 +160,7 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterSucursal(bool existente)
         {
-            return string.Empty;
+            throw new NotImplementedException();
         }
 
         public string ObterMovimentoCobranca(bool existente)

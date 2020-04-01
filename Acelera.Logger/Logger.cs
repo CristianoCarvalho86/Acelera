@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Logger
 {
-    public class MyLogger
+    public class MyLogger : IMyLogger
     {
         private string path;
         private string nomeArquivoLog;
