@@ -136,9 +136,12 @@ namespace Acelera.Testes
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
-            operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
-            if (operacao.Length > 5)
-                operacao = operacao.Substring(0, 5);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
+            {
+                operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
+                if (operacao.Length > 5)
+                    operacao = operacao.Substring(0, 5);
+            }
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia, Parametros.ModoExecucao);
