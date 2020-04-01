@@ -49,9 +49,9 @@ namespace Acelera.Testes
         private void CriarLog()
         {
             var nomeArquivo = $"SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM")}-{operacao ?? "OPERACAO"}-{tipoArquivoTeste.ObterTexto()}-{numeroDoLote ?? "NLOTE"}.txt";
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                logger = new Mock<IMyLogger>().Object;
-            else
+            //if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            //    logger = new Mock<IMyLogger>().Object;
+            //else
                 logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
         }

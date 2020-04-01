@@ -49,7 +49,7 @@ namespace Acelera.Logger
 
         void DefinirSucesso(bool sucesso);
 
-        void FimDoArquivo(string numeroDoLote, string operacao, string pastaCopia);
+        void FimDoArquivo(string numeroDoLote, string operacao, string pastaCopia, ModoExecucaoEnum modoExecucao);
 
         void RenomearLog(string numeroDoLote, string operacao);
         void CriarCopia(string pastaCopia);

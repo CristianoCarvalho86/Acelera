@@ -142,7 +142,7 @@ namespace Acelera.Logger
             sucessoExecucao = sucesso;
         }
 
-        public void FimDoArquivo(string numeroDoLote, string operacao, string pastaCopia)
+        public void FimDoArquivo(string numeroDoLote, string operacao, string pastaCopia, ModoExecucaoEnum modoExecucao)
         {
             writer.WriteLine(TextoFimArquivo);
             writer.Flush();
@@ -150,8 +150,11 @@ namespace Acelera.Logger
             writer.Close();
             writer.Dispose();
 
-            RenomearLog(numeroDoLote,operacao);
-            CriarCopia(pastaCopia);
+            if (modoExecucao == ModoExecucaoEnum.Completo)
+            {
+                RenomearLog(numeroDoLote, operacao);
+                CriarCopia(pastaCopia);
+            }
         }
 
         public void RenomearLog(string numeroDoLote, string operacao)

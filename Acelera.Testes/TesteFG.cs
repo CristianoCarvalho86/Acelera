@@ -118,7 +118,9 @@ namespace Acelera.Testes
             logger.DefinirSucesso(sucessoDoTeste);
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
-            var nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+            var nomeArquivoDeLog = string.Empty;
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
+                nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 File.Copy(Parametros.pastaDestino + nomeArquivo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
@@ -128,16 +130,18 @@ namespace Acelera.Testes
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
                 File.Delete(Parametros.pastaDestino + nomeArquivo);
-            else
+            else if(Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
 
-            logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
+                logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
             operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
             if (operacao.Length > 5)
                 operacao = operacao.Substring(0, 5);
 
-            logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
+                logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia, Parametros.ModoExecucao);
         }
     }
 }
