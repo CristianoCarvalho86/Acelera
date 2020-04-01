@@ -17,28 +17,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         public void SAP_2659_PARC_EMISSAO_AUTO_dt_fim_vigência_Menos1()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2659", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia");
-            var a = dados.ObterCDMoeda(false);
 
-            //arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            //arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3321-20200326.txt"));
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3321-20200326.txt"));
 
-            ////ALTERAR O VALOR SELECIONADO
-            //AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -1));
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -1));
 
-            ////SALVAR O NOVO ARQUIVO ALTERADO
-            //SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200326.txt");
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200326.txt");
 
-            ////VALIDAR FG's ANTERIORES
-            //ValidarFGsAnteriores();
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
 
-            ////Executar FG02
-            //ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
-            ////VALIDAR NA FG02
-            //ValidarLogProcessamento(true);
-            //ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            //ValidarTabelaDeRetorno("11");
-            //ValidarTeste();
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno("11");
+            ValidarTeste();
 
         }
 
