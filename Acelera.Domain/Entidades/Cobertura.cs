@@ -12,6 +12,8 @@ namespace Acelera.Domain.Entidades
         public string ValorJurosMenor { get; set; }
         public string ValorDescontoMaior { get; set; }
         public string ValorDescontoMenor { get; set; }
+        public string ValorAdicionalMaior { get; set; }
+        public string ValorAdicionalMenor { get; set; }
         public string Id { get; set; }
         public string CdCobertura { get; set; }
         public string CdRamo { get; set; }

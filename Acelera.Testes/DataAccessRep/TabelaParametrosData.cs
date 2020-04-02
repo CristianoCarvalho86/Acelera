@@ -275,6 +275,8 @@ namespace Acelera.Testes.DataAccessRep
             cobertura.CdProduto = linha["CD_PRODUTO"].ToString();
             cobertura.CdRamo = linha["CD_RAMO"].ToString();
             cobertura.CdRamoCobertura = linha["CD_RAMO_COBERTURA"].ToString();
+            cobertura.ValorAdicionalMaior = linha["VL_ADIC_FRAC_MAIOR"].ToString();
+            cobertura.ValorAdicionalMenor = linha["VL_ADIC_FRAC_MENOR"].ToString();
 
             return cobertura;
         }
