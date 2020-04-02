@@ -202,7 +202,7 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(select, "CD_TIPO_EMISSAO", logger);
         }
 
-        public string ObterCdTipoEmissaoExistente()
+        public string ObterCdTipoEmissao(bool existente)
         {
             List<string> lista = new List<string>();
             lista.Add("18");
@@ -210,7 +210,10 @@ namespace Acelera.Testes.DataAccessRep
             lista.Add("7");
             lista.Add("10");
             lista.Add("11");
-            return lista[new Random(DateTime.Now.Millisecond).Next(0, lista.Count - 1)];
+            if (existente)
+                return lista[new Random(DateTime.Now.Millisecond).Next(0, lista.Count - 1)];
+            else
+                return (lista.Select(x => int.Parse(x)).Max() + 1).ToString();
         }
 
         public string ObterTPA(string cdTipoEmissao, bool existente)
@@ -252,14 +255,12 @@ namespace Acelera.Testes.DataAccessRep
 
         public Cobertura ObterCobertura()
         {
-            var select = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, R.CD_RAMO, P.CD_PRODUTO, PRDC.CD_PRD_COBERTURA, " +
-                $" PP.VL_DESCONTO_MAIOR, PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR " +
-                        $"FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
-                        $"INNER JOIN {Parametros.instanciaDB}.TAB_PRM_RAMO_COBERTURA_7005 RC ON C.CD_RAMO_COBERTURA = RC.CD_RAMO_COBERTURA " +
-                        $"INNER JOIN {Parametros.instanciaDB}.TAB_PRM_RAMO_7002 R ON R.CD_RAMO_SUSEP = RC.CD_RAMO_SUSEP " +
-                        $"INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON R.CD_RAMO = P.CD_RAMO " +
-                        $"INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
-                        $"INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA";
+            var select = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO, PP.VL_DESCONTO_MAIOR, " +
+                           $" PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR " +
+                           $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
+                           $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
+                           $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
+                           $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA; ";
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
@@ -274,7 +275,6 @@ namespace Acelera.Testes.DataAccessRep
             cobertura.CdProduto = linha["CD_PRODUTO"].ToString();
             cobertura.CdRamo = linha["CD_RAMO"].ToString();
             cobertura.CdRamoCobertura = linha["CD_RAMO_COBERTURA"].ToString();
-            cobertura.CdPrdCobertura = linha["CD_PRD_COBERTURA"].ToString();
 
             return cobertura;
         }

@@ -16,7 +16,6 @@ namespace Acelera.Domain.Entidades
         public string CdCobertura { get; set; }
         public string CdRamo { get; set; }
         public string CdProduto { get; set; }
-        public string CdPrdCobertura { get; set; }
         public string CdRamoCobertura { get; set; }
 
     }
