@@ -52,12 +52,14 @@ namespace Acelera.Testes
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
-            logger.Escrever("Valor Antigo :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
+            logger.Escrever("Linha Antiga :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
+            logger.Escrever($"Valor Antigo : {arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).Valor}");
+            logger.Escrever($"Valor Novo : {valorNovo}");
             logger.Escrever(Environment.NewLine);
             arquivo.AlterarLinha(posicaoLinha, campo, valorNovo);
 
             var linhaAlterada = arquivo.ObterLinha(posicaoLinha);
-            logger.Escrever("Valor Atualizado :" + linhaAlterada.ObterTexto());
+            logger.Escrever("Linha Atualizada :" + linhaAlterada.ObterTexto());
             logger.FecharBloco();
 
             var campoAlterado = linhaAlterada.ObterCampoDoBanco(campo).Coluna;
