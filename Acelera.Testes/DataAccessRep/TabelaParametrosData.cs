@@ -2,6 +2,7 @@
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -255,30 +256,33 @@ namespace Acelera.Testes.DataAccessRep
 
         public Cobertura ObterCobertura()
         {
-            var select = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO, PP.VL_DESCONTO_MAIOR, " +
-                           $" PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR " +
-                           $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
-                           $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
-                           $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
-                           $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA; ";
+            var select = QueryCobertura();
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
-            var cobertura = new Cobertura();
-
-            cobertura.CdCobertura = linha["CD_COBERTURA"].ToString();
-            cobertura.Id = linha["ID_COBERTURA"].ToString();
-            cobertura.ValorDescontoMaior = linha["VL_DESCONTO_MAIOR"].ToString();
-            cobertura.ValorDescontoMenor = linha["VL_DESCONTO_MENOR"].ToString();
-            cobertura.ValorJurosMaior = linha["VL_JUROS_MAIOR"].ToString();
-            cobertura.ValorJurosMenor = linha["VL_JUROS_MENOR"].ToString();
-            cobertura.CdProduto = linha["CD_PRODUTO"].ToString();
-            cobertura.CdRamo = linha["CD_RAMO"].ToString();
-            cobertura.CdRamoCobertura = linha["CD_RAMO_COBERTURA"].ToString();
-            cobertura.ValorAdicionalMaior = linha["VL_ADIC_FRAC_MAIOR"].ToString();
-            cobertura.ValorAdicionalMenor = linha["VL_ADIC_FRAC_MENOR"].ToString();
-
-            return cobertura;
+            
+            return Cobertura.CarregarCobertura(linha);
         }
+
+        public Cobertura ObterCoberturaDiferenteDe(string cdCobertura)
+        {
+            var select = QueryCobertura() + $" WHERE C.CD_COBERTURA <> '{cdCobertura}'";
+
+            var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
+            var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
+
+            return Cobertura.CarregarCobertura(linha);
+        }
+
+        private string QueryCobertura()
+        {
+            return $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO, PP.VL_DESCONTO_MAIOR, " +
+               $" PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR " +
+               $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
+               $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
+               $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
+               $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA ";
+        }
+
     }
 }
