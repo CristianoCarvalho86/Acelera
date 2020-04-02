@@ -226,6 +226,8 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoParaDiferente("CD_PRODUTO", "CD_PRODUTO", produto, "TAB_PRM_PRODUTO_7003");
         }
 
+
+
         public Cobertura ObterCobertura()
         {
             var select = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, R.CD_RAMO, P.CD_PRODUTO, PRDC.CD_PRD_COBERTURA, " +
