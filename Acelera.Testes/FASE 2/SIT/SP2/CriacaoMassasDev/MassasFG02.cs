@@ -1243,7 +1243,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         ///1 (um) ID_REGISTRO: VL_JUROS menor que o VL_JUROS_MENOR cadastrado na DIM_PRM_PERCENT_PREMIO_7012
         ///ambos respeitando o cadastro do averbador da relação CD_OPERACAO, CD_SUCURSAL, CD_COBERTURA, CD_PRODUTO e CD_RAMO dos que estão sujeitos a essa validação
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC1182()
@@ -1254,10 +1253,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
-            AlterarLinha(0, "CD_COBERTURA", "");
-            AlterarLinha(0, "VL_JUROS", "MENOR QUE VL_JUROS_MENOR");
-            AlterarLinha(0, "CD_COBERTURA", "");
-            AlterarLinha(0, "VL_JUROS", "MAIOR QUE VL_JUROS_MAIOR");
+            AlterarLinha(0, "CD_COBERTURA",cobertura.CdCobertura);
+            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMenor,"-1"));
+            AlterarLinha(1, "CD_COBERTURA",cobertura.CdCobertura);
+            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "1"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1182-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.TXT");
@@ -1268,7 +1267,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         ///1 (um) ID_REGISTRO: VL_JUROS menor que o VL_JUROS_MENOR cadastrado na DIM_PRM_PERCENT_PREMIO_7012
         ///ambos respeitando o cadastro do averbador da relação CD_OPERACAO, CD_SUCURSAL, CD_COBERTURA, CD_PRODUTO e CD_RAMO dos que estão sujeitos a essa validação"
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC1183()
@@ -1278,7 +1276,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3224-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "", "");
+            var cobertura = dados.ObterCobertura();
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMenor, "-1"));
+            AlterarLinha(1, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMaior, "1"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1183-C01.LASA.PARCEMS-EV-/*R*/-20200320.TXT");
@@ -1289,7 +1291,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         ///1(um) ID_REGISTRO: VL_ADIC_FRACIONADO menor que o VL_ADIC_FRAC_MENOR cadastrado na DIM_PRM_PERCENT_PREMIO_7012
         ///ambos respeitando o cadastro do averbador da relação CD_OPERACAO, CD_SUCURSAL, CD_COBERTURA, CD_PRODUTO e CD_RAMO dos que estão sujeitos a essa validação"
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC1184()
@@ -1299,7 +1300,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3212-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "", "");
+            var cobertura = dados.ObterCobertura();
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValores(cobertura.ValorAdicionalMenor, "-1"));
+            AlterarLinha(1, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValores(cobertura.ValorAdicionalMaior, "1"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1184-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.TXT");
