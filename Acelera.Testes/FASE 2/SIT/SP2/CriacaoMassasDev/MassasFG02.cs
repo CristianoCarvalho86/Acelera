@@ -214,7 +214,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         /// 1 (um) Arquivo de  Parcela com 1 (um) ID_REGISTRO com  CD_TIPO_EMISSAO igual a reembolso
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC32()
@@ -224,7 +223,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3162-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(9, "CD_TIPO_EMISSAO", "");
+            AlterarLinha(9, "CD_TIPO_EMISSAO", "14");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC32-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200316.TXT");
@@ -276,16 +275,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.Comissao, "PROC52", "FG02 - PROC52 - 1 (um) Arquivo de Comissão com 2 (dois) ID_REGISTRO distintos: o mesmo CD_CONTRATO para  a mesma apolice na tabela no arquivo e na tabela de ODS.");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0003-20200207.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "CD_CONTRATO", "1234");
+            AlterarLinha(3, "CD_CONTRATO", "12345");
             AlterarLinha(3, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(4, "CD_CONTRATO", "1234");
+            AlterarLinha(4, "CD_CONTRATO", "12345");
             AlterarLinha(4, "CD_TIPO_COMISSAO", "R");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC52-C01.TIM.EMSCMS-EV-/*R*/-20200207.TXT");
+            SalvarArquivo($"PROC52-C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
         }
 
         /// <summary>
@@ -327,6 +326,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         /// 1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: data de ocorrência não esta entre o início e fim de vigência da apólice e/ou endosso.
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC81()
@@ -345,7 +345,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         /// 1 (um) Arquivo de Sinistro com 2 (DOIS) ID_REGISTRO distintos:  com o mesmo CD_MOVIMENTO no arquivo e na tabela de ODS
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC82()
@@ -355,8 +354,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_MOVIMENTO", "");
-            AlterarLinha(1, "CD_MOVIMENTO", "");
+            AlterarLinha(0, "CD_MOVIMENTO", "3");
+            AlterarLinha(1, "CD_MOVIMENTO", "3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC82-C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
@@ -595,7 +594,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         /// 2 (um) Arquivos de Sinistro com 2 (dois) ID_REGISTRO distintos: com CD_SINISTRO iguais e Tipo de movimento de abertura iguais, em arquivos distintos.
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC128()
@@ -605,11 +603,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SINISTRO", "");
+            var cdSinistro = ObterValor(0, "CD_SINISTRO");
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC128-C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "CD_SINISTRO", cdSinistro);
+            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo($"PROC128-C01.POMPEIA.PARCEMS-EV-/*R*/-20200127.TXT");
         }
 
         /// <summary>
@@ -669,7 +677,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de  Parcela com 1(um) ID_REGISTRO: com ID_TRANSACAO_CANC preenchido para CD_TIPO_EMISSAO cancelamento.
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC155()
@@ -689,29 +696,29 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de  Parcela com 2 (DOIS) ID_REGISTRO Distintos: Com datas de amissão do endosso menor que a data de emissão da apolice
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC162()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "PROC162", "FG02 - PROC162 - 1 (um) Arquivo de  Parcela com 2 (DOIS) ID_REGISTRO Distintos: Com datas de amissão do endosso menor que a data de emissão da apolice");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3331-20200326.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3224-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
-            AlterarLinha(1, "CD_CONTRATO", "= O DE CIMA");
+            AlterarLinha(1, "CD_CONTRATO", ObterValor(0, "CD_CONTRATO"));
             AlterarLinha(1, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "NR_ENDOSSO", "1");
-            AlterarLinha(1, "DT_EMISSAO", " - QUE A DA LINHA DE CIMA");
+            AlterarLinha(1, "DT_EMISSAO", SomarData(0, "DT_EMISSAO", -10));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC162-C01.LASA.SINISTRO-EV-/*R*/-20200326.TXT");
+            SalvarArquivo($"PROC162-C01.LASA.PARCEMS-EV-/*R*/-20200320.TXT");
         }
 
         /// <summary>
         ///1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: NR_DOCUMENTO vazio ou nulo para os tipos de movimento de sinistro despesa
         /// </summary>
+        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC164()
@@ -753,7 +760,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: com CD_BANCO_SEG não cadastrado na tabela de parametro esperado pela Generali.
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC177()
@@ -764,7 +770,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
-            AlterarLinha(0, "CD_FORMA_PAGAMENTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -785,7 +791,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_BANCO", "");
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
-            AlterarLinha(0, "CD_FORMA_PAGAMENTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC178-C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
@@ -812,7 +818,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: com CD_TIPO_MOVIMENTO não aceito na Validação da Generali
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC184()
@@ -822,7 +827,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3331-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterCDTipoMovimentoNaoRelacionadoAAtuacao("SN"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC184-C01.LASA.SINISTRO-EV-/*R*/-20200326.TXT");
@@ -869,7 +874,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de Parcela auto com 1 (um) ID_REGISTRO:  com o VL_PREMIO_TOTAL  diferente da soma entre o premio liquido mais o IOF, para os tipos de emissão 1 e 20.
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC215()
@@ -879,27 +883,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "VL_PREMIO_TOTAL", "");
+            AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValores(SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO","VL_IOF"),10));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC215-C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
         }
 
         /// <summary>
-        ///1 (um) Arquivo de Parcela auto com 1 (um) ID_REGISTRO:  onde o CD_TIPO_COMISSAO diferente do CD_TIPO_REMUNERACAO
+        ///1 (um) Arquivo de Comissao auto com 1 (um) ID_REGISTRO:  onde o CD_TIPO_COMISSAO diferente do CD_TIPO_REMUNERACAO
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC218()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "PROC218", "FG02 - PROC218 - 1 (um) Arquivo de Parcela auto com 1 (um) ID_REGISTRO:  onde o CD_TIPO_COMISSAO diferente do CD_TIPO_REMUNERACAO");
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            IniciarTeste(TipoArquivo.Comissao, "PROC218", "FG02 - PROC218 - 1 (um) Arquivo de Parcela auto com 1 (um) ID_REGISTRO:  onde o CD_TIPO_COMISSAO diferente do CD_TIPO_REMUNERACAO");
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_COMISSAO", "");
-            AlterarLinha(0, "CD_TIPO_REMUNERACAO", "");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(0, "CD_CORRETOR", "333");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC218-C01.TIM.EMSCMS-EV-/*R*/-20200214.TXT");
@@ -964,7 +967,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de Parcela Auto com 1 (um) ID_REGISTRO: onde a combinação CD_COBERTURA e CD_PRODUTO nao esteja associado na parametrização
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC1003()
@@ -974,7 +976,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3272-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "", "");
+            AlterarLinha(0, "CD_COBERTURA", "00284");
+            AlterarLinha(0, "CD_PRODUTO", "11002");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1003-C01.LASA.PARCEMS-EV-/*R*/-20200323.TXT");
@@ -1010,7 +1013,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-3291-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SEXO","X");
+            AlterarLinha(0, "SEXO","X");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1039-C01.SOFTBOX.CLIENTE-EV-/*R*/-20200324.TXT");
@@ -1046,7 +1049,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3273-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "TP_PESSOA", "J");
+            AlterarLinha(0, "TIPO", "J");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1041-C01.LASA.CLIENTE-EV-/*R*/-20200323.TXT");
@@ -1082,7 +1085,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3180-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradora(false));
+            AlterarHeader("CD_TPA", "4180484");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1048-C01.SOFTBOX.EMSCMS-EV-/*R*/-20200317.TXT");
@@ -1091,7 +1094,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO: onde a combinação CD_TIPO_EMISSAO e CD_TPA_OPERACAO não é permitida de acordo com as regras de negócio da generali.
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC1056()
@@ -1101,7 +1103,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "", "");
+            AlterarHeader( "CD_TPA", "25");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1056-C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
@@ -1129,7 +1132,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO: onde CD_SUCURSAL não esteja cadastrada para ser contabilizada na operação em questão nas regras de negócio da Generali. 
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC1067()
@@ -1139,7 +1141,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(false));
+            AlterarHeader("CD_TPA", dados.ObterParceiroNegocio("SU",false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1067-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.TXT");
@@ -1175,7 +1177,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3276-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "VL_LMI", SomarValor(0, "VL_IS",1));
+            AlterarLinha(0, "VL_LMI", SomarValor(0,"VL_IS",1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1091-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.TXT");
@@ -1251,6 +1253,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3212-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", "");
             AlterarLinha(0, "VL_JUROS", "MENOR QUE VL_JUROS_MENOR");
             AlterarLinha(0, "CD_COBERTURA", "");
