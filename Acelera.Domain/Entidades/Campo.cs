@@ -12,6 +12,14 @@ namespace Acelera.Domain.Entidades
         public virtual string Coluna { get { return coluna; } set { coluna = value; } }
         public string Valor { get; set; }
 
+        public string ValorFormatado
+        {
+            get
+            {
+                return Valor.TrimStart().TrimEnd();
+            }
+        }
+
         public virtual string ColunaArquivo { get; }
 
         public Campo(string _coluna)

@@ -222,7 +222,7 @@ namespace Acelera.Testes
 
         public string ObterValor(int posicaoLinha, string nomeCampo)
         {
-            return arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor;
+            return arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatado;
         }
 
         public string SomarData(string valorAntigo, int diasAdicionados)
@@ -234,19 +234,19 @@ namespace Acelera.Testes
 
         public string SomarData(int posicaoLinha, string nomeCampo, int diasAdicionados)
         {
-            return SomarData(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor, diasAdicionados);
+            return SomarData(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatado, diasAdicionados);
         }
 
 
         public string SomarValor(int posicaoLinha, string nomeCampo, int valorAdicionado)
         {
-            return (int.Parse(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor) + valorAdicionado).ToString();
+            return (int.Parse(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatado) + valorAdicionado).ToString();
         }
 
         public int SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
         {
             var linha = arquivo.ObterLinha(posicaoLinha);
-            if (!int.TryParse(linha.ObterCampoDoArquivo(campo1).Valor, out int Valor1) || !int.TryParse(linha.ObterCampoDoArquivo(campo1).Valor, out int Valor2))
+            if (!int.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatado, out int Valor1) || !int.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatado, out int Valor2))
                 throw new Exception("VALOR DOS CAMPOS A SEREM SOMADOS PRECISA SER INTEIRO");
 
             return Valor1 + Valor2;
@@ -257,7 +257,7 @@ namespace Acelera.Testes
             var linha = arquivo.ObterLinha(posicaoLinha);
             var resultado = string.Empty;
             foreach (var campo in campos)
-                resultado += linha.ObterCampoDoArquivo(campo).Valor;
+                resultado += linha.ObterCampoDoArquivo(campo).ValorFormatado;
             return resultado;
         }
     }
