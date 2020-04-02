@@ -20,6 +20,14 @@ namespace Acelera.Domain.Entidades
             }
         }
 
+        public string ValorFormatadoNumerico
+        {
+            get
+            {
+                return ValorFormatado.Replace(".",",");
+            }
+        }
+
         public virtual string ColunaArquivo { get; }
 
         public Campo(string _coluna)

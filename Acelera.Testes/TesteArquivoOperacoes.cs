@@ -222,7 +222,7 @@ namespace Acelera.Testes
 
         public string ObterValor(int posicaoLinha, string nomeCampo)
         {
-            return arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatado;
+            return arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor;
         }
 
         public string SomarData(string valorAntigo, int diasAdicionados)
@@ -238,15 +238,15 @@ namespace Acelera.Testes
         }
 
 
-        public string SomarValor(int posicaoLinha, string nomeCampo, int valorAdicionado)
+        public string SomarValor(int posicaoLinha, string nomeCampo, decimal valorAdicionado)
         {
-            return (int.Parse(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatado) + valorAdicionado).ToString();
+            return (decimal.Parse(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatadoNumerico) + valorAdicionado).ToString();
         }
 
-        public int SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
+        public decimal SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
         {
             var linha = arquivo.ObterLinha(posicaoLinha);
-            if (!int.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatado, out int Valor1) || !int.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatado, out int Valor2))
+            if (!decimal.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatadoNumerico, out decimal Valor1) || !decimal.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatadoNumerico, out decimal Valor2))
                 throw new Exception("VALOR DOS CAMPOS A SEREM SOMADOS PRECISA SER INTEIRO");
 
             return Valor1 + Valor2;
