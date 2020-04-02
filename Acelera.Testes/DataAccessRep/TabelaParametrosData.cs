@@ -57,7 +57,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterCDFormaPagamento(bool valido)
         {
             //TAB_PRM_FORMA_PAGTO_7015
-            return ObterRetornoPadrao("CD_RAMO", "TAB_PRM_FORMA_PAGTO_7015", valido);
+            return ObterRetornoPadrao("CD_FORMA_PAGTO", "TAB_PRM_FORMA_PAGTO_7015", valido);
         }
 
         /// <summary>
