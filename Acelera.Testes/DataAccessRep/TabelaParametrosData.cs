@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Enums;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -183,16 +184,6 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoPadrao("CD_TIPO_MOVIMENTO", "TAB_PRM_TIPO_MOVIMENTO_7024", existente);
         }
 
-        public string ObterTipoMovimento(string atuacao, bool existente)
-        {
-            string select = string.Empty;
-            var operador = existente ? " = " : " <> ";
-            select = $"select top 1 CD_TIPO_MOVIMENTO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where CD_ATUACAO {operador} '{atuacao}'";
-
-
-            return DataAccess.ConsultaUnica(select, "CD_TIPO_MOVIMENTO", logger);
-        }
-
         public string ObterCDTipoEmissao(string acao, bool ComCritica)
         {
             string select = string.Empty;
@@ -203,14 +194,31 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(select, "CD_TIPO_EMISSAO", logger);
         }
 
-        public string ObterCdTipoEmissao(bool existente)
+        public string ObterCdTipoEmissao(TipoArquivo tipoArquivo, bool existente)
         {
             List<string> lista = new List<string>();
-            lista.Add("18");
-            lista.Add("20");
+            if (tipoArquivo == TipoArquivo.ParcEmissao)
+            {
+                lista.Add("18");
+                lista.Add("20");
+            }
+            else if(tipoArquivo == TipoArquivo.ParcEmissaoAuto)
+            {
+                lista.Add("5");
+                lista.Add("6");
+                lista.Add("8");
+                lista.Add("9");
+                lista.Add("12");
+                lista.Add("13");
+                lista.Add("19");
+                lista.Add("21");
+            }
+            else { throw new Exception("ESSE TIPO ARQUIVO NAO CONTEM CDTIPOEMISSAO"); }
+            lista.Add("1");
             lista.Add("7");
             lista.Add("10");
             lista.Add("11");
+
             if (existente)
                 return lista[new Random(DateTime.Now.Millisecond).Next(0, lista.Count - 1)];
             else
