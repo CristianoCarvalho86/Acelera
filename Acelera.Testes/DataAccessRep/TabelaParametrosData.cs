@@ -241,6 +241,15 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(select, "CD_COBERTURA nao Ligada ao Produto " + cd_produto, logger);
         }
 
+        public string ObterCDTipoMovimentoNaoRelacionadoAAtuacao(string atuacao)
+        {
+            var select = $"select CD_TIPO_MOVIMENTO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where cd_tipo_movimento " +
+                $"not in(select CD_TIPO_MOVIMENTO FROM {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 WHERE CD_ATUACAO = '{atuacao}' )";
+
+
+            return DataAccess.ConsultaUnica(select, "CD_TIPO MOVIMENTO nao Ligado a atuacao " + atuacao, logger);
+        }
+
         public Cobertura ObterCobertura()
         {
             var select = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, R.CD_RAMO, P.CD_PRODUTO, PRDC.CD_PRD_COBERTURA, " +
