@@ -227,6 +227,11 @@ namespace Acelera.Testes
             return arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).Valor;
         }
 
+        public string ObterValorHeader(string nomeCampo)
+        {
+            return arquivo.ObterLinhaHeader().ObterCampoDoArquivo(nomeCampo).Valor;
+        }
+
         public string SomarData(string valorAntigo, int diasAdicionados)
         {
             var d = new DateTime(int.Parse(valorAntigo.Substring(0,4)), int.Parse(valorAntigo.Substring(4, 2)), int.Parse(valorAntigo.Substring(6, 2)));

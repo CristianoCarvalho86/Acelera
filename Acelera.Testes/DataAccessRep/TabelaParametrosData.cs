@@ -49,6 +49,14 @@ namespace Acelera.Testes.DataAccessRep
            return ObterRetornoPadrao("CD_MOEDA", "TAB_PRM_MOEDA_7030", existente);
         }
 
+        //private string ObterRetornoNotIn(string campoBusca, string campoComparacao, string valor, string tabela)
+        //{
+        //    var select = $"select {campoBusca} from {tabela} WHERE CD_COBERTURA NOT IN (select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_PRODUTO = '{cd_produto}')";
+
+
+        //    return DataAccess.ConsultaUnica(select, "CD_COBERTURA nao Ligada ao Produto " + cd_produto, logger);
+        //}
+
         /// <summary>
         /// Nao esquecer de loggar 
         /// </summary>
@@ -247,7 +255,7 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCoberturaNaoRelacionadaAProduto(string cd_produto)
         {
-            var select = $"select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_COBERTURA NOT IN (select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_PRODUTO = '{cd_produto}')";
+            var select = $"select CD_COBERTURA from {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 WHERE CD_COBERTURA NOT IN (select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_PRODUTO = '{cd_produto}')";
 
 
             return DataAccess.ConsultaUnica(select, "CD_COBERTURA nao Ligada ao Produto " + cd_produto, logger);
