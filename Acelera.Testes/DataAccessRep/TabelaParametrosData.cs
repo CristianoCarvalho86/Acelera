@@ -243,7 +243,7 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCDTipoMovimentoNaoRelacionadoAAtuacao(string atuacao)
         {
-            var select = $"select CD_TIPO_MOVIMENTO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where cd_tipo_movimento " +
+            var select = $"select top 1 CD_TIPO_MOVIMENTO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where cd_tipo_movimento " +
                 $"not in(select CD_TIPO_MOVIMENTO FROM {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 WHERE CD_ATUACAO = '{atuacao}' )";
 
 
