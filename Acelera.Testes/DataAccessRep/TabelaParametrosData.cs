@@ -233,7 +233,13 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoParaDiferente("CD_PRODUTO", "CD_PRODUTO", produto, "TAB_PRM_PRODUTO_7003");
         }
 
+        public string ObterCoberturaNaoRelacionadaAProduto(string cd_produto)
+        {
+            var select = $"select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_COBERTURA NOT IN (select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_PRODUTO = '{cd_produto}')";
 
+
+            return DataAccess.ConsultaUnica(select, "CD_COBERTURA nao Ligada ao Produto " + cd_produto, logger);
+        }
 
         public Cobertura ObterCobertura()
         {
