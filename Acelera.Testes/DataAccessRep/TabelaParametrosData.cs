@@ -29,10 +29,17 @@ namespace Acelera.Testes.DataAccessRep
 
         private string ObterRetornoParaDiferente(string campoBusca, string campoComparacao, string valor, string tabela)
         {
-            var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} where {campoComparacao} <> '{valor}'";
+            return ObterRetorno(campoBusca,campoComparacao,valor,tabela, false);
+        }
+
+        private string ObterRetorno(string campoBusca, string campoComparacao, string valor, string tabela, bool igual)
+        {
+            var operador = igual ? "=" : "<>";
+            var texto = igual ? "IGUAL A " : " DIFERENTE DE ";
+            var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} where {campoComparacao} {operador} '{valor}'";
 
 
-            return DataAccess.ConsultaUnica(select, campoComparacao + " DIFERENTE DE " + valor, logger);
+            return DataAccess.ConsultaUnica(select, campoComparacao + texto + valor, logger);
         }
 
         public string ObterCDMoeda(bool existente)
@@ -120,9 +127,9 @@ namespace Acelera.Testes.DataAccessRep
         /// SELECT NAS TABELAS DE PARAMETRO
         /// </summary>
         /// <returns></returns>
-        public string ObterCDSeguradora(bool existente)
+        public string ObterParceiroNegocio(string valorCdTipoParceiroNegocio, bool igual)
         {
-            throw new NotImplementedException();
+            return ObterRetorno("CD_EXTERNO", "CD_TIPO_PARCEIRO_NEGOCIO", valorCdTipoParceiroNegocio, "TAB_ODS_PARCEIRO_NEGOCIO_2000", igual);
         }
 
         /// <summary>
