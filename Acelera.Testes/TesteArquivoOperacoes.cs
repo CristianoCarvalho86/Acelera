@@ -252,6 +252,12 @@ namespace Acelera.Testes
             return Valor1 + Valor2;
         }
 
+        public string SomarValores(string valor1 , string valor2)
+        {
+            if (!decimal.TryParse(valor1.Replace(".",","), out decimal Valor1) || !decimal.TryParse(valor2.Replace(".", ","), out decimal Valor2))
+                throw new Exception("VALORES A SEREM SOMADOS PRECISAM SER NUMERICOS");
+            return (Valor1 + Valor2).ToString().Replace(",",".");
+        }
         public string MontarCamposConcatenados(int posicaoLinha, params string[] campos)
         {
             var linha = arquivo.ObterLinha(posicaoLinha);
