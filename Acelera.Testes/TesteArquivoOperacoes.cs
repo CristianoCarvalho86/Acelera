@@ -240,7 +240,7 @@ namespace Acelera.Testes
 
         public string SomarValor(int posicaoLinha, string nomeCampo, decimal valorAdicionado)
         {
-            return (decimal.Parse(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatadoNumerico) + valorAdicionado).ToString();
+            return (decimal.Parse(arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(nomeCampo).ValorFormatadoNumerico) + valorAdicionado).ToString().Replace(",",".");
         }
 
         public decimal SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
