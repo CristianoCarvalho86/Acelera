@@ -2,6 +2,7 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -440,7 +441,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         /// 1 (um) Arquivo de Parcela auto com 1 (um) ID_REGISTRO: CD_PRODUTO, CD_RAMO E CD_COBERTURA parametrizados incorretamente para que seja contabilizado de acordo com as regras da Generali.
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC107()
@@ -463,7 +463,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         /// 1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: com CD_SINISTRO fora da formação da regra esperada.
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC111()
@@ -473,7 +472,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SINISTRO", "");
+            var texto = "20" + ObterValorHeader("CD_TPA") + ObterValorFormatado(0, "CD_RAMO") + "71" + "00006";
+
+            AlterarLinha(0, "CD_SINISTRO", texto);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC111-C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.TXT");
@@ -492,7 +493,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_FORMA_PAGTO", "0");
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterTipoMovimento(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC119-C01.TIM.SINISTRO-EV-/*R*/-20200212.TXT");
@@ -718,14 +719,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         /// <summary>
         ///1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: NR_DOCUMENTO vazio ou nulo para os tipos de movimento de sinistro despesa
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC164()
         {
             IniciarTeste(TipoArquivo.Sinistro, "PROC164", "FG02 - PROC164 - 1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: NR_DOCUMENTO vazio ou nulo para os tipos de movimento de sinistro despesa");
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
+            arquivo = new Arquivo_Layout_9_4_2();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_DOCUMENTO", "");
@@ -733,28 +733,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(0, "TP_SINISTRO", "02");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC164-C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.TXT");
+            SalvarArquivo($"PROC164-C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");
         }
 
         /// <summary>
         ///1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: NR_DOCUMENTO vazio ou nulo para forma de pagamento CHEQUE
         /// </summary>
-        [Ignore]
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC176()
         {
             IniciarTeste(TipoArquivo.Sinistro, "PROC176", "FG02 - PROC176 - 1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: NR_DOCUMENTO vazio ou nulo para os tipos de movimento de sinistro despesa");
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
+            arquivo = new Arquivo_Layout_9_4_2();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(0, "TP_MOVIMENTO", "146");
-            AlterarLinha(0, "CD_FORMA_PAGAMENTO", "C");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "C");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC176-C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
+            SalvarArquivo($"PROC176-C01.SGS.SINISTRO-EV-/*R*/-20200213.TXT");
         }
 
         /// <summary>
@@ -822,7 +821,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC184()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "PROC182", "FG02 - PROC184 - 1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: com CD_TIPO_MOVIMENTO não aceito na Validação da Generali");
+            IniciarTeste(TipoArquivo.Sinistro, "PROC184", "FG02 - PROC184 - 1 (um) Arquivo de Sinistro com 1 (um) ID_REGISTRO: com CD_TIPO_MOVIMENTO não aceito na Validação da Generali");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3331-20200326.txt"));
 
