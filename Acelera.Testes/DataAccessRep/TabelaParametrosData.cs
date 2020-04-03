@@ -49,13 +49,14 @@ namespace Acelera.Testes.DataAccessRep
            return ObterRetornoPadrao("CD_MOEDA", "TAB_PRM_MOEDA_7030", existente);
         }
 
-        //private string ObterRetornoNotIn(string campoBusca, string campoComparacao, string valor, string tabela)
-        //{
-        //    var select = $"select {campoBusca} from {tabela} WHERE CD_COBERTURA NOT IN (select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_PRODUTO = '{cd_produto}')";
+        private string ObterRetornoNotIn(string campoBusca, string campoComparacao, string valor, string tabela)
+        {
+            var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoBusca} NOT IN" +
+                $" (select {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoComparacao} = '{valor}')";
 
 
-        //    return DataAccess.ConsultaUnica(select, "CD_COBERTURA nao Ligada ao Produto " + cd_produto, logger);
-        //}
+            return DataAccess.ConsultaUnica(select, $"{campoBusca} nao Ligada ao {campoComparacao} de valor: {valor} ", logger);
+        }
 
         /// <summary>
         /// Nao esquecer de loggar 
@@ -255,19 +256,12 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCoberturaNaoRelacionadaAProduto(string cd_produto)
         {
-            var select = $"select CD_COBERTURA from {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 WHERE CD_COBERTURA NOT IN (select CD_COBERTURA from TAB_PRM_COBERTURA_7007 WHERE CD_PRODUTO = '{cd_produto}')";
-
-
-            return DataAccess.ConsultaUnica(select, "CD_COBERTURA nao Ligada ao Produto " + cd_produto, logger);
+            return ObterRetornoNotIn("CD_COBERTURA", "CD_PRODUTO", cd_produto, "TAB_PRM_COBERTURA_7007");
         }
 
         public string ObterCDTipoMovimentoNaoRelacionadoAAtuacao(string atuacao)
         {
-            var select = $"select top 1 CD_TIPO_MOVIMENTO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where cd_tipo_movimento " +
-                $"not in(select CD_TIPO_MOVIMENTO FROM {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 WHERE CD_ATUACAO = '{atuacao}' )";
-
-
-            return DataAccess.ConsultaUnica(select, "CD_TIPO MOVIMENTO nao Ligado a atuacao " + atuacao, logger);
+            return ObterRetornoNotIn("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024");
         }
 
         public Cobertura ObterCobertura()
