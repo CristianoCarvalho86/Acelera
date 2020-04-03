@@ -234,14 +234,9 @@ namespace Acelera.Testes.DataAccessRep
                 return (lista.Select(x => int.Parse(x)).Max() + 1).ToString();
         }
 
-        public string ObterTPA(string cdTipoEmissao, bool existente)
+        public string ObterTPANaoAssociadoATipoEmissao(string cdTipoEmissao)
         {
-            string select = string.Empty;
-            var operador = existente ? " = " : " <> ";
-            select = $"select top 1 CD_TPA_OPERACAO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where CD_TIPO_EMISSAO {operador} '{cdTipoEmissao}'";
-
-
-            return DataAccess.ConsultaUnica(select, "CD_TPA_OPERACAO", logger);
+            return ObterRetornoNotIn("CD_TPA_OPERACAO", "CD_TIPO_EMISSAO", cdTipoEmissao, "TAB_PRM_CONFIG_NEGOCIO_7004");
         }
 
         public string ObterRamoDiferente(string ramo)
@@ -257,6 +252,11 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterCoberturaNaoRelacionadaAProduto(string cd_produto)
         {
             return ObterRetornoNotIn("CD_COBERTURA", "CD_PRODUTO", cd_produto, "TAB_PRM_COBERTURA_7007");
+        }
+
+        public string ObterProdutoNaoRelacionadoACobertura(string cd_cobertura)
+        {
+            return ObterRetornoNotIn("CD_PRODUTO", "CD_COBERTURA", cd_cobertura, "TAB_PRM_COBERTURA_7007");
         }
 
         public string ObterCDTipoMovimentoNaoRelacionadoAAtuacao(string atuacao)
