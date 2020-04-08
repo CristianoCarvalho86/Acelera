@@ -452,8 +452,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
 
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoDiferente(cobertura.CdProduto));
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoDiferente(cobertura.CdRamo));
+            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
