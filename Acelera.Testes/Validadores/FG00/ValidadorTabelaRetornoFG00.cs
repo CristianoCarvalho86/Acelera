@@ -55,8 +55,12 @@ namespace Acelera.Testes.Validadores.FG00
             if(validaQuantidadeErros && linhas.Count != codigosDeErroEsperados.Length)
             {
                 logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} MAS FORAM ENCONTRADAS :{linhas.Count}");
+                return false;
             }
-
+            else if(validaQuantidadeErros && linhas.Count == codigosDeErroEsperados.Length)
+            {
+                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} , FORAM ENCONTRADAS :{linhas.Count} - OK");
+            }
 
             return ValidarCodigosDeErro(TabelasEnum.TabelaRetorno,linhas, "CD_MENSAGEM", codigosDeErroEsperados);
         }

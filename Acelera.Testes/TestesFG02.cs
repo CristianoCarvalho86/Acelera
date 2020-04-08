@@ -55,6 +55,20 @@ namespace Acelera.Testes.FASE_2
             ValidarTabelaDeRetornoFG01(validaQuantidadeErros, codigosDeErroEsperados);
         }
 
+        public void ValidarTabelaDeRetorno(int quantidadeErro, string codigoDeErroEsperado)
+        {
+            if (string.IsNullOrEmpty(codigoDeErroEsperado) || quantidadeErro == 0)
+                throw new Exception("DEVE EXISTIR UM CODIGO DE ERRO A SER PASSADO E QUANTIDADE");
+
+            var erros = new string[quantidadeErro];
+            for (int i = 0; i < quantidadeErro; i++)
+            {
+                erros[i] = codigoDeErroEsperado;
+            }
+
+            ValidarTabelaDeRetornoFG01(true, erros);
+        }
+
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
