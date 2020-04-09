@@ -43,13 +43,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1
+        /// Informar no arquivo PARC_EMISSAO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2688_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2688", "FG00 - PROC18 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2688", "FG00 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -57,7 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "NR_ENDOSSO", "0");
-            AlterarLinha(3, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(3, "CD_TIPO_EMISSAO", "18");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.txt");
