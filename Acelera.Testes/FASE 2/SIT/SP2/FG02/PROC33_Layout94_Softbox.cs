@@ -38,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("33");
+            ValidarTabelaDeRetorno(1, "33");
             ValidarTeste();
 
         }

@@ -25,6 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "CD_TIPO_COMISSAO", "R");
             AlterarLinha(3, "CD_CONTRATO", ObterValor(2,"CD_CONTRATO"));
             AlterarLinha(3, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(4, "CD_CONTRATO", ObterValor(2, "CD_CONTRATO"));
+            AlterarLinha(4, "CD_TIPO_COMISSAO", "R");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.EMSCMS-EV-/*R*/-20200320.txt");
