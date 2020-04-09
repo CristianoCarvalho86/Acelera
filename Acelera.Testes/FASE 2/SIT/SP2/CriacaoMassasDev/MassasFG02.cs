@@ -183,7 +183,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC26()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "PROC25", "FG02 - PROC26 - 1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO comCD_PRODUTO = -1 u não esteja cadastrado na tabela de pamametro");
+            IniciarTeste(TipoArquivo.ParcEmissao, "PROC26", "FG02 - PROC26 - 1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO comCD_PRODUTO = -1 u não esteja cadastrado na tabela de pamametro");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3162-20200316.txt"));
 
@@ -191,7 +191,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(9, "CD_PRODUTO", dados.ObterProduto(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC25-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200316.TXT");
+            SalvarArquivo($"PROC26-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200316.TXT");
         }
 
         /// <summary>
@@ -975,8 +975,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3272-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_COBERTURA", "00284");
-            AlterarLinha(0, "CD_PRODUTO", "11002");
+            var cdProduto = dados.ObterProduto(true);
+            AlterarLinha(0, "CD_PRODUTO", cdProduto);
+            AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaNaoRelacionadaAProduto(cdProduto));
+            
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1003-C01.LASA.PARCEMS-EV-/*R*/-20200323.TXT");
@@ -1099,14 +1101,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "PROC1056", "FG02 - PROC1056 -1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO: onde a combinação CD_TIPO_EMISSAO e CD_TPA_OPERACAO não é permitida de acordo com as regras de negócio da generali.");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3158-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader( "CD_TPA", "25");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarHeader( "CD_TPA", dados.ObterTPANaoAssociadoATipoEmissao("20"));
+            
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC1056-C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
+            SalvarArquivo($"PROC1056-C01.LASA.PARCEMS-EV-/*R*/-20200316.TXT");
         }
 
         /// <summary>
