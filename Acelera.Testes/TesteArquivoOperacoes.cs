@@ -70,12 +70,14 @@ namespace Acelera.Testes
         public void AlterarHeader(string campo, string valorNovo, int posicaoLinha = 0)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha} do HEADER");
-            logger.Escrever("Valor Antigo :" + arquivo.ObterLinhaHeader(posicaoLinha).ObterTexto());
+            logger.Escrever("Linha de Header Antiga :" + arquivo.ObterLinhaHeader(posicaoLinha).ObterTexto());
+            logger.Escrever($"Valor Antigo : {arquivo.ObterLinhaHeader(posicaoLinha).ObterCampoDoArquivo(campo).Valor}");
+            logger.Escrever($"Valor Novo : {valorNovo}");
             logger.Escrever(Environment.NewLine);
             arquivo.AlterarHeader(campo, valorNovo , posicaoLinha);
 
             var linhaAlterada = arquivo.ObterLinhaHeader(posicaoLinha);
-            logger.Escrever("Valor Atualizado :" + linhaAlterada.ObterTexto());
+            logger.Escrever("Linha de Header Atualizada :" + linhaAlterada.ObterTexto());
             logger.FecharBloco();
 
             AdicionaAlteracao(valoresAlteradosHeader, linhaAlterada, posicaoLinha, campo, valorNovo);
