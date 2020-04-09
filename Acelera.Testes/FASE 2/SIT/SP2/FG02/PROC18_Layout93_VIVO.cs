@@ -11,13 +11,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_APÓLICE=01234567890 (11 digitos)
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_APOLICE=01234567890 (11 digitos)
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2681_PARC_EMISSAO_NR_APÓLICE_Inv()
+        public void SAP_2681_PARC_EMISSAO_NR_APOLICE_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2681", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_APÓLICE=01234567890 (11 digitos)");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2681", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_APOLICE=01234567890 (11 digitos)");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
@@ -42,13 +42,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar NR_APÓLICE = 012345678901 (12 dígitos)
+        /// Informar NR_APOLICE = 012345678901 (12 dígitos)
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2682_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2682", "FG00 - PROC18 - Informar NR_APÓLICE = 012345678901 (12 dígitos)");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2682", "FG00 - PROC18 - Informar NR_APOLICE = 012345678901 (12 dígitos)");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();

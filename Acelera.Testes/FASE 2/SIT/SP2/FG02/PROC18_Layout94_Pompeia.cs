@@ -11,18 +11,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=01234567890123 (14 digitos)
+        /// Informar no arquivo PARC_EMISSAO o campo NR_APOLICE=01234567890123 (14 digitos)
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2687_PARC_EMISSAO_NR_APÓLICE_Inv()
+        public void SAP_2687_PARC_EMISSAO_NR_APOLICE_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=01234567890123 (14 digitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APOLICE=01234567890123 (14 digitos)");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "NR_APÓLICE", "01234567890123");
+            AlterarLinha(2, "NR_APOLICE", "01234567890123");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.txt");
@@ -42,20 +42,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE = 0123456789012 (13 dígitos)
+        /// Informar no arquivo PARC_EMISSAO o campo NR_APOLICE = 0123456789012 (13 dígitos)
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2684_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2684", "FG00 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE = 0123456789012 (13 dígitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2684", "FG00 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APOLICE = 0123456789012 (13 dígitos)");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(6, "NR_APÓLICE", "0123456789012");
+            AlterarLinha(6, "NR_APOLICE", "0123456789012");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.txt");

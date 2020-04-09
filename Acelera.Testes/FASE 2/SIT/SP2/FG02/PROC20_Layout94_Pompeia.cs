@@ -42,13 +42,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo CD_CONTRATO igual ao campo NR_APÓLICE
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo CD_CONTRATO igual ao campo NR_APOLICE
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2701_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2701", "FG00 - PROC19 - Informar no arquivo PARC_EMISSAO_AUTO o campo CD_CONTRATO igual ao campo NR_APÓLICE");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2701", "FG00 - PROC19 - Informar no arquivo PARC_EMISSAO_AUTO o campo CD_CONTRATO igual ao campo NR_APOLICE");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();

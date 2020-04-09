@@ -11,18 +11,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)
+        /// Informar no arquivo PARC_EMISSAO o campo NR_APOLICE=0123456789012345678 (19 digitos)
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2687_PARC_EMISSAO_VL_IS_negativo()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APÓLICE=0123456789012345678 (19 digitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APOLICE=0123456789012345678 (19 digitos)");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "NR_APÓLICE", "0123456789012345678");
+            AlterarLinha(5, "NR_APOLICE", "0123456789012345678");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
