@@ -374,6 +374,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
+            AlterarLinha(0, "TP_SINISTRO", "03");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
             AlterarLinha(0, "CD_BANCO_SEG", "");
 
