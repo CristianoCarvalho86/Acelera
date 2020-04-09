@@ -285,5 +285,22 @@ namespace Acelera.Testes
                 resultado += linha.ObterCampoDoArquivo(campo).ValorFormatado;
             return resultado;
         }
+
+        public LinhaArquivo CopiarLinha(int posicaoLinha)
+        {
+            logger.AbrirBloco("Copiando linha do arquivo.");
+            var linha = arquivo.ObterLinha(posicaoLinha);
+            logger.Escrever($"Linha copiada : {linha.ObterTexto()}");
+            logger.FecharBloco();
+            return linha;
+        }
+
+        public void InserirLinha(LinhaArquivo linha, int posicaoLinha)
+        {
+            logger.AbrirBloco("Inserindo linha no arquivo.");
+            logger.Escrever("Linha a ser inserida : " + linha.ObterTexto());
+            arquivo.AdicionarLinha(linha, posicaoLinha);
+            logger.FecharBloco();
+        }
     }
 }
