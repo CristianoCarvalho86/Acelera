@@ -11,13 +11,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=01, CD_FORMA_PAGTO=D e informar campo NR_AGENCIA em branco
+        /// Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=01, CD_FORMA_PAGTO=D e informar campo NR_AGENCIA_SEG em branco
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2882_SemNR_AGENCIA()
+        public void SAP_2882_SemNR_AGENCIA_SEG()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2882", "FG02 - PROC86 - Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=01, CD_FORMA_PAGTO=D e informar campo NR_AGENCIA em branco");
+            IniciarTeste(TipoArquivo.Sinistro, "2882", "FG02 - PROC86 - Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=01, CD_FORMA_PAGTO=D e informar campo NR_AGENCIA_SEG em branco");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
-            AlterarLinha(0, "NR_AGENCIA", "");
+            AlterarLinha(0, "NR_AGENCIA_SEG", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
@@ -45,13 +45,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =7, TP_SINISTRO=02, CD_FORMA_PAGTO=N e não informar campo NR_AGENCIA
+        /// Informar CD_TIPO_MOVIMENTO =7, TP_SINISTRO=02, CD_FORMA_PAGTO=N e não informar campo NR_AGENCIA_SEG
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2883_SINISTRO_semcritica()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2883", "FG02 - PROC86 - Informar CD_TIPO_MOVIMENTO =7, TP_SINISTRO=02, CD_FORMA_PAGTO=N e não informar campo NR_AGENCIA");
+            IniciarTeste(TipoArquivo.Sinistro, "2883", "FG02 - PROC86 - Informar CD_TIPO_MOVIMENTO =7, TP_SINISTRO=02, CD_FORMA_PAGTO=N e não informar campo NR_AGENCIA_SEG");
 
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
@@ -60,7 +60,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
-            AlterarLinha(0, "NR_AGENCIA", "");
+            AlterarLinha(0, "NR_AGENCIA_SEG", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");

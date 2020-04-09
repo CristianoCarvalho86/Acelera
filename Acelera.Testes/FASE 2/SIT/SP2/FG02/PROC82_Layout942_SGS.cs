@@ -24,6 +24,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 1);
             AlterarLinha(0, "CD_MOVIMENTO", "3");
+            AlterarLinha(0, "DT_MOVIMENTO", "20200409");
+            AlterarLinha(0, "CD_CLIENTE", "12345");
             AlterarLinha(1, "CD_MOVIMENTO", "3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -38,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno("82");
+            ValidarTabelaDeRetorno(1, "82");
             ValidarTeste();
 
         }

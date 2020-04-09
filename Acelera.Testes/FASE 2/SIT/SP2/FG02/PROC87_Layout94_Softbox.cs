@@ -11,13 +11,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=02, CD_FORMA_PAGTO=D e não informar campo NR_CONTA
+        /// Informar Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=02, CD_FORMA_PAGTO=D e não informar campo NR_CONTA_SEG
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2896_SemNR_CONTA()
+        public void SAP_2896_SemNR_CONTA_SEG()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2896", "FG02 - PROC87 - Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=02, CD_FORMA_PAGTO=D e não informar campo NR_CONTA");
+            IniciarTeste(TipoArquivo.Sinistro, "2896", "FG02 - PROC87 - Informar CD_TIPO_MOVIMENTO =146, TP_SINISTRO=02, CD_FORMA_PAGTO=D e não informar campo NR_CONTA_SEG");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
-            AlterarLinha(0, "NR_CONTA", "");
+            AlterarLinha(0, "NR_CONTA_SEG", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
@@ -45,20 +45,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO=1 e não informar NR_CONTA
+        /// Informar CD_TIPO_MOVIMENTO=1 e não informar NR_CONTA_SEG
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2897_SINISTRO_semcritica()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2897", "FG02 - PROC87 - Informar CD_TIPO_MOVIMENTO=1 e não informar NR_CONTA");
+            IniciarTeste(TipoArquivo.Sinistro, "2897", "FG02 - PROC87 - Informar CD_TIPO_MOVIMENTO=1 e não informar NR_CONTA_SEG");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "NR_CONTA", "");
+            AlterarLinha(0, "NR_CONTA_SEG", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
