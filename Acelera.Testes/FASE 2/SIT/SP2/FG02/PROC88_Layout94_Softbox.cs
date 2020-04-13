@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
-            AlterarLinha(0, "NR_DIG_SEG", "");
+            AlterarLinha(0, "NR_CONTA_DIG_SEG", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "NR_DIG_SEG", "");
+            AlterarLinha(0, "NR_CONTA_DIG_SEG", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");

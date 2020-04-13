@@ -195,12 +195,13 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCDTipoEmissao(string acao, bool ComCritica)
         {
+            //CD_TIPO_MOVIMENTO É IGUAL A TIPO EMISSAO
             string select = string.Empty;
             var operador = ComCritica ? " = " : " <> ";
-                select = $"select top 1 CD_TIPO_EMISSAO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where TP_ACAO {operador} '{acao}'";
+                select = $"select top 1 CD_TIPO_MOVIMENTO from {Parametros.instanciaDB}.TAB_PRM_TIPO_MOVIMENTO_7024 where TP_ACAO {operador} '{acao}'";
 
 
-            return DataAccess.ConsultaUnica(select, "CD_TIPO_EMISSAO", logger);
+            return DataAccess.ConsultaUnica(select, "CD_TIPO_MOVIMENTO", logger);
         }
 
         public string ObterCdTipoEmissao(TipoArquivo tipoArquivo, bool existente)

@@ -23,8 +23,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", "7");
-            AlterarLinha(2, "CD_ENDOSSO", "123");
-            AlterarLinha(2, "NR_SEQ_EMISSAO", "3");
+            AlterarLinha(2, "NR_ENDOSSO", "123");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200211.txt");
@@ -53,22 +53,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "2801", "FG02 - PROC33 - Enviar 1 arquivo com CD_TIPO_EMISSAO=1; CD_ENDOSSO=0 e NR_SEQ_EMISSAO=1. Em seguida, enviar outro arquivo, com CD_TIPO_EMISSAO=5, NR_ENDOSSO diferente de 0 e NR_SEQ_EMISSAO=2");
             
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-2751-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3212-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", "1");
-            AlterarLinha(2, "CD_ENDOSSO", "0");
-            AlterarLinha(2, "NR_SEQ_EMISSAO", "1");
+            AlterarLinha(2, "NR_ENDOSSO", "0");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200211.txt");
 
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-1931-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3228-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(2, "CD_ENDOSSO", "1");
-            AlterarLinha(2, "NR_SEQ_EMISSAO", "2");
+            AlterarLinha(2, "NR_ENDOSSO", "1");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200211.txt");

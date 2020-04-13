@@ -23,8 +23,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", "20");
-            AlterarLinha(2, "CD_ENDOSSO", "123");
-            AlterarLinha(2, "NR_SEQ_EMISSAO", "2");
+            AlterarLinha(2, "NR_ENDOSSO", "123");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200323.txt");
@@ -57,8 +57,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", "1");
-            AlterarLinha(2, "CD_ENDOSSO", "0");
-            AlterarLinha(2, "NR_SEQ_EMISSAO", "1");
+            AlterarLinha(2, "NR_ENDOSSO", "0");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200323.txt");
@@ -67,8 +67,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(2, "CD_ENDOSSO", "1");
-            AlterarLinha(2, "NR_SEQ_EMISSAO", "2");
+            AlterarLinha(2, "NR_ENDOSSO", "1");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200324.txt");
