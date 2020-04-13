@@ -15,10 +15,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2690_PARC_EMISSAO_NR_PROPOSTA_Inv()
+        public void SAP_2690_PARC_EMISSAO_AUTO_NR_PROPOSTA_Inv()
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2690", "FG02 - PROC19 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_PROPOSTA=1234");
-            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO

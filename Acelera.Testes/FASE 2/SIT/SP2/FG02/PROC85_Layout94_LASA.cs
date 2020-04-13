@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "TP_SINISTRO", "03");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
-            AlterarLinha(0, "CD_BANCO_SEG_SEG", "");
+            AlterarLinha(0, "CD_BANCO_SEG", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");

@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "2864", "FG02 - PROC82 - Replicar 3x linha e informar CD_MOVIMENTO = 3 nas três linhas");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3318-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 1);
@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "CD_MOVIMENTO", "3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");
+            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200325.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

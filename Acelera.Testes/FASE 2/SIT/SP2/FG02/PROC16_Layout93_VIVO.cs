@@ -15,10 +15,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2673_PARC_EMISSAO_NR_ENDOSSO_Inv()
+        public void SAP_2673_PARC_EMISSAO_AUTO_NR_ENDOSSO_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2673", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=5");
-            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2673", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=5");
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
@@ -47,12 +47,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2674_PARC_EMISSAO_semcritica()
+        public void SAP_2674_PARC_EMISSAO_AUTO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2674", "FG00 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2674", "FG00 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=1");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);

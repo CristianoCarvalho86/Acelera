@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "2869", "FG02 - PROC85 - Informar CD_TIPO_MOVIMENTO =7, TP_SINISTRO=02, CD_FORMA_PAGTO=D e informar CD_BANCO_SEG");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-0002-20191220.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
@@ -63,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_BANCO_SEG", "1234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191220.txt");
+            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191217.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

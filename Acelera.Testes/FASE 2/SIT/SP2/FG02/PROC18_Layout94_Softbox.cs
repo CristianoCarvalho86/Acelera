@@ -85,13 +85,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem(""));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3276-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(6, "NR_APOLICE", "012345678901234567");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($""));
+            arquivo.Salvar(ObterArquivoDestino($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.txt"));
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

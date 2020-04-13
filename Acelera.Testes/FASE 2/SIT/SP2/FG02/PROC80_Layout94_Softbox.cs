@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_AVISO", SomarData(ObterValor(1, "DT_OCORRENCIA"), -365));
+            AlterarLinha(0, "DT_AVISO", SomarData(ObterValor(0, "DT_OCORRENCIA"), -365));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200321.txt");
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_AVISO", SomarData(ObterValor(1, "DT_OCORRENCIA"), 22));
+            AlterarLinha(0, "DT_AVISO", SomarData(ObterValor(0, "DT_OCORRENCIA"), 22));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200321.txt");

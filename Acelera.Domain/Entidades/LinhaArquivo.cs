@@ -19,14 +19,14 @@ namespace Acelera.Domain.Layouts
             var campo = Campos.Where(x => x.Coluna.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
             if (campo == null)
                 campo = ObterCampoDoArquivo(nomeCampo);
-            Assert.IsNotNull(campo, "CAMPO NAO ENCONTRADO");
+            Assert.IsNotNull(campo, $"CAMPO NAO ENCONTRADO : '{nomeCampo}'");
             return campo;
         }
 
         public CampoDoArquivo ObterCampoDoArquivo(string nomeCampo)
         {
             var campo = Campos.Where(x => x.ColunaArquivo.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
-            Assert.IsNotNull(campo, "CAMPO NAO ENCONTRADO");
+            Assert.IsNotNull(campo, $"CAMPO NAO ENCONTRADO : '{nomeCampo}'");
             return campo;
         }
 
