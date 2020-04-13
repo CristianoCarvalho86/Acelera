@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC11_Layout93_Pompeia : TestesFG02
+    public class PROC11_Layout94_Pompeia : TestesFG02
     {
 
         /// <summary>
