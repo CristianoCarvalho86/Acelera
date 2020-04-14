@@ -81,6 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(9, "NR_APOLICE", "12345678901");
+            AlterarLinha(9, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(9)));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC18-C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT");
@@ -171,6 +172,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(9, "CD_RAMO", "-1");
+            AlterarLinha(9, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(9)));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC25-C01.POMPEIA.PARCEMS-EV-/*R*/-20200213.TXT");
@@ -244,6 +246,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(9, "NR_ENDOSSO", "2");
             AlterarLinha(9, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(9, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(9)));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC33-C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
@@ -713,7 +716,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(1, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "NR_ENDOSSO", "1");
             AlterarLinha(1, "DT_EMISSAO", SomarData(0, "DT_EMISSAO", -10));
-
+            AlterarLinha(1, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(1)));
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC162-C01.LASA.PARCEMS-EV-/*R*/-20200320.TXT");
         }
@@ -923,6 +926,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "12345");
+
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC223-C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
@@ -958,8 +963,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3276-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_PRODUTO", "71724");
-            AlterarHeader("CD_TPA", "7");
+            AlterarLinha(0, "CD_PRODUTO", "71725");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1002-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.TXT");
@@ -1107,7 +1111,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            AlterarHeader( "CD_TPA", dados.ObterTPANaoAssociadoATipoEmissao("20"));
             
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -1128,7 +1131,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_PARCELA", "3");
-
+            AlterarLinha(0, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(0)));
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1065-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.TXT");
         }
@@ -1142,13 +1145,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "PROC1067", "FG02 - PROC1067 - 1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO: onde CD_SUCURSAL não esteja cadastrada para ser contabilizada na operação em questão nas regras de negócio da Generali. ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3228-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", dados.ObterParceiroNegocio("SU",false));
+            AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU",false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC1067-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.TXT");
+            SalvarArquivo($"PROC1067-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200320.TXT");
         }
 
         /// <summary>
@@ -1199,8 +1202,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_FRANQUIA", dados.ObterCDFranquia(false));
-
+            AlterarLinha(0, "CD_FRANQUIA", "13");
+            AlterarLinha(0, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(0)));
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1092-C01.LASA.PARCEMS-EV-/*R*/-20200318.TXT");
         }
@@ -1280,11 +1283,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3224-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMenor, "-1"));
-            AlterarLinha(1, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMaior, "1"));
+            AlterarLinha(0, "CD_COBERTURA", "104670");
+            AlterarLinha(0, "VL_JUROS", "0.10");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1183-C01.LASA.PARCEMS-EV-/*R*/-20200320.TXT");

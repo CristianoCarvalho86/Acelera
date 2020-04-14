@@ -240,6 +240,11 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("CD_TPA_OPERACAO", "CD_TIPO_EMISSAO", cdTipoEmissao, "TAB_PRM_CONFIG_NEGOCIO_7004");
         }
 
+        public string ObterTPANaoAssociadoAProduto(string cdProduto)
+        {
+            return ObterRetornoNotIn("CD_TPA_OPERACAO", "CD_PRODUTO", cdProduto, "TAB_PRM_CONFIG_NEGOCIO_7004");
+        }
+
         public string ObterRamoDiferente(string ramo)
         {
             return ObterRetornoParaDiferente("CD_RAMO", "CD_RAMO", ramo, "TAB_PRM_RAMO_7002");

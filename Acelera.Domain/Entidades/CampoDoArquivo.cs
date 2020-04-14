@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,10 @@ namespace Acelera.Domain.Layouts
                 espacosBrancos += " ";
 
             Valor = espacosBrancos + novoValor;
+
+            Assert.IsTrue(Valor.Length == this.Posicoes,
+                $"ERRO AO ALTERAR ARQUIVO - CAMPO '{ColunaArquivo}' ESTOUROU O LIMITE DE POSIÇÕES. MAX: '{this.Posicoes}'");
+
         }
     }
 }

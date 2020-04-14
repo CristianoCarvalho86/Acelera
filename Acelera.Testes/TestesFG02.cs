@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores.FG02;
 using System;
@@ -90,6 +91,11 @@ namespace Acelera.Testes.FASE_2
             {
                 TratarErro($"FG02: Validação da Stage : {tabela.ObterTexto()}");
             }
+        }
+
+        protected string CarregarIdtransacao(LinhaArquivo linha)
+        {
+            return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }
 
         #region Procedures

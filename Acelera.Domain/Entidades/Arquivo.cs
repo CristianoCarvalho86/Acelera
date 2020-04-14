@@ -175,11 +175,20 @@ namespace Acelera.Domain.Layouts
                 header.Campos.Add(new CampoDoArquivo("VERSAO", 4));
                 header.Campos.Add(new CampoDoArquivo("FILLER", 575));
                 header.CarregaTexto(linha);
+                ValidaHeader(header);
                 listaHeader.Add(header);
                 count++;
             }
             return listaHeader;
         }
+
+        private void ValidaHeader(LinhaArquivo header)
+        {
+            Assert.IsTrue(new string[] {"9.3","9.4"}.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA"  );
+            var cdTpa = header.ObterCampoDoArquivo("CD_TPA").Valor.Trim();
+            Assert.IsTrue(cdTpa.Length == 3 && int.TryParse(cdTpa,out int r), "CD_TPA DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
+        }
+
         protected virtual IList<LinhaArquivo> CarregaFooter(IEnumerable<string> linhas)
         {
             var listaFooter = new List<LinhaArquivo>();
