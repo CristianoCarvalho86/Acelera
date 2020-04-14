@@ -60,6 +60,7 @@ namespace Acelera.Testes
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
+            FinalizarAlteracaoArquivo();
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)

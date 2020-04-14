@@ -49,6 +49,11 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosBody, linhaParaValidacao, 0, "", "", 0, false, true);
         }
 
+        public LinhaArquivo ObterLinha(int posicaoLinha)
+        {
+            return arquivo.ObterLinha(posicaoLinha);
+        }
+
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
@@ -301,6 +306,20 @@ namespace Acelera.Testes
             logger.Escrever("Linha a ser inserida : " + linha.ObterTexto());
             arquivo.AdicionarLinha(linha, posicaoLinha);
             logger.FecharBloco();
+        }
+
+        public virtual void FinalizarAlteracaoArquivo()
+        {
+
+        }
+
+        public string GerarNumeroAleatorio(int posicoes)
+        {
+            var retorno = string.Empty;
+            int seed = DateTime.Now.Millisecond;
+            for (int i = 0; i < posicoes; i++)
+                retorno += new Random(seed * i).Next(0, 9).ToString();
+            return retorno;
         }
     }
 }
