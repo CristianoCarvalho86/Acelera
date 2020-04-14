@@ -98,6 +98,28 @@ namespace Acelera.Testes.FASE_2
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }
 
+        public override void FinalizarAlteracaoArquivo()
+        {
+            var linhas = valoresAlteradosBody.LinhasAlteradas();
+            var linhasAColocarIdTransacao = new List<int>();
+            foreach (var linha in linhas)
+            {
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList();
+                foreach (var alteracao in alteracoes)
+                {
+                    //nr_apolice, nr_endosso, cd_ramo ou nr_parcela
+                    if (alteracao.CamposAlterados.Any(x => x.Coluna == "NR_APOLICE"
+                    || x.Coluna == "NR_ENDOSSO"
+                    || x.Coluna == "CD_RAMO"
+                    || x.Coluna == "NR_PARCELA"))
+                        linhasAColocarIdTransacao.Add(alteracao.PosicaoDaLinha);
+                }
+            }
+            foreach(var linha in linhasAColocarIdTransacao)
+                AlterarLinha(linha, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(linha)));
+
+        }
+
         #region Procedures
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
         {
