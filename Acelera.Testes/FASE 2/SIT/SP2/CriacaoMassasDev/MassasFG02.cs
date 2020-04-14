@@ -603,14 +603,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.Sinistro, "PROC128", "FG02 - PROC128 -  2 (um) Arquivos de Sinistro com 2 (dois) ID_REGISTRO distintos: com CD_SINISTRO iguais e Tipo de movimento de abertura iguais, em arquivos distintos.");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var cdSinistro = ObterValor(0, "CD_SINISTRO");
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC128-C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT");
+            SalvarArquivo($"PROC128-C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
@@ -620,7 +620,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC128-C01.POMPEIA.PARCEMS-EV-/*R*/-20200127.TXT");
+            SalvarArquivo($"PROC128-C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");
         }
 
         /// <summary>

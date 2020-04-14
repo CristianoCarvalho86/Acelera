@@ -173,7 +173,15 @@
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout942_SGS.cs" />
     <Compile Include="FASE 2\SIT\SP2\CriacaoMassasDev\MassasFG02.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC119_Layout942_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC128_Layout942_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC128_Layout94_Softbox.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC128_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC128_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC130_Layout942_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC131_Layout942_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC131_Layout94_Softbox.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC131_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC131_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC130_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC130_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC130_Layout94_LASA.cs" />
