@@ -455,11 +455,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
+            //var cobertura = dados.ObterCobertura();
 
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura("01770"));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura("01770"));
+            AlterarLinha(0, "CD_COBERTURA", "01770");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC107-C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -866,10 +866,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "12");
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
 
+            //ALTERAR O VALOR SELECIONADO
+            var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"),"1");
+            ReplicarLinha(0, 1);
+            AumentarLinhasNoFooter(1);
+            AlterarLinha(1, "CD_TIPO_EMISSAO", "12");
+            AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC191-C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
