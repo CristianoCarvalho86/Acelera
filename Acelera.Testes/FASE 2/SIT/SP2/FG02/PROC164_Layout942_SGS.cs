@@ -19,16 +19,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3343", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=B");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "B");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "B");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -52,16 +52,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3344", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=N");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "N");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "N");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -85,16 +85,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3345", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=C");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "C");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "C");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -123,8 +123,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
@@ -151,16 +151,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3347", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=R");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "R");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "R");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -184,16 +184,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3348", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=M");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "M");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "M");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -217,16 +217,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3349", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=B");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "B");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "B");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -255,8 +255,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "N");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "N");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
@@ -283,16 +283,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3351", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=C");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "C");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "C");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -316,16 +316,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3352", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=D");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -349,16 +349,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3353", "FG02 - PROC164 - Não informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=R");
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "R");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "R");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -387,8 +387,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "M");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "M");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
@@ -421,8 +421,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "B");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "B");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
@@ -450,16 +450,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3356", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=N");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "N");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "N");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -484,16 +484,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3357", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=C");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "C");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "C");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -518,16 +518,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3358", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=D");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -557,8 +557,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "R");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "R");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
@@ -586,16 +586,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3360", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=02; CD_FORMA_PGTO=M");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02");
-            AlterarLinha(1, "CD_FORMA_PGTO", "M");
+            AlterarLinha(0, "TP_SINISTRO", "02");
+            AlterarLinha(0, "CD_FORMA_PGTO", "M");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -620,16 +620,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3361", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=B");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "B");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "B");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -654,16 +654,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3362", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=N");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "N");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "N");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -693,8 +693,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "C");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "C");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
@@ -722,16 +722,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3364", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=D");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -756,16 +756,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3365", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=R");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "R");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "R");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -790,16 +790,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3366", "FG02 - PROC164 - Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=04; CD_FORMA_PGTO=M");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "04");
-            AlterarLinha(1, "CD_FORMA_PGTO", "M");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PGTO", "M");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -829,8 +829,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "01");
-            AlterarLinha(1, "CD_FORMA_PGTO", "M");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PGTO", "M");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
@@ -858,16 +858,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3368", "FG02 - PROC164 - Não Informar NR_DOCUMENTO para sinistro com: CD_TIPO_MOVIMENTO=146; TP_SINISTRO=03; CD_FORMA_PGTO=M");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "03");
-            AlterarLinha(1, "CD_FORMA_PGTO", "M");
+            AlterarLinha(0, "TP_SINISTRO", "03");
+            AlterarLinha(0, "CD_FORMA_PGTO", "M");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
