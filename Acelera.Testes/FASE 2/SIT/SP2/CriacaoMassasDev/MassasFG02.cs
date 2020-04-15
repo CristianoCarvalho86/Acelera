@@ -43,7 +43,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "VL_IS", "0");
-            AlterarLinha(3, "CD_TIPO_EMISSAO", "18");
+            AlterarLinha(3, "CD_TIPO_EMISSAO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC13-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200316.TXT");
@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(6, "NR_ENDOSSO", "0");
-            AlterarLinha(6, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(6, "CD_TIPO_EMISSAO", "18");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC16-C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");

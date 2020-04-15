@@ -22,7 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000015");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -32,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3217-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000015");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -63,7 +64,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3217-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000002");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -73,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3220-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000002");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -104,7 +106,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3220-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000003");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -114,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3222-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000003");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -145,7 +148,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3222-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000004");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -155,7 +159,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3231-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000004");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -186,7 +190,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3231-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000005");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -196,7 +201,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000005");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -227,7 +232,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000006");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -237,7 +243,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3238-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000006");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -268,7 +274,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3238-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000007");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -278,7 +285,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000007");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -310,9 +317,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SINISTRO", "123123456000008");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(1, "CD_SINISTRO", "123123456000008");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -345,7 +353,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000009");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -355,7 +364,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3280-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000009");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -388,7 +397,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3280-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000010");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -398,7 +408,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000010");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -431,7 +441,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000011");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -441,7 +452,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3300-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000011");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -474,7 +485,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3300-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000012");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -484,7 +496,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3302-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000012");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -517,7 +529,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3302-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000013");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -527,7 +540,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3318-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000013");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -560,7 +573,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3318-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000014");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -570,7 +584,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3330-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", "123123456000014");
+            AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
