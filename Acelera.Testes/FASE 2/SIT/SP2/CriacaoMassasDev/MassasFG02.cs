@@ -693,7 +693,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3331-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "ID_TRANSACAO_CANC", "99");
+            //AlterarLinha(0, "ID_TRANSACAO_CANC", "99");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
