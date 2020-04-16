@@ -11,19 +11,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=9
+        /// Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=20
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_2675_PARC_EMISSAO_NR_ENDOsSO_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2675", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=9");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2675", "FG02 - PROC16 - Informar no arquivo PARC_EMISSAO_AUTO o campo NR_ENDOSSO=0 para CD_TIPO_EMISSAO=20");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "NR_ENDOSSO", "0");
-            AlterarLinha(3, "CD_TIPO_EMISSAO", "9");
+            AlterarLinha(3, "CD_TIPO_EMISSAO", "20");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.txt");

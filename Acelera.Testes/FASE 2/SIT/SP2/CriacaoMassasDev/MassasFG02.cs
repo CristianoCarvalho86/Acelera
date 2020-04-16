@@ -50,19 +50,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         }
 
         /// <summary>
-        /// 1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO com CD_TIPO_EMISSAO diferente de '18' E  NR_ENDOSSO igual a zero
+        /// 1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO com CD_TIPO_EMISSAO = '18' E  NR_ENDOSSO igual a zero E NR_PARCELA <> 0"
         /// </summary>
         [TestMethod]
         [TestCategory("Criacao de massa")]
         public void Criacao_Massa_PRROC16()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "PROC16", "FG02 - PROC16 - 1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO com CD_TIPO_EMISSAO diferente de '18' E  NR_ENDOSSO igual a zero");
+            IniciarTeste(TipoArquivo.ParcEmissao, "PROC16", "FG02 - PROC16 - 1 (um) Arquivo de Parcela com 1 (um) ID_REGISTRO com CD_TIPO_EMISSAO = '18' E  NR_ENDOSSO igual a zero E NR_PARCELA <> 0");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(6, "NR_ENDOSSO", "0");
             AlterarLinha(6, "CD_TIPO_EMISSAO", "18");
+            AlterarLinha(6, "NR_PARCELA", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC16-C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
@@ -616,14 +617,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             SalvarArquivo($"PROC128-C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0002-20191220.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "CD_SINISTRO", cdSinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC128-C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");
+            SalvarArquivo($"PROC128-C01.POMPEIA.SINISTRO-EV-/*R*/-20191220.TXT");
         }
 
         /// <summary>
