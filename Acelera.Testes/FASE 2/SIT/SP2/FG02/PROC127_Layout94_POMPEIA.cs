@@ -10,7 +10,7 @@ using System;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC127_Layout94_LASA : TestesFG02
+    public class PROC127_Layout94_POMPEIA : TestesFG02
     {
 
 
@@ -19,11 +19,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3176_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
+        public void SAP_3172_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3176", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3172", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3272-20200323.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -38,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200323.txt");
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -53,16 +53,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
+
         /// <summary>
-        /// 	Duplicar linha que possua CD_TIPO_EMISSAO=18 Na linha duplicada, alterar: - ID TRANSACAO: Somar 1 unidade do numero anterior; - o CD_TIPO_EMISSAO para 11 (Cancelamento por falta de pagamento) - informar ID_TRANSACAO_CANC igual ao ID_TRANSACAO
+        /// 	Duplicar linha que possua CD_TIPO_EMISSAO=1. Na linha duplicada, alterar: - ID TRANSACAO: Somar 1 unidade do numero anterior; - o CD_TIPO_EMISSAO para 10 (Cancelamento Segurado) - informar ID_TRANSACAO_CANC igual ao ID_TRANSACAO - Alterar CD_MOVTO_COBRANCA igual a 02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3177_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
+        public void SAP_3173_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3177", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3172", "FG02 - PROC123 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3272-20200323.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -76,7 +77,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200323.txt");
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -98,11 +99,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3178_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
+        public void SAP_3174_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3178", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3174", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3272-20200323.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -117,7 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200323.txt");
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -137,11 +138,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3179_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
+        public void SAP_3175_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3179", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3175", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3272-20200323.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -155,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200323.txt");
+            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

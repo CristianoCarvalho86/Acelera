@@ -26,10 +26,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_SINISTRO",
+                GerarNumeroAleatorio(6) +
                 ObterValorFormatado(0, "CD_RAMO")
                 + DateTime.Now.ToString("yy")
-                + "SUCURSAL"
-                + GerarNumeroAleatorio(9)) ;
+                + "SUCURSAL" ) ;
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -64,7 +64,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
                 "SUCURSAL"
                 + ObterValorFormatado(0, "CD_RAMO")
                 + DateTime.Now.ToString("yy")
-                + GerarNumeroAleatorio(9));
+                + ObterValorHeader("CD_TPA")
+                + GerarNumeroAleatorio(6));
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
