@@ -275,8 +275,10 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(select);
         }
 
-        public string ObterCDTipoMovimentoNaoRelacionadoAAtuacao(string atuacao)
+        public string ObterCDTipoMovimentoParaAtuacao(string atuacao, bool relacionado)
         {
+            if(relacionado)
+                return ObterRetorno("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024", true);
             return ObterRetornoNotIn("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024");
         }
 
