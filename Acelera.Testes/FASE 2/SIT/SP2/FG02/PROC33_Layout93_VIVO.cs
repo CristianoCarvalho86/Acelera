@@ -44,13 +44,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Enviar 1 arquivo com CD_TIPO_EMISSAO=1; CD_ENDOSSO=0 e NR_SEQ_EMISSAO=1. Em seguida, enviar outro arquivo, com CD_TIPO_EMISSAO=5, NR_ENDOSSO diferente de 0 e NR_SEQ_EMISSAO=2
+        /// Enviar 1 arquivo com CD_TIPO_EMISSAO=1; CD_ENDOSSO=0 e NR_SEQ_EMISSAO=1. Em seguida, enviar outro arquivo, com CD_TIPO_EMISSAO=20, NR_ENDOSSO diferente de 0 e NR_SEQ_EMISSAO=2
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_2795_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2795", "FG02 - PROC33 - Enviar 1 arquivo com CD_TIPO_EMISSAO=1; CD_ENDOSSO=0 e NR_SEQ_EMISSAO=1. Em seguida, enviar outro arquivo, com CD_TIPO_EMISSAO=5, NR_ENDOSSO diferente de 0 e NR_SEQ_EMISSAO=2");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2795", "FG02 - PROC33 - Enviar 1 arquivo com CD_TIPO_EMISSAO=1; CD_ENDOSSO=0 e NR_SEQ_EMISSAO=1. Em seguida, enviar outro arquivo, com CD_TIPO_EMISSAO=20, NR_ENDOSSO diferente de 0 e NR_SEQ_EMISSAO=2");
             
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_TIPO_EMISSAO", "5");
+            AlterarLinha(2, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(2, "NR_ENDOSSO", "1");
             AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "2");
 
