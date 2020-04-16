@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2856_SINISTRO_DT_AVISO_inv()
+        public void SAP_4100_SINISTRO_DT_AVISO_inv()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2856", "FG02 - PROC80 - Informar DT_AVISO igual a D-365 a DT_OCORRENCIA");
+            IniciarTeste(TipoArquivo.Sinistro, "4100", "FG02 - PROC80 - Informar DT_AVISO igual a D-365 a DT_OCORRENCIA");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
@@ -46,9 +46,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2857_SINISTRO_semcritica()
+        public void SAP_4101_SINISTRO_semcritica()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2857", "FG02 - PROC80 - Informar DT_AVISO igual a D+22 DT_OCORRENCIA");
+            IniciarTeste(TipoArquivo.Sinistro, "4101", "FG02 - PROC80 - Informar DT_AVISO igual a D+22 DT_OCORRENCIA");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));

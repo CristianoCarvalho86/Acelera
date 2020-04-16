@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2852_SINISTRO_DT_AVISO_inv()
+        public void SAP_4096_SINISTRO_DT_AVISO_inv()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2852", "FG02 - PROC80 - Informar DT_AVISO igual a D-1 a DT_OCORRENCIA");
+            IniciarTeste(TipoArquivo.Sinistro, "4096", "FG02 - PROC80 - Informar DT_AVISO igual a D-1 a DT_OCORRENCIA");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
@@ -46,9 +46,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2853_SINISTRO_semcritica()
+        public void SAP_4097_SINISTRO_semcritica()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2853", "FG02 - PROC80 - Informar DT_AVISO igual a D+365 DT_OCORRENCIA");
+            IniciarTeste(TipoArquivo.Sinistro, "4097", "FG02 - PROC80 - Informar DT_AVISO igual a D+365 DT_OCORRENCIA");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
