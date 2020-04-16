@@ -1137,6 +1137,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_PARCELA", "3");
             AlterarLinha(0, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(0)));
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1065-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.TXT");
         }

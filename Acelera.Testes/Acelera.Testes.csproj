@@ -175,6 +175,15 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1024_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1041_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1046_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1048_Layout93__VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1067_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1067_Layout94_Pompeia.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1067_Layout94_Softbox.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1067_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1048_Layout94_Pompeia.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1048_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1048_Layout94_Softbox.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1056_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1056_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1046_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1046_Layout94_Softbox.cs" />
