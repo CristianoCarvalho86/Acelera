@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterCDTipoMovimentoNaoRelacionadoAAtuacao("SN"));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterCDTipoMovimentoParaAtuacao("SN",false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterCDTipoMovimentoNaoRelacionadoAAtuacao("SN"));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterCDTipoMovimentoParaAtuacao("SN",true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");

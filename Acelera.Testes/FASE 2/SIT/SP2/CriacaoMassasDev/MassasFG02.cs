@@ -832,7 +832,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3331-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterCDTipoMovimentoNaoRelacionadoAAtuacao("SN"));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", dados.ObterCDTipoMovimentoParaAtuacao("SN", false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC184-C01.LASA.SINISTRO-EV-/*R*/-20200326.TXT");
