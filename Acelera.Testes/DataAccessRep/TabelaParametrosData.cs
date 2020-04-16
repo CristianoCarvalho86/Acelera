@@ -292,6 +292,11 @@ namespace Acelera.Testes.DataAccessRep
             return Cobertura.CarregarCobertura(linha);
         }
 
+        public string ObterCDSeguradoraDoTipoParceiro(string cdTipoParceiroNegocio, bool igual)
+        {
+            return ObterRetorno("CD_EXTERNO", "CD_TIPO_PARCEIRO_NEGOCIO", cdTipoParceiroNegocio, "TAB_ODS_PARCEIRO_NEGOCIO_2000", igual);
+        }
+
         public Cobertura ObterCoberturaDiferenteDe(string cdCobertura)
         {
             var select = QueryCobertura() + $" WHERE C.CD_COBERTURA <> '{cdCobertura}'";
