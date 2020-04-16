@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(7, "CD_MOVTO_COBRANCA", dados.ObterMovimentoCobranca(false));
+            AlterarLinha(7, "CD_MOVTO_COBRANCA", "-1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200317.txt");

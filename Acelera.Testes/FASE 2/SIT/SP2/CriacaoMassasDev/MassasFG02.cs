@@ -690,14 +690,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "PROC155", "FG02 - PROC155 -  1 (um) Arquivo de  Parcela com 1(um) ID_REGISTRO: com ID_TRANSACAO_CANC preenchido para CD_TIPO_EMISSAO cancelamento. ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3331-20200326.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3256-20200322.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "ID_TRANSACAO_CANC", "99");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC155-C01.LASA.SINISTRO-EV-/*R*/-20200326.TXT");
+            SalvarArquivo($"PROC155-C01.LASA.PARCEMS-EV-/*R*/-20200322.TXT");
         }
 
         /// <summary>
