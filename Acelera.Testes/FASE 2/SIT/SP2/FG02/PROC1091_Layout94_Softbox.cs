@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC1091_Layout94_LASA : TestesFG02
+    public class PROC1091_Layout94_Softbox : TestesFG02
     {
 
         /// <summary>
@@ -15,11 +15,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3909_VL_LMI_inv()
+        public void SAP_3912_VL_LMI_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3909", "FG02 - PROC1091 - Informar VL_LMI maior que VL_IS (0.01)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3912", "FG02 - PROC1091 - Informar VL_LMI maior que VL_IS (0.01)");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3158-20200316.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3228-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "VL_LMI", SomarValor(0, "VL_IS", 0.01M));
@@ -45,11 +45,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3910_VL_LMI_inv()
+        public void SAP_3913_VL_LMI_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3910", "FG02 - PROC1091 - Informar VL_LMI menor que VL_IS (0.01)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3913", "FG02 - PROC1091 - Informar VL_LMI menor que VL_IS (0.01)");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3158-20200316.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3325-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "VL_LMI", SomarValor(0, "VL_IS", -0.01M));
@@ -75,12 +75,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3911_ParcEmissao_semcritica()
+        public void SAP_3914_ParcEmissao_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3911", "FG02 - PROC1091 - Informar VL_LMI igual ao VL_IS");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3914", "FG02 - PROC1091 - Informar VL_LMI igual ao VL_IS");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3240-20200321.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3276-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
