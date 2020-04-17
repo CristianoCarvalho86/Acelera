@@ -172,6 +172,7 @@
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG01\PROC110_Layout942_SGS.cs" />
     <Compile Include="FASE 2\SIT\SP2\CriacaoMassasDev\MassasFG02.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC1190_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1024_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1041_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1046_Layout93_VIVO.cs" />

@@ -24,6 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
 
+            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0,2);
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_SINISTRO",
                 "SUCURSAL" +

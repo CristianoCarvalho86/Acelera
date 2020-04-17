@@ -234,17 +234,7 @@ namespace Acelera.Testes.DataAccessRep
             else
                 return (lista.Select(x => int.Parse(x)).Max() + 1).ToString();
         }
-
-        public string ObterTPANaoAssociadoATipoEmissao(string cdTipoEmissao)
-        {
-            return ObterRetornoNotIn("CD_TPA_OPERACAO", "CD_TIPO_EMISSAO", cdTipoEmissao, "TAB_PRM_CONFIG_NEGOCIO_7004");
-        }
-
-        public string ObterTPANaoAssociadoAProduto(string cdProduto)
-        {
-            return ObterRetornoNotIn("CD_TPA_OPERACAO", "CD_PRODUTO", cdProduto, "TAB_PRM_CONFIG_NEGOCIO_7004");
-        }
-
+        
         public string ObterRamoDiferente(string ramo)
         {
             return ObterRetornoParaDiferente("CD_RAMO", "CD_RAMO", ramo, "TAB_PRM_RAMO_7002");
@@ -282,9 +272,38 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024");
         }
 
-        public Cobertura ObterCobertura()
+        public string ObterCdCorretorParaTipoRemuneracao(string cdTipoRemuneracao, bool relacionado)
         {
-            var select = QueryCobertura();
+            if (relacionado)
+                return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true);
+            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013");
+        }
+
+        public string ObterCdProdutoParaTPA(string cdTpa, bool relacionado)
+        {
+            if (relacionado)
+                return ObterRetorno("CD_PRODUTO", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
+            return ObterRetornoNotIn("CD_PRODUTO", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
+        }
+
+        public string ObterIdCoberturaParaTPA(string cdTpa, bool relacionado)
+        {
+            if (relacionado)
+                return ObterRetorno("ID_COBERTURA", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
+            return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
+        }
+
+        public Cobertura ObterCobertura(string idCobertura)
+        {
+            if (int.TryParse(idCobertura, out int id))
+                return ObterCobertura(id);
+            else
+                throw new Exception("ID de cobertura invalido.");
+        }
+
+        public Cobertura ObterCobertura(int idCobertura = 0)
+        {
+            var select = QueryCobertura(idCobertura);
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
@@ -307,14 +326,17 @@ namespace Acelera.Testes.DataAccessRep
             return Cobertura.CarregarCobertura(linha);
         }
 
-        private string QueryCobertura()
+        private string QueryCobertura(int idCobertura = 0)
         {
-            return $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO, PP.VL_DESCONTO_MAIOR, " +
+            var sql = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO, PP.VL_DESCONTO_MAIOR, " +
                $" PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR " +
                $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
                $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
                $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
                $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA ";
+            if(idCobertura != 0)
+               sql += $" WHERE C.ID_COBERTURA = {idCobertura}";
+            return sql;
         }
 
     }

@@ -1,0 +1,77 @@
+﻿using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
+{
+    [TestClass]
+    public class PROC1190_Layout94_LASA : TestesFG02
+    {
+        /// <summary>
+        /// COBRANCA- CD_LANCAMENTO diferente de 3
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_3952_COBRANCA_CD_LANCAMENTO_DIF_3()
+        {
+            IniciarTeste(TipoArquivo.OCRCobranca, "3952", "FG02 - PROC1190 - COBRANCA- CD_LANCAMENTO diferente de 3");
+
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "CD_LANCAMENTO", "4");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.OCRCobranca.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(1, "1190");
+            ValidarTeste();
+
+        }
+
+        /// <summary>
+        /// COBRANCA- CD_LANCAMENTO IGUAL 3
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_3953_COBRANCA_semcritica()
+        {
+            IniciarTeste(TipoArquivo.OCRCobranca, "3953", "FG02 - PROC1190 - COBRANCA- CD_LANCAMENTO diferente de 3");
+
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "CD_LANCAMENTO", "3");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.OCRCobranca.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno();
+            ValidarTeste();
+
+        }
+    }
+}
