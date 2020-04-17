@@ -211,6 +211,7 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1024_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1024_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC23_Layout942_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC24_Layout942_SGS.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC70_Layout942_SGS.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC70_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC70_Layout94_LASA.cs" />
