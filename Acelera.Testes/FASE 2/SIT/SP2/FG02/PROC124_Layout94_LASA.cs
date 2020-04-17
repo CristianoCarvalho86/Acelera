@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3156_DT_OCORRENCIA_inv()
+        public void SAP_4142_DT_OCORRENCIA_inv()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "3156", "FG02 - PROC124 -Informar DT_OCORRENCIA=D-30 da data atual");
+            IniciarTeste(TipoArquivo.OCRCobranca, "4142", "FG02 - PROC124 -Informar DT_OCORRENCIA=D-30 da data atual");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.COBRANCA-EV-2598-20200130.txt"));
 
@@ -45,9 +45,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3157_OCRCobranca_semcritica()
+        public void SAP_4143_OCRCobranca_semcritica()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "3157", "FG02 - PROC124 - Informar DT_OCORRENCIA igual a data atual");
+            IniciarTeste(TipoArquivo.OCRCobranca, "4143", "FG02 - PROC124 - Informar DT_OCORRENCIA igual a data atual");
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.COBRANCA-EV-2784-20200214.txt"));
@@ -77,9 +77,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3158_OCRCobranca_semcritica()
+        public void SAP_4144_OCRCobranca_semcritica()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "3158", "FG02 - PROC124 - Informar DT_OCORRENCIA igual a D+30 da data atual");
+            IniciarTeste(TipoArquivo.OCRCobranca, "4144", "FG02 - PROC124 - Informar DT_OCORRENCIA igual a D+30 da data atual");
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.COBRANCA-EV-2785-20200214.txt"));
