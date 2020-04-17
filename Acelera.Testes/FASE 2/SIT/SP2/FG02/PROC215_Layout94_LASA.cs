@@ -1,14 +1,13 @@
 ﻿using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
-using Acelera.Domain.Layouts._9_3;
-using Acelera.Domain.Layouts._9_4_2;
+using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC215_Layout93_VIVO : TestesFG02
+    public class PROC215_Layout94_LASA : TestesFG02
     {
 
         /// <summary>
@@ -16,11 +15,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3711_VL_PREMIO_TOTAL_inv()
+        public void SAP_3716_VL_PREMIO_TOTAL_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3711", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 0.01 ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
+            IniciarTeste(TipoArquivo.ParcEmissao, "3716", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 0.01 ao VL_PREMIO_TOTAL");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValores(SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF"), -0.01M));
@@ -32,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
@@ -46,11 +45,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3712_VL_PREMIO_TOTAL_inv()
+        public void SAP_3717_VL_PREMIO_TOTAL_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3712", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 10.00 ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
+            IniciarTeste(TipoArquivo.ParcEmissao, "3717", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 10.00 ao VL_PREMIO_TOTAL");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValores(SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF"), -10.00M));
@@ -62,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
@@ -76,11 +75,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3713_VL_PREMIO_TOTAL_inv()
+        public void SAP_3718_VL_PREMIO_TOTAL_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3713", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF SUPERIOR em 0.01 ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            IniciarTeste(TipoArquivo.ParcEmissao, "3718", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF SUPERIOR em 0.01 ao VL_PREMIO_TOTAL");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3208-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValores(SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF"), 0.01M));
@@ -92,7 +91,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
@@ -106,11 +105,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3714_VL_PREMIO_TOTAL_inv()
+        public void SAP_3719_VL_PREMIO_TOTAL_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3714", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 10.00 ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            IniciarTeste(TipoArquivo.ParcEmissao, "3719", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 10.00 ao VL_PREMIO_TOTAL");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3224-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValores(SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF"), 10.00M));
@@ -122,7 +121,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
@@ -136,14 +135,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3715_SEM_CRITICA()
+        public void SAP_3720_SEM_CRITICA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3715", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF igual ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            IniciarTeste(TipoArquivo.ParcEmissao, "3720", "FG02 - PROC215 - Informar VL_PREMIO_LIQUIDO + VL_IOF igual ao VL_PREMIO_TOTAL");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3240-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
+            AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ToString());
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -152,7 +151,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
