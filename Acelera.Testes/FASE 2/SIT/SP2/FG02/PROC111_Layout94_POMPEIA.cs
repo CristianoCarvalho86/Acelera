@@ -27,8 +27,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0,2);
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_SINISTRO",
-                "SUCURSAL" +
-                ObterValorFormatado(0, "CD_RAMO")
+                sucursal +
+                ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
                 + DateTime.Now.ToString("yy")
                 + ObterValorHeader("CD_TPA")
                 + GerarNumeroAleatorio(9)) ;
@@ -62,9 +62,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
-                "SUCURSAL"
-                + ObterValorFormatado(0, "CD_RAMO")
+                sucursal
+                + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
                 + DateTime.Now.ToString("yy")
                 + ObterValorHeader("CD_TPA")
                 + GerarNumeroAleatorio(9));
