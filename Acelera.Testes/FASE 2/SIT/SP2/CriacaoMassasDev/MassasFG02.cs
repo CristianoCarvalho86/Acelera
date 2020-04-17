@@ -1269,7 +1269,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(0, "CD_COBERTURA",cobertura.CdCobertura);
             AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMenor,"-1"));
             AlterarLinha(1, "CD_COBERTURA",cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "1"));
+            AlterarLinha(1, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "1"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1182-C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.TXT");

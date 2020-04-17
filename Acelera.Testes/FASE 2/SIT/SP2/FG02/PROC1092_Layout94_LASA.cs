@@ -7,22 +7,22 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC1091_Layout94_LASA : TestesFG02
+    public class PROC1092_Layout94_LASA : TestesFG02
     {
 
         /// <summary>
-        /// Informar VL_LMI maior que VL_IS (0.01)
+        /// Informar CD_FRANQUIA não parametrizado na TAB_PRM_FRANQUIA_7010
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3909_VL_LMI_inv()
+        public void SAP_3919_CD_FRANQUIA_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3909", "FG02 - PROC1091 - Informar VL_LMI maior que VL_IS (0.01)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3919", "FG02 - PROC1092 - Informar CD_FRANQUIA não parametrizado na TAB_PRM_FRANQUIA_7010");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3158-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "VL_LMI", SomarValor(0, "VL_IS", 0.01M));
+            AlterarLinha(0, "CD_FRANQUIA", dados.ObterCDFranquia(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -36,54 +36,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "1091");
+            ValidarTabelaDeRetorno(1, "1092");
             ValidarTeste();
         }
 
         /// <summary>
-        /// Informar VL_LMI menor que VL_IS (0.01)
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_3910_VL_LMI_inv()
-        {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3910", "FG02 - PROC1091 - Informar VL_LMI menor que VL_IS (0.01)");
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3158-20200316.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "VL_LMI", SomarValor(0, "VL_IS", -0.01M));
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "1091");
-            ValidarTeste();
-        }
-
-        /// <summary>
-        /// Informar VL_LMI igual ao VL_IS
+        /// Informar CD_FRANQUIA parametrizado na TAB_PRM_FRANQUIA_7010
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3911_ParcEmissao_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3911", "FG02 - PROC1091 - Informar VL_LMI igual ao VL_IS");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3911", "FG02 - PROC1092 - Informar CD_FRANQUIA parametrizado na TAB_PRM_FRANQUIA_7010");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3240-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+            AlterarLinha(0, "CD_FRANQUIA", dados.ObterCDFranquia(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
