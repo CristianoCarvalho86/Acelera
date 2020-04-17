@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3952_COBRANCA_CD_LANCAMENTO_DIF_3()
+        public void SAP_3952_LANCTO_CD_LANCAMENTO_DIF_3()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "3952", "FG02 - PROC1190 - COBRANCA- CD_LANCAMENTO diferente de 3");
+            IniciarTeste(TipoArquivo.LanctoComissao, "3952", "FG02 - PROC1190 - COBRANCA- CD_LANCAMENTO diferente de 3");
 
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.OCRCobranca.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.LanctoComissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -47,9 +47,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3953_COBRANCA_semcritica()
+        public void SAP_3953_LANCTO_semcritica()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "3953", "FG02 - PROC1190 - COBRANCA- CD_LANCAMENTO diferente de 3");
+            IniciarTeste(TipoArquivo.LanctoComissao, "3953", "FG02 - PROC1190 - COBRANCA- CD_LANCAMENTO diferente de 3");
 
             arquivo = new Arquivo_Layout_9_4_LanctoComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.OCRCobranca.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.LanctoComissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
