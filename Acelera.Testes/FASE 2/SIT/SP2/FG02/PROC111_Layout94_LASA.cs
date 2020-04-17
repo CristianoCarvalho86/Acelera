@@ -25,11 +25,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3303-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
                 GerarNumeroAleatorio(6) +
-                ObterValorFormatado(0, "CD_RAMO")
+                ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
                 + DateTime.Now.ToString("yy")
-                + "SUCURSAL" ) ;
+                + sucursal ) ;
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -60,9 +61,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3303-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
-                "SUCURSAL"
-                + ObterValorFormatado(0, "CD_RAMO")
+                sucursal
+                + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
                 + DateTime.Now.ToString("yy")
                 + ObterValorHeader("CD_TPA")
                 + GerarNumeroAleatorio(6));

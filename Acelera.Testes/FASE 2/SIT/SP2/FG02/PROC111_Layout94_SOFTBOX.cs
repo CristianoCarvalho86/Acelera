@@ -24,13 +24,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
+            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_SINISTRO",
-                
-                ObterValorFormatado(0, "CD_RAMO")
+                ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
                 + GerarNumeroAleatorio(6)
                 + DateTime.Now.ToString("yy")
-                + "SUCURSAL" 
+                + sucursal
                 ) ;
 
 
@@ -62,9 +62,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
-                "SUCURSAL"
-                + ObterValorFormatado(0, "CD_RAMO")
+                sucursal
+                + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
                 + DateTime.Now.ToString("yy")
                 + ObterValorHeader("CD_TPA")
                 + GerarNumeroAleatorio(6));
