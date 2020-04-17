@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2752_PARC_EMISSAO_CD_RAMO_Inv()
+        public void SAP_4046_PARC_EMISSAO_CD_RAMO_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2752", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4046", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3325-20200326.txt"));
 
@@ -42,11 +42,72 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
+        /// Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_4047_COMISSAO_RAMO_Inv()
+        {
+            IniciarTeste(TipoArquivo.Comissao, "4047", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(false));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Comissao.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(1, "24");
+            ValidarTeste();
+        }
+
+        /// <summary>
+        /// Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_4048_SINISTRO_RAMO_Inv()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4048", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3231-20200320.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(false));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(1, "24");
+            ValidarTeste();
+
+        }
+
+        /// <summary>
         /// Informar no campo CD_RAMO valor parametrizado na tabela TAB_PRM_RAMO_7002
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2753_PARC_EMISSAO_semcritica()
+        public void SAP_4049_PARC_EMISSAO_semcritica()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2753", "FG02 - PROC25 - Informar no campo CD_RAMO valor parametrizado na tabela TAB_PRM_RAMO_7002");
             
@@ -72,6 +133,66 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
-        
+        /// <summary>
+        /// Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4050_COMISSAO_Sem_Critica()
+        {
+            IniciarTeste(TipoArquivo.Comissao, "4050", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(true));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Comissao.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno();
+            ValidarTeste();
+        }
+
+        /// <summary>
+        /// Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4051_SINISTRO_Sem_Critica()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4051", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3231-20200320.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(true));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno();
+            ValidarTeste();
+
+        }
+
     }
 }
