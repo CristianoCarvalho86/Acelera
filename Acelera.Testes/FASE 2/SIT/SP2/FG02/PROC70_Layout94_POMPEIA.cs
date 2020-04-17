@@ -10,7 +10,7 @@ using System;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC70_Layout94_SGS : TestesFG02
+    public class PROC70_Layout94_Pompeia : TestesFG02
     {
 
         /// <summary>
