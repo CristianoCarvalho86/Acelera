@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2708_PARC_EMISSAO_CD_MOEDA_Inv()
+        public void SAP_3992_PARC_EMISSAO_CD_MOEDA_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2708", "FG02 - PROC23 - Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3992", "FG02 - PROC23 - Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
@@ -42,13 +42,44 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
+        /// Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_3993_SINISTRO_CD_MOEDA_Inv()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "3993", "FG02 - PROC23 - Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030");
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "CD_MOEDA", dados.ObterCDMoeda(false));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200211.txt");
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(1, "23");
+            ValidarTeste();
+
+        }
+
+        /// <summary>
         /// Informar no campo CD_MOEDA valor parametrizado na tabela TAB_PRM_MOEDA_7030
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2709_PARC_EMISSAO_semcritica()
+        public void SAP_3994_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2709", "FG02 - PROC23 - Informar no campo CD_MOEDA valor parametrizado na tabela TAB_PRM_MOEDA_7030");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3994", "FG02 - PROC23 - Informar no campo CD_MOEDA valor parametrizado na tabela TAB_PRM_MOEDA_7030");
             
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
@@ -72,6 +103,37 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
-        
+
+        /// <summary>
+        /// Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_3995_SINISTRO_CD_MOEDA_Inv()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "3995", "FG02 - PROC23 - Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030");
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "CD_MOEDA", dados.ObterCDMoeda(false));
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200211.txt");
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno();
+            ValidarTeste();
+
+        }
+
     }
 }
