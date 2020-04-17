@@ -74,6 +74,7 @@
     <Compile Include="Enums\OperacaoEnum.cs" />
     <Compile Include="Enums\TabelasEnum.cs" />
     <Compile Include="Enums\TipoArquivo.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Extensions\DocumentationExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ListaExtensions.cs" />
