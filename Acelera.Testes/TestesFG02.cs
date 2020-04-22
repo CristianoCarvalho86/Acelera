@@ -100,6 +100,9 @@ namespace Acelera.Testes.FASE_2
 
         public override void FinalizarAlteracaoArquivo()
         {
+            if (tipoArquivoTeste != TipoArquivo.ParcEmissao && tipoArquivoTeste != TipoArquivo.ParcEmissaoAuto)
+                return;
+
             var linhas = valoresAlteradosBody.LinhasAlteradas();
             var linhasAColocarIdTransacao = new List<int>();
             foreach (var linha in linhas)

@@ -18,14 +18,16 @@ namespace Acelera.Testes.DataAccessRep
             this.logger = logger;
         }
 
-        private string ObterRetornoPadrao(string campo, string tabela, bool existente)
+        private string ObterRetornoPadrao(string campo, string tabela, bool existente, bool convertToInt = false)
         {
             string select = string.Empty;
             if (existente)
                 select = $"select top 1 {campo} from {Parametros.instanciaDB}.{tabela}";
             else
-                select = $"select (MAX({campo}) + 1) as {campo} from {Parametros.instanciaDB}.{tabela}";
-
+            {
+                var busca = convertToInt ? $"TO_INT({campo})" : campo;
+                select = $"select (MAX({busca}) + 1) as {campo} from {Parametros.instanciaDB}.{tabela}";
+            }
             return DataAccess.ConsultaUnica(select, campo, logger);
         }
 
@@ -318,7 +320,7 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCDSeguradora(bool existente)
         {
-            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente);
+            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente,true);
         }
 
         public Cobertura ObterCoberturaDiferenteDe(string cdCobertura)
