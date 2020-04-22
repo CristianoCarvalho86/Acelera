@@ -1,14 +1,14 @@
 ﻿using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
-using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4_2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC218_Layout93_LASA : TestesFG02
+    public class PROC218_Layout94_LASA : TestesFG02
     {
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         public void SAP_3731_VL_PREMIO_TOTAL_inv()
         {
             IniciarTeste(TipoArquivo.Comissao, "3731", "FG02 - PROC218 - Informar CD_TIPO_COMISSAO=P e corretor que não está parametizado para esse CD_TIPO_REMUNERACAO na tabela TAB_PRM_REMUNERACAO_7013");
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
@@ -50,7 +50,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         public void SAP_3712_VL_PREMIO_TOTAL_inv()
         {
             IniciarTeste(TipoArquivo.Comissao, "3712", "FG02 - PROC218 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 10.00 ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1820-20200201.txt"));
 
             //ALTERAR O VALOR SELECIONADO
@@ -80,7 +80,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         public void SAP_3713_VL_PREMIO_TOTAL_inv()
         {
             IniciarTeste(TipoArquivo.Comissao, "3713", "FG02 - PROC218 - Informar VL_PREMIO_LIQUIDO + VL_IOF SUPERIOR em 0.01 ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1820-20200201.txt"));
 
             //ALTERAR O VALOR SELECIONADO
@@ -110,7 +110,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         public void SAP_3714_VL_PREMIO_TOTAL_inv()
         {
             IniciarTeste(TipoArquivo.Comissao, "3714", "FG02 - PROC218 - Informar VL_PREMIO_LIQUIDO + VL_IOF inferior em 10.00 ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1820-20200201.txt"));
 
             //ALTERAR O VALOR SELECIONADO
@@ -140,7 +140,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         public void SAP_3715_SEM_CRITICA()
         {
             IniciarTeste(TipoArquivo.Comissao, "3715", "FG02 - PROC218 - Informar VL_PREMIO_LIQUIDO + VL_IOF igual ao VL_PREMIO_TOTAL");
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1820-20200201.txt"));
 
             //ALTERAR O VALOR SELECIONADO
