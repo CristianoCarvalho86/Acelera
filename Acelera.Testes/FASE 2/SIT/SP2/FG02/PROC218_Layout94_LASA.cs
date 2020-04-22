@@ -16,18 +16,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3731_VL_PREMIO_TOTAL_inv()
+        public void SAP_3738_VL_PREMIO_TOTAL_inv()
         {
-            IniciarTeste(TipoArquivo.Comissao, "3731", "FG02 - PROC218 - Informar CD_TIPO_COMISSAO=P e corretor que não está parametizado para esse CD_TIPO_REMUNERACAO na tabela TAB_PRM_REMUNERACAO_7013");
+            IniciarTeste(TipoArquivo.Comissao, "3738", "FG02 - PROC218 - Informar CD_TIPO_COMISSAO=P e corretor que não está parametizado para esse CD_TIPO_REMUNERACAO na tabela TAB_PRM_REMUNERACAO_7013");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("P",false));
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("C",false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
+            SalvarArquivo("PROC218");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

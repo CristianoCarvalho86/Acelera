@@ -194,12 +194,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinha(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "29/02/2020");
+            AlterarLinha(0, "DT_REGISTRO", "29022020");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "02032020");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
+            SalvarArquivo("PROC131");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

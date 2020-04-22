@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_4054_SINISTRO_RAMO_Inv()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4048", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
+            IniciarTeste(TipoArquivo.Sinistro, "4054", "FG02 - PROC25 - Informar no campo CD_RAMO valor diferente do parametrizado na tabela TAB_PRM_RAMO_7002");
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(5, "CD_RAMO", dados.ObterRamo(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
+            SalvarArquivo("PROC25");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

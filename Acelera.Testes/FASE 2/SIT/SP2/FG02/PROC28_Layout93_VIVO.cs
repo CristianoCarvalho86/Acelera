@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(7, "CD_MOVTO_COBRANCA", dados.ObterMovimentoCobranca(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
+            SalvarArquivo("PROC28");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

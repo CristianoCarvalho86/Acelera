@@ -48,21 +48,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_3814_DT_FIM_VIGENCIA_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3814", "FG02 - PROC1039 - Infomar CD_SEXO=k");
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3260-20200322.txt"));
+            IniciarTeste(TipoArquivo.Cliente, "3814", "FG02 - PROC1039 - Infomar CD_SEXO=k");
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-3324-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SEXO", "k");
+            AlterarLinha(1, "SEXO", "k");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200322.txt");
+            SalvarArquivo("PROC1039");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);

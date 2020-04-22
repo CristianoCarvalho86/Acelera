@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
+            SalvarArquivo("PROC24");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

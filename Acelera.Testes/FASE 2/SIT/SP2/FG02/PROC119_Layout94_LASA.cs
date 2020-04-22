@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_2961_CD_FORMA_PAGTO()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2961", "FG02 - PROC88 - Informar CD_TIPO_MOVIMENTO =146 e não informar CD_FORMA_PAGTO");
+            IniciarTeste(TipoArquivo.Sinistro, "2961", "FG02 - PROC119 - Informar CD_TIPO_MOVIMENTO =146 e não informar CD_FORMA_PAGTO");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3287-20200323.txt"));
 
@@ -57,7 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_FORMA_PAGTO", "");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200323.txt");
+            SalvarArquivo("PROC119");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

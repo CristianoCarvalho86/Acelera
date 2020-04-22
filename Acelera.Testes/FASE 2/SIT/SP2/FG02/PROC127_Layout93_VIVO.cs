@@ -100,9 +100,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_3164_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3164", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3164", "FG02 - PROC127 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo("PROC127");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

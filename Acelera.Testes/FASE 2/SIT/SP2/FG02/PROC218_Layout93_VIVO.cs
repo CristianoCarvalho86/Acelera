@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("P",false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
+            SalvarArquivo("PROC218");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

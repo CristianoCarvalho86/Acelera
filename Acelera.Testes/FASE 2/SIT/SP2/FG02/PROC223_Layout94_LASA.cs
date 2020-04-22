@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200317.txt");
+            SalvarArquivo("PROC223");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

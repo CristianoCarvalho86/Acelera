@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
+            SalvarArquivo("PROC24");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

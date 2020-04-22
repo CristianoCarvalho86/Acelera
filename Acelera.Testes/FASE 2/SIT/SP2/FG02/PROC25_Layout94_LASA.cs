@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(5, "CD_RAMO", dados.ObterRamo(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
+            SalvarArquivo("PROC25");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

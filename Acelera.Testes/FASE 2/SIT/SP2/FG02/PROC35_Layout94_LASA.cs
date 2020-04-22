@@ -95,7 +95,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "PC_COMISSAO", "-25");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.EMSCMS-EV-/*R*/-20200316.txt");
+            SalvarArquivo("PROC35");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -193,10 +193,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_EXTRATO_COMISSAO", "-105");
             AlterarLinha(0, "CD_LANCAMENTO", "-10");
             AlterarLinha(0, "VL_COMISSAO_PAGO", "-100");
-            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "-100");
+            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "-10");
                 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.LCTCMS-EV-/*R*/-20190311.txt");
+            SalvarArquivo("PROC35");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

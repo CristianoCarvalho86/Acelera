@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(), 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.COBRANCA-EV-/*R*/-20200211.txt");
+            SalvarArquivo("PROC124");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

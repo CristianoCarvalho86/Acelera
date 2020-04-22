@@ -24,14 +24,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
-
+            //var cobertura = dados.ObterCobertura();
+            //AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            //AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            //AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura("01770"));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura("01770"));
+            AlterarLinha(0, "CD_COBERTURA", "01770");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo("PROC107");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

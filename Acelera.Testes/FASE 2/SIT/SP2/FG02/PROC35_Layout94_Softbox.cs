@@ -129,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "VL_DIF_PREMIO", "-200.10");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.COBRANCA-EV-/*R*/-20191218.txt");
+            SalvarArquivo("PROC35");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

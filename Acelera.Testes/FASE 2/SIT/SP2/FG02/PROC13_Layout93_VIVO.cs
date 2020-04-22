@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(3, "VL_IS", "0.00");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
+            SalvarArquivo("PROC13");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

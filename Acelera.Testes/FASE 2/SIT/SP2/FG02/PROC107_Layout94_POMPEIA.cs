@@ -21,17 +21,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2910", "FG02 - PROC107 - Informar cobertura, ramo e produto não associados nas tabelas TAB_PRM_COBERTURA_7007, TAB_PRM_PRODUTO_7003");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1982-20200302.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
-
+            //var cobertura = dados.ObterCobertura();
+            //AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            //AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            //AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura("01770"));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura("01770"));
+            AlterarLinha(0, "CD_COBERTURA", "01770");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200302.txt");
+            SalvarArquivo("PROC107");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

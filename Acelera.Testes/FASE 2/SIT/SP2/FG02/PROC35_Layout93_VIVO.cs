@@ -44,12 +44,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "ID_TRANSACAO_CANC", "-20");
             AlterarLinha(2, "CD_PLANO", "-20");
             AlterarLinha(2, "CD_UF_RISCO", "-2");
-            AlterarLinha(2, "CD_MODALIDADE", "-20");
+            AlterarLinha(2, "CD_MODALIDADE", "-2");
             AlterarLinha(2, "CD_MODELO", "-20");
             AlterarLinha(2, "ANO_MODELO", "-20");
             AlterarLinha(2, "VL_PERC_FATOR", "-20");
             AlterarLinha(2, "VL_PERC_BONUS", "-20");
-            AlterarLinha(2, "CD_CLASSE_BONUS", "-20");
             AlterarLinha(2, "DT_NASC_CONDUTOR", "-2009101");
             AlterarLinha(2, "TEMPO_HAB", "-1");
             AlterarLinha(2, "CD_UTILIZACAO", "-1");
@@ -57,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "CEP_PERNOITE", "-2052015");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.txt");
+            SalvarArquivo("PROC35");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

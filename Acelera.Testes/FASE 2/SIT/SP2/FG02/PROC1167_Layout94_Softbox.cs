@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_OCORRENCIA", "20");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
+            SalvarArquivo("PROC1167");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

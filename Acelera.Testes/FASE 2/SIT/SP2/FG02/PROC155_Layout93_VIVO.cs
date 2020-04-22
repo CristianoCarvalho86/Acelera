@@ -90,7 +90,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(3, "CD_TIPO_EMISSAO", "6");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
+            SalvarArquivo("PROC155");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

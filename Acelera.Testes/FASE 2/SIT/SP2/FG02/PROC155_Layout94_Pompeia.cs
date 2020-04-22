@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(3, "CD_TIPO_EMISSAO", "18");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT");
+            SalvarArquivo("PROC155");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

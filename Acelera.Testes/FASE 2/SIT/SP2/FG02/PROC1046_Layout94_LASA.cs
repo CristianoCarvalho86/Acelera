@@ -22,10 +22,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3158-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INCIO_VIGENCIA", SomarData("DT_EMISSAO", 1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(ObterValor(1,"DT_EMISSAO"), 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200316.txt");
+            SalvarArquivo("PROC1046");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

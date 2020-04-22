@@ -59,13 +59,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Cliente, "2811", "FG02 - PROC35 - Informar campo CD_CLIENTE negativo");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1981-20200302.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1933-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_CLIENTE", "-200");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200302.txt");
+            SalvarArquivo("PROC35");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

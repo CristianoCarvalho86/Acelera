@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "CD_TIPO_EMISSAO", dados.ObterCDTipoEmissao("REP", true));// REATIVAÇÃO = REP
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.txt");
+            SalvarArquivo("PROC32");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

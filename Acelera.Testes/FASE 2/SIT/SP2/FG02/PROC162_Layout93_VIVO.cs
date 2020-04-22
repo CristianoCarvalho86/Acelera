@@ -164,7 +164,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -10));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
+            SalvarArquivo("PROC162");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

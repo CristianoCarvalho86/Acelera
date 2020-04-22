@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
+            var sucursal = ObterValorFormatado(0, "CD_SINISTRO").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
                 sucursal
                 + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
@@ -72,7 +72,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200212.txt");
+            SalvarArquivo("PROC111");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
