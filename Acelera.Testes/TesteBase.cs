@@ -61,8 +61,8 @@ namespace Acelera.Testes
         protected void SalvarArquivo()
         {
             var array = nomeArquivo.Split('-');
-            array[2] = "/*R*/-";
-            nomeArquivo = array.ToList().ObterListaConcatenada("");
+            array[2] = "/*R*/";
+            nomeArquivo = array.ToList().ObterListaConcatenada("-");
             SalvarArquivo(nomeArquivo, true);
         }
 

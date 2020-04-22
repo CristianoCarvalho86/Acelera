@@ -135,7 +135,7 @@ namespace Acelera.Testes.DataAccessRep
 
 
         /// <summary>
-        /// SELECT NAS TABELAS DE PARAMETRO
+        /// CD_SEGURADORA
         /// </summary>
         /// <returns></returns>
         public string ObterParceiroNegocio(string valorCdTipoParceiroNegocio, bool igual)
@@ -314,6 +314,11 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterCDSeguradoraDoTipoParceiro(string cdTipoParceiroNegocio, bool igual)
         {
             return ObterRetorno("CD_EXTERNO", "CD_TIPO_PARCEIRO_NEGOCIO", cdTipoParceiroNegocio, "TAB_ODS_PARCEIRO_NEGOCIO_2000", igual);
+        }
+
+        public string ObterCDSeguradora(bool existente)
+        {
+            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente);
         }
 
         public Cobertura ObterCoberturaDiferenteDe(string cdCobertura)

@@ -1097,7 +1097,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3180-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "4180484");
+            AlterarLinha(0,"CD_SEGURADORA", dados.ObterCDSeguradora(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1048-C01.SOFTBOX.EMSCMS-EV-/*R*/-20200317.TXT");
