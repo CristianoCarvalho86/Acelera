@@ -68,6 +68,13 @@ namespace Acelera.Testes
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
+            if (!_nomeArquivo.Contains("/*R*/"))
+            {
+                nomeArquivo = _nomeArquivo.Replace("-","_") + "_" + nomeArquivo;// inclusao do nome da proc
+                SalvarArquivo();
+                return;
+            }
+
             FinalizarAlteracaoArquivo();
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
