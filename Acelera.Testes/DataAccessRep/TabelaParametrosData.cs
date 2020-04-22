@@ -18,15 +18,19 @@ namespace Acelera.Testes.DataAccessRep
             this.logger = logger;
         }
 
-        private string ObterRetornoPadrao(string campo, string tabela, bool existente, bool convertToInt = false)
+        private string ObterRetornoPadrao(string campo, string tabela, bool existente, string clausula = "", bool convertToInt = false)
         {
             string select = string.Empty;
             if (existente)
-                select = $"select top 1 {campo} from {Parametros.instanciaDB}.{tabela}";
+            {
+                clausula = clausula == string.Empty ? "" : " WHERE " + clausula;
+                select = $"select top 1 {campo} from {Parametros.instanciaDB}.{tabela} {clausula}";
+            }
             else
             {
+                clausula = clausula == string.Empty ? "" : " AND " + clausula;
                 var busca = convertToInt ? $"TO_INT({campo})" : campo;
-                select = $"select (MAX({busca}) + 1) as {campo} from {Parametros.instanciaDB}.{tabela}";
+                select = $"select (MAX({busca}) + 1) as {campo} from {Parametros.instanciaDB}.{tabela} where length(ltrim({campo},'+-.0123456789')) = 0 {clausula}";
             }
             return DataAccess.ConsultaUnica(select, campo, logger);
         }
@@ -320,7 +324,7 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCDSeguradora(bool existente)
         {
-            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente,true);
+            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente, "CD_TIPO_PARCEIRO_NEGOCIO = 'SE'" ,true);
         }
 
         public Cobertura ObterCoberturaDiferenteDe(string cdCobertura)

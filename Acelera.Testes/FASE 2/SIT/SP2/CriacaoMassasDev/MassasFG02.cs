@@ -911,7 +911,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
-            AlterarLinha(0, "CD_CORRETOR", "333");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC218-C01.TIM.EMSCMS-EV-/*R*/-20200214.TXT");
