@@ -186,6 +186,10 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1048_Layout93__VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1065_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC1003_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC123_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC123_Layout94_Softbox.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC123_Layout94_Pompeia.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC123_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC218_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC218_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC218_Layout94_LASA.cs" />

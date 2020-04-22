@@ -283,10 +283,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "CD_CONTRATO", "12345");
-            AlterarLinha(3, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(4, "CD_CONTRATO", "12345");
-            AlterarLinha(4, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(3, "CD_CORRETOR", "12345");
+            AlterarLinha(3, "CD_ITEM", "1234");
+
+            AlterarLinha(4, "CD_CORRETOR", dados.obtercd)CD_CORRETOR
+            AlterarLinha(4, "CD_CONTRATO", ObterValor(3, "CD_ITEM"));
+            AlterarLinha(4, "CD_ITEM", ObterValor(3, "CD_ITEM"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC52-C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
