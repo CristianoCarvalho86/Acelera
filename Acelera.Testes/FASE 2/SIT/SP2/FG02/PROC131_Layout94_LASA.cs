@@ -22,11 +22,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-2757-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "01/04/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02/04/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200402");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200211.txt");
@@ -56,11 +56,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-2758-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "01/04/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "07/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200703");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200211.txt");
@@ -90,11 +90,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3287-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "01/04/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "31/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200331");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200323.txt");
@@ -124,11 +124,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3296-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "01/03/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200301");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200302");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
@@ -158,11 +158,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3298-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "31/03/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200331");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "01/04/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200401");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
@@ -192,11 +192,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3301-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "29022020");
+            AlterarLinha(0, "DT_REGISTRO", "20200229");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
-            AlterarLinha(1, "DT_REGISTRO", "02032020");
+            AlterarLinha(1, "DT_REGISTRO", "20200302");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC131");
@@ -227,11 +227,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3303-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "01/04/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "01/04/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200401");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
@@ -263,11 +263,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3312-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "07/03/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200307");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "07/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200307");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200325.txt");
@@ -299,11 +299,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3314-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "31/03/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200331");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "31/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200331");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200325.txt");
@@ -335,11 +335,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3317-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "02/03/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200302");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200302");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200325.txt");
@@ -371,11 +371,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3319-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "02/03/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200302");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02/03/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200302");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200325.txt");
@@ -407,11 +407,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3329-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "DT_REGISTRO", "29/02/2020");
+            AlterarLinha(0, "DT_REGISTRO", "20200329");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "29/02/2020");
+            AlterarLinha(1, "DT_REGISTRO", "20200329");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200326.txt");

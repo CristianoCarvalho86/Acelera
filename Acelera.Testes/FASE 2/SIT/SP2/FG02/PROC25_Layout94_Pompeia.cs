@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(false));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamo(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -178,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(true));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamo(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

@@ -10,19 +10,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     public class PROC1041_Layout93_VIVO : TestesFG02
     {
         /// <summary>
-        /// Informar TP_PESSOA=J
+        /// Informar TIPO=J
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3826_Cliente_semcritica()
         {
-            IniciarTeste(TipoArquivo.Cliente, "3826", "FG02 - PROC1041 - Informar TP_PESSOA=J");
+            IniciarTeste(TipoArquivo.Cliente, "3826", "FG02 - PROC1041 - Informar TIPO=J");
 
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1871-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "TP_PESSOA", "J");
+            AlterarLinha(1, "TIPO", "J");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200213.txt");

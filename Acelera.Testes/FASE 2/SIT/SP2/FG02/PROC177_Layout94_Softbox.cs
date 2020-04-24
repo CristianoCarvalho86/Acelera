@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "01");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200317.txt");
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "02");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200319.txt");
@@ -91,7 +91,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "03");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200319.txt");
@@ -124,7 +124,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "04");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200319.txt");
@@ -157,7 +157,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "01");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "02");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
@@ -223,7 +223,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "03");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
@@ -256,7 +256,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(false));
             AlterarLinha(0, "TP_SINISTRO", "04");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200321.txt");
@@ -290,7 +290,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "01");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200321.txt");
@@ -324,7 +324,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "02");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200323.txt");
@@ -358,7 +358,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "03");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");
@@ -392,7 +392,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "04");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");
@@ -426,7 +426,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "01");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");
@@ -460,7 +460,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "02");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200325.txt");
@@ -494,7 +494,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "03");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200326.txt");
@@ -528,7 +528,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
             AlterarLinha(0, "TP_SINISTRO", "04");
-            AlterarLinha(0, "CD_FORMA_PGTO", "D");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200326.txt");

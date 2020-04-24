@@ -10,28 +10,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     public class PROC1039_Layout93_VIVO : TestesFG02
     {
         /// <summary>
-        /// Infomar CD_SEXO=K
+        /// Infomar SEXO=K
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3819_ParcEmissaoAuto_semcritica()
+        public void SAP_3819_Cliente_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3819", "FG02 - PROC1039 - Infomar CD_SEXO=kInfomar CD_SEXO=K");
+            IniciarTeste(TipoArquivo.Cliente, "3819", "FG02 - PROC1039 - Infomar SEXO=kInfomar SEXO=K");
 
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1831-20200204.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SEXO", "K");
+            AlterarLinha(1, "SEXO", "K");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -42,28 +42,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Infomar CD_SEXO=1
+        /// Infomar SEXO=1
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3817_ParcEmissaoAuto_semcritica()
+        public void SAP_3817_Cliente_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3817", "FG02 - PROC1039 - Infomar CD_SEXO=kInfomar CD_SEXO=1");
+            IniciarTeste(TipoArquivo.Cliente, "3817", "FG02 - PROC1039 - Infomar SEXO=kInfomar SEXO=1");
 
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SEXO", "1");
+            AlterarLinha(1, "SEXO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);

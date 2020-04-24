@@ -11,18 +11,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar DT_INCIO_VIGENCIA=D+1 DT_EMISSAO
+        /// Informar DT_INICIO_VIGENCIA=D+1 DT_EMISSAO
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3846_NR_CNPJ_CPF_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3846", "FG02 - PROC1046 - Informar DT_INCIO_VIGENCIA=D+1 DT_EMISSAO");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3846", "FG02 - PROC1046 - Informar DT_INICIO_VIGENCIA=D+1 DT_EMISSAO");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3212-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INCIO_VIGENCIA", SomarData("DT_EMISSAO", 1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData("DT_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.txt");
@@ -42,18 +42,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar DT_INCIO_VIGENCIA=D-1 DT_EMISSAO
+        /// Informar DT_INICIO_VIGENCIA=D-1 DT_EMISSAO
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3847_NR_CNPJ_CPF_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3847", "FG02 - PROC1046 - Informar DT_INCIO_VIGENCIA=D-1 DT_EMISSAO");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3847", "FG02 - PROC1046 - Informar DT_INICIO_VIGENCIA=D-1 DT_EMISSAO");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3196-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INCIO_VIGENCIA", SomarData("DT_EMISSAO", -1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData("DT_EMISSAO", -1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200318.txt");
@@ -73,19 +73,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar DT_INCIO_VIGENCIA= DT_EMISSAO
+        /// Informar DT_INICIO_VIGENCIA= DT_EMISSAO
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3848_ParcEmissao_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3848", "FG02 - PROC1046 - Informar DT_INCIO_VIGENCIA= DT_EMISSAO");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3848", "FG02 - PROC1046 - Informar DT_INICIO_VIGENCIA= DT_EMISSAO");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3179-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INCIO_VIGENCIA", ObterValor(1, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", ObterValor(1, "DT_EMISSAO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200317.txt");
