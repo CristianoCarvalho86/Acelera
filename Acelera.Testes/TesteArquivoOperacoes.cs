@@ -112,6 +112,12 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
+        public void ReplicarLinhaComCorrecao(int posicaoLinha, int quantidadeVezes)
+        {
+            ReplicarLinha(posicaoLinha, quantidadeVezes);
+            AumentarLinhasNoFooter(quantidadeVezes);
+        }
+
         public void ReplicarLinha(int posicaoLinha, int quantidadeVezes)
         {
             logger.AbrirBloco($"Alterando arquivo - Replicando linha {posicaoLinha} , {quantidadeVezes} vezes.");

@@ -359,14 +359,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.Sinistro, "PROC82", "FG02 - PROC82 - 1 (um) Arquivo de Sinistro com 2 (DOIS) ID_REGISTRO distintos:  com o mesmo CD_MOVIMENTO no arquivo e na tabela de ODS");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0001-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            ReplicarLinhaComCorrecao(0, 1);
+
             AlterarLinha(0, "CD_MOVIMENTO", "3");
             AlterarLinha(1, "CD_MOVIMENTO", "3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC82-C01.TIM.SINISTRO-EV-/*R*/-20200213.TXT");
+            SalvarArquivo($"PROC82-C01.POMPEIA.SINISTRO-EV-/*R*/-20191127.TXT");
         }
 
         /// <summary>
@@ -660,7 +662,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_REGISTRO", "20200330");
+            ReplicarLinhaComCorrecao(0, 1);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            AlterarLinha(0, "DT_REGISTRO", "20200401");
+            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
+            AlterarLinha(1, "DT_REGISTRO", "20200402");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC131-C01.POMPEIA.SINISTRO-EV-/*R*/-20200211.TXT");
@@ -738,7 +744,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_DOCUMENTO", "");
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "TP_SINISTRO", "02");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -854,6 +860,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_REGISTRO", SomarData(ObterValor(0, "DT_AVISO"), -5));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC185-C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");

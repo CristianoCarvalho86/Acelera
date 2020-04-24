@@ -23,6 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_REGISTRO", SomarData("DT_AVISO", -7));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200211.txt");
@@ -53,8 +54,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-2758-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", ObterValor(0, "DT_AVISO"));
-
+            AlterarLinha(0, "DT_REGISTRO", ObterValor(0, "DT_AVISO"));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200211.txt");
 
@@ -85,6 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "DT_REGISTRO", SomarData("DT_AVISO", 7));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200325.txt");
