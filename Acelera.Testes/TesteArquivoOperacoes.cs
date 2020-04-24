@@ -72,6 +72,18 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
         }
 
+        public void AlterarTodasAsLinhas(string campo, string valorNovo)
+        {
+            logger.AbrirBloco($"Alterando arquivo [TODAS AS LINHAS] - Editando campo {campo} de todas as linhas");
+            logger.Escrever($"Valor Novo : {valorNovo}");
+            logger.Escrever(Environment.NewLine);
+            arquivo.AlterarTodasAsLinhas(campo, valorNovo);
+
+            var linhaAlterada = arquivo.ObterLinha(0);
+            logger.Escrever("Primeira Linha Atualizada : " + linhaAlterada.ObterTexto());
+            logger.FecharBloco();
+        }
+
         public void AlterarHeader(string campo, string valorNovo, int posicaoLinha = 0)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha} do HEADER");

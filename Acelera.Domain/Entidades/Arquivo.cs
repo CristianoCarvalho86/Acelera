@@ -71,6 +71,12 @@ namespace Acelera.Domain.Layouts
             ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
         }
 
+        public void AlterarTodasAsLinhas(string campo, string textoNovo)
+        {
+             foreach(var linha in Linhas)
+                linha.ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
+        }
+
         public void AlterarHeader(string campo, string textoNovo, int posicaoLinhaHeader = 0)
         {
             Header[posicaoLinhaHeader].ObterCampoDoArquivo(campo).AlterarValor(textoNovo);

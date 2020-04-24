@@ -617,6 +617,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             //ALTERAR O VALOR SELECIONADO
             var cdSinistro = ObterValor(0, "CD_SINISTRO");
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            AlterarTodasAsLinhas("CD_BANCO", dados.ObterCDBancoSeg(true));
+            AlterarTodasAsLinhas("CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC128-C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.TXT");
@@ -1102,7 +1104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         public void Criacao_Massa_PRROC1048()
         {
             IniciarTeste(TipoArquivo.Comissao, "PROC1048", "FG02 - PROC1048 -1 (um) Arquivo de Comissao com 1 (um) ID_REGISTRO: onde a combinação CD_SEGURADORA não esteja cadastrado nos parametros");
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3180-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
