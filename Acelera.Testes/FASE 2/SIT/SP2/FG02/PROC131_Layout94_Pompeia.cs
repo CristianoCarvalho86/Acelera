@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "01/04/2020");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "02/04/2020");
+            AlterarLinha(1, "DT_REGISTRO", "02/04/2020");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.txt");

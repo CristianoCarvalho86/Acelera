@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "01/04/2020");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
