@@ -40,11 +40,12 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetorno(campoBusca,campoComparacao,valor,tabela, false);
         }
 
-        private string ObterRetorno(string campoBusca, string campoComparacao, string valor, string tabela, bool igual)
+        private string ObterRetorno(string campoBusca, string campoComparacao, string valor, string tabela, bool igual, string clausula = "")
         {
+            clausula = clausula == "" ? "" : " AND " + clausula; 
             var operador = igual ? "=" : "<>";
             var texto = igual ? "IGUAL A " : " DIFERENTE DE ";
-            var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} where {campoComparacao} {operador} '{valor}'";
+            var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} where {campoComparacao} {operador} '{valor}' {clausula}";
 
 
             return DataAccess.ConsultaUnica(select, campoComparacao + texto + valor, logger);
@@ -55,10 +56,11 @@ namespace Acelera.Testes.DataAccessRep
            return ObterRetornoPadrao("CD_MOEDA", "TAB_PRM_MOEDA_7030", existente);
         }
 
-        private string ObterRetornoNotIn(string campoBusca, string campoComparacao, string valor, string tabela)
+        private string ObterRetornoNotIn(string campoBusca, string campoComparacao, string valor, string tabela, string clausula = "")
         {
+            clausula = clausula == "" ? "" : " AND " + clausula;
             var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoBusca} NOT IN" +
-                $" (select {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoComparacao} = '{valor}')";
+                $" (select {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoComparacao} = '{valor}') {clausula}";
 
 
             return DataAccess.ConsultaUnica(select, $"{campoBusca} nao Ligada ao {campoComparacao} de valor: {valor} ", logger);
@@ -278,12 +280,14 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024");
         }
 
-        public string ObterCdCorretorParaTipoRemuneracao(string cdTipoRemuneracao, bool relacionado)
+        public string ObterCdCorretorParaTipoRemuneracao(string cdTipoRemuneracao, bool relacionado, string diferenteDeCdCorretor = "")
         {
+            var clausula = diferenteDeCdCorretor == "" ? "" : $" CD_PN_CORRETOR <> '{diferenteDeCdCorretor}'";
             if (relacionado)
-                return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true);
-            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013");
+                return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true, clausula);
+            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula);
         }
+
 
         public string ObterCdProdutoParaTPA(string cdTpa, bool relacionado)
         {
