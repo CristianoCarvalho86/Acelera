@@ -286,7 +286,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(3, "CD_CORRETOR", "12345");
             AlterarLinha(3, "CD_ITEM", "1234");
 
-            AlterarLinha(4, "CD_CORRETOR", dados.obtercd)CD_CORRETOR
+            //AlterarLinha(4, "CD_CORRETOR", dados.obtercd)CD_CORRETOR
             AlterarLinha(4, "CD_CONTRATO", ObterValor(3, "CD_ITEM"));
             AlterarLinha(4, "CD_ITEM", ObterValor(3, "CD_ITEM"));
 

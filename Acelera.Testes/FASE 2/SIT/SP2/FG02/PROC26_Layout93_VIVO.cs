@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(7, "CD_PRODUTO", dados.ObterProduto(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
+            SalvarArquivo("PROC26");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(9, "CD_PRODUTO", dados.ObterProduto(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200213.txt");
+            SalvarArquivo("PROC26");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

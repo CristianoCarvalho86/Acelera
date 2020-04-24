@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "DT_EMISSAO", SomarData(dados.ObterDataDoBanco(), -7));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.txt");
+            SalvarArquivo("PROC123");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

@@ -52,7 +52,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3329-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE", false));
+            //AlterarLinha(1, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE", false));
+            AlterarLinha(1, "CD_SEGURADORA", "3729");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC1048");
