@@ -348,5 +348,10 @@ namespace Acelera.Testes.DataAccessRep
             return sql;
         }
 
+        private void ObterNumericos(int inicio, int fim)
+        {
+
+        }
+
     }
 }

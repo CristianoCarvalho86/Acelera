@@ -15,7 +15,9 @@ namespace Acelera.Domain.Layouts
         public IList<LinhaArquivo> Linhas { get; set; }
         public IList<LinhaArquivo> Footer { get; set; }
 
-        public string NomeArquivo {get; private set;}
+        public string NomeArquivo { get; private set; }
+
+        protected abstract string[] CamposChaves { get;}
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1)
         {
@@ -27,7 +29,7 @@ namespace Acelera.Domain.Layouts
 
         protected void CarregarEstrutura(int qtdHeader, int qtdFooter)
         {
-            var linhas = textoArquivo.Split(new[] { Environment.NewLine },StringSplitOptions.None).Where(x => x != string.Empty);
+            var linhas = textoArquivo.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Where(x => x != string.Empty);
             Header = CarregaHeader(linhas.Take(qtdHeader));
             Footer = CarregaFooter(linhas.Reverse().Take(qtdFooter).Reverse());
             var linhasBody = linhas.Skip(1).ToList();
@@ -40,7 +42,7 @@ namespace Acelera.Domain.Layouts
         {
             var file = File.CreateText(endereco);
 
-            foreach(var header in Header)
+            foreach (var header in Header)
                 file.WriteLine(header.ObterTexto());
             foreach (var item in Linhas)
                 file.WriteLine(item.ObterTexto());
@@ -65,7 +67,7 @@ namespace Acelera.Domain.Layouts
             return Footer[posicaoLinha];
         }
 
-        public void AlterarLinha(int posicaoLinha, string campo,  string textoNovo)
+        public void AlterarLinha(int posicaoLinha, string campo, string textoNovo)
         {
             Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
             ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
@@ -73,7 +75,7 @@ namespace Acelera.Domain.Layouts
 
         public void AlterarTodasAsLinhas(string campo, string textoNovo)
         {
-             foreach(var linha in Linhas)
+            foreach (var linha in Linhas)
                 linha.ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
         }
 
@@ -101,8 +103,8 @@ namespace Acelera.Domain.Layouts
 
         public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha)
         {
-            if(posicaoLinha.HasValue)
-                Linhas.Insert(posicaoLinha.Value,linha);
+            if (posicaoLinha.HasValue)
+                Linhas.Insert(posicaoLinha.Value, linha);
             else
                 Linhas.Add(linha);
         }
@@ -113,7 +115,7 @@ namespace Acelera.Domain.Layouts
             {
                 AdicionarLinha(ObterLinha(posicaoLinha), posicaoLinha + 1);
             }
-            
+
         }
 
         public void RemoverLinha(int posicaoLinha)
@@ -163,7 +165,7 @@ namespace Acelera.Domain.Layouts
             }
             return linhasPreenchidas;
         }
-    
+
         protected virtual IList<LinhaArquivo> CarregaHeader(IEnumerable<string> linhas)
         {
             var listaHeader = new List<LinhaArquivo>();
@@ -190,9 +192,9 @@ namespace Acelera.Domain.Layouts
 
         private void ValidaHeader(LinhaArquivo header)
         {
-            Assert.IsTrue(new string[] {"9.3","9.4"}.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA"  );
+            Assert.IsTrue(new string[] { "9.3", "9.4" }.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
             var cdTpa = header.ObterCampoDoArquivo("CD_TPA").Valor.Trim();
-            Assert.IsTrue(cdTpa.Length == 3 && int.TryParse(cdTpa,out int r), "CD_TPA DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
+            Assert.IsTrue(cdTpa.Length == 3 && int.TryParse(cdTpa, out int r), "CD_TPA DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
         }
 
         protected virtual IList<LinhaArquivo> CarregaFooter(IEnumerable<string> linhas)
@@ -212,10 +214,17 @@ namespace Acelera.Domain.Layouts
             }
             return listaFooter;
         }
-
-        private void AddCampoAlterado()
+        
+        public string MontarCamposChaveParaLog(int posicaoLinha)
         {
+            if (CamposChaves.Count() == 0)
+                throw new Exception("CAMPOS CHAVES NAO DEFINIDOS");
 
+            var linha = ObterLinha(posicaoLinha);
+            var texto = "";
+            foreach (var campo in CamposChaves)
+                texto +=  " " + campo + ": '" + linha.ObterCampoDoArquivo(campo).ValorFormatado + "' ;";
+            return texto.Substring(0, texto.Length - 1);
         }
     }
 }
