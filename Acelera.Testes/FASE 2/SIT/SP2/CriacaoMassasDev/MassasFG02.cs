@@ -5,7 +5,7 @@ using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Acelera.Domain.Entidades.ConjuntoArquivos;
 
 namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 {
@@ -283,13 +283,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
-            AumentarLinhasNoFooter(1);
 
-            var cdCorretor = dados.ObterCdCorretorParaTipoRemuneracao("R", true);
+            var terceiroCorretor = "7239711";
+            var cdCorretor = dados.ObterCdCorretorParaTipoRemuneracao("R", true, new string[] { terceiroCorretor });
             AlterarLinha(0, "CD_CORRETOR", cdCorretor);
-            AlterarLinha(1, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("R", true, cdCorretor));
 
+            AlterarLinha(1, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("R", true, new string[] { cdCorretor, terceiroCorretor }));
+            AlterarLinha(1, "CD_CONTRATO", ObterValor(0, "CD_CONTRATO"));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            AlterarLinha(2, "CD_CORRETOR", terceiroCorretor);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC52-C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
@@ -919,13 +922,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.Comissao, "PROC218", "FG02 - PROC218 - 1 (um) Arquivo de Parcela auto com 1 (um) ID_REGISTRO:  onde o CD_TIPO_COMISSAO diferente do CD_TIPO_REMUNERACAO");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1983-20200302.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC218-C01.TIM.EMSCMS-EV-/*R*/-20200214.TXT");
+            SalvarArquivo($"PROC218-C01.POMPEIA.EMSCMS-EV-/*R*/-20200302.TXT");
         }
 
         /// <summary>

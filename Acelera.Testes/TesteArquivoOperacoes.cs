@@ -339,5 +339,10 @@ namespace Acelera.Testes
                 retorno += new Random(seed * i).Next(0, 9).ToString();
             return retorno;
         }
+
+        public string ObterPrimeiroCaracteres(int quantidadeCaracteres)
+        {
+
+        }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="Entidades\Arquivo.cs" />
     <Compile Include="Entidades\Campo.cs" />
     <Compile Include="Entidades\Cobertura.cs" />
+    <Compile Include="Entidades\ConjuntoArquivos\Triplice.cs" />
     <Compile Include="Entidades\Consultas\Consulta.cs" />
     <Compile Include="Entidades\Consultas\FabricaConsulta.cs" />
     <Compile Include="Entidades\Interfaces\ILinhaTabela.cs" />

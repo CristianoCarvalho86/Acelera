@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Entidades;
 using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -171,16 +172,6 @@ namespace Acelera.Testes.DataAccessRep
         }
 
 
-        /// <summary>
-        /// SELECT NAS TABELAS DE PARAMETRO
-        /// </summary>
-        /// <returns></returns>
-        public string ObterJurosMaximo()
-        {
-            //Utiliza  ObterSucursal, cobertura, produto , ramo e operacao
-            throw new NotImplementedException();
-        }
-
 
         /// <summary>
         /// SELECT NAS TABELAS DE PARAMETRO
@@ -188,7 +179,9 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterSucursal(bool existente)
         {
-            throw new NotImplementedException();
+            if(existente)
+            return ObterParceiroNegocio("SU", true);
+            return "03";
         }
 
         public string ObterMovimentoCobranca(bool existente)
@@ -280,9 +273,9 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024");
         }
 
-        public string ObterCdCorretorParaTipoRemuneracao(string cdTipoRemuneracao, bool relacionado, string diferenteDeCdCorretor = "")
+        public string ObterCdCorretorParaTipoRemuneracao(string cdTipoRemuneracao, bool relacionado, string[] diferenteDeCdCorretor = null)
         {
-            var clausula = diferenteDeCdCorretor == "" ? "" : $" CD_PN_CORRETOR <> '{diferenteDeCdCorretor}'";
+            var clausula = diferenteDeCdCorretor == null ? "" : diferenteDeCdCorretor.Select(x => $" CD_PN_CORRETOR <> '{x}'").ToList().ObterListaConcatenada(" AND ");
             if (relacionado)
                 return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true, clausula);
             return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula);
