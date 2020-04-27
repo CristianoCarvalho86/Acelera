@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "VL_TAXA_MOEDA", "-1.32");
             AlterarLinha(0, "VL_LMI", "-1.22");
             AlterarLinha(0, "VL_IS", "-111.04");
-            AlterarLinha(0, "VL_PERCENTUAL_COSSEGURO", "-11.00");
+            AlterarLinha(0, "VL_PERCENTUAL_COSSEGURO", "-11.0");
             AlterarLinha(0, "VL_PREMIO_CEDIDO", "-1.00");
             AlterarLinha(0, "VL_COMISSAO_CEDIDO", "-1.00");
 

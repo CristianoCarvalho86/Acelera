@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "B");
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "C");
@@ -121,7 +121,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
@@ -154,7 +154,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "R");
@@ -187,7 +187,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "M");
@@ -220,7 +220,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "B");
@@ -253,7 +253,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -286,7 +286,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "C");
@@ -319,7 +319,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
@@ -352,7 +352,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "R");
@@ -385,7 +385,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "M");
@@ -419,7 +419,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "B");
@@ -453,7 +453,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -487,7 +487,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "C");
@@ -521,7 +521,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
@@ -555,7 +555,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "R");
@@ -589,7 +589,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "02");
             AlterarLinha(0, "CD_FORMA_PAGTO", "M");
@@ -623,7 +623,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "B");
@@ -657,7 +657,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -691,7 +691,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "C");
@@ -725,7 +725,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
@@ -759,7 +759,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "R");
@@ -793,7 +793,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "04");
             AlterarLinha(0, "CD_FORMA_PAGTO", "M");
@@ -827,7 +827,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "207");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "M");
@@ -861,7 +861,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "208");
             AlterarLinha(0, "NR_DOCUMENTO", "123456");
             AlterarLinha(0, "TP_SINISTRO", "03");
             AlterarLinha(0, "CD_FORMA_PAGTO", "M");

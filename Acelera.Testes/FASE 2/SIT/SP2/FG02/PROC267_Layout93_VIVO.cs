@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1847-20200207.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_NASCIMENTO", "16/04/2003");
+            AlterarLinha(1, "DT_NASCIMENTO", "20030416");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200207.txt");
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3778_PARC_EMISSAO_semcritica()
+        public void SAP_3778_CLIENTE_semcritica()
         {
             IniciarTeste(TipoArquivo.Cliente, "3778", "FG02 - PROC267 - Informar DT_NASCIMENTO de forma que o cliente tenha exatamente igual a 18 anos (data atual - 18 anos)");
 
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1835-20200205.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_NASCIMENTO", "16/04/2002");
+            AlterarLinha(0, "DT_NASCIMENTO", "20020416");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200205.txt");
@@ -80,7 +80,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3779_PARC_EMISSAO_semcritica()
+        public void SAP_3779_CLIENTE_semcritica()
         {
             IniciarTeste(TipoArquivo.Cliente, "3779", "FG02 - PROC267 - Informar DT_NASCIMENTO de forma que o cliente tenha exatamente igual a 18 anos (data atual - 19 anos)");
 
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1831-20200204.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_NASCIMENTO", "16/04/2001");
+            AlterarLinha(1, "DT_NASCIMENTO", "20010416");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200204.txt");

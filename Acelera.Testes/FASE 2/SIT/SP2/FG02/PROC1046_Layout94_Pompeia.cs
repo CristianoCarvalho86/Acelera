@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData("DT_EMISSAO", 1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(ObterValor(0,"DT_EMISSAO"), 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.txt");
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData("DT_EMISSAO", -1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(ObterValor(0,"DT_EMISSAO"), -1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.txt");

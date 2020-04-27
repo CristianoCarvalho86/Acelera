@@ -20,7 +20,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2810", "FG02 - PROC35 - Informar campo negativo");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1973-20200227.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "NR_PARCELA", "-1");
@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "VL_TAXA_MOEDA", "-100.10");
                    
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200227.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -186,7 +186,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2815", "FG02 - PROC35 - Informar campo negativo");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1973-20200227.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "NR_PARCELA", "1");
@@ -201,7 +201,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "VL_TAXA_MOEDA", "100.10");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200227.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -225,7 +225,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Cliente, "2816", "FG02 - PROC35 - Informar campo CD_CLIENTE positivo");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1981-20200302.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_CLIENTE", "200");

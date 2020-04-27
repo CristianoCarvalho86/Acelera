@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3162", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -37,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3163", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -77,7 +77,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -141,7 +141,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3165", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -155,7 +155,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -180,7 +180,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3166", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -194,7 +194,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -219,7 +219,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3167", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -233,7 +233,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -258,7 +258,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3168", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -273,7 +273,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -298,7 +298,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3169", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -312,7 +312,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -337,7 +337,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3170", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -351,7 +351,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -376,7 +376,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3171", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1812-20200130.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
@@ -390,7 +390,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200130.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
