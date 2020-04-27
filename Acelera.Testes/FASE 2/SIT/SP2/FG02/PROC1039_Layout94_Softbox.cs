@@ -11,52 +11,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Infomar CD_SEXO=1
+        /// Infomar SEXO=1
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3813_DT_FIM_VIGENCIA_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3813", "FG02 - PROC1039 - Infomar CD_SEXO=1");
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3276-20200323.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SEXO", "1");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.txt");
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "1039");
-            ValidarTeste();
-
-        }
-
-        /// <summary>
-        /// Infomar CD_SEXO=k
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_3814_DT_FIM_VIGENCIA_inv()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "3814", "FG02 - PROC1039 - Infomar CD_SEXO=k");
+            IniciarTeste(TipoArquivo.Cliente, "3813", "FG02 - PROC1039 - Infomar SEXO=1");
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-3324-20200326.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-2750-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "SEXO", "k");
+            AlterarLinha(1, "SEXO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("PROC1039");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -73,28 +42,59 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Infomar CD_SEXO=F
+        /// Infomar SEXO=k
         /// </summary>
         [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_3815_ParcEmissao_semcritica()
+        [TestCategory("Com Critica")]
+        public void SAP_3814_DT_FIM_VIGENCIA_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3815", "FG02 - PROC1039 - Infomar CD_SEXO=kInfomar CD_SEXO=F");
-
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
+            IniciarTeste(TipoArquivo.Cliente, "3814", "FG02 - PROC1039 - Infomar SEXO=k");
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-3211-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SEXO", "F");
+            AlterarLinha(1, "SEXO", "k");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.txt");
+            SalvarArquivo("");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(1, "1039");
+            ValidarTeste();
+
+        }
+
+        /// <summary>
+        /// Infomar SEXO=F
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_3815_Cliente_semcritica()
+        {
+            IniciarTeste(TipoArquivo.Cliente, "3815", "FG02 - PROC1039 - Infomar SEXO=kInfomar SEXO=F");
+
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-3227-20200320.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "SEXO", "F");
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -105,28 +105,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Infomar CD_SEXO=M
+        /// Infomar SEXO=M
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_3816_ParcEmissao_semcritica()
+        public void SAP_3816_Cliente_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3816", "FG02 - PROC1039 - Infomar CD_SEXO=kInfomar CD_SEXO=M");
+            IniciarTeste(TipoArquivo.Cliente, "3816", "FG02 - PROC1039 - Infomar SEXO=kInfomar SEXO=M");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3228-20200320.txt"));
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-3243-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SEXO", "M");
+            AlterarLinha(1, "SEXO", "M");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200320.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);

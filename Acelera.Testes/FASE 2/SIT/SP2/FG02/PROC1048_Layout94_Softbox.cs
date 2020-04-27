@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", dados.ObterCDSeguradoraDoTipoParceiro("SE", false));
+            AlterarLinha(1, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE", false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200317.txt");
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-2752-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", dados.ObterCDSeguradoraDoTipoParceiro("SE", false));
+            AlterarLinha(1, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE",false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.EMSCMS-EV-/*R*/-20200211.txt");
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-2750-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", dados.ObterCDSeguradoraDoTipoParceiro("SE", true));
+            AlterarLinha(1, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE", true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.CLIENTE-EV-/*R*/-20200211.txt");

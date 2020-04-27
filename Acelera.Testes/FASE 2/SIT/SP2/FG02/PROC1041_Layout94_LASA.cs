@@ -11,18 +11,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar TP_PESSOA=J
+        /// Informar TIPO=J
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3821_NR_CNPJ_CPF_inv()
         {
-            IniciarTeste(TipoArquivo.Cliente, "3821", "FG02 - PROC1041 - Informar TP_PESSOA=J");
+            IniciarTeste(TipoArquivo.Cliente, "3821", "FG02 - PROC1041 - Informar TIPO=J");
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3209-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "TP_PESSOA", "J");
+            AlterarLinha(1, "TIPO", "J");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.CLIENTE-EV-/*R*/-20200319.txt");
@@ -42,19 +42,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar TP_PESSOA=F
+        /// Informar TIPO=F
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3822_Cliente_semcritica()
         {
-            IniciarTeste(TipoArquivo.Cliente, "3822", "FG02 - PROC1041 - Informar TP_PESSOA=F");
+            IniciarTeste(TipoArquivo.Cliente, "3822", "FG02 - PROC1041 - Informar TIPO=F");
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3225-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "TP_PESSOA", "F");
+            AlterarLinha(1, "TIPO", "F");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.CLIENTE-EV-/*R*/-20200320.txt");

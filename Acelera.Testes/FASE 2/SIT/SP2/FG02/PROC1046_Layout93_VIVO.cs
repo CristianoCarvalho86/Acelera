@@ -11,19 +11,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     {
 
         /// <summary>
-        /// Informar DT_INCIO_VIGENCIA=D+1 DT_EMISSAO
+        /// Informar DT_INICIO_VIGENCIA=D+1 DT_EMISSAO
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3851_ParcEmissaoAuto_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3851", "FG02 - PROC1046 - Informar DT_INCIO_VIGENCIA=D+1 DT_EMISSAO");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3851", "FG02 - PROC1046 - Informar DT_INICIO_VIGENCIA=D+1 DT_EMISSAO");
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INCIO_VIGENCIA", SomarData("DT_EMISSAO", 1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(ObterValor(0, "DT_EMISSAO"), 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
@@ -43,19 +43,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar DT_INCIO_VIGENCIA=D-1 DT_EMISSAO
+        /// Informar DT_INICIO_VIGENCIA=D-1 DT_EMISSAO
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3852_ParcEmissaoAuto_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3852", "FG02 - PROC1046 - Informar DT_INCIO_VIGENCIA=D-1 DT_EMISSAO");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3852", "FG02 - PROC1046 - Informar DT_INICIO_VIGENCIA=D-1 DT_EMISSAO");
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INCIO_VIGENCIA", SomarData("DT_EMISSAO", -1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData("DT_EMISSAO", -1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.txt");

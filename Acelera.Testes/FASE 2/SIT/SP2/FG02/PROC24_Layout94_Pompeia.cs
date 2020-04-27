@@ -50,7 +50,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Comissao, "4011", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1983-20200302.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1920-20200208.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
@@ -81,10 +81,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "4012", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(0, "CD_COBERTURA", dados.ObterCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -144,7 +144,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Comissao, "4011", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1983-20200302.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1935-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
@@ -175,10 +175,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "4015", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(0, "CD_COBERTURA", dados.ObterCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
