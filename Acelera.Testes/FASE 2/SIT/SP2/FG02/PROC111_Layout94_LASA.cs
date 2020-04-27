@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3303-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
+            var sucursal = ObterValorFormatado(0, "CD_SINISTRO").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
                 sucursal
                 + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)

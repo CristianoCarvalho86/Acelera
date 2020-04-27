@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
-            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
+            var sucursal = ObterValorFormatado(0, "CD_SINISTRO").Substring(0, 2);
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_SINISTRO",
                 ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
+            var sucursal = ObterValorFormatado(0, "CD_SINISTRO").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
                 sucursal
                 + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)

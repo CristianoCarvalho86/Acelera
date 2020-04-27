@@ -287,13 +287,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             var terceiroCorretor = "7239711";
             var cdCorretor = dados.ObterCdCorretorParaTipoRemuneracao("R", true, new string[] { terceiroCorretor });
             AlterarLinha(0, "CD_CORRETOR", cdCorretor);
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValor(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             AlterarLinha(1, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("R", true, new string[] { cdCorretor, terceiroCorretor }));
             AlterarLinha(1, "CD_CONTRATO", ObterValor(0, "CD_CONTRATO"));
             AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "R");
 
             AlterarLinha(2, "CD_CORRETOR", terceiroCorretor);
+            AlterarLinha(2, "CD_TIPO_COMISSAO", "R");
             AlterarLinha(2, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValor(2, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
