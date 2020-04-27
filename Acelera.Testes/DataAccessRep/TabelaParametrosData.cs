@@ -158,8 +158,9 @@ namespace Acelera.Testes.DataAccessRep
         /// <returns></returns>
         public string ObterCDFranquia(bool existente)
         {
-            //TAB_PRM_FRANQUIA_7010
+            if(existente)
             return ObterRetornoPadrao("CD_FRANQUIA", "TAB_PRM_FRANQUIA_7010", existente);
+            return "13";
         }
 
         /// <summary>
