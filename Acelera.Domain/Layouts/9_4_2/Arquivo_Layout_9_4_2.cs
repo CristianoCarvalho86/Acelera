@@ -8,6 +8,7 @@ namespace Acelera.Domain.Layouts._9_4_2
 {
     public class Arquivo_Layout_9_4_2 : Arquivo
     {
+        protected override string[] CamposChaves => new string[] { "CD_SINISTRO", "CD_AVISO" };
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
                 linha.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 2, "TIPO_REGISTRO"));

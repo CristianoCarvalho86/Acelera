@@ -91,7 +91,7 @@
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_OcrCobranca.cs" />
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_LanctoComissao.cs" />
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_Sinistro.cs" />
-    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_Cliente_EmsComissao.cs" />
+    <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_EmsComissao.cs" />
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_ParcEmissao.cs" />
     <Compile Include="Layouts\9_4\Arquivo_Layout_9_4_Cliente.cs" />
     <Compile Include="Layouts\9_4_2\Arquivo_Layout_9_4_2.cs" />

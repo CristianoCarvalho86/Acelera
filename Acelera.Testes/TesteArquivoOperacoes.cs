@@ -57,6 +57,7 @@ namespace Acelera.Testes
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
+            logger.Escrever("Chave da Linha : " + arquivo.MontarCamposChaveParaLog(posicaoLinha));
             logger.Escrever("Linha Antiga :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
             logger.Escrever($"Valor Antigo : {arquivo.ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).Valor}");
             logger.Escrever($"Valor Novo : {valorNovo}");
@@ -133,6 +134,7 @@ namespace Acelera.Testes
         public void ReplicarLinha(int posicaoLinha, int quantidadeVezes)
         {
             logger.AbrirBloco($"Alterando arquivo - Replicando linha {posicaoLinha} , {quantidadeVezes} vezes.");
+            logger.Escrever("Chave da Linha a ser replicada : " + arquivo.MontarCamposChaveParaLog(posicaoLinha));
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
             arquivo.ReplicarLinha(posicaoLinha, quantidadeVezes);
             logger.FecharBloco();
