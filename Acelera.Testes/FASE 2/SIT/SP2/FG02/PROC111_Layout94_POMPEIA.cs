@@ -22,9 +22,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2924", "FG02 - PROC111 - Informar CD SINISTRO = Ramo + Ano + Sucursal + Sequencial (9)");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
 
-            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0,2);
+            var sucursal = ObterValorFormatado(0, "CD_SINISTRO").Substring(0,2);
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_SINISTRO",
                 sucursal +
@@ -59,10 +59,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "2925", "FG02 - PROC111 - Informar CD SINISTRO = Sucursal(2)+Ramo(2)+Ano(2)+ Sequencial(9)");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var sucursal = ObterValorFormatado(0, "CD_SUCURSAL").Substring(0, 2);
+            var sucursal = ObterValorFormatado(0, "CD_SINISTRO").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
                 sucursal
                 + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
