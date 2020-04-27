@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3212-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData("DT_EMISSAO", 1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(ObterValor(0,"DT_EMISSAO"), 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.txt");
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3196-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData("DT_EMISSAO", -1));
+            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(ObterValor(0,"DT_EMISSAO"), -1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200318.txt");

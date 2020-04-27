@@ -202,7 +202,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "ANO_MODELO", "20");
             AlterarLinha(2, "VL_PERC_FATOR", "20");
             AlterarLinha(2, "VL_PERC_BONUS", "20");
-            AlterarLinha(2, "CD_CLASSE_BONUS", "20");
+            AlterarLinha(2, "CD_CLASSE_BONUS", "2");
             AlterarLinha(2, "DT_NASC_CONDUTOR", "2009101");
             AlterarLinha(2, "TEMPO_HAB", "1");
             AlterarLinha(2, "CD_UTILIZACAO", "1");

@@ -41,38 +41,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
         }
 
-
-        /// <summary>
-        /// Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_4079_COMISSAO_CD_PRODUTO_Inv()
-        {
-            IniciarTeste(TipoArquivo.Comissao, "4079", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003");
-            arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_PRODUTO", dados.ObterProduto(false));
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Comissao.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "26");
-            ValidarTeste();
-
-        }
-
         /// <summary>
         /// Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003
         /// </summary>
@@ -132,37 +100,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(false);
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTeste();
-
-        }
-
-        /// <summary>
-        /// Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_4083_COMISSAO_Sem_Critica()
-        {
-            IniciarTeste(TipoArquivo.Comissao, "4083", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor diferente do parametrizado na tabela TAB_PRM_PRODUTO_7003");
-            arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_PRODUTO", dados.ObterProduto(true));
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Comissao.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
             ValidarTeste();
 
         }

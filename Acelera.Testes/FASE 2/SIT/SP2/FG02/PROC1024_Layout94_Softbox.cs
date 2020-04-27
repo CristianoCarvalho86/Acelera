@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3162-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData("DT_INICIO_VIGENCIA", 200));
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1,"DT_INICIO_VIGENCIA"), 200));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200316.txt");
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3179-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData("DT_INICIO_VIGENCIA", 365));
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1,"DT_INICIO_VIGENCIA"), 365));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200317.txt");
@@ -86,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3196-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData("DT_INICIO_VIGENCIA", 366));
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1,"DT_INICIO_VIGENCIA"), 366));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200318.txt");
@@ -118,7 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3212-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData("DT_INICIO_VIGENCIA", 400));
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1,"DT_INICIO_VIGENCIA"), 400));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.txt");

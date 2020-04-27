@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "VL_TAXA_MOEDA", "-100.10");
             AlterarLinha(2, "VL_LMI", "-100.10");
             AlterarLinha(2, "VL_IS", "-100.10");
-            AlterarLinha(2, "VL_PERCENTUAL_COSSEGURO", "-100.10");
+            AlterarLinha(2, "VL_PERCENTUAL_COSSEGURO", "-10.1");
             AlterarLinha(2, "VL_PREMIO_CEDIDO", "-100.10");
             AlterarLinha(2, "VL_COMISSAO_CEDIDO", "-100.10");
             AlterarLinha(2, "VL_FRANQUIA", "-100.10");
@@ -228,7 +228,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(2, "VL_TAXA_MOEDA", "100.10");
             AlterarLinha(2, "VL_LMI", "100.10");
             AlterarLinha(2, "VL_IS", "100.10");
-            AlterarLinha(2, "VL_PERCENTUAL_COSSEGURO", "100.10");
+            AlterarLinha(2, "VL_PERCENTUAL_COSSEGURO", "10.1");
             AlterarLinha(2, "VL_PREMIO_CEDIDO", "100.10");
             AlterarLinha(2, "VL_COMISSAO_CEDIDO", "100.10");
             AlterarLinha(2, "VL_FRANQUIA", "100.10");

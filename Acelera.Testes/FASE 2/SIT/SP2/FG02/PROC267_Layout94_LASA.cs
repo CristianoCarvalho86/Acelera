@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3209-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_NASCIMENTO", "16/04/2003");
+            AlterarLinha(1, "DT_NASCIMENTO", "20030416");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.CLIENTE-EV-/*R*/-20200319.txt");
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3225-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_NASCIMENTO", "16/04/2002");
+            AlterarLinha(1, "DT_NASCIMENTO", "20020416");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.CLIENTE-EV-/*R*/-20200320.txt");
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3241-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_NASCIMENTO", "16/04/2001");
+            AlterarLinha(1, "DT_NASCIMENTO", "20010416");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.CLIENTE-EV-/*R*/-20200321.txt");

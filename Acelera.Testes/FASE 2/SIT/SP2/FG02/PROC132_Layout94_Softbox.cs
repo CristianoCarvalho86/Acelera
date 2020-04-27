@@ -22,8 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", "01/04/2020");
-            AlterarLinha(0, "DT_AVISO", "02/04/2020");
+            AlterarLinha(0, "DT_MOVIMENTO", "20200401");
+            AlterarLinha(0, "DT_AVISO", "20200402");
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3217-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", -10));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), -10));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3220-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", -30));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), -30));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3222-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", -35));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), -35));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -147,7 +147,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3231-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", -60));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), -60));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -178,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", -180));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), -180));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -209,7 +209,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3238-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", -365));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), -365));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -241,7 +241,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", 1));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), 1));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -274,7 +274,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", 10));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), 10));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -307,7 +307,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3280-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", 30));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), 30));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -340,7 +340,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", 35));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), 35));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -373,7 +373,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3300-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", 60));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), 60));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -406,7 +406,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3302-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", 180));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), 180));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -439,7 +439,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3318-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_AVISO", 365));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0,"DT_AVISO"), 365));
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "146");
 
             //SALVAR O NOVO ARQUIVO ALTERADO

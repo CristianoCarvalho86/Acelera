@@ -340,9 +340,5 @@ namespace Acelera.Testes
             return retorno;
         }
 
-        public string ObterPrimeiroCaracteres(int quantidadeCaracteres)
-        {
-
-        }
     }
 }

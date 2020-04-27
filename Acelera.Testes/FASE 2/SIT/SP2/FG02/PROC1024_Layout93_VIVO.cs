@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData("DT_INICIO_VIGENCIA", 200));
+            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1,"DT_INICIO_VIGENCIA"), 200));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
