@@ -288,6 +288,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             var cdCorretor = dados.ObterCdCorretorParaTipoRemuneracao("R", true, new string[] { terceiroCorretor });
             AlterarLinha(0, "CD_CORRETOR", cdCorretor);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValor(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             AlterarLinha(1, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("R", true, new string[] { cdCorretor, terceiroCorretor }));
             AlterarLinha(1, "CD_CONTRATO", ObterValor(0, "CD_CONTRATO"));
@@ -296,6 +297,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             AlterarLinha(2, "CD_CORRETOR", terceiroCorretor);
             AlterarLinha(2, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(2, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValor(2, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC52-C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
@@ -1110,13 +1112,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.Comissao, "PROC1048", "FG02 - PROC1048 -1 (um) Arquivo de Comissao com 1 (um) ID_REGISTRO: onde a combinação CD_SEGURADORA não esteja cadastrado nos parametros");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3180-20200317.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0,"CD_SEGURADORA", dados.ObterCDSeguradora(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC1048-C01.SOFTBOX.EMSCMS-EV-/*R*/-20200317.TXT");
+            SalvarArquivo($"PROC1048-C01.SOFTBOX.EMSCMS-EV-/*R*/-20200325.TXT");
         }
 
         /// <summary>

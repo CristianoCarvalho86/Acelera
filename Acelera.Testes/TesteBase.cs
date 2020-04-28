@@ -203,5 +203,10 @@ namespace Acelera.Testes
             return erros;
         }
 
+        protected string AlterarUltimasPosicoes(string texto, string textoASerTrocadoNoFinal)
+        {
+            return texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
+        }
+
     }
 }
