@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 3);
+            ReplicarLinhaComCorrecao(0, 3);
             AumentarLinhasNoFooter(3);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");

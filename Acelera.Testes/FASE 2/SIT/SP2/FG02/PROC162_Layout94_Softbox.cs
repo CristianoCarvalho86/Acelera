@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-2751-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0,"DT_EMISSAO"),-365));
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3162-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -30));
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3179-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
@@ -130,7 +130,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3196-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
