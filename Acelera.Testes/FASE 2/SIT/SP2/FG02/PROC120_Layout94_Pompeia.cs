@@ -43,18 +43,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =6 e Informar CD_FORMA_PAGTO=99
+        /// Informar CD_TIPO_EMISSAO =6 e Informar CD_FORMA_PAGTO=99
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3027_CD_FORMA_PAGTO_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3027", "FG02 - PROC120 - Informar CD_TIPO_MOVIMENTO =6 e Informar CD_FORMA_PAGTO=99");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3027", "FG02 - PROC120 - Informar CD_TIPO_EMISSAO =6 e Informar CD_FORMA_PAGTO=99");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "6");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "6");
             AlterarLinha(0, "CD_FORMA_PAGTO", "99");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -75,18 +75,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =8 e Informar CD_FORMA_PAGTO=55
+        /// Informar CD_TIPO_EMISSAO =8 e Informar CD_FORMA_PAGTO=55
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3028_CD_FORMA_PAGTO_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3028", "FG02 - PROC120 - Informar CD_TIPO_MOVIMENTO =8 e Informar CD_FORMA_PAGTO=55");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3028", "FG02 - PROC120 - Informar CD_TIPO_EMISSAO =8 e Informar CD_FORMA_PAGTO=55");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "8");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "8");
             AlterarLinha(0, "CD_FORMA_PAGTO", "55");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -107,18 +107,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =17 e Informar CD_FORMA_PAGTO=62
+        /// Informar CD_TIPO_EMISSAO =17 e Informar CD_FORMA_PAGTO=62
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3029_CD_FORMA_PAGTO_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3029", "FG02 - PROC120 - Informar CD_TIPO_MOVIMENTO =17 e Informar CD_FORMA_PAGTO=62");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3029", "FG02 - PROC120 - Informar CD_TIPO_EMISSAO =17 e Informar CD_FORMA_PAGTO=62");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "17");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "17");
             AlterarLinha(0, "CD_FORMA_PAGTO", "62");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -139,18 +139,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =20 e Informar CD_FORMA_PAGTO=88
+        /// Informar CD_TIPO_EMISSAO =20 e Informar CD_FORMA_PAGTO=88
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_3030_CD_FORMA_PAGTO_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3030", "FG02 - PROC120 - Informar CD_TIPO_MOVIMENTO =20 e Informar CD_FORMA_PAGTO=88");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3030", "FG02 - PROC120 - Informar CD_TIPO_EMISSAO =20 e Informar CD_FORMA_PAGTO=88");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "20");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "CD_FORMA_PAGTO", "88");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -266,19 +266,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =8 e Informar CD_FORMA_PAGTO=1
+        /// Informar CD_TIPO_EMISSAO =8 e Informar CD_FORMA_PAGTO=1
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3035_PARCEMS_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3035", "Informar CD_TIPO_MOVIMENTO =8 e Informar CD_FORMA_PAGTO=1");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3035", "Informar CD_TIPO_EMISSAO =8 e Informar CD_FORMA_PAGTO=1");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "8");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "8");
             AlterarLinha(0, "CD_FORMA_PAGTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -299,19 +299,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =17 e Informar CD_FORMA_PAGTO=2
+        /// Informar CD_TIPO_EMISSAO =17 e Informar CD_FORMA_PAGTO=2
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3036_PARCEMS_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3036", "Informar CD_TIPO_MOVIMENTO =17 e Informar CD_FORMA_PAGTO=2");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3036", "Informar CD_TIPO_EMISSAO =17 e Informar CD_FORMA_PAGTO=2");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "17");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "17");
             AlterarLinha(0, "CD_FORMA_PAGTO", "2");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -332,19 +332,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        /// Informar CD_TIPO_MOVIMENTO =20 e Informar CD_FORMA_PAGTO=3
+        /// Informar CD_TIPO_EMISSAO =20 e Informar CD_FORMA_PAGTO=3
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_3037_PARCEMS_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3037", "Informar CD_TIPO_MOVIMENTO =20 e Informar CD_FORMA_PAGTO=3");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3037", "Informar CD_TIPO_EMISSAO =20 e Informar CD_FORMA_PAGTO=3");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "20");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "CD_FORMA_PAGTO", "3");
 
             //SALVAR O NOVO ARQUIVO ALTERADO

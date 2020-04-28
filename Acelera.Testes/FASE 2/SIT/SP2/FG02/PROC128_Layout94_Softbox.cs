@@ -314,7 +314,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3129", "FG02 - PROC128 - No mesmo arquivo, informar dois registros (linhas) com o mesmo CD_SINISTRO (numero aleatorio) e CD_TIPO_MOVIMENTO=1.");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
@@ -324,7 +324,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200321.TXT");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -394,7 +394,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3131", "FG02 - PROC128 - Criar dois arquivos. Ambos devem possuir o mesmo CD_SINISTRO. No primeiro arquivo, informar CD_TIPO_MOVIMENTO=1. No segundo, informar CD_TIPO_MOVIMENTO=7 Importar os arquivos separadamente");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3280-20200323.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3217-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
@@ -402,17 +402,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200323.TXT");
+            SalvarArquivo();
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3220-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.TXT");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -438,7 +438,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3132", "FG02 - PROC128 - Criar dois arquivos. Ambos devem possuir o mesmo CD_SINISTRO. No primeiro arquivo, informar CD_TIPO_MOVIMENTO=1. No segundo, informar CD_TIPO_MOVIMENTO=9 Importar os arquivos separadamente");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3222-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
@@ -446,17 +446,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.TXT");
+            SalvarArquivo();
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3300-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3231-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.TXT");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -482,7 +482,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3133", "FG02 - PROC128 - Criar dois arquivos. Ambos devem possuir o mesmo CD_SINISTRO. No primeiro arquivo, informar CD_TIPO_MOVIMENTO=1. No segundo, informar CD_TIPO_MOVIMENTO=30 Importar os arquivos separadamente");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3300-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
@@ -490,17 +490,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.TXT");
+            SalvarArquivo();
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3302-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3238-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "CD_SINISTRO", sinistro);
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.TXT");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -526,25 +526,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.Sinistro, "3134", "FG02 - PROC128 - Criar dois arquivos. Ambos devem possuir o mesmo CD_SINISTRO. No primeiro arquivo, informar CD_TIPO_MOVIMENTO=1. No segundo, informar CD_TIPO_MOVIMENTO=11 Importar os arquivos separadamente");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3302-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(1, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
-            AlterarLinha(1, "CD_SINISTRO", sinistro);
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "1");
+            var sinistro = dados.ObterSucursal(true) + ObterValorFormatado(0, "CD_RAMO") + "20" + ObterValorHeader("CD_TPA") + GerarNumeroAleatorio(6);
+            AlterarLinha(0, "CD_SINISTRO", sinistro);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.TXT");
+            SalvarArquivo();
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3318-20200325.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_SINISTRO", sinistro);
-            AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
+            AlterarLinha(0, "CD_SINISTRO", sinistro);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "11");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200325.TXT");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
