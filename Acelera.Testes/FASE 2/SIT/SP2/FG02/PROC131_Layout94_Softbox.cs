@@ -22,11 +22,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200402");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(1, "DT_REGISTRO", "20200402");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200317.txt");
@@ -56,11 +56,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3217-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(1, "DT_REGISTRO", "20200307");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200319.txt");
@@ -90,11 +90,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3220-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200104");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
             AlterarLinha(1, "DT_REGISTRO", "20200331");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200319.txt");
@@ -124,11 +124,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3222-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200301");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200319.txt");
@@ -158,11 +158,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3231-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200331");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
             AlterarLinha(1, "DT_REGISTRO", "20200401");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
@@ -192,11 +192,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3232-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200229");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
@@ -227,11 +227,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3238-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(1, "DT_REGISTRO", "20200401");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200320.txt");
@@ -263,11 +263,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200307");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(1, "DT_REGISTRO", "20200307");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200321.txt");
@@ -299,11 +299,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3254-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200331");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
             AlterarLinha(1, "DT_REGISTRO", "20200331");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200321.txt");
@@ -335,11 +335,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3280-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200302");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200323.txt");
@@ -371,11 +371,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3297-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200302");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");
@@ -407,11 +407,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3300-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200229");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(1, "DT_REGISTRO", "20200229");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.SINISTRO-EV-/*R*/-20200324.txt");

@@ -22,11 +22,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(1, "DT_REGISTRO", "20200402");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.txt");
@@ -56,11 +56,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(1, "DT_REGISTRO", "20200307");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.txt");
@@ -90,11 +90,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
             AlterarLinha(1, "DT_REGISTRO", "20200331");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.txt");
@@ -124,11 +124,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200301");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.txt");
@@ -158,11 +158,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200331");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
             AlterarLinha(1, "DT_REGISTRO", "20200401");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200211.txt");
@@ -192,11 +192,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0002-20191220.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200229");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191220.txt");
@@ -227,11 +227,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(1, "DT_REGISTRO", "20200401");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.txt");
@@ -263,11 +263,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200307");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(1, "DT_REGISTRO", "20200307");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.txt");
@@ -299,11 +299,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
+
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200331");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "9");
             AlterarLinha(1, "DT_REGISTRO", "20200331");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.txt");
@@ -335,11 +336,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200302");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200211.txt");
@@ -371,11 +372,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200302");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.txt");
@@ -407,11 +408,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200127.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "DT_REGISTRO", "20200229");
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(1, "DT_REGISTRO", "20200229");
+            AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200127.txt");
