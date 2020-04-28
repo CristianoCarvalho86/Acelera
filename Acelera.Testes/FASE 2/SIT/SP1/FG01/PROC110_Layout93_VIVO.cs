@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_CNPJ_CPF", "05168329721");
-            ReplicarLinha(0, 3);
+            ReplicarLinhaComCorrecao(0, 3);
             AumentarLinhasNoFooter(3);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_CNPJ_CPF", "111111111");
-            ReplicarLinha(0, 3);
+            ReplicarLinhaComCorrecao(0, 3);
             AumentarLinhasNoFooter(3);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -87,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 3);
+            ReplicarLinhaComCorrecao(0, 3);
             AumentarLinhasNoFooter(3);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -119,7 +119,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             RemoverLinhasExcetoAsPrimeiras(100);
-            ReplicarLinha(0, 3);
+            ReplicarLinhaComCorrecao(0, 3);
             AumentarLinhasNoFooter(3);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.VIVO.EMSCMS-EV-/*R*/-20200211.TXT");
@@ -150,7 +150,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             RemoverLinhasExcetoAsPrimeiras(100);
-            ReplicarLinha(0, 3);
+            ReplicarLinhaComCorrecao(0, 3);
             AumentarLinhasNoFooter(3);
 
             //SALVAR O NOVO ARQUIVO ALTERADO

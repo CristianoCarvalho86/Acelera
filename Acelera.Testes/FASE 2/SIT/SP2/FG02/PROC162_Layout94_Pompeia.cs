@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0,"DT_EMISSAO"),-365));
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -30));
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
@@ -130,7 +130,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1934-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));

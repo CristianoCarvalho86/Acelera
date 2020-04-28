@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0002-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200214.TXT");
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             RemoverLinhasExcetoAsPrimeiras(100);
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AumentarLinhasNoFooter(1);
             
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0002-20200226.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.CLIENTE-EV-/*R*/-20200213.TXT");
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200214.TXT");
@@ -145,7 +145,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             RemoverLinhasExcetoAsPrimeiras(100);
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.EMSCMS-EV-/*R*/-20200214.TXT");
@@ -176,7 +176,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             RemoverLinhasExcetoAsPrimeiras(100);
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.COBRANCA-EV-/*R*/-20191229.TXT");

@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ReplicarLinha(0, 1);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_MOVIMENTO", "3");
             AlterarLinha(0, "DT_MOVIMENTO", "20200409");
             AlterarLinha(0, "CD_CLIENTE", "12345");
