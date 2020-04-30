@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.OCRCobranca, "3929", "FG02 - PROC1167 - Informar CD_OCORRENCIA diferente de 18, 31 e 46 (ex:20)");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3197-20200318.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.COBRANCA-EV-1600-20191108.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_OCORRENCIA", "20");
