@@ -74,6 +74,11 @@ namespace Acelera.Domain.Layouts
             file.Close();
         }
 
+        public void RemoverLinhasRepetidas()
+        {
+            Linhas = Linhas.Distinct().ToList();
+        }
+
         public void AdicionaLinhaNoBody(LinhaArquivo linha)
         {
             Linhas.Add(linha);
@@ -112,12 +117,14 @@ namespace Acelera.Domain.Layouts
         public IList<LinhaArquivo> ObterLinhasComValores(string[] nomeCampo, string[] valor)
         {
             Assert.AreEqual(nomeCampo.Length,valor.Length,"ERRO DE NUMERO DE PARAMETROS");
-            Assert.AreEqual(nomeCampo.Length, 4, "ERRO DE NUMERO DE PARAMETROS");
+            Assert.AreEqual(nomeCampo.Length, 6, "ERRO DE NUMERO DE PARAMETROS");
 
             return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(nomeCampo[0]).ValorFormatado == valor[0]
             && x.ObterCampoDoArquivo(nomeCampo[1]).ValorFormatado == valor[1]
             && x.ObterCampoDoArquivo(nomeCampo[2]).ValorFormatado == valor[2]
-            && x.ObterCampoDoArquivo(nomeCampo[3]).ValorFormatado == valor[3]).ToList();
+            && x.ObterCampoDoArquivo(nomeCampo[3]).ValorFormatado == valor[3]
+            && x.ObterCampoDoArquivo(nomeCampo[4]).ValorFormatado == valor[4]
+            && x.ObterCampoDoArquivo(nomeCampo[5]).ValorFormatado == valor[5]).ToList();
         }
 
         public IList<LinhaArquivo> ObterLinhasComValores(string nomeCampo, string valorFormatado)

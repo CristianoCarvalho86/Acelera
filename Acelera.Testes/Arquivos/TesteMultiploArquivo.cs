@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.Arquivos
 {
     [TestClass]
-    public class TesteMultiploArquivo : TestesFG02
+    public class TesteMultiploArquivo
     {
         [TestMethod]
         public void ObterTrincas()
@@ -25,7 +25,7 @@ namespace Acelera.Testes.Arquivos
             var arquivoParcGig = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissaoGig = new Arquivo_Layout_9_4_EmsComissao();
 
-            var arquivosLasa = ArquivoOrigem.ObterArquivos(TipoArquivo.Cliente, OperadoraEnum.LASA, Parametros.pastaOrigem);
+            var arquivosLasa = ArquivoOrigem.ObterArquivos(TipoArquivo.Cliente, OperadoraEnum.VIVO, Parametros.pastaOrigem);
             arquivoClienteGig.Carregar(arquivosLasa.First());
             arquivoClienteNovo.Header = arquivoClienteGig.Header;
             arquivoClienteNovo.Footer = arquivoClienteGig.Footer;
@@ -35,7 +35,7 @@ namespace Acelera.Testes.Arquivos
                 arquivoClienteGig.CarregarNovasLinhasNoBody(arquivosLasa[i]);
             }
 
-            arquivosLasa = ArquivoOrigem.ObterArquivos(TipoArquivo.ParcEmissao, OperadoraEnum.LASA, Parametros.pastaOrigem);
+            arquivosLasa = ArquivoOrigem.ObterArquivos(TipoArquivo.ParcEmissao, OperadoraEnum.VIVO, Parametros.pastaOrigem);
             arquivoParcGig.Carregar(arquivosLasa.First());
             arquivoParcNovo.Header = arquivoParcGig.Header;
             arquivoParcNovo.Footer = arquivoParcGig.Footer;
@@ -45,7 +45,7 @@ namespace Acelera.Testes.Arquivos
                 arquivoParcGig.CarregarNovasLinhasNoBody(arquivosLasa[i]);
             }
 
-            arquivosLasa = ArquivoOrigem.ObterArquivos(TipoArquivo.Comissao, OperadoraEnum.LASA, Parametros.pastaOrigem);
+            arquivosLasa = ArquivoOrigem.ObterArquivos(TipoArquivo.Comissao, OperadoraEnum.VIVO, Parametros.pastaOrigem);
             arquivoComissaoGig.Carregar(arquivosLasa.First());
             arquivoComissaoNovo.Header = arquivoComissaoGig.Header;
             arquivoComissaoNovo.Footer = arquivoComissaoGig.Footer;
@@ -58,27 +58,29 @@ namespace Acelera.Testes.Arquivos
             var clientesTestados = new List<string>();
             foreach(var linha in arquivoParcGig.Linhas)
             {
-                if (clientesTestados.Contains(linha.ObterCampoDoArquivo("CD_CLIENTE").ValorFormatado))
-                    continue;
+                var cdCliente = linha.ObterCampoDoArquivo("CD_CLIENTE").ValorFormatado;
+                var cdClienteNoArquivoDeCliente = clientesTestados.Contains(cdCliente);
 
-                clientesTestados.Add(linha.ObterCampoDoArquivo("CD_CLIENTE").ValorFormatado);
-
-                var linhasCliente = arquivoClienteGig.ObterLinhasComValores("CD_CLIENTE", linha.ObterCampoDoArquivo("CD_CLIENTE").ValorFormatado);
+                var linhasCliente = cdClienteNoArquivoDeCliente ? null : arquivoClienteGig.ObterLinhasComValores("CD_CLIENTE", cdCliente);
                 var linhasComissao = arquivoComissaoGig.ObterLinhasComValores(
-                    new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO","NR_PARCELA", "CD_COBERTURA" },
+                    new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO","NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" },
                     new string[] { linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado,
                         linha.ObterCampoDoArquivo("NR_SEQUENCIAL_EMISSAO").ValorFormatado,
                         linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado,
-                        linha.ObterCampoDoArquivo("CD_COBERTURA").ValorFormatado});
+                        linha.ObterCampoDoArquivo("CD_COBERTURA").ValorFormatado,
+                        linha.ObterCampoDoArquivo("CD_ITEM").ValorFormatado,
+                        linha.ObterCampoDoArquivo("CD_CORRETOR").ValorFormatado});
 
-                if (!(linhasCliente != null && linhasCliente.Count() > 0))
+                if (linhasComissao == null || linhasComissao.Count() == 0)
                     continue;
-                if (!(linhasComissao != null && linhasComissao.Count() > 0))
+                if( (linhasCliente == null || linhasCliente.Count == 0) && !cdClienteNoArquivoDeCliente)
                     continue;
 
-                foreach (var l in linhasCliente)
-                    arquivoClienteNovo.AdicionaLinhaNoBody(l);
-
+                if (!cdClienteNoArquivoDeCliente)
+                {
+                    arquivoClienteNovo.AdicionaLinhaNoBody(linhasCliente.First());
+                    clientesTestados.Add(cdCliente);
+                }
                 foreach (var l in linhasComissao)
                     arquivoComissaoNovo.AdicionaLinhaNoBody(l);
 
@@ -86,9 +88,13 @@ namespace Acelera.Testes.Arquivos
 
             }
 
-            arquivoClienteNovo.Salvar(Parametros.pastaDestino + "TESTE_CLIENTE_LASA.TXT");
-            arquivoParcNovo.Salvar(Parametros.pastaDestino + "TESTE_PARCEMS_LASA.TXT");
-            arquivoComissaoNovo.Salvar(Parametros.pastaDestino + "TESTE_COMISSAO_LASA.TXT");
+            arquivoClienteNovo.RemoverLinhasRepetidas();
+            arquivoParcNovo.RemoverLinhasRepetidas();
+            arquivoComissaoNovo.RemoverLinhasRepetidas();
+
+            arquivoClienteNovo.Salvar(Parametros.pastaDestino + "TESTE_CLIENTE_VIVO.TXT");
+            arquivoParcNovo.Salvar(Parametros.pastaDestino + "TESTE_PARCEMS_VIVO.TXT");
+            arquivoComissaoNovo.Salvar(Parametros.pastaDestino + "TESTE_COMISSAO_VIVO.TXT");
 
         }
     }
