@@ -35,17 +35,13 @@ namespace Acelera.Domain.Entidades.ConjuntoArquivos
             IgualarArquivos();
         }
 
-        public void Alterar(int posicaoLinha, string nomeCampo, string valor)
+        public void AlterarParcEComissao(int posicaoLinha, string nomeCampo, string valor)
         {
             ArquivoParcEmissao.AlterarLinhaSeExistirCampo(posicaoLinha, nomeCampo, valor);
             ArquivoComissao.AlterarLinhaSeExistirCampo(posicaoLinha, nomeCampo, valor);
         }
 
-        //public void AlterarCliente(string cdCliente, string campoAlteracao, string valorNovo)
-        //{
-        //    ArquivoCliente.AlterarLinhaComCampoIgualAValor("CD_CLIENTE", cdCliente, campoAlteracao, valorNovo);
-        //}
-        
+       
         public void AlterarCliente(int posicaoLinha, string campoAlteracao, string valorNovo)
         {
             var valorAntigo = ArquivoCliente.ObterValorFormatadoSeExistirCampo(posicaoLinha, campoAlteracao);
@@ -55,10 +51,10 @@ namespace Acelera.Domain.Entidades.ConjuntoArquivos
         }
 
 
-        public void ReplicarLinhaNoParc(int posicaoLinha, int quantidadeDeVezes)
+        public void ReplicarLinhaNoParcEComissao(int posicaoLinha, int quantidadeDeVezes)
         {
-            ArquivoParcEmissao.ReplicarLinha(posicaoLinha, quantidadeDeVezes);
-            ArquivoComissao.ReplicarLinha(posicaoLinha, quantidadeDeVezes);
+            ArquivoParcEmissao.ReplicarLinhaComAjusteFooter(posicaoLinha, quantidadeDeVezes);
+            ArquivoComissao.ReplicarLinhaComAjusteFooter(posicaoLinha, quantidadeDeVezes);
         }
 
         public void Salvar()

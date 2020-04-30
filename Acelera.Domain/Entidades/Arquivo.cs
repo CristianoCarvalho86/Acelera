@@ -200,6 +200,11 @@ namespace Acelera.Domain.Layouts
             }
 
         }
+        public void ReplicarLinhaComAjusteFooter(int posicaoLinha, int quantidadeVezes)
+        {
+            ReplicarLinha(posicaoLinha, quantidadeVezes);
+            AjustarQtdLinhasNoFooter();
+        }
 
         public void RemoverLinha(int posicaoLinha)
         {
