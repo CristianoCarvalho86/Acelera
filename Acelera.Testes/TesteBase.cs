@@ -5,6 +5,7 @@ using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
+using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
 using Acelera.Testes.DataAccessRep;
@@ -207,6 +208,8 @@ namespace Acelera.Testes
         {
             return texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
         }
+
+
 
     }
 }

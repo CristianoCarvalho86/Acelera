@@ -15,12 +15,17 @@ namespace Acelera.Domain.Layouts
         public IList<LinhaArquivo> Linhas { get; set; }
         public IList<LinhaArquivo> Footer { get; set; }
 
+        public IList<string> CamposDoBody => Linhas.FirstOrDefault()?.Campos?.Select(x => x.ColunaArquivo).ToList();
+
         public string NomeArquivo { get; private set; }
+
+        private int LimiteDeLinhas;
 
         protected abstract string[] CamposChaves { get;}
 
-        public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1)
+        public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)
         {
+            LimiteDeLinhas = limiteDeLinhas;
             NomeArquivo = enderecoArquivo.Split('\\').LastOrDefault();
             textoArquivo = File.ReadAllText(enderecoArquivo);
             CarregarEstrutura(qtdHeader.HasValue ? qtdHeader.Value : 1, qtdFooter.HasValue ? qtdFooter.Value : 1);
@@ -34,7 +39,24 @@ namespace Acelera.Domain.Layouts
             Footer = CarregaFooter(linhas.Reverse().Take(qtdFooter).Reverse());
             var linhasBody = linhas.Skip(1).ToList();
             linhasBody.RemoveAt(linhasBody.Count - 1);
+            if (LimiteDeLinhas > 0)
+                linhasBody = linhasBody.Take(LimiteDeLinhas).ToList();
+
             Linhas = CarregaLinhas(linhasBody);
+
+        }
+
+        public void CarregarNovasLinhasNoBody(string enderecoArquivo)
+        {
+            var _textoArquivo = File.ReadAllText(enderecoArquivo);
+            var linhas = _textoArquivo.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Where(x => x != string.Empty);
+            var linhasBody = linhas.Skip(1).ToList();
+            linhasBody.RemoveAt(linhasBody.Count - 1);
+
+            var _linhas = CarregaLinhas(linhasBody);
+            foreach (var linha in _linhas)
+                Linhas.Add(linha);
+            AjustarQtdLinhasNoFooter();
 
         }
 
@@ -52,9 +74,55 @@ namespace Acelera.Domain.Layouts
             file.Close();
         }
 
+        public void AdicionaLinhaNoBody(LinhaArquivo linha)
+        {
+            Linhas.Add(linha);
+            AjustarQtdLinhasNoFooter();
+        }
+        public void AdicionaLinhaNoBody(IList<LinhaArquivo> linhas)
+        {
+            foreach(var linha in linhas)
+                Linhas.Add(linha);
+            AjustarQtdLinhasNoFooter();
+        }
+
+        public void AjustarQtdLinhasNoFooter()
+        {
+            AlterarFooter("QT_LIN", (Linhas.Count).ToString());
+        }
+
+        public string ObterValorFormatadoSeExistirCampo(int posicaoLinha, string campo)
+        {
+            if (!CamposDoBody.Contains(campo))
+                return null;
+
+            return Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado;
+        }
+
         public LinhaArquivo ObterLinha(int posicaoLinha)
         {
             return Linhas.ToList()[posicaoLinha];
+        }
+
+        public IList<LinhaArquivo> ObterLinhasOndeCampoIgualAValor(string campo, string valor)
+        {
+            return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(campo).ValorFormatado == valor).ToList();
+        }
+
+        public IList<LinhaArquivo> ObterLinhasComValores(string[] nomeCampo, string[] valor)
+        {
+            Assert.AreEqual(nomeCampo.Length,valor.Length,"ERRO DE NUMERO DE PARAMETROS");
+            Assert.AreEqual(nomeCampo.Length, 4, "ERRO DE NUMERO DE PARAMETROS");
+
+            return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(nomeCampo[0]).ValorFormatado == valor[0]
+            && x.ObterCampoDoArquivo(nomeCampo[1]).ValorFormatado == valor[1]
+            && x.ObterCampoDoArquivo(nomeCampo[2]).ValorFormatado == valor[2]
+            && x.ObterCampoDoArquivo(nomeCampo[3]).ValorFormatado == valor[3]).ToList();
+        }
+
+        public IList<LinhaArquivo> ObterLinhasComValores(string nomeCampo, string valorFormatado)
+        {
+            return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(nomeCampo).ValorFormatado == valorFormatado).ToList();
         }
 
         public LinhaArquivo ObterLinhaHeader(int posicaoLinha = 0)
@@ -69,6 +137,21 @@ namespace Acelera.Domain.Layouts
 
         public void AlterarLinha(int posicaoLinha, string campo, string textoNovo)
         {
+            Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
+            ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
+        }
+        public void AlterarLinhaComCampoIgualAValor(string campoBusca, string valorBusca, string campoAlteracao, string valorAlteracao)
+        {
+            var linhas = ObterLinhasComValores(campoBusca, valorBusca);
+            foreach(var linha in linhas)
+                linha.ObterCampoDoArquivo(campoAlteracao).AlterarValor(valorAlteracao);
+        }
+
+        public void AlterarLinhaSeExistirCampo(int posicaoLinha, string campo, string textoNovo)
+        {
+            if (!CamposDoBody.Contains(campo))
+                return;
+            
             Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
             ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
         }
@@ -136,6 +219,11 @@ namespace Acelera.Domain.Layouts
         public void RemoverLinhas(int posicaoLinhaInicial, int quantidadeLinhas)
         {
             Linhas = Linhas.TakeWhile(x => x.Index < posicaoLinhaInicial || x.Index > (posicaoLinhaInicial + quantidadeLinhas)).ToList();
+        }
+        public void RemoverTodasLinhasDoBody()
+        {
+            Linhas = new List<LinhaArquivo>();
+            AjustarQtdLinhasNoFooter();
         }
 
         public void RemoverExcetoEstas(int posicaoLinhaInicial, int quantidadeLinhas)
@@ -226,5 +314,6 @@ namespace Acelera.Domain.Layouts
                 texto +=  " " + campo + ": '" + linha.ObterCampoDoArquivo(campo).ValorFormatado + "' ;";
             return texto.Substring(0, texto.Length - 1);
         }
+
     }
 }

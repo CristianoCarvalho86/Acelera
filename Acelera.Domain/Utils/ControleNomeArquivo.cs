@@ -8,17 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.Adapters
+namespace Acelera.Domain.Utils
 {
     public class ControleNomeArquivo
     {
-       //Sinistro:0,
-       //Cliente:0,
-       //Comissao:0,
-       //LanctoComissao:0,
-       //OCRCobranca:0,
-       //ParcEmissao:0,
-       //ParcEmissaoAuto:0
+        //Sinistro:0,
+        //Cliente:0,
+        //Comissao:0,
+        //LanctoComissao:0,
+        //OCRCobranca:0,
+        //ParcEmissao:0,
+        //ParcEmissaoAuto:0
 
         private static ControleNomeArquivo instancia;
         private string enderecoArquivo;
@@ -50,18 +50,18 @@ namespace Acelera.Testes.Adapters
 
         public string ObtemValor(TipoArquivo tipo)
         {
-            var valoresAtuais = File.ReadAllText(enderecoArquivo).Split(new string[] { "," },StringSplitOptions.RemoveEmptyEntries).Select(x => x.Replace(Environment.NewLine,""));
+            var valoresAtuais = File.ReadAllText(enderecoArquivo).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Replace(Environment.NewLine, ""));
             var registroAtual = valoresAtuais.Where(x => x.Contains(tipo.ObterTexto())).FirstOrDefault();
             if (string.IsNullOrEmpty(registroAtual))
                 throw new Exception("NAO FOI ENCONTRADO O NUMERO PARA SER COLOCADO NO ARQUIVO.");
-            
+
             var valor = registroAtual.Substring(tipo.ObterTexto().Length + 1).Replace(",", "");// +1 para remover o ':'
             if (!int.TryParse(valor, out int resultado))
                 throw new Exception($"NAO EXISTE VALOR PARA O CAMPO {tipo.ObterTexto()}");
 
             AtualizaResultado(tipo, resultado, resultado + 1);
 
-            return (resultado + 1).ToString().PadLeft(4,'0');
+            return (resultado + 1).ToString().PadLeft(4, '0');
         }
 
         private void AtualizaResultado(TipoArquivo tipo, int valorAnterior, int valorNovo)

@@ -113,7 +113,7 @@ namespace Acelera.Testes
         }
 
         [TestCleanup]
-        public void FimDoTeste()
+        public virtual void FimDoTeste()
         {
             logger.DefinirSucesso(sucessoDoTeste);
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";

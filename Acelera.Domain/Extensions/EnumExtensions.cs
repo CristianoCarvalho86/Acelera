@@ -25,6 +25,29 @@ namespace Acelera.Domain.Extensions
             return value.ToString();
         }
 
+        public static string ObterPrefixoOperadoraNoArquivo(this TipoArquivo tipoArquivo)
+        {
+            switch(tipoArquivo)
+            {
+                case TipoArquivo.Cliente:
+                    return "CLIENTE";
+                case TipoArquivo.Comissao:
+                    return "EMSCMS";
+                case TipoArquivo.LanctoComissao:
+                    return "LCTCMS";
+                case TipoArquivo.OCRCobranca:
+                    return "COBRANCA";
+                case TipoArquivo.ParcEmissao:
+                    return "PARCEMS";
+                case TipoArquivo.ParcEmissaoAuto:
+                    return "PARCEMSAUTO";
+                case TipoArquivo.Sinistro:
+                    return "SINISTRO";
+                default:
+                    throw new Exception("TIPO_ARQUIVO NAO ENCONTRADO");
+            }
+        }
+
         public static TabelasEnum ObterTabelaEnum(this TipoArquivo tipoArquivo)
         {
             switch(tipoArquivo)

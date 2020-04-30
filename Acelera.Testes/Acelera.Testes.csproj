@@ -63,9 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\ControleNomeArquivo.cs" />
     <Compile Include="Adapters\IntegracaoCMD.cs" />
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
+    <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\TabelaParametrosData.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC100_Layout93_VIVO.cs" />
@@ -428,6 +428,7 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout93_VIVO.cs" />
+    <Compile Include="TestesDashboard.cs" />
     <Compile Include="TestesFG02.cs" />
     <Compile Include="Layout942.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -463,7 +464,9 @@
       <Name>Acelera.Logger</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Sprint3\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

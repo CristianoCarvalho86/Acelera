@@ -367,7 +367,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
         {
             IniciarTeste(TipoArquivo.Sinistro, "PROC82", "FG02 - PROC82 - 1 (um) Arquivo de Sinistro com 2 (DOIS) ID_REGISTRO distintos:  com o mesmo CD_MOVIMENTO no arquivo e na tabela de ODS");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191127.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191217.txt"));
 
             //ALTERAR O VALOR SELECIONADO
 
@@ -378,7 +378,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             AlterarLinha(1, "CD_AVISO", ObterValorFormatado(0, "CD_AVISO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"PROC82-C01.POMPEIA.SINISTRO-EV-/*R*/-20191127.TXT");
+            SalvarArquivo($"PROC82-C01.POMPEIA.SINISTRO-EV-/*R*/-20191217.TXT");
         }
 
         /// <summary>
