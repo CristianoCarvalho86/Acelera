@@ -72,9 +72,9 @@ namespace Acelera.Testes
             triplice.AlterarParcEComissao(7, "VL_IS", "1000");
             triplice.AlterarParcEComissao(7, "VL_LMI", "1000");
 
-            triplice.AlterarParcEComissao(8, "CD_COBERTURA", "01730");
             triplice.AlterarParcEComissao(8, "DT_INICIO_VIGENCIA", "20200801");
             triplice.AlterarParcEComissao(8, "DT_FIM_VIGENCIA", "20210731");
+            triplice.AlterarParcEComissao(8, "CD_COBERTURA", "01730");
             triplice.AlterarParcEComissao(8, "VL_IS", "2000");
             triplice.AlterarParcEComissao(8, "VL_LMI", "1000");
 

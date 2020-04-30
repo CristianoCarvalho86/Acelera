@@ -203,7 +203,7 @@ namespace Acelera.Domain.Layouts
         {
             for (int i = 0; i < quantidadeVezes; i++)
             {
-                AdicionarLinha(ObterLinha(posicaoLinha), posicaoLinha + 1);
+                AdicionarLinha(ObterLinha(posicaoLinha).Clone(), posicaoLinha + 1);
             }
 
         }

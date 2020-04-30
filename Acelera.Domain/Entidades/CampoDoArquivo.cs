@@ -10,6 +10,13 @@ namespace Acelera.Domain.Layouts
 {
     public class CampoDoArquivo : Campo
     {
+        public CampoDoArquivo Clone()
+        {
+            var campo = new CampoDoArquivo(ColunaArquivo, Posicoes);
+            campo.NomeBanco = NomeBanco;
+            campo.Valor = Valor;
+            return campo;
+        }
         public int Posicoes { get; set; }
 
         public string NomeBanco { get; set; }

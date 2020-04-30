@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -48,6 +49,14 @@ namespace Acelera.Domain.Layouts
                 texto += campo.Valor;
             }
             return texto;
+        }
+
+        public LinhaArquivo Clone()
+        {
+            var linha = new LinhaArquivo(Index);
+            foreach (var c in Campos)
+                linha.Campos.Add(c.Clone());
+            return linha;
         }
     }
 }
