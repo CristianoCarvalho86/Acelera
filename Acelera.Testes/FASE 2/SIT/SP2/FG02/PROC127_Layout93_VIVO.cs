@@ -112,6 +112,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "12");
+            AlterarLinha(1, "NR_PARCELA", "2");
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
