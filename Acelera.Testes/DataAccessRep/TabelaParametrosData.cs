@@ -297,17 +297,17 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
         }
 
-        public Cobertura ObterCobertura(string idCobertura)
+        public Cobertura ObterCobertura(string idCobertura , bool simples = false)
         {
             if (int.TryParse(idCobertura, out int id))
-                return ObterCobertura(id);
+                return ObterCobertura(id,simples);
             else
                 throw new Exception("ID de cobertura invalido.");
         }
 
-        public Cobertura ObterCobertura(int idCobertura = 0)
+        public Cobertura ObterCobertura(int idCobertura = 0, bool simples = false)
         {
-            var select = QueryCobertura(idCobertura);
+            var select = QueryCobertura(idCobertura, simples);
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
@@ -335,22 +335,22 @@ namespace Acelera.Testes.DataAccessRep
             return Cobertura.CarregarCobertura(linha);
         }
 
-        private string QueryCobertura(int idCobertura = 0)
+        private string QueryCobertura(int idCobertura = 0, bool simples = false)
         {
-            var sql = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO, PP.VL_DESCONTO_MAIOR, " +
-               $" PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR " +
-               $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
-               $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
-               $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
+            var sql = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO ";
+            if (!simples)
+                sql += $", PP.VL_DESCONTO_MAIOR ,PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR ";
+            
+            sql += $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
+               $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO ";
+            
+            if (!simples)
+                sql += $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
                $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA ";
+
             if(idCobertura != 0)
                sql += $" WHERE C.ID_COBERTURA = {idCobertura}";
             return sql;
-        }
-
-        private void ObterNumericos(int inicio, int fim)
-        {
-
         }
 
     }
