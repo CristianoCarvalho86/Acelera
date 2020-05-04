@@ -161,6 +161,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", GerarNumeroAleatorio(5));
             AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO

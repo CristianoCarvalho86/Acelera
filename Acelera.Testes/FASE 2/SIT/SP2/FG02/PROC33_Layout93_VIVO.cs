@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", "7");
             AlterarLinha(2, "NR_ENDOSSO", "7");
-            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC33");

@@ -286,15 +286,15 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterCdProdutoParaTPA(string cdTpa, bool relacionado)
         {
             if (relacionado)
-                return ObterRetorno("CD_PRODUTO", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
-            return ObterRetornoNotIn("CD_PRODUTO", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
+                return ObterRetorno("CD_PRODUTO", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
+            return ObterRetornoNotIn("CD_PRODUTO", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
         }
 
         public string ObterIdCoberturaParaTPA(string cdTpa, bool relacionado)
         {
             if (relacionado)
-                return ObterRetorno("ID_COBERTURA", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
-            return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_OPERACAO", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
+                return ObterRetorno("ID_COBERTURA", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
+            return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
         }
 
         public Cobertura ObterCobertura(string idCobertura , bool simples = false)
