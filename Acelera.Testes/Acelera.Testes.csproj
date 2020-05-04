@@ -67,6 +67,7 @@
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
+    <Compile Include="DataAccessRep\TabelaParametrosDataSP3.cs" />
     <Compile Include="DataAccessRep\TabelaParametrosData.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC100_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP1\FG00\PROC101_Layout94_Pompeia.cs" />
