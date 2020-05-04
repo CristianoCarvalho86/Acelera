@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.DataAccessRep
 {
-    public class TabelaParametrosData
+    public class TabelaParametrosDataSP3 : TabelaParametrosData
     {
         private IMyLogger logger;
-        public TabelaParametrosData(IMyLogger logger)
+        public TabelaParametrosDataSP3(IMyLogger logger):base(logger)
         {
-            this.logger = logger;
+
         }
 
         private string ObterRetornoPadrao(string campo, string tabela, bool existente, string clausula = "", bool convertToInt = false)
@@ -282,26 +282,19 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula);
         }
 
-        public string ObterCdParceiroNegocioParaTPA(string cdTpa)
-        {
-            return ObterRetorno("CD_PARCEIRO_NEGOCIO", "CD_EXTERNO", cdTpa, "TAB_ODS_PARCEIRO_NEGOCIO_2000", true, "CD_TIPO_PARCEIRO_NEGOCIO = 'OP'");
-        }
 
         public string ObterCdProdutoParaTPA(string cdTpa, bool relacionado)
         {
-            var cdPnOperacao = ObterCdParceiroNegocioParaTPA(cdTpa);
-
             if (relacionado)
-                return ObterRetorno("CD_PRODUTO", "CD_PN_OPERACAO", cdPnOperacao, "TAB_PRM_PRD_COBERTURA_7009", true);
-            return ObterRetornoNotIn("CD_PRODUTO", "CD_PN_OPERACAO", cdPnOperacao, "TAB_PRM_PRD_COBERTURA_7009");
+                return ObterRetorno("CD_PRODUTO", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
+            return ObterRetornoNotIn("CD_PRODUTO", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
         }
 
         public string ObterIdCoberturaParaTPA(string cdTpa, bool relacionado)
         {
-            var cdPnOperacao = ObterCdParceiroNegocioParaTPA(cdTpa);
             if (relacionado)
-                return ObterRetorno("ID_COBERTURA", "CD_PN_OPERACAO", cdPnOperacao, "TAB_PRM_PRD_COBERTURA_7009", true);
-            return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_OPERACAO", cdPnOperacao, "TAB_PRM_PRD_COBERTURA_7009");
+                return ObterRetorno("ID_COBERTURA", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009", true);
+            return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_TPA", cdTpa, "TAB_PRM_PRD_COBERTURA_7009");
         }
 
         public Cobertura ObterCobertura(string idCobertura , bool simples = false)
