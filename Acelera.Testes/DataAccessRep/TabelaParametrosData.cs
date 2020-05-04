@@ -19,7 +19,7 @@ namespace Acelera.Testes.DataAccessRep
             this.logger = logger;
         }
 
-        private string ObterRetornoPadrao(string campo, string tabela, bool existente, string clausula = "", bool convertToInt = false)
+        protected string ObterRetornoPadrao(string campo, string tabela, bool existente, string clausula = "", bool convertToInt = false)
         {
             string select = string.Empty;
             if (existente)
@@ -36,12 +36,12 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(select, campo, logger);
         }
 
-        private string ObterRetornoParaDiferente(string campoBusca, string campoComparacao, string valor, string tabela)
+        protected string ObterRetornoParaDiferente(string campoBusca, string campoComparacao, string valor, string tabela)
         {
             return ObterRetorno(campoBusca,campoComparacao,valor,tabela, false);
         }
 
-        private string ObterRetorno(string campoBusca, string campoComparacao, string valor, string tabela, bool igual, string clausula = "")
+        protected string ObterRetorno(string campoBusca, string campoComparacao, string valor, string tabela, bool igual, string clausula = "")
         {
             clausula = clausula == "" ? "" : " AND " + clausula; 
             var operador = igual ? "=" : "<>";
