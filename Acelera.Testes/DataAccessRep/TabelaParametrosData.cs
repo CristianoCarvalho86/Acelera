@@ -320,9 +320,9 @@ namespace Acelera.Testes.DataAccessRep
             return Cobertura.CarregarCobertura(linha);
         }
 
-        public string ObterCDSeguradoraDoTipoParceiro(string cdTipoParceiroNegocio, bool igual)
+        public string ObterCDSeguradoraDoTipoParceiro(string cdTipoParceiroNegocio)
         {
-            return ObterRetorno("CD_EXTERNO", "CD_TIPO_PARCEIRO_NEGOCIO", cdTipoParceiroNegocio, "TAB_ODS_PARCEIRO_NEGOCIO_2000", igual);
+             return ObterRetorno("CD_EXTERNO", "CD_TIPO_PARCEIRO_NEGOCIO", cdTipoParceiroNegocio, "TAB_ODS_PARCEIRO_NEGOCIO_2000",true);
         }
 
         public string ObterCDSeguradora(bool existente)
