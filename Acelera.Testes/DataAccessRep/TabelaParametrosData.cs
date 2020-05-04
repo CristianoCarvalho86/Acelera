@@ -305,6 +305,11 @@ namespace Acelera.Testes.DataAccessRep
                 throw new Exception("ID de cobertura invalido.");
         }
 
+        public Cobertura ObterCoberturaSimples()
+        {
+            return ObterCobertura(0, true);
+        }
+
         public Cobertura ObterCobertura(int idCobertura = 0, bool simples = false)
         {
             var select = QueryCobertura(idCobertura, simples);

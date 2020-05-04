@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
+            var cobertura = dados.ObterCoberturaSimples();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
             AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
@@ -59,7 +59,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3314-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
+            var cobertura = dados.ObterCoberturaSimples();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
             AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
@@ -94,7 +94,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
+            var cobertura = dados.ObterCoberturaSimples();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
             AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
@@ -129,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3314-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
+            var cobertura = dados.ObterCoberturaSimples();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
             AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
