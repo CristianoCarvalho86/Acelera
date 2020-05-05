@@ -73,6 +73,26 @@ namespace Acelera.Testes
             AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
         }
 
+
+        public void AlterarLinha(Arquivo arquivo1 ,int posicaoLinha, string campo, string valorNovo)
+        {
+            logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
+            logger.Escrever("Chave da Linha : " + arquivo1.MontarCamposChaveParaLog(posicaoLinha));
+            logger.Escrever("Linha Antiga :" + arquivo1.ObterLinha(posicaoLinha).ObterTexto());
+            logger.Escrever($"Valor Antigo : {arquivo1.ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).Valor}");
+            logger.Escrever($"Valor Novo : {valorNovo}");
+            logger.Escrever(Environment.NewLine);
+            arquivo1.AlterarLinha(posicaoLinha, campo, valorNovo);
+
+            var linhaAlterada = arquivo1.ObterLinha(posicaoLinha);
+            logger.Escrever("Linha Atualizada :" + linhaAlterada.ObterTexto());
+            logger.FecharBloco();
+
+            var campoAlterado = linhaAlterada.ObterCampoDoBanco(campo).Coluna;
+
+            AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
+        }
+
         public void AlterarTodasAsLinhas(string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo [TODAS AS LINHAS] - Editando campo {campo} de todas as linhas");
