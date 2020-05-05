@@ -25,10 +25,10 @@ namespace Acelera.Testes.DataAccessRep
              return  ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente , "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'", true);
         }
 
-        public IList<string> ObterAtributosDoLayout(TipoArquivo tipo, string layout)
+        public string[] ObterAtributosDoLayout(TipoArquivo tipo, string layout)
         {
             var sql = $"select DISTINCT(NM_ATRIBUTO_LAYOUT) from TAB_PRM_LAYOUT_7016 where NM_TIPO_ARQUIVO = '{tipo.ObterTexto()}' AND CD_VERSAO_ARQUIVO = '{layout}' AND TP_REGISTRO = 3 AND ID_PRIMARY_KEY = '1'";
-            return new List<string>();
+            return new string[] { };
         }
 
         public string ObterParceiroNegocioComEndereco(string tipoParceiro ,bool enderecoCompleto)
