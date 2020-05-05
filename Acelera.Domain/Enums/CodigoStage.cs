@@ -13,6 +13,8 @@ namespace Acelera.Domain.Enums
         RecusadoNaFG01 = 130,
         PlanoB = 150,
         AprovadoNegocioSemDependencia = 210,
-        ReprovadoNegocioSemDependencia = 220
+        ReprovadoNegocioSemDependencia = 220,
+        AprovadoNegocioComDependencia = 510,
+        ReprovadoNegocioComDependencia = 520
     }
 }

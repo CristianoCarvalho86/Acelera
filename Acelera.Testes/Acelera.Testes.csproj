@@ -440,6 +440,7 @@
     <Compile Include="Parametros.cs" />
     <Compile Include="TestesFG00.cs" />
     <Compile Include="TestesFG01.cs" />
+    <Compile Include="TestesFG05.cs" />
     <Compile Include="Validadores\FG00\ValidadorStagesFG00.cs" />
     <Compile Include="Validadores\FG00\ValidadorTabelaRetornoFG00.cs" />
     <Compile Include="Validadores\FG01\ValidadorStagesFG01.cs" />
