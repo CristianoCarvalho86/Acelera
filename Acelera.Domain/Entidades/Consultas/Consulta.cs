@@ -74,13 +74,6 @@ namespace Acelera.Domain.Entidades.Consultas
             return sql;
         }
 
-        private IList<string> CamposQueNaoModificamZero()
-        {
-            var lista = new List<string>();
-            lista.Add("CD_COBERTURA");
-            return lista;
-        }
-
     }
 
     public class Consulta : ICloneable

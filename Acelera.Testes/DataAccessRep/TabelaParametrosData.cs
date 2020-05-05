@@ -19,6 +19,20 @@ namespace Acelera.Testes.DataAccessRep
             this.logger = logger;
         }
 
+        protected string ObterNaoExistenteNaTabela(string campo, string tabela, int valorMaximo)
+        {
+            var retorno = "";
+            while (string.IsNullOrEmpty(retorno))
+            {
+                var random = new Random(DateTime.Now.Millisecond);
+                var sql = $"SELECT ('{random.Next(0, valorMaximo)}') AS A FROM DUMMY"
+                          + $" EXCEPT " 
+                          + $" SELECT {campo} FROM {Parametros.instanciaDB}.{tabela} ";
+                retorno = DataAccess.ConsultaUnica(sql,false);
+            }
+            return retorno;
+        }
+
         protected string ObterRetornoPadrao(string campo, string tabela, bool existente, string clausula = "", bool convertToInt = false)
         {
             string select = string.Empty;
@@ -334,7 +348,7 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCDSeguradora(bool existente)
         {
-            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente, "CD_TIPO_PARCEIRO_NEGOCIO = 'SE'" ,true);
+            return ObterNaoExistenteNaTabela("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", 99999);
         }
 
         public Cobertura ObterCoberturaDiferenteDe(string cdCobertura)
