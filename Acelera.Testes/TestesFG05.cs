@@ -23,9 +23,13 @@ namespace Acelera.Testes
 
         }
 
-        protected void CarregarArquivo(Arquivo arquivo ,int qtdLinhas, OperadoraEnum operadora)
+        protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
         {
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(tipoArquivoTeste, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
+        }
+        protected void CarregarArquivo(Arquivo arquivo, TipoArquivo tipo, int qtdLinhas, OperadoraEnum operadora)
+        {
+            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
         }
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
