@@ -346,7 +346,7 @@ namespace Acelera.Testes.DataAccessRep
              return ObterRetorno("CD_EXTERNO", "CD_TIPO_PARCEIRO_NEGOCIO", cdTipoParceiroNegocio, "TAB_ODS_PARCEIRO_NEGOCIO_2000",true);
         }
 
-        public string ObterCDSeguradora(bool existente)
+        public string ObterParceiroNegocioNaoExistente()
         {
             return ObterNaoExistenteNaTabela("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", 99999);
         }
