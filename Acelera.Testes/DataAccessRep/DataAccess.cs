@@ -73,13 +73,13 @@ namespace Acelera.Testes.DataAccessRep
             return resultado;
         }
 
-        public static string ConsultaUnica(string sql)
+        public static string ConsultaUnica(string sql, bool validaResultadoUnico = true)
         {
             string resultado;
             try
             {
                 resultado = DBHelper.Instance.ObterResultadoUnico(sql);
-                if (string.IsNullOrEmpty(resultado))
+                if (string.IsNullOrEmpty(resultado) && validaResultadoUnico)
                     throw new Exception("Resultado nao encontrado");
             }
             catch (Exception ex)

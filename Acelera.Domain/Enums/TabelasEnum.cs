@@ -28,6 +28,22 @@ namespace Acelera.Domain.Enums
         [Description("TAB_LOG_PROCESSAMENTO_8000")]
         TabelaLogProcessamento,
         [Description("TAB_LOG_CONTROLE_ARQUIVO_8001")]
-        ControleArquivo
+        ControleArquivo,
+        [Description("TAB_ODS_COBERTURA_2005")]
+        OdsCobertura,
+        [Description("TAB_ODS_COMISSAO_2006")]
+        OdsComissao,
+        [Description("TAB_ODS_ENDERECO_2001")]
+        OdsEndereco,
+        [Description("TAB_ODS_ITEM_AUTO_2004")]
+        OdsItemAuto,
+        [Description("TAB_ODS_PARCEIRO_NEGOCIO_2000")]
+        OdsParceiroNegocio,
+        [Description("TAB_ODS_PARCELA_2003")]
+        OdsParcela,
+        [Description("TAB_ODS_SINISTRO_2007")]
+        OdsSinistro,
+        [Description("TAB_ODS_TELEFONE_2002")]
+        OdsTelefone
     }
 }

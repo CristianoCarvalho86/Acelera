@@ -460,6 +460,7 @@
     <Compile Include="Validadores\FG01\ValidadorTabelaRetornoFG01.cs" />
     <Compile Include="Validadores\FG02\ValidadorStagesFG02.cs" />
     <Compile Include="Validadores\FG02\ValidadorTabelaRetornoFG02.cs" />
+    <Compile Include="Validadores\FG05\ValidadorODSFG05.cs" />
     <Compile Include="Validadores\Validador.cs" />
   </ItemGroup>
   <ItemGroup>

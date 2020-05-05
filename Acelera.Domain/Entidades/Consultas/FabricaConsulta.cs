@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,5 +128,60 @@ namespace Acelera.Domain.Entidades.Consultas
                 consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_PARCELA").Valor);
             }
         }
+
+        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaODS(TabelasEnum tabela, Arquivo arquivo)
+        {
+            var consultas = new List<KeyValuePair<int, Consulta>>();
+            var consulta = new Consulta();
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
+            foreach (var linha in arquivo.Linhas)
+            {
+                var consultaDaLinha = (Consulta)consulta.Clone();
+                if (tabela == TabelasEnum.Cliente)
+                {
+                    consultaDaLinha.AdicionarConsulta("CD_CLIENTE", linha.ObterCampoDoBanco("CD_CLIENTE").Valor);
+                }
+                else if (tabela == TabelasEnum.ParcEmissao || tabela == TabelasEnum.ParcEmissaoAuto)
+                {
+                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+                    consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
+                }
+                else if (tabela == TabelasEnum.Comissao)
+                {
+                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+                    consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
+                    consultaDaLinha.AdicionarConsulta("CD_TIPO_COMISSAO", linha.ObterCampoDoBanco("CD_TIPO_COMISSAO").Valor);
+                }
+                else if (tabela == TabelasEnum.OCRCobranca)
+                {
+                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+                }
+                else if (tabela == TabelasEnum.LanctoComissao)
+                {
+                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+                    consultaDaLinha.AdicionarConsulta("CD_TIPO_COMISSAO", linha.ObterCampoDoBanco("CD_TIPO_COMISSAO").Valor);
+                }
+                else if (tabela == TabelasEnum.Sinistro)
+                {
+                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+                    consultaDaLinha.AdicionarConsulta("VL_MOVIMENTO", linha.ObterCampoDoBanco("VL_MOVIMENTO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NM_BENEFICIARIO", linha.ObterCampoDoBanco("NM_BENEFICIARIO").Valor);
+                    consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
+                    consultaDaLinha.AdicionarConsulta("CD_SINISTRO", linha.ObterCampoDoBanco("CD_SINISTRO").Valor);
+
+                }
+                consultas.Add(new KeyValuePair<int, Consulta>(linha.Index, consultaDaLinha));
+            }
+            return consultas;
+        }
+
     }
 }
