@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2;
@@ -22,7 +23,7 @@ namespace Acelera.Testes
 
         }
 
-        protected void CarregarArquivo(int qtdLinhas, OperadoraEnum operadora)
+        protected void CarregarArquivo(Arquivo arquivo ,int qtdLinhas, OperadoraEnum operadora)
         {
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(tipoArquivoTeste, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
         }
