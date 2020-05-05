@@ -23,6 +23,11 @@ namespace Acelera.Testes
 
         }
 
+        public void EnviarParaOds(Arquivo arquivo)
+        {
+
+        }
+
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
         {
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(tipoArquivoTeste, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);

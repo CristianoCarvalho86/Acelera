@@ -20,11 +20,6 @@ namespace Acelera.Testes.DataAccessRep
 
         }
 
-        public void EnviarParaOds(Arquivo arquivo)
-        {
-
-        }
-
         public string ObterCdClienteParceiro(bool existente)
         {
              return  ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente , "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'", true);
