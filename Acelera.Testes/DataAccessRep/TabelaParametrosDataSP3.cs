@@ -55,7 +55,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterCoberturaValida(bool valida)
         {
             var clausula = "CAMPOS OBRIGATORIOS";
-            return DataAccess.ConsultaUnica($"SELECT TOP 1 FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 where {clausula}");
+            return DataAccess.ConsultaUnica($"SELECT TOP 1 CD_COBERTURA FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 where {clausula}");
         }
 
         //public string ObterIdTransacaoCanc(bool existente)

@@ -29,11 +29,11 @@ namespace Acelera.Testes
         }
 
 
-        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, IList<string> campos)
+        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos)
         {
             foreach (var linha in arquivo.Linhas)
                 foreach (var campo in campos)
-                    arquivoOrigem.AlterarLinha(linha.Index, campo, arquivoDestino.ObterLinha(linha.Index).ObterCampoDoArquivo(campo).Valor);
+                    AlterarLinha(arquivoDestino, linha.Index, campo, arquivoDestino.ObterLinha(linha.Index).ObterCampoDoArquivo(campo).Valor);
         }
 
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)

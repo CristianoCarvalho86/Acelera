@@ -74,7 +74,7 @@ namespace Acelera.Testes
         }
 
 
-        public void AlterarLinha(Arquivo arquivo1 ,int posicaoLinha, string campo, string valorNovo)
+        public void AlterarLinha(Arquivo arquivo1 ,int posicaoLinha, string campo, string valorNovo, bool validaAlteracao = false)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
             logger.Escrever("Chave da Linha : " + arquivo1.MontarCamposChaveParaLog(posicaoLinha));
@@ -88,9 +88,11 @@ namespace Acelera.Testes
             logger.Escrever("Linha Atualizada :" + linhaAlterada.ObterTexto());
             logger.FecharBloco();
 
-            var campoAlterado = linhaAlterada.ObterCampoDoBanco(campo).Coluna;
-
-            AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
+            if (validaAlteracao)
+            {
+                var campoAlterado = linhaAlterada.ObterCampoDoBanco(campo).Coluna;
+                AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
+            }
         }
 
         public void AlterarTodasAsLinhas(string campo, string valorNovo)
