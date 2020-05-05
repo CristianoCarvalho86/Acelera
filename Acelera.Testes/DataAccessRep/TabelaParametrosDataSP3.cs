@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Entidades;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,11 @@ namespace Acelera.Testes.DataAccessRep
     {
         private IMyLogger logger;
         public TabelaParametrosDataSP3(IMyLogger logger):base(logger)
+        {
+
+        }
+
+        public void EnviarParaOds(Arquivo arquivo)
         {
 
         }
