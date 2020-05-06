@@ -4,9 +4,11 @@ using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2;
+using Acelera.Testes.Validadores.FG05;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +20,25 @@ namespace Acelera.Testes
     {
         protected TabelaParametrosDataSP3 dados { get; set; }
 
+        protected IList<DataRow> linhasInseridasODS { get; set; }
+
+        protected ValidadorODSFG05 validadorODS { get; set; }
+
+        protected Arquivo arquivoOds { get; set; }
+
         public TestesFG05()
         {
-
+            
         }
 
         public void EnviarParaOds(Arquivo arquivo)
         {
+            arquivoOds = arquivo;
+        }
 
+        public void ValidarODS()
+        {
+            validadorODS = new ValidadorODSFG05(logger, arquivoOds);
         }
 
 
@@ -79,27 +92,40 @@ namespace Acelera.Testes
             switch (tipoArquivoTeste)
             {
                 case TipoArquivo.Cliente:
-                    lista.Add("PRC_0035_NEG");
+                    lista.Add("PRC_0022_NEG");
                     break;
                 case TipoArquivo.ParcEmissao:
-                    lista.Add("PRC_0011_NEG");
+                    lista.Add("PRC_0022_NEG");
+                    lista.Add("PRC_0027_NEG");
+                    lista.Add("PRC_0038_NEG");
                     break;
 
                 case TipoArquivo.ParcEmissaoAuto:
-                    lista.Add("PRC_0011_NEG");
+                    lista.Add("PRC_0022_NEG");
+                    lista.Add("PRC_0027_NEG");
+                    lista.Add("PRC_0034_NEG");
+                    lista.Add("PRC_0038_NEG");
                     break;
+
                 case TipoArquivo.Comissao:
-                    lista.Add("PRC_0033_NEG");
+                    lista.Add("PRC_0022_NEG");
+                    lista.Add("PRC_0034_NEG");
+                    lista.Add("PRC_0038_NEG");
+
                     break;
 
                 case TipoArquivo.LanctoComissao:
-                    lista.Add("PRC_0033_NEG");
+                    lista.Add("PRC_0022_NEG");
                     break;
                 case TipoArquivo.OCRCobranca:
-                    lista.Add("PRC_0033_NEG");
+                    lista.Add("PRC_0022_NEG");
                     break;
-                case TipoArquivo.Sinistro:
 
+                case TipoArquivo.Sinistro:
+                    lista.Add("PRC_0022_NEG");
+                    lista.Add("PRC_0027_NEG");
+                    lista.Add("PRC_0034_NEG");
+                    lista.Add("PRC_0038_NEG");
 
                     break;
                 default:

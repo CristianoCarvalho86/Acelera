@@ -78,7 +78,7 @@ namespace Acelera.Testes.FASE_2
             try
             {
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"FG02 - Tabela:{tabela.ObterTexto()}");
-                var validador = new ValidadorStagesFG02(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
+                var validador = new ValidadorStagesFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 var linhasEncontradas = new List<ILinhaTabela>();

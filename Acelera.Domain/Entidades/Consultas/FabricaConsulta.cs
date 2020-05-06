@@ -129,9 +129,9 @@ namespace Acelera.Domain.Entidades.Consultas
             }
         }
 
-        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaODS(TabelasEnum tabela, Arquivo arquivo)
+        public static ConjuntoConsultas MontarConsultaParaODS(TabelasEnum tabela, Arquivo arquivo)
         {
-            var consultas = new List<KeyValuePair<int, Consulta>>();
+            var consultas = new ConjuntoConsultas();
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
             foreach (var linha in arquivo.Linhas)
@@ -173,13 +173,14 @@ namespace Acelera.Domain.Entidades.Consultas
                 {
                     consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
                     consultaDaLinha.AdicionarConsulta("VL_MOVIMENTO", linha.ObterCampoDoBanco("VL_MOVIMENTO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NM_BENEFICIARIO", linha.ObterCampoDoBanco("NM_BENEFICIARIO").Valor);
+                    consultaDaLinha.AdicionarConsulta("NM_BENEFICIARIO", linha.ObterCampoDoBanco("NM_BENEFICIARIO").Valor);// nao tem
                     consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
                     consultaDaLinha.AdicionarConsulta("CD_SINISTRO", linha.ObterCampoDoBanco("CD_SINISTRO").Valor);
 
                 }
-                consultas.Add(new KeyValuePair<int, Consulta>(linha.Index, consultaDaLinha));
+                consultas.AdicionarConsulta(consultaDaLinha);
             }
+            throw new NotImplementedException();
             return consultas;
         }
 

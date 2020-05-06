@@ -82,7 +82,7 @@ namespace Acelera.Testes
             try
             { 
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-            var validador = new ValidadorStagesFG00(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
+            var validador = new ValidadorStagesFG00(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
             var linhasEncontradas = new List<ILinhaTabela>();
@@ -113,7 +113,7 @@ namespace Acelera.Testes
             try { 
             AjustarEntradaErros(ref codigosDeErroEsperados);
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-            var validador = new ValidadorTabelaRetornoFG00(tipoArquivoTeste.ObterTabelaEnum(),nomeArquivo,logger,
+            var validador = new ValidadorTabelaRetornoFG00(tipoArquivoTeste.ObterTabelaStageEnum(),nomeArquivo,logger,
                 valoresAlteradosBody,valoresAlteradosHeader,valoresAlteradosFooter);
             
             if (validador.ValidarTabela(validaQuantidadeErros,codigosDeErroEsperados))
@@ -129,7 +129,7 @@ namespace Acelera.Testes
 
         public void ValidarStages(bool deveEncontrarRegistro, int codigoEsperado = 0)
         {
-            ValidarStages(tipoArquivoTeste.ObterTabelaEnum(), deveEncontrarRegistro, codigoEsperado);
+            ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(), deveEncontrarRegistro, codigoEsperado);
         }
 
         [Obsolete]

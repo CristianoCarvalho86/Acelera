@@ -95,7 +95,7 @@ namespace Acelera.Testes
 
             try { 
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{tabela.ObterTexto()}");
-            var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
+            var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
             var linhasEncontradas = new List<ILinhaTabela>();
@@ -111,13 +111,13 @@ namespace Acelera.Testes
         }
         public void ValidarStages(CodigoStage codigo)
         {
-            ValidarStages(tipoArquivoTeste.ObterTabelaEnum(),true,(int)codigo);
+            ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(),true,(int)codigo);
         }
 
         public void ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado)
         {
             AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
-            ValidarStages(tipoArquivoTeste.ObterTabelaEnum(), true, (int)codigo);
+            ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(), true, (int)codigo);
             AoMenosUmComCodigoEsperado = false;
         }
         public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
@@ -134,7 +134,7 @@ namespace Acelera.Testes
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetornoFG01(tipoArquivoTeste.ObterTabelaEnum(), nomeArquivo, logger,
+                var validador = new ValidadorTabelaRetornoFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 if (validador.ValidarTabela(validaQuantidadeErros, codigosDeErroEsperados))

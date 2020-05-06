@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +17,8 @@ namespace Acelera.Domain.Layouts
         public IList<LinhaArquivo> Linhas { get; set; }
         public IList<LinhaArquivo> Footer { get; set; }
 
+        public TipoArquivo tipoArquivo { get; set; }
+
         public IList<string> CamposDoBody => Linhas.FirstOrDefault()?.Campos?.Select(x => x.ColunaArquivo).ToList();
 
         public string NomeArquivo { get; private set; }
@@ -29,7 +33,26 @@ namespace Acelera.Domain.Layouts
             NomeArquivo = enderecoArquivo.Split('\\').LastOrDefault();
             textoArquivo = File.ReadAllText(enderecoArquivo);
             CarregarEstrutura(qtdHeader.HasValue ? qtdHeader.Value : 1, qtdFooter.HasValue ? qtdFooter.Value : 1);
+            CarregarTipoArquivo();
             return this;
+        }
+
+        private void CarregarTipoArquivo()
+        {
+            if (NomeArquivo.Contains(TipoArquivo.Cliente.ObterPrefixoOperadoraNoArquivo()))
+                tipoArquivo = TipoArquivo.Cliente;
+            if (NomeArquivo.Contains(TipoArquivo.Comissao.ObterPrefixoOperadoraNoArquivo()))
+                tipoArquivo = TipoArquivo.Comissao;
+            if (NomeArquivo.Contains(TipoArquivo.LanctoComissao.ObterPrefixoOperadoraNoArquivo()))
+                tipoArquivo = TipoArquivo.LanctoComissao;
+            if (NomeArquivo.Contains(TipoArquivo.OCRCobranca.ObterPrefixoOperadoraNoArquivo()))
+                tipoArquivo = TipoArquivo.OCRCobranca;
+            if (NomeArquivo.Contains(TipoArquivo.ParcEmissao.ObterPrefixoOperadoraNoArquivo()))
+                tipoArquivo = TipoArquivo.ParcEmissao;
+            if (NomeArquivo.Contains(TipoArquivo.ParcEmissaoAuto.ObterPrefixoOperadoraNoArquivo()))
+                tipoArquivo = TipoArquivo.ParcEmissaoAuto;
+            if (NomeArquivo.Contains(TipoArquivo.Sinistro.ObterPrefixoOperadoraNoArquivo()))
+                tipoArquivo = TipoArquivo.Sinistro;
         }
 
         protected void CarregarEstrutura(int qtdHeader, int qtdFooter)

@@ -14,7 +14,6 @@ namespace Acelera.Testes.DataAccessRep
 {
     public class TabelaParametrosDataSP3 : TabelaParametrosData
     {
-        private IMyLogger logger;
         public TabelaParametrosDataSP3(IMyLogger logger):base(logger)
         {
 
@@ -54,14 +53,10 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCoberturaValida(bool valida)
         {
+            // invalida = sem CD_Classe_cobertura , dt_inicio_vigencia, dt_fim_vigencia
             var clausula = "CAMPOS OBRIGATORIOS";
             return DataAccess.ConsultaUnica($"SELECT TOP 1 CD_COBERTURA FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 where {clausula}");
         }
-
-        //public string ObterIdTransacaoCanc(bool existente)
-        //{
-        //    var clausula = "SELECT ID_TRANSACAO_CANC"
-        //}
 
     }
 }
