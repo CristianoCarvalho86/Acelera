@@ -30,7 +30,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
 
         }
 
+        /// <summary>
+        /// Informar CD_COBERTURA que não esteja parametrizada na tabela TAB_PRM_COBERTURA_7007, mas que exista nas demais tabelas de cobertura, como a 7009
+        /// </summary>
         [TestMethod]
+        [Ignore]
         [TestCategory("Com Critica")]
         public void SAP_4422()
         {
@@ -64,7 +68,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
 
         }
 
+        /// <summary>
+        /// Informar CD_COBERTURA que não esteja parametrizada na tabela TAB_PRM_COBERTURA_7007, mas que exista nas demais tabelas de cobertura, como a 7009
+        /// </summary>
         [TestMethod]
+        [Ignore]
         [TestCategory("Com Critica")]
         public void SAP_4424()
         {
@@ -102,7 +110,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
         [TestCategory("Com Critica")]
         public void SAP_4426()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4426", "FG05 - PROC38 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "/// <summary>
+        /// Informar CD_COBERTURA que não esteja parametrizada na tabela TAB_PRM_COBERTURA_7007, mas que exista nas demais tabelas de cobertura, como a 7009
+        /// </summary>
+        [TestMethod]
+        [Ignore]", "FG05 - PROC38 - ");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);

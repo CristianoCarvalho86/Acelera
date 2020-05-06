@@ -1118,7 +1118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0,"CD_SEGURADORA", dados.ObterCDSeguradora(false));
+            AlterarLinha(0,"CD_SEGURADORA", dados.ObterParceiroNegocioNaoExistente());
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1048-C01.SOFTBOX.EMSCMS-EV-/*R*/-20200325.TXT");

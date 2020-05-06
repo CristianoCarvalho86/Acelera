@@ -28,7 +28,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
 
         }
 
+        /// <summary>
+        /// Informar CD_COBERTURA que não esteja parametrizada na tabela TAB_PRM_COBERTURA_7007, mas que exista nas demais tabelas de cobertura, como a 7009
+        /// </summary>
         [TestMethod]
+        [Ignore]
         [TestCategory("Com Critica")]
         public void SAP_4449()
         {

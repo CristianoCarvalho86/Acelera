@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
 {
     [TestClass]
-    public class PROC34_Layout94_LASA : TestesFG05
+    public class PROC34_Layout94_POMPEIA : TestesFG05
     {
 
         /// <summary>
@@ -16,12 +16,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4289()
+        public void SAP_4331()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4289", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4331", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -37,12 +37,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4290()
+        public void SAP_4332()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4290", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4332", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -58,12 +58,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4291()
+        public void SAP_4333()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4291", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4333", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -79,12 +79,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4292()
+        public void SAP_4334()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4292", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4334", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -100,12 +100,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4293()
+        public void SAP_4335()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4293", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4335", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -121,12 +121,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4294()
+        public void SAP_4336()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4294", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4336", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -142,12 +142,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4295()
+        public void SAP_4337()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4295", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Comissao, "4337", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -163,12 +163,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4296()
+        public void SAP_4338()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4296", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Comissao, "4338", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -184,12 +184,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4297()
+        public void SAP_4339()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4297", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Comissao, "4339", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -205,12 +205,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4298()
+        public void SAP_4340()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4298", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Comissao, "4340", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -226,12 +226,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4299()
+        public void SAP_4341()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4299", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Comissao, "4341", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -247,12 +247,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4300()
+        public void SAP_4342()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4300", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Comissao, "4342", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -268,12 +268,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4301()
+        public void SAP_4343()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4301", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Sinistro, "4343", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -289,12 +289,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4302()
+        public void SAP_4344()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4302", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Sinistro, "4344", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -310,12 +310,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4303()
+        public void SAP_4345()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4303", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Sinistro, "4345", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -331,12 +331,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4304()
+        public void SAP_4346()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4304", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Sinistro, "4346", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -352,12 +352,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4305()
+        public void SAP_4347()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4305", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Sinistro, "4347", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -373,12 +373,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4306()
+        public void SAP_4348()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4306", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Sinistro, "4348", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
@@ -394,12 +394,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4307()
+        public void SAP_4349()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4307", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4349", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
@@ -415,12 +415,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4308()
+        public void SAP_4350()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4308", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Comissao, "4350", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
@@ -436,12 +436,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4309()
+        public void SAP_4351()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4309", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.Sinistro, "4351", "FG05 - PROC34");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 

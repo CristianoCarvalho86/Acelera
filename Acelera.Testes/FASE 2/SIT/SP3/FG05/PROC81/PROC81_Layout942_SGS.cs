@@ -2,13 +2,13 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
-using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_4_2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
 {
     [TestClass]
-    public class PROC81_Layout94_LASA : TestesFG05
+    public class PROC81_Layout94_SGS : TestesFG05
     {
 
         /// <summary>
@@ -17,20 +17,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4457()
+        public void SAP_4451()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4457", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4451", "FG02 - PROC1002 - ");
 
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
+            var arquivoods = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.SGS);
 
             arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
             EnviarParaOds(arquivoods);
 
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_OCORRENCIA", "20191201");
 
@@ -45,20 +45,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4458()
+        public void SAP_4452()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4458", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4452", "FG02 - PROC1002 - ");
 
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
+            var arquivoods = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.SGS);
 
             arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
             EnviarParaOds(arquivoods);
 
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_OCORRENCIA", "20210201");
 
@@ -73,12 +73,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4459()
+        public void SAP_4453()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4459", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4453", "FG02 - PROC1002 - ");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
@@ -87,8 +87,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
 
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
 
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_OCORRENCIA", "20191201");
 
@@ -104,12 +104,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4460()
+        public void SAP_4454()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4460", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4454", "FG02 - PROC1002 - ");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
@@ -118,8 +118,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
 
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
 
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_OCORRENCIA", "20210201");
 
@@ -130,20 +130,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4461()
+        public void SAP_4455()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4461", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4455", "FG02 - PROC1002 - ");
 
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
+            var arquivoods = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.SGS);
 
             arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
             EnviarParaOds(arquivoods);
 
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_OCORRENCIA", "20200201");
 
@@ -154,12 +154,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4462()
+        public void SAP_4456()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4462", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4456", "FG02 - PROC1002 - ");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
@@ -168,8 +168,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
 
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
 
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "DT_OCORRENCIA", "20200201");
 

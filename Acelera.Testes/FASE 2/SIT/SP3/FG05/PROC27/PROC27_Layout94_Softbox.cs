@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
 
             SalvarArquivo();
 
@@ -39,7 +39,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
 
             SalvarArquivo();
 

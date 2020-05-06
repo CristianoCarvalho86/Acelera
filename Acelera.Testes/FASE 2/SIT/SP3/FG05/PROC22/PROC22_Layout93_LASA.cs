@@ -197,7 +197,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo. O campo NR_PARCELA deve ser o unico diferente entre os registros
         /// </summary>
         [TestMethod]
-        [TestCategory("Comm Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_4222()
         {
             //iniciar

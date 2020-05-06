@@ -2,7 +2,6 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
-using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
@@ -20,10 +19,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4255", "FG05 - PROC27");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
 
             SalvarArquivo();
 
@@ -37,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4255", "FG05 - PROC27");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
@@ -54,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4257", "FG05 - PROC27");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("CL"));
