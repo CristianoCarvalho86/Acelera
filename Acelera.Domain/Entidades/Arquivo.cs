@@ -26,6 +26,10 @@ namespace Acelera.Domain.Layouts
         private int LimiteDeLinhas;
 
         protected abstract string[] CamposChaves { get;}
+        public Arquivo Clone()
+        {
+            throw new NotImplementedException();
+        }
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)
         {
