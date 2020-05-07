@@ -47,7 +47,7 @@ namespace Acelera.Testes
 
                 if(operadora != OperadoraEnum.LASA && operadora != OperadoraEnum.SOFTBOX)
                 {
-                    proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterValorInteiro() <= 1000).ToList();
+                    proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterValorInteiro() < 1000 || x.ObterValorInteiro() == 200000).ToList();
                 }
 
                 var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);

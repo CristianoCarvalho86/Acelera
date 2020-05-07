@@ -14,7 +14,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2659_PARC_EMISSAO_AUTO_dt_fim_vigência_Menos1()
+        public void SAP_2659_PARC_EMISSAO_dt_fim_vigência_Menos1()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2659", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia");
 

@@ -19,13 +19,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2655", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO_AUTO o campo dt_fim_vigencia 10 dias menor que o dt_inicio_vigencia");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            //arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1816-20200131.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValor(1, "DT_INICIO_VIGENCIA"), -10));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("PROC11");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
