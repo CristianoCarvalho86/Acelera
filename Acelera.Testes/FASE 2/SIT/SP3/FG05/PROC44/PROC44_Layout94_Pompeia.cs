@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 {
     [TestClass]
-    public class PROC44_Layout94_LASA : TestesFG05
+    public class PROC44_Layout94_POMPEIA : TestesFG05
     {
 
         /// <summary>
@@ -18,14 +18,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4374()
+        public void SAP_4382()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4374", "FG05 - PROC44 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4382", "FG05 - PROC44 - ");
             
 
             //Envia parc normal
             var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.POMPEIA);
 
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
             var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"),"1");
@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Envia Parc com id cancelamento igual id transição do anterior
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods2 ,1 , OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods2 ,1 , OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
@@ -50,7 +50,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
@@ -71,14 +71,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4375()
+        public void SAP_4383()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4375", "FG05 - PROC44 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4383", "FG05 - PROC44 - ");
 
 
             //Envia parc normal
             var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.POMPEIA);
 
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
             var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Envia Parc com id cancelamento igual id transição do anterior
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods2, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods2, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
@@ -124,14 +124,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4376()
+        public void SAP_4384()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4376", "FG05 - PROC44 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4384", "FG05 - PROC44 - ");
 
 
             //Envia parc normal
             var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.POMPEIA);
 
             var idCanc = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO"), "1");
             var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
@@ -142,7 +142,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Envia Parc com id cancelamento igual id transição do anterior
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods2, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods2, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
@@ -156,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
@@ -177,14 +177,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4377()
+        public void SAP_4385()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4377", "FG05 - PROC44 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4385", "FG05 - PROC44 - ");
 
 
             //Envia parc normal
             var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.POMPEIA);
 
             var idCanc = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO"), "1");
             var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
@@ -195,7 +195,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Envia Parc com id cancelamento igual id transição do anterior
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods2, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods2, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
@@ -209,7 +209,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
