@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
             //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
+            //ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(false);
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
