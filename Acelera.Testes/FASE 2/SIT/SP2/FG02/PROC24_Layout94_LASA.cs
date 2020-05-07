@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC24");
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.EMSCMS-EV-3160-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-2758-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3304-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200325.txt");
@@ -147,7 +147,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.EMSCMS-EV-3160-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -178,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-2758-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

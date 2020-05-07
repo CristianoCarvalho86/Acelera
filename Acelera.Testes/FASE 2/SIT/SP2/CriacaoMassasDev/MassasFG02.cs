@@ -154,7 +154,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(9, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(9, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC24-C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");

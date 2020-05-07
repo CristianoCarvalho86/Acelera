@@ -21,6 +21,18 @@ namespace Acelera.Domain.Entidades
         public string CdProduto { get; set; }
         public string CdRamoCobertura { get; set; }
 
+        public string ValorPremioBrutoMaior { get; set; }
+        public string ValorPremioBrutoMenor { get; set; }
+        public string ValorPremioLiquidoMaior { get; set; }
+        public string ValorPremioLiquidoMenor { get; set; }
+        public string ValorPercentualAlicotaIof { get; set; }
+        public decimal ValorPercentualAlicotaIofDecimal => decimal.Parse(ValorPercentualAlicotaIof);
+        public decimal ValorPremioBrutoMaiorDecimal => decimal.Parse(ValorPremioBrutoMaior);
+        public decimal ValorPremioBrutoMenorDecimal => decimal.Parse(ValorPremioBrutoMenor);
+        public decimal ValorPremioLiquidoMaiorDecimal => decimal.Parse(ValorPremioLiquidoMaior);
+        public decimal ValorPremioLiquidoMenorDecimal => decimal.Parse(ValorPremioLiquidoMenor);
+
+
         public static Cobertura CarregarCobertura(DataRow linha)
         {
             var cobertura = new Cobertura();
@@ -35,6 +47,11 @@ namespace Acelera.Domain.Entidades
             cobertura.CdRamoCobertura = !linha.Table.Columns.Contains("CD_RAMO_COBERTURA") ? "" : linha["CD_RAMO_COBERTURA"].ToString();
             cobertura.ValorAdicionalMaior = !linha.Table.Columns.Contains("VL_ADIC_FRAC_MAIOR") ? "" : linha["VL_ADIC_FRAC_MAIOR"].ToString();
             cobertura.ValorAdicionalMenor = !linha.Table.Columns.Contains("VL_ADIC_FRAC_MENOR") ? "" : linha["VL_ADIC_FRAC_MENOR"].ToString();
+            cobertura.ValorPremioLiquidoMenor = !linha.Table.Columns.Contains("VL_PREMIO_LQ_MENOR") ? "" : linha["VL_PREMIO_LQ_MENOR"].ToString();
+            cobertura.ValorPremioLiquidoMaior = !linha.Table.Columns.Contains("VL_PREMIO_LQ_MAIOR") ? "" : linha["VL_PREMIO_LQ_MAIOR"].ToString();
+            cobertura.ValorPremioBrutoMenor = !linha.Table.Columns.Contains("VL_PREMIO_BR_MAIOR") ? "" : linha["VL_PREMIO_BR_MAIOR"].ToString();
+            cobertura.ValorPremioBrutoMaior = !linha.Table.Columns.Contains("VL_PREMIO_BR_MENOR") ? "" : linha["VL_PREMIO_BR_MENOR"].ToString();
+            cobertura.ValorPercentualAlicotaIof = !linha.Table.Columns.Contains("VL_PERC_ALIQUOTA_IOF") ? "" : linha["VL_PERC_ALIQUOTA_IOF"].ToString();
             return cobertura;
         }
 

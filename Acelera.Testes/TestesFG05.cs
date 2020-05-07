@@ -124,11 +124,18 @@ namespace Acelera.Testes
             {
                 case TipoArquivo.Cliente:
                     lista.Add("PRC_0022_NEG");
+                    lista.Add("PRC_0097_NEG");
                     break;
                 case TipoArquivo.ParcEmissao:
                     lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0038_NEG");
+                    lista.Add("PRC_0044_NEG");
+                    lista.Add("PRC_0097_NEG");
+                    lista.Add("PRC_0212_NEG");
+                    lista.Add("PRC_1012_NEG");
+                    lista.Add("PRC_1014_NEG");
+                    lista.Add("PRC_1015_NEG");
                     break;
 
                 case TipoArquivo.ParcEmissaoAuto:
@@ -136,13 +143,25 @@ namespace Acelera.Testes
                     lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0034_NEG");
                     lista.Add("PRC_0038_NEG");
+                    lista.Add("PRC_0044_NEG");
+                    lista.Add("PRC_0097_NEG");
+                    lista.Add("PRC_0212_NEG");
+                    lista.Add("PRC_0213_NEG");
+                    lista.Add("PRC_0227_NEG");
+                    lista.Add("PRC_0228_NEG");
+                    lista.Add("PRC_1012_NEG"); 
+                    lista.Add("PRC_1014_NEG");
+                    lista.Add("PRC_1015_NEG");
                     break;
 
                 case TipoArquivo.Comissao:
                     lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0034_NEG");
                     lista.Add("PRC_0038_NEG");
-
+                    lista.Add("PRC_0054_NEG");
+                    lista.Add("PRC_0097_NEG");
+                    lista.Add("PRC_0108_NEG");
+                    lista.Add("PRC_0216_NEG");
                     break;
 
                 case TipoArquivo.LanctoComissao:
@@ -150,6 +169,8 @@ namespace Acelera.Testes
                     break;
                 case TipoArquivo.OCRCobranca:
                     lista.Add("PRC_0022_NEG");
+                    lista.Add("PRC_0097_NEG");
+                    lista.Add("PRC_0220_NEG");
                     break;
 
                 case TipoArquivo.Sinistro:
@@ -157,7 +178,8 @@ namespace Acelera.Testes
                     lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0034_NEG");
                     lista.Add("PRC_0038_NEG");
-
+                    lista.Add("PRC_0081_NEG");
+                    lista.Add("PRC_0181_NEG");
                     break;
                 default:
                     throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
