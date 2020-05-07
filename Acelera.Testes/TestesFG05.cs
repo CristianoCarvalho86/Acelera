@@ -46,9 +46,12 @@ namespace Acelera.Testes
             base.SalvarArquivo();
         }
 
-        public void EnviarParaOds(Arquivo arquivo)
+        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true)
         {
-            //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
+            if (alterarCdCliente)
+            {
+                //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
+            }
             arquivosOds.Add(arquivo.Clone());
         }
 
@@ -101,6 +104,12 @@ namespace Acelera.Testes
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
             return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
+        }
+
+        private string ObterCDClienteCadastrado()
+        {
+            var list = new string[] { };
+            return "";
         }
 
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
