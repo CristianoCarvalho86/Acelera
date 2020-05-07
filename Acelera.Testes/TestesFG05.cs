@@ -67,11 +67,14 @@ namespace Acelera.Testes
         }
 
 
-        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos)
+        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false)
         {
-            foreach (var linha in arquivo.Linhas)
+            foreach (var linha in arquivoDestino.Linhas)
                 foreach (var campo in campos)
-                    AlterarLinha(arquivoDestino, linha.Index, campo, arquivoDestino.ObterLinha(linha.Index).ObterCampoDoArquivo(campo).Valor);
+                {
+                    var index = linhaUnicaNaOrigem ? 0 : linha.Index;
+                    AlterarLinha(arquivoDestino, index, campo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(campo).Valor);
+                }
         }
 
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
