@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         [TestCategory("Com Critica")]
         public void SAP_4457()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4457", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "4457", "FG02 - PROC1002 - ");
 
             var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         [TestCategory("Com Critica")]
         public void SAP_4458()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4458", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "4458", "FG02 - PROC1002 - ");
 
             var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         [TestCategory("Com Critica")]
         public void SAP_4459()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4459", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "4459", "FG02 - PROC1002 - ");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
@@ -106,7 +106,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         [TestCategory("Com Critica")]
         public void SAP_4460()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4460", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "4460", "FG02 - PROC1002 - ");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         [TestCategory("Sem Critica")]
         public void SAP_4461()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4461", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "4461", "FG02 - PROC1002 - ");
 
             var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
@@ -156,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         [TestCategory("Sem Critica")]
         public void SAP_4462()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4462", "FG02 - PROC1002 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "4462", "FG02 - PROC1002 - ");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
