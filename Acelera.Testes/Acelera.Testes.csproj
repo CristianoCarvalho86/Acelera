@@ -191,6 +191,7 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC123_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC123_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC123_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP2\FG02\PROC129_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC218_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC218_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC218_Layout94_LASA.cs" />
@@ -433,6 +434,10 @@
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC108\PROC108_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC108\PROC108_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC108\PROC108_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC181\PROC181_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC212\PROC212_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC212\PROC212_Layout94_Pompeia.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC212\PROC212_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC212\PROC212_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC213\PROC213_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC22\PROC22_Layout93_LASA.cs" />
@@ -451,7 +456,14 @@
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC38\PROC38_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC38\PROC38_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC38\PROC38_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC44\PROC44_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC44\PROC44_Layout94_Pompeia.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC44\PROC44_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC44\PROC44_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC54\PROC54_Layout94_Pompeia.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC54\PROC54_Layout94_Softbox.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC54\PROC54_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC54\PROC54_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC81\PROC81_Layout942_SGS.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC81\PROC81_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC81\PROC81_Layout94_LASA.cs" />
@@ -494,6 +506,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FASE 2\SIT\SP3\FG05\PROC216\" />
     <Folder Include="Sprint3\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

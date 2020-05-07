@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
 {
     [TestClass]
-    public class PROC212_Layout94_LASA : TestesFG05
+    public class PROC212_Layout94_POMPEIA : TestesFG05
     {
 
         /// <summary>
@@ -17,12 +17,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4539()
+        public void SAP_4555()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4539", "FG05 - PROC212 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4555", "FG05 - PROC212 - ");
 
             var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods ,1 , OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods ,1 , OperadoraEnum.POMPEIA);
 
             arquivoods.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             arquivoods.AlterarLinha(0, "NR_SEQ_EMISSAO", "1");
@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             EnviarParaOds(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
@@ -54,12 +54,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4540()
+        public void SAP_4556()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4540", "FG05 - PROC212 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4556", "FG05 - PROC212 - ");
 
             var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.POMPEIA);
 
             arquivoods.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             arquivoods.AlterarLinha(0, "NR_SEQ_EMISSAO", "1");
@@ -69,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             EnviarParaOds(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
@@ -92,12 +92,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4543()
+        public void SAP_4559()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4543", "FG05 - PROC212 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4559", "FG05 - PROC212 - ");
 
             var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.POMPEIA);
 
             arquivoods.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             arquivoods.AlterarLinha(0, "NR_SEQ_EMISSAO", "1");
@@ -107,7 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             EnviarParaOds(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
@@ -129,12 +129,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4544()
+        public void SAP_4560()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4544", "FG05 - PROC212 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4560", "FG05 - PROC212 - ");
 
             var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.POMPEIA);
 
             arquivoods.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             arquivoods.AlterarLinha(0, "NR_SEQ_EMISSAO", "1");
@@ -144,7 +144,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             EnviarParaOds(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");

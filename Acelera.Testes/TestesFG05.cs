@@ -34,7 +34,7 @@ namespace Acelera.Testes
 
         public void EnviarParaOds(Arquivo arquivo)
         {
-            arquivosOds.Add(arquivo.Clone())
+            arquivosOds.Add(arquivo.Clone());
         }
 
         public void ValidarODS()
