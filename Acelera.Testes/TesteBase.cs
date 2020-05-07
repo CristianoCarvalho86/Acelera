@@ -59,7 +59,7 @@ namespace Acelera.Testes
 
         }
 
-        protected void SalvarArquivo()
+        protected virtual void SalvarArquivo()
         {
             var array = nomeArquivo.Split('-');
             array[2] = "/*R*/";

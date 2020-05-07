@@ -26,13 +26,29 @@ namespace Acelera.Testes
 
         protected IList<Arquivo> arquivosOds { get; set; }
 
+        protected override string NomeFG => "FG05";
         public TestesFG05()
         {
             
         }
 
+        protected void SalvarArquivo(bool alterarCdCliente)
+        {
+            if(alterarCdCliente)
+            {//TODO ALTERAR CD_CLIENTE POR UM DA LISTA 
+            }
+            base.SalvarArquivo();
+        }
+
+        protected override void SalvarArquivo()
+        {
+            //TODO ALTERAR CD_CLIENTE POR UM DA LISTA
+            base.SalvarArquivo();
+        }
+
         public void EnviarParaOds(Arquivo arquivo)
         {
+            //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
             arquivosOds.Add(arquivo.Clone());
         }
 
