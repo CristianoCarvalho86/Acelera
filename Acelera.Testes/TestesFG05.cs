@@ -36,13 +36,16 @@ namespace Acelera.Testes
         {
             if(alterarCdCliente)
             {//TODO ALTERAR CD_CLIENTE POR UM DA LISTA 
+                foreach (var linha in arquivo.Linhas)
+                    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
             base.SalvarArquivo();
         }
 
         protected override void SalvarArquivo()
         {
-            //TODO ALTERAR CD_CLIENTE POR UM DA LISTA
+            foreach (var linha in arquivo.Linhas)
+                arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
             base.SalvarArquivo();
         }
 
@@ -51,6 +54,8 @@ namespace Acelera.Testes
             if (alterarCdCliente)
             {
                 //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
+                foreach (var linha in arquivo.Linhas)
+                    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
             arquivosOds.Add(arquivo.Clone());
         }
@@ -71,7 +76,7 @@ namespace Acelera.Testes
 
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
         {
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(tipoArquivoTeste, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
+            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
         }
         protected void CarregarArquivo(Arquivo arquivo, TipoArquivo tipo, int qtdLinhas, OperadoraEnum operadora)
         {
@@ -108,8 +113,8 @@ namespace Acelera.Testes
 
         private string ObterCDClienteCadastrado()
         {
-            var list = new string[] { };
-            return "";
+            var list = new string[] { "abc","teste" };
+            return list[new Random(DateTime.Now.Millisecond).Next(0, list.Length - 1)];
         }
 
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)

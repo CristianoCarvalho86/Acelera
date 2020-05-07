@@ -18,7 +18,7 @@ namespace Acelera.Domain.Layouts
         public IList<LinhaArquivo> Linhas { get; set; }
         public IList<LinhaArquivo> Footer { get; set; }
 
-        public TipoArquivo tipoArquivo { get; set; }
+        public abstract TipoArquivo tipoArquivo { get; }
 
         public IList<string> CamposDoBody => Linhas.FirstOrDefault()?.Campos?.Select(x => x.ColunaArquivo).ToList();
 
@@ -52,29 +52,10 @@ namespace Acelera.Domain.Layouts
             NomeArquivo = enderecoArquivo.Split('\\').LastOrDefault();
             textoArquivo = File.ReadAllText(enderecoArquivo);
             CarregarEstrutura(qtdHeader.HasValue ? qtdHeader.Value : 1, qtdFooter.HasValue ? qtdFooter.Value : 1);
-            CarregarTipoArquivo();
 
             AjustarQtdLinhasNoFooter();
 
             return this;
-        }
-
-        private void CarregarTipoArquivo()
-        {
-            if (NomeArquivo.Contains(TipoArquivo.Cliente.ObterPrefixoOperadoraNoArquivo()))
-                tipoArquivo = TipoArquivo.Cliente;
-            if (NomeArquivo.Contains(TipoArquivo.Comissao.ObterPrefixoOperadoraNoArquivo()))
-                tipoArquivo = TipoArquivo.Comissao;
-            if (NomeArquivo.Contains(TipoArquivo.LanctoComissao.ObterPrefixoOperadoraNoArquivo()))
-                tipoArquivo = TipoArquivo.LanctoComissao;
-            if (NomeArquivo.Contains(TipoArquivo.OCRCobranca.ObterPrefixoOperadoraNoArquivo()))
-                tipoArquivo = TipoArquivo.OCRCobranca;
-            if (NomeArquivo.Contains(TipoArquivo.ParcEmissao.ObterPrefixoOperadoraNoArquivo()))
-                tipoArquivo = TipoArquivo.ParcEmissao;
-            if (NomeArquivo.Contains(TipoArquivo.ParcEmissaoAuto.ObterPrefixoOperadoraNoArquivo()))
-                tipoArquivo = TipoArquivo.ParcEmissaoAuto;
-            if (NomeArquivo.Contains(TipoArquivo.Sinistro.ObterPrefixoOperadoraNoArquivo()))
-                tipoArquivo = TipoArquivo.Sinistro;
         }
 
         protected void CarregarEstrutura(int qtdHeader, int qtdFooter)
