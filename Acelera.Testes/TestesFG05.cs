@@ -25,7 +25,6 @@ namespace Acelera.Testes
         protected ValidadorODSFG05 validadorODS { get; set; }
 
         protected IList<Arquivo> arquivosOds { get; set; }
-        protected Arquivo arquivoOds { get; set; }
 
         public TestesFG05()
         {
@@ -34,12 +33,13 @@ namespace Acelera.Testes
 
         public void EnviarParaOds(Arquivo arquivo)
         {
-            arquivosOds.Add(arquivo.Clone())
+            arquivosOds.Add(arquivo.Clone());
         }
 
         public void ValidarODS()
         {
-            validadorODS = new ValidadorODSFG05(logger, arquivoOds);
+            foreach(var arquivo in arquivosOds)
+                validadorODS = new ValidadorODSFG05(logger, arquivo);
         }
 
 

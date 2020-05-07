@@ -70,8 +70,9 @@ namespace Acelera.Domain.Entidades.ConjuntoArquivos
         private void Carregar()
         {
             ArquivoCliente.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Cliente, Operadora, PastaOrigem),1,1,QuantidadeInicialCliente);
-            
-            if(Operadora == OperadoraEnum.VIVO)
+            ArquivoCliente.AjustarQtdLinhasNoFooter();
+
+            if (Operadora == OperadoraEnum.VIVO)
                 ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissaoAuto, Operadora, PastaOrigem), 1, 1, 1);
             else
                 ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 1);

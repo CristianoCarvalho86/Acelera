@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,7 +29,21 @@ namespace Acelera.Domain.Layouts
         protected abstract string[] CamposChaves { get;}
         public Arquivo Clone()
         {
-            throw new NotImplementedException();
+            //we create a new instance of this specific type.            
+            object newInstance = Activator.CreateInstance(this.GetType());
+
+            //We get the array of properties for the new type instance.            
+            PropertyInfo[] properties = newInstance.GetType().GetProperties();
+
+            int i = 0;
+
+            foreach (PropertyInfo pi in this.GetType().GetProperties())
+            {
+                properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
+                i++;
+            }
+
+            return (Arquivo)newInstance;
         }
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)
@@ -38,6 +53,9 @@ namespace Acelera.Domain.Layouts
             textoArquivo = File.ReadAllText(enderecoArquivo);
             CarregarEstrutura(qtdHeader.HasValue ? qtdHeader.Value : 1, qtdFooter.HasValue ? qtdFooter.Value : 1);
             CarregarTipoArquivo();
+
+            AjustarQtdLinhasNoFooter();
+
             return this;
         }
 
