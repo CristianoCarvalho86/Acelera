@@ -5,6 +5,7 @@ using Acelera.Domain.Utils;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2;
 using Acelera.Testes.Validadores.FG05;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

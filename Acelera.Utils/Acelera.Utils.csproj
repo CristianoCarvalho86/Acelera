@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assertions.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="EnumUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj">
+      <Project>{E2564765-084E-4573-973F-2E1A3BC798B9}</Project>
+      <Name>Acelera.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

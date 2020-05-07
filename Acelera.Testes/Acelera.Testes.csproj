@@ -521,6 +521,10 @@
       <Project>{A31F4CF3-5E4C-4F12-9D99-AD5DC5DE6604}</Project>
       <Name>Acelera.Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Acelera.Utils\Acelera.Utils.csproj">
+      <Project>{2DC50378-CD97-4910-BE49-737DD530345E}</Project>
+      <Name>Acelera.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

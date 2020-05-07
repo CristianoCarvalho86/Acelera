@@ -9,6 +9,7 @@ using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -37,7 +38,7 @@ namespace Acelera.Testes
         protected string pathOrigem;
         protected string nomeArquivo = string.Empty;
         protected TipoArquivo tipoArquivoTeste { get; set; }
-
+        protected OperadoraEnum operadora => EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo);
 
         protected string ObterArquivoOrigem(string nomeArquivo)
         {

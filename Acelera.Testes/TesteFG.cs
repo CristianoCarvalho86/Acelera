@@ -44,6 +44,12 @@ namespace Acelera.Testes
                     falha = true;
 
                 var proceduresEsperadas = proceduresASeremExecutadas;
+
+                if(operadora != OperadoraEnum.LASA && operadora != OperadoraEnum.SOFTBOX)
+                {
+                    proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterValorInteiro() <= 1000).ToList();
+                }
+
                 var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
                 if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
                     falha = true;
