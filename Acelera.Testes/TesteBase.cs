@@ -28,7 +28,6 @@ namespace Acelera.Testes
     {
         private DBHelper helper = DBHelper.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
-        protected TipoArquivo tipoArquivoTeste;
         protected string numeroDoTeste;
         protected bool sucessoDoTeste;
         protected string numeroDoLote;
@@ -37,6 +36,7 @@ namespace Acelera.Testes
         protected string localDoErro = string.Empty;
         protected string pathOrigem;
         protected string nomeArquivo = string.Empty;
+        protected TipoArquivo tipoArquivoTeste { get; set; }
 
 
         protected string ObterArquivoOrigem(string nomeArquivo)
@@ -87,7 +87,7 @@ namespace Acelera.Testes
 
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
-            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
+            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(arquivo.tipoArquivo);
             numeroDoLote = numeroArquivoNovo;
             if (AlterarNomeArquivo)
             {
@@ -125,7 +125,7 @@ namespace Acelera.Testes
             // logger.EscreverBloco("Salvando arquivo modificado : " + path);
             // return path;
 
-            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(tipoArquivoTeste);
+            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(arquivo.tipoArquivo);
             numeroDoLote = numeroArquivoNovo;
 
             nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");

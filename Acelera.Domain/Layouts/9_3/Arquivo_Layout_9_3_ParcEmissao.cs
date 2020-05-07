@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Layouts._9_3
 {
     public class Arquivo_Layout_9_3_ParcEmissao : Arquivo
     {
+        public override TipoArquivo tipoArquivo => TipoArquivo.ParcEmissao;
+
         protected override string[] CamposChaves => new string[] { "NR_APOLICE", "NR_ENDOSSO" };
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
