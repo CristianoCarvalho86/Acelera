@@ -190,36 +190,5 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             SalvarArquivo();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
-
-        /// <summary>
-        /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO=COBRANCA, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
-        /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo. O campo NR_PARCELA deve ser o unico diferente entre os registros
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_4222()
-        {
-            //iniciar
-            IniciarTeste(TipoArquivo.OCRCobranca, "4196", "FG05 - PROC22");
-
-            //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
-            EnviarParaOds(arquivoods);
-
-            //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-
-            //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.OCRCobranca, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
-            AlterarLinha(0, "NR_PARCELA", "");
-
-            //Salvar e executar
-            SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
-        }
     }
 }
