@@ -94,19 +94,19 @@ namespace Acelera.Testes
                 return;
 
             try { 
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{tabela.ObterTexto()}");
+            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"{NomeFG} - Tabela:{tabela.ObterTexto()}");
             var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                 valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
             var linhasEncontradas = new List<ILinhaTabela>();
             if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"FG01 - Tabela:{tabela.ObterTexto()}");
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"{NomeFG} - Tabela:{tabela.ObterTexto()}");
             else
                 ExplodeFalha();
             }
             catch (Exception)
             {
-                TratarErro($"FG01: Validação da Stage : {tabela.ObterTexto()}");
+                TratarErro($"{NomeFG}: Validação da Stage : {tabela.ObterTexto()}");
             }
         }
         public void ValidarStages(CodigoStage codigo)
@@ -144,7 +144,7 @@ namespace Acelera.Testes
             }
             catch (Exception)
             {
-                TratarErro($"FG01: Validação da Tabela Retorno");
+                TratarErro($"{NomeFG}: Validação da Tabela Retorno");
             }
         }
 

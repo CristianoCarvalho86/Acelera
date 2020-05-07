@@ -22,6 +22,8 @@ namespace Acelera.Utils
                 return OperadoraEnum.TIM;
             if (nomeArquivo.Contains(OperadoraEnum.VIVO.ObterTexto()))
                 return OperadoraEnum.VIVO;
+            if (nomeArquivo.Contains(OperadoraEnum.SOFTBOX.ObterTexto()))
+                return OperadoraEnum.SOFTBOX;
             throw new Exception("OPERACAO NAO ENCONTRADA NO NOME DO ARQUIVO : " + nomeArquivo);
         }
     }

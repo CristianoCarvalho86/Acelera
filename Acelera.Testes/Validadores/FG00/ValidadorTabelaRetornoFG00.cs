@@ -36,8 +36,8 @@ namespace Acelera.Testes.Validadores.FG00
 
             var consulta = MontarConsulta(tabelaEnum);
 
-            List<ILinhaTabela> linhas;
-            linhas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            List<ILinhaTabela> linhasEncontradas;
+            linhasEncontradas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
 
             var qtd = ObterQtdRegistrosDuplicadosHeaderAndFooter();
             if (qtd == 0)
@@ -46,23 +46,23 @@ namespace Acelera.Testes.Validadores.FG00
             if (codigosDeErroEsperados.Length == 0)
                 qtd = 0;
 
-            if (linhas.Count < qtd)
+            if (linhasEncontradas.Count < qtd)
             {
-                logger.EscreverBloco($"ERAM ESPERADOS :{qtd}, FORAM ENCONTRADOS: {linhas.Count} registros");
+                logger.EscreverBloco($"ERAM ESPERADOS :{qtd}, FORAM ENCONTRADOS: {linhasEncontradas.Count} registros");
                 return false;
             }
 
-            if(validaQuantidadeErros && linhas.Count != codigosDeErroEsperados.Length)
+            if(validaQuantidadeErros && linhasEncontradas.Count != codigosDeErroEsperados.Length)
             {
-                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} MAS FORAM ENCONTRADAS :{linhas.Count}");
+                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} MAS FORAM ENCONTRADAS :{linhasEncontradas.Count}");
                 return false;
             }
-            else if(validaQuantidadeErros && linhas.Count == codigosDeErroEsperados.Length)
+            else if(validaQuantidadeErros && linhasEncontradas.Count == codigosDeErroEsperados.Length)
             {
-                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} , FORAM ENCONTRADAS :{linhas.Count} - OK");
+                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} , FORAM ENCONTRADAS :{linhasEncontradas.Count} - OK");
             }
 
-            return ValidarCodigosDeErro(TabelasEnum.TabelaRetorno,linhas, "CD_MENSAGEM", codigosDeErroEsperados);
+            return ValidarCodigosDeErro(TabelasEnum.TabelaRetorno,linhasEncontradas, "CD_MENSAGEM", codigosDeErroEsperados);
         }
     }
 }
