@@ -134,6 +134,7 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_1039");
                     lista.Add("PRC_1040");
                     lista.Add("PRC_1041");
+                    lista.Add("PRC_0267");
 
                     break;
                 case TipoArquivo.ParcEmissao:
