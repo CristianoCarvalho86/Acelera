@@ -28,7 +28,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             //Carregar arquivo ods
             var arquivoods = new Arquivo_Layout_9_3_ParcEmissao();
             CarregarArquivo(arquivoods ,1 , OperadoraEnum.VIVO);
+            
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            
             EnviarParaOds(arquivoods);
 
             //Carregar arquivo esteira
@@ -36,9 +38,44 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO","CD_COBERTURA"};
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
             IgualarCampos(arquivoods, arquivo, campos);
             AlterarLinha(0, "VL_COMISSAO", "110");
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
+        }
+
+        /// <summary>
+        /// Em 1 arquivo PARC, informar valor total do prêmio total da cobertura. Este arquivo deve estar na ODS. 
+        /// Em outro arquivo COMISSAO, após o PARC estar na STAGE, informar duas linha com este contrato e cobertura (Comissao e Pro Labore)
+        /// sendo o VL_COMISSAO somado superior ao VL_PREMIO_TOTAL do arquivo PARC
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_4568()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4568", "FG05 - PROC216");
+
+            //Carregar arquivo ods
+            var arquivoods = new Arquivo_Layout_9_3_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
+
+            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+
+            EnviarParaOds(arquivoods);
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            CarregarArquivo(arquivo, 2, OperadoraEnum.VIVO);
+
+            //Alterar arquivo
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            IgualarCampos(arquivoods, arquivo, campos);
+            AlterarLinha(0, "VL_COMISSAO", "60");
+            AlterarLinha(1, "VL_COMISSAO", "60");                   
 
             //Salvar e executar
             SalvarArquivo();
