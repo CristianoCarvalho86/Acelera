@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// sendo o VL_COMISSAO superior ao VL_PREMIO_TOTAL do arquivo PARC
         /// </summary>
         [TestMethod]
-        [TestCategory("Comm Critica")]
+        [TestCategory("Com Critica")]
         public void SAP_4567()
         {
             //iniciar

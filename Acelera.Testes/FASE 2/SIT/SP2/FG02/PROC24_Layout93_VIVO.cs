@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -86,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.txt");
@@ -117,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

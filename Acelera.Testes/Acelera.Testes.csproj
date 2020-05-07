@@ -61,6 +61,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\IntegracaoCMD.cs" />
@@ -430,6 +431,9 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC1012\PROC1012_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC1014\PROC1014_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\PROC1015\PROC1015_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC108\PROC108_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC108\PROC108_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC108\PROC108_Layout94_LASA.cs" />

@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3260-20200322.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(3, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200322.txt");
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3326-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC24");
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(false));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3260-20200322.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(3, "CD_COBERTURA", dados.ObterCDCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200322.txt");
@@ -147,7 +147,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3326-20200326.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -178,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3191-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(8, "CD_COBERTURA", dados.ObterCobertura(true));
+            AlterarLinha(8, "CD_COBERTURA", dados.ObterCDCobertura(true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
