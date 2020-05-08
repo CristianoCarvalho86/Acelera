@@ -121,12 +121,12 @@ namespace Acelera.Testes
             ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(), true, (int)codigo);
             AoMenosUmComCodigoEsperado = false;
         }
-        public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetornoFG01(validaQuantidadeErros, codigosDeErroEsperados);
+            ValidarTabelaDeRetornoFG01(naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados);
         }
 
-        public void ValidarTabelaDeRetornoFG01(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public void ValidarTabelaDeRetornoFG01(bool naoDeveEncontrar = false,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -138,7 +138,7 @@ namespace Acelera.Testes
                 var validador = new ValidadorTabelaRetornoFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
-                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno ,validaQuantidadeErros, codigosDeErroEsperados))
+                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno , naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
                 else
                     ExplodeFalha();

@@ -3,6 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.Validadores.FG01;
 using Acelera.Testes.Validadores.FG02;
 using System;
 using System.Collections.Generic;
@@ -51,12 +52,35 @@ namespace Acelera.Testes.FASE_2
             return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
         }
 
-        public override void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public void ValidarTabelaDeRetorno(bool naoDeveEncontarOsErrosDefinidos, params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetornoFG01(validaQuantidadeErros, codigosDeErroEsperados);
+            ValidarTabelaDeRetorno(naoDeveEncontarOsErrosDefinidos, false, codigosDeErroEsperados);
         }
 
-        public void ValidarTabelaDeRetorno(int quantidadeErro, string codigoDeErroEsperado)
+        public override void ValidarTabelaDeRetorno(bool naoDeveEncontrarOsErrosDefinidos,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        {
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                return;
+
+            try
+            {
+                AjustarEntradaErros(ref codigosDeErroEsperados);
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                var validador = new ValidadorTabelaRetornoFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
+                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
+
+                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                else
+                    ExplodeFalha();
+            }
+            catch (Exception)
+            {
+                TratarErro($"{NomeFG}: Validação da Tabela Retorno");
+            }
+        }
+
+        public void ValidarTabelaDeRetorno(int quantidadeErro, string codigoDeErroEsperado, bool naoDeveEncontrar = false)
         {
             if (string.IsNullOrEmpty(codigoDeErroEsperado) || quantidadeErro == 0)
                 throw new Exception("DEVE EXISTIR UM CODIGO DE ERRO A SER PASSADO E QUANTIDADE");
@@ -67,7 +91,7 @@ namespace Acelera.Testes.FASE_2
                 erros[i] = codigoDeErroEsperado;
             }
 
-            ValidarTabelaDeRetornoFG01(true, erros);
+            ValidarTabelaDeRetornoFG01(naoDeveEncontrar, true, erros);
         }
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)

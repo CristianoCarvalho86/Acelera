@@ -72,10 +72,10 @@ namespace Acelera.Testes
             }
         }
 
-        public abstract void ValidarTabelaDeRetorno(bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
-        public virtual void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
+        public abstract void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
+        public virtual void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false , params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetorno(false, codigosDeErroEsperados);
+            ValidarTabelaDeRetorno(naoDeveEncontrar, false, codigosDeErroEsperados);
         }
 
 

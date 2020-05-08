@@ -27,7 +27,7 @@ namespace Acelera.Testes.Validadores.FG01
             return new ConjuntoConsultas(consulta);
         }
 
-        public bool ValidarTabela(params string[] codigosDeErroEsperados)
+        public bool ValidarTabela(bool naoDeveEncontrar, params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
@@ -46,6 +46,8 @@ namespace Acelera.Testes.Validadores.FG01
                 return false;
             }
 
+            if(naoDeveEncontrar)
+                return ValidarCodigosDeErroNaoForamEncontrados(TabelasEnum.TabelaRetorno, linhas, "CD_MENSAGEM", codigosDeErroEsperados);
 
             return ValidarCodigosDeErro(TabelasEnum.TabelaRetorno, linhas, "CD_MENSAGEM", codigosDeErroEsperados);
         }

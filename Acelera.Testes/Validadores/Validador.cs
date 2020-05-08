@@ -56,6 +56,32 @@ namespace Acelera.Testes.Validadores
             }
         }
 
+        protected bool ValidarCodigosDeErroNaoForamEncontrados(TabelasEnum tabelaDaValidacao, IList<ILinhaTabela> lista, string colunaMsg, params string[] codigosDeErroEsperados)
+        {
+            var txtErrosEsperados = codigosDeErroEsperados.Length == 0 ? "NENHUM" : codigosDeErroEsperados.ToList().ObterListaConcatenada(", ");
+            var txtErrosEncontrados = lista.Select(x => x.ObterPorColuna(colunaMsg).Valor).Distinct().ToList().ObterListaConcatenada(", ");
+            logger.Escrever($"Erros não esperados na {tabelaDaValidacao.ObterTexto()}: {txtErrosEsperados}");
+            logger.Escrever($"Erros encontrados na tabela de {tabelaDaValidacao.ObterTexto()}: {txtErrosEncontrados}");
+
+
+            foreach (var erro in codigosDeErroEsperados)
+            {
+                var encontrados = lista.Where(x => x.ObterPorColuna(colunaMsg).Valor.ToUpper() == erro.ToUpper());
+                if (encontrados.Count() == 0)
+                {
+                    logger.EscreverBloco($"Mensagem de erro esperada não encontrada :'{erro}' - SUCESSO");
+                }
+                if (encontrados.Count() > 1)
+                {
+                    logger.EscreverBloco($"Mensagem de erro encontrada {encontrados.Count()} vezes :'{erro}'");
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+
         protected bool ValidarCodigosDeErro(TabelasEnum tabelaDaValidacao, IList<ILinhaTabela> lista, string colunaMsg, params string[] codigosDeErroEsperados)
         {
             var txtErrosEsperados = codigosDeErroEsperados.Length == 0 ? "NENHUM" : codigosDeErroEsperados.ToList().ObterListaConcatenada(", ");
