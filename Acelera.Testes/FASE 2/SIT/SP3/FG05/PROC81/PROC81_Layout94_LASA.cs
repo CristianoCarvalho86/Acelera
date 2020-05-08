@@ -32,6 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20191201");
 
             SalvarArquivo();
@@ -60,6 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20210201");
 
             SalvarArquivo();
@@ -77,11 +79,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         {
             IniciarTeste(TipoArquivo.Sinistro, "4459", "FG02 - PROC1002 - ");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
-            AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
+            arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
+            arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
             SalvarArquivo();
 
@@ -90,6 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20191201");
 
             SalvarArquivo();
@@ -108,11 +111,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         {
             IniciarTeste(TipoArquivo.Sinistro, "4460", "FG02 - PROC1002 - ");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
-            AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
+            arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
+            arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
             SalvarArquivo();
 
@@ -121,6 +124,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20210201");
 
             SalvarArquivo();
@@ -145,6 +149,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20200201");
 
             SalvarArquivo();
@@ -158,11 +163,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         {
             IniciarTeste(TipoArquivo.Sinistro, "4462", "FG02 - PROC1002 - ");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
-            AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
+            arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
+            arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
             SalvarArquivo();
 
@@ -171,6 +176,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20200201");
 
             SalvarArquivo();
