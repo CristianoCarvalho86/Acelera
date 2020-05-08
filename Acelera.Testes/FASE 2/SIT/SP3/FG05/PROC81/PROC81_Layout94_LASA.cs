@@ -21,13 +21,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
         {
             IniciarTeste(TipoArquivo.Sinistro, "4457", "FG02 - PROC1002 - ");
 
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
-            arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
+            AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo, true, "PROC81");
+            var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
@@ -35,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20191201");
 
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC81");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "81", 1);
         }
