@@ -24,29 +24,29 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             
 
             //Envia parc normal
-            var arquivoods1 = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
-            var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"),"1");
-            var seqEMS1 = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
+            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            var seqEMS = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"),"1");
+            var seqEMS1 = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
 
-            EnviarParaOds(arquivoods1);
-
+            EnviarParaOds(arquivo, true, "PROC44");
+            var arquivoods1 = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
-            var arquivoods2 = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods2 ,1 , OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1 , OperadoraEnum.VIVO);
 
-            IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
-            arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
-            arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
-            arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            arquivoods2.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO",seqEMS);
-            arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000002");
+            IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
+            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO",seqEMS);
+            AlterarLinha(0, "NR_ENDOSSO", "12340000002");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOds(arquivo);
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();

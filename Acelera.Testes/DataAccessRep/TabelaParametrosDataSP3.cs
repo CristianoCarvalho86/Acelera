@@ -54,7 +54,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterCoberturaValida(bool valida)
         {
             // invalida = sem CD_Classe_cobertura , dt_inicio_vigencia, dt_fim_vigencia
-            var clausula = "CAMPOS OBRIGATORIOS";
+            var clausula = " CD_CLASSE_COBERTURA IS NULL OR DT_INICIO_VIGENCIA IS NULL OR DT_FIM_VIGENCIA IS NULL ";
             return DataAccess.ConsultaUnica($"SELECT TOP 1 CD_COBERTURA FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 where {clausula}");
         }
 

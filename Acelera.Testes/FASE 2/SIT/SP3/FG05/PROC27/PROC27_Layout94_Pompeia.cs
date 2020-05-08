@@ -17,14 +17,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
         [TestCategory("Com Critica")]
         public void SAP_4268()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4268", "FG02 - PROC1002");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4268", "FG05 - PROC27");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
 
-            SalvarArquivo();
+            SalvarArquivo("PROC27");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "27", 1);
 
@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
 
-            SalvarArquivo();
+            SalvarArquivo("PROC27");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "27", 1);
 

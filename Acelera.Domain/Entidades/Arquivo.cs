@@ -29,6 +29,10 @@ namespace Acelera.Domain.Layouts
         protected abstract string[] CamposChaves { get;}
         public Arquivo Clone()
         {
+            var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+            return (Arquivo)inst?.Invoke(this, null);
+             /*
             //we create a new instance of this specific type.            
             object newInstance = Activator.CreateInstance(this.GetType());
 
@@ -43,7 +47,7 @@ namespace Acelera.Domain.Layouts
                 i++;
             }
 
-            return (Arquivo)newInstance;
+            return (Arquivo)newInstance;*/
         }
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)

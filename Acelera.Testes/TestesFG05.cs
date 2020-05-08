@@ -30,7 +30,7 @@ namespace Acelera.Testes
         protected override string NomeFG => "FG05";
         public TestesFG05()
         {
-            
+            arquivosOds = new List<Arquivo>();
         }
 
         protected void SalvarArquivo(bool alterarCdCliente)
@@ -50,7 +50,8 @@ namespace Acelera.Testes
             base.SalvarArquivo();
         }
 
-        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true)
+
+        public void EnviarParaOds(Arquivo arquivo,  bool alterarCdCliente = true, string nomeProc = "")
         {
             if (alterarCdCliente)
             {
@@ -58,6 +59,8 @@ namespace Acelera.Testes
                 foreach (var linha in arquivo.Linhas)
                     arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
+            if(!string.IsNullOrEmpty(nomeProc))
+                SalvarArquivo($"ODS - {nomeProc}");
             arquivosOds.Add(arquivo.Clone());
         }
 
@@ -81,6 +84,7 @@ namespace Acelera.Testes
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
         {
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
+            nomeArquivo = arquivo.NomeArquivo;
         }
         protected void CarregarArquivo(Arquivo arquivo, TipoArquivo tipo, int qtdLinhas, OperadoraEnum operadora)
         {

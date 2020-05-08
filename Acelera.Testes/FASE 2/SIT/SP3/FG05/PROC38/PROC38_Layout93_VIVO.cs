@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
 
             AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaValida(false));
 
-            SalvarArquivo();
+            SalvarArquivo("PROC38");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "38", 1);
 

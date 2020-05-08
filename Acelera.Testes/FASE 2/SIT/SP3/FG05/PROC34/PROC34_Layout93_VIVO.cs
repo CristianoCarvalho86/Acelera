@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
-            SalvarArquivo();
+            SalvarArquivo("PROC34");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "34", 1);
 
@@ -68,7 +68,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
-            SalvarArquivo();
+            SalvarArquivo("PROC34");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "34", 1);
 
@@ -131,7 +131,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
 
             AlterarLinha(0, "CD_SEGURADORA", "");
 
-            SalvarArquivo();
+            SalvarArquivo("PROC34");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "34", 1);
 
