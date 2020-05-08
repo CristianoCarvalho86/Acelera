@@ -50,13 +50,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "3997", "FG02 - PROC23 - Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-2758-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3319-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "CD_MOEDA", dados.ObterCDMoeda(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SINISTRO.PARCEMS-EV-/*R*/-20200211.txt");
+            SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200325.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
