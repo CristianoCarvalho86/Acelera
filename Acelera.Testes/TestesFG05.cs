@@ -77,18 +77,28 @@ namespace Acelera.Testes
                 foreach (var campo in campos)
                 {
                     var index = linhaUnicaNaOrigem ? 0 : linha.Index;
-                    AlterarLinha(arquivoDestino, index, campo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(campo).Valor);
+                    AlterarLinha(arquivoDestino, index, campo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(campo).ValorFormatado);
                 }
         }
 
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
         {
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
+            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
+            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
+            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
+            logger.Escrever("ARQUIVO GERADO " + arquivoGerado);
             nomeArquivo = arquivo.NomeArquivo;
+
+            logger.FecharBloco();
         }
         protected void CarregarArquivo(Arquivo arquivo, TipoArquivo tipo, int qtdLinhas, OperadoraEnum operadora)
         {
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
+            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
+            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem);
+            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
+            nomeArquivo = arquivo.NomeArquivo;
+            logger.Escrever("ARQUIVO GERADO " + arquivoGerado);
+            logger.FecharBloco();
         }
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)

@@ -59,12 +59,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IniciarTeste(TipoArquivo.Comissao, "4598", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.POMPEIA);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo,true, "PROC216");
+
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -77,7 +79,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(1, "VL_COMISSAO", "60");                   
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC216");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 
