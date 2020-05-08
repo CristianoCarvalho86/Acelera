@@ -20,15 +20,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4515", "FG05 - PROC212 - ");
 
-            var arquivoods = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods ,1 , OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo ,1 , OperadoraEnum.VIVO);
 
-            arquivoods.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            arquivoods.AlterarLinha(0, "NR_SEQ_EMISSAO", "1");
-            arquivoods.AlterarLinha(0, "NR_ENDOSSO", "0");
-            var idCanc = arquivoods.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo, true, "PROC212");
+            var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
@@ -40,7 +41,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC212");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "212", 1);
 
