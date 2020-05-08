@@ -11,7 +11,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
     {
         /// <summary>
         /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
+        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.3, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
         /// </summary>
         [TestMethod]
@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissaoAuto, "9.4");
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissaoAuto, "9.3");
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
@@ -43,7 +43,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
         /// <summary>
         /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
+        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.3, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
         /// </summary>
         [TestMethod]
@@ -65,7 +65,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Cliente, "9.4");
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Cliente, "9.3");
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
         /// <summary>
         /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
+        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.3, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
         /// </summary>
         [TestMethod]
@@ -95,7 +95,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.3");
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
         /// <summary>
         /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
+        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.3, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
         /// </summary>
         [TestMethod]
@@ -125,7 +125,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.OCRCobranca, "9.4");
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.OCRCobranca, "9.3");
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
