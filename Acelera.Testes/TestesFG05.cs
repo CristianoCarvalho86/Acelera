@@ -73,6 +73,7 @@ namespace Acelera.Testes
 
         public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false)
         {
+            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
             foreach (var linha in arquivoDestino.Linhas)
                 foreach (var campo in campos)
                 {

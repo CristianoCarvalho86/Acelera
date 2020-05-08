@@ -23,22 +23,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             
 
             //Envia parc normal
-            var arquivoods1 = new Arquivo_Layout_9_3_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
-            var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            arquivo.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            arquivo.AlterarLinha(0, "NR_ENDOSSO", "0");
+            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
-
+            EnviarParaOds(arquivo,true, "PROC220");
+            var arquivoOds1 = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
             var arquivoods2 = new Arquivo_Layout_9_3_ParcEmissao();
             CarregarArquivo(arquivoods2 ,1 , OperadoraEnum.VIVO);
 
-            IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            IgualarCampos(arquivo, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
