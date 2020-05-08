@@ -22,9 +22,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4191", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+            
+            EnviarParaOds(arquivo, true, "PROC22");
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -35,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo("PROC22");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
 
@@ -52,9 +54,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IniciarTeste(TipoArquivo.Cliente, "4192", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_Cliente();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+
+            EnviarParaOds(arquivo, true, "PROC22");
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -65,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo("PROC22");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
 
