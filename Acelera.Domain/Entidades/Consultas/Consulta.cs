@@ -46,7 +46,7 @@ namespace Acelera.Domain.Entidades.Consultas
 
         public virtual string MontarConsulta()
         {
-            var sql = " WHERE ";
+            var sql = ListaConsultas.Count == 0 ? "" : " WHERE ";
             var primeiro = true;
             foreach (var consulta in ListaConsultas)
             {

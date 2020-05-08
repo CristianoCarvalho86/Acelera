@@ -30,7 +30,7 @@ namespace Acelera.Testes.Validadores.FG00
             throw new NotImplementedException();
         }
 
-        public bool ValidarTabela(bool validaQuantidadeErros = false,params string[] codigosDeErroEsperados)
+        public bool ValidarTabela(TabelasEnum tabela ,bool validaQuantidadeErros = false,params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
@@ -52,14 +52,16 @@ namespace Acelera.Testes.Validadores.FG00
                 return false;
             }
 
-            if(validaQuantidadeErros && linhasEncontradas.Count != codigosDeErroEsperados.Length)
+            var linhasEncontradasDoTipoEsperado = linhasEncontradas.Where(x => codigosDeErroEsperados.Contains(x.ObterPorColuna("CD_MENSAGEM").ValorFormatado)).ToList();
+
+            if(validaQuantidadeErros && (linhasEncontradasDoTipoEsperado.Count != codigosDeErroEsperados.Length))
             {
-                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} MAS FORAM ENCONTRADAS :{linhasEncontradas.Count}");
+                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {tabela.ObterTexto()} MAS FORAM ENCONTRADAS :{linhasEncontradasDoTipoEsperado.Count}");
                 return false;
             }
-            else if(validaQuantidadeErros && linhasEncontradas.Count == codigosDeErroEsperados.Length)
+            else if(validaQuantidadeErros && linhasEncontradasDoTipoEsperado.Count == codigosDeErroEsperados.Length)
             {
-                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {TabelasEnum.ControleArquivo.ObterTexto()} , FORAM ENCONTRADAS :{linhasEncontradas.Count} - OK");
+                logger.EscreverBloco($"ERAM ESPERADOS :{codigosDeErroEsperados.Length} NA {tabela.ObterTexto()} , FORAM ENCONTRADAS :{linhasEncontradasDoTipoEsperado.Count} - OK");
             }
 
             return ValidarCodigosDeErro(TabelasEnum.TabelaRetorno,linhasEncontradas, "CD_MENSAGEM", codigosDeErroEsperados);

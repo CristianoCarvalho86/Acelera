@@ -137,7 +137,7 @@ namespace Acelera.Testes
                 var validador = new ValidadorTabelaRetornoFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
-                if (validador.ValidarTabela(validaQuantidadeErros, codigosDeErroEsperados))
+                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno ,validaQuantidadeErros, codigosDeErroEsperados))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
                 else
                     ExplodeFalha();
