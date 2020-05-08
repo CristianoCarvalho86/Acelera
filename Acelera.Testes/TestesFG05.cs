@@ -43,12 +43,12 @@ namespace Acelera.Testes
             base.SalvarArquivo(nomeProc);
         }
 
-        protected override void SalvarArquivo()
-        {
-            foreach (var linha in arquivo.Linhas)
-                arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
-            base.SalvarArquivo();
-        }
+        //protected override void SalvarArquivo()
+        //{
+        //    //foreach (var linha in arquivo.Linhas)
+        //    //    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
+        //    base.SalvarArquivo();
+        //}
 
 
         public void EnviarParaOds(Arquivo arquivo,  bool alterarCdCliente = true, string nomeProc = "")
