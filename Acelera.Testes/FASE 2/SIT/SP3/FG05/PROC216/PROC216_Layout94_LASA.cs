@@ -1,14 +1,14 @@
 ﻿using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
-using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 {
     [TestClass]
-    public class PROC216_Layout93_VIVO : TestesFG05
+    public class PROC216_Layout94_LASA : TestesFG05
     {
 
         /// <summary>
@@ -20,25 +20,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4567()
+        public void SAP_4577()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4567", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4577", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods ,1 , OperadoraEnum.VIVO);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods ,1 , OperadoraEnum.LASA);
             
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
             
             EnviarParaOds(arquivoods);
 
             //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA"};
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
             IgualarCampos(arquivoods, arquivo, campos);
             AlterarLinha(0, "VL_COMISSAO", "110");
 
@@ -54,25 +54,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4568()
+        public void SAP_4578()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4568", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4578", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
 
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
             EnviarParaOds(arquivoods);
 
             //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            CarregarArquivo(arquivo, 2, OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 2, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA"};
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
             AlterarLinha(1, "VL_COMISSAO", "60");                   
@@ -89,25 +89,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4569()
+        public void SAP_4579()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4569", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4579", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
 
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
             EnviarParaOds(arquivoods);
 
             //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            CarregarArquivo(arquivo, 3, OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 3, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA"};
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
             AlterarLinha(1, "VL_COMISSAO", "60");
@@ -124,25 +124,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4573()
+        public void SAP_4583()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4573", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4583", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
 
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
             EnviarParaOds(arquivoods);
 
             //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA"};
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
 
@@ -157,25 +157,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4574()
+        public void SAP_4584()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4574", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4584", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
+            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
 
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
             EnviarParaOds(arquivoods);
 
             //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            CarregarArquivo(arquivo, 2, OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 2, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA"};
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "30");
             AlterarLinha(0, "VL_COMISSAO", "40");
