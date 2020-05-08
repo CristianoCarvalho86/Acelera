@@ -23,9 +23,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IniciarTeste(TipoArquivo.Sinistro, "4196", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_2();
-            CarregarArquivo(arquivoods ,1 , OperadoraEnum.SGS);
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_4_2();
+            CarregarArquivo(arquivo ,1 , OperadoraEnum.SGS);
+
+            EnviarParaOds(arquivo, true, "PROC22");
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_2();
@@ -36,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo(false, "PROC22");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
     }
