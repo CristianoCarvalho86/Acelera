@@ -41,7 +41,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
-            arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
+            arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
             arquivoods2.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO","2");
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
@@ -92,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
-            arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
+            arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
             arquivoods2.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
