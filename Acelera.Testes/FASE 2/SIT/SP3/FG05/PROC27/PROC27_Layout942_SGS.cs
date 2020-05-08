@@ -37,14 +37,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
         [TestCategory("Com Critica")]
         public void SAP_4273()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4273", "FG02 - PROC1002");
+            IniciarTeste(TipoArquivo.Sinistro, "4273", "FG02 - PROC27");
 
             arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
-            SalvarArquivo();
+            SalvarArquivo(false);
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "27", 1);
 
