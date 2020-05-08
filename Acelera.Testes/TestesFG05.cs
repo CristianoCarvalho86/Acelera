@@ -83,12 +83,22 @@ namespace Acelera.Testes
 
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
         {
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
+            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
+            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
+            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
+            logger.Escrever("ARQUIVO GERADO " + arquivoGerado);
             nomeArquivo = arquivo.NomeArquivo;
+
+            logger.FecharBloco();
         }
         protected void CarregarArquivo(Arquivo arquivo, TipoArquivo tipo, int qtdLinhas, OperadoraEnum operadora)
         {
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem), 1, 1, qtdLinhas);
+            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
+            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem);
+            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
+            nomeArquivo = arquivo.NomeArquivo;
+            logger.Escrever("ARQUIVO GERADO " + arquivoGerado);
+            logger.FecharBloco();
         }
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
