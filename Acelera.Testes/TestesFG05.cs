@@ -53,14 +53,14 @@ namespace Acelera.Testes
 
         public void EnviarParaOds(Arquivo arquivo,  bool alterarCdCliente = true, string nomeProc = "")
         {
-            if (alterarCdCliente)
+            if (alterarCdCliente && operadora != OperadoraEnum.SGS)
             {
                 //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
                 foreach (var linha in arquivo.Linhas)
                     arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
             if(!string.IsNullOrEmpty(nomeProc))
-                SalvarArquivo($"ODS - {nomeProc}");
+                SalvarArquivo(false,$"ODS - {nomeProc}");
             arquivosOds.Add(arquivo.Clone());
         }
 
