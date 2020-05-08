@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "NR_ENDOSSO", "12340000002");
 
 
-            EnviarParaOds(arquivo);
+            EnviarParaOds(arquivo, true, "PROC44");
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", seqEMS1);
             AlterarLinha(0, "NR_ENDOSSO", "12340000003");
 
-            SalvarArquivo();
+            SalvarArquivo(true,"PROC44");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "44", 1);
         }

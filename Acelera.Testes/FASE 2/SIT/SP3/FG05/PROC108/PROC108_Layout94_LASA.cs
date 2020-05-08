@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
             AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
 
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC108");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "108", 1);
 

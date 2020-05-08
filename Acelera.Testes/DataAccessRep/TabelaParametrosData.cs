@@ -363,7 +363,7 @@ namespace Acelera.Testes.DataAccessRep
 
         private string QueryCobertura(int idCobertura = 0, bool simples = false)
         {
-            var sql = $"SELECT C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO ";
+            var sql = $"SELECT TOP 1 C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO ";
             if (!simples)
                 sql += $", PP.VL_DESCONTO_MAIOR ,PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR," +
                     $" PP.VL_PREMIO_LQ_MENOR , PP.VL_PREMIO_LQ_MAIOR, PP.VL_PREMIO_BR_MENOR, PP.VL_PREMIO_BR_MAIOR, PP.VL_PERC_ALIQUOTA_IOF ";
