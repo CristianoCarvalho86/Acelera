@@ -33,14 +33,14 @@ namespace Acelera.Testes
             arquivosOds = new List<Arquivo>();
         }
 
-        protected void SalvarArquivo(bool alterarCdCliente)
+        protected void SalvarArquivo(bool alterarCdCliente , string nomeProc = "")
         {
             if(alterarCdCliente)
-            {//TODO ALTERAR CD_CLIENTE POR UM DA LISTA 
+            {
                 foreach (var linha in arquivo.Linhas)
                     arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
-            base.SalvarArquivo();
+            base.SalvarArquivo(nomeProc);
         }
 
         protected override void SalvarArquivo()

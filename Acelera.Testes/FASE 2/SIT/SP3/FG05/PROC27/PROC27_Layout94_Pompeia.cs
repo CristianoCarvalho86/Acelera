@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
 
-            SalvarArquivo("PROC27");
+            SalvarArquivo(false,"PROC27");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "27", 1);
 
