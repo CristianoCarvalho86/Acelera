@@ -27,6 +27,13 @@ namespace Acelera.Testes
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
+            var proceduresEsperadas = proceduresASeremExecutadas;
+
+            if (operadora != OperadoraEnum.LASA && operadora != OperadoraEnum.SOFTBOX)
+            {
+                proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterValorInteiro() < 1000 || x.ObterValorInteiro() == 200000).ToList();
+            }
+
             try
             {
                 var consulta = new Consulta();
@@ -38,17 +45,12 @@ namespace Acelera.Testes
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
 
                 var falha = false;
-                if (!Validar(lista.Count(), proceduresASeremExecutadas.Count * vezesExecutado, "Quantidade de Procedures executadas"))
+                if (!Validar(lista.Count(), proceduresEsperadas.Count * vezesExecutado, "Quantidade de Procedures executadas"))
                     falha = true;
                 if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
                     falha = true;
 
-                var proceduresEsperadas = proceduresASeremExecutadas;
 
-                if(operadora != OperadoraEnum.LASA && operadora != OperadoraEnum.SOFTBOX)
-                {
-                    proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterValorInteiro() < 1000 || x.ObterValorInteiro() == 200000).ToList();
-                }
 
                 var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
                 if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
