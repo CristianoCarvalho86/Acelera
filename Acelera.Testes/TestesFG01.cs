@@ -80,10 +80,10 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(tipoArquivoTeste.ObterTarefaFG00Enum().ObterTexto());
-            ValidarLogProcessamento(true,1, TestesFG00.ObterProcedures());
-            ValidarControleArquivo();
-            ValidarTabelaDeRetornoFG00();
-            ValidarStages(CodigoStage.AprovadoNAFG00);
+            this.ValidarLogProcessamento(true,1, TestesFG00.ObterProcedures());
+            this.ValidarControleArquivo();
+            this.ValidarTabelaDeRetornoFG00();
+            this.ValidarStages(CodigoStage.AprovadoNAFG00);
             logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             logger.EscreverBloco("Inicio da FG01.");
             ValidarTeste();

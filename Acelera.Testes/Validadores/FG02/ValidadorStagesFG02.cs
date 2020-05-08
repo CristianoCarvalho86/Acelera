@@ -46,6 +46,11 @@ namespace Acelera.Testes.Validadores.FG02
                     }
                 }
             }
+            else
+            {
+                consultas.AdicionarConsulta(consultaBase.First().Value);
+            }
+
             consultas.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
 
             return consultas;

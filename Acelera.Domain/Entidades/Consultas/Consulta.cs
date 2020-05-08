@@ -18,7 +18,7 @@ namespace Acelera.Domain.Entidades.Consultas
 
         public ConjuntoConsultas(Consulta consulta) : this()
         {
-            ListaConsultas.Add(consulta);
+            ListaConsultas.Add((Consulta)consulta.Clone());
         }
 
         public ConjuntoConsultas(IList<Consulta> consultas) : this()

@@ -14,15 +14,20 @@ namespace Acelera.Domain.Entidades.Consultas
        {
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
+            
+            
             if (existeAlteracaoDeHeaderOuFooter || !existeLinhaNoArquivo)
             {
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
                 return consultas;
             }
             foreach (var alteracao in valoresAlteradosBody.Alteracoes)
             {
                 var consultaDaLinha = (Consulta)consulta.Clone();
+
+                consultaDaLinha.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+
                 if (tabela == TabelasEnum.Cliente)
                 {
                     consultaDaLinha.AdicionarConsulta("CD_CLIENTE", alteracao.LinhaAlterada.ObterCampoDoBanco("CD_CLIENTE").Valor);
