@@ -78,7 +78,7 @@ namespace Acelera.Testes.DataAccessRep
             string resultado;
             try
             {
-                resultado = DBHelper.Instance.ObterResultadoUnico(sql);
+                resultado = DBHelper.Instance.ObterResultadoUnico(sql, validaResultadoUnico);
                 if (string.IsNullOrEmpty(resultado) && validaResultadoUnico)
                     throw new Exception("Resultado nao encontrado");
             }
