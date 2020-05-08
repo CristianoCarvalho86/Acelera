@@ -13,7 +13,7 @@ namespace Acelera.Testes.DataAccessRep
 {
     public class TabelaParametrosData
     {
-        private IMyLogger logger;
+        protected IMyLogger logger { get; private set; }
         public TabelaParametrosData(IMyLogger logger)
         {
             this.logger = logger;
