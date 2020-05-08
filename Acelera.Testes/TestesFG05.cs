@@ -77,7 +77,7 @@ namespace Acelera.Testes
                 foreach (var campo in campos)
                 {
                     var index = linhaUnicaNaOrigem ? 0 : linha.Index;
-                    AlterarLinha(arquivoDestino, index, campo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(campo).Valor);
+                    AlterarLinha(arquivoDestino, index, campo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(campo).ValorFormatado);
                 }
         }
 
