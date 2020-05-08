@@ -121,8 +121,19 @@ namespace Acelera.Testes
 
         private string ObterCDClienteCadastrado()
         {
-            var list = new string[] { "abc","teste" };
-            return list[new Random(DateTime.Now.Millisecond).Next(0, list.Length - 1)];
+            if (operadora == OperadoraEnum.VIVO)
+                return "10876063";
+            else if (operadora == OperadoraEnum.LASA)
+                return "00952570";
+            else if (operadora == OperadoraEnum.SOFTBOX)
+                return "00952146";
+            else if (operadora == OperadoraEnum.POMPEIA)
+                return "00952570";
+
+            throw new Exception("ERRO AO OBTER CD CLIENTE CADASTRADO");
+
+            //var list = new string[] { "abc","teste" };
+            //return list[new Random(DateTime.Now.Millisecond).Next(0, list.Length - 1)];
         }
 
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
