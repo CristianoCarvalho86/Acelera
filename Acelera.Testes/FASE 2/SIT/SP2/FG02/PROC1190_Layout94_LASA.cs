@@ -11,7 +11,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     public class PROC1190_Layout94_LASA : TestesFG02
     {
         /// <summary>
-        /// COBRANCA- CD_LANCAMENTO diferente de 3
+        /// Lancto- CD_LANCAMENTO diferente de 3
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -37,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "1190");
+            ValidarTabelaDeRetorno("1190");
             ValidarTeste();
 
         }
