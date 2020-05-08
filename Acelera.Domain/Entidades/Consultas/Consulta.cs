@@ -46,7 +46,10 @@ namespace Acelera.Domain.Entidades.Consultas
 
         public virtual string MontarConsulta()
         {
-            var sql = ListaConsultas.Count == 0 ? "" : " WHERE ";
+            if (ListaConsultas.Count == 0)
+                throw new Exception("CONSULTA SEM CLAUSULA DETECTADA.");
+
+            var sql = " WHERE ";
             var primeiro = true;
             foreach (var consulta in ListaConsultas)
             {

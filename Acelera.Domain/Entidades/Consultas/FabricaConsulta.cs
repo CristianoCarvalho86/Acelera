@@ -15,9 +15,9 @@ namespace Acelera.Domain.Entidades.Consultas
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+            consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
             if (existeAlteracaoDeHeaderOuFooter || !existeLinhaNoArquivo)
             {
-                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
                 return consultas;
             }
             foreach (var alteracao in valoresAlteradosBody.Alteracoes)

@@ -83,6 +83,7 @@ namespace Acelera.Testes
             ValidarLogProcessamento(true,1, TestesFG00.ObterProcedures());
             ValidarControleArquivo();
             ValidarTabelaDeRetornoFG00();
+            ValidarStages(CodigoStage.AprovadoNAFG00);
             logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             logger.EscreverBloco("Inicio da FG01.");
             ValidarTeste();
