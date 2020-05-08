@@ -31,6 +31,9 @@ namespace Acelera.Testes.DataAccessRep
             var lista = new List<string>();
             foreach (DataRow row in linhas.Rows)
                 lista.Add(row[0].ToString().ToUpper());
+            if (linhas.Rows.Count == 0)
+                throw new Exception("NENHUM LAYOUT ENCONTRADO");
+
             return lista.ToArray();
         }
 
