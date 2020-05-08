@@ -26,11 +26,11 @@ namespace Acelera.Testes.DataAccessRep
 
         public string[] ObterAtributosDoLayout(TipoArquivo tipo, string layout)
         {
-            var sql = $"select DISTINCT(NM_ATRIBUTO_LAYOUT) from TAB_PRM_LAYOUT_7016 where NM_TIPO_ARQUIVO = '{tipo.ObterTexto()}' AND CD_VERSAO_ARQUIVO = '{layout}' AND TP_REGISTRO = 3 AND ID_PRIMARY_KEY = '1'";
+            var sql = $"select DISTINCT(NM_ATRIBUTO_LAYOUT) from {Parametros.instanciaDB}.TAB_PRM_LAYOUT_7016 where NM_TIPO_ARQUIVO = '{tipo.ObterPrefixoOperadoraNoArquivo()}' AND CD_VERSAO_ARQUIVO = '{layout}' AND TP_REGISTRO = 3 AND ID_PRIMARY_KEY = '1'";
             var linhas = DataAccess.Consulta(sql, "NM_ATRIBUTO_LAYOUT" ,logger);
             var lista = new List<string>();
             foreach (DataRow row in linhas.Rows)
-                lista.Add(row[0].ToString());
+                lista.Add(row[0].ToString().ToUpper());
             return lista.ToArray();
         }
 
