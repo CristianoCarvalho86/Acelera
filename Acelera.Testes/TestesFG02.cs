@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2
             }
             catch (Exception)
             {
-                TratarErro($"{NomeFG}: Validação da Tabela Retorno");
+                TratarErro($" Validação da Tabela Retorno");
             }
         }
 
@@ -101,19 +101,19 @@ namespace Acelera.Testes.FASE_2
 
             try
             {
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"{NomeFG} - Tabela:{tabela.ObterTexto()}");
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
                 var validador = new ValidadorStagesFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 var linhasEncontradas = new List<ILinhaTabela>();
                 if (validador.ValidarTabelaFG02(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"{NomeFG} - Tabela:{tabela.ObterTexto()}");
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
                 else
                     ExplodeFalha();
             }
             catch (Exception)
             {
-                TratarErro($"{NomeFG}: Validação da Stage : {tabela.ObterTexto()}");
+                TratarErro($" Validação da Stage : {tabela.ObterTexto()}");
             }
         }
 
@@ -278,10 +278,8 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_0024");
                     lista.Add("PRC_0025");
                     lista.Add("PRC_0026");
-                    lista.Add("PRC_0027");
                     lista.Add("PRC_0070");
                     lista.Add("PRC_0080");
-                    lista.Add("PRC_0081");
                     lista.Add("PRC_0082");
                     lista.Add("PRC_0085");
                     lista.Add("PRC_0086");
@@ -299,7 +297,6 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_0176");
                     lista.Add("PRC_0177");
                     lista.Add("PRC_0178");
-                    lista.Add("PRC_0181");
                     lista.Add("PRC_0182");
                     lista.Add("PRC_0184");
                     lista.Add("PRC_0185");

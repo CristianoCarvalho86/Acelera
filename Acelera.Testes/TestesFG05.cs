@@ -87,7 +87,7 @@ namespace Acelera.Testes
             logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
             arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
-            logger.Escrever("ARQUIVO GERADO " + arquivoGerado);
+            logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
             nomeArquivo = arquivo.NomeArquivo;
 
             logger.FecharBloco();
@@ -98,7 +98,7 @@ namespace Acelera.Testes
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem);
             arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
             nomeArquivo = arquivo.NomeArquivo;
-            logger.Escrever("ARQUIVO GERADO " + arquivoGerado);
+            logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
             logger.FecharBloco();
         }
 
@@ -219,11 +219,34 @@ namespace Acelera.Testes
             return lista;
         }
 
-
-        [TestMethod]
-        public void Teste1()
+        public override void ValidarFGsAnteriores()
         {
-           var a = dados.ObterCdClienteParceiro(true);
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                return;
+
+            base.ValidarFGsAnteriores();
+
+            logger.EscreverBloco("Inicio da Validação da FG02.");
+            //PROCESSAR O ARQUIVO CRIADO
+            ChamarExecucao(tipoArquivoTeste.ObterTarefaFG02Enum().ObterTexto());
+            ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetornoFG01();
+            logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
+            ValidarTeste();
+            logger.EscreverBloco("Inicio da FG02.");
         }
+
+        public void AjustaValoresParaFG02()
+        {
+            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+            {
+                arquivo.AlterarLinha(0, "DT_EMISSAO", "20200101");
+                arquivo.AlterarLinha(0, "DT_EMISSAO_APOLICE", "20190101");
+            }
+                
+        }
+
+
     }
 }

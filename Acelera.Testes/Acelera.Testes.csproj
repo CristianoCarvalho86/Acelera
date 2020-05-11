@@ -489,6 +489,7 @@
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC81\PROC81_Layout942_SGS.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC81\PROC81_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC81\PROC81_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG05\TesteDaMassa.cs" />
     <Compile Include="TestesDashboard.cs" />
     <Compile Include="TestesFG02.cs" />
     <Compile Include="Layout942.cs" />

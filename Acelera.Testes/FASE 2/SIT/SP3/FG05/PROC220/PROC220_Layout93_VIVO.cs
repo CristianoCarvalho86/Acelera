@@ -21,9 +21,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
         {
             IniciarTeste(TipoArquivo.OCRCobranca, "4607", "FG05 - PROC220 - ");
             
-
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_3_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             arquivo.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
@@ -35,18 +34,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             var arquivoOds1 = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
-            var arquivoods2 = new Arquivo_Layout_9_3_ParcEmissao();
-            CarregarArquivo(arquivoods2 ,1 , OperadoraEnum.VIVO);
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1 , OperadoraEnum.VIVO);
 
-            IgualarCampos(arquivo, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
-            arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
-            arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
-            arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            arquivoods2.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO","2");
-            arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
+            IgualarCampos(arquivoOds1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
+            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO","2");
+            AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOds(arquivo, true, "PROC220");
+            var arquivoods2 = arquivo.Clone();
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             
             IgualarCampos(arquivoods2, arquivo, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO","NR_PARCELA"});
 
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC220");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "220", 1);
         }
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
 
 
             //Envia parc normal
-            var arquivoods1 = new Arquivo_Layout_9_3_ParcEmissao();
+            var arquivoods1 = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.VIVO);
 
             arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
@@ -86,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
-            var arquivoods2 = new Arquivo_Layout_9_3_ParcEmissao();
+            var arquivoods2 = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivoods2, 1, OperadoraEnum.VIVO);
 
             IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
