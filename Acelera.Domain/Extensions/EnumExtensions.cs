@@ -27,7 +27,7 @@ namespace Acelera.Domain.Extensions
 
         public static string ObterPrefixoOperadoraNoArquivo(this TipoArquivo tipoArquivo)
         {
-            switch(tipoArquivo)
+            switch (tipoArquivo)
             {
                 case TipoArquivo.Cliente:
                     return "CLIENTE";
@@ -50,7 +50,7 @@ namespace Acelera.Domain.Extensions
 
         public static TabelasEnum ObterTabelaStageEnum(this TipoArquivo tipoArquivo)
         {
-            switch(tipoArquivo)
+            switch (tipoArquivo)
             {
                 case TipoArquivo.Cliente:
                     return TabelasEnum.Cliente;
@@ -136,6 +136,29 @@ namespace Acelera.Domain.Extensions
                     return FG00_Tarefas.ParcEmissaoAuto;
                 case TipoArquivo.Sinistro:
                     return FG00_Tarefas.Sinistro;
+                default:
+                    throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
+            }
+        }
+
+        public static FG02_Tarefas ObterTarefaFG02Enum(this TipoArquivo tipoArquivo)
+        {
+            switch (tipoArquivo)
+            {
+                case TipoArquivo.Cliente:
+                    return FG02_Tarefas.Cliente;
+                case TipoArquivo.Comissao:
+                    return FG02_Tarefas.Comissao;
+                case TipoArquivo.LanctoComissao:
+                    return FG02_Tarefas.LanctoComissao;
+                case TipoArquivo.OCRCobranca:
+                    return FG02_Tarefas.OCRCobranca;
+                case TipoArquivo.ParcEmissao:
+                    return FG02_Tarefas.ParcEmissao;
+                case TipoArquivo.ParcEmissaoAuto:
+                    return FG02_Tarefas.ParcEmissaoAuto;
+                case TipoArquivo.Sinistro:
+                    return FG02_Tarefas.Sinistro;
                 default:
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
             }

@@ -30,8 +30,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
             var seqEMS = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"),"1");
             var seqEMS1 = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
+            var dtEmissao = ObterLinha(0).ObterCampoDoArquivo("DT_EMISSAO").ValorFormatado;
 
             EnviarParaOds(arquivo,true, "PROC44");
+
             var arquivoods1 = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -44,6 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO",seqEMS);
             AlterarLinha(0, "NR_ENDOSSO", "12340000002");
+            AlterarLinha(0, "DT_EMISSAO", SomarData(dtEmissao, 5));
 
             EnviarParaOds(arquivo,true, "PROC44");
 
@@ -57,10 +60,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", seqEMS1);
             AlterarLinha(0, "NR_ENDOSSO", "12340000003");
+            AlterarLinha(0, "DT_EMISSAO", SomarData(dtEmissao, 10));
 
             SalvarArquivo(true,"PROC44");
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "44", 1);
+           // ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "44", 1);
         }
 
         /// <summary>

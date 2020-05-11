@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC213
 
             AlterarLinha(0, "CD_MODELO", "1234567");
 
-            SalvarArquivo(true, "PROC213");
+            SalvarArquivo(true, "PROC213-4679");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "213", 1);
 

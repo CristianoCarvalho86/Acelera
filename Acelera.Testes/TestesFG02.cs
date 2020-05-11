@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2
             }
             catch (Exception)
             {
-                TratarErro($"{NomeFG}: Validação da Tabela Retorno");
+                TratarErro($" Validação da Tabela Retorno");
             }
         }
 
@@ -101,19 +101,19 @@ namespace Acelera.Testes.FASE_2
 
             try
             {
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"{NomeFG} - Tabela:{tabela.ObterTexto()}");
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
                 var validador = new ValidadorStagesFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 var linhasEncontradas = new List<ILinhaTabela>();
                 if (validador.ValidarTabelaFG02(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"{NomeFG} - Tabela:{tabela.ObterTexto()}");
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
                 else
                     ExplodeFalha();
             }
             catch (Exception)
             {
-                TratarErro($"{NomeFG}: Validação da Stage : {tabela.ObterTexto()}");
+                TratarErro($" Validação da Stage : {tabela.ObterTexto()}");
             }
         }
 
