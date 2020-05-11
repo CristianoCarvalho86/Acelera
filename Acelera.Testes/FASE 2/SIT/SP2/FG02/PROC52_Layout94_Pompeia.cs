@@ -22,9 +22,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1920-20200208.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(3, "CD_CONTRATO", ObterValor(2,"CD_CONTRATO"));
-            AlterarLinha(3, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(1, "CD_CONTRATO", ObterValor(0,"CD_CONTRATO"));
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "R");
+            RemoverLinhasExcetoAsPrimeiras(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.txt");
@@ -56,10 +57,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1920-20200208.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(3, "CD_CONTRATO", "12345");
-            AlterarLinha(2, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(3, "CD_CONTRATO", "12345");
-            AlterarLinha(3, "CD_TIPO_COMISSAO", "C");
+            AlterarLinha(0, "CD_CONTRATO", "12345");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(1, "CD_CONTRATO", "12345");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "C");
+            RemoverLinhasExcetoAsPrimeiras(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200208.txt");

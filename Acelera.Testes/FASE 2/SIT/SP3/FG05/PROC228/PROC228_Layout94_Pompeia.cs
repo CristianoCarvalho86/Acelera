@@ -21,20 +21,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC228
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "4651", "FG05 - PROC228 - ");
 
-            var arquivoods = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.POMPEIA);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             var cdCliente = ObterValor(0, "CD_CLIENTE");
-            arquivoods.AlterarLinha(0, "SEXO", "");
+            arquivo.AlterarLinha(0, "SEXO", "");
 
-            EnviarParaOds(arquivoods, false);
+            EnviarParaOds(arquivo, true, "PROC228");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "CD_CLIENTE", cdCliente);
 
-            SalvarArquivo(false);
+            SalvarArquivo(false, "PROC228");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "228", 1);
         }

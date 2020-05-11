@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_2658_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2658", "FG00 - PROC11 - Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia maior que dt_inicio_vigencia");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2664", "FG00 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -69,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

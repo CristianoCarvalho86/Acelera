@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC11_Layout93_LASA : TestesFG02
+    public class PROC11_Layout94_LASA : TestesFG02
     {
         /// <summary>
         /// Informar no arquivo PARC_EMISSAO dt_fim_vigencia 1 dia menor que o dt_inicio_vigencia
@@ -68,8 +68,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "11");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
