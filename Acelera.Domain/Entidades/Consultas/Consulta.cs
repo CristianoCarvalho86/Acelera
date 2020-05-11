@@ -65,7 +65,7 @@ namespace Acelera.Domain.Entidades.Consultas
                     valor = item.Value.TrimStart();
 
                     if (!string.IsNullOrEmpty(valor))
-                        sql += item.Key + $" = '{valor}' AND ";
+                        sql += item.Key + $" = '{valor.TrimStart().TrimEnd()}' AND ";
                     else
                         sql += item.Key + $" IS NULL AND ";
                     
