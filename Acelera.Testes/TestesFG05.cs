@@ -74,11 +74,16 @@ namespace Acelera.Testes
         public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false)
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
+            var nomeCampo = string.Empty;
             foreach (var linha in arquivoDestino.Linhas)
                 foreach (var campo in campos)
                 {
+                    nomeCampo = campo;
+                    if (campo == "NR_SEQ_EMISSAO")
+                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
+
                     var index = linhaUnicaNaOrigem ? 0 : linha.Index;
-                    AlterarLinha(arquivoDestino, index, campo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(campo).ValorFormatado);
+                    AlterarLinha(arquivoDestino, index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado);
                 }
         }
 

@@ -111,13 +111,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         public void SAP_4193()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4196", "FG05 - PROC22");
+            IniciarTeste(TipoArquivo.Comissao, "4193", "FG05 - PROC22");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            EnviarParaOds(arquivo, true, "PROC22");
+            EnviarParaOds(arquivo, true, "PROC22_4193");
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -129,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo(true, "PROC22");
+            SalvarArquivo(true, "PROC22_4193");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
 
