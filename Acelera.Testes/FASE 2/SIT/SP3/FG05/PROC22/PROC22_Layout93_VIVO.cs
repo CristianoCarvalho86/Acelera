@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissaoAuto, "9.3");
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissaoAuto, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar

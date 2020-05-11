@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3731_VL_PREMIO_TOTAL_inv()
+        public void SAP_3731_CD_TIPO_COMISSAO_inv()
         {
             IniciarTeste(TipoArquivo.Comissao, "3731", "FG02 - PROC218 - Informar CD_TIPO_COMISSAO=P e corretor que não está parametizado para esse CD_TIPO_REMUNERACAO na tabela TAB_PRM_REMUNERACAO_7013");
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3732_VL_PREMIO_TOTAL_inv()
+        public void SAP_3732_CD_TIPO_COMISSAO_inv()
         {
             IniciarTeste(TipoArquivo.Comissao, "3732", "FG02 - PROC218 - Informar CD_TIPO_COMISSAO=C e corretor que não está parametizado para esse CD_TIPO_REMUNERACAO na tabela TAB_PRM_REMUNERACAO_7013");
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -78,7 +78,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_3733_VL_PREMIO_TOTAL_inv()
+        public void SAP_3733_CD_TIPO_COMISSAO_inv()
         {
             IniciarTeste(TipoArquivo.Comissao, "3733", "FG02 - PROC218 -  Informar CD_TIPO_COMISSAO=R e corretor que não está parametizado para esse CD_TIPO_REMUNERACAO na tabela TAB_PRM_REMUNERACAO_7013");
             arquivo = new Arquivo_Layout_9_3_EmsComissao();

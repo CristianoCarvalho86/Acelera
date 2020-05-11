@@ -21,20 +21,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "4631", "FG05 - PROC227 - ");
 
-            var arquivoods = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.SOFTBOX);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             var cdCliente = ObterValor(0, "CD_CLIENTE");
-            arquivoods.AlterarLinha(0, "DT_NASCIMENTO", "");
+            AlterarLinha(0, "DT_NASCIMENTO", "");
 
-            EnviarParaOds(arquivoods, false);
+            EnviarParaOds(arquivo, true, "PROC227");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             AlterarLinha(0, "CD_CLIENTE", cdCliente);
 
-            SalvarArquivo(false);
+            SalvarArquivo(false, "PROC227");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "227", 1);
         }
