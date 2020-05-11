@@ -109,7 +109,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_4009_COMISSAO_CD_COBERTURA_SemCritica()
         {
             IniciarTeste(TipoArquivo.Comissao, "4009", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
@@ -130,8 +130,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia,true);
+            ValidarTabelaDeRetorno(true, "24");
             ValidarTeste();
 
         }

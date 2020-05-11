@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1869-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(false));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamo(false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -67,7 +67,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "24");
+            ValidarTabelaDeRetorno(1, "25");
             ValidarTeste();
 
         }
