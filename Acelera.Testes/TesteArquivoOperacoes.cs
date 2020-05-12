@@ -202,6 +202,12 @@ namespace Acelera.Testes
             arquivo.RemoverLinha(posicaoLinha);
             logger.FecharBloco();
         }
+
+        public void AjustarQtdLinFooter()
+        {
+            arquivo.AjustarQtdLinhasNoFooter();
+        }
+
         public void RemoverHeader()
         {
             logger.AbrirBloco($"Alterando arquivo - removendo HEADER");

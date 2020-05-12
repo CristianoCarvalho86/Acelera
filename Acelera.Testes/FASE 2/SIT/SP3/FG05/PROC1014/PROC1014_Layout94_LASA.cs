@@ -29,8 +29,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
 
             //Alterar arquivo
             var cobertura = dados.ObterCobertura() ;
-            var valorTotal = 0M; //(cobertura.ValorPremioLiquidoMenorDecimal * cobertura.ValorPercentualImaginarioDecimal) - 10M;
-            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado()) ;
+            var valorTotal = ObterValorPremioTotalLiquido(decimal.Parse(ObterValor(0, "VL_IS")), cobertura);
+            
+            if (cobertura.TP_APLICACAO_PREMIO_LQ == "PC")
+                valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioLiquidoMenorDecimal) - 0.05M;
+            else
+                valorTotal = valorTotal - cobertura.ValorPremioLiquidoMenorDecimal - 0.05M;
+
+
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotal.ValorFormatado()) ;
 
             //Salvar e executar
             SalvarArquivo();

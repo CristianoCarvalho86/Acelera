@@ -12,7 +12,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
 
         /// <summary>
         /// Em um arquivo, enviar emissão da apolice com CD_TIPO_EMISSAO=20 e NR_SEQ_EMISSAO=1.Registro deve ser gravado na ODS. 
-        /// Em outro arquivo, enviar emissão de cancelamento do mesmo contrato, informando CD_TIPO_EMISSAO=10. Manter NR_SEQ_EMISSAO=1.
+        /// Em outro arquivo, enviar emissão de cancelamento do mesmo contrato, informando CD_TIPO_EMISSAO=9. Manter NR_SEQ_EMISSAO=1.
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -21,14 +21,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4515", "FG05 - PROC212 - ");
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo ,1 , OperadoraEnum.VIVO);
+            CarregarArquivo(arquivo ,2 , OperadoraEnum.VIVO);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");//caso venha uma linha de cancelamento
 
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_ENDOSSO", "1");
             var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivo, true, "PROC212");
+            EnviarParaOds(arquivo, true, "PROC212_4515");
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -39,9 +43,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_ENDOSSO", "2");
 
-            SalvarArquivo(true, "PROC212");
+            SalvarArquivo(true, "PROC212_4515");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "212", 1);
 

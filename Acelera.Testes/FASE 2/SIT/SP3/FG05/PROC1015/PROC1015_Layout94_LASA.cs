@@ -29,7 +29,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
 
             //Alterar arquivo
             var cobertura = dados.ObterCobertura() ;
-            var valorIof = (cobertura.ValorPremioBrutoMenorDecimal * cobertura.ValorPercentualAlicotaIofDecimal) - 10M;
+            var valorIof = ObterValorCalculadoIOF(decimal.Parse(ObterValor(0,"VL_IS")),cobertura);
+
+            if (cobertura.TP_APLICACAO_IOF == "PC")
+                valorIof = valorIof - (valorIof * cobertura.VL_IOF_MENOR_decimal) - 0.05M;
+            else
+                valorIof = valorIof - cobertura.VL_IOF_MENOR_decimal - 0.05M;
+
             AlterarLinha(0, "VL_IOF", valorIof.ValorFormatado()) ;
 
             //Salvar e executar

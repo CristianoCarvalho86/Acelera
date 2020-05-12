@@ -333,11 +333,21 @@ namespace Acelera.Testes.DataAccessRep
 
         public Cobertura ObterCobertura(int idCobertura = 0, bool simples = false)
         {
-            var select = QueryCobertura(idCobertura, simples);
+            var select = QueryCobertura(idCobertura, "", simples);
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
             
+            return Cobertura.CarregarCobertura(linha);
+        }
+
+        public Cobertura ObterCoberturaPeloCodigo(string cdCobertura, bool simples = false)
+        {
+            var select = QueryCobertura(0, cdCobertura, simples);
+
+            var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
+            var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
+
             return Cobertura.CarregarCobertura(linha);
         }
 
@@ -361,12 +371,13 @@ namespace Acelera.Testes.DataAccessRep
             return Cobertura.CarregarCobertura(linha);
         }
 
-        private string QueryCobertura(int idCobertura = 0, bool simples = false)
+        private string QueryCobertura(int idCobertura = 0, string cdCobertura = "", bool simples = false)
         {
             var sql = $"SELECT TOP 1 C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO ";
             if (!simples)
                 sql += $", PP.VL_DESCONTO_MAIOR ,PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR," +
-                    $" PP.VL_PREMIO_LQ_MENOR , PP.VL_PREMIO_LQ_MAIOR, PP.VL_PREMIO_BR_MENOR, PP.VL_PREMIO_BR_MAIOR, PP.VL_PERC_ALIQUOTA_IOF ";
+                    $" PP.VL_PREMIO_LQ_MENOR , PP.VL_PREMIO_LQ_MAIOR, PP.VL_PREMIO_BR_MENOR, PP.VL_PREMIO_BR_MAIOR, PP.VL_PERC_ALIQUOTA_IOF," +
+                    $" PP.VL_PERC_TAXA_SEGURO , PP.VL_PERC_DISTRIBUICAO, PP.TP_APLICACAO_PREMIO_BR, PP.VL_IOF_MAIOR, PP.VL_IOF_MENOR, PP.TP_APLICACAO_IOF, PP.TP_APLICACAO_PREMIO_LQ ";
             
             sql += $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
                $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO ";
@@ -377,6 +388,9 @@ namespace Acelera.Testes.DataAccessRep
 
             if(idCobertura != 0)
                sql += $" WHERE C.ID_COBERTURA = {idCobertura}";
+            else if(!string.IsNullOrEmpty(cdCobertura))
+                sql += $" WHERE C.CD_COBERTURA = {idCobertura}";
+
             return sql;
         }
 

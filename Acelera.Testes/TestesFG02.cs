@@ -91,7 +91,30 @@ namespace Acelera.Testes.FASE_2
                 erros[i] = codigoDeErroEsperado;
             }
 
-            ValidarTabelaDeRetornoFG01(naoDeveEncontrar, true, erros);
+            ValidarTabelaDeRetornoFG02(naoDeveEncontrar, true, erros);
+        }
+
+        public void ValidarTabelaDeRetornoFG02(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        {
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                return;
+
+            try
+            {
+                AjustarEntradaErros(ref codigosDeErroEsperados);
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                var validador = new ValidadorTabelaRetornoFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
+                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
+
+                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
+                else
+                    ExplodeFalha();
+            }
+            catch (Exception)
+            {
+                TratarErro($" Validação da Tabela Retorno");
+            }
         }
 
         public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
