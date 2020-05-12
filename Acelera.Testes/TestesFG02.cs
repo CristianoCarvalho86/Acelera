@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetornoFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
+                var validador = new ValidadorTabelaRetornoFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))
@@ -92,6 +92,10 @@ namespace Acelera.Testes.FASE_2
             }
 
             ValidarTabelaDeRetornoFG02(naoDeveEncontrar, true, erros);
+        }
+        public void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
+        {
+            ValidarTabelaDeRetornoFG02(false, false, codigosDeErroEsperados);
         }
 
         public void ValidarTabelaDeRetornoFG02(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)

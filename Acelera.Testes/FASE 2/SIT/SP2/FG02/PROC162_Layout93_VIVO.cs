@@ -9,7 +9,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
     [TestClass]
     public class PROC162_Layout93_VIVO : TestesFG02
     {
-
         /// <summary>
         /// Enviar dois registro no mesmo arquivo, um com CD_TIPO_EMISSÃO=1 e o segundo com CD_TIPO_EMISSAO=5. No segundo, informar DT_EMISSAO anterior a data do primeiro
         /// </summary>

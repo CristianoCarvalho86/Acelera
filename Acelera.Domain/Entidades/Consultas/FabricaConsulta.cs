@@ -25,7 +25,7 @@ namespace Acelera.Domain.Entidades.Consultas
             var linhas = valoresAlteradosBody.LinhasAlteradas();
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList();
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList().Where(x => x.CamposAlterados.Count > 0);
                 foreach (var alteracao in alteracoes)
                 {
                     var consultaDaLinha = (Consulta)consulta.Clone();
@@ -87,13 +87,16 @@ namespace Acelera.Domain.Entidades.Consultas
             consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
 
             var linhas = valoresAlteradosBody.LinhasAlteradas();
+            if (linhas.Count() == 1 && !valoresAlteradosBody.ExisteAlteracaoValida())
+                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
+
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList();
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList().Where(x => x.CamposAlterados.Count > 0);
                 foreach (var alteracao in alteracoes)
                 {
                     var consultaDaLinha = (Consulta)consulta.Clone();
-                    CamposDaConsultaTabelaRetorno(consultaDaLinha, tabela, valoresAlteradosBody);
+                    CamposDaConsultaTabelaRetorno(consultaDaLinha, tabela, alteracao);
                     consultas.Add(new KeyValuePair<int, Consulta>(alteracao.PosicaoDaLinha, consultaDaLinha));
                 }
                 
@@ -101,47 +104,48 @@ namespace Acelera.Domain.Entidades.Consultas
             return consultas;
         }
 
-        public static Consulta MontarConsultaParaTabelaDeRetornoFG01(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
-        {
-            var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+        //public static Consulta MontarConsultaParaTabelaDeRetornoFG01(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
+        //{
+        //    return MontarConsultaParaTabelaDeRetornoFG02(tabela, nomeArquivo, valoresAlteradosBody);
+        //    //var consulta = new Consulta();
+        //    //consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
 
-            CamposDaConsultaTabelaRetorno(consulta, tabela, valoresAlteradosBody);
-            return consulta;
-        }
+        //    //CamposDaConsultaTabelaRetorno(consulta, tabela, valoresAlteradosBody);
+        //    //return consulta;
+        //}
 
-        public static Consulta MontarConsultaParaTabelaDeRetornoFG00(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool alteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
-        {
-            var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-            if (!existeLinhaNoArquivo || alteracaoDeHeaderOuFooter || !valoresAlteradosBody.ExisteAlteracaoValida())
-            {
-                return consulta;
-            }
-            CamposDaConsultaTabelaRetorno(consulta, tabela, valoresAlteradosBody);
-            return consulta;
-        }
+        //public static Consulta MontarConsultaParaTabelaDeRetornoFG00(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool alteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
+        //{
+        //    var consulta = new Consulta();
+        //    consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+        //    if (!existeLinhaNoArquivo || alteracaoDeHeaderOuFooter || !valoresAlteradosBody.ExisteAlteracaoValida())
+        //    {
+        //        return consulta;
+        //    }
+        //    CamposDaConsultaTabelaRetorno(consulta, tabela, valoresAlteradosBody);
+        //    return consulta;
+        //}
 
-        private static void CamposDaConsultaTabelaRetorno(Consulta consulta, TabelasEnum tabela, AlteracoesArquivo valoresAlteradosBody)
+        private static void CamposDaConsultaTabelaRetorno(Consulta consulta, TabelasEnum tabela, Alteracao valoresAlteradosBody)
         {
             if (tabela == TabelasEnum.Cliente)
             {
-                consulta.AdicionarConsulta("CD_CLIENTE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("CD_CLIENTE").ValorFormatado);
-                consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
+                consulta.AdicionarConsulta("CD_CLIENTE", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("CD_CLIENTE").ValorFormatado);
+                consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
             }
             else if (tabela == TabelasEnum.Sinistro)
             {
-                consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
-                consulta.AdicionarConsulta("NR_APOLICE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_APOLICE").ValorFormatado);
-                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").ValorFormatado);
-                consulta.AdicionarConsulta("CD_SINISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("CD_SINISTRO").ValorFormatado);
+                consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
+                consulta.AdicionarConsulta("NR_APOLICE", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("NR_APOLICE").ValorFormatado);
+                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").ValorFormatado);
+                consulta.AdicionarConsulta("CD_SINISTRO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("CD_SINISTRO").ValorFormatado);
             }
             else
             {
-                consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
-                consulta.AdicionarConsulta("NR_APOLICE", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_APOLICE").ValorFormatado);
-                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").ValorFormatado);
-                consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.Alteracoes.First().LinhaAlterada.ObterCampoDoBanco("NR_PARCELA").ValorFormatado);
+                consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
+                consulta.AdicionarConsulta("NR_APOLICE", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("NR_APOLICE").ValorFormatado);
+                consulta.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").ValorFormatado);
+                consulta.AdicionarConsulta("NR_PARCELA", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("NR_PARCELA").ValorFormatado);
             }
         }
 

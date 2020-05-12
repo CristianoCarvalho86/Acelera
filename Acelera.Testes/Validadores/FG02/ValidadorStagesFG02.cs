@@ -37,13 +37,10 @@ namespace Acelera.Testes.Validadores.FG02
                 var linhasAlteradas = valoresAlteradosBody.LinhasAlteradas();
                 foreach(var linha in linhasAlteradas)
                 {
-                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha);
-                    foreach(var alteracao in alteracoesPorLinha)
-                    {
-                        var consulta = consultaBase.Where(x => x.Key == alteracao.PosicaoDaLinha).First().Value;
-                        AdicionaConsulta(consulta, alteracao, true);
-                        consultas.AdicionarConsulta(consulta);
-                    }
+                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha).Where(x => x.CamposAlterados.Count > 0).First();
+                    var consulta = consultaBase.Where(x => x.Key == alteracoesPorLinha.PosicaoDaLinha).First().Value;
+                    AdicionaConsulta(consulta, alteracoesPorLinha, true);
+                    consultas.AdicionarConsulta(consulta);
                 }
             }
             else

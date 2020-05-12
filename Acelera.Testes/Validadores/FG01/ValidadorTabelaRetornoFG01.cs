@@ -23,8 +23,26 @@ namespace Acelera.Testes.Validadores.FG01
 
         public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
-            var consulta = FabricaConsulta.MontarConsultaParaTabelaDeRetornoFG01(tabela, nomeArquivo, valoresAlteradosBody);
-            return new ConjuntoConsultas(consulta);
+            var consultaBase = FabricaConsulta.MontarConsultaParaTabelaDeRetornoFG02(tabela, nomeArquivo, valoresAlteradosBody);
+            var consultas = new ConjuntoConsultas();
+
+            if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())
+            {
+                var linhasAlteradas = consultaBase.Select(x => x.Key).Distinct().ToList();
+                foreach (var linha in linhasAlteradas)
+                {
+                    var consulta = consultaBase.Where(x => x.Key == linha).First().Value;
+                    consultas.AdicionarConsulta(consulta);
+                }
+            }
+            else
+            {
+                consultas.AdicionarConsulta(consultaBase.First().Value);
+            }
+
+            consultas.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
+
+            return consultas;
         }
 
         public bool ValidarTabela(bool naoDeveEncontrar, params string[] codigosDeErroEsperados)
