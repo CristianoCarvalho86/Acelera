@@ -42,6 +42,11 @@ namespace Acelera.Testes
 
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
+            valoresAlteradosBody = new AlteracoesArquivo();
+            valoresAlteradosFooter = new AlteracoesArquivo();
+            valoresAlteradosHeader = new AlteracoesArquivo();
+
+
             this.nomeArquivo = nomeArquivo;
             var path = Parametros.pastaOrigem + nomeArquivo;
             logger.EscreverBloco("Obtendo arquivo origem : " + path);
