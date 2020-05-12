@@ -98,8 +98,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "23");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
@@ -108,7 +108,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_4003_SINISTRO_CD_MOEDA_Inv()
         {
             IniciarTeste(TipoArquivo.Sinistro, "4003", "FG02 - PROC23 - Informar no campo CD_MOEDA valor diferente do parametrizado na tabela TAB_PRM_MOEDA_7030");
@@ -129,8 +129,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarTabelaDeRetorno(true, "23");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

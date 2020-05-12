@@ -25,7 +25,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0,"DT_EMISSAO"),-365));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0,"DT_EMISSAO"),-365));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200210.TXT");
@@ -59,7 +61,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -30));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), -30));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
@@ -96,7 +100,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200212.TXT");
@@ -133,7 +139,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200213.TXT");

@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.COBRANCA-EV-1600-20191108.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(),-365));
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(),365));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.COBRANCA-EV-/*R*/-20191108.txt");
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.COBRANCA-EV-2078-20191218.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(), 365));
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(), -365));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.COBRANCA-EV-/*R*/-20191218.txt");
@@ -98,8 +98,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "124");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

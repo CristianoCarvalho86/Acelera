@@ -25,9 +25,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "VL_CEDIDO", "-15.99");
-            AlterarLinha(1, "CD_BANCO", "-205");
-            AlterarLinha(1, "NR_AGENCIA", "-10");
-            AlterarLinha(1, "NR_CONTA", "-15");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC35");
@@ -59,9 +56,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(1, "VL_CEDIDO", "15.99");
-            AlterarLinha(1, "CD_BANCO", "2055");
-            AlterarLinha(1, "NR_AGENCIA", "10");
-            AlterarLinha(1, "NR_CONTA", "15");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.txt");

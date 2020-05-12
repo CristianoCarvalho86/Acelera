@@ -50,36 +50,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        ///  Informar campo CD_CLIENTE negativo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2821_CLIENTE_CDCLIENTE_NEGATIVO()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "2821", "FG02 - PROC35 - Informar campo CD_CLIENTE negativo");
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3322-20200326.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_CLIENTE", "-200");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.CLIENTE-EV-/*R*/-20200326.txt");
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1,"35");
-            ValidarTeste();
-        }
-
-        /// <summary>
         ///  Informar campo NR_SEQUENCIAL_EMISSAO, NR_PARCELA negativo
         /// </summary>
         [TestMethod]
@@ -154,12 +124,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3301-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_MOVIMENTO", "-1");
             AlterarLinha(0, "VL_MOVIMENTO", "-105");
             AlterarLinha(0, "VL_TAXA_PAGTO", "-10");
-            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "-100");
-            AlterarLinha(0, "CD_BANCO_SEG", "-100");
-            AlterarLinha(0, "NR_AGENCIA_SEG", "-100");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
@@ -189,12 +155,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_PARCELA", "-1");
-            AlterarLinha(0, "CD_EXTRATO_COMISSAO", "-105");
-            AlterarLinha(0, "CD_LANCAMENTO", "-10");
             AlterarLinha(0, "VL_COMISSAO_PAGO", "-100");
-            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "-10");
-                
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC35");
 
@@ -250,36 +212,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        ///  Informar campo CD_CLIENTE positivo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2827_CLIENTE_CDCLIENTE_POSITIVO()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "2827", "FG02 - PROC35 - Informar campo CD_CLIENTE positivo");
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3322-20200326.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_CLIENTE", "-200");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.CLIENTE-EV-/*R*/-20200326.txt");
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
-            ValidarTeste();
-        }
-
-        /// <summary>
         ///  Informar campo NR_SEQUENCIAL_EMISSAO, NR_PARCELA positivo
         /// </summary>
         [TestMethod]
@@ -305,8 +237,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarTabelaDeRetorno(true,"35");
             ValidarTeste();
         }
 
@@ -354,12 +286,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3301-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_MOVIMENTO", "1");
             AlterarLinha(0, "VL_MOVIMENTO", "105");
             AlterarLinha(0, "VL_TAXA_PAGTO", "10");
-            AlterarLinha(0, "EN_CEP_BENEFICIARIO", "100");
-            AlterarLinha(0, "CD_BANCO_SEG", "100");
-            AlterarLinha(0, "NR_AGENCIA_SEG", "100");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
@@ -389,11 +317,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9624-20190311.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_PARCELA", "1");
-            AlterarLinha(0, "CD_EXTRATO_COMISSAO", "105");
-            AlterarLinha(0, "CD_LANCAMENTO", "10");
             AlterarLinha(0, "VL_COMISSAO_PAGO", "100");
-            AlterarLinha(0, "CD_TIPO_LANCAMENTO", "100");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.LCTCMS-EV-/*R*/-20190311.txt");

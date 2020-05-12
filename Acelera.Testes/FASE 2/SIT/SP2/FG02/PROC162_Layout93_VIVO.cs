@@ -25,7 +25,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0,"DT_EMISSAO"),-365));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0,"DT_EMISSAO"),-365));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -59,7 +61,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "6");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -30));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), -30));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -93,7 +97,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "7");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -7));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), -7));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -127,7 +133,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "8");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -10));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), -10));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -162,8 +170,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
             AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", GerarNumeroAleatorio(5));
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), -1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0,"NR_SEQUENCIAL_EMISSAO", 1));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), -1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC162");
@@ -197,7 +205,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "19");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0,"DT_EMISSAO"),-10));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0,"DT_EMISSAO"),-10));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -233,7 +243,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -269,7 +281,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "6");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -305,7 +319,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "7");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -341,7 +357,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "8");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -377,7 +395,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -413,7 +433,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "19");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -449,7 +471,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), 10));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), 10));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -485,7 +509,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "6");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), 10));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), 10));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -521,7 +547,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "7");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), 10));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), 10));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -557,7 +585,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "8");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"), 7));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), 7));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");
@@ -593,7 +623,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"),30));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"),30));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200212.TXT");
@@ -629,7 +661,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "19");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", SomarData(ObterValor(0, "DT_EMISSAO"),365));
+            AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"),365));
+            AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.PARCEMSAUTO-EV-/*R*/-20200211.TXT");

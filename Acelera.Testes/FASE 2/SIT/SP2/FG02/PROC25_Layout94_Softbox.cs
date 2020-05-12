@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "24");
+            ValidarTabelaDeRetorno(1, "25");
             ValidarTeste();
 
         }
@@ -53,7 +53,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(false));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamo(false));
+            RemoverLinhasExcetoAsPrimeiras(1);
+
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -67,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "24");
+            ValidarTabelaDeRetorno(1, "25");
             ValidarTeste();
         }
 
@@ -97,7 +99,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "24");
+            ValidarTabelaDeRetorno(1, "25");
             ValidarTeste();
 
         }
@@ -128,8 +130,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "25");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
@@ -145,7 +147,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3309-20200325.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(5, "CD_RAMO", dados.ObterRamo(true));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamo(true));
+            RemoverLinhasExcetoAsPrimeiras(1);
+
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -158,8 +162,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarTabelaDeRetorno(true, "25");
             ValidarTeste();
         }
 

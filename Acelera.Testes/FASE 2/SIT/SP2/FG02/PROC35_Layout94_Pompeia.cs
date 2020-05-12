@@ -23,8 +23,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "NR_PARCELA", "-1");
-            AlterarLinha(2, "CD_CLIENTE", "-100");
             AlterarLinha(2, "VL_JUROS", "-100.10");
             AlterarLinha(2, "VL_DESCONTO", "-100.10");
             AlterarLinha(2, "VL_PREMIO_LIQUIDO", "-100.10");
@@ -51,36 +49,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        ///  Informar campo CD_CLIENTE negativo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2811_CLIENTE_CDCLIENTE_NEGATIVO()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "2811", "FG02 - PROC35 - Informar campo CD_CLIENTE negativo");
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1933-20200213.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_CLIENTE", "-200");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("PROC35");
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1,"35");
-            ValidarTeste();
-        }
-
-        /// <summary>
         ///  Informar campo NR_SEQUENCIAL_EMISSAO, NR_PARCELA negativo
         /// </summary>
         [TestMethod]
@@ -92,7 +60,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_ITEM", "-200");
             AlterarLinha(1, "VL_COMISSAO", "-25.50");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -144,40 +111,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        ///  Informar campo CD_TIPO_MOVIMENTO CD_AVISO CD_RAMO CD_CLIENTE negativo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2814_SINISTRO_NUMEROS_NEGATIVOS()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2813", "FG02 - PROC35 - Informar campo CD_TIPO_MOVIMENTO CD_AVISO CD_RAMO CD_CLIENTE negativo");
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "-1");
-            AlterarLinha(0, "CD_AVISO", "-105");
-            AlterarLinha(0, "CD_RAMO", "-10");
-            AlterarLinha(0, "CD_CLIENTE", "-100");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.txt");
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(4, "35");
-            ValidarTeste();
-        }
-
-
-        /// <summary>
         ///  Informar campo negativo NR_PARCELA CD_CLIENTE VL_JUROS VL_DESCONTO VL_PREMIO_LIQUIDO VL_IOF VL_ADIC_FRACIONADO VL_CUSTO_APOLICE VL_PREMIO_TOTAL VL_TAXA_MOEDA
         /// </summary>
         [TestMethod]
@@ -189,8 +122,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "NR_PARCELA", "1");
-            AlterarLinha(2, "CD_CLIENTE", "100");
             AlterarLinha(2, "VL_JUROS", "100.10");
             AlterarLinha(2, "VL_DESCONTO", "100.10");
             AlterarLinha(2, "VL_PREMIO_LIQUIDO", "100.10");
@@ -217,36 +148,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         }
 
         /// <summary>
-        ///  Informar campo CD_CLIENTE positivo
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2816_CLIENTE_CDCLIENTE_POSITIVO()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "2816", "FG02 - PROC35 - Informar campo CD_CLIENTE positivo");
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_CLIENTE", "200");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200302.txt");
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
-            ValidarTeste();
-        }
-
-        /// <summary>
         ///  Informar campo NR_SEQUENCIAL_EMISSAO, NR_PARCELA positivo
         /// </summary>
         [TestMethod]
@@ -258,7 +159,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_ITEM", "200");
             AlterarLinha(1, "VL_COMISSAO", "25.50");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -273,7 +173,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarTabelaDeRetorno(true, "35");
             ValidarTeste();
         }
 
@@ -301,39 +201,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //Executar FG02
             ChamarExecucao(FG02_Tarefas.OCRCobranca.ObterTexto());
-
-            //VALIDAR NA FG02
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
-            ValidarTeste();
-        }
-
-        /// <summary>
-        ///  Informar campo CD_TIPO_MOVIMENTO CD_AVISO CD_RAMO CD_CLIENTE POSITIVO
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_2819_SINISTRO_NUMEROS_POSITIVOS()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "2819", "FG02 - PROC35 - Informar campo CD_TIPO_MOVIMENTO CD_AVISO CD_RAMO CD_CLIENTE POSITIVO");
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "CD_AVISO", "105");
-            AlterarLinha(0, "CD_RAMO", "10");
-            AlterarLinha(0, "CD_CLIENTE", "100");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20200117.txt");
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores();
-
-            //Executar FG02
-            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
