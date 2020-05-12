@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
@@ -33,12 +34,30 @@ namespace Acelera.Testes
             arquivosOds = new List<Arquivo>();
         }
 
+        protected decimal ObterValorPremioTotalBruto(decimal valorIS ,Cobertura cobertura)
+        {
+            return valorIS * cobertura.VL_PERC_DISTRIBUICAO_decimal * cobertura.VL_PERC_TAXA_SEGURO_decimal;
+        }
+
+        protected decimal ObterValorPremioTotalLiquido(decimal valorIS, Cobertura cobertura)
+        {
+            return ObterValorPremioTotalBruto(valorIS, cobertura) *
+                (((1M + (cobertura.ValorPercentualAlicotaIofDecimal * 100))/100) * (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100));
+        }
+
+        protected decimal ObterValorCalculadoIOF(decimal valorIS, Cobertura cobertura)
+        {
+            return (ObterValorPremioTotalLiquido(valorIS,cobertura) * (cobertura.ValorPercentualAlicotaIofDecimal * 100) /100) *
+                    (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100);
+        }
+
         protected void SalvarArquivo(bool alterarCdCliente , string nomeProc = "")
         {
             if(alterarCdCliente)
             {
+                var i = 0;
                 foreach (var linha in arquivo.Linhas)
-                    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
+                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
             base.SalvarArquivo(nomeProc);
         }
@@ -56,11 +75,12 @@ namespace Acelera.Testes
             if (alterarCdCliente && operadora != OperadoraEnum.SGS)
             {
                 //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
+                int i = 0;
                 foreach (var linha in arquivo.Linhas)
-                    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
+                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
             if(!string.IsNullOrEmpty(nomeProc))
-                SalvarArquivo(false,$"ODS - {nomeProc}");
+                SalvarArquivo(false,$"ODS_{nomeProc}");
             arquivosOds.Add(arquivo.Clone());
         }
 
@@ -89,6 +109,10 @@ namespace Acelera.Testes
 
         protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
         {
+            valoresAlteradosBody = new AlteracoesArquivo();
+            valoresAlteradosFooter = new AlteracoesArquivo();
+            valoresAlteradosHeader = new AlteracoesArquivo();
+
             logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
             arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);

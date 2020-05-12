@@ -27,14 +27,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             AlterarLinha(0, "DT_NASCIMENTO", "");
 
-            EnviarParaOds(arquivo, true, "PROC227");
+            EnviarParaOds(arquivo, true, "PROC227_4631");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             AlterarLinha(0, "CD_CLIENTE", cdCliente);
 
-            SalvarArquivo(false, "PROC227");
+            SalvarArquivo(false, "PROC227_4631");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "227", 1);
         }

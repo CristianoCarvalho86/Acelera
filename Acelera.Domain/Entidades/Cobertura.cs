@@ -21,16 +21,35 @@ namespace Acelera.Domain.Entidades
         public string CdProduto { get; set; }
         public string CdRamoCobertura { get; set; }
 
+        public string VL_PERC_TAXA_SEGURO { get; set; }
+
+        public string VL_PERC_DISTRIBUICAO { get; set; }
+
+        public string TP_APLICACAO_PREMIO_BR { get; set; }
+
+        public string TP_APLICACAO_PREMIO_LQ { get; set; }
+
+        public string TP_APLICACAO_IOF { get; set; }
+
         public string ValorPremioBrutoMaior { get; set; }
         public string ValorPremioBrutoMenor { get; set; }
         public string ValorPremioLiquidoMaior { get; set; }
         public string ValorPremioLiquidoMenor { get; set; }
         public string ValorPercentualAlicotaIof { get; set; }
+        public string VL_IOF_MAIOR { get; set; }
+        public string VL_IOF_MENOR { get; set; }
+
         public decimal ValorPercentualAlicotaIofDecimal => decimal.Parse(ValorPercentualAlicotaIof);
         public decimal ValorPremioBrutoMaiorDecimal => decimal.Parse(ValorPremioBrutoMaior);
         public decimal ValorPremioBrutoMenorDecimal => decimal.Parse(ValorPremioBrutoMenor);
         public decimal ValorPremioLiquidoMaiorDecimal => decimal.Parse(ValorPremioLiquidoMaior);
         public decimal ValorPremioLiquidoMenorDecimal => decimal.Parse(ValorPremioLiquidoMenor);
+
+        public decimal VL_PERC_DISTRIBUICAO_decimal => decimal.Parse(VL_PERC_DISTRIBUICAO);
+        public decimal VL_PERC_TAXA_SEGURO_decimal => decimal.Parse(VL_PERC_TAXA_SEGURO);
+        public decimal VL_IOF_MAIOR_decimal => decimal.Parse(VL_IOF_MAIOR);
+        public decimal VL_IOF_MENOR_decimal => decimal.Parse(VL_IOF_MENOR);
+
 
 
         public static Cobertura CarregarCobertura(DataRow linha)
@@ -52,6 +71,14 @@ namespace Acelera.Domain.Entidades
             cobertura.ValorPremioBrutoMenor = !linha.Table.Columns.Contains("VL_PREMIO_BR_MAIOR") ? "" : linha["VL_PREMIO_BR_MAIOR"].ToString();
             cobertura.ValorPremioBrutoMaior = !linha.Table.Columns.Contains("VL_PREMIO_BR_MENOR") ? "" : linha["VL_PREMIO_BR_MENOR"].ToString();
             cobertura.ValorPercentualAlicotaIof = !linha.Table.Columns.Contains("VL_PERC_ALIQUOTA_IOF") ? "" : linha["VL_PERC_ALIQUOTA_IOF"].ToString();
+            cobertura.VL_PERC_DISTRIBUICAO = !linha.Table.Columns.Contains("VL_PERC_DISTRIBUICAO") ? "" : linha["VL_PERC_DISTRIBUICAO"].ToString();
+            cobertura.VL_PERC_TAXA_SEGURO = !linha.Table.Columns.Contains("VL_PERC_TAXA_SEGURO") ? "" : linha["VL_PERC_TAXA_SEGURO"].ToString();
+            cobertura.TP_APLICACAO_PREMIO_BR = !linha.Table.Columns.Contains("TP_APLICACAO_PREMIO_BR") ? "" : linha["TP_APLICACAO_PREMIO_BR"].ToString();
+            cobertura.VL_IOF_MAIOR = !linha.Table.Columns.Contains("VL_IOF_MAIOR") ? "" : linha["VL_IOF_MAIOR"].ToString();
+            cobertura.VL_IOF_MENOR = !linha.Table.Columns.Contains("VL_IOF_MENOR") ? "" : linha["VL_IOF_MENOR"].ToString();
+            cobertura.TP_APLICACAO_IOF = !linha.Table.Columns.Contains("TP_APLICACAO_IOF") ? "" : linha["TP_APLICACAO_IOF"].ToString();
+            cobertura.TP_APLICACAO_PREMIO_LQ = !linha.Table.Columns.Contains("TP_APLICACAO_PREMIO_LQ") ? "" : linha["TP_APLICACAO_PREMIO_LQ"].ToString();
+
             return cobertura;
         }
 

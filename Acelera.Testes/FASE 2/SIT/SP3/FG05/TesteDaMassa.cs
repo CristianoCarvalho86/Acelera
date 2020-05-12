@@ -16,9 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
         [TestMethod]
         public void Teste()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "9999", "teste de criação de massa");
-            arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.EMSCMS-EV-5281-20200320.TXT"));
+            IniciarTeste(Domain.Enums.TipoArquivo.ParcEmissao, "9999", "teste de criação de massa");
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-0489-20200325.TXT"));
             SelecionarLinhaParaValidacao(0);
             SalvarArquivo();
             ValidarFGsAnteriores();
