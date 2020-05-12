@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1694-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(),-7));
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(),7));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.txt");
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1766-20191220.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(), 7));
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(dados.ObterDataDoBanco(), -7));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC124");
@@ -98,8 +98,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "124");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

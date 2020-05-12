@@ -69,8 +69,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "267");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
@@ -102,8 +102,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "267");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

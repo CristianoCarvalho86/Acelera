@@ -22,7 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1871-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "NR_CNPJ_CPF", "77812487000131");
+            AlterarLinha(0, "TIPO", "J");
+            AlterarLinha(0, "NR_CNPJ_CPF", "77812487000131");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.VIVO.CLIENTE-EV-/*R*/-20200213.txt");
@@ -35,8 +36,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1040");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia,true);
             ValidarTeste();
 
         }

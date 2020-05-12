@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_4060_PARC_EMISSAO_AUTO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2763", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor parametrizado na tabela TAB_PRM_PRODUTO_7003");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4060", "FG02 - PROC26 - Informar no campo CD_PRODUTO valor parametrizado na tabela TAB_PRM_PRODUTO_7003");
             
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
@@ -67,8 +67,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "26");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

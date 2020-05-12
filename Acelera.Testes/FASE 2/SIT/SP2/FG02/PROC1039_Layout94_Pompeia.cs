@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
+            ValidarTabelaDeRetorno(true, "1039");
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
@@ -67,7 +67,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
+            ValidarTabelaDeRetorno(true, "1039");
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 

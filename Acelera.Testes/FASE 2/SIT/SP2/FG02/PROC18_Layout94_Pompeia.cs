@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2687_PARC_EMISSAO_NR_APOLICE_Inv()
+        public void SAP_2683_PARC_EMISSAO_NR_APOLICE_Inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2687", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APOLICE=01234567890123 (14 digitos)");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2683", "FG02 - PROC18 - Informar no arquivo PARC_EMISSAO o campo NR_APOLICE=01234567890123 (14 digitos)");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1931-20200212.txt"));
 
@@ -68,9 +68,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "18");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
+
 
         }
 

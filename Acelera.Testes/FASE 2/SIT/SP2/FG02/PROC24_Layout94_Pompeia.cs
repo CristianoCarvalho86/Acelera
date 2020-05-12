@@ -110,7 +110,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_4013_PARC_EMISSAO_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2749", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor parametrizado na tabela TAB_PRM_COBERTURA_7007");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4013", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor parametrizado na tabela TAB_PRM_COBERTURA_7007");
             
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
@@ -129,8 +129,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "24");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
@@ -142,7 +142,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_4014_COMISSAO_Sem_Critica()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4011", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
+            IniciarTeste(TipoArquivo.Comissao, "4014", "FG02 - PROC24 - Informar no campo CD_COBERTURA valor diferente do parametrizado na tabela TAB_PRM_COBERTURA_7007");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1935-20200213.txt"));
 

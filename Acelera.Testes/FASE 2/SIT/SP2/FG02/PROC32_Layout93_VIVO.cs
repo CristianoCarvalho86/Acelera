@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2778", "FG02 - PROC32 - No campo CD_TIPO_EMISSAO do arquivo PARC_EMISSAO_AUTO, buscar na tabela TAB_PRM_TIPO_MOVIMENTO e selecionar TP_ACAO = REATIVACAO. Informar qualquer um dos valores retornados.");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", dados.ObterCDTipoEmissao("REP", true));// REATIVAÇÃO = REP
@@ -51,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2779", "FG02 - PROC32 - No campo CD_TIPO_EMISSAO do arquivo PARC_EMISSAO_AUTO, buscar na tabela TAB_PRM_TIPO_MOVIMENTO e selecionar TP_ACAO <> REATIVACAO. Informar qualquer um dos valores retornados.");
             
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_TIPO_EMISSAO", dados.ObterCDTipoEmissao("REP", false));
@@ -67,8 +67,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true,"32");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

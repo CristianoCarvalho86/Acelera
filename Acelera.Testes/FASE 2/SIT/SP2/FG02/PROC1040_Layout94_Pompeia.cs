@@ -22,7 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1924-20200210.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            SalvarArquivo($"C01.SOFTBOX.CLIENTE-EV-/*R*/-20200211.txt");
+            AlterarLinha(0, "TIPO", "J");
+            AlterarLinha(0, "NR_CNPJ_CPF", "77812487000131");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200210.txt");
@@ -35,8 +36,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1040");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

@@ -22,6 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3209-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(1, "TIPO", "J");
             AlterarLinha(1, "NR_CNPJ_CPF", "77812487000131");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -67,8 +68,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1040");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }

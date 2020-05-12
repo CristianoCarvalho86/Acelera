@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3228-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(6, "CD_CONTRATO", "");
+            AlterarLinha(6, "CD_CONTRATO", ObterValor(6, "NR_APOLICE"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200320.txt");
@@ -68,8 +68,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "20");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
