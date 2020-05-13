@@ -22,14 +22,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo ,2 , OperadoraEnum.VIVO);
+
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");//caso venha uma linha de cancelamento
 
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "1");
+            //AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            //AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            //AlterarLinha(0, "NR_ENDOSSO", "1");
             var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
             EnviarParaOds(arquivo, true, "PROC212_4515");
