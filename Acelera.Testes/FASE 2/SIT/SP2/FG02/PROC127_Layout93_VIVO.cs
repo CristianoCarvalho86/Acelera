@@ -62,16 +62,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3163", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
@@ -106,6 +108,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
@@ -113,6 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "12");
             AlterarLinha(1, "NR_PARCELA", "2");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
@@ -142,16 +146,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3165", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "13");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
@@ -185,12 +191,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "21");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
 
@@ -220,16 +228,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3167", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "21");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
@@ -263,12 +273,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
@@ -299,16 +311,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3169", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "12");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
@@ -342,12 +356,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "13");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 
@@ -377,16 +393,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3171", "FG02 - PROC111 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
+            var nrParcela = SomarValores(ObterValorFormatado(0, "NR_PARCELA"), "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
 
             ReplicarLinhaComCorrecao(0, 1);
 
 
             AlterarLinha(1, "CD_TIPO_EMISSAO", "21");
+            AlterarLinha(1, "NR_PARCELA", nrParcela);
             AlterarLinha(1, "ID_TRANSACAO", idTransacao);
             AlterarLinha(1, "ID_TRANSACAO_CANC", ObterValorFormatado(0, "ID_TRANSACAO"));
 

@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0,"DT_EMISSAO"),-365));
             AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200211.TXT");
@@ -63,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "DT_EMISSAO", SomarData(ObterValor(0, "DT_EMISSAO"), -30));
             AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200316.TXT");
@@ -102,7 +102,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
             AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200317.TXT");
@@ -115,8 +115,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "162");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
@@ -141,7 +141,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_EMISSAO", "5");
             AlterarLinha(1, "DT_EMISSAO", ObterValor(0, "DT_EMISSAO"));
             AlterarLinha(1, "NR_ENDOSSO", GerarNumeroAleatorio(20));
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEUQENCIAL_EMISSAO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200318.TXT");
@@ -154,8 +154,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "162");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
             ValidarTeste();
 
         }
