@@ -71,7 +71,7 @@ namespace Acelera.Testes.Validadores
                 {
                     logger.EscreverBloco($"Mensagem de erro esperada não encontrada :'{erro}' - SUCESSO");
                 }
-                if (encontrados.Count() > 1)
+                if (encontrados.Count() >= 1)
                 {
                     logger.EscreverBloco($"Mensagem de erro encontrada {encontrados.Count()} vezes :'{erro}'");
                     return false;
