@@ -30,8 +30,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");//caso venha uma linha de cancelamento
 
-            //AlterarLinha(1, "CD_CONTRATO", ObterValor(0,"CD_CONTRATO"));
-            //AlterarLinha(0, "ID_TRANSACAO_CANC", "");
 
             AjustarQtdLinFooter();
 

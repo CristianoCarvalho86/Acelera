@@ -15,14 +15,17 @@ namespace Acelera.Domain.Entidades.Consultas
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
 
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+            var linhas = valoresAlteradosBody.LinhasAlteradas();
 
-            if (existeAlteracaoDeHeaderOuFooter || !existeLinhaNoArquivo)
+            if (existeAlteracaoDeHeaderOuFooter || !existeLinhaNoArquivo || (linhas.Count() == 1 && !valoresAlteradosBody.ExisteAlteracaoValida()))
             {
-                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
+                var index = linhas.Count() == 0 ? 0 : linhas.First();
+                consultas.Add(new KeyValuePair<int, Consulta>(index, consulta));
                 return consultas;
             }
-            var linhas = valoresAlteradosBody.LinhasAlteradas();
+
+
             foreach (var linha in linhas)
             {
                 var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList().Where(x => x.CamposAlterados.Count > 0);
@@ -88,7 +91,7 @@ namespace Acelera.Domain.Entidades.Consultas
 
             var linhas = valoresAlteradosBody.LinhasAlteradas();
             if (linhas.Count() == 1 && !valoresAlteradosBody.ExisteAlteracaoValida())
-                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
+                consultas.Add(new KeyValuePair<int, Consulta>(linhas.First(), consulta));
 
             foreach (var linha in linhas)
             {
