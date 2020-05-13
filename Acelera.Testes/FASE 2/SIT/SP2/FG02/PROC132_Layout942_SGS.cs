@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class PROC132_Layout942_SoGS : TestesFG02
+    public class PROC132_Layout942_SGS : TestesFG02
     {
 
         /// <summary>
