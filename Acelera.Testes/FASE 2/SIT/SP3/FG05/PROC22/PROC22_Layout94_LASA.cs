@@ -24,9 +24,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IniciarTeste(TipoArquivo.Sinistro, "4196", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivoods ,1 , OperadoraEnum.LASA);
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1 , OperadoraEnum.LASA);
+            EnviarParaOds(arquivo, true,"PROC22_4196");
+            var arquivoods1 = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -34,10 +35,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Sinistro, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            IgualarCampos(arquivoods1, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC22_4196");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
 

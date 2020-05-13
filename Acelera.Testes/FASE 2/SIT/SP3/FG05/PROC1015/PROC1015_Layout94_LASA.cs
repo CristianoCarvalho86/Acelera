@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var cobertura = dados.ObterCobertura() ;
+            var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
             var valorIof = ObterValorCalculadoIOF(decimal.Parse(ObterValor(0,"VL_IS")),cobertura);
 
             if (cobertura.TP_APLICACAO_IOF == "PC")

@@ -21,7 +21,7 @@ namespace Acelera.Domain.Utils
         {
             var arquivosNaPasta = Directory.GetFiles(pastaOrigem);
             var lista = arquivosNaPasta.Where(x => x.Contains(tipoArquivo.ObterPrefixoOperadoraNoArquivo()) && x.Contains(operadora.ObterTexto())).ToList();
-            return lista[new Random(DateTime.Now.Millisecond).Next(0, lista.Count - 1)];
+            return lista[0];
         }
     }
 }

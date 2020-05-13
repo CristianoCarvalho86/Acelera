@@ -86,10 +86,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IniciarTeste(TipoArquivo.Comissao, "4196", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_EmsComissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+            EnviarParaOds(arquivo, true, "PROC22_4193");
 
+            var arquivoods = arquivo.Clone();
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
@@ -99,7 +100,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC22_4193");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
 
@@ -113,13 +114,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         public void SAP_4194()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.OCRCobranca, "4196", "FG05 - PROC22");
+            IniciarTeste(TipoArquivo.OCRCobranca, "4194", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_3_OcrCobranca();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.VIVO);
-            EnviarParaOds(arquivoods);
-
+            arquivo = new Arquivo_Layout_9_3_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+            EnviarParaOds(arquivo,true, "PROC22_4194");
+            var arquivoods = arquivo.Clone();
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
@@ -129,7 +130,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo(true, "PROC22_4194");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
     }

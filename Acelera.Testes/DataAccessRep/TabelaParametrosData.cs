@@ -389,7 +389,7 @@ namespace Acelera.Testes.DataAccessRep
             if(idCobertura != 0)
                sql += $" WHERE C.ID_COBERTURA = {idCobertura}";
             else if(!string.IsNullOrEmpty(cdCobertura))
-                sql += $" WHERE C.CD_COBERTURA = {idCobertura}";
+                sql += $" WHERE C.CD_COBERTURA = {cdCobertura}";
 
             return sql;
         }

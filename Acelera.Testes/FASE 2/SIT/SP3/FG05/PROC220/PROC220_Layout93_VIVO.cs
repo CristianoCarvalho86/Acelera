@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             arquivo.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivo,true, "PROC220");
+            EnviarParaOds(arquivo,true, "PROC220_4607");
             var arquivoOds1 = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivo, true, "PROC220");
+            EnviarParaOds(arquivo, true, "PROC220_4607");
             var arquivoods2 = arquivo.Clone();
 
             //Sinistro referente a cancelamento
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             
             IgualarCampos(arquivoods2, arquivo, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO","NR_PARCELA"});
 
-            SalvarArquivo(true, "PROC220");
+            SalvarArquivo(true, "PROC220_4607");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "220", 1);
         }
