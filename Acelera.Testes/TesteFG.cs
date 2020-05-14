@@ -1,8 +1,10 @@
 ﻿using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.Validadores.FG02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -76,6 +78,32 @@ namespace Acelera.Testes
         public virtual void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false , params string[] codigosDeErroEsperados)
         {
             ValidarTabelaDeRetorno(naoDeveEncontrar, false, codigosDeErroEsperados);
+        }
+
+        public virtual void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
+        {
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                return;
+
+            try
+            {
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
+                var validador = new ValidadorStages(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
+                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
+
+                var linhasEncontradas = new List<ILinhaTabela>();
+                if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
+                else
+                    ExplodeFalha();
+            }
+            catch (Exception)
+            {
+                TratarErro($" Validação da Stage : {tabela.ObterTexto()}");
+            }
+
+            if (sucessoDoTeste == false)
+                ExplodeFalha();
         }
 
 

@@ -5,6 +5,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.Validadores.FG01;
+using Acelera.Testes.Validadores.FG02;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,27 +90,6 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
-        {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return;
-
-            try { 
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
-            var validador = new ValidadorStagesFG01(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
-                valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
-
-            var linhasEncontradas = new List<ILinhaTabela>();
-            if (validador.ValidarTabelaFG01(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
-            else
-                ExplodeFalha();
-            }
-            catch (Exception)
-            {
-                TratarErro($" Validação da Stage : {tabela.ObterTexto()}");
-            }
-        }
         public void ValidarStages(CodigoStage codigo)
         {
             ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(),true,(int)codigo);
