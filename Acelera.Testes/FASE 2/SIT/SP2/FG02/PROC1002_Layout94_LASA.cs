@@ -23,8 +23,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_PRODUTO", dados.ObterCdProdutoParaTPA(ObterValorHeader("CD_TPA"),false));
-
+            AlterarLinha(0, "CD_PRODUTO", dados.ObterCdProdutoParaTPA(ObterValorHeader("CD_TPA"),false));
+            RemoverLinhasExcetoAsPrimeiras(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno(1, "1002");
             ValidarTeste();
 
@@ -55,8 +55,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_PRODUTO", dados.ObterCdProdutoParaTPA(ObterValorHeader("CD_TPA"), true));
-
+            AlterarLinha(0, "CD_PRODUTO", dados.ObterCdProdutoParaTPA(ObterValorHeader("CD_TPA"), true));
+            RemoverLinhasExcetoAsPrimeiras(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
@@ -68,8 +68,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true,"1002");
             ValidarTeste();
 
         }

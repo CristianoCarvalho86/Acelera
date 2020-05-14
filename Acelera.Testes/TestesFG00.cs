@@ -10,6 +10,7 @@ using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores;
 using Acelera.Testes.Validadores.FG00;
+using Acelera.Testes.Validadores.FG02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -72,32 +73,6 @@ namespace Acelera.Testes
             {
                 TratarErro($"FG00: Validação da ControleArquivo");
             }
-        }
-
-        public virtual void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
-        {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return;
-
-            try
-            { 
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-            var validador = new ValidadorStagesFG00(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
-                valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
-
-            var linhasEncontradas = new List<ILinhaTabela>();
-            if (validador.ValidarTabelaFG00(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-            else
-                ExplodeFalha();
-            }
-            catch (Exception)
-            {
-                TratarErro($"FG00: Validação da Stage : {tabela.ObterTexto()}");
-            }
-
-            if (sucessoDoTeste == false)
-                ExplodeFalha();
         }
 
         public override void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)

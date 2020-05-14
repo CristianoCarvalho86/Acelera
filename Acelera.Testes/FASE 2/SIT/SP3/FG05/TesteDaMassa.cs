@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
         {
             IniciarTeste(Domain.Enums.TipoArquivo.ParcEmissao, "9999", "teste de criação de massa");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-0490-20200316.TXT"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-0511-20200316.TXT"));
             SelecionarLinhaParaValidacao(0);
             SalvarArquivo();
             ValidarFGsAnteriores();

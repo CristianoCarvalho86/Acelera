@@ -121,26 +121,17 @@ namespace Acelera.Testes.FASE_2
             }
         }
 
-        public override void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
+        protected void ValidarStagesSemGerarErro(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false)
         {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return;
-
+            var statusAtualDoTeste = sucessoDoTeste;
             try
             {
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
-                var validador = new ValidadorStagesFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
-                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
-
-                var linhasEncontradas = new List<ILinhaTabela>();
-                if (validador.ValidarTabelaFG02(deveHaverRegistro, codigoEsperado, AoMenosUmComCodigoEsperado))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $" Tabela:{tabela.ObterTexto()}");
-                else
-                    ExplodeFalha();
+                ValidarStages(codigo, aoMenosUmComCodigoEsperado);
             }
-            catch (Exception)
+            catch(Exception ex)
             {
-                TratarErro($" Validação da Stage : {tabela.ObterTexto()}");
+                if (statusAtualDoTeste)
+                    sucessoDoTeste = true;
             }
         }
 

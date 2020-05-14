@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_3801_PARCEMS_AUTO_SEM_CRITICA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3801", "FG02 - PROC1002 - PARCEMS- Informar no campo Cd_PRODUTO um produto não parametrizado para o CD_TPA (CD_OPERAÇÃO) na tabela TAB_PRM_PRD_COBERTURA_7009");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3801", "FG02 - PROC1002 - PARCEMS- Informar no campo Cd_PRODUTO um produto não parametrizado para o CD_TPA (CD_OPERAÇÃO) na tabela TAB_PRM_PRD_COBERTURA_7009");
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
@@ -33,12 +33,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia,true);
+            ValidarTabelaDeRetorno(true,"1002");
             ValidarTeste();
 
         }
