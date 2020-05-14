@@ -103,6 +103,13 @@
     <Compile Include="Layouts\9_4_2\Arquivo_Layout_9_4_2.cs" />
     <Compile Include="Entidades\CampoDoArquivo.cs" />
     <Compile Include="Entidades\LinhaArquivo.cs" />
+    <Compile Include="Layouts\9_6\Arquivo_Layout_9_6_OcrCobranca.cs" />
+    <Compile Include="Layouts\9_6\Arquivo_Layout_9_6_LanctoComissao.cs" />
+    <Compile Include="Layouts\9_6\Arquivo_Layout_9_6_Sinistro.cs" />
+    <Compile Include="Layouts\9_6\Arquivo_Layout_9_6_EmsComissao.cs" />
+    <Compile Include="Layouts\9_6\Arquivo_Layout_9_6_ParcEmissao.cs" />
+    <Compile Include="Layouts\9_6\Arquivo_Layout_9_6_ParcEmissaoAuto.cs" />
+    <Compile Include="Layouts\9_6\Arquivo_Layout_9_6_Cliente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ArquivoOrigem.cs" />
