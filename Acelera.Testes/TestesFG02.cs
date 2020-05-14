@@ -309,7 +309,7 @@ namespace Acelera.Testes.FASE_2
                     //lista.Add("PRC_0070");
                     lista.Add("PRC_0080");
                     //lista.Add("PRC_0081");
-                    lista.Add("PRC_0082");
+                    //lista.Add("PRC_0082");
                     lista.Add("PRC_0085");
                     lista.Add("PRC_0086");
                     lista.Add("PRC_0087");
@@ -318,7 +318,7 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_0111");
                     lista.Add("PRC_0119");
                     lista.Add("PRC_0120");
-                    lista.Add("PRC_0128");
+                    //lista.Add("PRC_0128");
                     lista.Add("PRC_0130");
                     lista.Add("PRC_0131");
                     lista.Add("PRC_0132");
@@ -331,7 +331,7 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_0184");
                     lista.Add("PRC_0185");
                     lista.Add("PRC_1048");
-                    lista.Add("PRC_0129");
+                    //lista.Add("PRC_0129");
                     lista.Add("PRC_0267");
 
                     break;

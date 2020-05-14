@@ -232,6 +232,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(1, "DT_REGISTRO", "20200401");
             AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
+            RemoverLinhasExcetoAsPrimeiras(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
@@ -268,6 +269,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(1, "DT_REGISTRO", "20200307");
             AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
+            RemoverLinhasExcetoAsPrimeiras(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
@@ -376,6 +378,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "11");
             AlterarLinha(1, "DT_REGISTRO", "20200302");
             AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
+            RemoverLinhasExcetoAsPrimeiras(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200212.txt");
@@ -412,6 +415,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(1, "CD_TIPO_MOVIMENTO", "146");
             AlterarLinha(1, "DT_REGISTRO", "20200229");
             AlterarLinha(1, "CD_SINISTRO", ObterValor(0, "CD_SINISTRO"));
+            RemoverLinhasExcetoAsPrimeiras(2);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200213.txt");
