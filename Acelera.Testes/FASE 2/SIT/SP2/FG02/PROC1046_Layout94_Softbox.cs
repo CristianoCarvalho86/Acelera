@@ -14,7 +14,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// Informar DT_INICIO_VIGENCIA=D+1 DT_EMISSAO
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_3846_NR_CNPJ_CPF_inv()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "3846", "FG02 - PROC1046 - Informar DT_INICIO_VIGENCIA=D+1 DT_EMISSAO");
@@ -35,8 +35,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(1, "1046");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1046");
             ValidarTeste();
 
         }
@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno(1, "1046");
             ValidarTeste();
 
@@ -98,8 +98,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1046");
             ValidarTeste();
 
         }
