@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
-            AlterarLinha(0, "CD_FORMA_PAGTO", "P");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC120");
@@ -101,8 +101,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "120");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
@@ -134,8 +134,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "120");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
