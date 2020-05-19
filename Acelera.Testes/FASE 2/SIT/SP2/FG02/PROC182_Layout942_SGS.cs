@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "TP_SINISTRO", "1");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200211.txt");
@@ -247,7 +247,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -262,7 +262,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(true,"182");
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
         }
 
@@ -295,7 +295,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(true,"182");
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
         }
 
@@ -328,7 +328,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(true,"182");
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
         }
 
@@ -361,7 +361,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(true,"182");
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
         }
 
@@ -394,7 +394,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(true,"182");
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
         }
 
@@ -427,7 +427,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(true,"182");
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
         }
 
@@ -460,7 +460,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarTabelaDeRetorno(true,"182");
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
         }
     }
