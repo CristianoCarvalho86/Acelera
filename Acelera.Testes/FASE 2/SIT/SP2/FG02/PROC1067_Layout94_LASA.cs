@@ -53,7 +53,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3240-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
+            AlterarLinha(0, "CD_SUCURSAL", /*dados.ObterParceiroNegocio("SU", true)*/"73");
+
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
