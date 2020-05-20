@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_SINISTRO",
                 sucursal
                 + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
-                + DateTime.Now.ToString("yy")
+                + "19"
                 + ObterValorHeader("CD_TPA")
                 + GerarNumeroAleatorio(11));
 
@@ -82,8 +82,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "111");
             ValidarTeste();
 
         }

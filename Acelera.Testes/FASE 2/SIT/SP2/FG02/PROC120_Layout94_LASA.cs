@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_3040_CD_FORMA_PAGTO_inv()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "23040", "FG02 - PROC120 - Informar CD_TIPO_EMISSAO =146, e informar CD_FORMA_PAGTO=N");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3040", "FG02 - PROC120 - Informar CD_TIPO_EMISSAO =146, e informar CD_FORMA_PAGTO=N");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3224-20200320.txt"));
 
@@ -379,6 +379,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "8");
             AlterarLinha(0, "CD_FORMA_PAGTO", "R");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
@@ -412,6 +413,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "CD_FORMA_PAGTO", "C");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200325.txt");

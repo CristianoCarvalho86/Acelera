@@ -58,20 +58,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "2927", "FG02 - PROC111 - Informar CD SINISTRO = Sucursal(2)+Ramo(2)+Ano(2)+ Sequencial(9)");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3303-20200324.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-3301-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var sucursal = ObterValorFormatado(0, "CD_SINISTRO").Substring(0, 2);
             AlterarLinha(0, "CD_SINISTRO",
                 sucursal
                 + ObterValorFormatado(0, "CD_RAMO").ObterUltimosCaracteres(2)
-                + DateTime.Now.ToString("yy")
+                + "18"
                 + ObterValorHeader("CD_TPA")
                 + GerarNumeroAleatorio(6));
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.SINISTRO-EV-/*R*/-20200324.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -81,8 +81,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "111");
             ValidarTeste();
 
         }

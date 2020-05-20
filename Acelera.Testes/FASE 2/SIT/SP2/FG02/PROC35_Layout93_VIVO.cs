@@ -23,22 +23,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
 
-            AlterarLinha(2, "VL_JUROS", "-20.00");
-            AlterarLinha(2, "VL_DESCONTO", "-20.00");
-            AlterarLinha(2, "VL_PREMIO_LIQUIDO", "-20.00");
-            AlterarLinha(2, "VL_IOF", "-20.00");
-            AlterarLinha(2, "VL_ADIC_FRACIONADO", "-20.00");
-            AlterarLinha(2, "VL_CUSTO_APOLICE", "-20.00");
-            AlterarLinha(2, "VL_PREMIO_TOTAL", "-20.00");
-            AlterarLinha(2, "VL_TAXA_MOEDA", "-20.00");
-            AlterarLinha(2, "VL_LMI", "-20.00");
-            AlterarLinha(2, "VL_IS", "-20.00");
-            AlterarLinha(2, "VL_PERCENTUAL_COSSEGURO", "-20.00");
-            AlterarLinha(2, "VL_PREMIO_CEDIDO", "-20.00");
-            AlterarLinha(2, "VL_COMISSAO_CEDIDO", "-20.00");
-            AlterarLinha(2, "VL_FRANQUIA", "-20.00");
-            AlterarLinha(2, "VL_PERC_FATOR", "-20.00");
-            AlterarLinha(2, "VL_PERC_BONUS", "-20.00");
+            AlterarLinha(2, "VL_JUROS", "-20");
+            AlterarLinha(2, "VL_DESCONTO", "-20");
+            AlterarLinha(2, "VL_PREMIO_LIQUIDO", "-20");
+            AlterarLinha(2, "VL_IOF", "-20");
+            AlterarLinha(2, "VL_ADIC_FRACIONADO", "-20");
+            AlterarLinha(2, "VL_CUSTO_APOLICE", "-20");
+            AlterarLinha(2, "VL_PREMIO_TOTAL", "-20");
+            AlterarLinha(2, "VL_TAXA_MOEDA", "-20");
+            AlterarLinha(2, "VL_LMI", "-20");
+            AlterarLinha(2, "VL_IS", "-20");
+            AlterarLinha(2, "VL_PERCENTUAL_COSSEGURO", "-20");
+            AlterarLinha(2, "VL_PREMIO_CEDIDO", "-20");
+            AlterarLinha(2, "VL_COMISSAO_CEDIDO", "-20");
+            AlterarLinha(2, "VL_FRANQUIA", "-20");
+            AlterarLinha(2, "VL_PERC_FATOR", "-20");
+            AlterarLinha(2, "VL_PERC_BONUS", "-20");
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
