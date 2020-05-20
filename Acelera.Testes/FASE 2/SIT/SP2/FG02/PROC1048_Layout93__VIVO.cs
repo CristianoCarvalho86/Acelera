@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_3858_CLIENTE_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3857", "FG02 - PROC1048 - Informar CD_SEGURADORA diferente do parametrizado como SE na tabela ODS PARCEIRO");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "3858", "FG02 - PROC1048 - Informar CD_SEGURADORA diferente do parametrizado como SE na tabela ODS PARCEIRO");
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(true, "1046");
+            ValidarTabelaDeRetorno(true, "1048");
             ValidarTeste();
 
         }

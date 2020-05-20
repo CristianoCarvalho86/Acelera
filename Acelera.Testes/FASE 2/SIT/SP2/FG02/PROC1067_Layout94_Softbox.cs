@@ -50,13 +50,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "3874", "FG02 - PROC1067 - Informar CD_SUCURSAL pametrizado na tabela ODS PARCEIRO com CD=SU");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3260-20200322.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3292-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
-
+            AlterarLinha(0, "CD_SUCURSAL",/* dados.ObterParceiroNegocio("SU", true)*/"99");
+            //SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200322.txt");
+            SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200324.txt");
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -66,8 +67,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1067");
             ValidarTeste();
 
         }
