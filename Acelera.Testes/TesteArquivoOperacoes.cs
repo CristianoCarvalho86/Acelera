@@ -313,7 +313,7 @@ namespace Acelera.Testes
         public decimal SomarDoisCamposDoArquivo(int posicaoLinha, string campo1, string campo2)
         {
             var linha = arquivo.ObterLinha(posicaoLinha);
-            if (!decimal.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatadoNumerico, out decimal Valor1) || !decimal.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatadoNumerico, out decimal Valor2))
+            if (!decimal.TryParse(linha.ObterCampoDoArquivo(campo1).ValorFormatadoNumerico, out decimal Valor1) || !decimal.TryParse(linha.ObterCampoDoArquivo(campo2).ValorFormatadoNumerico, out decimal Valor2))
                 throw new Exception("VALOR DOS CAMPOS A SEREM SOMADOS PRECISA SER INTEIRO");
 
             return Valor1 + Valor2;
