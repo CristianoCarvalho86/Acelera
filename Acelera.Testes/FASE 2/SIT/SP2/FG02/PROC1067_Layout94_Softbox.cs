@@ -53,8 +53,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3292-20200324.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SUCURSAL",/* dados.ObterParceiroNegocio("SU", true)*/"99");
-            //SelecionarLinhaParaValidacao(0);
+            //AlterarLinha(0, "CD_SUCURSAL",/* dados.ObterParceiroNegocio("SU", true)*/"99");
+            SelecionarLinhaParaValidacao(0);
             RemoverLinhasExcetoAsPrimeiras(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200324.txt");
