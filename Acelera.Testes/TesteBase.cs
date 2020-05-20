@@ -27,7 +27,7 @@ namespace Acelera.Testes
     [TestClass]
     public abstract class TesteBase : TesteArquivoOperacoes
     {
-        private DBHelper helper = DBHelper.Instance;
+        private DBHelperHana helper = DBHelperHana.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
         protected string numeroDoTeste;
         protected bool sucessoDoTeste;

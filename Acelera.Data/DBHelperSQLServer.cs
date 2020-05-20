@@ -9,7 +9,7 @@ using Sap.Data.Hana;
 
 namespace Acelera.Data
 {
-    public class DBHelperSQLServer
+    public class DBHelperSQLServer: IDBHelper
     {
         public string ConnectionString { get; set; }
         private SqlConnection Conn { get; set; }
