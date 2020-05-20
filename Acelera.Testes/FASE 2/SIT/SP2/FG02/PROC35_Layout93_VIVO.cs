@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(33,"35");
+            ValidarTabelaDeRetorno(15 ,"35");
             ValidarTeste();
         }
 
@@ -64,15 +64,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_2805_COBRANCA_NUMEROS_NEGATIVOS()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2805", "FG02 - PROC35 - Informar campo NR_PARCELA, CD_OCORRENCIA, VL_DESCONTO negativo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2805", "FG02 - PROC35 - Informar campo NR_PARCELA, CD_OCORRENCIA, VL_DESCONTO negativo");
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1870-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "VL_DESCONTO", "-200.10");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.EMSCMS-EV-/*R*/-20200211.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(3, "35");
+            ValidarTabelaDeRetorno(1, "35");
             ValidarTeste();
         }
 
@@ -96,7 +96,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2806", "FG02 - PROC35 - Informar campo negativo");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "VL_JUROS", "20");
@@ -128,8 +128,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "35");
             ValidarTeste();
         }
 
@@ -158,8 +158,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "35");
             ValidarTeste();
         }
 
@@ -189,7 +189,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia, true);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno(true, "35");
             ValidarTeste();
         }
@@ -201,16 +201,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_2809_COBRANCA_NUMEROS_POSITIVOS()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2809", "FG02 - PROC35 - Informar campo NR_PARCELA, CD_OCORRENCIA, VL_DESCONTO positivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2809", "FG02 - PROC35 - Informar campo NR_PARCELA, CD_OCORRENCIA, VL_DESCONTO positivo");
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1865-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.COBRANCA-EV-1866-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(2, "CD_OCORRENCIA", "20");
             AlterarLinha(2, "NR_PARCELA", "2");
             AlterarLinha(2, "VL_DESCONTO", "200.10");
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.VIVO.EMSCMS-EV-/*R*/-20200211.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
@@ -220,7 +220,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno();
             ValidarTeste();
         }

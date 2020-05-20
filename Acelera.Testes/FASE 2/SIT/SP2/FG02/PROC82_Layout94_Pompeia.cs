@@ -25,8 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "CD_MOVIMENTO", "3");
 
             AlterarLinha(1, "CD_MOVIMENTO", "3");
-
-
+            AlterarLinha(1, "CD_SINISTRO", "717720025000051");
+            AlterarLinha(1, "CD_AVISO", ObterValorFormatado(0, "CD_AVISO"));
 
             RemoverLinhasExcetoAsPrimeiras(2);
 

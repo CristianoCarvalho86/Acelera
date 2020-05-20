@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(10,"35");
+            ValidarTabelaDeRetorno(8,"35");
             ValidarTeste();
         }
 
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno(2,"35");
+            ValidarTabelaDeRetorno(1,"35");
             ValidarTeste();
         }
 
@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_2813_COBRANCA_NUMEROS_NEGATIVOS()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2813", "FG02 - PROC35 - Informar campo VL_PREMIO_PAGO VL_MULTA VL_IOF_RETIDO negativo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2813", "FG02 - PROC35 - Informar campo VL_PREMIO_PAGO VL_MULTA VL_IOF_RETIDO negativo");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
@@ -142,8 +142,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true,"35");
             ValidarTeste();
         }
 
@@ -172,7 +172,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno(true, "35");
             ValidarTeste();
         }
@@ -184,7 +184,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Sem Critica")]
         public void SAP_2818_COBRANCA_NUMEROS_POSITIVOS()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2818", "FG02 - PROC35 - Informar campo VL_PREMIO_PAGO VL_MULTA VL_IOF_RETIDO positivo");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2818", "FG02 - PROC35 - Informar campo VL_PREMIO_PAGO VL_MULTA VL_IOF_RETIDO positivo");
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
 
@@ -204,8 +204,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true,"35");
             ValidarTeste();
         }
 
