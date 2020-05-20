@@ -97,9 +97,9 @@ namespace Acelera.Testes
                 else
                     ExplodeFalha();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TratarErro($" Validação da Stage : {tabela.ObterTexto()}");
+                TratarErro($" Validação da Stage : {tabela.ObterTexto()} - {ex.Message}");
             }
 
             if (sucessoDoTeste == false)
