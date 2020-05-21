@@ -63,6 +63,8 @@
     <Compile Include="Entidades\Consultas\FabricaConsulta.cs" />
     <Compile Include="Entidades\Interfaces\ILinhaTabela.cs" />
     <Compile Include="Entidades\LinhaTabela.cs" />
+    <Compile Include="Entidades\SGS\ClienteSGS.cs" />
+    <Compile Include="Entidades\SGS\ParcelaSGS.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaClienteStage.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaComissaoStage.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaLanctoComissaoStage.cs" />

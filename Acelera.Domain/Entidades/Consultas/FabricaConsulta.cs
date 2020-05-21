@@ -83,7 +83,21 @@ namespace Acelera.Domain.Entidades.Consultas
             return consultas;
         }
 
-        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaTabelaDeRetornoFG02(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
+        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool alteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
+        {
+            var consultas = new List<KeyValuePair<int, Consulta>>();
+            var consulta = new Consulta();
+
+            if (!existeLinhaNoArquivo || alteracaoDeHeaderOuFooter || !valoresAlteradosBody.ExisteAlteracaoValida())
+            {
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
+                return consultas;
+            }
+            return MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
+        }
+
+        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
         {
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
