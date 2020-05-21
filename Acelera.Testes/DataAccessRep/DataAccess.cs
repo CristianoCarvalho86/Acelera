@@ -43,18 +43,19 @@ namespace Acelera.Testes.DataAccessRep
             return tabela.Linhas;
         }
 
-        public static string ConsultaUnica(string sql, string parametroBuscado, IDBHelper dBHelper , IMyLogger logger)
+        public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger)
         {
+            IDBHelper helper = ObterBanco(dbEnum);
             string resultado;
             try
             {
                 if (logger == null)
-                    return ConsultaUnica(sql,dBHelper);
+                    return ConsultaUnica(sql,dbEnum);
 
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
 
                 logger.Escrever("Consulta Realizada :" + sql);
-                resultado = dBHelper.ObterResultadoUnico(sql);
+                resultado = helper.ObterResultadoUnico(sql);
 
 
                 if (string.IsNullOrEmpty(resultado))
@@ -73,12 +74,13 @@ namespace Acelera.Testes.DataAccessRep
             return resultado;
         }
 
-        public static string ConsultaUnica(string sql, IDBHelper dBHelper, bool validaResultadoUnico = true)
+        public static string ConsultaUnica(string sql, DBEnum dbEnum, bool validaResultadoUnico = true)
         {
+            IDBHelper helper = ObterBanco(dbEnum);
             string resultado;
             try
             {
-                resultado = dBHelper.ObterResultadoUnico(sql, validaResultadoUnico);
+                resultado = helper.ObterResultadoUnico(sql, validaResultadoUnico);
                 if (string.IsNullOrEmpty(resultado) && validaResultadoUnico)
                     throw new Exception("Resultado nao encontrado");
             }

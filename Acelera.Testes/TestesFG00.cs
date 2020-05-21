@@ -9,7 +9,6 @@ using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores;
-using Acelera.Testes.Validadores.FG00;
 using Acelera.Testes.Validadores.FG02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

@@ -4,7 +4,6 @@ using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
-using Acelera.Testes.Validadores.FG00;
 using Acelera.Testes.Validadores.FG01;
 using System;
 using System.Collections.Generic;
