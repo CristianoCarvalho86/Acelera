@@ -22,7 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3276-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", dados.ObterCdTipoEmissao(TipoArquivo.ParcEmissao, false));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.txt");
@@ -85,7 +86,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3212-20200319.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", dados.ObterCdTipoEmissao(TipoArquivo.ParcEmissao, true));
+            AlterarLinha(1, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(1, "ID_TRANSACAO_CANC", "1234567");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200319.txt");
@@ -98,8 +100,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1056");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }

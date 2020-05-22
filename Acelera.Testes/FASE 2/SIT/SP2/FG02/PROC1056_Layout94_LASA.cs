@@ -86,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_EMISSAO", dados.ObterCdTipoEmissao(TipoArquivo.ParcEmissao, true));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
