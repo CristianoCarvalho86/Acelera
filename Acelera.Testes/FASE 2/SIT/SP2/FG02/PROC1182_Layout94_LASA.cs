@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "1"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("PROC1182");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

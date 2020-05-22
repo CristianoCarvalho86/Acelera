@@ -209,15 +209,15 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_1024");
                     lista.Add("PRC_1046");
                     lista.Add("PRC_1048");
-                    //lista.Add("PRC_1056");
+                    lista.Add("PRC_1056");
                     lista.Add("PRC_1065");
                     lista.Add("PRC_1067");
                     lista.Add("PRC_1083");
                     lista.Add("PRC_1091");
                     lista.Add("PRC_1092");
-                    //lista.Add("PRC_1182");
-                    //lista.Add("PRC_1183");
-                    //lista.Add("PRC_1184");
+                    lista.Add("PRC_1182");
+                    lista.Add("PRC_1183");
+                    lista.Add("PRC_1184");
 
                     break;
 
@@ -251,15 +251,15 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_1024");
                     lista.Add("PRC_1046");
                     lista.Add("PRC_1048");
-                    //lista.Add("PRC_1056");
+                    lista.Add("PRC_1056");
                     lista.Add("PRC_1065");
                     lista.Add("PRC_1067");
                     lista.Add("PRC_1083");
                     lista.Add("PRC_1091");
                     lista.Add("PRC_1092");
-                    //lista.Add("PRC_1182");
-                    //lista.Add("PRC_1183");
-                    //lista.Add("PRC_1184");
+                    lista.Add("PRC_1182");
+                    lista.Add("PRC_1183");
+                    lista.Add("PRC_1184");
                     break;
                 case TipoArquivo.Comissao:
                     lista.Add("PRC_0033");

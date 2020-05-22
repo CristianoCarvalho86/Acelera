@@ -25,6 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_PRODUTO", dados.ObterCdProdutoParaTPA(ObterValorHeader("CD_TPA"),false));
             RemoverLinhasExcetoAsPrimeiras(1);
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
