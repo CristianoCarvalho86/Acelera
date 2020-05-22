@@ -63,8 +63,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
+            AlterarLinha(0, "VL_IOF", "50");
 
-            EnviarParaOds(arquivo,true, "PROC216");
+            EnviarParaOds(arquivo,true, "PROC216_4598");
 
             var arquivoods = arquivo.Clone();
 
@@ -79,7 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(1, "VL_COMISSAO", "60");                   
 
             //Salvar e executar
-            SalvarArquivo(true, "PROC216");
+            SalvarArquivo(true, "PROC216_4598");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 

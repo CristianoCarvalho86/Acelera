@@ -22,16 +22,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             IniciarTeste(TipoArquivo.ParcEmissao, "4539", "FG05 - PROC212 - ");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo ,2 , OperadoraEnum.LASA);
-
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.TXT"));
 
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", "");//caso venha uma linha de cancelamento
+            //AlterarLinha(2, "ID_TRANSACAO_CANC", "");//caso venha uma linha de cancelamento
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
-
-            AjustarQtdLinFooter();
+            RemoverLinhasExcetoAsPrimeiras(1);
 
 
             var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
@@ -40,14 +39,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 2, OperadoraEnum.LASA);
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.TXT"));
 
+            RemoverLinhasExcetoAsPrimeiras(1);
             IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "2");
+
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+
+            
 
             SalvarArquivo(true, "PROC212_4539");
 

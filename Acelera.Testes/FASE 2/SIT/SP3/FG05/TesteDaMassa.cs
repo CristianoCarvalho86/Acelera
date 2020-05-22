@@ -64,12 +64,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
         public void TestarMultiplos2()
         {
             var logger = new Mock<IMyLogger>().Object;
-            var files = Directory.GetFiles(@"C:\Cristiano\Exportacao\teste\CONSOLIDADO\teste");
+            var files = Directory.GetFiles(@"C:\Cristiano\Exportacao\teste\CONSOLIDADO\teste").Where(x => x.Contains("PARCEMS") && !x.Contains("PARCEMSAUTO"));
             DataTable table;
             string resultado = "";
             foreach (var file in files)
             {
-                table = DataAccess.Consulta($"select CD_MENSAGEM from HDIQAS_1.TAB_ARQ_RETORNO_8002  WHERE (NM_ARQUIVO_TPA = '{file}' ) ","", logger);
+                table = DataAccess.Consulta($"select CD_MENSAGEM from HDIQAS_1.TAB_ARQ_RETORNO_8002  WHERE (NM_ARQUIVO_TPA = '{file.Split('\\').Last()}' ) ","", logger);
                 if (table.Rows.Count > 0)
                     foreach (DataRow row in table.Rows)
                         resultado += file + ";" + row["CD_MENSAGEM"].ToString() + Environment.NewLine;

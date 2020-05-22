@@ -33,6 +33,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             AlterarLinha(0, "CD_CLIENTE", cdCliente);
+            AlterarLinha(0, "VL_LMI", "100");
+            AlterarLinha(0, "VL_IS", "100");
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", ObterValor(0, "DT_EMISSAO"));
+
 
             SalvarArquivo(false, "PROC227_4631");
 
