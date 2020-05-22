@@ -89,7 +89,7 @@ namespace Acelera.Testes.DataAccessRep
             return resultado;
         }
 
-        public static DataTable Consulta(string sql, string parametroBuscado, IMyLogger logger)
+        public static DataTable Consulta(string sql, string parametroBuscado, IMyLogger logger, bool validaResultadoVazio = true)
         {
             DataTable tabela;
             try
@@ -99,7 +99,7 @@ namespace Acelera.Testes.DataAccessRep
 
                 tabela = DBHelper.Instance.GetData(sql);
 
-                if (tabela.Rows.Count == 0)
+                if (tabela.Rows.Count == 0 && !validaResultadoVazio)
                     throw new Exception("NENHUMA LINHA ENCONTRADA");
 
                 logger.LogRetornoQuery(tabela, sql);
