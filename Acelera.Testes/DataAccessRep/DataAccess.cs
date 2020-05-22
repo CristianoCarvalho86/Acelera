@@ -91,6 +91,15 @@ namespace Acelera.Testes.DataAccessRep
             return resultado;
         }
 
+        /// <summary>
+        /// Default, using Hana
+        /// </summary>
+        /// <returns>Full filled DataTable</returns>
+        public static DataTable Consulta(string sql, string parametroBuscado, IMyLogger logger)
+        {
+            return Consulta(sql, parametroBuscado,DBEnum.Hana, logger);
+        }
+
         public static DataTable Consulta(string sql, string parametroBuscado, DBEnum dbEnum, IMyLogger logger)
         {
             IDBHelper helper = ObterBanco(dbEnum);
