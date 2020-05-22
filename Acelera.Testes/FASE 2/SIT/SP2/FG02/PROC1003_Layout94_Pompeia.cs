@@ -22,8 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura(dados.ObterIdCoberturaParaTPA(ObterValorHeader("CD_TPA"), true));
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_COBERTURA", "01589");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -36,8 +36,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetorno();
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1003");
             ValidarTeste();
 
         }
