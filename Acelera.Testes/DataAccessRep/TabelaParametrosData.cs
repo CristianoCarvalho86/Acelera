@@ -294,7 +294,7 @@ namespace Acelera.Testes.DataAccessRep
             var clausula = diferenteDeCdCorretor == null ? "" : diferenteDeCdCorretor.Select(x => $" CD_PN_CORRETOR <> '{x}'").ToList().ObterListaConcatenada(" AND ");
             if (relacionado)
                 return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true, clausula);
-            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula , $" CD_TIPO_REMUNERACAO <> '{cdTipoRemuneracao}' ");
+            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula);
         }
 
         public string ObterCdParceiroNegocioParaTPA(string cdTpa)
