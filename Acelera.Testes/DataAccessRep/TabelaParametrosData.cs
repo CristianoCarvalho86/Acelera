@@ -71,11 +71,12 @@ namespace Acelera.Testes.DataAccessRep
            return ObterRetornoPadrao("CD_MOEDA", "TAB_PRM_MOEDA_7030", existente);
         }
 
-        private string ObterRetornoNotIn(string campoBusca, string campoComparacao, string valor, string tabela, string clausula = "")
+        private string ObterRetornoNotIn(string campoBusca, string campoComparacao, string valor, string tabela,string clausula = "", string clausulaDoNotIn = "")
         {
             clausula = clausula == "" ? "" : " AND " + clausula;
+            clausulaDoNotIn = clausulaDoNotIn == "" ? "" : " AND " + clausulaDoNotIn;
             var select = $"select top 1 {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoBusca} NOT IN" +
-                $" (select {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoComparacao} = '{valor}') {clausula}";
+                $" (select {campoBusca} from {Parametros.instanciaDB}.{tabela} WHERE {campoComparacao} = '{valor}' {clausulaDoNotIn} ) {clausula}";
 
 
             return DataAccess.ConsultaUnica(select, $"{campoBusca} nao Ligada ao {campoComparacao} de valor: {valor} ", logger);
@@ -293,7 +294,7 @@ namespace Acelera.Testes.DataAccessRep
             var clausula = diferenteDeCdCorretor == null ? "" : diferenteDeCdCorretor.Select(x => $" CD_PN_CORRETOR <> '{x}'").ToList().ObterListaConcatenada(" AND ");
             if (relacionado)
                 return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true, clausula);
-            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula);
+            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula , $" CD_TIPO_REMUNERACAO <> '{cdTipoRemuneracao}' ");
         }
 
         public string ObterCdParceiroNegocioParaTPA(string cdTpa)
