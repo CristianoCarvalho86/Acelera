@@ -19,12 +19,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "2794", "FG02 - PROC33 - Enviar 1 arquivo PARC_EMS_AUTO com CD_TIPO_EMISSAO-7, CD_ENDOSSO=7, nr_Seq_emissao=2");
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1868-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_TIPO_EMISSAO", "7");
-            AlterarLinha(2, "NR_ENDOSSO", "7");
-            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "NR_ENDOSSO", "7");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC33");
@@ -81,8 +82,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "33");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }

@@ -22,9 +22,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3272-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_TIPO_EMISSAO", "20");
-            AlterarLinha(2, "NR_ENDOSSO", "123");
-            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "NR_ENDOSSO", "7");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200323.txt");

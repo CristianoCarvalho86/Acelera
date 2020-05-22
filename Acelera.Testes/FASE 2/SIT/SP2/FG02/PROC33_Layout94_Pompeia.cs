@@ -22,9 +22,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(2, "CD_TIPO_EMISSAO", "7");
-            AlterarLinha(2, "NR_ENDOSSO", "7");
-            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "NR_ENDOSSO", "7");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.txt");

@@ -62,7 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         [TestCategory("Com Critica")]
         public void SAP_3181_ID_TRANSACAO_CANC_IGUAL_ID_TRANSACAO_PARA()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "3172", "FG02 - PROC123 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "3181", "FG02 - PROC123 - PARC AUTO- ID_TRANSACAO_CANC igual ID_TRANSACAO ");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3325-20200326.txt"));
 
