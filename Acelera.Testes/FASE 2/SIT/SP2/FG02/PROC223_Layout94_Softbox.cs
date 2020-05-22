@@ -25,7 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
             ReplicarLinhaComCorrecao(0, 1);
 
-            AlterarLinha(1, "NR_ENDOSSO", "12345");
+            AlterarLinha(1, "NR_ENDOSSO", SomarValor(0, "NR_ENDOSSO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
             AlterarLinha(1, "CD_TIPO_EMISSAO", "10");
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "01");
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
@@ -63,6 +64,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
             ReplicarLinhaComCorrecao(0, 1);
 
+            AlterarLinha(1, "NR_ENDOSSO", SomarValor(0, "NR_ENDOSSO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "01");
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
@@ -102,6 +105,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
             ReplicarLinhaComCorrecao(0, 1);
 
+            AlterarLinha(1, "NR_ENDOSSO", SomarValor(0, "NR_ENDOSSO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
             AlterarLinha(1, "CD_TIPO_EMISSAO", "9");
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
@@ -117,8 +122,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "223");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
@@ -140,6 +145,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             var idTransacao = SomarValores(ObterValorFormatado(0, "ID_TRANSACAO"), "1");
             ReplicarLinhaComCorrecao(0, 1);
 
+            AlterarLinha(1, "NR_ENDOSSO", SomarValor(0, "NR_ENDOSSO", 1));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
             AlterarLinha(1, "ID_TRANSACAO_CANC", idTransacao);
@@ -155,8 +162,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "223");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }

@@ -1287,8 +1287,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
-            AlterarLinha(0, "CD_COBERTURA",cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMenor,"-1"));
             AlterarLinha(1, "CD_COBERTURA",cobertura.CdCobertura);
             AlterarLinha(1, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "1"));
 
@@ -1310,8 +1308,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3224-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_COBERTURA", "104670");
-            AlterarLinha(0, "VL_JUROS", "0.10");
+            var cobertura = dados.ObterCobertura();
+            AlterarLinha(1, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(1, "VL_JUROS", SomarValores(cobertura.ValorJurosMaior, "1"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC1183-C01.LASA.PARCEMS-EV-/*R*/-20200320.TXT");
@@ -1332,8 +1331,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValores(cobertura.ValorAdicionalMenor, "-1"));
             AlterarLinha(1, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValores(cobertura.ValorAdicionalMaior, "1"));
 

@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3244-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", "18");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200321.txt");

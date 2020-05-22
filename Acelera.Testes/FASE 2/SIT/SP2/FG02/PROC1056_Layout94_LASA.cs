@@ -22,7 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3158-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", dados.ObterCdTipoEmissao(TipoArquivo.ParcEmissao, false));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", dados.ObterCdTipoEmissao(TipoArquivo.ParcEmissao, false));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200316.txt");
@@ -85,7 +86,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_TIPO_EMISSAO", dados.ObterCdTipoEmissao(TipoArquivo.ParcEmissao, true));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", dados.ObterCdTipoEmissao(TipoArquivo.ParcEmissao, true));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"C01.LASA.PARCEMS-EV-/*R*/-20200318.txt");
@@ -98,8 +100,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1056");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }

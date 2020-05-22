@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(1, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SU"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

@@ -21,13 +21,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3224-20200320.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            //var cobertura = dados.ObterCobertura();
-            //AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            // AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "1"));
-            AlterarLinha(0, "VL_DESCONTO", "1");
+            var cobertura = dados.ObterCobertura();
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "1"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("PROC1182");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
