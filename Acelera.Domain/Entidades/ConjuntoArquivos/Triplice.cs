@@ -73,11 +73,11 @@ namespace Acelera.Domain.Entidades.ConjuntoArquivos
             ArquivoCliente.AjustarQtdLinhasNoFooter();
 
             if (Operadora == OperadoraEnum.VIVO)
-                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissaoAuto, Operadora, PastaOrigem), 1, 1, 1);
+                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissaoAuto, Operadora, PastaOrigem), 1, 1, 2);
             else
-                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 1);
+                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 2);
             
-            ArquivoComissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Comissao, Operadora, PastaOrigem), 1, 1, 1);
+            ArquivoComissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Comissao, Operadora, PastaOrigem), 1, 1, 2);
         }
 
         private void IgualarArquivos()
@@ -103,6 +103,12 @@ namespace Acelera.Domain.Entidades.ConjuntoArquivos
 
         protected void SalvarArquivo(Arquivo arquivo , TipoArquivo tipoArquivo, string nomeArquivo)
         {
+            if(tipoArquivo == TipoArquivo.ParcEmissao || tipoArquivo == TipoArquivo.ParcEmissaoAuto)
+            for (int i = 0; i < arquivo.Linhas.Count; i++)
+            {
+                arquivo.AlterarLinha(i, "ID_TRANSACAO", CarregarIdtransacao(arquivo.Linhas[i]));
+            }
+
             var array = nomeArquivo.Split('-');
             array[2] = "/*R*/";
             nomeArquivo = array.ToList().ObterListaConcatenada("-");
@@ -113,6 +119,11 @@ namespace Acelera.Domain.Entidades.ConjuntoArquivos
                     arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
             arquivo.Salvar(PastaDestino + nomeArquivo);
+        }
+
+        protected string CarregarIdtransacao(LinhaArquivo linha)
+        {
+            return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }
 
     }

@@ -321,7 +321,7 @@ namespace Acelera.Testes
 
         public string SomarValores(decimal valor1 , decimal valor2)
         {
-            return (valor1 + valor2).ToString().Replace(",",".");
+            return (valor1 + valor2).ToString("0.00").Replace(",",".").Replace(".00","");
         }
         public string SomarValores(string valor1, string valor2)
         {
