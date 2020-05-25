@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts;
+using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Utils;
 using System;
@@ -19,24 +20,39 @@ namespace Acelera.Testes.DataAccessRep
             this.logger = logger;
         }
 
-        public bool ValidarCdContratoDisponivel()
+        public bool ValidarCdContratoDisponivel(string cdContrato)
         {
-            var ControleArq
+            logger.AbrirBloco($"VALIDANDO SE O CD_CONTRATO '{cdContrato}' JÁ FOI USADO NOS NOSSOS TESTES.");
+            var controle = ControleCDContratoFG03.Instancia;
+            var retorno = controle.ValidaContrato(cdContrato);
+            logger.Escrever($"CD_CONTRATO JÁ UTILIZADO : {!retorno}");
+            logger.FecharBloco();
         }
 
         public bool ValidarCdTpaNaParametroGlobal(string cdTpa)
         {
-
+            logger.AbrirBloco($"VALIDAR SE OPERAÇÃO ESTÁ MARCADA COMO EXTRAÇÃO SGS. CD_TPA:'{cdTpa}'");
             var sql = $"SELECT DS_VALOR FROM {Parametros.instanciaDB}.TAB_PRM_PARAMETRO_GLOBAL_7023 WHERE NM_CAMPO = 'OPERACAO_SGS' AND DS_VALOR = '{cdTpa}'";
             var table = DataAccess.Consulta(sql, "OBTER OPERACAO_SGS PARA O CD_TPA", DBEnum.Hana, logger);
-            return table.Rows.Count == 0 ? false : true;
+            if(table.Rows.Count == 0)
+            {
+                logger.Erro($"BUSCA NA TAB_PRM_PARAMETRO_GLOBAL_7023 NÃO ENCONTROU VALOR PARA ESTA OPERAÇÃO. CD_TPA:'{cdTpa}'");
+                return false;
+            }
+            return true;
         }
 
         public bool ValidarRegistroNaoExisteNaODSParcela(string cdPnOperacao, string cdContrato, string nrSeqEmissao)
         {
+            logger.AbrirBloco("VALIDANDO SE O REGISTRO NAO EXISTE NA ODS PARCELA.");
             var sql = $"Select '1' FROM {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003 WHERE CD_PN_OPERACAO = '{cdPnOperacao}' and CD_CONTRATO = '{cdContrato}' and NR_SEQ_EMISSAO = '{nrSeqEmissao}'";
             var table = DataAccess.Consulta(sql, "VALIDAR QUE REGISTRO NAO EXISTE NA STAGE", DBEnum.Hana, logger);
-            return table.Rows.Count == 0 ? true : false;
+            if (table.Rows.Count > 0)
+            {
+                logger.Erro($"REGISTRO EXISTENTE NA TABELA ODS PARCELA. CdPnOperacao:'{cdPnOperacao}'; CdContrato:'{cdContrato}'; NrSeqEmissao:'{nrSeqEmissao}' ");
+                return false;
+            }
+            return true;
         }
 
         public bool ValidaTabelasTemporariasSGS(string cdItem, string cdContrato, string nrSeqEmissao, string cdCliente,
@@ -64,30 +80,40 @@ namespace Acelera.Testes.DataAccessRep
 
         }
 
-        public ClienteSGS CarregarClienteSGS()
+        public ClienteSGS CarregarClienteSGS(string cdCliente)
         {
-            var sql = $" {ClienteSGS.ObterTextoSelect()} FROM {ClienteSGS.NomeTabela} WHERE ? ";
-            return ClienteSGS.CarregarEntidade(DataAccess.Consulta(sql,"OBTER CLIENTES DA SGS", DBEnum.SqlServer, logger)).First();
+            logger.AbrirBloco("CARREGAR CLIENTE DO BANCO SGS.");
+            var sql = $" {ClienteSGS.ObterTextoSelect()} FROM {ClienteSGS.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}' ";
+            var clientes = ClienteSGS.CarregarEntidade(DataAccess.Consulta(sql,"OBTER CLIENTES DA SGS", DBEnum.SqlServer, logger));
+            Assertions.ValidarRegistroUnicoNaLista(clientes, logger, "LISTA DE CLIENTES DA SGS", true);
+            return clientes.First();
         }
 
-        public EnderecoSGS CarregarEnderecoSGS()
+        public IList<EnderecoSGS> CarregarEnderecoSGS(string cdCliente)
         {
-            var sql = $" {EnderecoSGS.ObterTextoSelect()} FROM {EnderecoSGS.NomeTabela} WHERE ? ";
-            return EnderecoSGS.CarregarEntidade(DataAccess.Consulta(sql, "OBTER ENDERECO DA SGS", DBEnum.SqlServer, logger)).First();
+            var sql = $" {EnderecoSGS.ObterTextoSelect()} FROM {EnderecoSGS.NomeTabela} WHERE COD_PESS = '{cdCliente}' ";
+            return EnderecoSGS.CarregarEntidade(DataAccess.Consulta(sql, $"OBTER ENDERECO DO CLIENTE '{cdCliente}' DA SGS.", DBEnum.SqlServer, logger));
         }
 
         public PaisSGS CarregarPaisSGS()
         {
+            throw new NotImplementedException();
             var sql = $" {PaisSGS.ObterTextoSelect()} FROM {PaisSGS.NomeTabela} WHERE ? ";
             return PaisSGS.CarregarEntidade(DataAccess.Consulta(sql, "OBTER PAIS DA SGS", DBEnum.SqlServer, logger)).First();
         }
 
 
-        public void ValidarStageCliente(MassaCliente_Sinistro massaCliente)
+        public bool ValidarStageCliente(MassaCliente_Sinistro massaCliente)
         {
             //FALTA COMPLETAR O WHERE DESSA QUERY
             var sql = $"SELECT '1' FROM TAB_STG_CLIENTE_1000 WHERE {massaCliente.ObterTextoWhere()} ";
-            DataAccess.ConsultaUnica(sql);
+            var table = DataAccess.Consulta(sql,"REGISTRO NA STAGE CLIENTE.",logger);
+            if(table.Rows.Count == 0)
+            {
+                logger.Erro("REGISTRO NAO ENCONTRADO NA TAB_STG_CLIENTE_1000");
+                return false;
+            }
+            return true;
         }
 
         public bool ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
