@@ -48,7 +48,12 @@ namespace Acelera.Testes.DataAccessRep
             return ConsultaUnica(sql, parametroBuscado, DBEnum.Hana, logger);
         }
 
-        public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger)
+        public static string ConsultaUnica(string sql, IMyLogger logger, bool validaResultadoUnico = true)
+        {
+            return ConsultaUnica(sql, string.Empty, DBEnum.Hana, logger, validaResultadoUnico);
+        }
+
+        public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger, bool validaResultadoUnico = true)
         {
             IDBHelper helper = ObterBanco(dbEnum);
             string resultado;
@@ -60,7 +65,7 @@ namespace Acelera.Testes.DataAccessRep
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
 
                 logger.Escrever("Consulta Realizada :" + sql);
-                resultado = helper.ObterResultadoUnico(sql);
+                resultado = helper.ObterResultadoUnico(sql, validaResultadoUnico);
 
 
                 if (string.IsNullOrEmpty(resultado))
@@ -81,7 +86,7 @@ namespace Acelera.Testes.DataAccessRep
 
         public static string ConsultaUnica(string sql, bool validaResultadoUnico = true)
         {
-            return ConsultaUnica(sql, DBEnum.Hana);
+            return ConsultaUnica(sql, DBEnum.Hana,validaResultadoUnico);
         }
 
         public static string ConsultaUnica(string sql, DBEnum dbEnum, bool validaResultadoUnico = true)

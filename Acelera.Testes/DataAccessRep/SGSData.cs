@@ -27,6 +27,7 @@ namespace Acelera.Testes.DataAccessRep
             var retorno = controle.ValidaContrato(cdContrato);
             logger.Escrever($"CD_CONTRATO JÁ UTILIZADO : {!retorno}");
             logger.FecharBloco();
+            return retorno;
         }
 
         public bool ValidarCdTpaNaParametroGlobal(string cdTpa)
@@ -91,8 +92,11 @@ namespace Acelera.Testes.DataAccessRep
 
         public IList<EnderecoSGS> CarregarEnderecoSGS(string cdCliente)
         {
+            logger.AbrirBloco("CARREGAR CLIENTE DO BANCO SGS.");
             var sql = $" {EnderecoSGS.ObterTextoSelect()} FROM {EnderecoSGS.NomeTabela} WHERE COD_PESS = '{cdCliente}' ";
-            return EnderecoSGS.CarregarEntidade(DataAccess.Consulta(sql, $"OBTER ENDERECO DO CLIENTE '{cdCliente}' DA SGS.", DBEnum.SqlServer, logger));
+            var enderecos = EnderecoSGS.CarregarEntidade(DataAccess.Consulta(sql, $"OBTER ENDERECO DO CLIENTE '{cdCliente}' DA SGS.", DBEnum.SqlServer, logger));
+            logger.Escrever($"ENDERECOS ENCONTRADOS para o CD_CLIENTE '{cdCliente}' : {enderecos.Count}");
+            return enderecos;
         }
 
         public PaisSGS CarregarPaisSGS()
@@ -103,30 +107,49 @@ namespace Acelera.Testes.DataAccessRep
         }
 
 
-        public bool ValidarStageCliente(MassaCliente_Sinistro massaCliente)
+        public string ValidarStageCliente(MassaCliente_Sinistro massaCliente)
         {
             //FALTA COMPLETAR O WHERE DESSA QUERY
-            var sql = $"SELECT '1' FROM TAB_STG_CLIENTE_1000 WHERE {massaCliente.ObterTextoWhere()} ";
-            var table = DataAccess.Consulta(sql,"REGISTRO NA STAGE CLIENTE.",logger);
-            if(table.Rows.Count == 0)
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_CLIENTE_1000 WHERE {massaCliente.ObterTextoWhere()} ";
+            var resultado = DataAccess.ConsultaUnica(sql, logger, false);
+            if (resultado == null)
             {
-                logger.Erro("REGISTRO NAO ENCONTRADO NA TAB_STG_CLIENTE_1000");
-                return false;
+                logger.Erro("REGISTRO NAO ENCONTRADO NA STAGE.");
+                return string.Empty;
             }
-            return true;
+            logger.Escrever($"CD_STATUS_PROCESSAMENTO ENCONTRADO NA STAGE : {resultado}");
+            logger.FecharBloco();
+            return resultado;
         }
 
-        public bool ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
+        public string ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
         {
-            var sql = $"SELECT '1' FROM TAB_STG_PARCELA_1001 WHERE {massaSinistro.ObterTextoWhere()}";
-            var resultado = DataAccess.ConsultaUnica(sql,false);
-            return resultado == null ? 
+            logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_1001 WHERE {massaSinistro.ObterTextoWhere()}";
+            var resultado = DataAccess.ConsultaUnica(sql,logger, false);
+            if(resultado == null)
+            {
+                logger.Erro("REGISTRO NAO ENCONTRADO NA STAGE.");
+                return string.Empty;
+            }
+            logger.Escrever($"CD_STATUS_PROCESSAMENTO ENCONTRADO NA STAGE : {resultado}");
+            logger.FecharBloco();
+            return resultado;
         }
 
-        public void ValidarStageParcelaAuto()
+        public string ValidarStageParcelaAuto(Massa_Sinistro_Parcela massaSinistro)
         {
-            var sql = $"SELECT EN_PAIS, TP_PESSOA, DT_NASCIMENTO FROM TAB_STG_CLIENTE_1000 WHERE ";
-            DataAccess.ConsultaUnica(sql);
+            logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_ARQ_RETORNO_8002 WHERE {massaSinistro.ObterTextoWhere()}";
+            var resultado = DataAccess.ConsultaUnica(sql, logger, false);
+            if (resultado == null)
+            {
+                logger.Erro("REGISTRO NAO ENCONTRADO NA STAGE.");
+                return string.Empty;
+            }
+            logger.Escrever($"CD_STATUS_PROCESSAMENTO ENCONTRADA NA STAGE : {resultado}");
+            logger.FecharBloco();
+            return resultado;
         }
 
     }
