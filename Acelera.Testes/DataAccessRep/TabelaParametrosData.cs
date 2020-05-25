@@ -319,22 +319,22 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_OPERACAO", cdPnOperacao, "TAB_PRM_PRD_COBERTURA_7009");
         }
 
-        public Cobertura ObterCobertura(string idCobertura , bool simples = false)
+        public Cobertura ObterCoberturaPeloId(string idCobertura , bool simples = false)
         {
             if (int.TryParse(idCobertura, out int id))
-                return ObterCobertura(id,simples);
+                return ObterCobertura("",id,simples);
             else
                 throw new Exception("ID de cobertura invalido.");
         }
 
-        public Cobertura ObterCoberturaSimples()
+        public Cobertura ObterCoberturaSimples(string cdTpa)
         {
-            return ObterCobertura(0, true);
+            return ObterCobertura(cdTpa, 0, true);
         }
 
-        public Cobertura ObterCobertura(int idCobertura = 0, bool simples = false)
+        public Cobertura ObterCobertura(string cdTpa = "" ,int idCobertura = 0, bool simples = false)
         {
-            var select = QueryCobertura(idCobertura, "", simples);
+            var select = QueryCobertura(idCobertura, cdTpa, "", simples);
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
@@ -344,7 +344,7 @@ namespace Acelera.Testes.DataAccessRep
 
         public Cobertura ObterCoberturaPeloCodigo(string cdCobertura, bool simples = false)
         {
-            var select = QueryCobertura(0, cdCobertura, simples);
+            var select = QueryCobertura(0,"", cdCobertura, simples);
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
@@ -372,7 +372,7 @@ namespace Acelera.Testes.DataAccessRep
             return Cobertura.CarregarCobertura(linha);
         }
 
-        private string QueryCobertura(int idCobertura = 0, string cdCobertura = "", bool simples = false)
+        private string QueryCobertura(int idCobertura = 0, string cdTpa ="", string cdCobertura = "", bool simples = false)
         {
             var sql = $"SELECT TOP 1 C.ID_COBERTURA, C.CD_COBERTURA, C.CD_RAMO_COBERTURA, P.CD_RAMO, P.CD_PRODUTO ";
             if (!simples)
@@ -387,11 +387,12 @@ namespace Acelera.Testes.DataAccessRep
                 sql += $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA " +
                $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA ";
 
-            if(idCobertura != 0)
-               sql += $" WHERE C.ID_COBERTURA = {idCobertura}";
-            else if(!string.IsNullOrEmpty(cdCobertura))
+            if (idCobertura != 0)
+                sql += $" WHERE C.ID_COBERTURA = {idCobertura}";
+            else if (!string.IsNullOrEmpty(cdCobertura))
                 sql += $" WHERE C.CD_COBERTURA = {cdCobertura}";
-
+            else if (!string.IsNullOrEmpty(cdTpa))
+                sql += $" WHERE PRDC.CD_PN_TPA = '{cdTpa}'";
             return sql;
         }
 
