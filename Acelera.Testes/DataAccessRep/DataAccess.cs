@@ -99,7 +99,7 @@ namespace Acelera.Testes.DataAccessRep
 
                 tabela = DBHelper.Instance.GetData(sql);
 
-                if (tabela.Rows.Count == 0 && !validaResultadoVazio)
+                if (tabela.Rows.Count == 0 && validaResultadoVazio)
                     throw new Exception("NENHUMA LINHA ENCONTRADA");
 
                 logger.LogRetornoQuery(tabela, sql);
