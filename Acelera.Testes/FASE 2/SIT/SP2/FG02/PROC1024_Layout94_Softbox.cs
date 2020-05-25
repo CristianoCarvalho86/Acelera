@@ -67,8 +67,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1024");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
@@ -99,8 +99,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1024");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
@@ -109,8 +109,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// Informar DT_FIM_VIGENCIA=D+400
         /// </summary>
         [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_3840_ParcEmissao_semcritica()
+        [TestCategory("Com Critica")]
+        public void SAP_3840_ParcEmissao_comcritica()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "3840", "FG02 - PROC1024 - Informar DT_FIM_VIGENCIA=D+400");
 
@@ -131,8 +131,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(1, "1024");
             ValidarTeste();
 
         }
