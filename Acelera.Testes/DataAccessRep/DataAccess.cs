@@ -43,6 +43,11 @@ namespace Acelera.Testes.DataAccessRep
             return tabela.Linhas;
         }
 
+        public static string ConsultaUnica(string sql, string parametroBuscado, IMyLogger logger)
+        {
+            return ConsultaUnica(sql, parametroBuscado, DBEnum.Hana, logger);
+        }
+
         public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger)
         {
             IDBHelper helper = ObterBanco(dbEnum);
@@ -72,6 +77,11 @@ namespace Acelera.Testes.DataAccessRep
                 throw ex;
             }
             return resultado;
+        }
+
+        public static string ConsultaUnica(string sql, bool validaResultadoUnico = true)
+        {
+            return ConsultaUnica(sql, DBEnum.Hana);
         }
 
         public static string ConsultaUnica(string sql, DBEnum dbEnum, bool validaResultadoUnico = true)

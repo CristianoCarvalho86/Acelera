@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.Validadores.FG01
+namespace Acelera.Testes.Validadores
 {
     public class ValidadorTabelaRetorno : ValidadorTabela
     {
@@ -23,7 +23,7 @@ namespace Acelera.Testes.Validadores.FG01
 
         public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
-            var consultaBase = FabricaConsulta.MontarConsultaParaTabelaDeRetornoFG02(tabela, nomeArquivo, valoresAlteradosBody);
+            var consultaBase = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
             var consultas = new ConjuntoConsultas();
 
             if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())

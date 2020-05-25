@@ -270,7 +270,7 @@ namespace Acelera.Testes
             string campo = "", string valor = "", int repeticoes = 0, bool semHeaderOuFooter = false , bool nomeArquivoAlterado = false)
         {
             var alteracao = new Alteracao(linhaAlterada, posicaoLinha);
-            alteracao.AdicionarAlteracao(campo, valor);
+            alteracao.AdicionarAlteracao(campo, valor, arquivo.NomeArquivo);
             alteracao.DefinirQtdRepeticoes(repeticoes);
             alteracao.DefinirSemHeaderOuFooter(semHeaderOuFooter);
             alteracao.DefinirAlteracaoNomeArquivo(nomeArquivoAlterado);

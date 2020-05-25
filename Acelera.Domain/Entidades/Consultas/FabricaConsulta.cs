@@ -15,12 +15,16 @@ namespace Acelera.Domain.Entidades.Consultas
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
 
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+            
             var linhas = valoresAlteradosBody.LinhasAlteradas();
 
             if (existeAlteracaoDeHeaderOuFooter || !existeLinhaNoArquivo || (linhas.Count() == 1 && !valoresAlteradosBody.ExisteAlteracaoValida()))
             {
-                var index = linhas.Count() == 0 ? 0 : linhas.First();
+                var index = linhas.Count() == 0 ? 0 : linhas.First().Value;
+                if (linhas.Count() != 0)
+                    consulta.AdicionarConsulta("NM_ARQUIVO_TPA", linhas.First().Key);
+                else
+                    consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
                 consultas.Add(new KeyValuePair<int, Consulta>(index, consulta));
                 return consultas;
             }
@@ -28,12 +32,12 @@ namespace Acelera.Domain.Entidades.Consultas
 
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList().Where(x => x.CamposAlterados.Count > 0);
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha.Key,linha.Value).ToList().Where(x => x.CamposAlterados.Count > 0);
                 foreach (var alteracao in alteracoes)
                 {
-                    var consultaDaLinha = (Consulta)consulta.Clone();
+                    var consultaDaLinha = new Consulta();
 
-                    consultaDaLinha.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+                    consultaDaLinha.AdicionarConsulta("NM_ARQUIVO_TPA", linha.Key);
 
                     if (tabela == TabelasEnum.Cliente)
                     {
@@ -101,18 +105,21 @@ namespace Acelera.Domain.Entidades.Consultas
         {
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
-
+            
             var linhas = valoresAlteradosBody.LinhasAlteradas();
             if (linhas.Count() == 1 && !valoresAlteradosBody.ExisteAlteracaoValida())
-                consultas.Add(new KeyValuePair<int, Consulta>(linhas.First(), consulta));
+            {
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", linhas.First().Key);
+                consultas.Add(new KeyValuePair<int, Consulta>(linhas.First().Value, consulta));
+            }
 
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList().Where(x => x.CamposAlterados.Count > 0);
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).ToList().Where(x => x.CamposAlterados.Count > 0);
                 foreach (var alteracao in alteracoes)
                 {
-                    var consultaDaLinha = (Consulta)consulta.Clone();
+                    var consultaDaLinha = new Consulta();
+                    consultaDaLinha.AdicionarConsulta("NM_ARQUIVO_TPA", linha.Key);
                     CamposDaConsultaTabelaRetorno(consultaDaLinha, tabela, alteracao);
                     consultas.Add(new KeyValuePair<int, Consulta>(alteracao.PosicaoDaLinha, consultaDaLinha));
                 }

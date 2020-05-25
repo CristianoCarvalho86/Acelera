@@ -50,6 +50,10 @@
       <Project>{E2564765-084E-4573-973F-2E1A3BC798B9}</Project>
       <Name>Acelera.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Acelera.Logger\Acelera.Logger.csproj">
+      <Project>{A31F4CF3-5E4C-4F12-9D99-AD5DC5DE6604}</Project>
+      <Name>Acelera.Logger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

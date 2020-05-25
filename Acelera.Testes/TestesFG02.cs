@@ -3,8 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
-using Acelera.Testes.Validadores.FG01;
-using Acelera.Testes.Validadores.FG02;
+using Acelera.Testes.Validadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,34 +90,11 @@ namespace Acelera.Testes.FASE_2
                 erros[i] = codigoDeErroEsperado;
             }
 
-            ValidarTabelaDeRetornoFG02(naoDeveEncontrar, true, erros);
+            ValidarTabelaDeRetorno(naoDeveEncontrar, true, erros);
         }
         public void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetornoFG02(false, false, codigosDeErroEsperados);
-        }
-
-        public void ValidarTabelaDeRetornoFG02(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
-        {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return;
-
-            try
-            {
-                AjustarEntradaErros(ref codigosDeErroEsperados);
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetorno(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
-                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
-
-                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                else
-                    ExplodeFalha();
-            }
-            catch (Exception)
-            {
-                TratarErro($" Validação da Tabela Retorno");
-            }
+            ValidarTabelaDeRetorno(false, false, codigosDeErroEsperados);
         }
 
         protected void ValidarStagesSemGerarErro(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false)
@@ -149,7 +125,7 @@ namespace Acelera.Testes.FASE_2
             var linhasAColocarIdTransacao = new List<int>();
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList();
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(arquivo.NomeArquivo,linha.Value).ToList();
                 foreach (var alteracao in alteracoes)
                 {
                     //nr_apolice, nr_endosso, cd_ramo ou nr_parcela

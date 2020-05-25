@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.SGS
 {
-    public class EnderecoSGS : EntidadeDeTabela
+    public class EnderecoSGS : EntidadeDeTabela<EnderecoSGS>
     {
         public string DS_ENDER { get; set; }
         public string NR_ENDER { get; set; }
@@ -17,6 +17,6 @@ namespace Acelera.Domain.Entidades.SGS
         public string CD_UF { get; set; }
         public string CD_CEP { get; set; }
 
-        public override string NomeTabela => "CLI_ENDERECO";
+        public override string nomeTabela => "CLI_ENDERECO";
     }
 }

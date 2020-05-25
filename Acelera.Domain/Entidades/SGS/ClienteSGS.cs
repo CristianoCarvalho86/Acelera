@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.SGS
 {
-    public class ClienteSGS : EntidadeDeTabela
+    public class ClienteSGS : EntidadeDeTabela<ClienteSGS>
     {
         public string TIP_PESS { get; set; }
         public string DTA_NASC { get; set; }
@@ -16,6 +16,6 @@ namespace Acelera.Domain.Entidades.SGS
         public string NOM_PESS { get; set; }
         public string NRO_CPF { get; set; }
         public string NRO_RG { get; set; }
-        public override string NomeTabela => "CLI_PESSOA";
+        public override string nomeTabela => "CLI_PESSOA";
     }
 }

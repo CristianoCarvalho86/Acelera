@@ -27,14 +27,14 @@ namespace Acelera.Domain.Entidades
             return Alteracoes.Any(x => x.AlteracaoNula == false);
         }
 
-        public IEnumerable<Alteracao> AlteracoesPorLinha(int linha)
+        public IEnumerable<Alteracao> AlteracoesPorLinha(string nomeArquivo, int linha)
         {
-            return Alteracoes.Where(x => x.PosicaoDaLinha == linha);
+            return Alteracoes.Where(x => x.PosicaoDaLinha == linha && x.NomeArquivo == nomeArquivo);
         }
 
-        public IEnumerable<int> LinhasAlteradas()
+        public IEnumerable<KeyValuePair<string,int>> LinhasAlteradas()
         {
-            return Alteracoes.Select(x => x.PosicaoDaLinha).Distinct();
+            return Alteracoes.Select(x =>new KeyValuePair<string, int>(x.NomeArquivo, x.PosicaoDaLinha)).Distinct();
         }
     }
 
@@ -46,6 +46,8 @@ namespace Acelera.Domain.Entidades
         public bool SemHeaderOuFooter { get; set; }
 
         public bool NomeArquivoAlterado { get; set; }
+
+        public string NomeArquivo { get; set; }
 
         public bool AlteracaoNula { get => CamposAlterados.Count == 0; }
         public int PosicaoDaLinha { get; set; }
@@ -59,10 +61,11 @@ namespace Acelera.Domain.Entidades
             NomeArquivoAlterado = false;
         }
 
-        public void AdicionarAlteracao(string campo, string valor)
+        public void AdicionarAlteracao(string campo, string valor, string nomeArquivo)
         {
             if(!string.IsNullOrEmpty(campo))
                 CamposAlterados.Add(new Campo(campo, valor));
+            NomeArquivo = nomeArquivo;
         }
 
         public void DefinirQtdRepeticoes(int qtdRepeticoes)

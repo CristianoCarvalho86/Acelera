@@ -438,6 +438,7 @@
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP2\FG02\PROC11_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP3\FG03\Testes.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC1012\PROC1012_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC1014\PROC1014_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC1015\PROC1015_Layout94_LASA.cs" />
@@ -507,13 +508,14 @@
     <Compile Include="Parametros.cs" />
     <Compile Include="TestesFG00.cs" />
     <Compile Include="TestesFG01.cs" />
+    <Compile Include="TestesFG03.cs" />
     <Compile Include="TestesFG05.cs" />
     <Compile Include="Validadores\FG00\ValidadorStagesFG00.cs" />
     <Compile Include="Validadores\FG00\ValidadorTabelaRetornoFG00.cs" />
     <Compile Include="Validadores\FG01\ValidadorStagesFG01.cs" />
     <Compile Include="Validadores\FG01\ValidadorTabelaRetornoFG01.cs" />
     <Compile Include="Validadores\FG02\ValidadorStages.cs" />
-    <Compile Include="Validadores\FG02\ValidadorTabelaRetorno.cs" />
+    <Compile Include="Validadores\ValidadorTabelaRetorno.cs" />
     <Compile Include="Validadores\FG05\ValidadorODSFG05.cs" />
     <Compile Include="Validadores\Validador.cs" />
   </ItemGroup>

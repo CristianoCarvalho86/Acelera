@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.SGS
 {
-    public class PaisSGS: EntidadeDeTabela<PaisSGS>
+    public class PartCoSeguroSGS: EntidadeDeTabela<PartCoSeguroSGS>
     {
-        public string NM_PAIS { get; set; }
+       public string COD_ITEM { get; set; }
 
-        public override string nomeTabela => "TB_SGS_PAIS_0080";
+        public override string nomeTabela => "EMS_PARTCOSSEGURO";
     }
 }
