@@ -289,9 +289,10 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024");
         }
 
-        public string ObterCdCorretorParaTipoRemuneracao(string cdTipoRemuneracao, bool relacionado, string[] diferenteDeCdCorretor = null)
+        public string ObterCdCorretorParaTipoRemuneracao(string cdTpa ,string cdTipoRemuneracao, bool relacionado, string[] diferenteDeCdCorretor = null)
         {
-            var clausula = diferenteDeCdCorretor == null ? "" : diferenteDeCdCorretor.Select(x => $" CD_PN_CORRETOR <> '{x}'").ToList().ObterListaConcatenada(" AND ");
+            var clausula = diferenteDeCdCorretor == null ? $" CD_PN_TPA = '{cdTpa}'" 
+                : diferenteDeCdCorretor.Select(x => $" CD_PN_CORRETOR <> '{x}'").ToList().ObterListaConcatenada(" AND ") + $" AND CD_PN_TPA = '{cdTpa}'";
             if (relacionado)
                 return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true, clausula);
             return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula);
