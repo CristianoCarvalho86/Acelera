@@ -20,6 +20,8 @@ namespace Acelera.Domain.Entidades
         public string CdRamo { get; set; }
         public string CdProduto { get; set; }
         public string CdRamoCobertura { get; set; }
+        public string ID_PRD_COBERTURA { get; set; }
+        public string CD_PN_SUCURSAL { get; set; }
 
         public string VL_PERC_TAXA_SEGURO { get; set; }
 
@@ -78,6 +80,8 @@ namespace Acelera.Domain.Entidades
             cobertura.VL_IOF_MENOR = !linha.Table.Columns.Contains("VL_IOF_MENOR") ? "" : linha["VL_IOF_MENOR"].ToString();
             cobertura.TP_APLICACAO_IOF = !linha.Table.Columns.Contains("TP_APLICACAO_IOF") ? "" : linha["TP_APLICACAO_IOF"].ToString();
             cobertura.TP_APLICACAO_PREMIO_LQ = !linha.Table.Columns.Contains("TP_APLICACAO_PREMIO_LQ") ? "" : linha["TP_APLICACAO_PREMIO_LQ"].ToString();
+            cobertura.ID_PRD_COBERTURA = !linha.Table.Columns.Contains("ID_PRD_COBERTURA") ? "" : linha["ID_PRD_COBERTURA"].ToString();
+            cobertura.CD_PN_SUCURSAL = !linha.Table.Columns.Contains("CD_PN_SUCURSAL") ? "" : linha["CD_PN_SUCURSAL"].ToString();
 
             return cobertura;
         }

@@ -2,6 +2,7 @@
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
@@ -328,6 +329,13 @@ namespace Acelera.Testes
             if (!decimal.TryParse(valor1.Replace(".", ","), out decimal Valor1) || !decimal.TryParse(valor2.Replace(".", ","), out decimal Valor2))
                 throw new Exception("VALORES A SEREM SOMADOS PRECISAM SER NUMERICOS");
             return SomarValores(Valor1,Valor2);
+        }
+
+        public string MediaEntreValores(string valor1, string valor2)
+        {
+            if (!decimal.TryParse(valor1.Replace(".", ","), out decimal Valor1) || !decimal.TryParse(valor2.Replace(".", ","), out decimal Valor2))
+                throw new Exception("VALORES A SEREM SOMADOS PRECISAM SER NUMERICOS");
+            return ((Valor1 + Valor2)/2M).ValorFormatado();
         }
 
         public string MontarCamposConcatenados(int posicaoLinha, params string[] campos)

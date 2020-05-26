@@ -24,11 +24,11 @@ namespace Acelera.Testes.DataAccessRep
             {
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
 
-                var c = tabela.ObterQuery(consulta,Parametros.instanciaDB).Replace("/*R*/","");
+                var c = tabela.ObterQuery(consulta, Parametros.instanciaDB).Replace("/*R*/", "");
                 logger.Escrever("Consulta Realizada :" + c);
                 var resultado = DBHelper.Instance.GetData(c);
 
-                logger.LogRetornoQuery(resultado,c);
+                logger.LogRetornoQuery(resultado, c);
 
                 tabela.ObterRetornoQuery(resultado);
 
@@ -61,7 +61,7 @@ namespace Acelera.Testes.DataAccessRep
                     throw new Exception("Resultado nao encontrado");
 
                 logger.Escrever($"Parametro Buscado encontrado: {resultado}");
-                
+
                 logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
 
             }
@@ -120,7 +120,7 @@ namespace Acelera.Testes.DataAccessRep
             var tabela = new Tabela<T>();
             try
             {
-                logger.InicioOperacao(OperacaoEnum.ConsultaBanco,tabela.ObterNomeTabela());
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
                 var integracao = new IntegracaoCMD();
                 integracao.AbrirCMD();
 

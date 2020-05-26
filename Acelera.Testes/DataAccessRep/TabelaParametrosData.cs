@@ -291,11 +291,26 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ObterCdCorretorParaTipoRemuneracao(string cdTpa ,string cdTipoRemuneracao, bool relacionado, string[] diferenteDeCdCorretor = null)
         {
-            var clausula = diferenteDeCdCorretor == null ? $" CD_PN_TPA = '{cdTpa}'" 
-                : diferenteDeCdCorretor.Select(x => $" CD_PN_CORRETOR <> '{x}'").ToList().ObterListaConcatenada(" AND ") + $" AND CD_PN_TPA = '{cdTpa}'";
-            if (relacionado)
-                return ObterRetorno("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", true, clausula);
-            return ObterRetornoNotIn("CD_PN_CORRETOR", "CD_TIPO_REMUNERACAO", cdTipoRemuneracao, "TAB_PRM_REMUNERACAO_7013", clausula);
+            var pnOperacaoDoTpa = ObterCdParceiroNegocioParaTPA(cdTpa);
+
+            var clausula = diferenteDeCdCorretor == null ? $""  
+                : diferenteDeCdCorretor.Select(x => $" C.CD_PN_CORRETOR <> '{x}'").ToList().ObterListaConcatenada(" AND ") + " AND ";
+
+            var controle = relacionado ? "top 1" : "";
+            var sql = $"select {controle} PN.CD_EXTERNO from {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 C " +
+                      $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCEIRO_NEGOCIO_2000 PN ON C.CD_PN_CORRETOR = PN.CD_PARCEIRO_NEGOCIO " +
+                      $" where {clausula} C.CD_TIPO_REMUNERACAO = '{cdTipoRemuneracao}'  AND C.CD_PN_OPERACAO = '{pnOperacaoDoTpa}' AND PN.CD_TIPO_PARCEIRO_NEGOCIO = 'CO' ";
+
+
+            if (!relacionado)
+                sql = $" select top 1 PN.CD_EXTERNO " +
+                $" from {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 C " +
+                $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCEIRO_NEGOCIO_2000 PN ON C.CD_PN_CORRETOR = PN.CD_PARCEIRO_NEGOCIO " +
+                $" WHERE {clausula} PN.CD_EXTERNO NOT IN({sql})" +
+                $" AND C.CD_PN_OPERACAO = '{pnOperacaoDoTpa}' AND C.CD_TIPO_REMUNERACAO <> '{cdTipoRemuneracao}' AND PN.CD_TIPO_PARCEIRO_NEGOCIO = 'CO' ";
+
+            var operador = relacionado ? "=" : "<>";
+            return DataAccess.ConsultaUnica(sql,$"CD_TIPO_REMUNERACAO {operador} '{cdTipoRemuneracao}'",logger);
         }
 
         public string ObterCdParceiroNegocioParaTPA(string cdTpa)
@@ -379,12 +394,12 @@ namespace Acelera.Testes.DataAccessRep
             if (!simples)
                 sql += $", PP.VL_DESCONTO_MAIOR ,PP.VL_DESCONTO_MENOR, PP.VL_JUROS_MAIOR, PP.VL_JUROS_MENOR, PP.VL_ADIC_FRAC_MAIOR, PP.VL_ADIC_FRAC_MENOR," +
                     $" PP.VL_PREMIO_LQ_MENOR , PP.VL_PREMIO_LQ_MAIOR, PP.VL_PREMIO_BR_MENOR, PP.VL_PREMIO_BR_MAIOR, PP.VL_PERC_ALIQUOTA_IOF," +
-                    $" PP.VL_PERC_TAXA_SEGURO , PP.VL_PERC_DISTRIBUICAO, PP.TP_APLICACAO_PREMIO_BR, PP.VL_IOF_MAIOR, PP.VL_IOF_MENOR, PP.TP_APLICACAO_IOF, PP.TP_APLICACAO_PREMIO_LQ ";
+                    $" PP.VL_PERC_TAXA_SEGURO , PP.VL_PERC_DISTRIBUICAO, PP.TP_APLICACAO_PREMIO_BR, PP.VL_IOF_MAIOR, PP.VL_IOF_MENOR, PP.TP_APLICACAO_IOF, PP.TP_APLICACAO_PREMIO_LQ, " +
+                    $" PRDC.ID_PRD_COBERTURA, PRDC.CD_PN_SUCURSAL ";
 
             sql += $" FROM {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C " +
                $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
                 $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRD_COBERTURA_7009 PRDC ON C.ID_COBERTURA = PRDC.ID_COBERTURA ";
-
 
             if (!simples)
                 sql += $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA ";
@@ -394,7 +409,7 @@ namespace Acelera.Testes.DataAccessRep
             else if (!string.IsNullOrEmpty(cdCobertura))
                 sql += $" WHERE C.CD_COBERTURA = {cdCobertura}";
             else if (!string.IsNullOrEmpty(cdTpa))
-                sql += $" WHERE PRDC.CD_PN_TPA = '{cdTpa}'";
+                sql += $" WHERE PRDC.CD_PN_OPERACAO = '{ObterCdParceiroNegocioParaTPA(cdTpa)}'";
             return sql;
         }
 

@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "-1"));
+            AlterarLinha(0, "VL_DESCONTO", MediaEntreValores(cobertura.ValorDescontoMaior, cobertura.ValorDescontoMenor));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -101,8 +101,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1182");
             ValidarTeste();
 
         }
