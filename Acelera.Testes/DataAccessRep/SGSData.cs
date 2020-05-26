@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Logger;
@@ -64,10 +65,10 @@ namespace Acelera.Testes.DataAccessRep
 
             logger.AbrirBloco("VERIFICAR REGISTROS NAS TABELAS TEMPORARIAS DO SGS.");
 
-            var sql = $"{Massa_Sinistro_Parcela.ObterTextoSelect()} FROM {Massa_Sinistro_Parcela.NomeTabela} WHERE CD_ITEM = '{cdItem}' and CD_CONTRATO = '{cdContrato}' and NR_SEQUENCIAL_EMISSAO = '{nrSeqEmissao}'";
+            var sql = $"SELECT {Massa_Sinistro_Parcela.ObterTextoSelect()} FROM {Massa_Sinistro_Parcela.NomeTabela} WHERE CD_ITEM = '{cdItem}' and CD_CONTRATO = '{cdContrato}' and NR_SEQUENCIAL_EMISSAO = '{nrSeqEmissao}'";
             var massaSinistroParcela = Massa_Sinistro_Parcela.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Sinistro_Parcela.NomeTabela}", DBEnum.SqlServer, logger));
 
-            sql = $"{MassaCliente_Sinistro.ObterTextoSelect()} FROM {MassaCliente_Sinistro.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}'";
+            sql = $"SELECT {MassaCliente_Sinistro.ObterTextoSelect()} FROM {MassaCliente_Sinistro.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}'";
             var massaCliente = MassaCliente_Sinistro.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {MassaCliente_Sinistro.NomeTabela}", DBEnum.SqlServer, logger));
 
             if(!Assertions.ValidarRegistroUnicoNaLista(massaSinistroParcela, logger, Massa_Sinistro_Parcela.NomeTabela) ||
@@ -84,7 +85,7 @@ namespace Acelera.Testes.DataAccessRep
         public ClienteSGS CarregarClienteSGS(string cdCliente)
         {
             logger.AbrirBloco("CARREGAR CLIENTE DO BANCO SGS.");
-            var sql = $" {ClienteSGS.ObterTextoSelect()} FROM {ClienteSGS.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}' ";
+            var sql = $"SELECT {ClienteSGS.ObterTextoSelect()} FROM {ClienteSGS.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}' ";
             var clientes = ClienteSGS.CarregarEntidade(DataAccess.Consulta(sql,"OBTER CLIENTES DA SGS", DBEnum.SqlServer, logger));
             Assertions.ValidarRegistroUnicoNaLista(clientes, logger, "LISTA DE CLIENTES DA SGS", true);
             return clientes.First();
@@ -93,7 +94,7 @@ namespace Acelera.Testes.DataAccessRep
         public IList<EnderecoSGS> CarregarEnderecoSGS(string cdCliente)
         {
             logger.AbrirBloco("CARREGAR CLIENTE DO BANCO SGS.");
-            var sql = $" {EnderecoSGS.ObterTextoSelect()} FROM {EnderecoSGS.NomeTabela} WHERE COD_PESS = '{cdCliente}' ";
+            var sql = $"SELECT {EnderecoSGS.ObterTextoSelect()} FROM {EnderecoSGS.NomeTabela} WHERE COD_PESS = '{cdCliente}' ";
             var enderecos = EnderecoSGS.CarregarEntidade(DataAccess.Consulta(sql, $"OBTER ENDERECO DO CLIENTE '{cdCliente}' DA SGS.", DBEnum.SqlServer, logger));
             logger.Escrever($"ENDERECOS ENCONTRADOS para o CD_CLIENTE '{cdCliente}' : {enderecos.Count}");
             return enderecos;
@@ -150,6 +151,15 @@ namespace Acelera.Testes.DataAccessRep
             logger.Escrever($"CD_STATUS_PROCESSAMENTO ENCONTRADA NA STAGE : {resultado}");
             logger.FecharBloco();
             return resultado;
+        }
+
+        public void Executar()
+        {
+            logger.AbrirBloco("EXECUTAR PROC_MASP1602B00 NO SGS");
+            var table = DataAccess.Consulta("EXEC PROC_MASP1602B00", "Executando proc_MASP1602B00", DBEnum.SqlServer, logger);
+            logger.Escrever("RESULTADO DA EXECUÇÃO:" + Environment.NewLine);
+            logger.Escrever(table.ObterTextoTabular());
+            logger.FecharBloco();
         }
 
     }

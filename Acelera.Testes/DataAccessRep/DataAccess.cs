@@ -115,6 +115,16 @@ namespace Acelera.Testes.DataAccessRep
             return Consulta(sql, parametroBuscado,DBEnum.Hana, logger);
         }
 
+        public static void ExecutarComando(string comando, DBEnum dbEnum, IMyLogger logger)
+        {
+            IDBHelper helper = ObterBanco(dbEnum);
+
+            logger.AbrirBloco($"INICIANDO EXECUÇÃO DE : {comando}");
+            var resultado = helper.Execute(comando);
+            logger.Escrever($"RETORNO DO BANCO : '{resultado}'");
+            logger.FecharBloco();
+        }
+
         public static DataTable Consulta(string sql, string parametroBuscado, DBEnum dbEnum, IMyLogger logger)
         {
             IDBHelper helper = ObterBanco(dbEnum);

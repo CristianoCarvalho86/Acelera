@@ -17,6 +17,8 @@ namespace Acelera.Domain.Entidades.Tabelas
             var sql = "";
             foreach (PropertyInfo pi in typeof(T).GetProperties())
             {
+                if (pi.Name.ToUpper() == "NOMETABELA")
+                    continue;
                 sql += $"{pi.Name} = '{pi.GetValue(this)}' AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
             }
             return sql.Remove(sql.Length - 4);
@@ -29,6 +31,8 @@ namespace Acelera.Domain.Entidades.Tabelas
             var a = new T();
             foreach (PropertyInfo pi in a.GetType().GetProperties())
             {
+                if (pi.Name.ToUpper() == "NOMETABELA")
+                    continue;
                 sql += $"{prefixoTabela}{pi.Name} ,"; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
             }
             return sql.Remove(sql.Length - 1);
@@ -43,6 +47,8 @@ namespace Acelera.Domain.Entidades.Tabelas
                 ent = new T();
                 foreach (PropertyInfo pi in ent.GetType().GetProperties())
                 {
+                    if (pi.Name.ToUpper() == "NOMETABELA")
+                        continue;
                     pi.SetValue(ent,row[pi.Name].ToString());
                 }
                 entidades.Add(ent);
