@@ -5,51 +5,20 @@ using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
-namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
+namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class SemCritica_Layout94_Pompeia : TestesFG01
+    public class SemCritica_Layout94_Pompeia : TestesFG02
     {
-        /// <summary>
-        /// CLIENTE - Sem Critica
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_9007_SemCritica_CLIENTE()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "SemCritica_Geral", "FG00 - CLIENTE - Sem Critica");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1927-20200211.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            SelecionarLinhaParaValidacao(0);
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.CLIENTE-EV-/*R*/-20200211.TXT");
-
-            //VALIDAR NA FG00
-            ValidarFGsAnteriores();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
-            ValidarTabelaDeRetorno("");
-            ValidarTeste();
-        }
 
         /// <summary>
         /// PARC_EMISSAO - Sem Critica
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9008_SemCritica_PARC_EMISSAO()
+        public void SAP_4723_SemCritica_PARC_EMISSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9008", "FG00 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4723", "FG02 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -57,19 +26,53 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
+            SalvarArquivo();
 
             //VALIDAR NA FG00
             ValidarFGsAnteriores();
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
-            //VALIDAR NA FG01
+            //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(false);
+            ValidarTeste();
+        }
+
+        /// <summary>
+        /// OCR_COBRANCA - Sem Critica
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4724_SemCritica_COBRANCA()
+        {
+            IniciarTeste(TipoArquivo.OCRCobranca, "4724", "FG02 - OCR_COBRANCA - Sem Critica");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1769-20191220.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR NA FG00
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.OCRCobranca.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno("");
             ValidarTeste();
         }
@@ -79,130 +82,100 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9009_SemCritica_COMISSAO()
+        public void SAP_4715_SemCritica_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "9009", "FG01 - EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "4715", "FG02 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.EMSCMS-EV-1929-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            RemoverLinhasExcetoAsPrimeiras(100);
             SelecionarLinhaParaValidacao(0);
-
+            RemoverLinhasExcetoAsPrimeiras(100);
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");
+            SalvarArquivo();
 
             //VALIDAR NA FG00
             ValidarFGsAnteriores();
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Comissao.ObterTexto());
 
-            //VALIDAR NA FG01
+            //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
-            ValidarTabelaDeRetorno("");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(false);
             ValidarTeste();
         }
 
         /// <summary>
-        /// OCR_COBRANCA - Sem Critica
+        /// CLIENTE - Sem Critica
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9010_SemCritica_COBRANCA()
+        public void SAP_4706_SemCritica_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "9010", "FG01 - OCR_COBRANCA - Sem Critica");
+            IniciarTeste(TipoArquivo.Cliente, "4706", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.COBRANCA-EV-1695-20191128.txt"));
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-1930-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
             RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.COBRANCA-EV-/*R*/-20191128.TXT");
+            SalvarArquivo();
 
             //VALIDAR NA FG00
             ValidarFGsAnteriores();
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.OCRCobranca.ObterTexto());
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            //VALIDAR NA FG01
+            //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
-            ValidarTabelaDeRetorno("");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(false);
             ValidarTeste();
+
         }
 
         /// <summary>
-        /// LANCTO_COMISSAO - Sem Critica
+        /// CLIENTE - Sem Critica
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9011_SemCritica_LANCTO_COMISSAO()
+        public void SAP_4708_SemCritica_Sinistro()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "9011", "FG01 - LANCTO_COMISSAO - Sem Critica");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-9623-20190311.txt"));
-
-            //ALTERAR O VALOR SELECIONADO
-            SelecionarLinhaParaValidacao(0);
-            RemoverLinhasExcetoAsPrimeiras(100);
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.LASA.LCTCMS-EV-/*R*/-20190311.TXT");
-
-            //VALIDAR NA FG00
-            ValidarFGsAnteriores();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.LanctoComissao.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
-            ValidarTabelaDeRetorno("");
-            ValidarTeste();
-        }
-
-        /// <summary>
-        /// SINISTRO - Sem Critica
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_9012_SemCritica_SINISTRO()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "FG00 - SINISTRO - Sem Critica");
+            IniciarTeste(TipoArquivo.Sinistro, "4708", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0002-20191220.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191223.TXT");
+            SalvarArquivo();
 
             //VALIDAR NA FG00
             ValidarFGsAnteriores();
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            //VALIDAR NA FG01
+            //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
-            ValidarTabelaDeRetorno("");
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(false);
             ValidarTeste();
+
         }
+
     }
 }

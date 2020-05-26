@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCoberturaSimples();
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
             AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
@@ -58,15 +58,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1864-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            //var cobertura = dados.ObterCoberturaSimples();
-            //AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            //AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
-            //AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
-            //RemoverLinhasExcetoAsPrimeiras(1);
-
-            AlterarLinha(0, "CD_COBERTURA","00084");
-            AlterarLinha(0, "CD_RAMO", "31");
-            AlterarLinha(0, "CD_PRODUTO", "31523");
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO

@@ -24,13 +24,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            //var cobertura = dados.ObterCoberturaSimples();
-            //AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            //AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            //AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura("01770"));
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura("01770"));
-            AlterarLinha(0, "CD_COBERTURA", "01770");
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
+
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("PROC107");
@@ -61,7 +59,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191128.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCoberturaSimples();
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
             AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
@@ -96,10 +94,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1982-20200302.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCoberturaSimples();
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "CD_RAMO", cobertura.CdCobertura);
-            AlterarLinha(0, "CD_PRODUTO", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -123,22 +121,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// 	Sem Critica
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2913_SEM_CRITICA()
+        [TestCategory("Sem Critica")]
+            public void SAP_2913_SEM_CRITICA()
         {
             IniciarTeste(TipoArquivo.Sinistro, "2913", "FG02 - PROC107 - sem critica");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191128.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCoberturaSimples();
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
             AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191128.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

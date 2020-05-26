@@ -5,41 +5,44 @@ using Acelera.Domain.Layouts._9_4_2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
-namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
+namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class SemCritica_Layout942_SGS : TestesFG01
+    public class SemCritica_Layout942_SGS : TestesFG02
     {
         /// <summary>
-        /// SINISTRO - Sem Critica
+        /// CLIENTE - Sem Critica
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9006_SemCritica_SINISTRO()
+        public void SAP_4707_SemCritica_Sinistro()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "SemCritica_Geral", "FG00 - SINISTRO - Sem Critica");
+            IniciarTeste(TipoArquivo.Sinistro, "4707", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.SGS.SINISTRO-EV-/*R*/-20200209.TXT");
+            SalvarArquivo();
 
             //VALIDAR NA FG00
             ValidarFGsAnteriores();
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            //VALIDAR NA FG01
+            //VALIDAR NA FG02
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(false);
             ValidarTeste();
+
         }
+
     }
 }
-

@@ -16,9 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9102_SemCritica_PARC_EMISSAO_AUTO()
+        public void SAP_4698_SemCritica_PARC_EMISSAO_AUTO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "9102", "FG02 - PARC_EMISSAO_AUTO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4698", "FG02 - PARC_EMISSAO_AUTO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -26,6 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -48,9 +49,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9104_SemCritica_COBRANCA()
+        public void SAP_4701_SemCritica_COBRANCA()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "9104", "FG02 - OCR_COBRANCA - Sem Critica");
+            IniciarTeste(TipoArquivo.OCRCobranca, "4701", "FG02 - OCR_COBRANCA - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
@@ -81,9 +82,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9103_SemCritica_COMISSAO()
+        public void SAP_4700_SemCritica_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "9103", "FG02 - EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "4700", "FG02 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
@@ -113,16 +114,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9101_SemCritica_CLIENTE()
+        public void SAP_4699_SemCritica_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "9101", "FG02 - CLIENTE - Sem Critica");
+            IniciarTeste(TipoArquivo.Cliente, "4698", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-1867-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "NR_CNPJ_CPF", "05168329721");
+            SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

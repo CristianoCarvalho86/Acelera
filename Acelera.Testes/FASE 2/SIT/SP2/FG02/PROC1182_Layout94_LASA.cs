@@ -88,7 +88,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "-1"));
+            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "-0.1"));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -123,7 +124,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", cobertura.ValorDescontoMenor);
+            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMenor, "0"));
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -158,7 +159,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", cobertura.ValorDescontoMaior);
+            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "0"));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

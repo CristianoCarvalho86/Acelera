@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("P",false));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P",false));
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("C", false));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -87,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("R", false));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "R", false));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -118,7 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("R", true));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "R", true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -150,7 +150,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao("C", true));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", true));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
