@@ -19,7 +19,8 @@ namespace Acelera.Domain.Entidades.Tabelas
             {
                 if (pi.Name.ToUpper() == "NOMETABELA")
                     continue;
-                sql += $"{pi.Name} = '{pi.GetValue(this)}' AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
+                var valor = pi.GetValue(this).ToString() == string.Empty ? " IS NULL " : $"'{pi.GetValue(this)}'";
+                sql += $"{pi.Name} = {valor} AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
             }
             return sql.Remove(sql.Length - 4);
         }

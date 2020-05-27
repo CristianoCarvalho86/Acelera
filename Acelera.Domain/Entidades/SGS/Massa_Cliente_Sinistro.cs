@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.SGS
 {
-    public class MassaCliente_Sinistro : EntidadeDeTabela<MassaCliente_Sinistro>
+    public class Massa_Cliente_Sinistro : EntidadeDeTabela<Massa_Cliente_Sinistro>
     {
         public string ID_SEQ { get; set; }
         public string ID_REGISTRO { get; set; }

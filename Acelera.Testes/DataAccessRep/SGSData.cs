@@ -58,7 +58,7 @@ namespace Acelera.Testes.DataAccessRep
         }
 
         public bool ValidaTabelasTemporariasSGS(string cdItem, string cdContrato, string nrSeqEmissao, string cdCliente,
-            out MassaCliente_Sinistro massaClienteSGSEcontrado, out Massa_Sinistro_Parcela massaSinistroEncontrado)
+            out Massa_Cliente_Sinistro massaClienteSGSEcontrado, out Massa_Sinistro_Parcela massaSinistroEncontrado)
         {
             massaClienteSGSEcontrado = null;
             massaSinistroEncontrado = null;
@@ -68,11 +68,11 @@ namespace Acelera.Testes.DataAccessRep
             var sql = $"SELECT {Massa_Sinistro_Parcela.ObterTextoSelect()} FROM {Massa_Sinistro_Parcela.NomeTabela} WHERE CD_ITEM = '{cdItem}' and CD_CONTRATO = '{cdContrato}' and NR_SEQUENCIAL_EMISSAO = '{nrSeqEmissao}'";
             var massaSinistroParcela = Massa_Sinistro_Parcela.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Sinistro_Parcela.NomeTabela}", DBEnum.SqlServer, logger));
 
-            sql = $"SELECT {MassaCliente_Sinistro.ObterTextoSelect()} FROM {MassaCliente_Sinistro.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}'";
-            var massaCliente = MassaCliente_Sinistro.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {MassaCliente_Sinistro.NomeTabela}", DBEnum.SqlServer, logger));
+            sql = $"SELECT {Massa_Cliente_Sinistro.ObterTextoSelect()} FROM {Massa_Cliente_Sinistro.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}'";
+            var massaCliente = Massa_Cliente_Sinistro.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Cliente_Sinistro.NomeTabela}", DBEnum.SqlServer, logger));
 
             if(!Assertions.ValidarRegistroUnicoNaLista(massaSinistroParcela, logger, Massa_Sinistro_Parcela.NomeTabela) ||
-            !Assertions.ValidarRegistroUnicoNaLista(massaCliente, logger, MassaCliente_Sinistro.NomeTabela))
+            !Assertions.ValidarRegistroUnicoNaLista(massaCliente, logger, Massa_Cliente_Sinistro.NomeTabela))
                 return false;
 
             massaSinistroEncontrado = massaSinistroParcela.First();
@@ -108,7 +108,7 @@ namespace Acelera.Testes.DataAccessRep
         }
 
 
-        public string ValidarStageCliente(MassaCliente_Sinistro massaCliente)
+        public string ValidarStageCliente(Massa_Cliente_Sinistro massaCliente)
         {
             //FALTA COMPLETAR O WHERE DESSA QUERY
             var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_CLIENTE_1000 WHERE {massaCliente.ObterTextoWhere()} ";
