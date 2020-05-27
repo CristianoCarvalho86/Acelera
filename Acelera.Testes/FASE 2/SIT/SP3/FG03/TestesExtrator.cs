@@ -46,13 +46,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
 
             Executar();
-
+            
+            //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageCliente();
             ValidarStageParcela();
-
-            ValidarStages(CodigoStage.);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();
