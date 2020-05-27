@@ -24,6 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             a.Executar();
             a.ValidarStageCliente(massaCliente);
             a.ValidarStageParcela(massaParcela);
+            
         }
 
     }

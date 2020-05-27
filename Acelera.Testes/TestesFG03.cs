@@ -31,8 +31,9 @@ namespace Acelera.Testes
 
         }
 
-        public void ValidarRegistroNaoExisteNaODSParcela(string cdPnOperacao, string cdContrato, string nrSeqEmissao)
+        public void ValidarRegistroNaoExisteNaODSParcela(string cdTpa, string cdContrato, string nrSeqEmissao)
         {
+            var cdPnOperacao = dados.ObterCdParceiroNegocioParaTPA(cdTpa);
 
         }
 
