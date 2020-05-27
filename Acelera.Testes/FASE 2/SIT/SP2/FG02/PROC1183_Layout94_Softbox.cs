@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMaior, "-0.1"));
+            AlterarLinha(0, "VL_JUROS", MediaEntreValores(cobertura.ValorDescontoMaior, cobertura.ValorDescontoMenor));
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
