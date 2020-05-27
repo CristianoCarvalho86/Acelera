@@ -8,21 +8,21 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class SemCritica_Layout94_TIM : TestesFG02
+    public class SemCritica_Layout94_LASA : TestesFG02
     {
 
         /// <summary>
-        /// PARC_EMISSAO - Sem Critica
+        /// PARC_EMISSAO_AUTO - Sem Critica
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4720_SemCritica_PARC_EMISSAO()
+        public void SAP_4721_SemCritica_PARC_EMISSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4720", "FG02 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4721", "FG02 - PARC_EMISSAO_AUTO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3256-20200322.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -49,13 +49,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4716_SemCritica_COBRANCA()
+        public void SAP_4717_SemCritica_COBRANCA()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "4716", "FG02 - OCR_COBRANCA - Sem Critica");
+            IniciarTeste(TipoArquivo.OCRCobranca, "4717", "FG02 - OCR_COBRANCA - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9997-20191227.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.COBRANCA-EV-2785-20200214.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -82,13 +82,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4712_SemCritica_COMISSAO()
+        public void SAP_4713_SemCritica_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4712", "FG02 - EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "4713", "FG02 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.EMSCMS-EV-3194-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -114,13 +114,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4702_SemCritica_CLIENTE()
+        public void SAP_4704_SemCritica_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "4702", "FG02 - CLIENTE - Sem Critica");
+            IniciarTeste(TipoArquivo.Cliente, "4704", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.CLIENTE-EV-3241-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -148,13 +148,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4711_SemCritica_Sinistro()
+        public void SAP_4710_SemCritica_Sinistro()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4711", "FG02 - CLIENTE - Sem Critica");
+            IniciarTeste(TipoArquivo.Sinistro, "4710", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0002-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.SINISTRO-EV-2758-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -176,6 +176,39 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             ValidarTeste();
 
         }
+        
+        /// <summary>
+        /// CLIENTE - Sem Critica
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4725_SemCritica_LANCTO()
+        {
+            IniciarTeste(TipoArquivo.LanctoComissao, "4725", "FG02 - CLIENTE - Sem Critica");
 
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.LCTCMS-EV-0073-20190531.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(100);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR NA FG00
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(false);
+            ValidarTeste();
+
+        }
     }
 }

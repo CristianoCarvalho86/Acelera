@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 {
     [TestClass]
-    public class SemCritica_Layout94_TIM : TestesFG02
+    public class SemCritica_Layout94_Softbox : TestesFG02
     {
 
         /// <summary>
@@ -16,13 +16,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4720_SemCritica_PARC_EMISSAO()
+        public void SAP_4722_SemCritica_PARC_EMISSAO()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4720", "FG02 - PARC_EMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4722", "FG02 - PARC_EMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200214.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-3260-20200322.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -49,13 +49,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4716_SemCritica_COBRANCA()
+        public void SAP_4718_SemCritica_COBRANCA()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "4716", "FG02 - OCR_COBRANCA - Sem Critica");
+            IniciarTeste(TipoArquivo.OCRCobranca, "4718", "FG02 - OCR_COBRANCA - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.COBRANCA-EV-9997-20191227.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.COBRANCA-EV-3157-20200316.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -82,13 +82,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4712_SemCritica_COMISSAO()
+        public void SAP_4714_SemCritica_COMISSAO()
         {
-            IniciarTeste(TipoArquivo.Comissao, "4712", "FG02 - EMS_COMISSAO - Sem Critica");
+            IniciarTeste(TipoArquivo.Comissao, "4714", "FG02 - EMS_COMISSAO - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.EMSCMS-EV-3245-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -114,13 +114,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4702_SemCritica_CLIENTE()
+        public void SAP_4705_SemCritica_CLIENTE()
         {
-            IniciarTeste(TipoArquivo.Cliente, "4702", "FG02 - CLIENTE - Sem Critica");
+            IniciarTeste(TipoArquivo.Cliente, "4705", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200213.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.CLIENTE-EV-3275-20200323.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);
@@ -148,13 +148,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4711_SemCritica_Sinistro()
+        public void SAP_4709_SemCritica_Sinistro()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4711", "FG02 - CLIENTE - Sem Critica");
+            IniciarTeste(TipoArquivo.Sinistro, "4709", "FG02 - CLIENTE - Sem Critica");
 
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.SINISTRO-EV-0002-20200212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.SINISTRO-EV-3248-20200321.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             SelecionarLinhaParaValidacao(0);

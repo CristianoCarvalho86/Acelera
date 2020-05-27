@@ -33,6 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura("01770"));
             //AlterarLinha(0, "CD_COBERTURA", "01770");
 
+
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
@@ -124,12 +125,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// 	Sem Critica
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_2913_SEM_CRITICA()
+        [TestCategory("Sem Critica")]
+            public void SAP_2913_SEM_CRITICA()
         {
             IniciarTeste(TipoArquivo.Sinistro, "2913", "FG02 - PROC107 - sem critica");
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191128.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20200117.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
@@ -139,7 +140,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.POMPEIA.SINISTRO-EV-/*R*/-20191128.txt");
+            SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

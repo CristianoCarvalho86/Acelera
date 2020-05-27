@@ -89,7 +89,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_JUROS ", SomarValores(cobertura.ValorJurosMaior, "-1"));
+            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMaior, "-0.1"));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -102,8 +103,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1183");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
@@ -114,9 +115,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_ParcEmissao_semcritica()
+        public void SAP_4153_ParcEmissao_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "???", "FG02 - PROC1183 - Informar VL_JUROS  igual ao valor mínimo de desconto parametrizado na tabela TAB_PRM_PERCENT_PREMIO_7012 ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4153", "FG02 - PROC1183 - Informar VL_JUROS  igual ao valor mínimo de desconto parametrizado na tabela TAB_PRM_PERCENT_PREMIO_7012 ");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.txt"));
@@ -124,7 +125,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_JUROS ", cobertura.ValorJurosMenor);
+            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMenor, "0"));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -137,8 +139,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1183");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
@@ -148,9 +150,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_2_ParcEmissao_semcritica()
+        public void SAP_4154_ParcEmissao_semcritica()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "???", "FG02 - PROC1183 - Informar VL_JUROS  igual ao valor máximo de desconto parametrizado na tabela TAB_PRM_PERCENT_PREMIO_7012 ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4154", "FG02 - PROC1183 - Informar VL_JUROS  igual ao valor máximo de desconto parametrizado na tabela TAB_PRM_PERCENT_PREMIO_7012 ");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
@@ -158,7 +160,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             //ALTERAR O VALOR SELECIONADO
             var cobertura = dados.ObterCobertura();
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_JUROS ", cobertura.ValorJurosMaior);
+            AlterarLinha(0, "VL_JUROS", SomarValores(cobertura.ValorJurosMaior, "0"));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -171,8 +174,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarTabelaDeRetorno(false);
-            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(true, "1183");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTeste();
 
         }
