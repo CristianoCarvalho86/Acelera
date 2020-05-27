@@ -58,17 +58,17 @@ namespace Acelera.Testes
         }
 
 
-        public void ValidarStageCliente(Massa_Cliente_Sinistro massaCliente)
+        public void ValidarStageCliente()
         {
 
         }
 
-        public void ValidarStageParcela(IList<Massa_Sinistro_Parcela> massaParcelas)
+        public void ValidarStageParcela()
         {
 
         }
 
-        public void ValidarStageParcelaAuto(IList<Massa_Sinistro_Parcela> massaSinistro)
+        public void ValidarStageParcelaAuto()
         {
 
         }
