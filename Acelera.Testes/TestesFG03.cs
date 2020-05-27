@@ -60,17 +60,17 @@ namespace Acelera.Testes
         }
 
 
-        public void ValidarStageCliente()
+        public void ValidarStageCliente(CodigoStage codigoEsperado)
         {
 
         }
 
-        public void ValidarStageParcela()
+        public void ValidarStageParcela(CodigoStage codigoEsperado)
         {
 
         }
 
-        public void ValidarStageParcelaAuto()
+        public void ValidarStageParcelaAuto(CodigoStage codigoEsperado)
         {
 
         }
