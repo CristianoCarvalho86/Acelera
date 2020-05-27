@@ -90,7 +90,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "VL_DESCONTO", MediaEntreValores(cobertura.ValorDescontoMaior, cobertura.ValorDescontoMenor));
-
+            RemoverLinhasExcetoAsPrimeiras(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
@@ -122,9 +122,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
+            var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMenor, "0"));
+            AlterarLinha(0, "VL_DESCONTO", MediaEntreValores(cobertura.ValorDescontoMaior, cobertura.ValorDescontoMenor));
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -157,9 +157,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3192-20200318.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            var cobertura = dados.ObterCobertura();
+            var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "VL_DESCONTO", SomarValores(cobertura.ValorDescontoMaior, "0"));
+            AlterarLinha(0, "VL_DESCONTO", MediaEntreValores(cobertura.ValorDescontoMaior, cobertura.ValorDescontoMenor));
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
