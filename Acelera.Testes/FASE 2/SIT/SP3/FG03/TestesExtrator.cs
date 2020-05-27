@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Testes.DataAccessRep;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,7 +29,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem(""));
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(1, "CD_PRODUTO", dados.ObterCdProdutoParaTPA(ObterValorHeader("CD_TPA"), false));
+            RemoverLinhasExcetoAsPrimeiras(1);
+            SelecionarLinhaParaValidacao(0);
+            ValidarCdContratoDisponivel(ObterValor(0, "CD_CONTRATO"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -37,8 +40,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarFGsAnteriores();
 
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
-            ValidarRegistroNaoExisteNaODSParcela();
 
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente();
 
 
         }
