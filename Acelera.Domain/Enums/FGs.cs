@@ -45,6 +45,13 @@ namespace Acelera.Domain.Enums
 
     }
 
+
+    public enum FG01_1_Tarefas
+    {
+        [Description("FGR_01_1_SINISTRO")]
+        Sinistro,
+    }
+
     public enum FG02_Tarefas
     {
         [Description("FGR_02_CLIENTE")]

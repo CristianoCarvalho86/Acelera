@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(true, false);
+            ValidarFGsAnteriores(true, false,CodigoStage.AguardandoEmissaoSGS);
 
             //Garantir operação parametrizada
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false,true);
+            ValidarFGsAnteriores(false,true, CodigoStage.AprovadoNaFG01);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());

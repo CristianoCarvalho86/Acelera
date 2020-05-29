@@ -174,7 +174,7 @@ namespace Acelera.Testes
             return base.ObterProceduresASeremExecutadas();
         }
 
-        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG02)
+        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG02, CodigoStage codigoAguardadoNa01_1)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -199,6 +199,10 @@ namespace Acelera.Testes
             base.ValidarStages(CodigoStage.AprovadoNaFG01);
             ValidarTabelaDeRetornoFG01();
             logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
+            ValidarTeste();
+
+            base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01_1_Enum().ObterTexto());
+            base.ValidarStages(codigoAguardadoNa01_1);
             ValidarTeste();
 
             if (ValidaFG02)
