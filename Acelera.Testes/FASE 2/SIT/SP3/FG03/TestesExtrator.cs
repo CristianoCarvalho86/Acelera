@@ -21,9 +21,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4726()
+        public void SAP_4727()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4726", "");
+            IniciarTeste(TipoArquivo.Sinistro, "4727", "");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));

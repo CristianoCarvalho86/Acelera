@@ -75,6 +75,7 @@ namespace Acelera.Testes
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
+            var nomeOriginalArquivo = arquivo.NomeArquivo;
             if (!_nomeArquivo.Contains("/*R*/"))
             {
                 nomeArquivo = _nomeArquivo.Replace("-","_") + "_" + nomeArquivo;// inclusao do nome da proc
@@ -89,6 +90,8 @@ namespace Acelera.Testes
                 arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+
+            AjustarNomeArquivo(nomeOriginalArquivo, this.nomeArquivo);
         }
 
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
@@ -105,6 +108,8 @@ namespace Acelera.Testes
                 this.nomeArquivo = _nomeArquivo;
 
             var path = Parametros.pastaDestino + nomeArquivo;
+
+            arquivo.AtualizarNomeArquivoFinal(this.nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
@@ -139,6 +144,8 @@ namespace Acelera.Testes
                 arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
             var path = Parametros.pastaDestino + nomeArquivo;
+
+            arquivo.AtualizarNomeArquivoFinal(this.nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;

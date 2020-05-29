@@ -122,7 +122,7 @@ namespace Acelera.Testes
             ValidarStages(tabela, deveHaverRegistro, codigoEsperado);
         }
 
-        public static IList<string> ObterProcedures()
+        public static IList<string> ObterProceduresFG00()
         {
             var lista = new List<string>();
             lista.Add("PRC_0093_IMP");
@@ -143,7 +143,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return ObterProcedures();
+            return ObterProceduresFG00();
         }
     }
 }

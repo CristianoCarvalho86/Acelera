@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
+            return base.ObterProceduresASeremExecutadas().Concat(ObterProceduresFG02(tipoArquivoTeste)).ToList();
         }
 
         public void ValidarTabelaDeRetorno(bool naoDeveEncontarOsErrosDefinidos, params string[] codigosDeErroEsperados)
@@ -142,7 +142,7 @@ namespace Acelera.Testes.FASE_2
         }
 
         #region Procedures
-        public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
+        public static IList<string> ObterProceduresFG02(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
             switch (tipoArquivoTeste)

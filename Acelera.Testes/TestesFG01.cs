@@ -17,7 +17,7 @@ namespace Acelera.Testes
     {
         protected override string NomeFG => "FG01";
         protected bool AoMenosUmComCodigoEsperado = false;
-        public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
+        public static IList<string> ObterProceduresFG01(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
             switch (tipoArquivoTeste)
@@ -69,7 +69,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return TestesFG00.ObterProcedures().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
+            return TestesFG00.ObterProceduresFG00().Concat(ObterProceduresFG01(tipoArquivoTeste)).ToList();
         }
 
         public virtual void ValidarFGsAnteriores() 
@@ -80,7 +80,7 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(tipoArquivoTeste.ObterTarefaFG00Enum().ObterTexto());
-            this.ValidarLogProcessamento(true,1, TestesFG00.ObterProcedures());
+            this.ValidarLogProcessamento(true,1, ObterProceduresFG00());
             this.ValidarControleArquivo();
             this.ValidarTabelaDeRetornoFG00();
             this.ValidarStages(CodigoStage.AprovadoNAFG00);

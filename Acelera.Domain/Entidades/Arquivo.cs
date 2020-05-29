@@ -24,9 +24,18 @@ namespace Acelera.Domain.Layouts
 
         public string NomeArquivo { get; private set; }
 
+        public string NomeArquivoOriginal { get; private set; }
+
         private int LimiteDeLinhas;
 
         protected abstract string[] CamposChaves { get;}
+
+        public void AtualizarNomeArquivoFinal(string nomeArquivo)
+        {
+            NomeArquivoOriginal = NomeArquivo;
+            NomeArquivo = nomeArquivo;
+        }
+
         public Arquivo Clone()
         {
             var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
@@ -260,7 +269,7 @@ namespace Acelera.Domain.Layouts
 
         public void RemoverLinhas(int posicaoLinhaInicial, int quantidadeLinhas)
         {
-            Linhas = Linhas.TakeWhile(x => x.Index < posicaoLinhaInicial || x.Index > (posicaoLinhaInicial + quantidadeLinhas)).ToList();
+            Linhas = Linhas.Where(x => x.Index < posicaoLinhaInicial || x.Index > (posicaoLinhaInicial + quantidadeLinhas)).ToList();
         }
         public void RemoverTodasLinhasDoBody()
         {
@@ -270,12 +279,12 @@ namespace Acelera.Domain.Layouts
 
         public void RemoverExcetoEstas(int posicaoLinhaInicial, int quantidadeLinhas)
         {
-            Linhas = Linhas.TakeWhile(x => x.Index >= posicaoLinhaInicial && x.Index < (posicaoLinhaInicial + quantidadeLinhas)).ToList();
+            Linhas = Linhas.Where(x => x.Index >= posicaoLinhaInicial && x.Index < (posicaoLinhaInicial + quantidadeLinhas)).ToList();
         }
 
         public void RemoverLinhasMenosUma(int posicaoLinhaAManter)
         {
-            Linhas = Linhas.TakeWhile(x => x.Index == posicaoLinhaAManter).ToList();
+            Linhas = Linhas.Where(x => x.Index == posicaoLinhaAManter).ToList();
         }
 
         public void ReIndexar()
