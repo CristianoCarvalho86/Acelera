@@ -8,24 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
+namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
 {
     [TestClass]
-    public class PROC1014_Layout94_LASA : TestesFG05
+    public class PROC1014_Layout94_SOFTBOX : TestesFG05
     {
         /// <summary>
         /// vl_premio_liquido inferior ao parametrizado para o (percentualmente) na tabela 7012
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4663()
+        public void SAP_4668()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.ParcEmissao, "4663", "FG05 - PROC1014");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4668", "FG05 - PROC1014");
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
@@ -49,14 +49,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4664()
+        public void SAP_4669()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.ParcEmissao, "4664", "FG05 - PROC1014");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4669", "FG05 - PROC1014");
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
@@ -80,14 +80,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4665()
+        public void SAP_4670()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.ParcEmissao, "4665", "FG05 - PROC1014");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4670", "FG05 - PROC1014");
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
