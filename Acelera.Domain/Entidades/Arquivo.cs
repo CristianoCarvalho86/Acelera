@@ -278,6 +278,14 @@ namespace Acelera.Domain.Layouts
             Linhas = Linhas.TakeWhile(x => x.Index == posicaoLinhaAManter).ToList();
         }
 
+        public void ReIndexar()
+        {
+            for (int i = 0; i < Linhas.Count; i++)
+            {
+                Linhas[i].Index = i;
+            }
+        }
+
         protected abstract void CarregaCamposDoLayout(LinhaArquivo linha);
 
         protected IList<LinhaArquivo> CarregaLinhas(IEnumerable<string> linhas)

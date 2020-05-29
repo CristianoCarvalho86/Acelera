@@ -12,12 +12,22 @@ namespace Acelera.Domain.Entidades.Tabelas
     {
         public abstract string nomeTabela { get; }
         public static string NomeTabela { get { var a = new T(); return a.nomeTabela; } }
+        public abstract IList<string> CamposWhere { get; }
+        public IList<string> CamposDaTabela()
+        {
+            var lista = new List<string>();
+            foreach (PropertyInfo pi in typeof(T).GetProperties())
+            {
+                lista.Add(pi.Name);
+            }
+            return lista;
+        }
         public string ObterTextoWhere()
         {
             var sql = "";
             foreach (PropertyInfo pi in typeof(T).GetProperties())
             {
-                if (pi.Name.ToUpper() == "NOMETABELA")
+                if (pi.Name.ToUpper() == "NOMETABELA" || (CamposWhere != null && !CamposWhere.Contains(pi.Name.ToUpper())))
                     continue;
                 var valor = pi.GetValue(this).ToString() == string.Empty ? " IS NULL " : $"'{pi.GetValue(this)}'";
                 sql += $"{pi.Name} = {valor} AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);

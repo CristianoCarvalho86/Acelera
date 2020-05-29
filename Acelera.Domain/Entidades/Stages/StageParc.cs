@@ -1,19 +1,16 @@
-﻿using Acelera.Domain.Entidades.Stages;
-using Acelera.Domain.Entidades.Tabelas;
+﻿using Acelera.Domain.Entidades.Tabelas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Domain.Entidades.SGS
+namespace Acelera.Domain.Entidades.Stages
 {
-    public class Massa_Sinistro_Parcela : EntidadeDeTabela<Massa_Sinistro_Parcela>
+    public class StageParc : EntidadeDeTabela<StageParc>
     {
-
-        public string ID_SEQ { get; set; }
         public string ID_REGISTRO { get; set; }
-        public string TP_REGISTRO { get; set; }
+        public string TIPO_REGISTRO { get; set; }
         public string CD_INTERNO_RESSEGURADOR { get; set; }
         public string CD_RAMO { get; set; }
         public string CD_MOVTO_COBRANCA { get; set; }
@@ -67,38 +64,20 @@ namespace Acelera.Domain.Entidades.SGS
         public string ID_TRANSACAO_CANC { get; set; }
         public string CD_PLANO { get; set; }
         public string CD_UF_RISCO { get; set; }
-        public string CD_MODALIDADE { get; set; }
-        public string CD_MODELO { get; set; }
-        public string ANO_MODELO { get; set; }
-        public string VL_PERC_FATOR { get; set; }
-        public string VL_PERC_BONUS { get; set; }
-        public string CD_CLASSE_BONUS { get; set; }
-        public string SEXO_CONDUTOR { get; set; }
-        public string DT_NASC_CONDUTOR { get; set; }
-        public string TEMPO_HAB { get; set; }
-        public string CD_UTILIZACAO { get; set; }
-        public string CEP_UTILIZACAO { get; set; }
-        public string CEP_PERNOITE { get; set; }
         public string CD_OPERACAO { get; set; }
-        public string DT_INCLUSAO { get; set; }
         public string NM_ARQUIVO_TPA { get; set; }
-        public string TP_ARQUIVO { get; set; }
         public string NM_TPA { get; set; }
-        public string CD_STATUS_PROCESSAMENTO { get; set; }
         public string DT_ARQUIVO { get; set; }
         public string CD_VERSAO_ARQUIVO { get; set; }
         public string QT_LINHA_ARQUIVO { get; set; }
-        public override string nomeTabela => "TB_MASS_SGS_SINISTRO_PARCELA_0032";
+        public string DT_INCLUSAO { get; set; }
+        public string DT_PROCESSAMENTO { get; set; }
+        public string CD_STATUS_PROCESSAMENTO { get; set; }
+        public string TP_MUDANCA { get; set; }
+        public string DT_MUDANCA { get; set; }
 
-        public override IList<string> CamposWhere
-        {
-            get
-            {
-                var t = new StageParc();
-                var camposDaStage = t.CamposDaTabela();
-                return CamposDaTabela().Where(x => camposDaStage.Contains(x)).ToList();
-            }
-        }
+        public override string nomeTabela => "TAB_STG_PARCELA_1001";
 
+        public override IList<string> CamposWhere => throw new NotImplementedException();
     }
 }

@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //ALTERAR O VALOR SELECIONADO
             RemoverLinhasExcetoAsPrimeiras(1);
             SelecionarLinhaParaValidacao(0);
-            ValidarCdContratoDisponivel(ObterValor(0, "CD_CONTRATO"));
+            ObterLinhaComCdContratoDisponivel();
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

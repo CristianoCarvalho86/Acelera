@@ -125,7 +125,7 @@ namespace Acelera.Testes.DataAccessRep
             logger.FecharBloco();
         }
 
-        public static DataTable Consulta(string sql, string parametroBuscado, DBEnum dbEnum, IMyLogger logger)
+        public static DataTable Consulta(string sql, string parametroBuscado, DBEnum dbEnum, IMyLogger logger, bool validaResultadoUnico = true)
         {
             IDBHelper helper = ObterBanco(dbEnum);
             DataTable tabela;
@@ -136,7 +136,7 @@ namespace Acelera.Testes.DataAccessRep
 
                 tabela = helper.GetData(sql);
 
-                if (tabela.Rows.Count == 0)
+                if (tabela.Rows.Count == 0 && validaResultadoUnico)
                     throw new Exception("NENHUMA LINHA ENCONTRADA");
 
                 logger.LogRetornoQuery(tabela, sql);

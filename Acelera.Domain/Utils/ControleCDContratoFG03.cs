@@ -40,9 +40,14 @@ namespace Acelera.Domain.Utils
             }
         }
 
+        public IList<string> ObterContratosUtilizados()
+        {
+            return File.ReadAllText(enderecoArquivo).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
         public bool ValidaContrato(string cdContrato)
         {
-            var valoresAtuais = File.ReadAllText(enderecoArquivo).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var valoresAtuais = ObterContratosUtilizados();
             if (valoresAtuais.Contains(cdContrato))
                 return false;
 
@@ -51,7 +56,7 @@ namespace Acelera.Domain.Utils
             return true;
         }
 
-        private void AtualizaArquivo(string cdContrato)
+        public void AtualizaArquivo(string cdContrato)
         {
             StreamWriter writer = null;
             try

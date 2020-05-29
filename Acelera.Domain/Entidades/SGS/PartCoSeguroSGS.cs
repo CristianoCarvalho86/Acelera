@@ -12,5 +12,7 @@ namespace Acelera.Domain.Entidades.SGS
        public string COD_ITEM { get; set; }
 
         public override string nomeTabela => "EMS_PARTCOSSEGURO";
+
+        public override IList<string> CamposWhere => throw new NotImplementedException();
     }
 }

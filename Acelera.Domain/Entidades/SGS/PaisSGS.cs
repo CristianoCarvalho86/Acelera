@@ -12,5 +12,7 @@ namespace Acelera.Domain.Entidades.SGS
         public string NM_PAIS { get; set; }
 
         public override string nomeTabela => "TB_SGS_PAIS_0080";
+
+        public override IList<string> CamposWhere => throw new NotImplementedException();
     }
 }

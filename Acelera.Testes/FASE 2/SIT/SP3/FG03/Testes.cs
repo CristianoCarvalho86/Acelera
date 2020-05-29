@@ -18,12 +18,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             IniciarTeste(Domain.Enums.TipoArquivo.Sinistro, "1111", "inicial");
             var a = new SGSData(logger);
             Massa_Cliente_Sinistro massaCliente = null;
-            Massa_Sinistro_Parcela massaParcela = null;
-            var resultado = a.ValidaTabelasTemporariasSGS("327", "313101654880", "1", "00696865", out massaCliente, out massaParcela);
+            IList<Massa_Sinistro_Parcela> massaParcela = null;
+            //var resultado = a.ValidaTabelasTemporariasSGS("327", "313101654880", "1", "00696865", out massaCliente, out massaParcela);
             a.ValidarCdContratoDisponivel("313101654880");
             a.Executar();
             a.ValidarStageCliente(massaCliente);
-            a.ValidarStageParcela(massaParcela);
+            ///a.ValidarStageParcela(massaParcela);
             
         }
 

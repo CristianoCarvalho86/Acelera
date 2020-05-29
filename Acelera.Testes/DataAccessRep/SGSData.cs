@@ -31,6 +31,11 @@ namespace Acelera.Testes.DataAccessRep
             return retorno;
         }
 
+        public void CarregarSinistroDoContrato(Arquivo arquivo, string cdContrato)
+        {
+
+        }
+
         public bool ValidarCdTpaNaParametroGlobal(string cdTpa)
         {
             logger.AbrirBloco($"VALIDAR SE OPERAÇÃO ESTÁ MARCADA COMO EXTRAÇÃO SGS. CD_TPA:'{cdTpa}'");
@@ -57,8 +62,8 @@ namespace Acelera.Testes.DataAccessRep
             return true;
         }
 
-        public bool ValidaTabelasTemporariasSGS(string cdItem, string cdContrato, string nrSeqEmissao, string cdCliente,
-            out Massa_Cliente_Sinistro massaClienteSGSEcontrado, out Massa_Sinistro_Parcela massaSinistroEncontrado)
+        public void CarregaEntidadesDasTabelasTemporariasSGS(string cdItem, string cdContrato, string nrSeqEmissao, string cdCliente,
+            out IList<Massa_Cliente_Sinistro> massaClienteSGSEcontrado, out IList<Massa_Sinistro_Parcela> massaSinistroEncontrado)
         {
             massaClienteSGSEcontrado = null;
             massaSinistroEncontrado = null;
@@ -66,19 +71,13 @@ namespace Acelera.Testes.DataAccessRep
             logger.AbrirBloco("VERIFICAR REGISTROS NAS TABELAS TEMPORARIAS DO SGS.");
 
             var sql = $"SELECT {Massa_Sinistro_Parcela.ObterTextoSelect()} FROM {Massa_Sinistro_Parcela.NomeTabela} WHERE CD_ITEM = '{cdItem}' and CD_CONTRATO = '{cdContrato}' and NR_SEQUENCIAL_EMISSAO = '{nrSeqEmissao}'";
-            var massaSinistroParcela = Massa_Sinistro_Parcela.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Sinistro_Parcela.NomeTabela}", DBEnum.SqlServer, logger));
+            var massaSinistroParcela = Massa_Sinistro_Parcela.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Sinistro_Parcela.NomeTabela}", DBEnum.SqlServer, logger,false));
 
             sql = $"SELECT {Massa_Cliente_Sinistro.ObterTextoSelect()} FROM {Massa_Cliente_Sinistro.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}'";
-            var massaCliente = Massa_Cliente_Sinistro.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Cliente_Sinistro.NomeTabela}", DBEnum.SqlServer, logger));
+            var massaCliente = Massa_Cliente_Sinistro.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Cliente_Sinistro.NomeTabela}", DBEnum.SqlServer, logger,false));
 
-            if(!Assertions.ValidarRegistroUnicoNaLista(massaSinistroParcela, logger, Massa_Sinistro_Parcela.NomeTabela) ||
-            !Assertions.ValidarRegistroUnicoNaLista(massaCliente, logger, Massa_Cliente_Sinistro.NomeTabela))
-                return false;
-
-            massaSinistroEncontrado = massaSinistroParcela.First();
-            massaClienteSGSEcontrado = massaCliente.First();
-
-            return true;
+            massaSinistroEncontrado = massaSinistroParcela;
+            massaClienteSGSEcontrado = massaCliente;
 
         }
 
@@ -122,7 +121,7 @@ namespace Acelera.Testes.DataAccessRep
             logger.FecharBloco();
             return resultado;
         }
-
+        
         public string ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
         {
             logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");
@@ -140,8 +139,9 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ValidarStageParcelaAuto(Massa_Sinistro_Parcela massaSinistro)
         {
+            var massaSinistroAuto = (Massa_Sinistro_Parcela_Auto)massaSinistro;
             logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");
-            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_ARQ_RETORNO_8002 WHERE {massaSinistro.ObterTextoWhere()}";
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_AUTO_1002 WHERE {massaSinistroAuto.ObterTextoWhere()}";
             var resultado = DataAccess.ConsultaUnica(sql, logger, false);
             if (resultado == null)
             {

@@ -16,5 +16,7 @@ namespace Acelera.Domain.Entidades.SGS
         public string COD_ITEM { get; set; }
         public string VLR_IS { get; set; }
         public string VLR_FRAQ { get; set; }
+
+        public override IList<string> CamposWhere => throw new NotImplementedException();
     }
 }

@@ -67,11 +67,15 @@
     <Compile Include="Entidades\SGS\ContratoSGS.cs" />
     <Compile Include="Entidades\SGS\EmissaoSGS.cs" />
     <Compile Include="Entidades\SGS\EnderecoSGS.cs" />
+    <Compile Include="Entidades\SGS\Massa_Sinistro_Auto.cs" />
     <Compile Include="Entidades\SGS\Massa_Sinistro.cs" />
     <Compile Include="Entidades\SGS\PaisSGS.cs" />
     <Compile Include="Entidades\SGS\ParcelaSGS.cs" />
     <Compile Include="Entidades\SGS\PartCoSeguroSGS.cs" />
     <Compile Include="Entidades\SGS\Massa_Cliente_Sinistro.cs" />
+    <Compile Include="Entidades\Stages\StageCliente.cs" />
+    <Compile Include="Entidades\Stages\StageParc.cs" />
+    <Compile Include="Entidades\Stages\StageParcAuto.cs" />
     <Compile Include="Entidades\Tabelas\EntidadeDeTabela.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaClienteStage.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaComissaoStage.cs" />
