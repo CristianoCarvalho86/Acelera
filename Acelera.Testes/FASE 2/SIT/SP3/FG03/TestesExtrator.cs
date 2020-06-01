@@ -17,13 +17,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
     {
 
         /// <summary>
-        /// Informar no campo Cd_PRODUTO um produto parametrizado para o CD_TPA (CD_OPERAÇÃO) na tabela TAB_PRM_PRD_COBERTURA_7009
+        /// Multiplas parcelas
         /// </summary>
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_4727()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4727", "");
+            IniciarTeste(TipoArquivo.Sinistro, "4727", "Multiplas parcelas");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
@@ -59,6 +59,559 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores(false,true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        /// <summary>
+        /// Parcela única
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4726()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4726", "Parcela única");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+
+        /// <summary>
+        /// Dois contratos para o mesmo CD_CLIENTE
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4728()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4728", "Dois contratos para o mesmo CD_CLIENTE");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+
+        /// <summary>
+        /// Sinistro com parcela/clente/sinistro na ods
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4729()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4729", "Sinistro com parcela/clente/sinistro na ods");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        /// <summary>
+        /// Apólice não encontrada na SGS
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4730()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4730", "Apólice não encontrada na SGS");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        /// <summary>
+        /// Sinistro com código menor que 120 (não executa FG01)
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4731()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4731", "Apólice não encontrada na SGS");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        /// <summary>
+        /// Segunda movimentação de sinistro, sendo o primeiro com 140.
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4732()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4732", "Segunda movimentação de sinistro, sendo o primeiro com 140.");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        /// <summary>
+        /// Segunda movimentação de sinistro, sendo o primeiro com 160.
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4733()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4733", "Segunda movimentação de sinistro, sendo o primeiro com 160.");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+
+        /// <summary>
+        /// Contarto cancelado
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4734()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4734", "Contarto cancelado.");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        /// <summary>
+        /// CD_OCORRENCIA depois do fim da vigencia
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4735()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4735", "CD_OCORRENCIA depois do fim da vigencia.");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        /// <summary>
+        /// Arquivo que não pertence a SGS
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4736()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "4736", "Arquivo que não pertence a SGS.");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            ObterLinhaComCdContratoDisponivel();
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
