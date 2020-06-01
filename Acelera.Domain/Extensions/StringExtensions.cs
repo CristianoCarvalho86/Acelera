@@ -28,5 +28,10 @@ namespace Acelera.Domain.Extensions
             else
                 return null;
         }
+
+        public static decimal ObterValorDecimal(this string texto)
+        {
+            return decimal.Parse(texto.Replace(".", ","));
+        }
     }
 }
