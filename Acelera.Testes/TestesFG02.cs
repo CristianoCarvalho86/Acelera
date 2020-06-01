@@ -305,7 +305,7 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_0086");
                     lista.Add("PRC_0087");
                     lista.Add("PRC_0088");
-                    lista.Add("PRC_0107");
+                    //lista.Add("PRC_0107");
                     lista.Add("PRC_0111");
                     lista.Add("PRC_0119");
                     lista.Add("PRC_0120");
