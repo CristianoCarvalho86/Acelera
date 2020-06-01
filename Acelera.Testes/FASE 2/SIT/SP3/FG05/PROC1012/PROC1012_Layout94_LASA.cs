@@ -30,17 +30,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             //Alterar arquivo
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA")) ;
             decimal valorTotal = 0;
-            valorTotal = ObterValorPremioTotalBruto(decimal.Parse(ObterValorFormatado(0, "VL_IS")), cobertura);
+            valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
 
             if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
                 valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal) - 0.05M;
             else
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal - 0.05M;
 
-            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ToString()) ;
+            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado()) ;
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo("PROC1012");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "1012", 1);
         }
 
