@@ -142,7 +142,7 @@ namespace Acelera.Testes.FASE_2
 
         public override void FinalizarAlteracaoArquivo()
         {
-            if (tipoArquivoTeste != TipoArquivo.ParcEmissao && tipoArquivoTeste != TipoArquivo.ParcEmissaoAuto)
+            if (arquivo.tipoArquivo != TipoArquivo.ParcEmissao && arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
                 return;
 
             var linhas = valoresAlteradosBody.LinhasAlteradas();
