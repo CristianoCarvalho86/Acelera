@@ -19,6 +19,5 @@ namespace Acelera.Domain.Entidades.SGS
 
         public override string nomeTabela => "CLI_ENDERECO";
 
-        public override IList<string> CamposWhere => throw new NotImplementedException();
     }
 }

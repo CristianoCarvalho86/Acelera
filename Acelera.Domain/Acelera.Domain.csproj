@@ -73,6 +73,8 @@
     <Compile Include="Entidades\SGS\ParcelaSGS.cs" />
     <Compile Include="Entidades\SGS\PartCoSeguroSGS.cs" />
     <Compile Include="Entidades\SGS\Massa_Cliente_Sinistro.cs" />
+    <Compile Include="Entidades\SGS\QueryMassaParcelaAutoSGS.cs" />
+    <Compile Include="Entidades\SGS\QueryMassaParcelaSGS.cs" />
     <Compile Include="Entidades\Stages\StageCliente.cs" />
     <Compile Include="Entidades\Stages\StageParc.cs" />
     <Compile Include="Entidades\Stages\StageParcAuto.cs" />

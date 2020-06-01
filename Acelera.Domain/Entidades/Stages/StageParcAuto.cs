@@ -11,8 +11,6 @@ namespace Acelera.Domain.Entidades.Stages
     {
         public override string nomeTabela => "TAB_STG_PARCELA_AUTO_1002";
 
-        public override IList<string> CamposWhere => throw new NotImplementedException();
-
         public string ID_REGISTRO { get; set; }
         public string TIPO_REGISTRO { get; set; }
         public string CD_INTERNO_RESSEGURADOR { get; set; }

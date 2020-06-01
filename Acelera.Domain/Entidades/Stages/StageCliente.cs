@@ -47,6 +47,5 @@ namespace Acelera.Domain.Entidades.Stages
 
         public override string nomeTabela => $"TAB_STG_CLIENTE_1000";
 
-        public override IList<string> CamposWhere => null;
     }
 }

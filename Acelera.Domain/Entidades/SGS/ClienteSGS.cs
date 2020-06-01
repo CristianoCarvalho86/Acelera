@@ -17,7 +17,5 @@ namespace Acelera.Domain.Entidades.SGS
         public string NRO_CPF { get; set; }
         public string NRO_RG { get; set; }
         public override string nomeTabela => "CLI_PESSOA";
-
-        public override IList<string> CamposWhere => throw new NotImplementedException();
     }
 }

@@ -31,6 +31,14 @@ namespace Acelera.Domain.Layouts
             return campo;
         }
 
+        public CampoDoArquivo ObterCampoSeExistir(string nomeCampo)
+        {
+            var campo = Campos.Where(x => x.Coluna.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
+            if (campo == null)
+                campo = Campos.Where(x => x.ColunaArquivo.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
+            return campo;
+        }
+
         public void CarregaTexto(string texto)
         {
             int posicao = 0;

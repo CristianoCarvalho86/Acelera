@@ -90,15 +90,5 @@ namespace Acelera.Domain.Entidades.SGS
         public string QT_LINHA_ARQUIVO { get; set; }
         public override string nomeTabela => "TB_MASS_SGS_SINISTRO_PARCELA_0032";
 
-        public override IList<string> CamposWhere
-        {
-            get
-            {
-                var t = new StageParc();
-                var camposDaStage = t.CamposDaTabela();
-                return CamposDaTabela().Where(x => camposDaStage.Contains(x)).ToList();
-            }
-        }
-
     }
 }

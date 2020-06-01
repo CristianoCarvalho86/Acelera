@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acelera.Domain.Layouts;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,8 +13,7 @@ namespace Acelera.Domain.Entidades.Tabelas
     {
         public abstract string nomeTabela { get; }
         public static string NomeTabela { get { var a = new T(); return a.nomeTabela; } }
-        public abstract IList<string> CamposWhere { get; }
-        public IList<string> CamposDaTabela()
+        public static IList<string> CamposDaTabela()
         {
             var lista = new List<string>();
             foreach (PropertyInfo pi in typeof(T).GetProperties())
@@ -22,12 +22,12 @@ namespace Acelera.Domain.Entidades.Tabelas
             }
             return lista;
         }
-        public string ObterTextoWhere()
+        public string ObterTextoWhere(IList<string> Campos)
         {
             var sql = "";
             foreach (PropertyInfo pi in typeof(T).GetProperties())
             {
-                if (pi.Name.ToUpper() == "NOMETABELA" || (CamposWhere != null && !CamposWhere.Contains(pi.Name.ToUpper())))
+                if (pi.Name.ToUpper() == "NOMETABELA" || (Campos != null && !Campos.Contains(pi.Name.ToUpper())))
                     continue;
                 var valor = pi.GetValue(this).ToString() == string.Empty ? " IS NULL " : $"'{pi.GetValue(this)}'";
                 sql += $"{pi.Name} = {valor} AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
@@ -65,6 +65,39 @@ namespace Acelera.Domain.Entidades.Tabelas
                 entidades.Add(ent);
             }
             return entidades;
+        }
+
+        public bool CompararCampos(T objetoAComparar)
+        {
+            bool campoEncontrado = false;
+            foreach (PropertyInfo pi in objetoAComparar.GetType().GetProperties())
+            {
+                var propriedade = this.GetType().GetProperties().Where(x => x.Name == pi.Name).FirstOrDefault();
+                if (propriedade == null)
+                    continue;
+                else
+                    campoEncontrado = true;
+
+                if (pi.Name.ToUpper() == "NOMETABELA")
+                    continue;
+                if (pi.GetValue(objetoAComparar).ToString() != propriedade.GetValue(this).ToString())
+                    return false;
+            }
+            if (!campoEncontrado)
+                throw new Exception("NENHUM CAMPO A COMPARAR!");
+            return true;
+        }
+
+        public void CarregaLinhaArquivo(LinhaArquivo linhaArquivo)
+        {
+            var propriedades = this.GetType().GetProperties();
+            foreach (var prop in propriedades)
+            {
+                var campo = linhaArquivo.ObterCampoSeExistir(prop.Name);
+                if (campo == null)
+                    continue;
+                campo.AlterarValor(prop.GetValue(this).ToString());
+            }
         }
 
     }

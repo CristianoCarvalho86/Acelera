@@ -101,6 +101,7 @@ namespace Acelera.Data
             {
                 command = new SqlCommand(sql);
                 command.Connection = Conn;
+                command.CommandTimeout = 5000;
                 return command.ExecuteNonQuery();
             }
             catch (Exception ex)

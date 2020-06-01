@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades.SGS;
+using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -68,8 +69,6 @@ namespace Acelera.Testes.DataAccessRep
             massaClienteSGSEcontrado = null;
             massaSinistroEncontrado = null;
 
-            logger.AbrirBloco("VERIFICAR REGISTROS NAS TABELAS TEMPORARIAS DO SGS.");
-
             var sql = $"SELECT {Massa_Sinistro_Parcela.ObterTextoSelect()} FROM {Massa_Sinistro_Parcela.NomeTabela} WHERE CD_ITEM = '{cdItem}' and CD_CONTRATO = '{cdContrato}' and NR_SEQUENCIAL_EMISSAO = '{nrSeqEmissao}'";
             var massaSinistroParcela = Massa_Sinistro_Parcela.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Sinistro_Parcela.NomeTabela}", DBEnum.SqlServer, logger,false));
 
@@ -78,6 +77,18 @@ namespace Acelera.Testes.DataAccessRep
 
             massaSinistroEncontrado = massaSinistroParcela;
             massaClienteSGSEcontrado = massaCliente;
+
+        }
+
+        public void ValidarEntidadesDasTabelasTemporariasSGS(string cdContrato, string cdCliente, IList<Massa_Sinistro_Parcela> massaSinistroParcela)
+        {
+            logger.AbrirBloco("VALIDAR REGISTROS NAS TABELAS TEMPORARIAS DO SGS.");
+            logger.Escrever($"CARREGANDO DADOS DO BANCO PARA O CONTRATO {cdContrato}");
+            var sql = QueryMassaParcelaSGS.ObterTextoSelect() + $" WHERE CONTRATO.cod_ctrt = '{cdContrato}'";
+            var registroParcelaEncontrado = QueryMassaParcelaSGS.CarregarEntidade(DataAccess.Consulta(sql, $"DADOS QUE PREENCHEM A {Massa_Sinistro_Parcela.NomeTabela}",logger));
+            if (registroParcelaEncontrado.Count != massaSinistroParcela.Count)
+                throw new Exception("Quantidade de registros encontrados diferentes dos registros na tabela temporaria.");
+
 
         }
 
@@ -110,7 +121,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ValidarStageCliente(Massa_Cliente_Sinistro massaCliente)
         {
             //FALTA COMPLETAR O WHERE DESSA QUERY
-            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_CLIENTE_1000 WHERE {massaCliente.ObterTextoWhere()} ";
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_CLIENTE_1000 WHERE {massaCliente.ObterTextoWhere(StageCliente.CamposDaTabela())} ";
             var resultado = DataAccess.ConsultaUnica(sql, logger, false);
             if (resultado == null)
             {
@@ -125,7 +136,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
         {
             logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");
-            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_1001 WHERE {massaSinistro.ObterTextoWhere()}";
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_1001 WHERE {massaSinistro.ObterTextoWhere(StageParc.CamposDaTabela())}";
             var resultado = DataAccess.ConsultaUnica(sql,logger, false);
             if(resultado == null)
             {
@@ -140,8 +151,8 @@ namespace Acelera.Testes.DataAccessRep
         public string ValidarStageParcelaAuto(Massa_Sinistro_Parcela massaSinistro)
         {
             var massaSinistroAuto = (Massa_Sinistro_Parcela_Auto)massaSinistro;
-            logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");
-            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_AUTO_1002 WHERE {massaSinistroAuto.ObterTextoWhere()}";
+            logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_AUTO_1002.");
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_AUTO_1002 WHERE {massaSinistroAuto.ObterTextoWhere(StageParcAuto.CamposDaTabela())}";
             var resultado = DataAccess.ConsultaUnica(sql, logger, false);
             if (resultado == null)
             {

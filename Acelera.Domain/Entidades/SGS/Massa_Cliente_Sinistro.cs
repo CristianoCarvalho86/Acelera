@@ -45,11 +45,5 @@ namespace Acelera.Domain.Entidades.SGS
 
         public override string nomeTabela => "TB_MASS_SGS_SINISTRO_CLIENTE_0031";
 
-        public override IList<string> CamposWhere { get {
-                var t = new StageCliente();
-                var camposDaStage = t.CamposDaTabela();
-                return CamposDaTabela().Where(x => camposDaStage.Contains(x)).ToList();
-            }
-        }
     }
 }

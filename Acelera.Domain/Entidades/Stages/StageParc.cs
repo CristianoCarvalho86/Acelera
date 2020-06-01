@@ -77,7 +77,5 @@ namespace Acelera.Domain.Entidades.Stages
         public string DT_MUDANCA { get; set; }
 
         public override string nomeTabela => "TAB_STG_PARCELA_1001";
-
-        public override IList<string> CamposWhere => throw new NotImplementedException();
     }
 }
