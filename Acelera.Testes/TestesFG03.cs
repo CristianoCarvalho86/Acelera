@@ -155,21 +155,33 @@ namespace Acelera.Testes
         }
 
 
-        public void ValidarStageCliente(CodigoStage codigoEsperado)
+        public void ValidarStageCliente(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
+            if(clienteSGS == null || clienteSGS.Count == 0)
+            {
+                logger.Escrever("NENHUM REGISTRO ENCONTRADO PARA CLIENTE NO SGS.");
+                return;
+            }
+
             foreach (var cliente in clienteSGS)
                 if (!(SGS_dados.ValidarStageCliente(cliente) == codigoEsperado.ObterTexto()))
                 ExplodeFalha();
         }
 
-        public void ValidarStageParcela(CodigoStage codigoEsperado)
+        public void ValidarStageParcela(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
-            foreach(var parcela in parcelaSGS)
+            if (parcelaSGS == null || parcelaSGS.Count == 0)
+            {
+                logger.Escrever("NENHUM REGISTRO ENCONTRADO PARA PARCELA NO SGS.");
+                return;
+            }
+
+            foreach (var parcela in parcelaSGS)
                 if (!(SGS_dados.ValidarStageParcela(parcela) == codigoEsperado.ObterTexto()))
                     ExplodeFalha();
         }
 
-        public void ValidarStageParcelaAuto(CodigoStage codigoEsperado)
+        public void ValidarStageParcelaAuto(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
             foreach (var parcela in parcelaSGS)
                 if (!(SGS_dados.ValidarStageParcelaAuto(parcela) == codigoEsperado.ObterTexto()))

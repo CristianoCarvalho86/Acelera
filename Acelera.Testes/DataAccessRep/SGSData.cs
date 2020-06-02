@@ -197,6 +197,11 @@ namespace Acelera.Testes.DataAccessRep
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
         }
 
+        public string ObterClienteComMultiplosContratos()
+        {
+
+        }
+
         public bool ValidaExistenciaCDContrato(string CdContrato)
         {
             logger.AbrirBloco($"VALIDANDO SE CD_CONTRATO '{CdContrato}' NAO EXISTE NO SGS.");
@@ -204,7 +209,6 @@ namespace Acelera.Testes.DataAccessRep
             return resultado != null ? true : false;
         }
 
-        public void Carregar
 
     }
 }
