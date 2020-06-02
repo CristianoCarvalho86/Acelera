@@ -40,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado());
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo("PROC1014");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "1014", 1);
         }
 
