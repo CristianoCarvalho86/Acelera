@@ -189,7 +189,7 @@ namespace Acelera.Testes.DataAccessRep
         {
             logger.AbrirBloco("OBTENDO DADOS DE CONTRATO COM N PARCELAS");
             var codContrato = DataAccess.ConsultaUnica("select top 1 cod_ctrt from ems_parcela  cod_ctrt group by cod_ctrt having count(cod_ctrt) > 1 order by NEWID()",
-                "BUSCANDO COD CONTRATO COM UMA PARCELA", DBEnum.SqlServer, logger);
+                "BUSCANDO COD CONTRATO COM MULTIPLAS PARCELAS", DBEnum.SqlServer, logger);
             logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
             var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = {codContrato}",
                 $"CARREGANDO DADOS DO CONTRATO {codContrato}", DBEnum.SqlServer, logger);
@@ -197,10 +197,35 @@ namespace Acelera.Testes.DataAccessRep
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
         }
 
+        public QueryContratoParaArquivo ObterContratoDoCliente(string cdCliente)
+        {
+            logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO PARA COD_CLIENTE : {cdCliente}");
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_pess = {cdCliente}",
+            $"CARREGANDO DADOS DO CONTRATO PARA O CLIENTE: {cdCliente}", DBEnum.SqlServer, logger);
+            logger.FecharBloco();
+            return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
+        }
+
         public string ObterClienteComMultiplosContratos()
         {
-
+            logger.AbrirBloco("OBTENDO CLIENTE COM MULTIPLOS CONTRATOS");
+            var codCliente = DataAccess.ConsultaUnica("select top 1 cod_pess from ems_contrato group by cod_pess having count(cod_pess) > 1 order by NEWID()",
+                "BUSCANDO CLIENTE QUE CONSTA EM VARIOS CONTRATOS",
+                DBEnum.SqlServer,logger);
+            logger.Escrever($"CLIENTE SELECIONADO : {codCliente}");
+            return codCliente;
         }
+
+        public string ObterClienteComUnicoContrato()
+        {
+            logger.AbrirBloco("OBTENDO CLIENTE COM APENAS UM CONTRATO");
+            var codCliente = DataAccess.ConsultaUnica("select top 1 cod_pess from ems_contrato group by cod_pess having count(cod_pess) = 1 order by NEWID()",
+                "BUSCANDO CLIENTE QUE CONSTA EM UM UNICO CONTRATO",
+                DBEnum.SqlServer, logger);
+            logger.Escrever($"CLIENTE SELECIONADO : {codCliente}");
+            return codCliente;
+        }
+
 
         public bool ValidaExistenciaCDContrato(string CdContrato)
         {

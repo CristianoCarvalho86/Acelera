@@ -147,6 +147,11 @@ namespace Acelera.Testes
             var dadosContrato = SGS_dados.ObterCodigoContratoComMultiplasParcelas();
             dadosContrato.CarregaLinhaArquivo(linha);
         }
+        public void CarregarDadosDeContratoComClienteUnico(LinhaArquivo linha)
+        {
+            var dadosContrato = SGS_dados.ObterContratoDoCliente(SGS_dados.ObterClienteComUnicoContrato());
+            dadosContrato.CarregaLinhaArquivo(linha);
+        }
 
         public void ValidarCdContratoNaoExiste(string cdContrato)
         {
