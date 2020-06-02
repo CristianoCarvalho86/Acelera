@@ -230,7 +230,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
 
             //Garantir sinistro não possui parcela na ods
-            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), false);
 
             //Executar MASP1602B00
             Executar();
@@ -272,6 +272,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            ValidarCdContratoNaoExiste(ObterValorFormatado(0, "CD_CONTRATO").AlterarUltimosCaracteres("00000001"));
             ObterLinhaComCdContratoDisponivel();
             SelecionarLinhaParaValidacao(0);
 
@@ -291,26 +292,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGSVazia(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
-            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00, false);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00, false);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, CodigoStage.AprovadoNaFG01);
-
-            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
-            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
-
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
-
-            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarFGsAnteriores(false, false, CodigoStage.RecusadoNaFG01);
 
         }
 
