@@ -9,6 +9,7 @@ using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.Validadores.FG05;
 using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -92,6 +93,23 @@ namespace Acelera.Testes
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
 
             AjustarNomeArquivo(nomeOriginalArquivo, this.nomeArquivo);
+        }
+
+        public virtual void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual void SalvarArquivo(bool alterarCdCliente, string nomeProc = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void ValidarODS()
+        {
+            throw new NotImplementedException();
+            //foreach (var arquivo in arquivosOds)
+            //    validadorODS = new ValidadorODSFG05(logger, arquivo);
         }
 
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)

@@ -51,7 +51,7 @@ namespace Acelera.Testes
                     (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100);
         }
 
-        protected void SalvarArquivo(bool alterarCdCliente , string nomeProc = "")
+        protected override void SalvarArquivo(bool alterarCdCliente , string nomeProc = "")
         {
             if(alterarCdCliente)
             {
@@ -62,15 +62,7 @@ namespace Acelera.Testes
             base.SalvarArquivo(nomeProc);
         }
 
-        //protected override void SalvarArquivo()
-        //{
-        //    //foreach (var linha in arquivo.Linhas)
-        //    //    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
-        //    base.SalvarArquivo();
-        //}
-
-
-        public void EnviarParaOds(Arquivo arquivo,  bool alterarCdCliente = true, string nomeProc = "")
+        public override void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
         {
             if (alterarCdCliente && operadora != OperadoraEnum.SGS)
             {
@@ -79,16 +71,24 @@ namespace Acelera.Testes
                 foreach (var linha in arquivo.Linhas)
                     arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
-            if(!string.IsNullOrEmpty(nomeProc))
-                SalvarArquivo(false,$"ODS_{nomeProc}");
+            if (!string.IsNullOrEmpty(nomeProc))
+                SalvarArquivo(false, $"ODS_{nomeProc}");
             arquivosOds.Add(arquivo.Clone());
         }
 
-        public void ValidarODS()
+        public override void ValidarODS()
         {
-            foreach(var arquivo in arquivosOds)
+            throw new NotImplementedException();
+            foreach (var arquivo in arquivosOds)
                 validadorODS = new ValidadorODSFG05(logger, arquivo);
         }
+
+        //protected override void SalvarArquivo()
+        //{
+        //    //foreach (var linha in arquivo.Linhas)
+        //    //    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
+        //    base.SalvarArquivo();
+        //}
 
 
         public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false)
