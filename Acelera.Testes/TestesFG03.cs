@@ -148,6 +148,12 @@ namespace Acelera.Testes
             dadosContrato.CarregaLinhaArquivo(linha);
         }
 
+        public void ValidarCdContratoNaoExiste(string cdContrato)
+        {
+            if (SGS_dados.ValidaExistenciaCDContrato(cdContrato))
+                throw new Exception("CD CONTRATO NAO ERA PARA SER ENCONTRADO NO SGS MAS FOI.");
+        }
+
 
         public void ValidarStageCliente(CodigoStage codigoEsperado)
         {
