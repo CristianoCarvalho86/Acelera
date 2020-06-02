@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             else
                 valorTotalLiq = valorTotalLiq - cobertura.ValorPremioLiquidoMenorDecimal - 0.05M;
 
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado()) ;
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado());
 
             //Salvar e executar
             SalvarArquivo();
