@@ -204,5 +204,7 @@ namespace Acelera.Testes.DataAccessRep
             return resultado != null ? true : false;
         }
 
+        public void Carregar
+
     }
 }
