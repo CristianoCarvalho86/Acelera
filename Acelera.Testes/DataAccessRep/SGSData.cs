@@ -173,5 +173,29 @@ namespace Acelera.Testes.DataAccessRep
             logger.FecharBloco();
         }
 
+        public QueryContratoParaArquivo ObterCodigoContratoComUmaParcela()
+        {
+            logger.AbrirBloco("OBTENDO DADOS DE CONTRATO COM APENAS UMA PARCELA");
+            var codContrato = DataAccess.ConsultaUnica("select top 1 cod_ctrt from ems_parcela  cod_ctrt group by cod_ctrt having count(cod_ctrt) = 1 order by NEWID()",
+                "BUSCANDO COD CONTRATO COM UMA PARCELA", DBEnum.SqlServer, logger);
+            logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = {codContrato}",
+                $"CARREGANDO DADOS DO CONTRATO {codContrato}", DBEnum.SqlServer, logger);
+            logger.FecharBloco();
+            return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
+        }
+
+        public QueryContratoParaArquivo ObterCodigoContratoComMultiplasParcelas()
+        {
+            logger.AbrirBloco("OBTENDO DADOS DE CONTRATO COM N PARCELAS");
+            var codContrato = DataAccess.ConsultaUnica("select top 1 cod_ctrt from ems_parcela  cod_ctrt group by cod_ctrt having count(cod_ctrt) > 1 order by NEWID()",
+                "BUSCANDO COD CONTRATO COM UMA PARCELA", DBEnum.SqlServer, logger);
+            logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = {codContrato}",
+                $"CARREGANDO DADOS DO CONTRATO {codContrato}", DBEnum.SqlServer, logger);
+            logger.FecharBloco();
+            return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
+        }
+
     }
 }

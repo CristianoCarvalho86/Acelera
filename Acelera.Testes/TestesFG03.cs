@@ -137,6 +137,17 @@ namespace Acelera.Testes
 
         }
 
+        public void CarregarContratoComUmaParcela(LinhaArquivo linha)
+        {
+            var dadosContrato = SGS_dados.ObterCodigoContratoComUmaParcela();
+            dadosContrato.CarregaLinhaArquivo(linha);
+        }
+        public void CarregarContratoComMultiplasParcelas(LinhaArquivo linha)
+        {
+            var dadosContrato = SGS_dados.ObterCodigoContratoComMultiplasParcelas();
+            dadosContrato.CarregaLinhaArquivo(linha);
+        }
+
 
         public void ValidarStageCliente(CodigoStage codigoEsperado)
         {
