@@ -29,8 +29,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ObterLinhaComCdContratoDisponivel();
+            CarregarContratoComMultiplasParcelas(ObterLinha(0));
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -84,8 +85,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ObterLinhaComCdContratoDisponivel();
+            CarregarContratoComUmaParcela(ObterLinha(0));
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -140,6 +142,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+
             ObterLinhaComCdContratoDisponivel();
             SelecionarLinhaParaValidacao(0);
 
@@ -192,10 +195,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
         {
             IniciarTeste(TipoArquivo.Sinistro, "4729", "Sinistro com parcela/clente/sinistro na ods");
 
+
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(ObterArquivoOrigem(""));
+            RemoverLinhasExcetoAsPrimeiras(1);
+            EnviarParaOds(arquivo, true);
+
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem(""));
+            RemoverLinhasExcetoAsPrimeiras(1);
+            EnviarParaOds(arquivo, true);
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem(""));
+            RemoverLinhasExcetoAsPrimeiras(1);
+            EnviarParaOds(arquivo, true);
+
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+
+            //Tem que alterar movimenteção do sinistro
             ObterLinhaComCdContratoDisponivel();
             SelecionarLinhaParaValidacao(0);
 
