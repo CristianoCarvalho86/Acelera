@@ -21,7 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
         public void SAP_4655()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4655", "FG05 - PROC1012");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4655", "FG05 - PROC1012");
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
