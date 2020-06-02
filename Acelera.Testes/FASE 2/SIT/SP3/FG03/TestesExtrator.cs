@@ -143,9 +143,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-
-            ObterLinhaComCdContratoDisponivel();
+            CarregarContratoComClienteDeVariosContratos(ObterLinha(0), ObterLinha(1));
             SelecionarLinhaParaValidacao(0);
+            SelecionarLinhaParaValidacao(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -163,7 +163,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"), true);
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -533,7 +533,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            
+            CarregarContratoCancelado(ObterLinha(0));
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -588,6 +588,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+
             ObterLinhaComCdContratoDisponivel();
             SelecionarLinhaParaValidacao(0);
 
