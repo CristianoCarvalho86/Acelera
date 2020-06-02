@@ -206,6 +206,15 @@ namespace Acelera.Testes.DataAccessRep
             return QueryContratoParaArquivo.CarregarEntidade(resultado);
         }
 
+        public QueryContratoParaArquivo ObterContratoPeloCodigo(string codContrato)
+        {
+            logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO PARA O COD_CONTRATO : {codContrato}");
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = {codContrato}",
+            $"CARREGANDO DADOS DO CONTRATO PARA O COD_CONTRATO: {codContrato}", DBEnum.SqlServer, logger);
+            logger.FecharBloco();
+            return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
+        }
+
         public string ObterClienteComMultiplosContratos()
         {
             logger.AbrirBloco("OBTENDO CLIENTE COM MULTIPLOS CONTRATOS");

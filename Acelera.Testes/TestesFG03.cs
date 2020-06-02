@@ -137,6 +137,13 @@ namespace Acelera.Testes
 
         }
 
+        public QueryContratoParaArquivo CarregarDadosDoContrato(LinhaArquivo linha)
+        {
+            var contrato = SGS_dados.ObterContratoPeloCodigo(linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado);
+            contrato.CarregaLinhaArquivo(linha);
+            return contrato;
+        }
+
         public void CarregarContratoComUmaParcela(LinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterCodigoContratoComUmaParcela();
