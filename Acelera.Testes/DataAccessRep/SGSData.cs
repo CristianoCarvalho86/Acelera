@@ -197,5 +197,12 @@ namespace Acelera.Testes.DataAccessRep
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
         }
 
+        public bool ValidaExistenciaCDContrato(string CdContrato)
+        {
+            logger.AbrirBloco($"VALIDANDO SE CD_CONTRATO '{CdContrato}' NAO EXISTE NO SGS.");
+            var resultado = DataAccess.ConsultaUnica($"SELECT TOP 1 cod_ctrt from ems_contrato where cod_ctrt = '{CdContrato}'", DBEnum.SqlServer, false);
+            return resultado != null ? true : false;
+        }
+
     }
 }
