@@ -151,7 +151,7 @@ namespace Acelera.Testes
         {
             var dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComUnicoContrato()).First();
             dadosContrato.CarregaLinhaArquivo(linha1);
-            dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComUnicoContrato())[1];
+            dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComUnicoContrato()).Where(x => x.CD_CONTRATO != dadosContrato.CD_CONTRATO).First();
             dadosContrato.CarregaLinhaArquivo(linha2);
         }
 
@@ -159,8 +159,13 @@ namespace Acelera.Testes
         {
             var dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComMultiplosContratos()).First();
             dadosContrato.CarregaLinhaArquivo(linha1);
-            dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComMultiplosContratos())[1];
+            dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComMultiplosContratos()).Where(x => x.CD_CONTRATO != dadosContrato.CD_CONTRATO).First();
             dadosContrato.CarregaLinhaArquivo(linha2);
+        }
+
+        public void CarregarContratoCancelado(LinhaArquivo linha)
+        {
+            //10 ou 11
         }
 
         public void ValidarCdContratoNaoExiste(string cdContrato)
