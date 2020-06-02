@@ -157,11 +157,12 @@ namespace Acelera.Testes
 
         public void ValidarStageCliente(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
-            if(clienteSGS == null || clienteSGS.Count == 0)
+            if(!deveEncontrar && (clienteSGS == null || clienteSGS.Count == 0))
             {
                 logger.Escrever("NENHUM REGISTRO ENCONTRADO PARA CLIENTE NO SGS.");
                 return;
             }
+            else if(deveEncontrar && (clienteSGS != null || clienteSGS.Count >= 0))
 
             foreach (var cliente in clienteSGS)
                 if (!(SGS_dados.ValidarStageCliente(cliente) == codigoEsperado.ObterTexto()))
@@ -203,7 +204,7 @@ namespace Acelera.Testes
             return base.ObterProceduresASeremExecutadas();
         }
 
-        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG02, CodigoStage codigoAguardadoNa01_1)
+        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG01, bool ValidaFG02, CodigoStage? codigoAguardadoNa01_1)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -220,20 +221,21 @@ namespace Acelera.Testes
                 logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
                 ValidarTeste();
             }
+            if (ValidaFG01)
+            {
+                logger.EscreverBloco("Inicio da Validação da FG01.");
+                //PROCESSAR O ARQUIVO CRIADO
+                base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01Enum().ObterTexto());
+                base.ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(tipoArquivoTeste)).ToList());
+                base.ValidarStages(CodigoStage.AprovadoNaFG01);
+                ValidarTabelaDeRetornoFG01();
+                logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
+                ValidarTeste();
 
-            logger.EscreverBloco("Inicio da Validação da FG01.");
-            //PROCESSAR O ARQUIVO CRIADO
-            base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01Enum().ObterTexto());
-            base.ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(tipoArquivoTeste)).ToList());
-            base.ValidarStages(CodigoStage.AprovadoNaFG01);
-            ValidarTabelaDeRetornoFG01();
-            logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
-            ValidarTeste();
-
-            base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01_1_Enum().ObterTexto());
-            base.ValidarStages(codigoAguardadoNa01_1);
-            ValidarTeste();
-
+                base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01_1_Enum().ObterTexto());
+                base.ValidarStages(codigoAguardadoNa01_1.Value);
+                ValidarTeste();
+            }
             if (ValidaFG02)
             {
                 logger.EscreverBloco("Inicio da FG02.");
