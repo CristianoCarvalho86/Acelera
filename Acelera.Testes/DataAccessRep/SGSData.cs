@@ -197,13 +197,13 @@ namespace Acelera.Testes.DataAccessRep
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
         }
 
-        public QueryContratoParaArquivo ObterContratoDoCliente(string cdCliente)
+        public IList<QueryContratoParaArquivo> ObterContratosDoCliente(string cdCliente)
         {
             logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO PARA COD_CLIENTE : {cdCliente}");
             var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_pess = {cdCliente}",
             $"CARREGANDO DADOS DO CONTRATO PARA O CLIENTE: {cdCliente}", DBEnum.SqlServer, logger);
             logger.FecharBloco();
-            return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
+            return QueryContratoParaArquivo.CarregarEntidade(resultado);
         }
 
         public string ObterClienteComMultiplosContratos()

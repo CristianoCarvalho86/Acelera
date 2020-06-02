@@ -37,7 +37,7 @@ namespace Acelera.Domain.Entidades.SGS
         public static string ObterTextoSelect(string prefixoTabela = "")
         {
             prefixoTabela = prefixoTabela == string.Empty ? "" : prefixoTabela + ".";
-            var sql = "SELECT top 1 PARCELA.cod_parc_prem AS NR_PARCELA, " +
+            var sql = "SELECT PARCELA.cod_parc_prem AS NR_PARCELA, " +
             " CONTRATO.cod_suc AS CD_SUCURSAL, " +
             " CONTRATO.cod_corretor AS CD_CORRETOR, " +
             " CONTRATO.cod_ctrt AS CD_CONTRATO, " +

@@ -147,16 +147,20 @@ namespace Acelera.Testes
             var dadosContrato = SGS_dados.ObterCodigoContratoComMultiplasParcelas();
             dadosContrato.CarregaLinhaArquivo(linha);
         }
-        public void CarregarContratoComClienteUnico(LinhaArquivo linha)
+        public void CarregarContratoComClienteUnico(LinhaArquivo linha1, LinhaArquivo linha2)
         {
-            var dadosContrato = SGS_dados.ObterContratoDoCliente(SGS_dados.ObterClienteComUnicoContrato());
-            dadosContrato.CarregaLinhaArquivo(linha);
+            var dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComUnicoContrato()).First();
+            dadosContrato.CarregaLinhaArquivo(linha1);
+            dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComUnicoContrato())[1];
+            dadosContrato.CarregaLinhaArquivo(linha2);
         }
 
-        public void CarregarContratoComClienteDeVariosContratos(LinhaArquivo linha)
+        public void CarregarContratoComClienteDeVariosContratos(LinhaArquivo linha1, LinhaArquivo linha2)
         {
-            var dadosContrato = SGS_dados.ObterContratoDoCliente(SGS_dados.ObterClienteComUnicoContrato());
-            dadosContrato.CarregaLinhaArquivo(linha);
+            var dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComMultiplosContratos()).First();
+            dadosContrato.CarregaLinhaArquivo(linha1);
+            dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComMultiplosContratos())[1];
+            dadosContrato.CarregaLinhaArquivo(linha2);
         }
 
         public void ValidarCdContratoNaoExiste(string cdContrato)
