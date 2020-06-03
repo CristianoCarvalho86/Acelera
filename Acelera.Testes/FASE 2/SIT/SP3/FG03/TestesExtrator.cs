@@ -60,7 +60,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false,true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false,false, true, null);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             IniciarTeste(TipoArquivo.Sinistro, "4726", "Parcela única");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             CarregarContratoComUmaParcela(ObterLinha(0));
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false, true, null);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
@@ -173,7 +173,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false, true, null);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
@@ -181,7 +181,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
             ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
-            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
@@ -247,7 +247,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false, true, null);
         }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             IniciarTeste(TipoArquivo.Sinistro, "4730", "Apólice não encontrada na SGS");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             ValidarCdContratoNaoExiste(ObterValorFormatado(0, "CD_CONTRATO").AlterarUltimosCaracteres("00000001"));
@@ -293,7 +293,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, false, CodigoStage.RecusadoNaFG01);
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
 
         }
 
@@ -307,7 +308,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             IniciarTeste(TipoArquivo.Sinistro, "4731", "Apólice não encontrada na SGS");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200213.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             ObterLinhaComCdContratoDisponivel();
@@ -369,7 +370,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
 
             //segundo arquivo
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
 
@@ -588,8 +589,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-
             ObterLinhaComCdContratoDisponivel();
+            var contrato = CarregarDadosDoContrato(ObterLinha(0));
+            AlterarLinha(0, "CD_OCORRENCIA", SomarData(contrato.DT_FIM_VIGENCIA, 30));
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
