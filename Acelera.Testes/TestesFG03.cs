@@ -172,7 +172,8 @@ namespace Acelera.Testes
 
         public void CarregarContratoCancelado(LinhaArquivo linha)
         {
-            //10 ou 11
+            var dadosContrato = SGS_dados.ObterContratoPeloCodigo(SGS_dados.ObterContratoCancelado().CD_CONTRATO);
+            dadosContrato.CarregaLinhaArquivo(linha);
         }
 
         public void ValidarCdContratoNaoExiste(string cdContrato)

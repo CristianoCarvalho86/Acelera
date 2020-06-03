@@ -167,7 +167,7 @@ namespace Acelera.Testes.DataAccessRep
         public void Executar()
         {
             logger.AbrirBloco("EXECUTAR PROC_MASP1602B00 NO SGS");
-            var table = DataAccess.Consulta("EXEC PROC_MASP1602B00", "Executando proc_MASP1602B00", DBEnum.SqlServer, logger);
+            var table = DataAccess.Consulta("EXEC PROC_MASP1602B00  @cd_ambiente = 'H'", "Executando proc_MASP1602B00", DBEnum.SqlServer, logger);
             logger.Escrever("RESULTADO DA EXECUÇÃO:" + Environment.NewLine);
             logger.Escrever(table.ObterTextoTabular());
             logger.FecharBloco();
@@ -191,7 +191,7 @@ namespace Acelera.Testes.DataAccessRep
             var codContrato = DataAccess.ConsultaUnica("select top 1 cod_ctrt from ems_parcela  cod_ctrt group by cod_ctrt having count(cod_ctrt) > 1 order by NEWID()",
                 "BUSCANDO COD CONTRATO COM MULTIPLAS PARCELAS", DBEnum.SqlServer, logger);
             logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
-            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = {codContrato}",
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where CONTRATO.cod_ctrt = {codContrato}",
                 $"CARREGANDO DADOS DO CONTRATO {codContrato}", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
@@ -204,6 +204,15 @@ namespace Acelera.Testes.DataAccessRep
             $"CARREGANDO DADOS DO CONTRATO PARA O CLIENTE: {cdCliente}", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado);
+        }
+
+        public QueryContratoParaArquivo ObterContratoCancelado()
+        {
+            logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO CANCELADO");
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where EMISSAO.tip_emis = '10' or EMISSAO.tip_emis = '11' order by NEWID()",
+            $"CARREGANDO DADOS DE CONTRATO CANCELADO", DBEnum.SqlServer, logger);
+            logger.FecharBloco();
+            return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
         }
 
         public QueryContratoParaArquivo ObterContratoPeloCodigo(string codContrato)
