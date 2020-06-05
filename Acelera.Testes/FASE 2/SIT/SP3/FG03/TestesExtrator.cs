@@ -31,7 +31,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
 
             //ALTERAR O VALOR SELECIONADO
             CarregarContratoComMultiplasParcelas(ObterLinha(0));
-            SelecionarLinhaParaValidacao(0);
+            //CarregarContratoPeloCodigo("797700282265", ObterLinha(0));
+
+
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            //SelecionarLinhaParaValidacao(0);
             RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -44,19 +48,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
 
             //Garantir sinistro não possui parcela na ods
-            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "NR_SEQUENCIAL_EMISSAO"));
 
             //Executar MASP1602B00
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0,"CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
@@ -65,11 +69,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
@@ -106,7 +110,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -163,7 +167,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"), true);
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"), true, null);
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -237,7 +241,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGSVazia(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGSVazia(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -283,7 +287,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGSVazia(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGSVazia(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -330,7 +334,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGSVazia(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGSVazia(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -399,7 +403,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -431,7 +435,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
 
@@ -480,7 +484,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -553,7 +557,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -610,7 +614,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -665,7 +669,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGSVazia(ObterValorHeader("CD_ITEM"), ObterValorHeader("CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"), ObterValor(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGSVazia(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());

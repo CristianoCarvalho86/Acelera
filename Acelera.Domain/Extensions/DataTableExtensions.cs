@@ -53,7 +53,7 @@ namespace Acelera.Domain.Extensions
                 output.Append("|" + PadCenter(text, columnsWidths[i] + 2));
             }
             output.Append("|\n" + new string('=', output.Length) + "\n");
-
+            output.Append(Environment.NewLine);
             // Write Rows
             foreach (DataRow row in dataTable.Rows)
             {
@@ -62,7 +62,7 @@ namespace Acelera.Domain.Extensions
                     var text = row[i].ToString();
                     output.Append("|" + PadCenter(text, columnsWidths[i] + 2));
                 }
-                output.Append("|\n");
+                output.Append("|" + Environment.NewLine);
             }
             return output.ToString();
         }

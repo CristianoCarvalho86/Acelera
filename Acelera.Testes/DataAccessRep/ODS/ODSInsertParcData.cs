@@ -10,7 +10,8 @@ namespace Acelera.Testes.DataAccessRep.ODS
     {
         public static void Insert(string nomeArquivo)
         {
-            string sql = $" select " +
+            string sql = $"do begin query_int = "+
+                $" select " +
             " id_registro " +
             " from tab_stg_parcela_1001 a " +
             $" WHERE NM_ARQUIVO_TPA = '{nomeArquivo}'; " +

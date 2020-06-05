@@ -13,6 +13,12 @@ namespace Acelera.Domain.Entidades.Tabelas
     {
         public abstract string nomeTabela { get; }
         public static string NomeTabela { get { var a = new T(); return a.nomeTabela; } }
+
+        public virtual void TransformacoesDeDados()
+        {
+
+        }
+
         public static IList<string> CamposDaTabela()
         {
             var lista = new List<string>();
@@ -29,8 +35,13 @@ namespace Acelera.Domain.Entidades.Tabelas
             {
                 if (pi.Name.ToUpper() == "NOMETABELA" || (Campos != null && !Campos.Contains(pi.Name.ToUpper())))
                     continue;
-                var valor = pi.GetValue(this).ToString() == string.Empty ? " IS NULL " : $"'{pi.GetValue(this)}'";
-                sql += $"{pi.Name} = {valor} AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
+                var valor = "";
+                if (pi.GetValue(this).ToString() == string.Empty)
+                    valor = $"({pi.Name} = '' OR {pi.Name} IS NULL)";
+                else
+                    valor = $"{pi.Name} = '{pi.GetValue(this)}'";
+
+                sql += $" {valor} AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
             }
             return sql.Remove(sql.Length - 4);
         }

@@ -63,13 +63,13 @@ namespace Acelera.Testes.DataAccessRep
             return true;
         }
 
-        public void CarregaEntidadesDasTabelasTemporariasSGS(string cdItem, string cdContrato, string nrSeqEmissao, string cdCliente,
+        public void CarregaEntidadesDasTabelasTemporariasSGS(string cdContrato, string cdCliente,
             out IList<Massa_Cliente_Sinistro> massaClienteSGSEcontrado, out IList<Massa_Sinistro_Parcela> massaSinistroEncontrado)
         {
             massaClienteSGSEcontrado = null;
             massaSinistroEncontrado = null;
 
-            var sql = $"SELECT {Massa_Sinistro_Parcela.ObterTextoSelect()} FROM {Massa_Sinistro_Parcela.NomeTabela} WHERE CD_ITEM = '{cdItem}' and CD_CONTRATO = '{cdContrato}' and NR_SEQUENCIAL_EMISSAO = '{nrSeqEmissao}'";
+            var sql = $"SELECT {Massa_Sinistro_Parcela.ObterTextoSelect()} FROM {Massa_Sinistro_Parcela.NomeTabela} WHERE CD_CONTRATO = '{cdContrato}' ";
             var massaSinistroParcela = Massa_Sinistro_Parcela.CarregarEntidade(DataAccess.Consulta(sql, $"CARREGAR REGISTRO GRAVADO NA {Massa_Sinistro_Parcela.NomeTabela}", DBEnum.SqlServer, logger,false));
 
             sql = $"SELECT {Massa_Cliente_Sinistro.ObterTextoSelect()} FROM {Massa_Cliente_Sinistro.NomeTabela} WHERE CD_CLIENTE = '{cdCliente}'";
@@ -121,7 +121,8 @@ namespace Acelera.Testes.DataAccessRep
         public string ValidarStageCliente(Massa_Cliente_Sinistro massaCliente)
         {
             //FALTA COMPLETAR O WHERE DESSA QUERY
-            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_CLIENTE_1000 WHERE {massaCliente.ObterTextoWhere(StageCliente.CamposDaTabela())} ";
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_CLIENTE_1000 WHERE " +
+                $"{massaCliente.ObterTextoWhere(StageCliente.CamposDaTabela().Where(x => new string[]{ "DT_ARQUIVO","ID_REGISTRO", "CD_STATUS_PROCESSAMENTO"}.Contains(x) == false ).ToList())} ";
             var resultado = DataAccess.ConsultaUnica(sql, logger, false);
             if (resultado == null)
             {
@@ -136,7 +137,8 @@ namespace Acelera.Testes.DataAccessRep
         public string ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
         {
             logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");
-            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_1001 WHERE {massaSinistro.ObterTextoWhere(StageParc.CamposDaTabela())}";
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_1001 WHERE " +
+                $"{massaSinistro.ObterTextoWhere(StageParc.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList())} ";
             var resultado = DataAccess.ConsultaUnica(sql,logger, false);
             if(resultado == null)
             {
@@ -150,9 +152,9 @@ namespace Acelera.Testes.DataAccessRep
 
         public string ValidarStageParcelaAuto(Massa_Sinistro_Parcela massaSinistro)
         {
-            var massaSinistroAuto = (Massa_Sinistro_Parcela_Auto)massaSinistro;
             logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_AUTO_1002.");
-            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_AUTO_1002 WHERE {massaSinistroAuto.ObterTextoWhere(StageParcAuto.CamposDaTabela())}";
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_AUTO_1002 WHERE " +
+                $" {massaSinistro.ObterTextoWhere(StageParcAuto.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList())}";
             var resultado = DataAccess.ConsultaUnica(sql, logger, false);
             if (resultado == null)
             {
@@ -176,10 +178,12 @@ namespace Acelera.Testes.DataAccessRep
         public QueryContratoParaArquivo ObterCodigoContratoComUmaParcela()
         {
             logger.AbrirBloco("OBTENDO DADOS DE CONTRATO COM APENAS UMA PARCELA");
-            var codContrato = DataAccess.ConsultaUnica("select top 1 cod_ctrt from ems_parcela  cod_ctrt group by cod_ctrt having count(cod_ctrt) = 1 order by NEWID()",
-                "BUSCANDO COD CONTRATO COM UMA PARCELA", DBEnum.SqlServer, logger);
+            var sql = "select top 1 PARCELA.cod_ctrt from ems_parcela PARCELA INNER JOIN ems_emissao EMISSAO ON PARCELA.cod_ctrt = EMISSAO.cod_ctrt " +
+                       " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' " +
+                       " group by PARCELA.cod_ctrt having count(cod_parc_prem) = 1  order by NEWID()";
+            var codContrato = DataAccess.ConsultaUnica(sql,"BUSCANDO COD CONTRATO COM UMA PARCELA", DBEnum.SqlServer, logger);
             logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
-            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = {codContrato}",
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = '{codContrato}'",
                 $"CARREGANDO DADOS DO CONTRATO {codContrato}", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
@@ -188,10 +192,12 @@ namespace Acelera.Testes.DataAccessRep
         public QueryContratoParaArquivo ObterCodigoContratoComMultiplasParcelas()
         {
             logger.AbrirBloco("OBTENDO DADOS DE CONTRATO COM N PARCELAS");
-            var codContrato = DataAccess.ConsultaUnica("select top 1 cod_ctrt from ems_parcela  cod_ctrt group by cod_ctrt having count(cod_ctrt) > 1 order by NEWID()",
-                "BUSCANDO COD CONTRATO COM MULTIPLAS PARCELAS", DBEnum.SqlServer, logger);
+            var sql = "select top 1 PARCELA.cod_ctrt from ems_parcela PARCELA INNER JOIN ems_emissao EMISSAO ON PARCELA.cod_ctrt = EMISSAO.cod_ctrt " +
+                       " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' " +
+                       " group by PARCELA.cod_ctrt having count(cod_parc_prem) > 1  order by NEWID()";
+            var codContrato = DataAccess.ConsultaUnica(sql,"BUSCANDO COD CONTRATO COM MULTIPLAS PARCELAS", DBEnum.SqlServer, logger);
             logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
-            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where CONTRATO.cod_ctrt = {codContrato}",
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where CONTRATO.cod_ctrt = '{codContrato}'",
                 $"CARREGANDO DADOS DO CONTRATO {codContrato}", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
@@ -200,7 +206,7 @@ namespace Acelera.Testes.DataAccessRep
         public IList<QueryContratoParaArquivo> ObterContratosDoCliente(string cdCliente)
         {
             logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO PARA COD_CLIENTE : {cdCliente}");
-            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_pess = {cdCliente}",
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_pess = '{cdCliente}'",
             $"CARREGANDO DADOS DO CONTRATO PARA O CLIENTE: {cdCliente}", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado);
@@ -209,7 +215,7 @@ namespace Acelera.Testes.DataAccessRep
         public QueryContratoParaArquivo ObterContratoCancelado()
         {
             logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO CANCELADO");
-            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where EMISSAO.tip_emis = '10' or EMISSAO.tip_emis = '11' order by NEWID()",
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where EMISSAO.tip_emis = '10' or EMISSAO.tip_emis = '11' and (EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' ) order by NEWID()",
             $"CARREGANDO DADOS DE CONTRATO CANCELADO", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
@@ -218,7 +224,7 @@ namespace Acelera.Testes.DataAccessRep
         public QueryContratoParaArquivo ObterContratoPeloCodigo(string codContrato)
         {
             logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO PARA O COD_CONTRATO : {codContrato}");
-            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = {codContrato}",
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect()} where CONTRATO.cod_ctrt = '{codContrato}'",
             $"CARREGANDO DADOS DO CONTRATO PARA O COD_CONTRATO: {codContrato}", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
@@ -227,9 +233,11 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterClienteComMultiplosContratos()
         {
             logger.AbrirBloco("OBTENDO CLIENTE COM MULTIPLOS CONTRATOS");
-            var codCliente = DataAccess.ConsultaUnica("select top 1 cod_pess from ems_contrato group by cod_pess having count(cod_pess) > 1 order by NEWID()",
-                "BUSCANDO CLIENTE QUE CONSTA EM VARIOS CONTRATOS",
-                DBEnum.SqlServer,logger);
+
+            var sql = "select top 1 CONTRATO.cod_pess from ems_contrato CONTRATO INNER JOIN ems_emissao EMISSAO ON CONTRATO.cod_ctrt = EMISSAO.cod_ctrt "+
+                        " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' "+
+                        " group by cod_pess having count(cod_pess) > 1 order by NEWID()";
+            var codCliente = DataAccess.ConsultaUnica(sql,"BUSCANDO CLIENTE QUE CONSTA EM VARIOS CONTRATOS",DBEnum.SqlServer,logger);
             logger.Escrever($"CLIENTE SELECIONADO : {codCliente}");
             return codCliente;
         }
@@ -237,9 +245,10 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterClienteComUnicoContrato()
         {
             logger.AbrirBloco("OBTENDO CLIENTE COM APENAS UM CONTRATO");
-            var codCliente = DataAccess.ConsultaUnica("select top 1 cod_pess from ems_contrato group by cod_pess having count(cod_pess) = 1 order by NEWID()",
-                "BUSCANDO CLIENTE QUE CONSTA EM UM UNICO CONTRATO",
-                DBEnum.SqlServer, logger);
+            var sql = "select top 1 CONTRATO.cod_pess from ems_contrato CONTRATO INNER JOIN ems_emissao EMISSAO ON CONTRATO.cod_ctrt = EMISSAO.cod_ctrt " +
+            " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' " +
+            " group by cod_pess having count(cod_pess) = 1 order by NEWID()";
+            var codCliente = DataAccess.ConsultaUnica(sql,"BUSCANDO CLIENTE QUE CONSTA EM UM UNICO CONTRATO",DBEnum.SqlServer, logger);
             logger.Escrever($"CLIENTE SELECIONADO : {codCliente}");
             return codCliente;
         }

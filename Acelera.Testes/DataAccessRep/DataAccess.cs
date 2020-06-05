@@ -68,7 +68,7 @@ namespace Acelera.Testes.DataAccessRep
                 resultado = helper.ObterResultadoUnico(sql, validaResultadoUnico);
 
 
-                if (string.IsNullOrEmpty(resultado))
+                if (validaResultadoUnico && string.IsNullOrEmpty(resultado))
                     throw new Exception("Resultado nao encontrado");
 
                 logger.Escrever($"Parametro Buscado encontrado: {resultado}");

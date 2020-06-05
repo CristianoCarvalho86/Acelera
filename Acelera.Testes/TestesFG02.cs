@@ -111,6 +111,22 @@ namespace Acelera.Testes.FASE_2
             }
         }
 
+        protected void ValidarTabelaDeRetornoSemGerarErro()
+        {
+            var statusAtualDoTeste = sucessoDoTeste;
+            try
+            {
+                ValidarTabelaDeRetorno();
+                sucessoDoTeste = statusAtualDoTeste;
+            }
+            catch (Exception ex)
+            {
+                if (statusAtualDoTeste)
+                    sucessoDoTeste = true;
+            }
+        }
+
+
         protected string CarregarIdtransacao(LinhaArquivo linha)
         {
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
@@ -281,7 +297,7 @@ namespace Acelera.Testes.FASE_2
                     lista.Add("PRC_0086");
                     lista.Add("PRC_0087");
                     lista.Add("PRC_0088");
-                    lista.Add("PRC_0107");
+                    //lista.Add("PRC_0107");
                     lista.Add("PRC_0111");
                     lista.Add("PRC_0119");
                     lista.Add("PRC_0120");
