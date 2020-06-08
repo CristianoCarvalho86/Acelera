@@ -174,10 +174,11 @@ namespace Acelera.Testes
             dadosContrato.CarregaLinhaArquivo(linha);
         }
 
-        public void CarregarContratoValido(LinhaArquivo linha)
+        public QueryContratoParaArquivo CarregarContratoValido(LinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterContratoValido();
             dadosContrato.CarregaLinhaArquivo(linha);
+            return dadosContrato;
         }
 
         public void CarregarContratoComMultiplasParcelas(LinhaArquivo linha)
