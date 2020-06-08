@@ -8,6 +8,7 @@ using Acelera.Logger;
 using Acelera.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,7 +134,32 @@ namespace Acelera.Testes.DataAccessRep
             logger.FecharBloco();
             return resultado;
         }
-        
+
+        public string[] ValidarStageClienteMultiplo(Massa_Cliente_Sinistro massaCliente)
+        {
+            //FALTA COMPLETAR O WHERE DESSA QUERY
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_CLIENTE_1000 WHERE " +
+                $"{massaCliente.ObterTextoWhere(StageCliente.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList())} ";
+            var resultado = DataAccess.Consulta(sql," REGISTROS NA STAGE DE CLIENTE", DBEnum.Hana, logger, false);
+            if (resultado.Rows.Count == 0)
+            {
+                logger.Erro("REGISTRO NAO ENCONTRADO NA STAGE.");
+                return null;
+            }
+            else if (resultado.Rows.Count == 1)
+            {
+                logger.Erro("APENAS UM REGISTRO ENCONTRADO NA STAGE.");
+                return null;
+            }
+            string[] array = new string[resultado.Rows.Count];
+            foreach (DataRow a in resultado.Rows)
+                array.Append(a["CD_STATUS_PROCESSAMENTO"].ToString());
+
+            logger.Escrever($"CD_STATUS_PROCESSAMENTO ENCONTRADO NA STAGE : {array.ObterListaConcatenada(" ,")}");
+            logger.FecharBloco();
+            return array;
+        }
+
         public string ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
         {
             logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");

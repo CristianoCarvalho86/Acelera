@@ -499,17 +499,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //Garantir sinistro não possui parcela na ods
             ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
 
-            //Executar FG03
-
-            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
-            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
-
-            //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, false, false, true, null);
-
-            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
