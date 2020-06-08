@@ -153,6 +153,7 @@ namespace Acelera.Testes
             logger.AbrirBloco($"Alterando arquivo - Adicionando linha na posicao {posicaoLinha}");
             arquivo.AdicionarLinha(linhaNova, posicaoLinha);
             logger.Escrever("Linha Adicionada :" + linhaNova.ObterTexto());
+            arquivo.AjustarQtdLinhasNoFooter();
             logger.FecharBloco();
         }
 
