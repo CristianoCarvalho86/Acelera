@@ -171,7 +171,8 @@ namespace Acelera.Testes
         public QueryContratoParaArquivo CarregarDadosDoContrato(LinhaArquivo linha, string cdContrato)
         {
             var contrato = SGS_dados.ObterContratoPeloCodigo(cdContrato);
-            contrato.CarregaLinhaArquivo(linha);
+            if(linha != null)
+                contrato.CarregaLinhaArquivo(linha);
             return contrato;
         }
 
