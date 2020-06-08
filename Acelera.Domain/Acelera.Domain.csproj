@@ -79,6 +79,7 @@
     <Compile Include="Entidades\Stages\StageCliente.cs" />
     <Compile Include="Entidades\Stages\StageParc.cs" />
     <Compile Include="Entidades\Stages\StageParcAuto.cs" />
+    <Compile Include="Entidades\Stages\StageSinistro.cs" />
     <Compile Include="Entidades\Tabelas\EntidadeDeTabela.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaClienteStage.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaComissaoStage.cs" />

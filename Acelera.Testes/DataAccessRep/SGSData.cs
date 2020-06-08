@@ -224,6 +224,18 @@ namespace Acelera.Testes.DataAccessRep
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
         }
 
+        public QueryContratoParaArquivo ObterContratoComCodMovimentacaoUm()
+        {
+            //dividir em 2 queries
+            logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO CANCELADO");
+            var codContrato = DataAccess.ConsultaUnica("SELECT TOP 1 cod_ctrt from ems_emissao where tip_emis = '10' or tip_emis = '11'  and (cod_prod = '31501' or cod_prod = '31522' ) " +
+                " AND num_apolice IS NOT NULL AND num_endosso is not null order by NEWID() ", "OBTER CONTRATO CANCELADO", DBEnum.SqlServer, logger);
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where CONTRATO.cod_ctrt = '{codContrato}'",
+            $"CARREGANDO DADOS DE CONTRATO CANCELADO", DBEnum.SqlServer, logger);
+            logger.FecharBloco();
+            return QueryContratoParaArquivo.CarregarEntidade(resultado).First();
+        }
+
         public QueryContratoParaArquivo ObterContratoValido()
         {
             //dividir em 2 queries
