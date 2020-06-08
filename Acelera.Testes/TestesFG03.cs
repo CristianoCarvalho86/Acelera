@@ -62,17 +62,11 @@ namespace Acelera.Testes
 
         public void ValidarCdTpaNaParametroGlobal(string cdTpa, bool deveEncontrar = true)
         {
-            var registroEncontrado = SGS_dados.ValidarCdTpaNaParametroGlobal(cdTpa, deveEncontrar);
-            if (!registroEncontrado && deveEncontrar)
+            if(!SGS_dados.ValidarCdTpaNaParametroGlobal(cdTpa, deveEncontrar))
             {
-                logger.Erro("REGISTRO DO TPA NA PARAMETRO GLOBAL DEVIA TER SIDO ENCONTRADO.");
                 ExplodeFalha();
             }
-            else if (registroEncontrado && !deveEncontrar)
-            {
-                logger.Erro("REGISTRO DO TPA NA PARAMETRO GLOBAL NAO DEVIA TER SIDO ENCONTRADO.");
-                ExplodeFalha();
-            }
+ 
         }
 
         public void ValidarRegistroNaoExisteNaODSParcela(string cdTpa, string cdContrato, string nrSeqEmissao, bool deveEncontrar = false)
