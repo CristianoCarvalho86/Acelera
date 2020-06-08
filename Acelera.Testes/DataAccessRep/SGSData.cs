@@ -179,7 +179,7 @@ namespace Acelera.Testes.DataAccessRep
         {
             logger.AbrirBloco("OBTENDO DADOS DE CONTRATO COM APENAS UMA PARCELA");
             var sql = "select top 1 PARCELA.cod_ctrt from ems_parcela PARCELA INNER JOIN ems_emissao EMISSAO ON PARCELA.cod_ctrt = EMISSAO.cod_ctrt " +
-                       " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' " +
+                       " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522'  AND EMISSAO.num_apolice IS NOT NULL AND EMISSAO.num_endosso is not null " +
                        " group by PARCELA.cod_ctrt having count(cod_parc_prem) = 1  order by NEWID()";
             var codContrato = DataAccess.ConsultaUnica(sql,"BUSCANDO COD CONTRATO COM UMA PARCELA", DBEnum.SqlServer, logger);
             logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
@@ -193,7 +193,7 @@ namespace Acelera.Testes.DataAccessRep
         {
             logger.AbrirBloco("OBTENDO DADOS DE CONTRATO COM N PARCELAS");
             var sql = "select top 1 PARCELA.cod_ctrt from ems_parcela PARCELA INNER JOIN ems_emissao EMISSAO ON PARCELA.cod_ctrt = EMISSAO.cod_ctrt " +
-                       " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' " +
+                       " where EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522'  AND EMISSAO.num_apolice IS NOT NULL AND EMISSAO.num_endosso is not null " +
                        " group by PARCELA.cod_ctrt having count(cod_parc_prem) > 1  order by NEWID()";
             var codContrato = DataAccess.ConsultaUnica(sql,"BUSCANDO COD CONTRATO COM MULTIPLAS PARCELAS", DBEnum.SqlServer, logger);
             logger.Escrever($"CONTRATO SELECIONADO : {codContrato}");
@@ -214,8 +214,11 @@ namespace Acelera.Testes.DataAccessRep
 
         public QueryContratoParaArquivo ObterContratoCancelado()
         {
+            //dividir em 2 queries
             logger.AbrirBloco($"OBTENDO DADOS DE CONTRATO CANCELADO");
-            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where EMISSAO.tip_emis = '10' or EMISSAO.tip_emis = '11' and (EMISSAO.cod_prod = '31501' or EMISSAO.cod_prod = '31522' ) order by NEWID()",
+            var codContrato = DataAccess.ConsultaUnica("SELECT TOP 1 cod_ctrt from ems_emissao where tip_emis = '10' or tip_emis = '11'  and (cod_prod = '31501' or cod_prod = '31522' ) " +
+                " AND num_apolice IS NOT NULL AND num_endosso is not null order by NEWID() ", "OBTER CONTRATO CANCELADO", DBEnum.SqlServer, logger);
+            var resultado = DataAccess.Consulta($"{QueryContratoParaArquivo.ObterTextoSelect().Replace("SELECT", "SELECT TOP 1 ")} where CONTRATO.cod_ctrt = '{codContrato}'",
             $"CARREGANDO DADOS DE CONTRATO CANCELADO", DBEnum.SqlServer, logger);
             logger.FecharBloco();
             return QueryContratoParaArquivo.CarregarEntidade(resultado).First();

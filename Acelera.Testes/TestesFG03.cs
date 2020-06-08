@@ -28,7 +28,7 @@ namespace Acelera.Testes
         protected override string NomeFG => "FG03";
         public TestesFG03()
         {
-            
+
         }
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
@@ -47,14 +47,14 @@ namespace Acelera.Testes
             logger.AbrirBloco("PROCURANDO CONTRATOS DISPONIVEIS NO ARQUIVO.");
             var contratosUtilizados = ControleCDContratoFG03.Instancia.ObterContratosUtilizados();
             var linha = arquivo.Linhas.Where(x => !contratosUtilizados.Contains(x.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado)).FirstOrDefault();
-            if(linha == null)
+            if (linha == null)
             {
                 logger.Erro("NAO FORAM ENCONTRADOS CONTRATOS DISPONIVEIS NO ARQUIVO");
             }
-            logger.Escrever($"CONTRATO ENCONTRADO : '{linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado}' , Linha: {linha.Index} " );
+            logger.Escrever($"CONTRATO ENCONTRADO : '{linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado}' , Linha: {linha.Index} ");
             arquivo.RemoverExcetoEstas(linha.Index, 1);
             ControleCDContratoFG03.Instancia.AtualizaArquivo(linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado);
-            logger.Escrever($"OUTRAS LINHAS DO ARQUIVO REMOVIDOS." );
+            logger.Escrever($"OUTRAS LINHAS DO ARQUIVO REMOVIDOS.");
             arquivo.ReIndexar();
             arquivo.AjustarQtdLinhasNoFooter();
             logger.FecharBloco();
@@ -68,7 +68,7 @@ namespace Acelera.Testes
                 logger.Erro("REGISTRO DO TPA NA PARAMETRO GLOBAL DEVIA TER SIDO ENCONTRADO.");
                 ExplodeFalha();
             }
-            else if(registroEncontrado && !deveEncontrar)
+            else if (registroEncontrado && !deveEncontrar)
             {
                 logger.Erro("REGISTRO DO TPA NA PARAMETRO GLOBAL NAO DEVIA TER SIDO ENCONTRADO.");
                 ExplodeFalha();
@@ -89,7 +89,7 @@ namespace Acelera.Testes
         public void ValidaTabelasTemporariasSGSVazia(string cdContrato, string cdCliente)
         {
             SGS_dados.CarregaEntidadesDasTabelasTemporariasSGS(cdContrato, cdCliente, out clienteSGS, out parcelaSGS);
-            if(clienteSGS.Count() > 0 || parcelaSGS.Count() > 0)
+            if ((clienteSGS != null && clienteSGS.Count() > 0) || ( parcelaSGS != null && parcelaSGS.Count() > 0))
             {
                 logger.Erro($"FORAM ENCONTRADOS REGISTROS NAS TABELAS TEMPORARIAS, CLIENTES : {clienteSGS.Count}, PARCELAS : {parcelaSGS.Count}");
                 ExplodeFalha();
@@ -98,7 +98,7 @@ namespace Acelera.Testes
 
         public void ValidaTabelasTemporariasSGS(string cdContrato, string cdCliente)
         {
-            SGS_dados.CarregaEntidadesDasTabelasTemporariasSGS(cdContrato,cdCliente, out clienteSGS, out parcelaSGS);
+            SGS_dados.CarregaEntidadesDasTabelasTemporariasSGS(cdContrato, cdCliente, out clienteSGS, out parcelaSGS);
             if (clienteSGS.Count() == 0 || parcelaSGS.Count() == 0)
             {
                 logger.Erro($"NAO FORAM ENCONTRADOS REGISTROS NAS 2 TABELAS TEMPORARIAS, CLIENTES : {clienteSGS.Count}, PARCELAS : {parcelaSGS.Count}");
@@ -207,16 +207,20 @@ namespace Acelera.Testes
 
         public void ValidarStageCliente(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
-            if(!deveEncontrar && (clienteSGS == null || clienteSGS.Count == 0))
+            if (!deveEncontrar && (clienteSGS == null || clienteSGS.Count == 0))
             {
                 logger.Escrever("NENHUM REGISTRO ENCONTRADO PARA CLIENTE NO SGS.");
                 return;
             }
-            else if(deveEncontrar && (clienteSGS != null || clienteSGS.Count >= 0))
-
-            foreach (var cliente in clienteSGS)
-                if (!(int.Parse(SGS_dados.ValidarStageCliente(cliente)) == (int)codigoEsperado))
-                ExplodeFalha();
+            else if (deveEncontrar && (clienteSGS != null || clienteSGS.Count >= 0))
+                foreach (var cliente in clienteSGS)
+                {
+                    var retorno = SGS_dados.ValidarStageCliente(cliente);
+                    if (string.IsNullOrEmpty(retorno))
+                        ExplodeFalha();
+                    if (!(int.Parse(retorno) == (int)codigoEsperado))
+                        ExplodeFalha();
+                }
         }
 
         public void ValidarStageParcela(CodigoStage codigoEsperado, bool deveEncontrar = true)
@@ -228,21 +232,31 @@ namespace Acelera.Testes
             }
             else if (deveEncontrar && (parcelaSGS != null || parcelaSGS.Count >= 0))
                 foreach (var parcela in parcelaSGS)
-                  if (!(int.Parse(SGS_dados.ValidarStageParcela(parcela)) == (int)codigoEsperado))
-                     ExplodeFalha();
+                {
+                    var retorno = SGS_dados.ValidarStageParcela(parcela);
+                    if (string.IsNullOrEmpty(retorno))
+                        ExplodeFalha();
+                    if (!(int.Parse(retorno) == (int)codigoEsperado))
+                        ExplodeFalha();
+                }
         }
 
         public void ValidarStageParcelaAuto(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
-            if(deveEncontrar && (parcelaSGS == null || parcelaSGS.Count == 0))
+            if (deveEncontrar && (parcelaSGS == null || parcelaSGS.Count == 0))
             {
                 logger.Escrever("NENHUM REGISTRO ENCONTRADO PARA PARCELA NO SGS.");
                 return;
             }
             else if (deveEncontrar && (parcelaSGS != null || parcelaSGS.Count >= 0))
                 foreach (var parcela in parcelaSGS)
-                if (!(int.Parse(SGS_dados.ValidarStageParcelaAuto(parcela)) == (int)codigoEsperado))
-                    ExplodeFalha();
+                {
+                    var retorno = SGS_dados.ValidarStageParcelaAuto(parcela);
+                    if (string.IsNullOrEmpty(retorno))
+                        ExplodeFalha();
+                    if (!(int.Parse(retorno) == (int)codigoEsperado))
+                        ExplodeFalha();
+                }
         }
 
         public void Executar()
@@ -260,7 +274,7 @@ namespace Acelera.Testes
             return base.ObterProceduresASeremExecutadas();
         }
 
-        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG01, bool ValidaFG02, CodigoStage? codigoAguardadoNa01_1)
+        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG01, bool ValidaFG01_1, bool ValidaFG02, CodigoStage? codigoAguardadoNa01_1)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -288,6 +302,10 @@ namespace Acelera.Testes
                 logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
                 ValidarTeste();
 
+
+            }
+            if(ValidaFG01_1)
+            {
                 base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01_1_Enum().ObterTexto());
                 base.ValidarStages(codigoAguardadoNa01_1.Value);
                 ValidarTeste();
@@ -296,7 +314,7 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Inicio da FG02.");
                 ChamarExecucao(tipoArquivoTeste.ObterTarefaFG02Enum().ObterTexto());
-                ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas() );
+                ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
                 ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
                 ValidarTabelaDeRetornoSemGerarErro();
                 logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
