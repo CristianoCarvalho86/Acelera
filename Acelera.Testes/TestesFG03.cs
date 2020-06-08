@@ -147,6 +147,8 @@ namespace Acelera.Testes
 
         }
 
+
+
         public QueryContratoParaArquivo CarregarDadosDoContrato(LinhaArquivo linha)
         {
             var contrato = SGS_dados.ObterContratoPeloCodigo(linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado);
@@ -171,6 +173,13 @@ namespace Acelera.Testes
             var dadosContrato = SGS_dados.ObterCodigoContratoComUmaParcela();
             dadosContrato.CarregaLinhaArquivo(linha);
         }
+
+        public void CarregarContratoValido(LinhaArquivo linha)
+        {
+            var dadosContrato = SGS_dados.ObterContratoValido();
+            dadosContrato.CarregaLinhaArquivo(linha);
+        }
+
         public void CarregarContratoComMultiplasParcelas(LinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterCodigoContratoComMultiplasParcelas();
