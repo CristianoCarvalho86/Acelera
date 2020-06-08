@@ -277,6 +277,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
+
+            // ODS?
+
+
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
@@ -493,14 +497,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
 
             arquivo = arquivo1;
 
-            //Garantir operação parametrizada
-            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
-
-            //Garantir sinistro não possui parcela na ods
-            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
-
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-
         }
 
         /// <summary>
@@ -536,7 +533,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
+            var c = CarregarDadosDoContrato(null, ObterValorFormatado(0, "CD_CONTRATO"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), c.CD_CLIENTE);
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -572,7 +570,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), c.CD_CLIENTE);
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -596,8 +594,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo = arquivo1;
 
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
