@@ -161,6 +161,32 @@ namespace Acelera.Testes.DataAccessRep
             return array;
         }
 
+        public string[] ValidarStageParcelaAutoMultiplo(Massa_Sinistro_Parcela massaSinistro)
+        {
+            logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_AUTO_1002.");
+            var sql = $"SELECT CD_STATUS_PROCESSAMENTO FROM {Parametros.instanciaDB}.TAB_STG_PARCELA_AUTO_1002 WHERE " +
+                $"{massaSinistro.ObterTextoWhere(StageParc.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList())} ";
+            var resultado = DataAccess.Consulta(sql, " REGISTROS NA STAGE DE PARCELA AUTO", DBEnum.Hana, logger, false);
+            if (resultado.Rows.Count == 0)
+            {
+                logger.Erro("REGISTRO NAO ENCONTRADO NA STAGE.");
+                return null;
+            }
+            else if (resultado.Rows.Count == 1)
+            {
+                logger.Erro("APENAS UM REGISTRO ENCONTRADO NA STAGE.");
+                return null;
+            }
+            string[] array = new string[resultado.Rows.Count];
+            for (int i = 0; i < resultado.Rows.Count; i++)
+            {
+                array[i] = resultado.Rows[i]["CD_STATUS_PROCESSAMENTO"].ToString();
+            }
+            logger.Escrever($"CD_STATUS_PROCESSAMENTO ENCONTRADO NA STAGE : {array.ObterListaConcatenada(" ,")}");
+            logger.FecharBloco();
+            return array;
+        }
+
         public string ValidarStageParcela(Massa_Sinistro_Parcela massaSinistro)
         {
             logger.AbrirBloco("VALIDAR TAB_STG_PARCELA_1001.");

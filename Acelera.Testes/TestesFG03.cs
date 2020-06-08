@@ -259,6 +259,18 @@ namespace Acelera.Testes
                             ExplodeFalha();
                 }
         }
+        public void ValidarStageParcAutoMultiplo(CodigoStage codigoEsperado)
+        {
+                foreach (var parcela in parcelaSGS)
+                {
+                    var retorno = SGS_dados.ValidarStageParcelaAutoMultiplo(parcela);
+                    if (retorno == null)
+                        ExplodeFalha();
+                    foreach(var r in retorno)
+                        if (!(int.Parse(r) == (int)codigoEsperado))
+                            ExplodeFalha();
+                }
+        }
 
         public void ValidarStageParcela(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
