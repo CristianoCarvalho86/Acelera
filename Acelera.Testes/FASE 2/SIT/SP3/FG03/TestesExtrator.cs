@@ -252,7 +252,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //ALTERAR O VALOR SELECIONADO
 
             //Tem que alterar movimenteção do sinistro
-            ObterLinhaComCdContratoDisponivel();
+            ObterLinhaComCdContratoDisponivelEDeterminadoTipoMovimento("1");
             var registroODS = ObterLinha(0).Clone();
             SelecionarLinhaParaValidacao(0);
 
@@ -283,6 +283,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //ALTERAR O VALOR SELECIONADO
             RemoverTodasAsLinhas();
             AdicionarLinha(0, registroODS);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_MOVIMENTO", 5));
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -424,40 +426,35 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             IniciarTeste(TipoArquivo.Sinistro, "4732", "Segunda movimentação de sinistro, sendo o primeiro com 140.");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-
-            ObterLinhaComCdContratoDisponivel();
+            ObterLinhaComCdContratoDisponivelEDeterminadoTipoMovimento("1");
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
             var arquivo1 = arquivo.Clone();
 
-            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AguardandoEmissaoSGS);
 
             //segundo arquivo
-            arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
-
+            var arquivo2 = arquivo1.Clone();
+            arquivo = arquivo2;
+            
             //ALTERAR O VALOR SELECIONADO
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData( "DT_MOVIMENTO", 5));
-            ObterLinhaComCdContratoDisponivel();
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0, "DT_MOVIMENTO"), 5));
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
-            var arquivo2 = arquivo.Clone();
+            SalvarArquivo();            
 
             // INICIANDO VALIDAÇAO DO SEGUNDO
 
-            arquivo = arquivo2;
-
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AguardandoEmissaoSGS);
 
             //Garantir operação parametrizada
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
@@ -475,20 +472,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false, false, true, null);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
             //INICIAR VALIDACAO DO PRIMEIRO ARQUIVO
 
@@ -506,14 +503,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //Executar FG03
 
             ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false, false, true, null);
 
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
