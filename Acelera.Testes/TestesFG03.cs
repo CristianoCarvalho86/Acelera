@@ -4,6 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.DataAccessRep.ODS;
 using Acelera.Testes.FASE_2;
 using Acelera.Utils;
 using System;
@@ -80,11 +81,11 @@ namespace Acelera.Testes
 
         public void ValidarCdTpaNaParametroGlobal(string cdTpa, bool deveEncontrar = true)
         {
-            if(!SGS_dados.ValidarCdTpaNaParametroGlobal(cdTpa, deveEncontrar))
+            if (!SGS_dados.ValidarCdTpaNaParametroGlobal(cdTpa, deveEncontrar))
             {
                 ExplodeFalha();
             }
- 
+
         }
 
         public void ValidarRegistroNaoExisteNaODSParcela(string cdTpa, string cdContrato, string nrSeqEmissao, bool deveEncontrar = false)
@@ -101,7 +102,7 @@ namespace Acelera.Testes
         public void ValidaTabelasTemporariasSGSVazia(string cdContrato, string cdCliente)
         {
             SGS_dados.CarregaEntidadesDasTabelasTemporariasSGS(cdContrato, cdCliente, out clienteSGS, out parcelaSGS);
-            if ((clienteSGS != null && clienteSGS.Count() > 0) || ( parcelaSGS != null && parcelaSGS.Count() > 0))
+            if ((clienteSGS != null && clienteSGS.Count() > 0) || (parcelaSGS != null && parcelaSGS.Count() > 0))
             {
                 logger.Erro($"FORAM ENCONTRADOS REGISTROS NAS TABELAS TEMPORARIAS, CLIENTES : {clienteSGS.Count}, PARCELAS : {parcelaSGS.Count}");
                 ExplodeFalha();
@@ -326,7 +327,7 @@ namespace Acelera.Testes
 
 
             }
-            if(ValidaFG01_1)
+            if (ValidaFG01_1)
             {
                 base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01_1_Enum().ObterTexto());
                 base.ValidarStages(codigoAguardadoNa01_1.Value);
@@ -342,6 +343,20 @@ namespace Acelera.Testes
                 logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
                 ValidarTeste();
             }
+        }
+
+        public void EnviarParaODS(string nomeArquivoSinistro)
+        {
+            foreach (var cliente in clienteSGS)
+            {
+                ODSInsertClienteData.Insert(cliente, logger);
+            }
+
+            foreach (var parcela in parcelaSGS)
+            {
+                ODSInsertParcAuto.Insert(parcela, logger);
+            }
+            ODSInsertSinistroData.Insert(nomeArquivoSinistro, logger);
         }
 
 

@@ -1,4 +1,6 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain.Entidades.SGS;
+using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -44,7 +46,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             "     AND A.CD_RAMO = COB.CD_RAMO_COBERTURA " +
             " INNER JOIN TAB_PRM_RAMO_7002 RM " +
             " ON COB.CD_RAMO_COBERTURA = RM.CD_RAMO " +
-            $" WHERE A.NM_ARQUIVO_TPA IN({nomeArquivo}); ";
+            $" WHERE A.NM_ARQUIVO_TPA = '{nomeArquivo}' ";
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
         }
     }

@@ -28,18 +28,19 @@ namespace Acelera.Domain.Entidades.Tabelas
             }
             return lista;
         }
-        public string ObterTextoWhere(IList<string> Campos)
+        public string ObterTextoWhere(IList<string> Campos, string prefixo = "")
         {
             var sql = "";
+            prefixo = prefixo == "" ? string.Empty : prefixo + ".";
             foreach (PropertyInfo pi in typeof(T).GetProperties())
             {
                 if (pi.Name.ToUpper() == "NOMETABELA" || (Campos != null && !Campos.Contains(pi.Name.ToUpper())))
                     continue;
                 var valor = "";
                 if (pi.GetValue(this).ToString() == string.Empty)
-                    valor = $"({pi.Name} = '' OR {pi.Name} IS NULL)";
+                    valor = $"({prefixo}{pi.Name} = '' OR {pi.Name} IS NULL)";
                 else
-                    valor = $"{pi.Name} = '{pi.GetValue(this)}'";
+                    valor = $"{prefixo}{pi.Name} = '{pi.GetValue(this)}'";
 
                 sql += $" {valor} AND "; // properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
             }

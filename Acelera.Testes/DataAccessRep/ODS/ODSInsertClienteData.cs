@@ -1,4 +1,6 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain.Entidades.SGS;
+using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -10,14 +12,14 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public static class ODSInsertClienteData
     {
-        public static void Insert(string nomeArquivo, IMyLogger logger)
+        public static void Insert(Massa_Cliente_Sinistro cliente, IMyLogger logger)
         {
             var sql = "do "+
             " begin  " +
             " query_int_cliente = " +
             " select distinct id_registro " +
             " FROM tab_stg_cliente_1000 " +
-            $" WHERE NM_ARQUIVO_TPA = '{nomeArquivo}'; " +
+            $" WHERE {cliente.ObterTextoWhere(StageCliente.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList())}; " +
             "             insert into tab_ods_parceiro_negocio_2000 " +
             "             select  SEQ_ODS_PARCEIRO_NEGOCIO_2000.nextval as cd_parceiro_negocio, " +
             " 		'CL' as cd_tipo_parceiro_negocio, " +

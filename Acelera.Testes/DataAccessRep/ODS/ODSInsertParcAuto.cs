@@ -1,4 +1,6 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain.Entidades.SGS;
+using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -10,14 +12,14 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public class ODSInsertParcAuto
     {
-        public static void Insert(string nomeArquivo, IMyLogger logger)
+        public static void Insert(Massa_Sinistro_Parcela parcela, IMyLogger logger)
         {
             var sql = "do " +
 " begin " +
 " query_int = select " +
 " id_registro " +
 " from tab_stg_parcela_auto_1002 a " +
-$" WHERE NM_ARQUIVO_TPA IN({ nomeArquivo}); " +
+$" WHERE {parcela.ObterTextoWhere(StageParcAuto.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList(),"a")}; " +
 "             insert into TAB_ODS_PARCELA_2003( " +
 "             CD_PARCELA, " +
 "             CD_PN_SEGURADORA, " +
