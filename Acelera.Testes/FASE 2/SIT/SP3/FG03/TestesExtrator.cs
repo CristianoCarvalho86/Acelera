@@ -575,7 +575,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
-            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageClienteMultiplo(CodigoStage.AprovadoNAFG00);
             ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
@@ -588,7 +588,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
             ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
-            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageClienteMultiplo(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
             arquivo = arquivo1;
