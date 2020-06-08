@@ -541,12 +541,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //ALTERAR O VALOR SELECIONADO
             CarregarContratoCancelado(ObterLinha(0));
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
-           ValidarFGsAnteriores(true, true, true, false, CodigoStage.AguardandoEmissaoSGS);
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AguardandoEmissaoSGS);
 
             //Garantir operação parametrizada
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
@@ -576,7 +577,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
             ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
-            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
@@ -596,7 +597,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //ALTERAR O VALOR SELECIONADO
             ObterLinhaComCdContratoDisponivel();
             var contrato = CarregarDadosDoContrato(ObterLinha(0));
-            AlterarLinha(0, "CD_OCORRENCIA", SomarData(contrato.DT_FIM_VIGENCIA, 30));
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(contrato.DT_FIM_VIGENCIA, 30));
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -633,7 +634,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
             ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
-            ValidarStageCliente(CodigoStage.AprovadoNaFG01);
+            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
