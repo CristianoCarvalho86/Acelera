@@ -152,9 +152,10 @@ namespace Acelera.Testes.DataAccessRep
                 return null;
             }
             string[] array = new string[resultado.Rows.Count];
-            foreach (DataRow a in resultado.Rows)
-                array.Append(a["CD_STATUS_PROCESSAMENTO"].ToString());
-
+            for (int i = 0; i < resultado.Rows.Count; i++)
+            {
+                array[i] = resultado.Rows[i]["CD_STATUS_PROCESSAMENTO"].ToString();
+            }
             logger.Escrever($"CD_STATUS_PROCESSAMENTO ENCONTRADO NA STAGE : {array.ObterListaConcatenada(" ,")}");
             logger.FecharBloco();
             return array;
