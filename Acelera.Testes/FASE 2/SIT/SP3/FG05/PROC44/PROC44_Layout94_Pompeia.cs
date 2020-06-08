@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4382()
+        public void SAP_4382_()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "4382", "FG05 - PROC44 - ");
             
@@ -232,5 +232,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
-    }
+
+        }
 }
