@@ -25,9 +25,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-2751-20200211.txt"));
 
             //Alterar arquivo
+            var coberturasimp = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            AlterarLinha(0, "CD_COBERTURA", coberturasimp.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", coberturasimp.CdRamo);
+            AlterarLinha(0, "CD_PRODUTO", coberturasimp.CdProduto);
+
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
             var valorTotalLiq = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
             
@@ -36,8 +41,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             else
                 valorTotalLiq = valorTotalLiq - cobertura.ValorPremioLiquidoMenorDecimal - 0.05M;
 
-
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado());
+            AlterarLinha(0, "CD_SUCURSAL", "71");
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //Salvar e executar
             SalvarArquivo("PROC1014");

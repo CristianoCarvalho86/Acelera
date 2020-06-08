@@ -91,6 +91,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             EnviarParaOds(arquivo, true, "PROC22_4193");
 
             var arquivoods = arquivo.Clone();
+
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+            var camposparc = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM" };
+            IgualarCampos(arquivoods, arquivo, camposparc);
+            EnviarParaOds(arquivo, true, "PROC22_4193");
+
+
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);

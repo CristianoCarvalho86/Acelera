@@ -38,6 +38,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal - 0.05M;
 
             AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
+            AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             //Salvar e executar
             SalvarArquivo("PROC1012");

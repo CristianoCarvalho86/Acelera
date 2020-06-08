@@ -24,8 +24,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
 
             var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", dados.ObterCDTipoEmissao("EEN", true));
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
 
             SalvarArquivo(true, "ODS-PROC108");
             var arquivoods = arquivo.Clone();
@@ -35,9 +37,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_RAMO", "CD_COBERTURA" };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_RAMO"};
             IgualarCampos(arquivoods, arquivo, campos);
 
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
             SalvarArquivo(true, "PROC108");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "108", 1);

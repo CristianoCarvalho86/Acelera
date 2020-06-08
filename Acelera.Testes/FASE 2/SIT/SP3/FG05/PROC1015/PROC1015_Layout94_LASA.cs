@@ -37,6 +37,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
                 valorIof = valorIof - cobertura.VL_IOF_MENOR_decimal - 0.05M;
 
             AlterarLinha(0, "VL_IOF", valorIof.ValorFormatado()) ;
+            AlterarLinha(0, "CD_SUCURSAL", "71");
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //Salvar e executar
             SalvarArquivo("PROC1015");
