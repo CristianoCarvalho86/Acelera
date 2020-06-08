@@ -247,6 +247,19 @@ namespace Acelera.Testes
                 }
         }
 
+        public void ValidarStageClienteMultiplo(CodigoStage codigoEsperado)
+        {
+                foreach (var cliente in clienteSGS)
+                {
+                    var retorno = SGS_dados.ValidarStageClienteMultiplo(cliente);
+                    if (retorno == null)
+                        ExplodeFalha();
+                    foreach(var r in retorno)
+                        if (!(int.Parse(r) == (int)codigoEsperado))
+                            ExplodeFalha();
+                }
+        }
+
         public void ValidarStageParcela(CodigoStage codigoEsperado, bool deveEncontrar = true)
         {
             if (deveEncontrar && (parcelaSGS == null || parcelaSGS.Count == 0))
