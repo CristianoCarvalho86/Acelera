@@ -595,8 +595,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            ObterLinhaComCdContratoDisponivel();
-            var contrato = CarregarDadosDoContrato(ObterLinha(0));
+            CarregarContratoValido(ObterLinha(0));
             AlterarLinha(0, "DT_OCORRENCIA", SomarData(contrato.DT_FIM_VIGENCIA, 30));
             SelecionarLinhaParaValidacao(0);
 
