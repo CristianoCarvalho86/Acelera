@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Acelera.Domain.Enums;
+using Acelera.Logger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public static class ODSInsertClienteData
     {
-        public static void Insert(string nomeArquivo)
+        public static void Insert(string nomeArquivo, IMyLogger logger)
         {
             var sql = "do "+
             " begin  " +
@@ -49,6 +51,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " inner join :query_int_cliente b " +
             " on a.id_registro = b.id_registro; " +
             "             end";
+            DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
         }
     }
 }

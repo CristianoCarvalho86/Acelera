@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Acelera.Domain.Enums;
+using Acelera.Logger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public static class ODSInsertParcData
     {
-        public static void Insert(string nomeArquivo)
+        public static void Insert(string nomeArquivo, IMyLogger logger)
         {
             string sql = $"do begin query_int = "+
                 $" select " +
@@ -188,6 +190,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " NR_APOLICE_ORIGINAL," +
             " NR_DOCUMENTO," +
             " NR_PROPOSTA; ";
+            DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
         }
 
     }

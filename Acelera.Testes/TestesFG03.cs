@@ -62,7 +62,7 @@ namespace Acelera.Testes
 
         public void ValidarCdTpaNaParametroGlobal(string cdTpa, bool deveEncontrar = true)
         {
-            var registroEncontrado = SGS_dados.ValidarCdTpaNaParametroGlobal(cdTpa);
+            var registroEncontrado = SGS_dados.ValidarCdTpaNaParametroGlobal(cdTpa, deveEncontrar);
             if (!registroEncontrado && deveEncontrar)
             {
                 logger.Erro("REGISTRO DO TPA NA PARAMETRO GLOBAL DEVIA TER SIDO ENCONTRADO.");

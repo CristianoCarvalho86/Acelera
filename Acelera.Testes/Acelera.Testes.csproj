@@ -75,6 +75,7 @@
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertParcAuto.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertParcData.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertSinistroData.cs" />
     <Compile Include="DataAccessRep\SGSData.cs" />
