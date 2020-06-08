@@ -98,27 +98,27 @@ namespace Acelera.Testes
 
         public virtual void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
         {
-            if(arquivo.tipoArquivo == TipoArquivo.Cliente)
-            {
-                SalvarArquivo();
-                ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
-                ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
-                ODSInsertClienteData.Insert(arquivo.NomeArquivo, logger);
-            }
-            else if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
-            {
-                SalvarArquivo();
-                ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
-                ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-                ODSInsertParcData.Insert(arquivo.NomeArquivo, logger);
-            }
-            else if (arquivo.tipoArquivo == TipoArquivo.Sinistro)
-            {
-                SalvarArquivo();
-                ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
-                ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-                ODSInsertSinistroData.Insert(arquivo.NomeArquivo, logger);
-            }
+            //if(arquivo.tipoArquivo == TipoArquivo.Cliente)
+            //{
+            //    SalvarArquivo();
+            //    ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
+            //    ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            //    ODSInsertClienteData.Insert(arquivo.NomeArquivo, logger);
+            //}
+            //else if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+            //{
+            //    SalvarArquivo();
+            //    ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
+            //    ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            //    ODSInsertParcData.Insert(arquivo.NomeArquivo, logger);
+            //}
+            //else if (arquivo.tipoArquivo == TipoArquivo.Sinistro)
+            //{
+            //    SalvarArquivo();
+            //    ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
+            //    ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            //    ODSInsertSinistroData.Insert(arquivo.NomeArquivo, logger);
+            //}
         }
 
         protected virtual void SalvarArquivo(bool alterarCdCliente, string nomeProc = "")

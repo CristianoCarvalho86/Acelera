@@ -426,9 +426,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             IniciarTeste(TipoArquivo.Sinistro, "4732", "Segunda movimentação de sinistro, sendo o primeiro com 140.");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200212.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+
             ObterLinhaComCdContratoDisponivelEDeterminadoTipoMovimento("1");
             SelecionarLinhaParaValidacao(0);
 
@@ -466,6 +467,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
+
             ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
 
             //Executar FG03
@@ -535,7 +537,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             var arquivo1 = arquivo.Clone();
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AguardandoEmissaoSGS);
 
             //Garantir operação parametrizada
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
@@ -553,37 +555,62 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
-            arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //Segundo arquivo
+            var arquivo2 = arquivo1.Clone();
+            arquivo = arquivo2;
 
             //ALTERAR O VALOR SELECIONADO
-            ObterLinhaComCdContratoDisponivel();
+
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValor(0, "DT_MOVIMENTO"), 5));
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
-            var arquivo2 = arquivo.Clone();
+
+            //VALIDAR FGs ANTERIORES
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AguardandoEmissaoSGS);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false, false, true, null);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
             arquivo = arquivo1;
 
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
