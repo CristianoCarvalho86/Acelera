@@ -565,20 +565,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true, true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false, false, true, null);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
@@ -595,9 +595,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
 
             //ALTERAR O VALOR SELECIONADO
-            CarregarContratoValido(ObterLinha(0));
+            var contrato = CarregarContratoValido(ObterLinha(0));
             AlterarLinha(0, "DT_OCORRENCIA", SomarData(contrato.DT_FIM_VIGENCIA, 30));
             SelecionarLinhaParaValidacao(0);
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -621,20 +622,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(false, true,true, true, CodigoStage.AprovadoNaFG01);
+            ValidarFGsAnteriores(false, false,false, true, null);
 
             ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
             ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
 
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG01_Tarefas.ParcEmissaoAuto.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
@@ -658,7 +659,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             SalvarArquivo();
 
             //VALIDAR FG's ANTERIORES
-            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AguardandoEmissaoSGS);
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AprovadoNaFG01);
 
             //Garantir operação parametrizada
             ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"), false);
@@ -676,7 +677,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageCliente(CodigoStage.AprovadoNAFG00,false);
-            ValidarStageParcela(CodigoStage.AprovadoNAFG00, false);
+            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00, false);
             ValidarStages(CodigoStage.AprovadoNaFG01);
 
         }
