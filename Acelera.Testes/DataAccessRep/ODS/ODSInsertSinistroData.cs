@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Acelera.Domain.Enums;
+using Acelera.Logger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public class ODSInsertSinistroData
     {
-        public static void Insert(string nomeArquivo)
+        public static void Insert(string nomeArquivo, IMyLogger logger)
         {
             var sql = "INSERT INTO TAB_ODS_SINISTRO_2007 " +
             " SELECT " +
@@ -43,7 +45,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " INNER JOIN TAB_PRM_RAMO_7002 RM " +
             " ON COB.CD_RAMO_COBERTURA = RM.CD_RAMO " +
             $" WHERE A.NM_ARQUIVO_TPA IN({nomeArquivo}); ";
-
+            DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
         }
     }
 }

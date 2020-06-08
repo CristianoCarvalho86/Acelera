@@ -37,12 +37,12 @@ namespace Acelera.Testes.DataAccessRep
 
         }
 
-        public bool ValidarCdTpaNaParametroGlobal(string cdTpa)
+        public bool ValidarCdTpaNaParametroGlobal(string cdTpa, bool validaRegistroEncontrado)
         {
             logger.AbrirBloco($"VALIDAR SE OPERAÇÃO ESTÁ MARCADA COMO EXTRAÇÃO SGS. CD_TPA:'{cdTpa}'");
             var sql = $"SELECT DS_VALOR FROM {Parametros.instanciaDB}.TAB_PRM_PARAMETRO_GLOBAL_7023 WHERE NM_CAMPO = 'OPERACAO_SGS' AND DS_VALOR = '{int.Parse(cdTpa).ToString()}'";//Esse parse é para remover zeros a esquerda
-            var table = DataAccess.Consulta(sql, "OBTER OPERACAO_SGS PARA O CD_TPA", DBEnum.Hana, logger);
-            if(table.Rows.Count == 0)
+            var table = DataAccess.Consulta(sql, "OBTER OPERACAO_SGS PARA O CD_TPA", DBEnum.Hana, logger,false);
+            if(table.Rows.Count == 0 && validaRegistroEncontrado)
             {
                 logger.Erro($"BUSCA NA TAB_PRM_PARAMETRO_GLOBAL_7023 NÃO ENCONTROU VALOR PARA ESTA OPERAÇÃO. CD_TPA:'{cdTpa}'");
                 return false;
