@@ -148,8 +148,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
 
             //ALTERAR O VALOR SELECIONADO
             CarregarContratoComClienteDeVariosContratos(ObterLinha(0), ObterLinha(1));
+            var cdCliente = ObterLinha(1).Clone();
             SelecionarLinhaParaValidacao(0);
-            SelecionarLinhaParaValidacao(1);
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -188,6 +189,51 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
 
+
+            arquivo = new Arquivo_Layout_9_4_2();
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            RemoverTodasAsLinhas();
+            AdicionarLinha(0, cdCliente);
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AprovadoNaFG01);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"), true, null);
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, false, false, true, null);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
         }
 
 
