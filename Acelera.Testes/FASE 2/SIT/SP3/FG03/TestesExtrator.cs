@@ -200,6 +200,40 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(true, true, true, false, CodigoStage.AprovadoNaFG01);
+
+            //Garantir operação parametrizada
+            ValidarCdTpaNaParametroGlobal(ObterValorHeader("CD_TPA"));
+
+            //Garantir sinistro não possui parcela na ods
+            ValidarRegistroNaoExisteNaODSParcela(ObterValorHeader("CD_TPA"), ObterValor(0, "CD_CONTRATO"), ObterValor(0, "NR_SEQUENCIAL_EMISSAO"));
+
+            //Executar MASP1602B00
+            Executar();
+
+            //Verificar tabelas temporárias estão preenchidas
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"), true, null);
+
+            //Executar FG03
+            ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcela(CodigoStage.AprovadoNAFG00);
+            ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores(false, false, false, true, null);
+
+            ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Cliente.ObterTexto());
+
+            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
+
+            ValidarStageCliente(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcela(CodigoStage.AprovadoNegocioSemDependencia);
         }
 
 
