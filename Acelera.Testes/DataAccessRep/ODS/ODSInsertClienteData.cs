@@ -51,8 +51,8 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " 		dt_mudanca " +
             " from tab_stg_cliente_1000 a " +
             " inner join :query_int_cliente b " +
-            " on a.id_registro = b.id_registro; " +
-            "             end";
+            " ON a.id_registro = b.id_registro; " +
+            "             end ";
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
         }
     }
