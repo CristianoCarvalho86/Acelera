@@ -247,7 +247,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             IniciarTeste(TipoArquivo.Sinistro, "4729", "Sinistro com parcela/clente/sinistro na ods");
 
             arquivo = new Arquivo_Layout_9_4_2();
-            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
 
@@ -272,14 +272,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGSVazia(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
+            var c = CarregarDadosDoContrato(null, ObterValorFormatado(0, "CD_CONTRATO"));
+            ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), c.CD_CLIENTE);
+
+            EnviarParaODS(arquivo.NomeArquivo);
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
-
-
-            // ODS?
-
 
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
@@ -307,7 +306,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             Executar();
 
             //Verificar tabelas temporárias estão preenchidas
-            ValidaTabelasTemporariasSGSVazia(ObterValorFormatado(0, "CD_CONTRATO"), ObterValorFormatado(0, "CD_CLIENTE"));
+            ValidaTabelasTemporariasSGSVazia(ObterValorFormatado(0, "CD_CONTRATO"), c.CD_CLIENTE);
 
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
@@ -576,7 +575,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
 
             ValidarStageClienteMultiplo(CodigoStage.AprovadoNAFG00);
-            ValidarStageParcelaAuto(CodigoStage.AprovadoNAFG00);
+            ValidarStageParcAutoMultiplo(CodigoStage.AprovadoNAFG00);
             ValidarStages(CodigoStage.ExtracaoDaParcelaEDoCliente);
 
             //VALIDAR FG's ANTERIORES
@@ -589,7 +588,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             ChamarExecucao(FG02_Tarefas.ParcEmissaoAuto.ObterTexto());
 
             ValidarStageClienteMultiplo(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarStageParcelaAuto(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarStageParcAutoMultiplo(CodigoStage.AprovadoNegocioSemDependencia);
 
             arquivo = arquivo1;
 
