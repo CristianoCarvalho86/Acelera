@@ -63,6 +63,24 @@
     <Compile Include="Entidades\Consultas\FabricaConsulta.cs" />
     <Compile Include="Entidades\Interfaces\ILinhaTabela.cs" />
     <Compile Include="Entidades\LinhaTabela.cs" />
+    <Compile Include="Entidades\SGS\ClienteSGS.cs" />
+    <Compile Include="Entidades\SGS\ContratoSGS.cs" />
+    <Compile Include="Entidades\SGS\EmissaoSGS.cs" />
+    <Compile Include="Entidades\SGS\EnderecoSGS.cs" />
+    <Compile Include="Entidades\SGS\Massa_Sinistro_Auto.cs" />
+    <Compile Include="Entidades\SGS\Massa_Sinistro.cs" />
+    <Compile Include="Entidades\SGS\PaisSGS.cs" />
+    <Compile Include="Entidades\SGS\ParcelaSGS.cs" />
+    <Compile Include="Entidades\SGS\PartCoSeguroSGS.cs" />
+    <Compile Include="Entidades\SGS\Massa_Cliente_Sinistro.cs" />
+    <Compile Include="Entidades\SGS\QueryContratoParaArquivo.cs" />
+    <Compile Include="Entidades\SGS\QueryMassaParcelaAutoSGS.cs" />
+    <Compile Include="Entidades\SGS\QueryMassaParcelaSGS.cs" />
+    <Compile Include="Entidades\Stages\StageCliente.cs" />
+    <Compile Include="Entidades\Stages\StageParc.cs" />
+    <Compile Include="Entidades\Stages\StageParcAuto.cs" />
+    <Compile Include="Entidades\Stages\StageSinistro.cs" />
+    <Compile Include="Entidades\Tabelas\EntidadeDeTabela.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaClienteStage.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaComissaoStage.cs" />
     <Compile Include="Entidades\Tabelas\Stages\LinhaLanctoComissaoStage.cs" />
@@ -75,12 +93,14 @@
     <Compile Include="Entidades\Tabelas\LinhaLogProcessamento.cs" />
     <Compile Include="Entidades\Tabelas\Tabela.cs" />
     <Compile Include="Enums\CodigoStage.cs" />
+    <Compile Include="Enums\DBEnum.cs" />
     <Compile Include="Enums\FGs.cs" />
     <Compile Include="Enums\ModoExecucaoEnum.cs" />
     <Compile Include="Enums\OperacaoEnum.cs" />
     <Compile Include="Enums\OperadoraEnum.cs" />
     <Compile Include="Enums\TabelasEnum.cs" />
     <Compile Include="Enums\TipoArquivo.cs" />
+    <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Extensions\DocumentationExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
@@ -113,6 +133,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ArquivoOrigem.cs" />
+    <Compile Include="Utils\ControleCDContratoFG03.cs" />
     <Compile Include="Utils\ControleNomeArquivo.cs" />
   </ItemGroup>
   <ItemGroup>

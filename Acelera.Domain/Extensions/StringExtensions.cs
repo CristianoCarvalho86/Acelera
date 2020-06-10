@@ -13,6 +13,14 @@ namespace Acelera.Domain.Extensions
             return texto.Substring(texto.Length - qtdCaracteresDireitaParaEsquerda);
         }
 
+        public static string AlterarUltimosCaracteres(this string texto, string novoTexto)
+        {
+            if (novoTexto.Length > texto.Length)
+                throw new Exception("OPERACAO DE AlterarUltimosCaracteres NAO PODE SER REALIZADA.");
+
+            return texto.Remove(novoTexto.Length - 1) + novoTexto;
+        }
+
         public static int? ObterValorInteiro(this string texto)
         {
             string b = string.Empty;

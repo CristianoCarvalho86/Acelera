@@ -9,16 +9,16 @@ using Sap.Data.Hana;
 
 namespace Acelera.Data
 {
-    public class DBHelper
+    public class DBHelperHana:IDBHelper
     {
         public string ConnectionString { get; set; }
         private HanaConnection Conn { get; set; }
         private HanaDataAdapter adapter { get; set; }
         private HanaCommand command { get; set; }
         DataTable table;
-        private static DBHelper instance;
+        private static DBHelperHana instance;
 
-        private DBHelper()
+        private DBHelperHana()
         {
             Conn = new HanaConnection(ConfigurationSettings.AppSettings["ConnectionString"]);
         }
@@ -28,7 +28,7 @@ namespace Acelera.Data
             Conn = new HanaConnection(ConnectionString);
         }
 
-        public static DBHelper Instance
+        public static DBHelperHana Instance
         {
             get
             {
@@ -36,7 +36,7 @@ namespace Acelera.Data
                 {
                     if (instance == null)
                     {
-                        instance = new DBHelper();
+                        instance = new DBHelperHana();
                     }
                     return instance;
                 }
@@ -101,6 +101,7 @@ namespace Acelera.Data
             {
                 command = new HanaCommand(sql);
                 command.Connection = Conn;
+                command.Prepare();
                 return command.ExecuteNonQuery();
             }
             catch (Exception ex)

@@ -74,6 +74,10 @@
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertParcAuto.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertParcData.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertSinistroData.cs" />
     <Compile Include="DataAccessRep\SGSData.cs" />
     <Compile Include="DataAccessRep\TabelaParametrosDataSP3.cs" />
     <Compile Include="DataAccessRep\TabelaParametrosData.cs" />
@@ -523,13 +527,14 @@
     <Compile Include="Parametros.cs" />
     <Compile Include="TestesFG00.cs" />
     <Compile Include="TestesFG01.cs" />
+    <Compile Include="TestesFG03.cs" />
     <Compile Include="TestesFG05.cs" />
     <Compile Include="Validadores\FG00\ValidadorStagesFG00.cs" />
     <Compile Include="Validadores\FG00\ValidadorTabelaRetornoFG00.cs" />
     <Compile Include="Validadores\FG01\ValidadorStagesFG01.cs" />
     <Compile Include="Validadores\FG01\ValidadorTabelaRetornoFG01.cs" />
     <Compile Include="Validadores\FG02\ValidadorStages.cs" />
-    <Compile Include="Validadores\FG02\ValidadorTabelaRetornoFG02.cs" />
+    <Compile Include="Validadores\ValidadorTabelaRetorno.cs" />
     <Compile Include="Validadores\FG05\ValidadorODSFG05.cs" />
     <Compile Include="Validadores\Validador.cs" />
   </ItemGroup>

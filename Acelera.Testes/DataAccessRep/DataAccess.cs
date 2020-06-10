@@ -26,7 +26,7 @@ namespace Acelera.Testes.DataAccessRep
 
                 var c = tabela.ObterQuery(consulta, Parametros.instanciaDB).Replace("/*R*/", "");
                 logger.Escrever("Consulta Realizada :" + c);
-                var resultado = DBHelper.Instance.GetData(c);
+                var resultado = DBHelperHana.Instance.GetData(c);
 
                 logger.LogRetornoQuery(resultado, c);
 
@@ -45,19 +45,30 @@ namespace Acelera.Testes.DataAccessRep
 
         public static string ConsultaUnica(string sql, string parametroBuscado, IMyLogger logger)
         {
+            return ConsultaUnica(sql, parametroBuscado, DBEnum.Hana, logger);
+        }
+
+        public static string ConsultaUnica(string sql, IMyLogger logger, bool validaResultadoUnico = true)
+        {
+            return ConsultaUnica(sql, string.Empty, DBEnum.Hana, logger, validaResultadoUnico);
+        }
+
+        public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger, bool validaResultadoUnico = true)
+        {
+            IDBHelper helper = ObterBanco(dbEnum);
             string resultado;
             try
             {
                 if (logger == null)
-                    return ConsultaUnica(sql);
+                    return ConsultaUnica(sql,dbEnum);
 
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
 
                 logger.Escrever("Consulta Realizada :" + sql);
-                resultado = DBHelper.Instance.ObterResultadoUnico(sql);
+                resultado = helper.ObterResultadoUnico(sql, validaResultadoUnico);
 
 
-                if (string.IsNullOrEmpty(resultado))
+                if (validaResultadoUnico && string.IsNullOrEmpty(resultado))
                     throw new Exception("Resultado nao encontrado");
 
                 logger.Escrever($"Parametro Buscado encontrado: {resultado}");
@@ -75,10 +86,16 @@ namespace Acelera.Testes.DataAccessRep
 
         public static string ConsultaUnica(string sql, bool validaResultadoUnico = true)
         {
+            return ConsultaUnica(sql, DBEnum.Hana,validaResultadoUnico);
+        }
+
+        public static string ConsultaUnica(string sql, DBEnum dbEnum, bool validaResultadoUnico = true)
+        {
+            IDBHelper helper = ObterBanco(dbEnum);
             string resultado;
             try
             {
-                resultado = DBHelper.Instance.ObterResultadoUnico(sql, validaResultadoUnico);
+                resultado = helper.ObterResultadoUnico(sql, validaResultadoUnico);
                 if (string.IsNullOrEmpty(resultado) && validaResultadoUnico)
                     throw new Exception("Resultado nao encontrado");
             }
@@ -89,17 +106,37 @@ namespace Acelera.Testes.DataAccessRep
             return resultado;
         }
 
-        public static DataTable Consulta(string sql, string parametroBuscado, IMyLogger logger, bool validaResultadoVazio = true)
+        /// <summary>
+        /// Default, using Hana
+        /// </summary>
+        /// <returns>Full filled DataTable</returns>
+        public static DataTable Consulta(string sql, string parametroBuscado, IMyLogger logger)
         {
+            return Consulta(sql, parametroBuscado,DBEnum.Hana, logger);
+        }
+
+        public static void ExecutarComando(string comando, DBEnum dbEnum, IMyLogger logger)
+        {
+            IDBHelper helper = ObterBanco(dbEnum);
+
+            logger.AbrirBloco($"INICIANDO EXECUÇÃO DE : {comando}");
+            var resultado = helper.Execute(comando);
+            logger.Escrever($"RETORNO DO BANCO : '{resultado}'");
+            logger.FecharBloco();
+        }
+
+        public static DataTable Consulta(string sql, string parametroBuscado, DBEnum dbEnum, IMyLogger logger, bool validaResultadoUnico = true)
+        {
+            IDBHelper helper = ObterBanco(dbEnum);
             DataTable tabela;
             try
             {
                 logger.InicioOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
                 logger.Escrever("Consulta Realizada :" + sql);
 
-                tabela = DBHelper.Instance.GetData(sql);
+                tabela = helper.GetData(sql);
 
-                if (tabela.Rows.Count == 0 && validaResultadoVazio)
+                if (tabela.Rows.Count == 0 && validaResultadoUnico)
                     throw new Exception("NENHUMA LINHA ENCONTRADA");
 
                 logger.LogRetornoQuery(tabela, sql);
@@ -139,6 +176,15 @@ namespace Acelera.Testes.DataAccessRep
                 logger.Erro(ex);
             }
             return tabela.Linhas;
+        }
+
+        private static IDBHelper ObterBanco(DBEnum dbEnum)
+        {
+            if (dbEnum == DBEnum.Hana)
+                return DBHelperHana.Instance;
+            else if (dbEnum == DBEnum.SqlServer)
+                return DBHelperSQLServer.Instance;
+            throw new Exception("BANCO NAO PARAMETRIZADO");
         }
 
     }

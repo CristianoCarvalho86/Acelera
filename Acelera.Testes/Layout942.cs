@@ -101,7 +101,7 @@ namespace Acelera.Testes
         [TestMethod]
         public void ABC()
         {
-            DBHelper helper = DBHelper.Instance;
+            DBHelperHana helper = DBHelperHana.Instance;
             var table = helper.GetData("select now() from dummy");
 
         }

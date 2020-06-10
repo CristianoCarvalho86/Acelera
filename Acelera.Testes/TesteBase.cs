@@ -9,6 +9,8 @@ using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.DataAccessRep.ODS;
+using Acelera.Testes.Validadores.FG05;
 using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -27,7 +29,7 @@ namespace Acelera.Testes
     [TestClass]
     public abstract class TesteBase : TesteArquivoOperacoes
     {
-        private DBHelper helper = DBHelper.Instance;
+        private DBHelperHana helper = DBHelperHana.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
         protected string numeroDoTeste;
         protected bool sucessoDoTeste;
@@ -75,6 +77,7 @@ namespace Acelera.Testes
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
+            var nomeOriginalArquivo = arquivo.NomeArquivo;
             if (!_nomeArquivo.Contains("/*R*/"))
             {
                 nomeArquivo = _nomeArquivo.Replace("-","_") + "_" + nomeArquivo;// inclusao do nome da proc
@@ -89,6 +92,45 @@ namespace Acelera.Testes
                 arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+
+            AjustarNomeArquivo(nomeOriginalArquivo, this.nomeArquivo);
+        }
+
+        public virtual void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
+        {
+            //if(arquivo.tipoArquivo == TipoArquivo.Cliente)
+            //{
+            //    SalvarArquivo();
+            //    ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
+            //    ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
+            //    ODSInsertClienteData.Insert(arquivo.NomeArquivo, logger);
+            //}
+            //else if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+            //{
+            //    SalvarArquivo();
+            //    ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
+            //    ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            //    ODSInsertParcData.Insert(arquivo.NomeArquivo, logger);
+            //}
+            //else if (arquivo.tipoArquivo == TipoArquivo.Sinistro)
+            //{
+            //    SalvarArquivo();
+            //    ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
+            //    ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            //    ODSInsertSinistroData.Insert(arquivo.NomeArquivo, logger);
+            //}
+        }
+
+        protected virtual void SalvarArquivo(bool alterarCdCliente, string nomeProc = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void ValidarODS()
+        {
+            throw new NotImplementedException();
+            //foreach (var arquivo in arquivosOds)
+            //    validadorODS = new ValidadorODSFG05(logger, arquivo);
         }
 
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
@@ -105,6 +147,8 @@ namespace Acelera.Testes
                 this.nomeArquivo = _nomeArquivo;
 
             var path = Parametros.pastaDestino + nomeArquivo;
+
+            arquivo.AtualizarNomeArquivoFinal(this.nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
@@ -139,6 +183,8 @@ namespace Acelera.Testes
                 arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
             var path = Parametros.pastaDestino + nomeArquivo;
+
+            arquivo.AtualizarNomeArquivoFinal(this.nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;

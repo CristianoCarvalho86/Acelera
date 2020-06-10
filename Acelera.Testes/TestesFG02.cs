@@ -3,8 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
-using Acelera.Testes.Validadores.FG01;
-using Acelera.Testes.Validadores.FG02;
+using Acelera.Testes.Validadores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +48,7 @@ namespace Acelera.Testes.FASE_2
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
+            return base.ObterProceduresASeremExecutadas().Concat(ObterProceduresFG02(tipoArquivoTeste)).ToList();
         }
 
         public void ValidarTabelaDeRetorno(bool naoDeveEncontarOsErrosDefinidos, params string[] codigosDeErroEsperados)
@@ -66,7 +65,7 @@ namespace Acelera.Testes.FASE_2
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetornoFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
+                var validador = new ValidadorTabelaRetorno(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))
@@ -91,34 +90,11 @@ namespace Acelera.Testes.FASE_2
                 erros[i] = codigoDeErroEsperado;
             }
 
-            ValidarTabelaDeRetornoFG02(naoDeveEncontrar, true, erros);
+            ValidarTabelaDeRetorno(naoDeveEncontrar, true, erros);
         }
         public void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetornoFG02(false, false, codigosDeErroEsperados);
-        }
-
-        public void ValidarTabelaDeRetornoFG02(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
-        {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return;
-
-            try
-            {
-                AjustarEntradaErros(ref codigosDeErroEsperados);
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetornoFG02(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
-                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
-
-                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                else
-                    ExplodeFalha();
-            }
-            catch (Exception)
-            {
-                TratarErro($" Validação da Tabela Retorno");
-            }
+            ValidarTabelaDeRetorno(false, false, codigosDeErroEsperados);
         }
 
         protected void ValidarStagesSemGerarErro(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false)
@@ -135,6 +111,22 @@ namespace Acelera.Testes.FASE_2
             }
         }
 
+        protected void ValidarTabelaDeRetornoSemGerarErro()
+        {
+            var statusAtualDoTeste = sucessoDoTeste;
+            try
+            {
+                ValidarTabelaDeRetorno();
+                sucessoDoTeste = statusAtualDoTeste;
+            }
+            catch (Exception ex)
+            {
+                if (statusAtualDoTeste)
+                    sucessoDoTeste = true;
+            }
+        }
+
+
         protected string CarregarIdtransacao(LinhaArquivo linha)
         {
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
@@ -149,7 +141,7 @@ namespace Acelera.Testes.FASE_2
             var linhasAColocarIdTransacao = new List<int>();
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha).ToList();
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(arquivo.NomeArquivo,linha.Value).ToList();
                 foreach (var alteracao in alteracoes)
                 {
                     //nr_apolice, nr_endosso, cd_ramo ou nr_parcela
@@ -166,7 +158,7 @@ namespace Acelera.Testes.FASE_2
         }
 
         #region Procedures
-        public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
+        public static IList<string> ObterProceduresFG02(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
             switch (tipoArquivoTeste)

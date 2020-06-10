@@ -118,6 +118,17 @@ namespace Acelera.Domain.Extensions
             }
         }
 
+        public static FG01_1_Tarefas ObterTarefaFG01_1_Enum(this TipoArquivo tipoArquivo)
+        {
+            switch (tipoArquivo)
+            {
+                case TipoArquivo.Sinistro:
+                    return FG01_1_Tarefas.Sinistro;
+                default:
+                    throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
+            }
+        }
+
         public static FG00_Tarefas ObterTarefaFG00Enum(this TipoArquivo tipoArquivo)
         {
             switch (tipoArquivo)

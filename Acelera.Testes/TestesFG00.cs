@@ -9,7 +9,6 @@ using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores;
-using Acelera.Testes.Validadores.FG00;
 using Acelera.Testes.Validadores.FG02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -98,7 +97,7 @@ namespace Acelera.Testes
             try { 
             AjustarEntradaErros(ref codigosDeErroEsperados);
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-            var validador = new ValidadorTabelaRetornoFG00(tipoArquivoTeste.ObterTabelaStageEnum(),nomeArquivo,logger,
+            var validador = new ValidadorTabelaRetorno(tipoArquivoTeste.ObterTabelaStageEnum(),nomeArquivo,logger,
                 valoresAlteradosBody,valoresAlteradosHeader,valoresAlteradosFooter);
             
             if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrar, validaQuantidadeErros,codigosDeErroEsperados))
@@ -123,7 +122,7 @@ namespace Acelera.Testes
             ValidarStages(tabela, deveHaverRegistro, codigoEsperado);
         }
 
-        public static IList<string> ObterProcedures()
+        public static IList<string> ObterProceduresFG00()
         {
             var lista = new List<string>();
             lista.Add("PRC_0093_IMP");
@@ -144,7 +143,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return ObterProcedures();
+            return ObterProceduresFG00();
         }
     }
 }

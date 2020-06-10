@@ -9,7 +9,7 @@ using Sap.Data.Hana;
 
 namespace Acelera.Data
 {
-    public class DBHelperSQLServer
+    public class DBHelperSQLServer: IDBHelper
     {
         public string ConnectionString { get; set; }
         private SqlConnection Conn { get; set; }
@@ -101,6 +101,7 @@ namespace Acelera.Data
             {
                 command = new SqlCommand(sql);
                 command.Connection = Conn;
+                command.CommandTimeout = 0;
                 return command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -116,6 +117,7 @@ namespace Acelera.Data
             try
             {
                 command = new SqlCommand(sql, Conn);
+                command.CommandTimeout = 0;
                 adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
             }

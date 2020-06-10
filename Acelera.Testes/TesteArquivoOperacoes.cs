@@ -27,6 +27,15 @@ namespace Acelera.Testes
             valoresAlteradosHeader = new AlteracoesArquivo();
             valoresAlteradosFooter = new AlteracoesArquivo();
         }
+
+        public void AjustarNomeArquivo(string nomeArquivoAntigo, string novoNomeArquivo)
+        {
+            foreach(var alteracao in valoresAlteradosBody.Alteracoes.Where(x => x.NomeArquivo == nomeArquivoAntigo))
+            {
+                alteracao.NomeArquivo = novoNomeArquivo;
+            }
+        }
+
         public void SelecionarLinhaParaValidacao(int posicaoLinha, int qtdRepeticoes = 0, bool semHeaderOuFooter = false)
         {
             var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
@@ -145,6 +154,7 @@ namespace Acelera.Testes
             logger.AbrirBloco($"Alterando arquivo - Adicionando linha na posicao {posicaoLinha}");
             arquivo.AdicionarLinha(linhaNova, posicaoLinha);
             logger.Escrever("Linha Adicionada :" + linhaNova.ObterTexto());
+            arquivo.AjustarQtdLinhasNoFooter();
             logger.FecharBloco();
         }
 
@@ -271,7 +281,7 @@ namespace Acelera.Testes
             string campo = "", string valor = "", int repeticoes = 0, bool semHeaderOuFooter = false , bool nomeArquivoAlterado = false)
         {
             var alteracao = new Alteracao(linhaAlterada, posicaoLinha);
-            alteracao.AdicionarAlteracao(campo, valor);
+            alteracao.AdicionarAlteracao(campo, valor, arquivo.NomeArquivo);
             alteracao.DefinirQtdRepeticoes(repeticoes);
             alteracao.DefinirSemHeaderOuFooter(semHeaderOuFooter);
             alteracao.DefinirAlteracaoNomeArquivo(nomeArquivoAlterado);
@@ -295,7 +305,11 @@ namespace Acelera.Testes
 
         public string SomarData(string valorAntigo, int diasAdicionados)
         {
-            var d = new DateTime(int.Parse(valorAntigo.Substring(0,4)), int.Parse(valorAntigo.Substring(4, 2)), int.Parse(valorAntigo.Substring(6, 2)));
+            DateTime d = new DateTime();
+            if (DateTime.TryParse(valorAntigo, out DateTime data))
+                d = data;
+            else
+                d = new DateTime(int.Parse(valorAntigo.Substring(0,4)), int.Parse(valorAntigo.Substring(4, 2)), int.Parse(valorAntigo.Substring(6, 2)));
             d = d.AddDays(diasAdicionados);
             return d.ToString("yyyyMMdd");
         }

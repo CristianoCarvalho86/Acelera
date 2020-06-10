@@ -45,6 +45,13 @@ namespace Acelera.Domain.Enums
 
     }
 
+
+    public enum FG01_1_Tarefas
+    {
+        [Description("FGR_01_1_SINISTRO")]
+        Sinistro,
+    }
+
     public enum FG02_Tarefas
     {
         [Description("FGR_02_CLIENTE")]
@@ -60,6 +67,25 @@ namespace Acelera.Domain.Enums
         [Description("FGR_02_SINISTRO")]
         Sinistro,
         [Description("FGR_02_PARCELA_AUTO")]
+        ParcEmissaoAuto,
+
+    }
+
+    public enum FG03_Tarefas
+    {
+        [Description("FGR_03_CLIENTE")]
+        Cliente,           
+        [Description("FGR_03_COMISSAO")]
+        Comissao,          
+        [Description("FGR_03_BAIXA_COMISSAO")]
+        LanctoComissao,    
+        [Description("FGR_03_BAIXA_PARCELA")]
+        OCRCobranca,       
+        [Description("FGR_03_PARCELA")]
+        ParcEmissao,       
+        [Description("FGR_03_SINISTRO")]
+        Sinistro,          
+        [Description("FGR_03_PARCELA_AUTO")]
         ParcEmissaoAuto,
 
     }

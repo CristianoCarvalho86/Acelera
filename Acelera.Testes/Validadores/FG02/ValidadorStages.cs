@@ -4,8 +4,6 @@ using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
-using Acelera.Testes.Validadores.FG00;
-using Acelera.Testes.Validadores.FG01;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +36,9 @@ namespace Acelera.Testes.Validadores.FG02
                 var linhasAlteradas = valoresAlteradosBody.LinhasAlteradas();
                 foreach(var linha in linhasAlteradas)
                 {
-                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha)?.Where(x => x.CamposAlterados.Count > 0).FirstOrDefault();
+                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).Where(x => x.CamposAlterados.Count > 0).FirstOrDefault();
                     if (alteracoesPorLinha == null)
                         continue;
-
                     var consulta = consultaBase.Where(x => x.Key == alteracoesPorLinha.PosicaoDaLinha).First().Value;
                     AdicionaConsulta(consulta, alteracoesPorLinha, true);
                     consultas.AdicionarConsulta(consulta);
