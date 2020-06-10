@@ -42,7 +42,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             //Salvar e executar
-            SalvarArquivo("PROC1012");
+            SalvarArquivo();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "1012", 1);
         }
 
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
         public void SAP_4656()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4656", "FG05 - PROC1012");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4656", "FG05 - PROC1012");
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -71,6 +71,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal + 0.05M;
 
             AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
+            AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             //Salvar e executar
             SalvarArquivo();
@@ -85,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
         public void SAP_4657()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4657", "FG05 - PROC1012");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4657", "FG05 - PROC1012");
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -102,6 +104,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
 
             AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
+            AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             //Salvar e executar
             SalvarArquivo();

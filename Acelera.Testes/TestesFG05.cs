@@ -53,14 +53,29 @@ namespace Acelera.Testes
 
         protected void SalvarArquivo(bool alterarCdCliente , string nomeProc = "")
         {
-            if(alterarCdCliente)
+            if (alterarCdCliente)
             {
                 var i = 0;
                 foreach (var linha in arquivo.Linhas)
                     arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
+
+            //Parametrizacoes();
+
             base.SalvarArquivo(nomeProc);
         }
+
+        //private void Parametrizacoes()
+        //{
+        //    for (int i = 0; i < arquivo.Linhas.Count; i++)
+        //    {
+        //        var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(i, "CD_COBERTURA"), true);
+        //        AlterarLinha(i, "CD_RAMO", cobertura.CdRamo);
+        //        AlterarLinha(i, "CD_PRODUTO", cobertura.CdProduto);
+        //        AlterarLinha(i, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
+        //        AlterarLinha(i, "VL_LMI", ObterValor(i, "VL_IS"));
+        //    }
+        //}
 
         //protected override void SalvarArquivo()
         //{
@@ -183,14 +198,14 @@ namespace Acelera.Testes
             {
                 case TipoArquivo.Cliente:
                     lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0097_NEG");
+                    //lista.Add("PRC_0097_NEG");
                     break;
                 case TipoArquivo.ParcEmissao:
                     lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0027_NEG");
-                    lista.Add("PRC_0038_NEG");
-                    lista.Add("PRC_0044_NEG");
-                    lista.Add("PRC_0097_NEG");
+                    //lista.Add("PRC_0027_NEG");
+                    //lista.Add("PRC_0038_NEG");
+                    //lista.Add("PRC_0044_NEG");
+                    //lista.Add("PRC_0097_NEG");
                     lista.Add("PRC_0212_NEG");
                     lista.Add("PRC_1012_NEG");
                     lista.Add("PRC_1014_NEG");
@@ -199,15 +214,15 @@ namespace Acelera.Testes
 
                 case TipoArquivo.ParcEmissaoAuto:
                     lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0027_NEG");
-                    lista.Add("PRC_0034_NEG");
-                    lista.Add("PRC_0038_NEG");
-                    lista.Add("PRC_0044_NEG");
-                    lista.Add("PRC_0097_NEG");
+                    //lista.Add("PRC_0027_NEG");
+                    //lista.Add("PRC_0034_NEG");
+                    //lista.Add("PRC_0038_NEG");
+                    //lista.Add("PRC_0044_NEG");
+                    //lista.Add("PRC_0097_NEG");
                     lista.Add("PRC_0212_NEG");
-                    lista.Add("PRC_0213_NEG");
-                    lista.Add("PRC_0227_NEG");
-                    lista.Add("PRC_0228_NEG");
+                    //lista.Add("PRC_0213_NEG");
+                    //lista.Add("PRC_0227_NEG");
+                    //lista.Add("PRC_0228_NEG");
                     lista.Add("PRC_1012_NEG"); 
                     lista.Add("PRC_1014_NEG");
                     lista.Add("PRC_1015_NEG");
@@ -215,30 +230,30 @@ namespace Acelera.Testes
 
                 case TipoArquivo.Comissao:
                     lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0034_NEG");
-                    lista.Add("PRC_0038_NEG");
-                    lista.Add("PRC_0054_NEG");
-                    lista.Add("PRC_0097_NEG");
+                    //lista.Add("PRC_0034_NEG");
+                    //lista.Add("PRC_0038_NEG");
+                    //lista.Add("PRC_0054_NEG");
+                    //lista.Add("PRC_0097_NEG");
                     lista.Add("PRC_0108_NEG");
                     lista.Add("PRC_0216_NEG");
                     break;
 
                 case TipoArquivo.LanctoComissao:
-                    lista.Add("PRC_0022_NEG");
+                    //lista.Add("PRC_0022_NEG");
                     break;
                 case TipoArquivo.OCRCobranca:
-                    lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0097_NEG");
-                    lista.Add("PRC_0220_NEG");
+                    //lista.Add("PRC_0022_NEG");
+                    //lista.Add("PRC_0097_NEG");
+                    //lista.Add("PRC_0220_NEG");
                     break;
 
                 case TipoArquivo.Sinistro:
-                    lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0027_NEG");
-                    lista.Add("PRC_0034_NEG");
-                    lista.Add("PRC_0038_NEG");
-                    lista.Add("PRC_0081_NEG");
-                    lista.Add("PRC_0181_NEG");
+                    //lista.Add("PRC_0022_NEG");
+                    //lista.Add("PRC_0027_NEG");
+                    //lista.Add("PRC_0034_NEG");
+                    //lista.Add("PRC_0038_NEG");
+                    //lista.Add("PRC_0081_NEG");
+                    //lista.Add("PRC_0181_NEG");
                     break;
                 default:
                     throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
@@ -263,7 +278,7 @@ namespace Acelera.Testes
             ValidarTabelaDeRetornoFG01();
             logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             ValidarTeste();
-            logger.EscreverBloco("Inicio da FG02.");
+            logger.EscreverBloco("Fim da FG02.");
         }
 
         public void AjustaValoresParaFG02()

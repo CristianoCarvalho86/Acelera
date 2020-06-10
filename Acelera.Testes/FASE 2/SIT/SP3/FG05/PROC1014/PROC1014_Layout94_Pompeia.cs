@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
+namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
 {
     [TestClass]
     public class PROC1014_Layout94_Pomepeia : TestesFG05
@@ -28,19 +28,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             //Alterar arquivo
-            var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
-            var valorTotalLiq = ObterValorPremioTotalLiquido(decimal.Parse(ObterValorFormatado(0, "VL_IS")), cobertura);
-            
-            if (cobertura.TP_APLICACAO_PREMIO_LQ == "PC")
-                valorTotalLiq = valorTotalLiq - (valorTotalLiq * cobertura.ValorPremioLiquidoMenorDecimal) - 0.05M;
-            else
-                valorTotalLiq = valorTotalLiq - cobertura.ValorPremioLiquidoMenorDecimal - 0.05M;
-
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado()) ;
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
+            AlterarLinha(0, "VL_PREMIO_TOTAL", ObterValorFormatado(0, "VL_PREMIO_TOTAL") + 6);
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", ObterValorFormatado(0, "VL_PREMIO_LIQUIDO") + 3);
+            AlterarLinha(0, "VL_IOF", ObterValorFormatado(0, "VL_IOF") + 3);
 
             //Salvar e executar
             SalvarArquivo();
-            
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
     }

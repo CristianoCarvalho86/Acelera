@@ -19,30 +19,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
         {
             IniciarTeste(TipoArquivo.Comissao, "4493", "FG05 - PROC108");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-
-            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
-            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", dados.ObterCDTipoEmissao("EEN", true));
-            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
-
-            SalvarArquivo(true, "ODS-PROC108");
-            var arquivoods = arquivo.Clone();
-
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            AlterarLinha(0, "CD_CONTRATO", "717100700007296");
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdRamo));
+
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_RAMO"};
-            IgualarCampos(arquivoods, arquivo, campos);
 
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            SalvarArquivo(true, "PROC108");
-
+            SalvarArquivo();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "108", 1);
 
         }
@@ -57,9 +45,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            AlterarLinha(0, "VL_COMISSAO", "0.00");
+            AlterarLinha(0, "CD_CONTRATO", "717100700007599");
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
-            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
 
             SalvarArquivo();
 

@@ -466,7 +466,7 @@
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC212\PROC212_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC212\PROC212_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC212\PROC212_Layout94_LASA.cs" />
-    <Compile Include="FASE 2\SIT\SP3\FG05\PROC213\PROC213_Layout93_VIVO.cs" />
+    <Compile Include="FASE 2\SIT\SP1\FG01\PROC213_Layout93_VIVO.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC216\PROC216_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC216\PROC216_Layout94_Pompeia.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC216\PROC216_Layout94_LASA.cs" />
@@ -555,7 +555,9 @@
       <Name>Acelera.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="FASE 2\SIT\SP3\FG05\PROC213\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -40,6 +40,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0014");
                     lista.Add("PRC_0015");
                     lista.Add("PRC_0126");
+                    lista.Add("PRC_0213");
                     lista.Add("PRC_200000");
                     break;
                 case TipoArquivo.Comissao:

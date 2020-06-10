@@ -20,12 +20,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
             IniciarTeste(TipoArquivo.Comissao, "4495", "FG05 - PROC108");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
-
+            CarregarArquivo(arquivo, 20, OperadoraEnum.SOFTBOX);
+            AlterarLinha(0, "VL_COMISSAO", "83.60");
+            AlterarLinha(0, "CD_CONTRATO", "717101000006632");
             var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdRamo));
 
             SalvarArquivo();
 
@@ -43,9 +43,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            AlterarLinha(0, "VL_COMISSAO", "0.00");
+            AlterarLinha(0, "CD_CONTRATO", "717101000006632");
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
-            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
 
             SalvarArquivo();
 

@@ -20,12 +20,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
             IniciarTeste(TipoArquivo.Comissao, "4497", "FG05 - PROC108");
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            CarregarArquivo(arquivo, 20, OperadoraEnum.POMPEIA);
 
             var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoNaoRelacionadoACobertura(cobertura.CdCobertura));
-            AlterarLinha(0, "CD_PRODUTO", dados.ObterProdutoNaoRelacionadoACobertura(cobertura.CdCobertura));
 
             SalvarArquivo();
 
@@ -45,7 +44,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
             var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
             AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
-            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
 
             SalvarArquivo();
 
