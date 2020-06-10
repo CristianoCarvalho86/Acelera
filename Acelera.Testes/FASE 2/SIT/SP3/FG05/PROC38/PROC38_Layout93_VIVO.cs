@@ -22,9 +22,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaValida(false));
+            AlterarLinha(0, "CD_COBERTURA", "00084");
+            AlterarLinha(0, "CD_RAMO", "31");
+            AlterarLinha(0, "CD_PRODUTO", "31523");
 
-            SalvarArquivo("PROC38");
+            SalvarArquivo("PROC38_4414");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "38", 1);
 
