@@ -29,6 +29,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivoods ,1 , OperadoraEnum.POMPEIA);
             
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            arquivoods.AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", true));
             
             EnviarParaOds(arquivoods);
 
@@ -37,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos);
             AlterarLinha(0, "VL_COMISSAO", "110");
 
@@ -65,6 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
             AlterarLinha(0, "VL_IOF", "50");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
             EnviarParaOds(arquivo,true, "PROC216_4598");
 
@@ -75,10 +77,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 2, OperadoraEnum.POMPEIA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR"};
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
-            AlterarLinha(1, "VL_COMISSAO", "60");                   
+            AlterarLinha(1, "VL_COMISSAO", "60");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
 
             //Salvar e executar
             SalvarArquivo(true, "PROC216_4598");

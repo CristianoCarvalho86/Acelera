@@ -28,20 +28,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             //Alterar arquivo
-            var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA")) ;
-            decimal valorTotal = 0;
-            valorTotal = ObterValorPremioTotalBruto(decimal.Parse(ObterValorFormatado(0, "VL_IS")), cobertura);
-
-            if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
-                valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal) - 0.05M;
-            else
-                valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal - 0.05M;
-
-            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ToString()) ;
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader( "CD_TPA"));
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
+            AlterarLinha(0, "VL_PREMIO_TOTAL", ObterValorFormatado(0, "VL_PREMIO_TOTAL") + 6);
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", ObterValorFormatado(0, "VL_PREMIO_LIQUIDO") + 3);
+            AlterarLinha(0, "VL_IOF", ObterValorFormatado(0, "VL_IOF") + 3);
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "1012", 1);
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
 
     }

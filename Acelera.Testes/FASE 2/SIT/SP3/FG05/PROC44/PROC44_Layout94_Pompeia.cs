@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4382()
+        public void SAP_4382_()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "4382", "FG05 - PROC44 - ");
             
@@ -27,11 +27,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
-            var seqEMS = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"),"1");
-            var seqEMS1 = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
-            var dtEmissao = ObterLinha(0).ObterCampoDoArquivo("DT_EMISSAO").ValorFormatado;
-
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0,"CD_CONTRATO"), "000001"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            
             EnviarParaOds(arquivo,true, "PROC44_4382");
 
             var arquivoods1 = arquivo.Clone();
@@ -39,6 +41,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1 , OperadoraEnum.POMPEIA);
+
+            var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
+            var seqEMS1 = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
+            var dtEmissao = arquivoods1.ObterLinha(0).ObterCampoDoArquivo("DT_EMISSAO").ValorFormatado;
 
             IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
@@ -225,5 +232,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
-    }
+
+        }
 }

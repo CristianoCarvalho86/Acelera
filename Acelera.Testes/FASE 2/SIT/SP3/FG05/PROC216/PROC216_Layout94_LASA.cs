@@ -38,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM" };
             IgualarCampos(arquivoods, arquivo, campos);
             AlterarLinha(0, "VL_COMISSAO", "110");
 

@@ -32,9 +32,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "CD_CLIENTE", cdCliente);
-            AlterarLinha(0, "VL_LMI", "100");
-            AlterarLinha(0, "VL_IS", "100");
+            AlterarLinha(0, "CD_SUCURSAL", "71");
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", ObterValor(0, "DT_EMISSAO"));
 
 

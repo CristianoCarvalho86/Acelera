@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
+namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
 {
     [TestClass]
     public class PROC1014_Layout94_SOFTBOX : TestesFG05
@@ -25,22 +25,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            arquivo.Carregar(ObterArquivoOrigem("C01.SOFTBOX.PARCEMS-EV-2751-20200211.txt"));
 
             //Alterar arquivo
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
-            var valorTotalLiq = ObterValorPremioTotalLiquido(decimal.Parse(ObterValorFormatado(0, "VL_IS")), cobertura);
-            
+            decimal valorTotalLiq = 0;
+            valorTotalLiq = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
+
             if (cobertura.TP_APLICACAO_PREMIO_LQ == "PC")
                 valorTotalLiq = valorTotalLiq - (valorTotalLiq * cobertura.ValorPremioLiquidoMenorDecimal) - 0.05M;
             else
                 valorTotalLiq = valorTotalLiq - cobertura.ValorPremioLiquidoMenorDecimal - 0.05M;
 
 
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado()) ;
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado());
+            AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo("PROC1014");
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "1014", 1);
         }
 
@@ -60,7 +63,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
 
             //Alterar arquivo
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
-            var valorTotalLiq = ObterValorPremioTotalLiquido(decimal.Parse(ObterValorFormatado(0, "VL_IS")), cobertura);
+            decimal valorTotalLiq = 0;
+            valorTotalLiq = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
 
             if (cobertura.TP_APLICACAO_PREMIO_LQ == "PC")
                 valorTotalLiq = valorTotalLiq - (valorTotalLiq * cobertura.ValorPremioLiquidoMenorDecimal) + 0.05M;
@@ -69,6 +73,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
 
 
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", valorTotalLiq.ValorFormatado());
+            AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             //Salvar e executar
             SalvarArquivo();
