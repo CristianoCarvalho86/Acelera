@@ -244,6 +244,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
         [TestCategory("Sem Critica")]
         public void SAP_4729()
         {
+            //373102996241
             IniciarTeste(TipoArquivo.Sinistro, "4729", "Sinistro com parcela/clente/sinistro na ods");
 
             arquivo = new Arquivo_Layout_9_4_2();
@@ -275,10 +276,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             var c = CarregarDadosDoContrato(null, ObterValorFormatado(0, "CD_CONTRATO"));
             ValidaTabelasTemporariasSGS(ObterValorFormatado(0, "CD_CONTRATO"), c.CD_CLIENTE);
 
-            EnviarParaODS(arquivo.NomeArquivo);
-
             //Executar FG03
             ChamarExecucao(FG03_Tarefas.Sinistro.ObterTexto());
+
+
+            EnviarParaODS(arquivo.NomeArquivo);
+
 
             arquivo = new Arquivo_Layout_9_4_2();
             arquivo.Carregar(ObterArquivoOrigem("C01.SGS.SINISTRO-EV-000001-20200209.txt"));
@@ -287,7 +290,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             RemoverTodasAsLinhas();
             AdicionarLinha(0, registroODS);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
-            AlterarLinha(0, "DT_MOVIMENTO", SomarData("DT_MOVIMENTO", 5));
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(ObterValorFormatado(0,"DT_MOVIMENTO"), 5));
             SelecionarLinhaParaValidacao(0);
 
             //SALVAR O NOVO ARQUIVO ALTERADO

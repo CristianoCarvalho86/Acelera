@@ -79,6 +79,24 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
+        public void ObterLinhaPorCdContratoEDeterminadoTipoMovimento(string cdContrato, string tipoMovimento)
+        {
+            logger.AbrirBloco($"PROCURANDO CONTRATOS DISPONIVEIS NO ARQUIVO PARA O CONTRATO = {cdContrato} E DO TIPO MOVIMENTO = {tipoMovimento}");
+            //var contratosUtilizados = ControleCDContratoFG03.Instancia.ObterContratosUtilizados();
+            var linha = arquivo.Linhas.Where(x => x.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado == cdContrato && x.ObterCampoDoArquivo("CD_TIPO_MOVIMENTO").ValorFormatado == tipoMovimento).FirstOrDefault();
+            if (linha == null)
+            {
+                logger.Erro("NAO FORAM ENCONTRADOS CONTRATOS DISPONIVEIS NO ARQUIVO");
+            }
+            logger.Escrever($"CONTRATO ENCONTRADO : '{linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado}' , Linha: {linha.Index} ");
+            arquivo.RemoverExcetoEstas(linha.Index, 1);
+            ControleCDContratoFG03.Instancia.AtualizaArquivo(linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado);
+            logger.Escrever($"OUTRAS LINHAS DO ARQUIVO REMOVIDOS.");
+            arquivo.ReIndexar();
+            arquivo.AjustarQtdLinhasNoFooter();
+            logger.FecharBloco();
+        }
+
         public void ValidarCdTpaNaParametroGlobal(string cdTpa, bool deveEncontrar = true)
         {
             if (!SGS_dados.ValidarCdTpaNaParametroGlobal(cdTpa, deveEncontrar))

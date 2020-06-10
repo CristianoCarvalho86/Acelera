@@ -101,6 +101,7 @@ namespace Acelera.Data
             {
                 command = new HanaCommand(sql);
                 command.Connection = Conn;
+                command.Prepare();
                 return command.ExecuteNonQuery();
             }
             catch (Exception ex)
