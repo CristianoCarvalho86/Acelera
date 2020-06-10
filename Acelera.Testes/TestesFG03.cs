@@ -117,6 +117,17 @@ namespace Acelera.Testes
 
         }
 
+        public void ValidarRegistroNaoExisteNaODSSinistro(string cdTpa, string cdContrato, string nrSeqEmissao, bool deveEncontrar = false)
+        {
+            var cdPnOperacao = dados.ObterCdParceiroNegocioParaTPA(cdTpa);
+            var registroNaoEncontrado = SGS_dados.ValidarRegistroNaoExisteNaODSSinistro(cdPnOperacao, cdContrato, nrSeqEmissao);
+            if (registroNaoEncontrado && deveEncontrar)
+                ExplodeFalha();
+            else if (!registroNaoEncontrado && !deveEncontrar)
+                ExplodeFalha();
+
+        }
+
         public void ValidaTabelasTemporariasSGSVazia(string cdContrato, string cdCliente)
         {
             SGS_dados.CarregaEntidadesDasTabelasTemporariasSGS(cdContrato, cdCliente, out clienteSGS, out parcelaSGS);

@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -206,7 +207,14 @@ $" WHERE {parcela.ObterTextoWhere(StageParcAuto.CamposDaTabela().Where(x => new 
             var detalheLinha = $" select '{idRegistro}' AS ID_REGISTRO FROM DUMMY ";
             var sql = InsertText(detalheLinha);
 
+            var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsParcela.ObterTexto(), logger);
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
+            var count2 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsParcela.ObterTexto(), logger);
+            if (count1 == count2)
+            {
+                logger.Erro($"ERRO NO INSERT DA PARCELA PARA O ID_REGISTRO : '{idRegistro}' - NENHUMA LINHA INSERIDA");
+                throw new Exception("NENHUMA LINHA INSERIDA NA ODS PARCELA PARA O ID_REGISTRO: " + idRegistro);
+            }
         }
     }
 }

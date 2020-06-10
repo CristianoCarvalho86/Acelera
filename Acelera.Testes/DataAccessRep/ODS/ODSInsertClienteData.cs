@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,9 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public static class ODSInsertClienteData
     {
-        public static void Insert(Massa_Cliente_Sinistro cliente, IMyLogger logger)
+        public static string InsertText(string dadosWhere)
         {
-            var dadosdaLinha = @" select distinct id_registro " +
-            $" FROM {Parametros.instanciaDB}.tab_stg_cliente_1000 " +
-            $" WHERE {cliente.ObterTextoWhere(StageCliente.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList())} ";
-            var sql =
-            $" insert into {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 " +
+            return $" insert into {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 " +
             $" select  {Parametros.instanciaDB}.SEQ_ODS_PARCEIRO_NEGOCIO_2000.nextval as cd_parceiro_negocio, " +
             @" 'CL' as cd_tipo_parceiro_negocio, " +
             @" a.cd_cliente as cd_externo, " +
@@ -48,9 +45,33 @@ namespace Acelera.Testes.DataAccessRep.ODS
             @" tp_mudanca, " +
             @" dt_mudanca " +
             $" from {Parametros.instanciaDB}.tab_stg_cliente_1000 a " +
-            $" inner join ({dadosdaLinha}) b " +
+            $" inner join ({dadosWhere}) b " +
             @" ON a.id_registro = b.id_registro; ";
+        }
+        public static void Insert(Massa_Cliente_Sinistro cliente, IMyLogger logger)
+        {
+            var dadosdaLinha = @" select distinct id_registro " +
+            $" FROM {Parametros.instanciaDB}.tab_stg_cliente_1000 " +
+            $" WHERE {cliente.ObterTextoWhere(StageCliente.CamposDaTabela().Where(x => new string[] { "DT_ARQUIVO", "ID_REGISTRO", "CD_STATUS_PROCESSAMENTO" }.Contains(x) == false).ToList())} ";
+            var sql = InsertText(dadosdaLinha);
+
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
+        }
+
+
+        public static void Insert(string idRegistro, IMyLogger logger)
+        {
+            var detalheLinha = $" select '{idRegistro}' AS ID_REGISTRO FROM DUMMY ";
+            var sql = InsertText(detalheLinha);
+
+            var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsParceiroNegocio.ObterTexto(),logger);
+            DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
+            var count2 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsParceiroNegocio.ObterTexto(), logger);
+            if (count1 == count2)
+            {
+                logger.Erro($"ERRO NO INSERT DO CLIENTE PARA O ID REGISTRO : '{idRegistro}' - NENHUMA LINHA INSERIDA");
+                throw new Exception("NENHUMA LINHA INSERIDA NA ODS PARCEIRO NEGOCIO PARA O ID REGISTRO: " + idRegistro);
+            }
         }
     }
 }

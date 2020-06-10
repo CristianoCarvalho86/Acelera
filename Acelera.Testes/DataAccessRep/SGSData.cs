@@ -64,6 +64,19 @@ namespace Acelera.Testes.DataAccessRep
             return true;
         }
 
+        public bool ValidarRegistroNaoExisteNaODSSinistro(string cdPnOperacao, string cdContrato, string nrSeqEmissao)
+        {
+            logger.AbrirBloco("VALIDANDO SE O REGISTRO NAO EXISTE NA ODS PARCELA.");
+            var sql = $"Select '1' FROM {Parametros.instanciaDB}.TAB_ODS_SINISTRO_2007 WHERE CD_PN_OPERACAO = '{cdPnOperacao}' and CD_CONTRATO = '{cdContrato}' and NR_SEQ_EMISSAO = '{nrSeqEmissao}'";
+            var table = DataAccess.Consulta(sql, "VALIDAR QUE REGISTRO NAO EXISTE NA STAGE", DBEnum.Hana, logger, false);
+            if (table.Rows.Count > 0)
+            {
+                logger.Erro($"REGISTRO EXISTENTE NA TABELA ODS SINISTRO. CdPnOperacao:'{cdPnOperacao}'; CdContrato:'{cdContrato}'; NrSeqEmissao:'{nrSeqEmissao}' ");
+                return false;
+            }
+            return true;
+        }
+
         public void CarregaEntidadesDasTabelasTemporariasSGS(string cdContrato, string cdCliente,
             out IList<Massa_Cliente_Sinistro> massaClienteSGSEcontrado, out IList<Massa_Sinistro_Parcela> massaSinistroEncontrado)
         {

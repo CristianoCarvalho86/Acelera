@@ -80,18 +80,19 @@ namespace Acelera.Testes
             ValidarTabelaDeRetorno(naoDeveEncontrar, false, codigosDeErroEsperados);
         }
 
-        public virtual void ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
+        public virtual IList<ILinhaTabela> ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return;
+                return null;
 
+            var linhasEncontradas = new List<ILinhaTabela>();
             try
             {
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
                 var validador = new ValidadorStages(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
-                var linhasEncontradas = new List<ILinhaTabela>();
+
                 if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
                 else
@@ -104,6 +105,8 @@ namespace Acelera.Testes
 
             if (sucessoDoTeste == false)
                 ExplodeFalha();
+
+            return linhasEncontradas;
         }
 
 

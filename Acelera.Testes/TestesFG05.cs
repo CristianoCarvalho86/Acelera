@@ -4,6 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.DataAccessRep.ODS;
 using Acelera.Testes.FASE_2;
 using Acelera.Testes.Validadores.FG05;
 using Acelera.Utils;
@@ -94,9 +95,22 @@ namespace Acelera.Testes
                 foreach (var linha in arquivo.Linhas)
                     arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
+
             if (!string.IsNullOrEmpty(nomeProc))
-                SalvarArquivo(false, $"ODS_{nomeProc}");
-            arquivosOds.Add(arquivo.Clone());
+                SalvarArquivo();
+
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+
+            var linhas = ValidarStages(CodigoStage.AprovadoNaFG01);
+
+            if(arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
+                foreach (var linha in linhas)
+                    ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+            else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
+                foreach (var linha in linhas)
+                    ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+
         }
 
         public override void ValidarODS()

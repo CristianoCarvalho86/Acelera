@@ -53,6 +53,11 @@ namespace Acelera.Testes.DataAccessRep
             return ConsultaUnica(sql, string.Empty, DBEnum.Hana, logger, validaResultadoUnico);
         }
 
+        public static string ObterTotalLinhas(string tabela, IMyLogger logger)
+        {
+            return ConsultaUnica($"SELECT COUNT(*) AS TOTAL FROM {Parametros.instanciaDB}.{tabela}",$"OBTER QUANTIDADE REGISTROS NA TABELA: {tabela}",logger);
+        }
+
         public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger, bool validaResultadoUnico = true)
         {
             IDBHelper helper = ObterBanco(dbEnum);

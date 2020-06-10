@@ -90,9 +90,9 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        public void ValidarStages(CodigoStage codigo)
+        public IList<ILinhaTabela> ValidarStages(CodigoStage codigo)
         {
-            ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(),true,(int)codigo);
+            return ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(),true,(int)codigo);
         }
 
         public void ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado)
