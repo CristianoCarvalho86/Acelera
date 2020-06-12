@@ -80,7 +80,7 @@ namespace Acelera.Testes
             var nomeOriginalArquivo = arquivo.NomeArquivo;
             if (!_nomeArquivo.Contains("/*R*/"))
             {
-                nomeArquivo = _nomeArquivo.Replace("-","_") + "_" + nomeArquivo;// inclusao do nome da proc
+                //nomeArquivo = _nomeArquivo.Replace("-","_") + "_" + nomeArquivo;// inclusao do nome da proc
                 SalvarArquivo();
                 return;
             }
