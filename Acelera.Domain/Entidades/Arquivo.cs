@@ -134,6 +134,13 @@ namespace Acelera.Domain.Layouts
             return Linhas.ToList()[posicaoLinha];
         }
 
+        public bool ExisteCampo(string nomeCampo)
+        {
+            if (!CamposDoBody.Contains(nomeCampo))
+                return false;
+            return true;
+        }
+
         public IList<LinhaArquivo> ObterLinhasOndeCampoIgualAValor(string campo, string valor)
         {
             return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(campo).ValorFormatado == valor).ToList();
@@ -181,7 +188,7 @@ namespace Acelera.Domain.Layouts
 
         public bool AlterarLinhaSeExistirCampo(int posicaoLinha, string campo, string textoNovo)
         {
-            if (!CamposDoBody.Contains(campo))
+            if (!ExisteCampo(campo))
                 return false;
             
             Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
