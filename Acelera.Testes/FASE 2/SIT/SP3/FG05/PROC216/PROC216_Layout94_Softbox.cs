@@ -21,28 +21,35 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         [TestCategory("Com Critica")]
         public void SAP_4587()
         {
-            //iniciar
             IniciarTeste(TipoArquivo.Comissao, "4587", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods ,1 , OperadoraEnum.SOFTBOX);
-            
-            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
-            
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111130"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
+            AlterarLinha(0, "VL_IOF", "50");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+
+            EnviarParaOds(arquivo, true);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos);
             AlterarLinha(0, "VL_COMISSAO", "110");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo(true);
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 
@@ -55,30 +62,39 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         [TestCategory("Com Critica")]
         public void SAP_4588()
         {
-            //iniciar
             IniciarTeste(TipoArquivo.Comissao, "4588", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.SOFTBOX);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
+            AlterarLinha(0, "VL_IOF", "50");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo, true);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 2, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
-            AlterarLinha(1, "VL_COMISSAO", "60");                   
+            AlterarLinha(1, "VL_COMISSAO", "60");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 2);
         }
 
         /// <summary>
@@ -91,30 +107,42 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4589()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4589", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4587", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.SOFTBOX);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
+            AlterarLinha(0, "VL_IOF", "50");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo, true);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 3, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
             AlterarLinha(1, "VL_COMISSAO", "60");
-            AlterarLinha(3, "VL_COMISSAO", "60");
+            AlterarLinha(2, "VL_COMISSAO", "60");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(2, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 2));
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 3);
         }
 
         /// <summary>
@@ -126,24 +154,32 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4593()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4593", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4587", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.SOFTBOX);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
+            AlterarLinha(0, "VL_IOF", "50");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo, true);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             //Salvar e executar
             SalvarArquivo();
@@ -159,25 +195,35 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4594()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4594", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4587", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.SOFTBOX);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
+            AlterarLinha(0, "VL_IOF", "50");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo, true);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 2, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos, true);
-            AlterarLinha(0, "VL_COMISSAO", "30");
-            AlterarLinha(0, "VL_COMISSAO", "40");
+            AlterarLinha(0, "VL_COMISSAO", "50");
+            AlterarLinha(1, "VL_COMISSAO", "50");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //Salvar e executar
             SalvarArquivo();

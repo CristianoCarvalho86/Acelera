@@ -119,7 +119,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            CarregarArquivo(arquivo, 2, OperadoraEnum.VIVO);
+            CarregarArquivo(arquivo, 3, OperadoraEnum.VIVO);
 
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
@@ -130,6 +130,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
             AlterarLinha(1, "CD_TIPO_COMISSAO", "C");
             AlterarLinha(2, "CD_TIPO_COMISSAO", "C");
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 2));
 
             //Salvar e executar
             SalvarArquivo();
@@ -145,9 +147,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4573()
         {
             //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4574", "FG05 - PROC216");
+
+            //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111122"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
             AlterarLinha(0, "VL_IOF", "50");
@@ -186,6 +194,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111123"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
             AlterarLinha(0, "VL_IOF", "50");
@@ -202,8 +213,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "30");
-            AlterarLinha(0, "VL_COMISSAO", "40");
+            AlterarLinha(1, "VL_COMISSAO", "40");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "C");
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //Salvar e executar
             SalvarArquivo();
