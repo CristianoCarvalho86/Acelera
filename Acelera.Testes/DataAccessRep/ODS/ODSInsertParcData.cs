@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -10,75 +11,70 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public static class ODSInsertParcData
     {
-        public static void Insert(string nomeArquivo, IMyLogger logger)
+        public static string InsertText(string dadosWhere)
         {
-            string sql = $"do begin query_int = "+
-                $" select " +
-            " id_registro " +
-            " from tab_stg_parcela_1001 a " +
-            $" WHERE NM_ARQUIVO_TPA = '{nomeArquivo}'; " +
-            "             insert into TAB_ODS_PARCELA_2003( " +
-            "             CD_PARCELA, " +
-            "             CD_PN_SEGURADORA, " +
-            "             CD_PN_SUCURSAL, " +
-            "             CD_PN_OPERACAO, " +
-            "             CD_PN_TPA, " +
-            "             CD_PN_CLIENTE " +
-            "             CD_PN_CORRETOR, " +
-            "             CD_PN_ESTIPULANTE, " +
-            "             CD_CONTRATO, " +
-            "             NR_APOLICE, " +
-            "             NR_SEQ_EMISSAO, " +
-            "             NR_SEQ_OIMX, " +
-            "             NR_ENDOSSO, " +
-            "             NR_PARCELA, " +
-            "             ID_PRM_PRODUTO, " +
-            "             CD_FORMA_PAGTO, " +
-            "             CD_FRANQUIA, " +
-            "             CD_MOEDA, " +
-            "             CD_MOVTO_COBRANCA, " +
-            "             CD_TIPO_MOVIMENTO_EMISSAO, " +
-            "             CD_ATUACAO, " +
-            "             DT_EMISSAO, " +
-            "             DT_EMISSAO_OIM, " +
-            "             DT_INICIO_VIGENCIA, " +
-            "             DT_FIM_VIGENCIA, " +
-            "             DT_PROPOSTA, " +
-            "             DT_VENCIMENTO, " +
-            "             DT_PAGAMENTO, " +
-            "             DT_CANCELAMENTO, " +
-            "             CD_STATUS_APOLICE, " +
-            "             CD_STATUS_PARCELA, " +
-            "             ID_TRANSACAO, " +
-            "             ID_TRANSACAO_CANC, " +
-            "             CD_PARCELA_CANCELAMENTO," +
-            "             NM_ARQUIVO_TPA," +
-            "             NR_APOLICE_ORIGINAL," +
-            "             NR_DOCUMENTO," +
-            "             NR_PROPOSTA," +
-            "             VL_PREMIO_BRUTO," +
-            "             VL_PREMIO_LIQUIDO," +
-            "             VL_ADIC_FRACIONAMENTO," +
-            "             VL_CUSTO_APOLICE," +
-            "             VL_DESCONTO," +
-            "             VL_JUROS," +
-            "             VL_IOF," +
-            "             VL_PREMIO_PAGO," +
-            "             VL_DESCONTO_PAGO," +
-            "             VL_MULTA_PAGO," +
-            "             VL_IOF_RETIDO," +
-            "             VL_DIF_PREMIO," +
-            "             VL_JUROS_COBRADO," +
-            "             VL_JUROS_DEVIDO," +
-            "             VL_ADIC_FRACIONAMENTO_PAGO," +
-            "             VL_ADIC_FRACIONAMENTO_DEVIDO," +
-            "             CD_SEQ_ORIGEM," +
-            "             FL_MIGRADO," +
-            "             DT_INCLUSAO," +
-            "             NM_USUARIO," +
-            "             TP_MUDANCA," +
-            "             DT_MUDANCA" +
-            "             )" +
+            return  "insert into TAB_ODS_PARCELA_2003( " +
+            " CD_PARCELA, " +
+            " CD_PN_SEGURADORA, " +
+            " CD_PN_SUCURSAL, " +
+            " CD_PN_OPERACAO, " +
+            " CD_PN_TPA, " +
+            " CD_PN_CLIENTE " +
+            " CD_PN_CORRETOR, " +
+            " CD_PN_ESTIPULANTE, " +
+            " CD_CONTRATO, " +
+            " NR_APOLICE, " +
+            " NR_SEQ_EMISSAO, " +
+            " NR_SEQ_OIMX, " +
+            " NR_ENDOSSO, " +
+            " NR_PARCELA, " +
+            " ID_PRM_PRODUTO, " +
+            " CD_FORMA_PAGTO, " +
+            " CD_FRANQUIA, " +
+            " CD_MOEDA, " +
+            " CD_MOVTO_COBRANCA, " +
+            " CD_TIPO_MOVIMENTO_EMISSAO, " +
+            " CD_ATUACAO, " +
+            " DT_EMISSAO, " +
+            " DT_EMISSAO_OIM, " +
+            " DT_INICIO_VIGENCIA, " +
+            " DT_FIM_VIGENCIA, " +
+            " DT_PROPOSTA, " +
+            " DT_VENCIMENTO, " +
+            " DT_PAGAMENTO, " +
+            " DT_CANCELAMENTO, " +
+            " CD_STATUS_APOLICE, " +
+            " CD_STATUS_PARCELA, " +
+            " ID_TRANSACAO, " +
+            " ID_TRANSACAO_CANC, " +
+            " CD_PARCELA_CANCELAMENTO," +
+            " NM_ARQUIVO_TPA," +
+            " NR_APOLICE_ORIGINAL," +
+            " NR_DOCUMENTO," +
+            " NR_PROPOSTA," +
+            " VL_PREMIO_BRUTO," +
+            " VL_PREMIO_LIQUIDO," +
+            " VL_ADIC_FRACIONAMENTO," +
+            " VL_CUSTO_APOLICE," +
+            " VL_DESCONTO," +
+            " VL_JUROS," +
+            " VL_IOF," +
+            " VL_PREMIO_PAGO," +
+            " VL_DESCONTO_PAGO," +
+            " VL_MULTA_PAGO," +
+            " VL_IOF_RETIDO," +
+            " VL_DIF_PREMIO," +
+            " VL_JUROS_COBRADO," +
+            " VL_JUROS_DEVIDO," +
+            " VL_ADIC_FRACIONAMENTO_PAGO," +
+            " VL_ADIC_FRACIONAMENTO_DEVIDO," +
+            " CD_SEQ_ORIGEM," +
+            " FL_MIGRADO," +
+            " DT_INCLUSAO," +
+            " NM_USUARIO," +
+            " TP_MUDANCA," +
+            " DT_MUDANCA" +
+            " )" +
             " select" +
             " SEQ_ODS_PARCELA_2003.nextval AS CD_PARCELA," +
             " se.cd_parceiro_negocio AS CD_PN_SEGURADORA," +
@@ -141,7 +137,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " max(a.TP_MUDANCA)," +
             " max(a.DT_MUDANCA)" +
             " from tab_stg_parcela_1001 a" +
-            " INNER JOIN: query_int b" +
+            $" INNER JOIN ({dadosWhere}) b" +
             "     on a.id_registro = b.id_registro" +
             " inner join tab_prm_produto_7003 prd" +
             "     on a.cd_produto = prd.cd_produto" +
@@ -190,7 +186,21 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " NR_APOLICE_ORIGINAL," +
             " NR_DOCUMENTO," +
             " NR_PROPOSTA; ";
+        }
+
+        public static void Insert(string idRegistro, IMyLogger logger)
+        {
+            var detalheLinha = $" select '{idRegistro}' AS ID_REGISTRO FROM DUMMY ";
+            var sql = InsertText(detalheLinha);
+
+            var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsParcela.ObterTexto(), logger);
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
+            var count2 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsParcela.ObterTexto(), logger);
+            if (count1 == count2)
+            {
+                logger.Erro($"ERRO NO INSERT DA PARCELA PARA O ID_REGISTRO : '{idRegistro}' - NENHUMA LINHA INSERIDA");
+                throw new Exception("NENHUMA LINHA INSERIDA NA ODS PARCELA PARA O ID_REGISTRO: " + idRegistro);
+            }
         }
 
     }

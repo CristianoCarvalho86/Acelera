@@ -54,14 +54,10 @@
     <Compile Include="Entidades\Arquivo.cs" />
     <Compile Include="Entidades\Campo.cs" />
     <Compile Include="Entidades\Cobertura.cs" />
-    <Compile Include="Entidades\ConjuntoArquivos\Triplice.cs" />
-    <Compile Include="Entidades\ConjuntoArquivos\TripliceSOFTBOX.cs" />
-    <Compile Include="Entidades\ConjuntoArquivos\TripliceTIM.cs" />
-    <Compile Include="Entidades\ConjuntoArquivos\TripliceVIVO.cs" />
-    <Compile Include="Entidades\ConjuntoArquivos\TripliceLASA.cs" />
     <Compile Include="Entidades\Consultas\Consulta.cs" />
     <Compile Include="Entidades\Consultas\FabricaConsulta.cs" />
     <Compile Include="Entidades\Interfaces\ILinhaTabela.cs" />
+    <Compile Include="Entidades\Interfaces\ITriplice.cs" />
     <Compile Include="Entidades\LinhaTabela.cs" />
     <Compile Include="Entidades\SGS\ClienteSGS.cs" />
     <Compile Include="Entidades\SGS\ContratoSGS.cs" />

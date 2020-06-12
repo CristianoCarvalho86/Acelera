@@ -7,6 +7,21 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Enums
 {
+    public enum FGs
+    {
+        [Description("FGR_00")]
+        FG00,
+        [Description("FGR_01")]
+        FG01,
+        [Description("FGR_02")]
+        FG02,
+        [Description("FGR_03")]
+        FG03,
+        [Description("FGR_04")]
+        FG04,
+        [Description("FGR_05")]
+        FG05
+    }
     public enum FG00_Tarefas
     {
         [Description("FGR_00_CLIENTE")]

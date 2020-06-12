@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Domain.Entidades.ConjuntoArquivos
+namespace Acelera.Testes.ConjuntoArquivos
 {
     public class TripliceVIVO : Triplice<Arquivo_Layout_9_3_Cliente, Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>
     {
