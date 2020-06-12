@@ -109,8 +109,7 @@ namespace Acelera.Testes
                     arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
 
-            if (!string.IsNullOrEmpty(nomeProc))
-                SalvarArquivo();
+            SalvarArquivo();
 
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
