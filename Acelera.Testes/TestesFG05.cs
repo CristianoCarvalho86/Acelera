@@ -85,9 +85,9 @@ namespace Acelera.Testes
                 for (int i = 0; i < arquivo.Linhas.Count; i++)
                 {
                     var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
-                    AlterarLinha(i, "CD_COBERTURA", cobertura.CdCobertura);
-                    AlterarLinha(i, "CD_RAMO", cobertura.CdRamo);
-                    AlterarLinha(i, "CD_PRODUTO", cobertura.CdProduto);
+                    AlterarLinhaSeHouver(i, "CD_COBERTURA", cobertura.CdCobertura);
+                    AlterarLinhaSeHouver(i, "CD_RAMO", cobertura.CdRamo);
+                    AlterarLinhaSeHouver(i, "CD_PRODUTO", cobertura.CdProduto);
                 }
         }
 

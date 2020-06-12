@@ -32,9 +32,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
             AlterarLinha(0, "VL_IOF", "50");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", true));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOds(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -45,10 +45,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos);
             AlterarLinha(0, "VL_COMISSAO", "110");
-            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             //Salvar e executar
-            SalvarArquivo();
+            SalvarArquivo(true);
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 

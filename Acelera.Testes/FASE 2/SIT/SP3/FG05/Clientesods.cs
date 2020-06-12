@@ -28,7 +28,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("ODS_CLIENTES_LASA_C01.LASA.CLIENTE-EV-0271-20200324.TXT"));
 
-            AlterarCobertura(false);
             EnviarParaOds(arquivo);
 
             arquivo = new Arquivo_Layout_9_4_Cliente();

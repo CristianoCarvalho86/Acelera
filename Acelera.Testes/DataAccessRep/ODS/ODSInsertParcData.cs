@@ -13,7 +13,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
     {
         public static string InsertText(string dadosWhere)
         {
-            return  "insert into TAB_ODS_PARCELA_2003( " +
+            return $" Insert into {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003( " +
             " CD_PARCELA, " +
             " CD_PN_SEGURADORA, " +
             " CD_PN_SUCURSAL, " +
@@ -76,7 +76,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " DT_MUDANCA" +
             " )" +
             " select" +
-            " SEQ_ODS_PARCELA_2003.nextval AS CD_PARCELA," +
+            $" {Parametros.instanciaDB}.SEQ_ODS_PARCELA_2003.nextval AS CD_PARCELA," +
             " se.cd_parceiro_negocio AS CD_PN_SEGURADORA," +
             " su.cd_parceiro_negocio AS CD_PN_SUCURSAL," +
             " op.cd_parceiro_negocio AS CD_PN_OPERACAO," +
@@ -136,29 +136,29 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " 'POC_SAC_20200517' AS NM_USUARIO," +
             " max(a.TP_MUDANCA)," +
             " max(a.DT_MUDANCA)" +
-            " from tab_stg_parcela_1001 a" +
+            $" from {Parametros.instanciaDB}.tab_stg_parcela_1001 a" +
             $" INNER JOIN ({dadosWhere}) b" +
             "     on a.id_registro = b.id_registro" +
-            " inner join tab_prm_produto_7003 prd" +
+            $" inner join {Parametros.instanciaDB}.tab_prm_produto_7003 prd" +
             "     on a.cd_produto = prd.cd_produto" +
             "     and now() between prd.dt_inicio_vigencia and prd.dt_fim_vigencia" +
-            " inner join tab_ods_parceiro_negocio_2000 cli" +
+            $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 cli" +
             "     on cast(a.cd_cliente as int) = cast(cli.cd_externo as int)" +
             "     and cast(a.cd_operacao as int) = cast(cli.cd_operacao as int)" +
             "     and cli.cd_tipo_parceiro_negocio = 'CL'" +
-            " inner join tab_ods_parceiro_negocio_2000 op" +
+            $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 op" +
             "     on cast(a.cd_operacao as int) = cast(op.cd_externo as int)" +
             "     and op.cd_tipo_parceiro_negocio = 'OP'" +
-            " inner join tab_ods_parceiro_negocio_2000 tp" +
+            $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 tp" +
             "     on a.nm_tpa = tp.cd_externo" +
             "     and tp.cd_tipo_parceiro_negocio = 'TP'" +
-            " inner join tab_ods_parceiro_negocio_2000 su" +
+            $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 su" +
             "     on cast(a.cd_sucursal as int) = cast(su.cd_externo as int)" +
             "     and su.cd_tipo_parceiro_negocio = 'SU'" +
-            " inner join tab_ods_parceiro_negocio_2000 se" +
+            $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 se" +
             "     on cast(a.cd_seguradora as int) = cast(se.cd_externo as int)" +
             "     and se.cd_tipo_parceiro_negocio = 'SE'" +
-            " inner join tab_ods_parceiro_negocio_2000 co" +
+            $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 co" +
             "     on cast(a.cd_corretor as int) = cast(co.cd_externo as int)" +
             "     and co.cd_tipo_parceiro_negocio = 'CO'" +
             " WHERE CD_TIPO_EMISSAO IN(1, 18, 20)" +
