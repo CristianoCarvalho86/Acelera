@@ -21,33 +21,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4515", "FG05 - PROC212 - ");
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 2, OperadoraEnum.VIVO);
-
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", "");//caso venha uma linha de cancelamento
-
-            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
-
-            EnviarParaOds(arquivo, true, "PROC212_4515");
-            var arquivoods = arquivo.Clone();
-
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", "12345");
 
-            SalvarArquivo(true, "PROC212_4515");
+            SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "212", 1);
-
-
         }
 
         /// <summary>

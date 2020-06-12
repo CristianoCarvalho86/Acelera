@@ -21,6 +21,8 @@ namespace Acelera.Testes
     [TestClass]
     public class TestesFG05 : TestesFG02
     {
+        private bool alterarCobertura;
+
         protected TabelaParametrosDataSP3 dados { get; set; }
 
         protected IList<DataRow> linhasInseridasODS { get; set; }
@@ -33,9 +35,10 @@ namespace Acelera.Testes
         public TestesFG05()
         {
             arquivosOds = new List<Arquivo>();
+            alterarCobertura = true;
         }
 
-        protected decimal ObterValorPremioTotalBruto(decimal valorIS ,Cobertura cobertura)
+        protected decimal ObterValorPremioTotalBruto(decimal valorIS, Cobertura cobertura)
         {
             return valorIS * cobertura.VL_PERC_DISTRIBUICAO_decimal * cobertura.VL_PERC_TAXA_SEGURO_decimal;
         }
@@ -43,16 +46,16 @@ namespace Acelera.Testes
         protected decimal ObterValorPremioTotalLiquido(decimal valorIS, Cobertura cobertura)
         {
             return ObterValorPremioTotalBruto(valorIS, cobertura) *
-                (((1M + (cobertura.ValorPercentualAlicotaIofDecimal * 100))/100) * (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100));
+                (((1M + (cobertura.ValorPercentualAlicotaIofDecimal * 100)) / 100) * (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100));
         }
 
         protected decimal ObterValorCalculadoIOF(decimal valorIS, Cobertura cobertura)
         {
-            return (ObterValorPremioTotalLiquido(valorIS,cobertura) * (cobertura.ValorPercentualAlicotaIofDecimal * 100) /100) *
+            return (ObterValorPremioTotalLiquido(valorIS, cobertura) * (cobertura.ValorPercentualAlicotaIofDecimal * 100) / 100) *
                     (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100);
         }
 
-        protected override void SalvarArquivo(bool alterarCdCliente , string nomeProc = "")
+        protected override void SalvarArquivo(bool alterarCdCliente, string nomeProc = "")
         {
             if (alterarCdCliente)
             {
@@ -61,22 +64,32 @@ namespace Acelera.Testes
                     arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
             }
 
-            //Parametrizacoes();
 
             base.SalvarArquivo(nomeProc);
         }
 
-        //private void Parametrizacoes()
-        //{
-        //    for (int i = 0; i < arquivo.Linhas.Count; i++)
-        //    {
-        //        var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(i, "CD_COBERTURA"), true);
-        //        AlterarLinha(i, "CD_RAMO", cobertura.CdRamo);
-        //        AlterarLinha(i, "CD_PRODUTO", cobertura.CdProduto);
-        //        AlterarLinha(i, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
-        //        AlterarLinha(i, "VL_LMI", ObterValor(i, "VL_IS"));
-        //    }
-        //}
+        public override void FinalizarAlteracaoArquivo()
+        {
+            Parametrizacoes();
+            base.FinalizarAlteracaoArquivo();
+        }
+
+        protected void AlterarCobertura(bool alterar)
+        {
+            alterarCobertura = alterar;
+        }
+
+        private void Parametrizacoes()
+        {
+            if (alterarCobertura)
+                for (int i = 0; i < arquivo.Linhas.Count; i++)
+                {
+                    var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+                    AlterarLinha(i, "CD_COBERTURA", cobertura.CdCobertura);
+                    AlterarLinha(i, "CD_RAMO", cobertura.CdRamo);
+                    AlterarLinha(i, "CD_PRODUTO", cobertura.CdProduto);
+                }
+        }
 
         //protected override void SalvarArquivo()
         //{
@@ -86,7 +99,7 @@ namespace Acelera.Testes
         //}
 
 
-        public void EnviarParaOds(Arquivo arquivo,  bool alterarCdCliente = true, string nomeProc = "")
+        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
         {
             if (alterarCdCliente && operadora != OperadoraEnum.SGS)
             {
@@ -104,7 +117,7 @@ namespace Acelera.Testes
 
             var linhas = ValidarStages(CodigoStage.AprovadoNaFG01);
 
-            if(arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
+            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)
                     ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
             else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
@@ -144,7 +157,7 @@ namespace Acelera.Testes
                 }
         }
 
-        protected void CarregarArquivo(Arquivo arquivo,int qtdLinhas, OperadoraEnum operadora)
+        protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {
             valoresAlteradosBody = new AlteracoesArquivo();
             valoresAlteradosFooter = new AlteracoesArquivo();
@@ -184,7 +197,7 @@ namespace Acelera.Testes
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(codigoEsperadoStage);
-            if(qtdErrosNaTabelaDeRetorno > 0)
+            if (qtdErrosNaTabelaDeRetorno > 0)
                 ValidarTabelaDeRetorno(qtdErrosNaTabelaDeRetorno, erroEsperadoNaTabelaDeRetorno);
             if (erroEsperadoNaTabelaDeRetorno == string.Empty)
                 ValidarTabelaDeRetorno();
@@ -245,7 +258,7 @@ namespace Acelera.Testes
                     //lista.Add("PRC_0213_NEG");
                     //lista.Add("PRC_0227_NEG");
                     //lista.Add("PRC_0228_NEG");
-                    lista.Add("PRC_1012_NEG"); 
+                    lista.Add("PRC_1012_NEG");
                     lista.Add("PRC_1014_NEG");
                     lista.Add("PRC_1015_NEG");
                     break;
@@ -310,7 +323,7 @@ namespace Acelera.Testes
                 arquivo.AlterarLinha(0, "DT_EMISSAO", "20200101");
                 arquivo.AlterarLinha(0, "DT_EMISSAO_APOLICE", "20190101");
             }
-                
+
         }
 
 
