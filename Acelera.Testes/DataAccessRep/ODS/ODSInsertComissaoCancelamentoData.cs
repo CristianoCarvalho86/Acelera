@@ -13,7 +13,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
     {
         public static string InsertText(string dadosWhere)
         {
-            return "insert into TAB_ODS_COMISSAO_2006(" +
+            return $"insert into {Parametros.instanciaDB}.TAB_ODS_COMISSAO_2006(" +
 " CD_COMISSAO," +
 " CD_PARCELA," +
 " CD_PN_CORRETOR ," +
@@ -41,7 +41,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
 " DT_MUDANCA" +
 " )" +
 " select" +
-" SEQ_ODS_COMISSAO_2006.nextval AS CD_COMISSAO," +
+$" {Parametros.instanciaDB}.SEQ_ODS_COMISSAO_2006.nextval AS CD_COMISSAO," +
 " PARCODS.CD_PARCELA," +
 " co.cd_parceiro_negocio as CD_PN_CORRETOR," +
 " CD_TIPO_COMISSAO," +
@@ -66,21 +66,21 @@ namespace Acelera.Testes.DataAccessRep.ODS
 " 'N' AS FL_MIGRADO," +
 " A.TP_MUDANCA ," +
 " MAX(A.DT_MUDANCA)" +
-" from tab_stg_comissao_1003 a" +
+$" from {Parametros.instanciaDB}.tab_stg_comissao_1003 a" +
 $" INNER JOIN ({dadosWhere}) b" +
 "     on a.id_registro = b.id_registro" +
-" INNER JOIN TAB_STG_PARCELA_1001 PARCSTG" +
+$" INNER JOIN {Parametros.instanciaDB}.TAB_STG_PARCELA_1001 PARCSTG" +
 "     ON a.cd_contrato = PARCSTG.cd_contrato" +
 "     and a.nr_parcela = PARCSTG.nr_parcela" +
 "     and a.nr_sequencial_emissao = PARCSTG.nr_sequencial_emissao" +
 "     and a.cd_cobertura = PARCSTG.cd_cobertura" +
 "     AND PARCSTG.cd_status_processamento = '610'" +
-" INNER JOIN TAB_ODS_PARCELA_2003 PARCODS" +
+$" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003 PARCODS" +
 "     ON PARCODS.cd_contrato = PARCSTG.cd_contrato" +
 "     and PARCODS.nr_apolice = PARCSTG.nr_apolice" +
 "     and PARCODS.nr_seq_emissao = PARCSTG.nr_sequencial_emissao" +
 "     and PARCODS.nr_endosso = PARCSTG.nr_endosso" +
-" inner join tab_ods_parceiro_negocio_2000 co" +
+$" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 co" +
 "     on cast(a.cd_corretor as int) = cast(co.cd_externo as int)" +
 "     and co.cd_tipo_parceiro_negocio = 'CO'" +
 " where PARCSTG.cd_tipo_emissao IN('9','10', '11','12', '13')" +

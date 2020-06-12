@@ -155,7 +155,7 @@ namespace Acelera.Testes
                         nomeCampo = "NR_SEQUENCIAL_EMISSAO";
 
                     var index = linhaUnicaNaOrigem ? 0 : linha.Index;
-                    AlterarLinha(arquivoDestino, index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado);
+                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado);
                 }
         }
 
