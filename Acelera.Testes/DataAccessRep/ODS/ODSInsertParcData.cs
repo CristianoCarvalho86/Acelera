@@ -19,7 +19,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " CD_PN_SUCURSAL, " +
             " CD_PN_OPERACAO, " +
             " CD_PN_TPA, " +
-            " CD_PN_CLIENTE " +
+            " CD_PN_CLIENTE, " +
             " CD_PN_CORRETOR, " +
             " CD_PN_ESTIPULANTE, " +
             " CD_CONTRATO, " +

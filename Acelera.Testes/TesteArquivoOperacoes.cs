@@ -82,6 +82,11 @@ namespace Acelera.Testes
 
             AdicionaAlteracao(valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
         }
+        public void AlterarLinhaSeHouver(int posicaoLinha, string campo, string valorNovo)
+        {
+            if(arquivo.ExisteCampo(campo))
+                AlterarLinha(posicaoLinha,campo,valorNovo);
+        }
 
 
         public void AlterarLinha(Arquivo arquivo1 ,int posicaoLinha, string campo, string valorNovo, bool validaAlteracao = false)
