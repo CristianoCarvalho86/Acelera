@@ -4,7 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
+namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 {
     [TestClass]
     public class PROC216_Layout94_SOFTBOX : TestesFG05

@@ -23,8 +23,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC54
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_CORRETOR", "3536908");
+            AlterarLinha(0, "CD_CORRETOR", "7239711");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
+
+            AlterarCobertura(false);
             SalvarArquivo("PROC54_4386");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "54", 1);

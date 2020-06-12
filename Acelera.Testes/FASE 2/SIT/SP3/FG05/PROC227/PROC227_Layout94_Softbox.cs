@@ -22,15 +22,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             IniciarTeste(TipoArquivo.ParcEmissao, "4631", "FG05 - PROC227 - ");
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             AlterarLinha(0, "DT_NASCIMENTO", "");
 
-            EnviarParaOds(arquivo, true, "PROC227_4631");
+            AlterarCobertura(false);
+
+            SalvarArquivo(false, "ODS_PROC227_4631");
+            //EnviarParaOds(arquivo, true, "PROC227_4631");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1925-20200210.txt"));
 
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
@@ -38,8 +41,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             AlterarLinha(0, "CD_SUCURSAL", "71");
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", ObterValor(0, "DT_EMISSAO"));
+            RemoverLinhasExcetoAsPrimeiras(1);
 
-
+            AlterarCobertura(false);
             SalvarArquivo(false, "PROC227_4631");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "227", 1);

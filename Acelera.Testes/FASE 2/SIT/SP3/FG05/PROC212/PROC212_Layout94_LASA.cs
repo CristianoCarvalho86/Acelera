@@ -19,41 +19,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
         [TestCategory("Com Critica")]
         public void SAP_4539()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4539", "FG05 - PROC212 - ");
+
+            IniciarTeste(TipoArquivo.ParcEmissao, "4539", "FG05 - PROC212");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.TXT"));
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", "");//caso venha uma linha de cancelamento
-            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
-            AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
-
-            RemoverLinhasExcetoAsPrimeiras(1);
-
-
-            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
-
-            EnviarParaOds(arquivo, true, "PROC212_4539");
-            var arquivoods = arquivo.Clone();
-
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.LASA.PARCEMS-EV-3175-20200317.TXT"));
-
-            RemoverLinhasExcetoAsPrimeiras(1);
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_SUCURSAL"});
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 1));
+            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
-            AlterarLinha(0, "NR_ENDOSSO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", "12345");
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
-
-
-
-            SalvarArquivo(true, "PROC212_4539");
+            SalvarArquivo(true);
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "212", 1);
 
@@ -68,32 +50,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
         [TestCategory("Com Critica")]
         public void SAP_4540()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4540", "FG05 - PROC212 - ");
-
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
-
-            arquivoods.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            arquivoods.AlterarLinha(0, "NR_SEQ_EMISSAO", "1");
-            arquivoods.AlterarLinha(0, "NR_ENDOSSO", "0");
-            var idCanc = arquivoods.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
-
-            EnviarParaOds(arquivoods);
+            IniciarTeste(TipoArquivo.ParcEmissao, "4539", "FG05 - PROC212");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
+            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 1));
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", "12345");
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
-            SalvarArquivo();
+            SalvarArquivo(true);
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "212", 1);
-
 
         }
 

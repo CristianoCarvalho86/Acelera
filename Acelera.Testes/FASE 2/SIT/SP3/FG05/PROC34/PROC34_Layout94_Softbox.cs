@@ -149,9 +149,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_SEGURADORA", "");
+            AlterarLinha(0, "CD_SEGURADORA", "19615");
 
-            SalvarArquivo();
+            AlterarCobertura(false);
+            SalvarArquivo("PROC34_4316");
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "34", 1);
 

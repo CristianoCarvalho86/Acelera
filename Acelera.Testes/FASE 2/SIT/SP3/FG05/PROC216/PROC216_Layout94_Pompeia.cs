@@ -4,7 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
+namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 {
     [TestClass]
     public class PROC216_Layout94_POMPEIA : TestesFG05
@@ -25,13 +25,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IniciarTeste(TipoArquivo.Comissao, "4597", "FG05 - PROC216");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods ,1 , OperadoraEnum.POMPEIA);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1 , OperadoraEnum.POMPEIA);
             
-            arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
-            arquivoods.AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", true));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", true));
             
-            EnviarParaOds(arquivoods);
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -68,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "VL_IOF", "50");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo,true, "PROC216_4598");
+            EnviarParaOds(arquivo,true);
 
             var arquivoods = arquivo.Clone();
 
@@ -85,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
 
             //Salvar e executar
-            SalvarArquivo(true, "PROC216_4598");
+            SalvarArquivo(true);
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 
