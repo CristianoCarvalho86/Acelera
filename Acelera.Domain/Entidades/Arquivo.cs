@@ -85,6 +85,8 @@ namespace Acelera.Domain.Layouts
 
         public void Salvar(string endereco)
         {
+            NomeArquivo = endereco.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries).Last();
+
             var file = File.CreateText(endereco);
 
             foreach (var header in Header)
