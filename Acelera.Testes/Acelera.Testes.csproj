@@ -73,8 +73,16 @@
     <Compile Include="Adapters\IntegracaoCMD.cs" />
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
+    <Compile Include="ConjuntoArquivos\Triplice.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceLASA.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceSOFTBOX.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceTIM.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceVIVO.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertComissaoCancelamentoData.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertComissaoCoberturaCancelamentoData.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertComissaoCoberturaData.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertComissaoData.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertParcAuto.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertParcData.cs" />
@@ -533,6 +541,7 @@
     <Compile Include="TestesFG00.cs" />
     <Compile Include="TestesFG01.cs" />
     <Compile Include="TestesFG03.cs" />
+    <Compile Include="TestesFG04.cs" />
     <Compile Include="TestesFG05.cs" />
     <Compile Include="Validadores\FG00\ValidadorStagesFG00.cs" />
     <Compile Include="Validadores\FG00\ValidadorTabelaRetornoFG00.cs" />

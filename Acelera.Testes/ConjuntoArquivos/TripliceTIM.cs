@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Domain.Entidades.ConjuntoArquivos
+namespace Acelera.Testes.ConjuntoArquivos
 {
     public class TripliceTIM : Triplice<Arquivo_Layout_9_4_Cliente, Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>
     {

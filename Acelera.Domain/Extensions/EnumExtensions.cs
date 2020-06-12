@@ -73,23 +73,18 @@ namespace Acelera.Domain.Extensions
 
         public static TabelasEnum ObterTabelaODSEnum(this TipoArquivo tipoArquivo)
         {
-            throw new NotImplementedException();
             switch (tipoArquivo)
             {
                 case TipoArquivo.Cliente:
-                    return TabelasEnum.Cliente;
+                    return TabelasEnum.OdsParceiroNegocio;
                 case TipoArquivo.Comissao:
-                    return TabelasEnum.Comissao;
-                case TipoArquivo.LanctoComissao:
-                    return TabelasEnum.LanctoComissao;
-                case TipoArquivo.OCRCobranca:
-                    return TabelasEnum.OCRCobranca;
+                    return TabelasEnum.OdsComissao;
                 case TipoArquivo.ParcEmissao:
-                    return TabelasEnum.ParcEmissao;
+                    return TabelasEnum.OdsParcela;
                 case TipoArquivo.ParcEmissaoAuto:
-                    return TabelasEnum.ParcEmissaoAuto;
+                    return TabelasEnum.OdsParcela;
                 case TipoArquivo.Sinistro:
-                    return TabelasEnum.Sinistro;
+                    return TabelasEnum.OdsSinistro;
                 default:
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
             }

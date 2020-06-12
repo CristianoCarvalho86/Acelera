@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2
+namespace Acelera.Testes
 {
     public class TestesFG02 : TestesFG01
     {

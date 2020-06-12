@@ -41,22 +41,6 @@ namespace Acelera.Domain.Layouts
             var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
 
             return (Arquivo)inst?.Invoke(this, null);
-             /*
-            //we create a new instance of this specific type.            
-            object newInstance = Activator.CreateInstance(this.GetType());
-
-            //We get the array of properties for the new type instance.            
-            PropertyInfo[] properties = newInstance.GetType().GetProperties();
-
-            int i = 0;
-
-            foreach (PropertyInfo pi in this.GetType().GetProperties())
-            {
-                properties[i].SetValue(newInstance, pi.GetValue(this, null), null);
-                i++;
-            }
-
-            return (Arquivo)newInstance;*/
         }
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)
@@ -193,13 +177,14 @@ namespace Acelera.Domain.Layouts
                 linha.ObterCampoDoArquivo(campoAlteracao).AlterarValor(valorAlteracao);
         }
 
-        public void AlterarLinhaSeExistirCampo(int posicaoLinha, string campo, string textoNovo)
+        public bool AlterarLinhaSeExistirCampo(int posicaoLinha, string campo, string textoNovo)
         {
             if (!CamposDoBody.Contains(campo))
-                return;
+                return false;
             
             Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
             ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
+            return true;
         }
 
         public void AlterarTodasAsLinhas(string campo, string textoNovo)
