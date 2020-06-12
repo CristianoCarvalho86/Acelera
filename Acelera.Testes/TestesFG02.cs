@@ -37,7 +37,7 @@ namespace Acelera.Testes
 
             logger.EscreverBloco("Inicio da Validação da FG01.");
             //PROCESSAR O ARQUIVO CRIADO
-            base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01Enum().ObterTexto());
+            base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
             base.ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
             base.ValidarStages(CodigoStage.AprovadoNaFG01);
             ValidarTabelaDeRetornoFG01();
@@ -48,7 +48,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return base.ObterProceduresASeremExecutadas().Concat(ObterProceduresFG02(tipoArquivoTeste)).ToList();
+            return base.ObterProceduresASeremExecutadas().Concat(ObterProceduresFG02(arquivo.tipoArquivo)).ToList();
         }
 
         public void ValidarTabelaDeRetorno(bool naoDeveEncontarOsErrosDefinidos, params string[] codigosDeErroEsperados)
@@ -65,7 +65,7 @@ namespace Acelera.Testes
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetorno(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
+                var validador = new ValidadorTabelaRetorno(arquivo.tipoArquivo.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))

@@ -70,7 +70,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return TestesFG00.ObterProceduresFG00().Concat(ObterProceduresFG01(tipoArquivoTeste)).ToList();
+            return TestesFG00.ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList();
         }
 
         public virtual void ValidarFGsAnteriores() 
@@ -80,7 +80,7 @@ namespace Acelera.Testes
 
             logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(tipoArquivoTeste.ObterTarefaFG00Enum().ObterTexto());
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
             this.ValidarLogProcessamento(true,1, ObterProceduresFG00());
             this.ValidarControleArquivo();
             this.ValidarTabelaDeRetornoFG00();
@@ -92,13 +92,13 @@ namespace Acelera.Testes
 
         public IList<ILinhaTabela> ValidarStages(CodigoStage codigo)
         {
-            return ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(),true,(int)codigo);
+            return ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(),true,(int)codigo);
         }
 
         public void ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado)
         {
             AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
-            ValidarStages(tipoArquivoTeste.ObterTabelaStageEnum(), true, (int)codigo);
+            ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigo);
             AoMenosUmComCodigoEsperado = false;
         }
         public override void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
@@ -115,7 +115,7 @@ namespace Acelera.Testes
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetorno(tipoArquivoTeste.ObterTabelaStageEnum(), nomeArquivo, logger,
+                var validador = new ValidadorTabelaRetorno(arquivo.tipoArquivo.ObterTabelaStageEnum(), nomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno , naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))

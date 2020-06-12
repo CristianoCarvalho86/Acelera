@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Acelera.Testes.ConjuntoArquivos
 {
     public class TripliceVIVO : Triplice<Arquivo_Layout_9_3_Cliente, Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>
     {
-        public TripliceVIVO(int quantidadeCliente, string pastaOrigem, string pastaDestino) : base(quantidadeCliente, pastaOrigem, pastaDestino)
+        public TripliceVIVO(int quantidadeCliente, IMyLogger logger) : base(quantidadeCliente, logger)
         {
 
         }

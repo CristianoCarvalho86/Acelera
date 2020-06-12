@@ -5,7 +5,6 @@ using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Acelera.Domain.Entidades.ConjuntoArquivos;
 
 namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 {

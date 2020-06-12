@@ -192,7 +192,7 @@ namespace Acelera.Testes
             ValidarFGsAnteriores();
 
             //Executar FG02
-            ChamarExecucao(tipoArquivoTeste.ObterTarefaFG05Enum().ObterTexto());
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -206,7 +206,7 @@ namespace Acelera.Testes
         }
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(tipoArquivoTeste)).ToList();
+            return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();
         }
 
         private string ObterCDClienteCadastrado()
@@ -307,7 +307,7 @@ namespace Acelera.Testes
 
             logger.EscreverBloco("Inicio da Validação da FG02.");
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(tipoArquivoTeste.ObterTarefaFG02Enum().ObterTexto());
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
             ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetornoFG01();

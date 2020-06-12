@@ -361,7 +361,7 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Inicio da Validação da FG00.");
                 //PROCESSAR O ARQUIVO CRIADO
-                base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG00Enum().ObterTexto());
+                base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
                 base.ValidarControleArquivo();
                 base.ValidarLogProcessamento(true, 1, ObterProceduresFG00().ToList());
                 base.ValidarStages(CodigoStage.AprovadoNAFG00);
@@ -373,8 +373,8 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Inicio da Validação da FG01.");
                 //PROCESSAR O ARQUIVO CRIADO
-                base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01Enum().ObterTexto());
-                base.ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(tipoArquivoTeste)).ToList());
+                base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+                base.ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList());
                 base.ValidarStages(CodigoStage.AprovadoNaFG01);
                 ValidarTabelaDeRetornoFG01();
                 logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
@@ -384,14 +384,14 @@ namespace Acelera.Testes
             }
             if (ValidaFG01_1)
             {
-                base.ChamarExecucao(tipoArquivoTeste.ObterTarefaFG01_1_Enum().ObterTexto());
+                base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_1_Enum().ObterTexto());
                 base.ValidarStages(codigoAguardadoNa01_1.Value);
                 ValidarTeste();
             }
             if (ValidaFG02)
             {
                 logger.EscreverBloco("Inicio da FG02.");
-                ChamarExecucao(tipoArquivoTeste.ObterTarefaFG02Enum().ObterTexto());
+                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
                 ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
                 ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
                 ValidarTabelaDeRetornoSemGerarErro();
