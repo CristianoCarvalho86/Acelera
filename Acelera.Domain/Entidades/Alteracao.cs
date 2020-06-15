@@ -31,9 +31,9 @@ namespace Acelera.Domain.Entidades
             return Alteracoes.Where(x => x.PosicaoDaLinha == linha && x.NomeArquivo == nomeArquivo);
         }
 
-        public IEnumerable<KeyValuePair<string,int>> LinhasAlteradas()
+        public IEnumerable<KeyValuePair<string, int>> LinhasAlteradasPorArquivo(string nomeArquivo)
         {
-            return Alteracoes.Select(x =>new KeyValuePair<string, int>(x.NomeArquivo, x.PosicaoDaLinha)).Distinct();
+            return Alteracoes.Where(x => x.NomeArquivo == nomeArquivo).Select(x => new KeyValuePair<string, int>(x.NomeArquivo, x.PosicaoDaLinha)).Distinct();
         }
 
         public void FinalizarAlteracaoArquivo(string nomeArquivoAntigo, string novoNomeArquivo)
