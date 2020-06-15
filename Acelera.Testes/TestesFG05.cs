@@ -189,7 +189,7 @@ namespace Acelera.Testes
         {
             ValidarFGsAnteriores();
 
-            //Executar FG02
+            //Executar FG05
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
 
             //VALIDAR NA FG01

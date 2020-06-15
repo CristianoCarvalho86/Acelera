@@ -10,54 +10,35 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
     [TestClass]
     public class PROC22_Layout94_LASA : TestesFG05
     {
-
         /// <summary>
         /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
         /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
         /// </summary>
         [TestMethod]
-        [TestCategory("Comm Critica")]
-        public void SAP_4196()
-        {
-            //iniciar
-            IniciarTeste(TipoArquivo.Sinistro, "4196", "FG05 - PROC22");
-
-            //Carregar arquivo ods
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1 , OperadoraEnum.LASA);
-            EnviarParaOds(arquivo, true,"PROC22_4196");
-            var arquivoods1 = arquivo.Clone();
-
-            //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-
-            //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Sinistro, "9.4");
-            IgualarCampos(arquivoods1, arquivo, campos);
-
-            //Salvar e executar
-            SalvarArquivo(true, "PROC22_4196");
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
-        }
-
-        /// <summary>
-        /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
-        /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Comm Critica")]
+        [TestCategory("Com Critica")]
         public void SAP_4191()
         {
             //iniciar
             IniciarTeste(TipoArquivo.ParcEmissao, "4191", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            var canc = SomarValor(0, "ID_TRANSACAO", 1);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -66,6 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
+
 
             //Salvar e executar
             SalvarArquivo();
@@ -78,16 +60,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
         /// </summary>
         [TestMethod]
-        [TestCategory("Comm Critica")]
+        [TestCategory("Com Critica")]
         public void SAP_4192()
         {
             //iniciar
             IniciarTeste(TipoArquivo.Cliente, "4192", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            var arquivoods = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivoods, 1, OperadoraEnum.LASA);
-            EnviarParaOds(arquivoods);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_Cliente();
@@ -108,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
         /// </summary>
         [TestMethod]
-        [TestCategory("Comm Critica")]
+        [TestCategory("Com Critica")]
         public void SAP_4193()
         {
             //iniciar
@@ -118,7 +102,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            EnviarParaOds(arquivo, true, "PROC22_4193");
+            EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -130,72 +114,526 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo(true, "PROC22_4193");
+            SalvarArquivo();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
         }
 
-        /// <summary>
-        /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
-        /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
-        /// </summary>
         [TestMethod]
-        [TestCategory("Comm Critica")]
-        public void SAP_4194()
+        [TestCategory("Sem Critica")]
+        public void SAP_4200()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.OCRCobranca, "4194", "FG05 - PROC22");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4200", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            EnviarParaOds(arquivo, true, "PROC22_4194");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+
+            EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.OCRCobranca, "9.4");
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+
             //Salvar e executar
-            SalvarArquivo(true, "PROC22_4194");
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
 
-        /// <summary>
-        /// Gerar um arquivo anteriormente que popule a tabela ODS que não possua nenhum item a ser criticado. 
-        /// Em outro arquivo, enviar as mesmas informações do arquivo anterior nos campos da tabela TAB_PRM_LAYOUT_7016 para o NM_TIPO_ARQUIVO= SINISTRO, CD_VERSAO_ARQUIVO=9.4, TP_REGISTRO=3 e ID_PRIMARY_KEY=1.
-        /// Todos os campos exibidos nessa consulta na coluna NM_ATRIBUTO_LAYOUT devem ser iguais aos do primeiro arquivo.
-        /// </summary>
         [TestMethod]
-        [TestCategory("Comm Critica")]
-        public void SAP_4195()
+        [TestCategory("Sem Critica")]
+        public void SAP_4199()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.LanctoComissao, "4195", "FG05 - PROC22");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4199", "FG05 - PROC22");
 
             //Carregar arquivo ods
-            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            EnviarParaOds(arquivo, true, "PROC22_4195");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+
+            EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
-            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var campos = dados.ObterAtributosDoLayout(TipoArquivo.LanctoComissao, "9.4");
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4198()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.ParcEmissao, "4198", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarCobertura(false);
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4209()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.ParcEmissao, "4209", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            var seq = SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1);
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", seq);
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4208()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.ParcEmissao, "4208", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            var parc = SomarValor(0, "NR_PARCELA", 1);
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "NR_PARCELA", parc);
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4203()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.ParcEmissao, "4203", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4202()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.ParcEmissao, "4202", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_ITEM", "1");
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4220()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4220", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            var seq = SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1);
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", seq);
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4214()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4214", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "-2");
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4219()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4219", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            var parc = SomarValor(0, "NR_PARCELA", 1);
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "NR_PARCELA", parc);
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4213()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4213", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", true));
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
-            SalvarArquivo(true, "PROC22_4195");
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "22", 1);
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4211()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4211", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_COBERTURA", "01592");
+            AlterarLinha(0, "CD_RAMO", "71");
+
+
+            AlterarCobertura(false);
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4215()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4215", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_ITEM", "1234");
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4212()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Comissao, "4212", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+
+            //Salvar e executar
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4210()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.Cliente, "4210", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.Cliente, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            //Salvar e executar
+            SalvarArquivo(false);
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4197()
+        {
+            //iniciar
+            IniciarTeste(TipoArquivo.ParcEmissao, "4197", "FG05 - PROC22");
+
+            //Carregar arquivo ods
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            //Carregar arquivo esteira
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            //Alterar arquivo
+            var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            //Salvar e executar
+            SalvarArquivo(false);
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
     }
 }
