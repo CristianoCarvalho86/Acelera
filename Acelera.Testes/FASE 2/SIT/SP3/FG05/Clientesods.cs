@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
             EnviarParaOds(arquivo);
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("ODS_CLIENTES_POMPEIA_C01.POMPEIA.CLIENTE-EV-0272-20200228.TXT"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-0272-20200228.TXT"));
 
             EnviarParaOds(arquivo);
 

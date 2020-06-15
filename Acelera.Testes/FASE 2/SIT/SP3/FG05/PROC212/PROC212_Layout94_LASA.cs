@@ -25,14 +25,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 1));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
-            AlterarLinha(0, "NR_ENDOSSO", "12345");
+            AlterarLinha(0, "NR_ENDOSSO", GerarNumeroAleatorio(8));
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             SalvarArquivo(true);
@@ -55,14 +54,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 1));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
-            AlterarLinha(0, "NR_ENDOSSO", "12345");
+            AlterarLinha(0, "NR_ENDOSSO", GerarNumeroAleatorio(8));
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             SalvarArquivo(true);

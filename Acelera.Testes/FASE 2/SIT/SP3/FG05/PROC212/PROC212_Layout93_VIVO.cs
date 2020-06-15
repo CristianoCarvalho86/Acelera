@@ -24,12 +24,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "9");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 1));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "5");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
             AlterarLinha(0, "NR_ENDOSSO", "12345");
 
@@ -52,12 +51,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "9");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 2));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "6");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "3");
             AlterarLinha(0, "NR_ENDOSSO", "12345");
 
@@ -81,13 +79,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00002"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 3));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "4");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "3");
             AlterarLinha(0, "NR_ENDOSSO", "12345");
 
             SalvarArquivo();
@@ -110,13 +107,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00003"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "12");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 4));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "5");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "8");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "3");
             AlterarLinha(0, "NR_ENDOSSO", "12345");
 
             SalvarArquivo();
@@ -139,13 +135,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00004"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "13");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 5));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "6");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "19");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "3");
             AlterarLinha(0, "NR_ENDOSSO", "12345");
 
             SalvarArquivo();
@@ -154,36 +149,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
 
 
         }
-
-        /// <summary>
-        /// Em um arquivo, enviar emissão da apolice com CD_TIPO_EMISSAO=20 e NR_SEQ_EMISSAO=1.Registro deve ser gravado na ODS. 
-        /// Em outro arquivo, enviar emissão de cancelamento do mesmo contrato, informando CD_TIPO_EMISSAO=11. Manter NR_SEQ_EMISSAO=1.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_4520()
-        {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4520", "FG05 - PROC212 - ");
-
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
-
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "00005"));
-            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "21");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", SomarValor(0, "ID_TRANSACAO", 6));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "7");
-            AlterarLinha(0, "NR_ENDOSSO", "12345");
-
-            SalvarArquivo();
-
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "212", 1);
-
-
-        }
-
 
         /// <summary>
         /// Em um arquivo, enviar emissão da apolice com CD_TIPO_EMISSAO=20 e NR_SEQ_EMISSAO=1.Registro deve ser gravado na ODS. 
@@ -198,7 +163,29 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+
+            var campos = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" };
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "5");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", GerarNumeroAleatorio(8));
+
+            SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
 
@@ -218,7 +205,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+
+            var campos = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" };
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "6");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", GerarNumeroAleatorio(8));
 
             SalvarArquivo();
 
@@ -240,7 +247,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+
+            var campos = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" };
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", GerarNumeroAleatorio(8));
 
             SalvarArquivo();
 
@@ -262,7 +289,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
+
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+
+            var campos = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" };
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "8");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", GerarNumeroAleatorio(8));
 
             SalvarArquivo();
 
@@ -284,33 +331,33 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            SalvarArquivo();
-
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
-
-
-        }
-
-        /// <summary>
-        /// Em um arquivo, enviar emissão da apolice com CD_TIPO_EMISSAO=20 e NR_SEQ_EMISSAO=1.Registro deve ser gravado na ODS. 
-        /// Em outro arquivo, enviar emissão de cancelamento do mesmo contrato, informando CD_TIPO_EMISSAO=11. Manter NR_SEQ_EMISSAO=1.
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_4532_()
-        {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4532", "FG05 - PROC212 - ");
+            EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            
+            var campos = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" };
+            IgualarCampos(arquivoods, arquivo, campos);
+
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "19");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            AlterarLinha(0, "NR_ENDOSSO", GerarNumeroAleatorio(8));
 
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+
+
         }
 
     }
