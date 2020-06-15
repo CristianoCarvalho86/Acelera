@@ -88,5 +88,12 @@ namespace Acelera.Domain.Entidades
         {
             return Campos.Where(x => x.Coluna == coluna.ToUpper()).FirstOrDefault();
         }
+
+        public object Clone()
+        {
+            var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+            return inst?.Invoke(this, null);
+        }
     }
 }

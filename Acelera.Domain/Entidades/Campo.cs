@@ -28,6 +28,14 @@ namespace Acelera.Domain.Entidades
             }
         }
 
+        public decimal ValorDecimal
+        {
+            get
+            {
+                return decimal.Parse(ValorFormatado);
+            }
+        }
+
         public virtual string ColunaArquivo { get; }
 
         public Campo(string _coluna)

@@ -3,6 +3,7 @@ using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores.FG02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -90,6 +91,35 @@ namespace Acelera.Testes
             {
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
                 var validador = new ValidadorStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), nomeArquivo, logger,
+                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
+
+
+                if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
+                else
+                    ExplodeFalha();
+            }
+            catch (Exception ex)
+            {
+                TratarErro($" Validação da Stage : {tabela.ObterTexto()} - {ex.Message}");
+            }
+
+            if (sucessoDoTeste == false)
+                ExplodeFalha();
+
+            return linhasEncontradas;
+        }
+
+        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
+        {
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+                return null;
+
+            var linhasEncontradas = new List<ILinhaTabela>();
+            try
+            {
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
+                var validador = new ValidadorStages(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
 

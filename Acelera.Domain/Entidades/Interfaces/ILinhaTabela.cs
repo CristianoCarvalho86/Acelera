@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.Interfaces
 {
-    public interface ILinhaTabela
+    public interface ILinhaTabela : ICloneable
     {
         List<Campo> Campos { get; set; }
         string ObterNomeTabela();

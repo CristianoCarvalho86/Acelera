@@ -161,10 +161,6 @@ namespace Acelera.Testes
 
         protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {
-            valoresAlteradosBody = new AlteracoesArquivo();
-            valoresAlteradosFooter = new AlteracoesArquivo();
-            valoresAlteradosHeader = new AlteracoesArquivo();
-
             logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
             arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);

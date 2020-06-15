@@ -9,7 +9,6 @@ namespace Acelera.Domain.Entidades
 {
     public class AlteracoesArquivo
     {
-
         public List<Alteracao> Alteracoes { get; set; }
 
         public AlteracoesArquivo()
@@ -36,6 +35,16 @@ namespace Acelera.Domain.Entidades
         {
             return Alteracoes.Select(x =>new KeyValuePair<string, int>(x.NomeArquivo, x.PosicaoDaLinha)).Distinct();
         }
+
+        public void FinalizarAlteracaoArquivo(string nomeArquivoAntigo, string novoNomeArquivo)
+        {
+            foreach (var alteracao in Alteracoes.Where(x => x.NomeArquivo == nomeArquivoAntigo))
+            {
+                alteracao.NomeArquivo = novoNomeArquivo;
+                alteracao.LinhaAlterada = alteracao.LinhaAlterada.Clone();
+            }
+            
+        }
     }
 
     public class Alteracao
@@ -51,9 +60,9 @@ namespace Acelera.Domain.Entidades
 
         public bool AlteracaoNula { get => CamposAlterados.Count == 0; }
         public int PosicaoDaLinha { get; set; }
-        public Alteracao(LinhaArquivo linhaAlterada, int posicaoLinha)
+        public Alteracao(LinhaArquivo linhaArquivo, int posicaoLinha)
         {
-            LinhaAlterada = linhaAlterada;
+            LinhaAlterada = linhaArquivo;
             PosicaoDaLinha = posicaoLinha;
             CamposAlterados = new List<Campo>();
             RepeticoesLinha = 0;

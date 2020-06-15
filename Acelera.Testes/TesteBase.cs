@@ -44,11 +44,6 @@ namespace Acelera.Testes
 
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
-            valoresAlteradosBody = new AlteracoesArquivo();
-            valoresAlteradosFooter = new AlteracoesArquivo();
-            valoresAlteradosHeader = new AlteracoesArquivo();
-
-
             this.nomeArquivo = nomeArquivo;
             var path = Parametros.pastaOrigem + nomeArquivo;
             logger.EscreverBloco("Obtendo arquivo origem : " + path);
@@ -93,7 +88,7 @@ namespace Acelera.Testes
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
 
-            AjustarNomeArquivo(nomeOriginalArquivo, this.nomeArquivo);
+            valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, this.nomeArquivo);
         }
 
         public virtual void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")

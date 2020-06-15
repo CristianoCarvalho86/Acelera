@@ -90,6 +90,27 @@ namespace Acelera.Domain.Extensions
             }
         }
 
+        public static string ObterTarefaDaFG(this TipoArquivo tipoArquivo, FGs FGdaTarefa)
+        {
+            switch(FGdaTarefa)
+            {
+                case FGs.FG00:
+                    return tipoArquivo.ObterTarefaFG00Enum().ObterTexto();
+                case FGs.FG01:
+                    return tipoArquivo.ObterTarefaFG01Enum().ObterTexto();
+                case FGs.FG02:
+                    return tipoArquivo.ObterTarefaFG02Enum().ObterTexto();
+                case FGs.FG03:
+                    return tipoArquivo.ObterTarefaFG03Enum().ObterTexto();
+                case FGs.FG04:
+                    return tipoArquivo.ObterTarefaFG04Enum().ObterTexto();
+                case FGs.FG05:
+                    return tipoArquivo.ObterTarefaFG05Enum().ObterTexto();
+                default:
+                    throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
+            }
+        }
+
         public static FG01_Tarefas ObterTarefaFG01Enum(this TipoArquivo tipoArquivo)
         {
             switch (tipoArquivo)
@@ -169,6 +190,41 @@ namespace Acelera.Domain.Extensions
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
             }
         }
+
+        public static FG03_Tarefas ObterTarefaFG03Enum(this TipoArquivo tipoArquivo)
+        {
+            switch (tipoArquivo)
+            {
+                case TipoArquivo.Sinistro:
+                    return FG03_Tarefas.Sinistro;
+                default:
+                    throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
+            }
+        }
+
+        public static FG04_Tarefas ObterTarefaFG04Enum(this TipoArquivo tipoArquivo)
+        {
+            switch (tipoArquivo)
+            {
+                case TipoArquivo.Cliente:
+                    return FG04_Tarefas.Cliente;
+                case TipoArquivo.Comissao:
+                    return FG04_Tarefas.Comissao;
+                case TipoArquivo.LanctoComissao:
+                    return FG04_Tarefas.LanctoComissao;
+                case TipoArquivo.OCRCobranca:
+                    return FG04_Tarefas.OCRCobranca;
+                case TipoArquivo.ParcEmissao:
+                    return FG04_Tarefas.ParcEmissao;
+                case TipoArquivo.ParcEmissaoAuto:
+                    return FG04_Tarefas.ParcEmissaoAuto;
+                case TipoArquivo.Sinistro:
+                    return FG04_Tarefas.Sinistro;
+                default:
+                    throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
+            }
+        }
+
 
         public static FG05_Tarefas ObterTarefaFG05Enum(this TipoArquivo tipoArquivo)
         {

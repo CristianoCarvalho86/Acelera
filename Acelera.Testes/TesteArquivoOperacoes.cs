@@ -28,14 +28,6 @@ namespace Acelera.Testes
             valoresAlteradosFooter = new AlteracoesArquivo();
         }
 
-        public void AjustarNomeArquivo(string nomeArquivoAntigo, string novoNomeArquivo)
-        {
-            foreach(var alteracao in valoresAlteradosBody.Alteracoes.Where(x => x.NomeArquivo == nomeArquivoAntigo))
-            {
-                alteracao.NomeArquivo = novoNomeArquivo;
-            }
-        }
-
         public void SelecionarLinhaParaValidacao(int posicaoLinha, int qtdRepeticoes = 0, bool semHeaderOuFooter = false)
         {
             var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
