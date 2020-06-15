@@ -36,6 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
@@ -48,6 +49,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             //Salvar e executar
             SalvarArquivo();

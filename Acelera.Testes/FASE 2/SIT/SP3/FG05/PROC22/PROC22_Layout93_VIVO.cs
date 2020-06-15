@@ -16,10 +16,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4191()
+        public void SAP_4161()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4191", "FG05 - PROC22");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4161", "FG05 - PROC22");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -48,10 +48,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4192()
+        public void SAP_4162()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Cliente, "4192", "FG05 - PROC22");
+            IniciarTeste(TipoArquivo.Cliente, "4162", "FG05 - PROC22");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_3_Cliente();
@@ -80,10 +80,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_4193()
+        public void SAP_4163()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4196", "FG05 - PROC22");
+            IniciarTeste(TipoArquivo.Comissao, "4166", "FG05 - PROC22");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
