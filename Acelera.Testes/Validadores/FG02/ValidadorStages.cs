@@ -33,7 +33,7 @@ namespace Acelera.Testes.Validadores.FG02
 
             if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())
             {
-                var linhasAlteradas = valoresAlteradosBody.LinhasAlteradas();
+                var linhasAlteradas = valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
                 foreach(var linha in linhasAlteradas)
                 {
                     var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).Where(x => x.CamposAlterados.Count > 0).FirstOrDefault();

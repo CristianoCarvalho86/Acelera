@@ -137,7 +137,7 @@ namespace Acelera.Testes
             if (arquivo.tipoArquivo != TipoArquivo.ParcEmissao && arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
                 return;
 
-            var linhas = valoresAlteradosBody.LinhasAlteradas();
+            var linhas = valoresAlteradosBody.LinhasAlteradasPorArquivo(arquivo.NomeArquivo);
             var linhasAColocarIdTransacao = new List<int>();
             foreach (var linha in linhas)
             {

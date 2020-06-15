@@ -16,7 +16,7 @@ namespace Acelera.Domain.Entidades.Consultas
             var consulta = new Consulta();
 
             
-            var linhas = valoresAlteradosBody.LinhasAlteradas();
+            var linhas = valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
 
             if (existeAlteracaoDeHeaderOuFooter || !existeLinhaNoArquivo || (linhas.Count() == 1 && !valoresAlteradosBody.ExisteAlteracaoValida()))
             {
@@ -32,7 +32,7 @@ namespace Acelera.Domain.Entidades.Consultas
 
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha.Key,linha.Value).ToList().Where(x => x.CamposAlterados.Count > 0);
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(nomeArquivo, linha.Value).ToList().Where(x => x.CamposAlterados.Count > 0);
                 foreach (var alteracao in alteracoes)
                 {
                     var consultaDaLinha = new Consulta();
@@ -106,7 +106,7 @@ namespace Acelera.Domain.Entidades.Consultas
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
             
-            var linhas = valoresAlteradosBody.LinhasAlteradas();
+            var linhas = valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
             if (linhas.Count() == 1 && !valoresAlteradosBody.ExisteAlteracaoValida())
             {
                 consulta.AdicionarConsulta("NM_ARQUIVO_TPA", linhas.First().Key);
@@ -115,7 +115,7 @@ namespace Acelera.Domain.Entidades.Consultas
 
             foreach (var linha in linhas)
             {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).ToList().Where(x => x.CamposAlterados.Count > 0);
+                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(nomeArquivo, linha.Value).ToList().Where(x => x.CamposAlterados.Count > 0);
                 foreach (var alteracao in alteracoes)
                 {
                     var consultaDaLinha = new Consulta();
