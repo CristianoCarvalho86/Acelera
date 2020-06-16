@@ -202,6 +202,22 @@ namespace Acelera.Testes
 
             ValidarTeste();
         }
+
+        protected void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
+        {
+            ValidarFGsAnteriores();
+
+            //Executar FG05
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarStagesSemGerarErro(codigoEsperadoStage);
+            ValidarTabelaDeRetorno(true, false, new string[] { erroNaoEsperadoNaTabelaDeRetorno });
+            
+            ValidarTeste();
+        }
+
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
             return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();

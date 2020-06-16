@@ -85,6 +85,8 @@
     <Compile Include="DataAccessRep\ODS\ODSInsertComissaoCoberturaData.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertComissaoData.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertParcAuto.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertParcAutoCancelamento.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertParcCancelamento.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertParcData.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertSinistroData.cs" />
     <Compile Include="DataAccessRep\SGSData.cs" />
