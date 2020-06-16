@@ -40,9 +40,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             IniciarTeste(TipoArquivo.Sinistro, "4269", "FG02 - PROC1002");
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.SINISTRO-EV-0001-20191223.txt"));
 
-            AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
+            AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
+            AlterarLinha(0, "CD_BANCO", dados.ObterCDBancoSeg(true));
+            AlterarLinha(0, "CD_BANCO_SEG", dados.ObterCDBancoSeg(true));
+            AlterarLinha(0, "NR_CONTA_DIG_SEG", "7");
+            AlterarLinha(0, "TP_SINISTRO", "04");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
+            RemoverLinhasExcetoAsPrimeiras(1);
 
             SalvarArquivo("PROC27");
 
@@ -62,7 +69,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("CL"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
 
             SalvarArquivo();
 
