@@ -98,12 +98,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             decimal valorTotal = 0;
             valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
 
-            if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
-                valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
-            else
-                valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
+            //if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
+            //    valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
+            //else
+            //    valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
 
-            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
+            //AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
+
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "30");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "1.50");
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
