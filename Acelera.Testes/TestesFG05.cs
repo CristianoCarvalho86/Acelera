@@ -241,6 +241,7 @@ namespace Acelera.Testes
                 case TipoArquivo.Cliente:
                     lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0097_INT");
+                    lista.Add("PRC_0038_INT");
                     break;
                 case TipoArquivo.ParcEmissao:
                     lista.Add("PRC_0022_NEG");
@@ -250,8 +251,6 @@ namespace Acelera.Testes
                     lista.Add("PRC_0044_NEG");
                     lista.Add("PRC_0097_INT");
                     lista.Add("PRC_0212_NEG");
-                    //lista.Add("PRC_0227_NEG");
-                    //lista.Add("PRC_0228_NEG");
                     lista.Add("PRC_1012_NEG");
                     lista.Add("PRC_1014_NEG");
                     lista.Add("PRC_1015_NEG");

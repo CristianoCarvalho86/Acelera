@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC54
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CORRETOR", "");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             SalvarArquivo();
 
@@ -148,7 +148,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC54
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("CO"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CORRETOR", "7239711");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             SalvarArquivo();
 
