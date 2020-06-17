@@ -138,7 +138,7 @@ $" {Parametros.instanciaDB}.SEQ_ODS_PARCELA_2003.nextval AS CD_PARCELA," +
 " max(a.TP_MUDANCA), " +
 " max(a.DT_MUDANCA)  " +
 $" from {Parametros.instanciaDB}.tab_stg_parcela_1001 a " +
-$" INNER JOIN {dadosWhere} b  " +
+$" INNER JOIN  ({dadosWhere}) b  " +
 "  on a.id_registro = b.id_registro " +
 $" inner join {Parametros.instanciaDB}.tab_prm_produto_7003 prd  " +
 "  on a.cd_produto = prd.cd_produto " +
