@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_SEGURADORA", "19615");
+            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
             SalvarArquivo("PROC34_4275");
 

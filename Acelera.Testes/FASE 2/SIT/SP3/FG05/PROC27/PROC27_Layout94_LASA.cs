@@ -20,6 +20,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -37,6 +42,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -65,12 +75,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
         [TestCategory("Sem Critica")]
         public void SAP_4261()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "4258", "FG05 - PROC27");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4261", "FG05 - PROC27");
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("CL"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 

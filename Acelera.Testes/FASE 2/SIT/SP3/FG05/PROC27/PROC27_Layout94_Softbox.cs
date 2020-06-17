@@ -23,6 +23,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -40,6 +45,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterParceiroNegocioNaoExistente());
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -74,6 +84,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC27
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCDSeguradoraDoTipoParceiro("CL"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
+            AlterarLinha(0, "VL_PREMIO_TOTAL", "30");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "15");
+            AlterarLinha(0, "VL_IOF", "15");
 
             SalvarArquivo();
 

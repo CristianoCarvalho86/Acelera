@@ -737,6 +737,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Cliente, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            AlterarLinha(0, "CD_CLIENTE", "12345");
+
             //Salvar e executar
             SalvarArquivo(false);
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
