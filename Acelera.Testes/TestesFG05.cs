@@ -118,10 +118,20 @@ namespace Acelera.Testes
 
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)
-                    ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                {
+                    if (new string[]{"10","11"}.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                    else
+                        ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                }
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
                 foreach (var linha in linhas)
-                    ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                {
+                    if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                    else
+                        ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                }
             else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
                 foreach (var linha in linhas)
                     ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
@@ -141,23 +151,6 @@ namespace Acelera.Testes
         //    //    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
         //    base.SalvarArquivo();
         //}
-
-
-        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false)
-        {
-            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
-            var nomeCampo = string.Empty;
-            foreach (var linha in arquivoDestino.Linhas)
-                foreach (var campo in campos)
-                {
-                    nomeCampo = campo;
-                    if (campo == "NR_SEQ_EMISSAO")
-                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
-
-                    var index = linhaUnicaNaOrigem ? 0 : linha.Index;
-                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado,true);
-                }
-        }
 
         protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {

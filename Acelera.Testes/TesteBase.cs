@@ -253,10 +253,43 @@ namespace Acelera.Testes
 
         protected string AlterarUltimasPosicoes(string texto, string textoASerTrocadoNoFinal)
         {
-            return texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
+            return string.IsNullOrEmpty(texto) ? null : texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
         }
 
+        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false)
+        {
+            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
+            var nomeCampo = string.Empty;
+            foreach (var linha in arquivoDestino.Linhas)
+                foreach (var campo in campos)
+                {
+                    nomeCampo = campo;
+                    if (campo == "NR_SEQ_EMISSAO")
+                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
 
+                    var index = linhaUnicaNaOrigem ? 0 : linha.Index;
+                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, true);
+                }
+        }
+
+        public void IgualarCamposQueExistirem(Arquivo arquivoOrigem, Arquivo arquivoDestino)
+        {
+            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
+
+            if (arquivoOrigem.Linhas.Count != arquivoDestino.Linhas.Count)
+                throw new Exception("ARQUIVOS COM QUANTIDADE DE LINHAS DIFERENTES.");
+            
+            var nomeCampo = string.Empty;
+            foreach (var linha in arquivoDestino.Linhas)
+                foreach (var campo in arquivoDestino.CamposDoBody)
+                {
+                    nomeCampo = campo;
+                    if (campo == "NR_SEQ_EMISSAO")
+                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
+
+                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(linha.Index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, true);
+                }
+        }
 
     }
 }
