@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
 {
     [TestClass]
-    public class PROC44_Layout94_VIVO : TestesFG05
+    public class PROC44_Layout93_VIVO : TestesFG05
     {
         /// <summary>
         /// Enviar 1º arquivo para ODS com apólice com código de cancelamento e ID_TRANSACAO_CANC preenchido no formato correto. Arquivo deve ser gravado na tabela ODS 
@@ -26,12 +26,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
             var seqEMS = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"),"1");
             var seqEMS1 = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
             var dtEmissao = ObterLinha(0).ObterCampoDoArquivo("DT_EMISSAO").ValorFormatado;
 
-            EnviarParaOds(arquivo, true, "PROC44-4359");
+            EnviarParaOds(arquivo);
             var arquivoods1 = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -46,7 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "NR_ENDOSSO", "12340000002");
             AlterarLinha(0, "DT_EMISSAO", SomarData(dtEmissao, 5));
 
-            EnviarParaOds(arquivo, true, "PROC44-4359");
+            EnviarParaOds(arquivo);
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -60,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "NR_ENDOSSO", "12340000003");
             AlterarLinha(0, "DT_EMISSAO", SomarData(dtEmissao, 7));
 
-            SalvarArquivo(true, "PROC44-4359");
+            SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "44", 1);
         }
