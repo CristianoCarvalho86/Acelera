@@ -120,7 +120,7 @@ namespace Acelera.Testes
                 foreach (var linha in linhas)
                 {
                     if (new string[]{"10","11"}.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger, TabelasEnum.ParcEmissaoAuto);
                     else
                         ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                 }
@@ -128,7 +128,7 @@ namespace Acelera.Testes
                 foreach (var linha in linhas)
                 {
                     if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger, TabelasEnum.ParcEmissao);
                     else
                         ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                 }

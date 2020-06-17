@@ -11,7 +11,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public static class ODSInsertParcCancelamento
     {
-        public static string InsertText(string dadosWhere)
+        public static string InsertText(string dadosWhere, TabelasEnum tabela)
         {
             return $"insert into {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003(                                        " +
 " CD_PARCELA , " +
@@ -137,7 +137,7 @@ $" {Parametros.instanciaDB}.SEQ_ODS_PARCELA_2003.nextval AS CD_PARCELA," +
 " 'POC_SAC_20200520' AS NM_USUARIO, " +
 " max(a.TP_MUDANCA), " +
 " max(a.DT_MUDANCA)  " +
-$" from {Parametros.instanciaDB}.tab_stg_parcela_1001 a " +
+$" from {Parametros.instanciaDB}.{tabela.ObterTexto()} a " +
 $" INNER JOIN  ({dadosWhere}) b  " +
 "  on a.id_registro = b.id_registro " +
 $" inner join {Parametros.instanciaDB}.tab_prm_produto_7003 prd  " +
@@ -189,10 +189,10 @@ $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 co" +
 " NR_PROPOSTA; ";
         }
 
-        public static void Insert(string idRegistro, IMyLogger logger)
+        public static void Insert(string idRegistro, IMyLogger logger, TabelasEnum tabela)
         {
             var detalheLinha = $" select '{idRegistro}' AS ID_REGISTRO FROM DUMMY ";
-            var sql = InsertText(detalheLinha);
+            var sql = InsertText(detalheLinha,tabela);
 
             var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsParcela.ObterTexto(), logger);
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
