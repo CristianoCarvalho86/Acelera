@@ -16,6 +16,6 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         }
 
-        public override OperadoraEnum Operadora => throw new NotImplementedException();
+        public override OperadoraEnum Operadora => OperadoraEnum.SOFTBOX;
     }
 }

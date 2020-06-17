@@ -193,16 +193,17 @@ namespace Acelera.Testes
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = string.Empty;
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                nomeArquivoDeLog = nomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+                nomeArquivoDeLog = arquivo.NomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                File.Copy(Parametros.pastaDestino + nomeArquivo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
+                File.Copy(Parametros.pastaDestino + arquivo.NomeArquivo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(Parametros.pastaLogArquivoCopia))
                 File.Copy(pathOrigem, Parametros.pastaLogArquivoCopia + nomeArquivoDeLog);
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
-                File.Delete(Parametros.pastaDestino + nomeArquivo);
+                File.Delete(Parametros.pastaDestino + arquivo.NomeArquivo);
+
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");
 
@@ -210,7 +211,7 @@ namespace Acelera.Testes
                 logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
 
-            operacao = nomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
+            operacao = arquivo.NomeArquivo.Split('.').Take(2).Reverse().First().Replace(".", "");
             if (operacao.Length > 5)
                 operacao = operacao.Substring(0, 5);
 

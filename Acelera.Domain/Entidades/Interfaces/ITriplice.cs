@@ -19,6 +19,7 @@ namespace Acelera.Domain.Entidades.Interfaces
         string PastaOrigem { get; }
 
         void AlterarParcEComissao(int posicaoLinha, string nomeCampo, string valor);
+        void AlterarTodasAsLinhasQueContenhamOCampo(string nomeCampo, string novoValor);
 
 
         void AlterarCliente(int posicaoLinha, string campoAlteracao, string valorNovo);

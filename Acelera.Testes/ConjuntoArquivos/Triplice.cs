@@ -40,6 +40,24 @@ namespace Acelera.Testes.ConjuntoArquivos
             IgualarArquivos();
         }
 
+        public void AlterarTodasAsLinhasQueContenhamOCampo(string nomeCampo, string novoValor)
+        {
+            for (int i = 0; i < ArquivoParcEmissao.Linhas.Count; i++)
+            {
+                ArquivoCliente.AlterarLinhaSeExistirCampo(i, nomeCampo, novoValor);
+            }
+
+            for (int i = 0; i < ArquivoParcEmissao.Linhas.Count; i++)
+            {
+                ArquivoParcEmissao.AlterarLinhaSeExistirCampo(i, nomeCampo, novoValor);
+            }
+
+            for (int i = 0; i < ArquivoComissao.Linhas.Count; i++)
+            {
+                ArquivoComissao.AlterarLinhaSeExistirCampo(i, nomeCampo, novoValor);
+            }
+        }
+
         public void AlterarParcEComissao(int posicaoLinha, string nomeCampo, string valor)
         {
             logger.AbrirBloco("Alterando arquivos de Parc e Comissao.");
@@ -92,11 +110,11 @@ namespace Acelera.Testes.ConjuntoArquivos
             ArquivoCliente.AjustarQtdLinhasNoFooter();
 
             if (Operadora == OperadoraEnum.VIVO)
-                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissaoAuto, Operadora, PastaOrigem), 1, 1, 2);
+                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissaoAuto, Operadora, PastaOrigem), 1, 1, 1);
             else
-                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 2);
+                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 1);
 
-            ArquivoComissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Comissao, Operadora, PastaOrigem), 1, 1, 2);
+            ArquivoComissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Comissao, Operadora, PastaOrigem), 1, 1, 1);
         }
 
         public void IgualarArquivos()
@@ -152,6 +170,7 @@ namespace Acelera.Testes.ConjuntoArquivos
 
             logger.Escrever($"SALVANDO ARQUIVO NOME : {PastaDestino + nomeArquivo}");
             arquivo.Salvar(PastaDestino + nomeArquivo);
+            arquivo.AtualizarNomeArquivoFinal(nomeArquivo);
             logger.FecharBloco();
         }
 

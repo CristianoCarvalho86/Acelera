@@ -28,7 +28,7 @@ namespace Acelera.Testes
             valoresAlteradosFooter = new AlteracoesArquivo();
         }
 
-        public void SelecionarLinhaParaValidacao(int posicaoLinha, int qtdRepeticoes = 0, bool semHeaderOuFooter = false)
+        public void SelecionarLinhaParaValidacao(int posicaoLinha, bool semHeaderOuFooter = false)
         {
             var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
             logger.AbrirBloco($"Linha Selecionada para validacao : linha {posicaoLinha}");
@@ -102,6 +102,12 @@ namespace Acelera.Testes
             }
         }
 
+        public void AlterarLinhaSeExistirCampo(Arquivo arquivo1, int posicaoLinha, string campo, string valorNovo, bool validaAlteracao = false)
+        {
+            if (arquivo1.ExisteCampo(campo))
+                AlterarLinha(arquivo1, posicaoLinha, campo, valorNovo, validaAlteracao);
+        }
+
         public void AlterarTodasAsLinhas(string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo [TODAS AS LINHAS] - Editando campo {campo} de todas as linhas");
@@ -168,7 +174,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinha(posicaoLinha).ObterTexto());
             arquivo.ReplicarLinha(posicaoLinha, quantidadeVezes);
             logger.FecharBloco();
-            SelecionarLinhaParaValidacao(posicaoLinha, quantidadeVezes);
+            SelecionarLinhaParaValidacao(posicaoLinha);
         }
 
         public void AumentarLinhasNoFooter(int quantidadeASomar, int indexFooter = 0)
@@ -222,7 +228,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaHeader().ObterTexto());
             arquivo.RemoverHeader();
             logger.FecharBloco();
-            SelecionarLinhaParaValidacao(0,0,true);
+            SelecionarLinhaParaValidacao(0,true);
         }
 
         public void RemoverFooter()
@@ -231,7 +237,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha Removida :" + arquivo.ObterLinhaFooter().ObterTexto());
             arquivo.RemoverFooter();
             logger.FecharBloco();
-            SelecionarLinhaParaValidacao(0, 0, true);
+            SelecionarLinhaParaValidacao(0, true);
         }
 
 
