@@ -23,10 +23,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             arquivo = new Arquivo_Layout_9_3_Cliente();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
+            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             AlterarLinha(0, "DT_NASCIMENTO", "");
 
-            EnviarParaOds(arquivo, true, "PROC227_4623");
+            EnviarParaOds(arquivo, false);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -34,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
 
             AlterarLinha(0, "CD_CLIENTE", cdCliente);
 
-            SalvarArquivo(false, "PROC227_4623");
+            SalvarArquivo(false);
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "227", 1);
         }
@@ -43,13 +44,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
         [TestCategory("Sem Critica")]
         public void SAP_4625()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4625", "FG05 - PROC227 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4623", "FG05 - PROC227 - ");
+
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+
+            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
+            var cdCliente = ObterValor(0, "CD_CLIENTE");
+
+            EnviarParaOds(arquivo, false);
+            var arquivoods = arquivo.Clone();
+
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            SalvarArquivo();
+            AlterarLinha(0, "CD_CLIENTE", cdCliente);
 
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            SalvarArquivo(false);
+
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "227");
         }
 
     }

@@ -23,17 +23,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC228
             arquivo = new Arquivo_Layout_9_3_Cliente();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
+            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             arquivo.AlterarLinha(0, "SEXO", "");
 
-            EnviarParaOds(arquivo, true, "PROC228");
+            EnviarParaOds(arquivo, false);
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             AlterarLinha(0, "CD_CLIENTE", cdCliente);
 
-            SalvarArquivo(false, "PROC228");
+            SalvarArquivo(false);
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "228", 1);
         }
@@ -42,13 +43,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC228
         [TestCategory("Sem Critica")]
         public void SAP_4641()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4641", "FG05 - PROC228 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4639", "FG05 - PROC228 - ");
+
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
+
+            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
+            var cdCliente = ObterValor(0, "CD_CLIENTE");
+
+            EnviarParaOds(arquivo, false);
+
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            SalvarArquivo();
+            AlterarLinha(0, "CD_CLIENTE", cdCliente);
 
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            SalvarArquivo(false);
+
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "228");
         }
 
     }

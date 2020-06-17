@@ -141,6 +141,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
@@ -153,11 +159,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
+            AlterarLinha(0, "CD_CORRETOR", "7139687");
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -175,8 +188,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
@@ -189,13 +205,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -212,6 +236,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
@@ -224,11 +254,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
+            AlterarLinha(0, "CD_COBERTURA", "01592");
+
             AlterarCobertura(false);
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -242,9 +282,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
             var seq = SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1);
 
             EnviarParaOds(arquivo);
@@ -258,11 +305,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", seq);
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -276,9 +331,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
             var parc = SomarValor(0, "NR_PARCELA", 1);
 
             EnviarParaOds(arquivo);
@@ -292,11 +354,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
             AlterarLinha(0, "NR_PARCELA", parc);
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -313,7 +383,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
@@ -326,11 +401,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -347,6 +430,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
@@ -359,11 +448,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
-            AlterarLinha(0, "CD_ITEM", "1");
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
+            AlterarLinha(0, "CD_ITEM", "1234");
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -612,11 +709,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Cliente, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
-            AlterarLinha(0, "CD_CLIENTE", "12345");
+            AlterarLinha(0, "CD_CLIENTE", "98765");
 
             //Salvar e executar
             SalvarArquivo(false);
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
         [TestMethod]
@@ -630,6 +727,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
+
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
 
@@ -641,9 +748,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
             IgualarCampos(arquivoods, arquivo, campos);
 
+            var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
+            IgualarCampos(arquivoods, arquivo, campos2);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
+            AlterarLinha(0, "CD_CLIENTE", "123456");
+
             //Salvar e executar
             SalvarArquivo(false);
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "22");
         }
 
     }

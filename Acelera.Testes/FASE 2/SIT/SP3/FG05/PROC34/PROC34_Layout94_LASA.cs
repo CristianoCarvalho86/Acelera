@@ -19,15 +19,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         public void SAP_4289()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.ParcEmissao, "4663", "FG05 - PROC1014");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4289", "FG05 - PROC1014");
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_SEGURADORA", "19615");
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+            AlterarLinha(0, "CD_SEGURADORA", "2437");
 
-            SalvarArquivo("PROC34_4289");
+            SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "34", 1);
 
