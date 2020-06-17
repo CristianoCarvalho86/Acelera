@@ -41,37 +41,6 @@ namespace Acelera.Testes
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
 
-        public void ExecutarEValidar(Arquivo arquivo ,FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
-        {
-            this.arquivo = arquivo;
-            SelecionarLinhaParaValidacao(0);
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaDaFG(fG));
-
-            ValidarTabelaDeRetorno(arquivo , false,true, new string[] { cdMensagemNaTabelaDeRetorno });
-
-            var linhas = ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), deveHaverRegistro, (int)codigoEsperado);
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
-                resultadoStageParcela = linhas.Clone();
-        }
-
-        public void ExecutarEValidarEsperandoErro(Arquivo arquivo, FGs fG, CodigoStage? codigoEsperado)
-        {
-            this.arquivo = arquivo;
-            SelecionarLinhaParaValidacao(0);
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaDaFG(fG));
-
-            ValidarTabelaDeRetornoSemGerarErro();
-
-            if (codigoEsperado == null)
-            {
-                ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), false);
-                return;
-            }
-            var linhas = ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperado);
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
-                resultadoStageParcela = linhas.Clone();
-        }
-
         public void ValidarVlComissaoNaStage(string cdTpa, string cdSucursal, string cdCobertura, string cdProduto)
         {
             logger.AbrirBloco("INICIANDO VALIDAÇÃO DO VL_COMISSAO ENCONTRADO NA STAGE.");

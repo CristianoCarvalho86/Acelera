@@ -115,6 +115,24 @@ namespace Acelera.Testes
             set { _instanciaDB = value;}
         }
 
+        private static string _connectionStringHana;
+        public static string connectionStringHana
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_connectionStringHana))
+                {
+                    _connectionStringHana = ConfigurationManager.AppSettings.Get("ConnectionString");
+                    if (string.IsNullOrEmpty(_connectionStringHana))
+                        throw new Exception("CONNECTION STRINGO DO HANA NAO ENCONTRADA");
+                }
+                return _connectionStringHana;
+            }
+            set { _connectionStringHana = value; }
+        }
+
+        
+
         public static ModoExecucaoEnum ModoExecucao
         {
             get

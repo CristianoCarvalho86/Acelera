@@ -201,8 +201,8 @@ namespace Acelera.Testes
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(Parametros.pastaLogArquivoCopia))
                 File.Copy(pathOrigem, Parametros.pastaLogArquivoCopia + nomeArquivoDeLog);
 
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
-                File.Delete(Parametros.pastaDestino + arquivo.NomeArquivo);
+            //if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
+            //    File.Delete(Parametros.pastaDestino + arquivo.NomeArquivo);
 
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 logger.EscreverBloco("Erro ao copiar arquivo para pasta de log.");

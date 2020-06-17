@@ -180,6 +180,32 @@ namespace Acelera.Testes
 
         }
 
+        public virtual IList<ILinhaTabela> ExecutarEValidar(Arquivo arquivo, FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
+        {
+            this.arquivo = arquivo;
+            SelecionarLinhaParaValidacao(0);
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaDaFG(fG));
+
+            ValidarTabelaDeRetorno(arquivo, false, true, new string[] { cdMensagemNaTabelaDeRetorno });
+
+            return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), deveHaverRegistro, (int)codigoEsperado);
+        }
+
+        public virtual IList<ILinhaTabela> ExecutarEValidarEsperandoErro(Arquivo arquivo, FGs fG, CodigoStage? codigoEsperado)
+        {
+            this.arquivo = arquivo;
+            SelecionarLinhaParaValidacao(0);
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaDaFG(fG));
+
+            ValidarTabelaDeRetornoSemGerarErro();
+
+            if (codigoEsperado == null)
+            {
+                return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), false);
+            }
+            return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperado);
+        }
+
         #region Procedures
         public static IList<string> ObterProceduresFG02(TipoArquivo tipoArquivoTeste)
         {

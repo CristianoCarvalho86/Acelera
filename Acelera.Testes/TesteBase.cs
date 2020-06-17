@@ -64,11 +64,19 @@ namespace Acelera.Testes
 
         protected virtual void SalvarArquivo()
         {
-            var array = nomeArquivo.Split('-');
+            var array = arquivo.NomeArquivo.Split('-');
             array[2] = "/*R*/";
             nomeArquivo = array.ToList().ObterListaConcatenada("-");
             SalvarArquivo(nomeArquivo, true);
         }
+
+        protected virtual void SalvarArquivo(Arquivo arquivo)
+        {
+            var array = arquivo.NomeArquivo.Split('-');
+            array[2] = "/*R*/";
+            SalvarArquivo(array.ToList().ObterListaConcatenada("-"), true);
+        }
+
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
         {

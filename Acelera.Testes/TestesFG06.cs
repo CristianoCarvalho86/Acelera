@@ -1,4 +1,6 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Data;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Utils;
@@ -131,6 +133,9 @@ namespace Acelera.Testes
 
             triplice = new TripliceVIVO(1, logger);
             PrepararMassa(OperadoraEnum.VIVO);
+            CarregarDadosCancelamento(triplice.ArquivoParcEmissao, arquivoEmissao.ObterLinha(0));
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, triplice.ArquivoComissao);
+            
             triplice.Salvar();
 
             ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
@@ -184,12 +189,13 @@ namespace Acelera.Testes
         }
 
 
-        public void CarregarDadosCancelamento(Arquivo arquivoDeCancelamento, LinhaArquivo linhaArquivoEmissao, string idTransacaoDoArquivoOriginal)
+        public void CarregarDadosCancelamento(Arquivo arquivoDeCancelamento, LinhaArquivo linhaArquivoEmissao)
         {
-            idTransacaoDoArquivoOriginal = arquivoDeCancelamento.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            var idTransacaoDoArquivoOriginal = arquivoDeCancelamento.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            arquivoDeCancelamento.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivoDeCancelamento.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
             arquivoDeCancelamento.RemoverTodasLinhasDoBody();
+
             arquivoDeCancelamento.AdicionaLinhaNoBody(linhaArquivoEmissao);
-            arquivoDeCancelamento.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Cliente, operadora, Parametros.pastaOrigem), 1, 1, 1);
             arquivoDeCancelamento.AlterarLinha(0, "ID_TRANSACAO_CANC", linhaArquivoEmissao.ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado);
             arquivoDeCancelamento.AlterarLinha(0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
             arquivoDeCancelamento.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
@@ -200,7 +206,7 @@ namespace Acelera.Testes
         public Arquivo EnviarEmissao<T, C>(OperadoraEnum operadora) where T : Arquivo, new() where C : Arquivo, new()
         {
             arquivo = new T();
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Cliente, operadora, Parametros.pastaOrigem), 1, 1, 1);
+            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
             arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO_CANC", "");
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
@@ -234,18 +240,33 @@ namespace Acelera.Testes
         {
             triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
 
-            //Parametros.instanciaDB = "HDIDEV_1";
-            var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoCliente.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
+            Parametros.instanciaDB = "HDIDEV_1";
+            DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
+
+            var cobertura = dados.ObterCobertura(triplice.ArquivoCliente.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_COBERTURA", cobertura.CdCobertura);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_RAMO", cobertura.CdRamo);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_PRODUTO", cobertura.CdProduto);
-            //Parametros.instanciaDB = "HDIQAS_1";
+            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_LMI", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0,"VL_IS"));
+
+            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_TOTAL", (cobertura.ValorPremioLiquidoMaiorDecimal - 0.01M).ValorFormatado());
+            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_IOF", "0");
+            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_LIQUIDO", (cobertura.ValorPremioLiquidoMaiorDecimal - 0.01M).ValorFormatado());
+
+            DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20274;UID=CCARVALHO;PWD=Cristiano@03;encrypt=TRUE;Connection Timeout=5000");
+            Parametros.instanciaDB = "HDIQAS_1";
 
             if (operadora == OperadoraEnum.VIVO)
             {
                 triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7239711");
                 triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "C");
             }
+            if(operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+            {
+                triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7150145");
+                triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
+            }
+
             var novoContrato = AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CONTRATO", novoContrato);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_PROPOSTA", novoContrato);

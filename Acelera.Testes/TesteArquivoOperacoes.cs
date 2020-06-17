@@ -389,7 +389,7 @@ namespace Acelera.Testes
         public string GerarNumeroAleatorio(int posicoes)
         {
             var retorno = string.Empty;
-            int seed = DateTime.Now.Millisecond;
+            int seed = DateTime.Now.Millisecond + DateTime.Now.Hour * DateTime.Now.Second + DateTime.Now.Minute * DateTime.Now.Day;
             for (int i = 0; i < posicoes; i++)
                 retorno += new Random(seed * i).Next(0, 9).ToString();
             return retorno;

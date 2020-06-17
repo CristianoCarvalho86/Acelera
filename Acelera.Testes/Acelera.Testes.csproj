@@ -547,6 +547,7 @@
     <Compile Include="TestesFG04.cs" />
     <Compile Include="TestesFG05.cs" />
     <Compile Include="TestesFG06.cs" />
+    <Compile Include="TestesFG09.cs" />
     <Compile Include="Validadores\FG00\ValidadorStagesFG00.cs" />
     <Compile Include="Validadores\FG00\ValidadorTabelaRetornoFG00.cs" />
     <Compile Include="Validadores\FG01\ValidadorStagesFG01.cs" />
