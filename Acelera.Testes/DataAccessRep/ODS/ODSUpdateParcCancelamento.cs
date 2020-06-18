@@ -11,9 +11,9 @@ namespace Acelera.Testes.DataAccessRep.ODS
 {
     public static class ODSUpdateParcCancelamento
     {
-        public static string UpdateText()
+        public static string UpdateParcOdsText()
         {
-            return $"update a "+
+            return $"update a " +
             " set a.DT_CANCELAMENTO = b.dt_emissao, " +
             " a.CD_PARCELA_CANCELAMENTO = b.cd_parcela, " +
             " a.CD_STATUS_PARCELA = 'CA' " +
@@ -21,8 +21,12 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " inner " +
             $" join (select id_transacao_canc, dt_emissao, cd_parcela from {Parametros.instanciaDB}.tab_ods_parcela_2003 " +
             " where id_transacao_canc is not null) b on " +
-            " a.id_transacao = b.id_transacao_canc;" +
-            " update a" +
+            " a.id_transacao = b.id_transacao_canc;";
+        }
+
+        public static string UpdateCmsOdsText()
+        {
+            return " update a" +
             " set a.DT_CANCELAMENTO = b.dt_emissao," +
             " a.CD_PARCELA_CANCELAMENTO = b.cd_parcela," +
             " a.CD_STATUS_COMISSAO = 'CA'" +
@@ -38,7 +42,11 @@ namespace Acelera.Testes.DataAccessRep.ODS
 
         public static void Update(IMyLogger logger)
         {
-            var sql = UpdateText();
+            var sql = UpdateParcOdsText();
+
+            DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
+
+            sql = UpdateCmsOdsText();
 
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
         }
