@@ -44,7 +44,7 @@ namespace Acelera.Testes
         [TestMethod]
         public void Teste2_FG06()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG06", "Teste1-FG06");
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste2-FG06", "Teste2-FG06");
             triplice = new TripliceLASA(1, logger);
             PrepararMassa(OperadoraEnum.LASA);
             triplice.Salvar();
@@ -263,11 +263,18 @@ namespace Acelera.Testes
                 triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7239711");
                 triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "C");
             }
-            if(operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+            else if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
             {
                 triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7150145");
                 triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
             }
+            else if (operadora == OperadoraEnum.POMPEIA)
+            {
+                triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7150166");
+                triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
+            }
+            else
+                throw new Exception("OPERACAO SEM CORRETOR CADASTRADO.");
 
             var novoContrato = AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CONTRATO", novoContrato);

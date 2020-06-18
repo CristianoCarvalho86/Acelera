@@ -199,7 +199,7 @@ namespace Acelera.Testes
                 return;
             try
             {
-                Thread.Sleep(15000);
+               // Thread.Sleep(15000);
                 var comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
                 logger.EscreverBloco($"EXECUTANDO TAREFA : '{taskName}'");
                 var retorno = helper.Execute(comando);
@@ -237,7 +237,7 @@ namespace Acelera.Testes
             catch (Exception ex)
             {
                 logger.Erro(ex);
-                throw;
+                throw ex;
             }
 
             logger.LogRetornoCMD(textoCompletoCMD);
