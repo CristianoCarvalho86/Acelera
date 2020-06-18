@@ -201,6 +201,7 @@ namespace Acelera.Testes
             arquivoDeCancelamento.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoDeCancelamento.AlterarLinha(0, "NR_ENDOSSO", "1");
             arquivoDeCancelamento.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            arquivoDeCancelamento.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
         }
 
         public Arquivo EnviarEmissao<T, C>(OperadoraEnum operadora) where T : Arquivo, new() where C : Arquivo, new()
