@@ -156,7 +156,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4603()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4599", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4603", "FG05 - PROC216");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
