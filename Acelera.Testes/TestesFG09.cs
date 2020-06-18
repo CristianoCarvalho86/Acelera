@@ -22,8 +22,8 @@ namespace Acelera.Testes
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste1", "FG09");
 
             arquivo = EnviarEmissao<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO);
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto>(arquivo.ObterLinha(0),"9");
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto>(arquivo.ObterLinha(0), "9");
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto>(arquivo.ObterLinha(0), OperadoraEnum.VIVO, "9");
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto>(arquivo.ObterLinha(0), OperadoraEnum.VIVO, "9");
             /*
              Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de um contrato
 Enviar arquivo PARCEMSAUTO com movimentação de cancelamento para este mesmo contrato (CD_TIPO_EMISSAO=9). Preencher todos os campos relativos ao cancelamento
@@ -35,9 +35,9 @@ Enviar arquivo PARCEMSAUTO com outra movimentação de cancelamento para este me
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste1", "FG09");
 
-            arquivo = EnviarEmissao<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.VIVO);
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), "11");
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), "11");
+            arquivo = EnviarEmissao<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "11");
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "11");
             /*
 Enviar arquivo PARCEMS para ODS com dados de emissão de um contrato
 Enviar arquivo PARCEMS com movimentação de cancelamento para este mesmo contrato (CD_TIPO_EMISSAO=11). Preencher todos os campos relativos ao cancelamento
@@ -45,11 +45,11 @@ Enviar arquivo PARCEMS com outra movimentação de cancelamento para este mesmo 
              */
         }
 
-        public void EnviarCancelamento<T>(LinhaArquivo linhaArquivoEmissao,string cdTipoEmissao) where T : Arquivo, new()
+        public void EnviarCancelamento<T>(LinhaArquivo linhaArquivoEmissao, OperadoraEnum operadora, string cdTipoEmissao) where T : Arquivo, new()
         {
             arquivo = new T();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
-            var idTransacaoDoArquivoOriginal = linhaArquivoEmissao.ObterCampoSeExistir("ID_TRANSACAO").ValorFormatado;
+            var idTransacaoDoArquivoOriginal = arquivo.ObterLinha(0).ObterCampoSeExistir("ID_TRANSACAO").ValorFormatado;
             arquivo.RemoverTodasLinhasDoBody();
             arquivo.AdicionaLinhaNoBody(linhaArquivoEmissao);
 
@@ -58,6 +58,7 @@ Enviar arquivo PARCEMS com outra movimentação de cancelamento para este mesmo 
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", cdTipoEmissao);
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "2");
+            arquivo.AlterarLinhaSeExistirCampo(0, "CD_MOVTO_COBRANCA", "02");
 
             SalvarArquivo(true);
 

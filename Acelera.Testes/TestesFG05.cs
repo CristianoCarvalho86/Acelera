@@ -119,8 +119,11 @@ namespace Acelera.Testes
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)
                 {
-                    if (new string[]{"10","11"}.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger, TabelasEnum.ParcEmissaoAuto);
+                    if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                    {
+                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSUpdateParcCancelamento.Update(logger);
+                    }
                     else
                         ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                 }
@@ -128,7 +131,10 @@ namespace Acelera.Testes
                 foreach (var linha in linhas)
                 {
                     if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger, TabelasEnum.ParcEmissao);
+                    {
+                        ODSInsertParcAutoCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSUpdateParcCancelamento.Update(logger);
+                    }
                     else
                         ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                 }
