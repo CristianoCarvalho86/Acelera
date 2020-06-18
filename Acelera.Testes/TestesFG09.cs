@@ -31,17 +31,48 @@ Enviar arquivo PARCEMSAUTO com outra movimentação de cancelamento para este me
              */
         }
 
+        [TestMethod]
         public void Teste2()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "Teste1", "FG09");
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste2-FG09", "FG09");
 
             arquivo = EnviarEmissao<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "11");
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "11");
+            //EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "11");
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "10");
             /*
 Enviar arquivo PARCEMS para ODS com dados de emissão de um contrato
 Enviar arquivo PARCEMS com movimentação de cancelamento para este mesmo contrato (CD_TIPO_EMISSAO=11). Preencher todos os campos relativos ao cancelamento
 Enviar arquivo PARCEMS com outra movimentação de cancelamento para este mesmo contrato (CD_TIPO_EMISSAO=10). Preencher todos os campos relativos ao cancelamento
+             */
+        }
+
+        [TestMethod]
+        public void Teste3()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "Teste3-FG09", "FG09");
+
+            arquivo = EnviarEmissao<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO);
+            arquivo.AlterarLinhaSeExistirCampo(0, "CD_MODELO", (arquivo.ObterValorInteiro(0, "CD_MODELO") + 1).ToString());
+
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto>(arquivo.ObterLinha(0), OperadoraEnum.VIVO, "10");
+            /*
+Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de um contrato - Parcela 1
+Enviar arquivo PARCEMSAUTO com movimentação de cancelamento para este mesmo contrato (CD_TIPO_EMISSAO=10), referenciando a outro Cd_MODELO.. Preencher todos os campos relativos a cancelamento
+             */
+        }
+
+        [TestMethod]
+        public void Teste4()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG09", "FG09");
+
+            arquivo = EnviarEmissao<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            arquivo.AlterarLinhaSeExistirCampo(0, "CD_MODELO", (arquivo.ObterValorInteiro(0, "CD_MODELO") + 1).ToString());
+
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "10");
+            /*
+Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de um contrato - Parcela 1
+Enviar arquivo PARCEMSAUTO com movimentação de cancelamento para este mesmo contrato (CD_TIPO_EMISSAO=10), referenciando a outro Cd_MODELO.. Preencher todos os campos relativos a cancelamento
              */
         }
 
@@ -51,11 +82,12 @@ Enviar arquivo PARCEMS com outra movimentação de cancelamento para este mesmo 
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
             var idTransacaoDoArquivoOriginal = arquivo.ObterLinha(0).ObterCampoSeExistir("ID_TRANSACAO").ValorFormatado;
             arquivo.RemoverTodasLinhasDoBody();
-            arquivo.AdicionaLinhaNoBody(linhaArquivoEmissao);
+            arquivo.AdicionaLinhaNoBody(linhaArquivoEmissao.Clone());
 
             arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO_CANC", linhaArquivoEmissao.ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado);
             arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", cdTipoEmissao);
+            arquivo.AlterarLinhaSeExistirCampo(0, "NR_PARCELA", SomarValor(0, "NR_PARCELA", 1M));
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "2");
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_MOVTO_COBRANCA", "02");

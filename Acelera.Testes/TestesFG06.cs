@@ -51,17 +51,17 @@ namespace Acelera.Testes
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
         }
 
         [TestMethod]
@@ -195,13 +195,14 @@ namespace Acelera.Testes
             arquivoDeCancelamento.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivoDeCancelamento.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
             arquivoDeCancelamento.RemoverTodasLinhasDoBody();
 
-            arquivoDeCancelamento.AdicionaLinhaNoBody(linhaArquivoEmissao);
+            arquivoDeCancelamento.AdicionaLinhaNoBody(linhaArquivoEmissao.Clone());
             arquivoDeCancelamento.AlterarLinha(0, "ID_TRANSACAO_CANC", linhaArquivoEmissao.ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado);
             arquivoDeCancelamento.AlterarLinha(0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
             arquivoDeCancelamento.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoDeCancelamento.AlterarLinha(0, "NR_ENDOSSO", "1");
             arquivoDeCancelamento.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
             arquivoDeCancelamento.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            arquivoDeCancelamento.AlterarLinha(0, "NR_PARCELA", (linhaArquivoEmissao.ObterCampoDoArquivo("NR_PARCELA").ValorInteiro + 1).ToString());
         }
 
         public Arquivo EnviarEmissao<T, C>(OperadoraEnum operadora) where T : Arquivo, new() where C : Arquivo, new()
@@ -250,9 +251,9 @@ namespace Acelera.Testes
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_PRODUTO", cobertura.CdProduto);
             triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_LMI", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0,"VL_IS"));
 
-            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_TOTAL", (cobertura.ValorPremioLiquidoMaiorDecimal - 0.01M).ValorFormatado());
+            //triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_TOTAL", (cobertura.ValorPremioLiquidoMaiorDecimal - 0.01M).ValorFormatado());
             triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_IOF", "0");
-            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_LIQUIDO", (cobertura.ValorPremioLiquidoMaiorDecimal - 0.01M).ValorFormatado());
+            //triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_LIQUIDO", (cobertura.ValorPremioLiquidoMaiorDecimal - 0.01M).ValorFormatado());
 
             DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20274;UID=CCARVALHO;PWD=Cristiano@03;encrypt=TRUE;Connection Timeout=5000");
             Parametros.instanciaDB = "HDIQAS_1";

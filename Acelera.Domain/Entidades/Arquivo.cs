@@ -129,6 +129,16 @@ namespace Acelera.Domain.Layouts
             return Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado;
         }
 
+        public int ObterValorInteiro(int posicaoLinha, string campo)
+        {
+            return int.Parse(Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado);
+        }
+
+        public decimal ObterValorDecimal(int posicaoLinha, string campo)
+        {
+            return decimal.Parse(Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado);
+        }
+
         public LinhaArquivo ObterLinha(int posicaoLinha)
         {
             return Linhas.ToList()[posicaoLinha];
