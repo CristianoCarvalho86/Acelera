@@ -126,14 +126,12 @@ namespace Acelera.Testes.Validadores.FG02
 
         public bool ValidarAoMenosUmStatusCorreto(IList<ILinhaTabela> linhas, int codigoEsperado)
         {
-            var linhasComProblema = linhas.Where(x => x.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor != codigoEsperado.ToString());
-            if (linhasComProblema.Any(x => x.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor == codigoEsperado.ToString()))
-                linhasComProblema = new List<ILinhaTabela>();
+            var linhasComErroEsperado = linhas.Where(x => x.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor == codigoEsperado.ToString());
 
-            if (linhasComProblema.Count() > 0)
+            if (linhasComErroEsperado.Count() == 0)
             {
                 logger.EscreverBloco($"O CODIGO DA LINHA ENCONTRADA NA TABELA {tabelaEnum.ObterTexto()} NAO CORRESPONDE AO ESPERADO {Environment.NewLine}" +
-                    $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linhasComProblema.Select(x => x.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor).ObterListaConcatenada(",")}");
+                    $"ESPERADO : {codigoEsperado.ToString()} , OBTIDO : {linhas.Select(x => x.ObterPorColuna("CD_STATUS_PROCESSAMENTO").Valor).ObterListaConcatenada(",")}");
                 return false;
             }
             else

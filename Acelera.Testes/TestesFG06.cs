@@ -71,7 +71,8 @@ namespace Acelera.Testes
             triplice = new TriplicePOMPEIA(1, logger);
             PrepararMassa(OperadoraEnum.POMPEIA);
 
-            triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
+            //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
+            triplice.ArquivoParcEmissao.ReplicarLinhaComAjusteFooter(0, 1);
             triplice.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
             triplice.Salvar();
 
