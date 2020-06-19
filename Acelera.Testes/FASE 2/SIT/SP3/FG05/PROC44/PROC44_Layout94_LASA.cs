@@ -34,8 +34,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC","");
+            
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
-            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
             var seqEMS = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
             var seqEMS1 = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
             var dtEmissao = ObterLinha(0).ObterCampoDoArquivo("DT_EMISSAO").ValorFormatado;
@@ -43,12 +43,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
 
-
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo ,1 , OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR" });
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR"});
+            var idCanc = arquivoods.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -56,20 +56,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "NR_ENDOSSO", "12340000002");
             AlterarLinha(0, "DT_EMISSAO", SomarData(dtEmissao, 5));
 
-
             EnviarParaOds(arquivo);
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR" });
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "9");
-            AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", seqEMS1);
-            AlterarLinha(0, "NR_ENDOSSO", "12340000003");
+            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR"});
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "DT_EMISSAO", SomarData(dtEmissao, 7));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", ObterValor(0, "DT_EMISSAO"));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(ObterValor(0, "DT_INICIO_VIGENCIA"), 365)); 
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+            AlterarLinha(0, "DT_VENCIMENTO", SomarData(ObterValor(0, "DT_EMISSAO"), 1));
+
 
             SalvarArquivo();
 

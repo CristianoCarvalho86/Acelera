@@ -96,7 +96,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo(true);
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 2);
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo(true);
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 3);
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_IOF", "50");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo, true);
+            SalvarArquivo();
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -185,7 +185,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "216");
         }
 
         /// <summary>
@@ -197,15 +197,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4604()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4599", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4604", "FG05 - PROC216");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111128"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
             AlterarLinha(0, "VL_IOF", "50");
@@ -229,7 +230,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "216");
         }
 
     }

@@ -94,7 +94,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 2);
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 3);
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "216", 1);
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4593()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4587", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4593", "FG05 - PROC216");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -183,7 +183,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "216");
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_4594()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "4587", "FG05 - PROC216");
+            IniciarTeste(TipoArquivo.Comissao, "4594", "FG05 - PROC216");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -227,7 +227,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "216");
         }
 
     }

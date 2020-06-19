@@ -26,12 +26,14 @@ namespace Acelera.Testes
                     lista.Add("PRC_0008");
                     lista.Add("PRC_0041");
                     lista.Add("PRC_0126");
+                    //lista.Add("PRC_0022");
                     break;
                 case TipoArquivo.ParcEmissao:
                     lista.Add("PRC_0014");
                     lista.Add("PRC_0015");
                     lista.Add("PRC_0126");
                     lista.Add("PRC_200000");
+                    //lista.Add("PRC_0022");
                     break;
 
                 case TipoArquivo.ParcEmissaoAuto:
@@ -41,8 +43,12 @@ namespace Acelera.Testes
                     lista.Add("PRC_0126");
                     lista.Add("PRC_0213");
                     lista.Add("PRC_200000");
+                    //lista.Add("PRC_0022");
                     break;
                 case TipoArquivo.Comissao:
+                    lista.Add("PRC_0022");
+                    lista.Add("PRC_200000");
+                    break;
                 case TipoArquivo.LanctoComissao:
                 case TipoArquivo.OCRCobranca:
                     lista.Add("PRC_200000");
