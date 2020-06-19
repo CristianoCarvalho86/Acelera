@@ -34,7 +34,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
         /// Informar CD_COBERTURA que não esteja parametrizada na tabela TAB_PRM_COBERTURA_7007, mas que exista nas demais tabelas de cobertura, como a 7009
         /// </summary>
         [TestMethod]
-        [Ignore]
         [TestCategory("Com Critica")]
         public void SAP_4422()
         {
@@ -43,7 +42,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaValida(false));
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+            AlterarLinha(0, "CD_COBERTURA", "01589");
+            AlterarLinha(0, "CD_RAMO", "71");
+            AlterarLinha(0, "CD_PRODUTO", "71724");
+
+            AlterarCobertura(false);
+
 
             SalvarArquivo();
 
@@ -72,7 +81,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
         /// Informar CD_COBERTURA que não esteja parametrizada na tabela TAB_PRM_COBERTURA_7007, mas que exista nas demais tabelas de cobertura, como a 7009
         /// </summary>
         [TestMethod]
-        [Ignore]
         [TestCategory("Com Critica")]
         public void SAP_4424()
         {
@@ -81,7 +89,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaValida(false));
+            AlterarLinha(0, "CD_COBERTURA", "01589");
+            AlterarLinha(0, "CD_RAMO", "71");
+            AlterarLinha(0, "CD_PRODUTO", "71724");
+
+            AlterarCobertura(false);
 
             SalvarArquivo();
 

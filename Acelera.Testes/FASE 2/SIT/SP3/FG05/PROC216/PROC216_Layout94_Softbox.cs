@@ -241,21 +241,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
         public void SAP_1111()
         {
             //iniciar
-            IniciarTeste(TipoArquivo.Comissao, "1111", "FG05 - PROC219");
+            IniciarTeste(TipoArquivo.ParcEmissao, "1111", "FG05 - PROC219");
 
             //Carregar arquivo ods
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 2, OperadoraEnum.SOFTBOX);
 
+            AlterarLinha(0, "CD_CLIENTE", "00952146");
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
 
+            AlterarLinha(1, "CD_CLIENTE", "00952570");
+            AlterarLinha(1, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(1, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(1, "CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
 
-
-
-            SalvarArquivo();
-            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "216");
+            SalvarArquivo(false);
         }
 
     }
