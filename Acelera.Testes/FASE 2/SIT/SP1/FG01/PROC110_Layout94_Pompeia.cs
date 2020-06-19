@@ -24,7 +24,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             //ALTERAR O VALOR SELECIONADO
             RemoverLinhasExcetoAsPrimeiras(100);
             ReplicarLinhaComCorrecao(0, 1);
-            AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.LASA.LCTCMS-EV-/*R*/-20190531.TXT");
 
@@ -146,8 +145,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.PARCEMS-EV-1928-20200211.txt"));
 
             //ALTERAR O VALOR SELECIONADO
+            RemoverLinhasExcetoAsPrimeiras(1);
             ReplicarLinhaComCorrecao(0, 1);
-            AumentarLinhasNoFooter(1);
+            SelecionarLinhaParaValidacao(0);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.POMPEIA.PARCEMS-EV-/*R*/-20200211.TXT");
 

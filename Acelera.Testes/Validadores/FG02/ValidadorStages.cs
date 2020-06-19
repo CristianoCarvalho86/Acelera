@@ -66,10 +66,10 @@ namespace Acelera.Testes.Validadores.FG02
             return ValidarTabela(deveHaverRegistro, out linhas, codigoEsperado);
         }
 
-        public bool ValidarTabela(bool deveHaverRegistro, out List<ILinhaTabela> linhas, int codigoEsperado = 0)
+        public bool ValidarTabela(bool deveHaverRegistro, out List<ILinhaTabela> linhas, int codigoEsperado = 0, bool aoMenosUmComCodigoEsperado = false)
         {
             linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum)).ToList();
-
+            AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
             logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
             logger.Escrever($"Foram encontrados {linhas.Count} registros.");
 
