@@ -15,19 +15,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC97
         /// Este CD_PARCEIRO_NEGOCIO deve estar parametrizado na TAB_ODS_ENDERECO_2001 sem Endereço preenchido. Os demais campos devem estar preenchidos
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_4291()
+        [TestCategory("Sem Critica")]
+        public void SAP_4689()
         {
-            IniciarTeste(TipoArquivo.Cliente, "4291", "FG05 - PROC97");
+            IniciarTeste(TipoArquivo.Cliente, "4689", "FG05 - PROC97");
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            RemoverLinhasExcetoAsPrimeiras(1);
+            SelecionarLinhaParaValidacao(0);
 
-            SalvarArquivo();
+            SalvarArquivo(false);
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "97", 1);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "97");
 
         }
 
@@ -36,19 +36,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC97
         /// Este CD_PARCEIRO_NEGOCIO deve estar parametrizado na TAB_ODS_ENDERECO_2001 sem Endereço preenchido. Os demais campos devem estar preenchidos
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_4294()
+        [TestCategory("Sem Critica")]
+        public void SAP_4680()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "4291", "FG05 - PROC97");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4680", "FG05 - PROC97");
 
-            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111130"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
             RemoverLinhasExcetoAsPrimeiras(1);
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "97", 1);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "97");
 
         }
 

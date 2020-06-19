@@ -138,11 +138,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaValida(true));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "38");
 
         }
 
@@ -155,30 +158,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaValida(true));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "38");
 
         }
 
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_4447()
-        {
-            IniciarTeste(TipoArquivo.Sinistro, "4447", "FG05 - PROC38 - ");
-
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
-
-            AlterarLinha(0, "CD_COBERTURA", dados.ObterCoberturaValida(true));
-
-            SalvarArquivo();
-
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
-
-        }
+        
 
     }
 }

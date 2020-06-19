@@ -245,12 +245,12 @@ namespace Acelera.Testes
             switch (tipoArquivoTeste)
             {
                 case TipoArquivo.Cliente:
-                    lista.Add("PRC_0022_NEG");
+                    //lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0097_INT");
                     lista.Add("PRC_0038_INT");
                     break;
                 case TipoArquivo.ParcEmissao:
-                    lista.Add("PRC_0022_NEG");
+                    //lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0038_INT");
                     lista.Add("PRC_0034_INT");
@@ -263,7 +263,7 @@ namespace Acelera.Testes
                     break;
 
                 case TipoArquivo.ParcEmissaoAuto:
-                    lista.Add("PRC_0022_NEG");
+                    //lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0034_INT");
                     lista.Add("PRC_0038_INT");
@@ -278,12 +278,12 @@ namespace Acelera.Testes
                     break;
 
                 case TipoArquivo.Comissao:
-                    lista.Add("PRC_0022_NEG");
+                    //lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0034_INT");
                     lista.Add("PRC_0038_INT");
                     lista.Add("PRC_0054_INT");
                     lista.Add("PRC_0097_INT");
-                    lista.Add("PRC_0108_NEG");
+                    //lista.Add("PRC_0108_NEG");
                     lista.Add("PRC_0216_NEG");
                     break;
 

@@ -12,25 +12,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC97
 
         /// <summary>
         /// Informar CD_SEGURADORA com um CD_EXTERNO cadastrado na tabela TAB_ODS_PARCEIRO_NEGOCIO_2000 como "SE". 
-        /// Este CD_PARCEIRO_NEGOCIO deve estar parametrizado na TAB_ODS_ENDERECO_2001 sem nenhum campo cadastral preenchido (cnpj, endereço, cidade, uf ou cep).
+        /// Este CD_PARCEIRO_NEGOCIO deve estar parametrizado na TAB_ODS_ENDERECO_2001 sem Endereço preenchido. Os demais campos devem estar preenchidos
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_4696()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "4696", "FG05 - PROC97");
+            IniciarTeste(TipoArquivo.Comissao, "4696", "FG05 - PROC97");
 
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            RemoverLinhasExcetoAsPrimeiras(1);
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111130"));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "97", 1);
-
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "97");
         }
-
 
     }
 }
