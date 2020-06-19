@@ -23,7 +23,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             ReplicarLinhaComCorrecao(0, 1);
-            AumentarLinhasNoFooter(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo("C01.TIM.SINISTRO-EV-/*R*/-20200214.TXT");
 

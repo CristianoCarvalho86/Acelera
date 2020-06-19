@@ -110,7 +110,7 @@ namespace Acelera.Testes
             return linhasEncontradas;
         }
 
-        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
+        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return null;
@@ -123,7 +123,7 @@ namespace Acelera.Testes
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
 
-                if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
+                if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado, aoMenosUmCodigoEsperado))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
                 else
                     ExplodeFalha();
@@ -153,7 +153,7 @@ namespace Acelera.Testes
             logger.TesteComFalha();
             Assert.Fail();
         }
-
+        
         protected bool Validar(bool obtido, bool esperado, string tituloValidacao)
         {
             logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);

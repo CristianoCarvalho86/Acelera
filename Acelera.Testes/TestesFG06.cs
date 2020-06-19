@@ -61,7 +61,7 @@ namespace Acelera.Testes
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.ReprovadoNegocioComDependencia);
         }
 
         [TestMethod]
@@ -71,7 +71,8 @@ namespace Acelera.Testes
             triplice = new TriplicePOMPEIA(1, logger);
             PrepararMassa(OperadoraEnum.POMPEIA);
 
-            triplice.ArquivoParcEmissao.ReplicarLinha(0, 1);//Rejeitar na 01
+            //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
+            triplice.ArquivoParcEmissao.ReplicarLinhaComAjusteFooter(0, 1);
             triplice.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
             triplice.Salvar();
 
@@ -85,13 +86,13 @@ namespace Acelera.Testes
             ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01,true);
         }
 
         [TestMethod]
         public void Teste4_FG06()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG06", "Teste1-FG06");
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste4-FG06", "Teste4-FG06");
             triplice = new TripliceLASA(1, logger);
             PrepararMassa(OperadoraEnum.LASA);
             triplice.ArquivoCliente.RemoverHeader();
@@ -102,16 +103,16 @@ namespace Acelera.Testes
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.ReprovadoNegocioComDependencia);
         }
 
         [TestMethod]
         public void Teste5_FG06()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG06", "Teste1-FG06");
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste5-FG06", "Teste1-FG06");
             triplice = new TripliceSoftbox(1, logger);
             PrepararMassa(OperadoraEnum.SOFTBOX);
-            triplice.ArquivoCliente.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
+            triplice.ArquivoCliente.AlterarLinha(0, "SEXO", "1");//Rejeitar na 02
             triplice.Salvar();
 
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
@@ -245,7 +246,7 @@ namespace Acelera.Testes
             Parametros.instanciaDB = "HDIDEV_1";
             DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
 
-            var cobertura = dados.ObterCobertura(triplice.ArquivoCliente.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
+            var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoCliente.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_COBERTURA", cobertura.CdCobertura);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_RAMO", cobertura.CdRamo);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_PRODUTO", cobertura.CdProduto);
