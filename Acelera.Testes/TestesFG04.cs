@@ -105,10 +105,11 @@ namespace Acelera.Testes
                 ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, fg, codigoStageComissao);
         }
 
-        public void ExecutarFG04Comissao(string cdContrato, CodigoStage codigoStage)
+        public void ExecutarEValidarFG04Comissao(string cdContrato, CodigoStage codigoStage, OperadoraEnum operacao)
         {
             var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
-            validador.ValidarTabela(new string[] { "CD_CONTRATO" }, new string[] { cdContrato }, "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
+            validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA"  }, new string[] { cdContrato , $"C01.{operacao.ObterTexto().ToUpper()}.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}" },
+                "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
         }
 
     }
