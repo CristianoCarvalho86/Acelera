@@ -77,8 +77,8 @@ namespace Acelera.Testes.DataAccessRep
             var tpa = ObterCdParceiroNegocioParaTPA(cdTpa);
             var clausula = $"CD_PN_OPERACAO = '{tpa}' AND CD_PN_SUCURSAL = '{sucursal}' AND CD_COBERTURA = '{cdCobertura}' AND CD_PRODUTO = '{cdProduto}'" +
                 $" AND TP_REMUNERACAO = '1' AND FL_REMU_INFORMADA = 'N'" +
-                $" AND CD_PN_CORRETOR IS NOT NULL AND CD_PN_CORRETOR <> ''" +
-                $" AND (VL_REMUNERACAO IS NOT NULL AND VL_REMUNERACAO <> '')" +
+                $" AND CD_PN_CORRETOR IS NOT NULL " +
+                $" AND VL_REMUNERACAO IS NOT NULL " +
                 $" AND CD_TIPO_REMUNERACAO = 'C' ";
             return DataAccess.Consulta($"SELECT VL_REMUMERACAO, TP_REMUNERACAO FROM {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 WHERE {clausula}","BUSCANDO PARAMETRIZAÇÃO NA 7013", DBEnum.Hana, logger, false);
         }
