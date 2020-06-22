@@ -4,6 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.ConjuntoArquivos;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.Validadores.FG02;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace Acelera.Testes
                     }
                     logger.Escrever("VALOR CORRETO.");
                 }
-                else if(dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString() == "2")
+                else if (dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString() == "2")
                 {
                     logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("VL_COMISSAO")};");
                     logger.Escrever("VL_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO");
@@ -88,23 +89,26 @@ namespace Acelera.Testes
 
         public void ExecutarEValidarTriplice(FGs fg, CodigoStage? codigoStageCliente, CodigoStage? codigoStageParc, CodigoStage? codigoStageComissao)
         {
-            if (fg != FGs.FG04)
-            {
-                if (codigoStageCliente.HasValue)
-                    ExecutarEValidar(triplice.ArquivoCliente, fg, codigoStageCliente.Value);
-                else
-                    ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageCliente);
+            if (codigoStageCliente.HasValue)
+                ExecutarEValidar(triplice.ArquivoCliente, fg, codigoStageCliente.Value);
+            else
+                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageCliente);
 
-                if (codigoStageParc.HasValue)
-                    ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
-                else
-                    ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
-            }
+            if (codigoStageParc.HasValue)
+                ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
+            else
+                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
 
             if (codigoStageComissao.HasValue)
                 resultadoStageComissao = ExecutarEValidar(triplice.ArquivoComissao, fg, codigoStageComissao.Value);
             else
                 ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, fg, codigoStageComissao);
+        }
+
+        public void ExecutarFG04Comissao(string cdContrato, CodigoStage codigoStage)
+        {
+            var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
+            validador.ValidarTabela(new string[] { "CD_CONTRATO" }, new string[] { cdContrato }, "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
         }
 
     }

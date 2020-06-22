@@ -147,6 +147,30 @@ namespace Acelera.Testes.Validadores
 
         }
 
+        protected IList<ILinhaTabela> ObterLinhasParaStage(string consulta)
+        {
+            var linhas = new List<ILinhaTabela>();
+            if (tabelaEnum == TabelasEnum.Cliente)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaClienteStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.Comissao)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.LanctoComissao)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaLanctoComissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.OCRCobranca)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaOCRCobrancaStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.ParcEmissao)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.ParcEmissaoAuto)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else if (tabelaEnum == TabelasEnum.Sinistro)
+                linhas = DataAccess.ChamarConsultaAoBanco<LinhaSinistroStage>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            else
+                throw new Exception("TIPO DE TABELA DE CONSULTA NAO ENCONTRADO.");
+
+            return linhas;
+
+        }
+
         protected int ObterQtdRegistrosDuplicadosDoBody()
         {
             if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0 && valoresAlteradosBody.Alteracoes.First().RepeticoesLinha > 1)

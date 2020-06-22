@@ -59,6 +59,32 @@ namespace Acelera.Testes.Validadores.FG02
             throw new NotImplementedException();
         }
 
+        public bool ValidarTabela(string[] Parametro, string[] Valores, string orderBy, int? codigoEsperado, out IList<ILinhaTabela> linhas, bool aoMenosUmComCodigoEsperado = false)
+        {
+            var campos = "";
+            for (int i = 0; i < Parametro.Length; i++)
+            {
+                campos += $"{Parametro[i]} = '{Valores[i]}' AND";  
+            }
+            campos = campos.Remove(campos.Length - 4);
+            linhas = ObterLinhasParaStage($"select * FROM {Parametros.instanciaDB}.{tabelaEnum.ObterTexto()} WHERE {campos} ORDER BY {orderBy}").ToList();
+            AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
+            var deveHaverRegistro = codigoEsperado.HasValue ? true : false;
+            logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
+            logger.Escrever($"Foram encontrados {linhas.Count} registros.");
+
+            if (!ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count))
+            {
+                return false;
+            }
+            else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
+            {
+                return ValidaStatusProcessamento(linhas, codigoEsperado.Value);
+            }
+
+            return true;
+        }
+
         public bool ValidarTabela(bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmComCodigoEsperado = false)
         {
             AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;

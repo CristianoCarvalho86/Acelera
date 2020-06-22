@@ -43,6 +43,32 @@ namespace Acelera.Testes.DataAccessRep
             return tabela.Linhas;
         }
 
+        public static IList<T> ChamarConsultaAoBanco<T>(string consulta, IMyLogger logger) where T : ILinhaTabela, new()
+        {
+            var tabela = new Tabela<T>();
+            try
+            {
+                logger.InicioOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
+
+                var c = consulta;
+                logger.Escrever("Consulta Realizada :" + c);
+                var resultado = DBHelperHana.Instance.GetData(c);
+
+                logger.LogRetornoQuery(resultado, c);
+
+                tabela.ObterRetornoQuery(resultado);
+
+                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
+
+            }
+            catch (Exception ex)
+            {
+                logger.Erro(ex);
+                throw ex;
+            }
+            return tabela.Linhas;
+        }
+
         public static string ConsultaUnica(string sql, string parametroBuscado, IMyLogger logger)
         {
             return ConsultaUnica(sql, parametroBuscado, DBEnum.Hana, logger);
