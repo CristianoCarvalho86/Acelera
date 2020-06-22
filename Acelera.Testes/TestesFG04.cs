@@ -86,5 +86,12 @@ namespace Acelera.Testes
             }
         }
 
+        public void ExecutarEValidarTriplice(FGs fg, CodigoStage codigoStageCliente, CodigoStage codigoStageParc, CodigoStage comissao)
+        {
+            ExecutarEValidar(triplice.ArquivoCliente,fg, codigoStageCliente);
+            ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc);
+            ExecutarEValidar(triplice.ArquivoComissao, fg, comissao);
+        }
+
     }
 }
