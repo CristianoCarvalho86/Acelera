@@ -28,15 +28,31 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             CarregarTriplice(OperadoraEnum.LASA);
 
+            triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+            triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+
+            triplice.Salvar();
+
+            ValidarFlComissaoCalculada(triplice.ArquivoComissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado, "S");
+
             ExecutarEValidarTriplice(FGs.FG00, CodigoStage.AprovadoNAFG00, CodigoStage.AprovadoNAFG00, null);
 
             ExecutarEValidarTriplice(FGs.FG01, CodigoStage.AprovadoNaFG01, CodigoStage.AprovadoNaFG01, null);
 
             ExecutarEValidarFG04Comissao(ObterValorFormatado(0, "CD_CONTRATO"), CodigoStage.AprovadoNAFG00, OperadoraEnum.LASA);
 
-            ValidarFlComissaoCalculada(ObterValorHeader("CD_TPA"), "S");
+            ValidarVlComissaoNaStage(
+                triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado,
+                triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_SUCURSAL"),
+                triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_COBERTURA"),
+                triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_PRODUTO"));
 
-            ValidarVlComissaoNaStage(ObterValorHeader("CD_TPA"), ObterValorFormatado(0, "CD_SUCURSAL"), ObterValorFormatado(0, "CD_COBERTURA"), ObterValorFormatado(0, "CD_PRODUTO"));
+            ValidarStageComissaoComParcela();
+
+            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+
         }
 
     }
