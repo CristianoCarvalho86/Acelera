@@ -42,7 +42,7 @@ namespace Acelera.Testes
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
 
-        public void ObterFlComissaoCalculada(string cdTpa, string valorEsperado)
+        public void ValidarFlComissaoCalculada(string cdTpa, string valorEsperado)
         {
             logger.AbrirBloco("VALIDANDO FL_COMISSAO_CALCULADA.");
             var flComissaoCalculada = dados.ObterFlComissaoCalculada(cdTpa);

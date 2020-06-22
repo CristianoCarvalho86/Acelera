@@ -34,6 +34,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             ExecutarEValidarFG04Comissao(ObterValorFormatado(0, "CD_CONTRATO"), CodigoStage.AprovadoNAFG00, OperadoraEnum.LASA);
 
+            ValidarFlComissaoCalculada(ObterValorHeader("CD_TPA"), "S");
+
             ValidarVlComissaoNaStage(ObterValorHeader("CD_TPA"), ObterValorFormatado(0, "CD_SUCURSAL"), ObterValorFormatado(0, "CD_COBERTURA"), ObterValorFormatado(0, "CD_PRODUTO"));
         }
 
