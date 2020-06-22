@@ -94,20 +94,9 @@ namespace Acelera.Domain.Enums
 
     public enum FG04_Tarefas
     {
-        [Description("FGR_04_CLIENTE")]
-        Cliente,
-        [Description("FGR_04_COMISSAO")]
+
+        [Description("FGR_04_CALC_COMISSAO")]
         Comissao,
-        [Description("FGR_04_BAIXA_COMISSAO")]
-        LanctoComissao,
-        [Description("FGR_04_BAIXA_PARCELA")]
-        OCRCobranca,
-        [Description("FGR_04_PARCELA")]
-        ParcEmissao,
-        [Description("FGR_04_SINISTRO")]
-        Sinistro,
-        [Description("FGR_04_PARCELA_AUTO")]
-        ParcEmissaoAuto,
 
     }
 
