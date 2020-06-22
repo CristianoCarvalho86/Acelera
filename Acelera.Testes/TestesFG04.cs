@@ -86,11 +86,22 @@ namespace Acelera.Testes
             }
         }
 
-        public void ExecutarEValidarTriplice(FGs fg, CodigoStage codigoStageCliente, CodigoStage codigoStageParc, CodigoStage comissao)
+        public void ExecutarEValidarTriplice(FGs fg, CodigoStage? codigoStageCliente, CodigoStage? codigoStageParc, CodigoStage? codigoStageComissao)
         {
-            ExecutarEValidar(triplice.ArquivoCliente,fg, codigoStageCliente);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc);
-            ExecutarEValidar(triplice.ArquivoComissao, fg, comissao);
+            if(codigoStageCliente.HasValue)
+                ExecutarEValidar(triplice.ArquivoCliente,fg, codigoStageCliente.Value);
+            else
+                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageCliente);
+
+            if(codigoStageParc.HasValue)
+                ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
+            else
+                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
+
+            if (codigoStageComissao.HasValue)
+                ExecutarEValidar(triplice.ArquivoComissao, fg, codigoStageComissao.Value);
+            else
+                ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, fg, codigoStageComissao);
         }
 
     }
