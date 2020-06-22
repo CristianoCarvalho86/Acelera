@@ -105,20 +105,28 @@ namespace Acelera.Testes
 
         public void ExecutarEValidarTriplice(FGs fg, CodigoStage? codigoStageCliente, CodigoStage? codigoStageParc, CodigoStage? codigoStageComissao)
         {
+            arquivo = triplice.ArquivoCliente;
+            SelecionarLinhaParaValidacao(0);
             if (codigoStageCliente.HasValue)
                 ExecutarEValidar(triplice.ArquivoCliente, fg, codigoStageCliente.Value);
             else
                 ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageCliente);
 
+            arquivo = triplice.ArquivoParcEmissao;
+            SelecionarLinhaParaValidacao(0);
             if (codigoStageParc.HasValue)
                 ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
             else
                 ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
 
+            arquivo = triplice.ArquivoComissao;
+            SelecionarLinhaParaValidacao(0);
             if (codigoStageComissao.HasValue)
                 resultadoStageComissao = ExecutarEValidar(triplice.ArquivoComissao, fg, codigoStageComissao.Value);
             else
                 ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, fg, codigoStageComissao);
+
+
         }
 
         public void ExecutarEValidarFG04Comissao(string cdContrato, CodigoStage codigoStage, OperadoraEnum operacao)
@@ -131,7 +139,10 @@ namespace Acelera.Testes
 
         public void ValidarStageComissaoComParcela()
         {
+            foreach(var linhaParcela in resultadoStageParcela)
+            {
 
+            }
         }
 
     }
