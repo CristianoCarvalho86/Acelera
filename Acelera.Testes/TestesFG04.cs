@@ -23,6 +23,9 @@ namespace Acelera.Testes
 
         protected new TabelaParametrosDataSP3 dados;
 
+        protected string VlRemuneracao7013;
+        protected string TPRemuneracao7013;
+
         public TestesFG04()
         {
 
@@ -165,11 +168,25 @@ namespace Acelera.Testes
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_COBERTURA", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"NM_TPA", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "CD_VERSAO_ARQUIVO", ref errosEncontrados);
+                if (TPRemuneracao7013 == "1" &&
+                    resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal !=
+                    (linhaParcela.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * VlRemuneracao7013.ObterValorDecimal()))
+                {
+                    errosEncontrados += $"PC_COMISSAO ESPERADO = {linhaParcela.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * VlRemuneracao7013.ObterValorDecimal()} OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
+                }
+
+                if (TPRemuneracao7013 == "2" &&
+                resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal != VlRemuneracao7013.ObterValorDecimal())
+                {
+                    errosEncontrados += $"PC_COMISSAO ESPERADO = {linhaParcela.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * VlRemuneracao7013.ObterValorDecimal()} OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
+                }
+
                 /*"CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
                                  TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO * (TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO)
                 CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 2-- VALOR FIXO
                                TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO"
                 TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO
+                
                 "CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
                                    TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO
                 CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 2-- VALOR FIXO
