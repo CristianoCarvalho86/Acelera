@@ -137,7 +137,7 @@ namespace Acelera.Testes
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
         }
 
-        public void ValidarTabelaDeRetornoVazia(Arquivo arquivo,bool a)
+        public void ValidarTabelaDeRetornoVazia(Arquivo arquivo)
         {
             this.arquivo = arquivo;
             SelecionarLinhaParaValidacao(0);
