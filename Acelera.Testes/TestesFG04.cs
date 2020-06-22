@@ -19,6 +19,8 @@ namespace Acelera.Testes
 
         protected IList<ILinhaTabela> resultadoStageComissao;
 
+        protected IList<ILinhaTabela> resultadoStageParcela;
+
         protected new TabelaParametrosDataSP3 dados;
 
         public TestesFG04()
@@ -42,7 +44,7 @@ namespace Acelera.Testes
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
 
-        public void ObterFlComissaoCalculada(string cdTpa, string valorEsperado)
+        public void ValidarFlComissaoCalculada(string cdTpa, string valorEsperado)
         {
             logger.AbrirBloco("VALIDANDO FL_COMISSAO_CALCULADA.");
             var flComissaoCalculada = dados.ObterFlComissaoCalculada(cdTpa);
@@ -125,6 +127,11 @@ namespace Acelera.Testes
             var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
             validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA"  }, new string[] { cdContrato , $"C01.{operacao.ObterTexto().ToUpper()}.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}" },
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
+        }
+
+        public void ValidarStageComissaoComParcela()
+        {
+
         }
 
     }
