@@ -42,6 +42,20 @@ namespace Acelera.Testes
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
 
+        public void ObterFlComissaoCalculada(string cdTpa, string valorEsperado)
+        {
+            logger.AbrirBloco("VALIDANDO FL_COMISSAO_CALCULADA.");
+            var flComissaoCalculada = dados.ObterFlComissaoCalculada(cdTpa);
+            logger.Escrever("FL_COMISSAO_CALCULADA encontrada = " + flComissaoCalculada);
+            if (flComissaoCalculada == valorEsperado)
+                logger.Escrever($"FL_COMISSAO_CALCULADA IGUAL AO VALOR ESPERADO ('{valorEsperado}')");
+            else
+            {
+                logger.Erro($"FL_COMISSAO_CALCULADA IGUAL DIFERENTE DO VALOR ESPERADO ('{valorEsperado}')");
+                ExplodeFalha();
+            }
+        }
+
         public void ValidarVlComissaoNaStage(string cdTpa, string cdSucursal, string cdCobertura, string cdProduto)
         {
             logger.AbrirBloco("INICIANDO VALIDAÇÃO DO VL_COMISSAO ENCONTRADO NA STAGE.");
