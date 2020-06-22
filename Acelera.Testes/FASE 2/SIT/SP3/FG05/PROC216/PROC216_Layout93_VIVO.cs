@@ -181,7 +181,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos);
-            AlterarLinha(0, "VL_COMISSAO", "60");
+            AlterarLinha(0, "VL_COMISSAO", "40");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             //Salvar e executar
@@ -227,7 +227,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(1, "VL_COMISSAO", "20");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
             AlterarLinha(1, "CD_TIPO_COMISSAO", "C");
-            
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //Salvar e executar
             SalvarArquivo();

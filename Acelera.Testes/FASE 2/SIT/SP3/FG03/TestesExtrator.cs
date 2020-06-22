@@ -253,6 +253,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG03
             //ALTERAR O VALOR SELECIONADO
 
             //Tem que alterar movimenteção do sinistro
+
+            //AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "10");
             ObterLinhaComCdContratoDisponivelEDeterminadoTipoMovimento("1");
             var registroODS = ObterLinha(0).Clone();
             SelecionarLinhaParaValidacao(0);

@@ -153,7 +153,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_SEGURADORA", "");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
             SalvarArquivo();
 
@@ -279,6 +280,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_SEGURADORA", "5908");
 
             SalvarArquivo();
@@ -300,6 +304,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "CD_SEGURADORA", "5908");
 
             SalvarArquivo();

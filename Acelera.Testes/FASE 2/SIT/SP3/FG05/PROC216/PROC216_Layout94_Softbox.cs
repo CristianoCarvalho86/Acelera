@@ -160,7 +160,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
@@ -178,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
             IgualarCampos(arquivoods, arquivo, campos, true);
-            AlterarLinha(0, "VL_COMISSAO", "60");
+            AlterarLinha(0, "VL_COMISSAO", "40");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             //Salvar e executar
@@ -207,7 +207,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "50");
             AlterarLinha(0, "VL_IOF", "50");
-            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "CD_CORRETOR", "7150145");
 
             EnviarParaOds(arquivo, true);
             var arquivoods = arquivo.Clone();
@@ -217,12 +217,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             CarregarArquivo(arquivo, 2, OperadoraEnum.SOFTBOX);
 
             //Alterar arquivo
-            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
+            var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM" };
             IgualarCampos(arquivoods, arquivo, campos, true);
-            AlterarLinha(0, "VL_COMISSAO", "50");
-            AlterarLinha(1, "VL_COMISSAO", "50");
+            AlterarLinha(0, "VL_COMISSAO", "20");
+            AlterarLinha(1, "VL_COMISSAO", "20");
+            AlterarLinha(0, "CD_CORRETOR", "7150145");
+            AlterarLinha(1, "CD_CORRETOR", "7139687");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
-            AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "C");
             AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //Salvar e executar
