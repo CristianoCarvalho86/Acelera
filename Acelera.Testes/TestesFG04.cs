@@ -16,7 +16,7 @@ namespace Acelera.Testes
     {
         protected ITriplice triplice;
 
-        protected IList<ILinhaTabela> resultadoStageParcela;
+        protected IList<ILinhaTabela> resultadoStageComissao;
 
         protected new TabelaParametrosDataSP3 dados;
 
@@ -52,7 +52,7 @@ namespace Acelera.Testes
             }
             logger.Escrever("VL_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["VL_REMUNERACAO"].ToString());
             logger.Escrever("TP_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString());
-            foreach (var linha in resultadoStageParcela)
+            foreach (var linha in resultadoStageComissao)
             {
                 if (dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString() == "1")
                 {
@@ -88,18 +88,21 @@ namespace Acelera.Testes
 
         public void ExecutarEValidarTriplice(FGs fg, CodigoStage? codigoStageCliente, CodigoStage? codigoStageParc, CodigoStage? codigoStageComissao)
         {
-            if(codigoStageCliente.HasValue)
-                ExecutarEValidar(triplice.ArquivoCliente,fg, codigoStageCliente.Value);
-            else
-                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageCliente);
+            if (fg != FGs.FG04)
+            {
+                if (codigoStageCliente.HasValue)
+                    ExecutarEValidar(triplice.ArquivoCliente, fg, codigoStageCliente.Value);
+                else
+                    ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageCliente);
 
-            if(codigoStageParc.HasValue)
-                ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
-            else
-                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
+                if (codigoStageParc.HasValue)
+                    ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
+                else
+                    ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
+            }
 
             if (codigoStageComissao.HasValue)
-                ExecutarEValidar(triplice.ArquivoComissao, fg, codigoStageComissao.Value);
+                resultadoStageComissao = ExecutarEValidar(triplice.ArquivoComissao, fg, codigoStageComissao.Value);
             else
                 ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, fg, codigoStageComissao);
         }
