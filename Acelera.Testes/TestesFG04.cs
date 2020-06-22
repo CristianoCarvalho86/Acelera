@@ -137,12 +137,53 @@ namespace Acelera.Testes
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
         }
 
+        public void ValidarTabelaDeRetornoVazia(Arquivo arquivo,bool a)
+        {
+            this.arquivo = arquivo;
+            SelecionarLinhaParaValidacao(0);
+            ValidarTabelaDeRetorno(arquivo,false);
+        }
+
         public void ValidarStageComissaoComParcela()
         {
+            logger.AbrirBloco("INICIANDO COMPARACAO ENTRE OS REGISTROS ENCONTRADOS EM PARC E COMISSAO.");
+            int count = 0;
+            var errosEncontrados = "";
             foreach(var linhaParcela in resultadoStageParcela)
             {
-
+                //if (!linhaParcela.ObterPorColuna("TIPO_REGISTRO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("TIPO_REGISTRO").ValorFormatado)
+                //    errosEncontrados += $"| TIPO_REGISTRO EM PARCELA :{linhaParcela.ObterPorColuna("TIPO_REGISTRO").ValorFormatado} | TIPO_REGISTRO EM COMISSAO : {resultadoStageComissao[count].ObterPorColuna("TIPO_REGISTRO").ValorFormatado} {Environment.NewLine}";
+                //if(!linhaParcela.ObterPorColuna("CD_INTERNO_RESSEGURADOR").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_INTERNO_RESSEGURADOR").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_SEGURADORA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_SEGURADORA").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_EXTERNO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_EXTERNO").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_RAMO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_RAMO").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_CONTRATO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_CONTRATO").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("NR_PARCELA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NR_PARCELA").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("NR_ENDOSSO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NR_ENDOSSO").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_ITEM").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_ITEM").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_TIPO_REMUNERACAO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_TIPO_REMUNERACAO").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_COBERTURA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_COBERTURA").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("NM_TPA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NM_TPA").ValorFormatado)
+                //if(!linhaParcela.ObterPorColuna("CD_VERSAO_ARQUIVO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_VERSAO_ARQUIVO").ValorFormatado)
+                /*"CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
+                                 TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO * (TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO)
+                CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 2-- VALOR FIXO
+                               TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO"
+                TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO
+                "CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
+                                   TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO
+                CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 2-- VALOR FIXO
+                                   TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO / VL_PREMIO_LIQUIDO"
+                0
+                COM'*/
+                count++;
             }
+        }
+
+        private void ValidaCamposIguais(ILinhaTabela linhaOrigem, ILinhaTabela linhaDestino, string campo)
+        {
+
         }
 
     }
