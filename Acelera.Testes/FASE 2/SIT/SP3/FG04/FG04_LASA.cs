@@ -24,8 +24,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
         [TestCategory("Sem Critica")]
         public void SAP_4830()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Cliente, "", "");
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "", "");
 
+            CarregarTriplice(OperadoraEnum.LASA);
+
+            
            
 
         }
