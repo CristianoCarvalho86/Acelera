@@ -42,6 +42,20 @@ namespace Acelera.Testes
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
 
+        public void ObterFlComissaoCalculada(string cdTpa, string valorEsperado)
+        {
+            logger.AbrirBloco("VALIDANDO FL_COMISSAO_CALCULADA.");
+            var flComissaoCalculada = dados.ObterFlComissaoCalculada(cdTpa);
+            logger.Escrever("FL_COMISSAO_CALCULADA encontrada = " + flComissaoCalculada);
+            if (flComissaoCalculada == valorEsperado)
+                logger.Escrever($"FL_COMISSAO_CALCULADA IGUAL AO VALOR ESPERADO ('{valorEsperado}')");
+            else
+            {
+                logger.Erro($"FL_COMISSAO_CALCULADA IGUAL DIFERENTE DO VALOR ESPERADO ('{valorEsperado}')");
+                ExplodeFalha();
+            }
+        }
+
         public void ValidarVlComissaoNaStage(string cdTpa, string cdSucursal, string cdCobertura, string cdProduto)
         {
             logger.AbrirBloco("INICIANDO VALIDAÇÃO DO VL_COMISSAO ENCONTRADO NA STAGE.");
@@ -107,6 +121,7 @@ namespace Acelera.Testes
 
         public void ExecutarEValidarFG04Comissao(string cdContrato, CodigoStage codigoStage, OperadoraEnum operacao)
         {
+            ChamarExecucao(FG04_Tarefas.Comissao.ObterTexto());
             var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
             validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA"  }, new string[] { cdContrato , $"C01.{operacao.ObterTexto().ToUpper()}.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}" },
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
