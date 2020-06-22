@@ -72,27 +72,53 @@ namespace Acelera.Testes
             }
             logger.Escrever("VL_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString());
             logger.Escrever("TP_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString());
+
+            var count = 0;
             foreach (var linha in resultadoStageComissao)
             {
                 if (dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString() == "1")
                 {
+                    //VL_COMISSAO
                     logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("VL_COMISSAO")};");
                     logger.Escrever("VL_COMISSAO DEVE SER : TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO * (TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO)");
                     if (linha.ObterPorColuna("VL_COMISSAO").ValorDecimal !=
-                       linha.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()))
+                       resultadoStageParcela[count].ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()))
                     {
                         logger.Erro("VL_COMISSAO INVALIDO.");
                         ExplodeFalha();
                     }
                     logger.Escrever("VALOR CORRETO.");
+
+                    //PC_COMISSAO
+                    logger.Escrever($"PC_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("PC_COMISSAO")};");
+                    logger.Escrever("PC_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO");
+                    if (linha.ObterPorColuna("PC_COMISSAO").ValorDecimal != decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()))
+                    {
+                        logger.Erro("PC_COMISSAO INVALIDO.");
+                        ExplodeFalha();
+                    }
+                    logger.Escrever("VALOR CORRETO.");
+
                 }
                 else if (dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString() == "2")
                 {
+                    //VL_COMISSAO
                     logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("VL_COMISSAO")};");
                     logger.Escrever("VL_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO");
                     if (linha.ObterPorColuna("VL_COMISSAO").ValorDecimal != decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()))
                     {
                         logger.Erro("VL_COMISSAO INVALIDO.");
+                        ExplodeFalha();
+                    }
+                    logger.Escrever("VALOR CORRETO.");
+
+                    //PC_COMISSAO
+                    logger.Escrever($"PC_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("PC_COMISSAO")};");
+                    logger.Escrever("PC_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO / VL_PREMIO_LIQUIDO");
+                    if (linha.ObterPorColuna("PC_COMISSAO").ValorDecimal.ToString("C2") !=
+                        (decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()) / linha.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal).ToString("C2"))
+                    {
+                        logger.Erro("PC_COMISSAO INVALIDO.");
                         ExplodeFalha();
                     }
                     logger.Escrever("VALOR CORRETO.");
@@ -102,7 +128,7 @@ namespace Acelera.Testes
                     logger.Erro($"TP_REMUNERACAO INVALIDO : {dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString()}");
                     ExplodeFalha();
                 }
-
+                count++;
             }
         }
 
@@ -170,19 +196,6 @@ namespace Acelera.Testes
                 ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "CD_VERSAO_ARQUIVO", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "VL_PREMIO_LIQUIDO", "VL_BASE_CALCULO", ref errosEncontrados);
 
-                if (TPRemuneracao7013 == "1" &&
-                    resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal !=
-                    (linhaParcela.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * VlRemuneracao7013.ObterValorDecimal()))
-                {
-                    errosEncontrados += $"PC_COMISSAO ESPERADO = {linhaParcela.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * VlRemuneracao7013.ObterValorDecimal()} OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
-                }
-
-                if (TPRemuneracao7013 == "2" &&
-                resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal != VlRemuneracao7013.ObterValorDecimal())
-                {
-                    errosEncontrados += $"PC_COMISSAO ESPERADO = {VlRemuneracao7013.ObterValorDecimal()} OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
-                }
-
                 if (resultadoStageComissao[count].ObterPorColuna("PC_PARTICIPACAO").ValorDecimal != 0)
                 {
                     errosEncontrados += $"PC_PARTICIPACAO ESPERADO = 0 OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
@@ -193,18 +206,6 @@ namespace Acelera.Testes
                     errosEncontrados += $"PC_PARTICIPACAO ESPERADO = COM OBTIDO : {resultadoStageComissao[count].ObterPorColuna("CD_SISTEMA").ValorFormatado}";
                 }
 
-                /*"CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
-                                 TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO * (TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO)
-                CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 2-- VALOR FIXO
-                               TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO"
-                TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO
-                
-                "CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
-                                   TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO
-                CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 2-- VALOR FIXO
-                                   TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO / VL_PREMIO_LIQUIDO"
-                0
-                COM'*/
                 count++;
             }
 
