@@ -225,7 +225,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_COMISSAO", "20");
             AlterarLinha(1, "VL_COMISSAO", "20");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
-            AlterarLinha(1, "CD_TIPO_COMISSAO", "R");
+            AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
             AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1));
 
             //Salvar e executar

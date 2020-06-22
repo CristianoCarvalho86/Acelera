@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
 {
     [TestClass]
-    public class PROC38_Layout94_VIVO : TestesFG05
+    public class PROC38_Layout93_VIVO : TestesFG05
     {
 
         /// <summary>
@@ -36,7 +36,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
         /// Informar CD_COBERTURA que não esteja parametrizada na tabela TAB_PRM_COBERTURA_7007, mas que exista nas demais tabelas de cobertura, como a 7009
         /// </summary>
         [TestMethod]
-        [Ignore]
         [TestCategory("Com Critica")]
         public void SAP_4415()
         {
@@ -45,7 +44,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC38
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            AlterarLinha(0, "CD_COBERTURA", "");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
+            AlterarLinha(0, "CD_COBERTURA", "01589");
+            AlterarLinha(0, "CD_RAMO", "71");
+            AlterarLinha(0, "CD_PRODUTO", "71724");
+
+            AlterarCobertura(false);
 
             SalvarArquivo();
 

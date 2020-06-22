@@ -18,12 +18,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         [TestCategory("Com Critica")]
         public void SAP_4310()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4310", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4310", "FG05 - PROC34");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_SEGURADORA", "");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
             SalvarArquivo();
 
@@ -149,10 +152,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_SEGURADORA", "19615");
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
             AlterarCobertura(false);
-            SalvarArquivo("PROC34_4316");
+            SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "34", 1);
 
@@ -397,12 +403,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
         [TestCategory("Sem Critica")]
         public void SAP_4328()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "4328", "FG05 - PROC34");
+            IniciarTeste(TipoArquivo.ParcEmissao, "4328", "FG05 - PROC34");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+
+            AlterarCobertura(false);
 
             SalvarArquivo();
 
@@ -423,7 +434,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC34
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+
+            AlterarCobertura(false);
 
             SalvarArquivo();
 
