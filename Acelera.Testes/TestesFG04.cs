@@ -158,11 +158,19 @@ namespace Acelera.Testes
 
         }
 
-        public void ExecutarEValidarFG04Comissao(string cdContrato, CodigoStage codigoStage, OperadoraEnum operacao)
+        public void ExecutarEValidarFG04Comissao(string cdContrato, string nomeArquivo, CodigoStage codigoStage)
         {
             ChamarExecucao(FG04_Tarefas.Comissao.ObterTexto());
             var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
-            validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA"  }, new string[] { cdContrato , $"C01.{operacao.ObterTexto().ToUpper()}.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}" },
+            validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA"  }, new string[] { cdContrato , nomeArquivo },
+                "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
+        }
+
+        public void ExecutarEValidarStage(string cdContrato, string nomeArquivo, CodigoStage codigoStage)
+        {
+            ChamarExecucao(FG04_Tarefas.Comissao.ObterTexto());
+            var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
+            validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA" }, new string[] { cdContrato, nomeArquivo },
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
         }
 
