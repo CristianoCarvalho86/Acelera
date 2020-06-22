@@ -168,6 +168,8 @@ namespace Acelera.Testes
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_COBERTURA", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"NM_TPA", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "CD_VERSAO_ARQUIVO", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "VL_PREMIO_LIQUIDO", "VL_BASE_CALCULO", ref errosEncontrados);
+
                 if (TPRemuneracao7013 == "1" &&
                     resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal !=
                     (linhaParcela.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * VlRemuneracao7013.ObterValorDecimal()))
@@ -178,7 +180,17 @@ namespace Acelera.Testes
                 if (TPRemuneracao7013 == "2" &&
                 resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal != VlRemuneracao7013.ObterValorDecimal())
                 {
-                    errosEncontrados += $"PC_COMISSAO ESPERADO = {linhaParcela.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * VlRemuneracao7013.ObterValorDecimal()} OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
+                    errosEncontrados += $"PC_COMISSAO ESPERADO = {VlRemuneracao7013.ObterValorDecimal()} OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
+                }
+
+                if (resultadoStageComissao[count].ObterPorColuna("PC_PARTICIPACAO").ValorDecimal != 0)
+                {
+                    errosEncontrados += $"PC_PARTICIPACAO ESPERADO = 0 OBTIDO : {resultadoStageComissao[count].ObterPorColuna("PC_COMISSAO").ValorDecimal}";
+                }
+
+                if (resultadoStageComissao[count].ObterPorColuna("CD_SISTEMA").ValorFormatado != "COM")
+                {
+                    errosEncontrados += $"PC_PARTICIPACAO ESPERADO = COM OBTIDO : {resultadoStageComissao[count].ObterPorColuna("CD_SISTEMA").ValorFormatado}";
                 }
 
                 /*"CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
@@ -207,6 +219,12 @@ namespace Acelera.Testes
         {
             if (linhaOrigem.ObterPorColuna(campo).ValorFormatado != linhaDestino.ObterPorColuna(campo).ValorFormatado) ;
                 erro += $"ERRO : {campo} EM PARCELA :{linhaOrigem.ObterPorColuna(campo).ValorFormatado} | {campo} EM COMISSAO : {linhaDestino.ObterPorColuna(campo).ValorFormatado} {Environment.NewLine}";
+        }
+
+        private void ValidaCamposIguais(ILinhaTabela linhaOrigem, ILinhaTabela linhaDestino, string campo1, string campo2, ref string erro)
+        {
+            if (linhaOrigem.ObterPorColuna(campo1).ValorFormatado != linhaDestino.ObterPorColuna(campo2).ValorFormatado) ;
+            erro += $"ERRO : {campo1} EM PARCELA :{linhaOrigem.ObterPorColuna(campo1).ValorFormatado} | {campo2} EM COMISSAO : {linhaDestino.ObterPorColuna(campo2).ValorFormatado} {Environment.NewLine}";
         }
 
     }
