@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             CarregarTriplice(OperadoraEnum.LASA);
 
-            
+            ExecutarEValidarTriplice(FGs.FG00, CodigoStage.AprovadoNAFG00, CodigoStage.AprovadoNAFG00, null);
            
 
         }
