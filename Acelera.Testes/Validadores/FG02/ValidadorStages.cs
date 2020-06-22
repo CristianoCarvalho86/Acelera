@@ -64,7 +64,7 @@ namespace Acelera.Testes.Validadores.FG02
             var campos = "";
             for (int i = 0; i < Parametro.Length; i++)
             {
-                campos += $"{Parametro[i]} = '{Valores[i]}' AND";  
+                campos += $"{Parametro[i]} = '{Valores[i]}' AND ";  
             }
             campos = campos.Remove(campos.Length - 4);
             linhas = ObterLinhasParaStage($"select * FROM {Parametros.instanciaDB}.{tabelaEnum.ObterTexto()} WHERE {campos} ORDER BY {orderBy}").ToList();

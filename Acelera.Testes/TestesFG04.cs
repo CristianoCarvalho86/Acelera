@@ -137,7 +137,7 @@ namespace Acelera.Testes
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
         }
 
-        public void ValidarTabelaDeRetornoVazia(Arquivo arquivo,bool a)
+        public void ValidarTabelaDeRetornoVazia(Arquivo arquivo)
         {
             this.arquivo = arquivo;
             SelecionarLinhaParaValidacao(0);
@@ -151,21 +151,20 @@ namespace Acelera.Testes
             var errosEncontrados = "";
             foreach(var linhaParcela in resultadoStageParcela)
             {
-                //if (!linhaParcela.ObterPorColuna("TIPO_REGISTRO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("TIPO_REGISTRO").ValorFormatado)
-                //    errosEncontrados += $"| TIPO_REGISTRO EM PARCELA :{linhaParcela.ObterPorColuna("TIPO_REGISTRO").ValorFormatado} | TIPO_REGISTRO EM COMISSAO : {resultadoStageComissao[count].ObterPorColuna("TIPO_REGISTRO").ValorFormatado} {Environment.NewLine}";
-                //if(!linhaParcela.ObterPorColuna("CD_INTERNO_RESSEGURADOR").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_INTERNO_RESSEGURADOR").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_SEGURADORA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_SEGURADORA").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_EXTERNO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_EXTERNO").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_RAMO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_RAMO").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_CONTRATO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_CONTRATO").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("NR_PARCELA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NR_PARCELA").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("NR_ENDOSSO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NR_ENDOSSO").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_ITEM").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_ITEM").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_TIPO_REMUNERACAO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_TIPO_REMUNERACAO").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_COBERTURA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_COBERTURA").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("NM_TPA").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("NM_TPA").ValorFormatado)
-                //if(!linhaParcela.ObterPorColuna("CD_VERSAO_ARQUIVO").ValorFormatado == resultadoStageComissao[count].ObterPorColuna("CD_VERSAO_ARQUIVO").ValorFormatado)
+                ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "TIPO_REGISTRO", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "CD_INTERNO_RESSEGURADOR", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_SEGURADORA", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_EXTERNO", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_RAMO", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_CONTRATO", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"NR_SEQUENCIAL_EMISSAO", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"NR_PARCELA", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"NR_ENDOSSO", ref errosEncontrados); 
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_ITEM", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_TIPO_REMUNERACAO", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_COBERTURA", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"NM_TPA", ref errosEncontrados);
+                ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "CD_VERSAO_ARQUIVO", ref errosEncontrados);
                 /*"CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 1 -- PERCENTUAL
                                  TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO * (TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO)
                 CASO  TAB_PRM_REMUNERACAO_7013.TP_REMUNERACAO = 2-- VALOR FIXO
@@ -179,11 +178,18 @@ namespace Acelera.Testes
                 COM'*/
                 count++;
             }
+
+            if (!string.IsNullOrEmpty(errosEncontrados))
+            {
+                logger.Erro(errosEncontrados);
+                ExplodeFalha();
+            }
         }
 
-        private void ValidaCamposIguais(ILinhaTabela linhaOrigem, ILinhaTabela linhaDestino, string campo)
+        private void ValidaCamposIguais(ILinhaTabela linhaOrigem, ILinhaTabela linhaDestino, string campo, ref string erro)
         {
-
+            if (linhaOrigem.ObterPorColuna(campo).ValorFormatado != linhaDestino.ObterPorColuna(campo).ValorFormatado) ;
+                erro += $"ERRO : {campo} EM PARCELA :{linhaOrigem.ObterPorColuna(campo).ValorFormatado} | {campo} EM COMISSAO : {linhaDestino.ObterPorColuna(campo).ValorFormatado} {Environment.NewLine}";
         }
 
     }
