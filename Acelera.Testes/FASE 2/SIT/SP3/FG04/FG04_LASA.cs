@@ -29,8 +29,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
             CarregarTriplice(OperadoraEnum.LASA);
 
             ExecutarEValidarTriplice(FGs.FG00, CodigoStage.AprovadoNAFG00, CodigoStage.AprovadoNAFG00, null);
-           
 
+            ExecutarEValidarTriplice(FGs.FG01, CodigoStage.AprovadoNaFG01, CodigoStage.AprovadoNaFG01, null);
+
+            ExecutarEValidarFG04Comissao(ObterValorFormatado(0, "CD_CONTRATO"), CodigoStage.AprovadoNAFG00, OperadoraEnum.LASA);
+
+            ValidarFlComissaoCalculada(ObterValorHeader("CD_TPA"), "S");
+
+            ValidarVlComissaoNaStage(ObterValorHeader("CD_TPA"), ObterValorFormatado(0, "CD_SUCURSAL"), ObterValorFormatado(0, "CD_COBERTURA"), ObterValorFormatado(0, "CD_PRODUTO"));
         }
 
     }
