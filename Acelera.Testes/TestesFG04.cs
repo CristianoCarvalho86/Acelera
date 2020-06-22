@@ -144,7 +144,7 @@ namespace Acelera.Testes
             arquivo = triplice.ArquivoParcEmissao;
             SelecionarLinhaParaValidacao(0);
             if (codigoStageParc.HasValue)
-                ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
+                resultadoStageParcela = ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
             else
                 ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
 
