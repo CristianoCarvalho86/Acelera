@@ -166,9 +166,9 @@ namespace Acelera.Testes
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
         }
 
-        public void ExecutarEValidarStage(string cdContrato, string nomeArquivo, CodigoStage codigoStage)
+        public void ExecutarEValidarStageComissao(string cdContrato, string nomeArquivo,FGs fgAExecutar, CodigoStage codigoStage)
         {
-            ChamarExecucao(FG04_Tarefas.Comissao.ObterTexto());
+            ChamarExecucao(TipoArquivo.Comissao.ObterTarefaDaFG(fgAExecutar));
             var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
             validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA" }, new string[] { cdContrato, nomeArquivo },
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
