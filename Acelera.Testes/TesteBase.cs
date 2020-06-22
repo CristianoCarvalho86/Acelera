@@ -288,12 +288,15 @@ namespace Acelera.Testes
                 throw new Exception("ARQUIVOS COM QUANTIDADE DE LINHAS DIFERENTES.");
             
             var nomeCampo = string.Empty;
-            foreach (var linha in arquivoDestino.Linhas)
-                foreach (var campo in arquivoDestino.CamposDoBody)
+            foreach (var linha in arquivoOrigem.Linhas)
+                foreach (var campo in arquivoOrigem.CamposDoBody)
                 {
                     nomeCampo = campo;
                     if (campo == "NR_SEQ_EMISSAO")
                         nomeCampo = "NR_SEQUENCIAL_EMISSAO";
+
+                    if (!arquivoDestino.CamposDoBody.Contains(nomeCampo))
+                        continue;
 
                     AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(linha.Index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, true);
                 }

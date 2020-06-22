@@ -179,18 +179,6 @@ namespace Acelera.Testes
             SGS_dados.CarregarClienteSGS(cdCliente);
         }
 
-        public void CarregarEnderecoSGS(string cdCliente)
-        {
-
-        }
-
-        public void CarregarPaisSGS()
-        {
-
-        }
-
-
-
         public QueryContratoParaArquivo CarregarDadosDoContrato(LinhaArquivo linha)
         {
             var contrato = SGS_dados.ObterContratoPeloCodigo(linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado);

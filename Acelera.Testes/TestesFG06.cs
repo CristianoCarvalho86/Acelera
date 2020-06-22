@@ -223,7 +223,7 @@ namespace Acelera.Testes
             var arquivoParc = arquivo.Clone();
 
             arquivo = new C();
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Cliente, operadora, Parametros.pastaOrigem), 1, 1, 1);
+            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
             IgualarCamposQueExistirem(arquivoParc, arquivo);
             arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO_CANC", "");
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");

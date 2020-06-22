@@ -86,14 +86,5 @@ namespace Acelera.Testes
             }
         }
 
-        public void IniciarTripliceLASA()
-        {
-            triplice = new TripliceLASA(1,logger);
-        }
-
-        public void IniciarTripliceSoftBox()
-        {
-            triplice = new TripliceSoftbox(1,logger);
-        }
     }
 }
