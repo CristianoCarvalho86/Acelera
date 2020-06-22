@@ -206,20 +206,8 @@ namespace Acelera.Domain.Extensions
         {
             switch (tipoArquivo)
             {
-                case TipoArquivo.Cliente:
-                    return FG04_Tarefas.Cliente;
                 case TipoArquivo.Comissao:
                     return FG04_Tarefas.Comissao;
-                case TipoArquivo.LanctoComissao:
-                    return FG04_Tarefas.LanctoComissao;
-                case TipoArquivo.OCRCobranca:
-                    return FG04_Tarefas.OCRCobranca;
-                case TipoArquivo.ParcEmissao:
-                    return FG04_Tarefas.ParcEmissao;
-                case TipoArquivo.ParcEmissaoAuto:
-                    return FG04_Tarefas.ParcEmissaoAuto;
-                case TipoArquivo.Sinistro:
-                    return FG04_Tarefas.Sinistro;
                 default:
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
             }
