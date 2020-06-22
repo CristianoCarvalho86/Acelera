@@ -41,6 +41,7 @@ namespace Acelera.Testes
         protected decimal ObterValorPremioTotalBruto(decimal valorIS, Cobertura cobertura)
         {
             return valorIS * cobertura.VL_PERC_DISTRIBUICAO_decimal * cobertura.VL_PERC_TAXA_SEGURO_decimal;
+            //(VL_IS * VL_PERC_TAXA_SEGURO) * VL_PERC_DISTRIBUICAO)
         }
 
         protected decimal ObterValorPremioTotalLiquido(decimal valorIS, Cobertura cobertura)

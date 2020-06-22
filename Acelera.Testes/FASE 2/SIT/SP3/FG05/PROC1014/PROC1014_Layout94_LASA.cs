@@ -85,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
         /// vl_premio_liquido inferior ao parametrizado para o (percentualmente) na tabela 7012
         /// </summary>
         [TestMethod]
-        [TestCategory("Com Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_4665()
         {
             //iniciar
@@ -96,7 +96,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             //Alterar arquivo
-            var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+
+            var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
+            AlterarLinhaSeHouver(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinhaSeHouver(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinhaSeHouver(0, "CD_PRODUTO", cobertura.CdProduto);
+
             decimal valorTotalLiq = 0;
             valorTotalLiq = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
 
@@ -110,9 +118,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
+            AlterarCobertura(false);
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "1012");
         }
     }
 }

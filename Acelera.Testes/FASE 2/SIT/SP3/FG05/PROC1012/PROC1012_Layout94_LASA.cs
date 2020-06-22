@@ -97,22 +97,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
-            var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
+
+            var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
+            AlterarLinhaSeHouver(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinhaSeHouver(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinhaSeHouver(0, "CD_PRODUTO", cobertura.CdProduto);
+
             decimal valorTotal = 0;
             valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
 
             if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
                 valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
+            //Valor do Prêmio Aceito = Valor do Prêmio calculado – (Valor do Prêmio calculado * Menor valor parametrizado)
             else
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
 
             AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
-
-            AlterarLinha(0, "VL_PREMIO_TOTAL", "30");
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "1.50");
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterParceiroNegocio("SU", true));
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
+
+            AlterarCobertura(false);
             //Salvar e executar
             SalvarArquivo();
             ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "1012");
