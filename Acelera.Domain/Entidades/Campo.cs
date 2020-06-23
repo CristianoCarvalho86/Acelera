@@ -32,7 +32,7 @@ namespace Acelera.Domain.Entidades
         {
             get
             {
-                return decimal.Parse(ValorFormatado);
+                return decimal.Parse(ValorFormatadoNumerico);
             }
         }
 
@@ -40,7 +40,7 @@ namespace Acelera.Domain.Entidades
         {
             get
             {
-                return int.Parse(ValorFormatado);
+                return int.Parse(ValorFormatadoNumerico);
             }
         }
 
