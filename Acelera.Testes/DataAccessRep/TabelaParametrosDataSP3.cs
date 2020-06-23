@@ -24,6 +24,16 @@ namespace Acelera.Testes.DataAccessRep
              return  ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente , "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'", true);
         }
 
+        public string ObterCdPNCorretor(string cdCorretor)
+        {
+            return ObterRetornoPadrao("CD_PARCEIRO_NEGOCIO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", true, $"CD_TIPO_PARCEIRO_NEGOCIO = 'CO' AND CD_EXTERNO = '{cdCorretor}'", true);
+        }
+
+        public string ObterCdCorretor(string cdPnCorretor)
+        {
+            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", true, $"CD_TIPO_PARCEIRO_NEGOCIO = 'CO' AND CD_PARCEIRO_NEGOCIO = '{cdPnCorretor}'", true);
+        }
+
         public string[] ObterAtributosDoLayout(TipoArquivo tipo, string layout)
         {
             var sql = $"select DISTINCT(NM_ATRIBUTO_LAYOUT) from {Parametros.instanciaDB}.TAB_PRM_LAYOUT_7016 where NM_TIPO_ARQUIVO = '{tipo.ObterPrefixoOperadoraNoArquivo()}' AND CD_VERSAO_ARQUIVO = '{layout}' AND TP_REGISTRO = 3 AND ID_PRIMARY_KEY = '1'";
@@ -71,16 +81,18 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica($"SELECT FL_COMISSAO_CALCULADA FROM {Parametros.instanciaDB}.TAB_ODS_PARCEIRO_NEGOCIO_2000 where {clausula}", logger);
         }
 
-        public DataTable ObterValorRemuneracaoParaFG04(string cdTpa, string cdSucursal, string cdCobertura, string cdProduto)
+        public DataTable ObterValorRemuneracaoParaFG04(string cdTpa, string cdSucursal, string cdCobertura, string cdProduto, string tpRemuneracao, string flRemuInformada, string cdTipoRemuneracao)
         {
             var sucursal = ObterCdParceiroNegocioParaTipoParceiro(cdSucursal, "SU");
             var tpa = ObterCdParceiroNegocioParaTPA(cdTpa);
             var clausula = $"CD_PN_OPERACAO = '{tpa}' AND CD_PN_SUCURSAL = '{sucursal}' AND CD_COBERTURA = '{cdCobertura}' AND CD_PRODUTO = '{cdProduto}'" +
-                $" AND TP_REMUNERACAO = '1' AND FL_REMU_INFORMADA = 'N'" +
+                $" AND TP_REMUNERACAO = '{tpRemuneracao}' AND FL_REMU_INFORMADA = '{flRemuInformada}'" +
                 $" AND CD_PN_CORRETOR IS NOT NULL " +
-                $" AND VL_REMUMERACAO IS NOT NULL " +
-                $" AND CD_TIPO_REMUNERACAO = 'C' ";
-            return DataAccess.Consulta($"SELECT VL_REMUMERACAO, TP_REMUNERACAO FROM {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 WHERE {clausula}","BUSCANDO PARAMETRIZAÇÃO NA 7013", DBEnum.Hana, logger, false);
+                $" AND VL_REMUMERACAO IS NOT NULL ";
+            if(string.IsNullOrEmpty(cdTipoRemuneracao))
+                clausula += $" AND CD_TIPO_REMUNERACAO = '{cdTipoRemuneracao}' ";
+            return DataAccess.Consulta($"SELECT VL_REMUMERACAO, TP_REMUNERACAO, CD_PN_CORRETOR, CD_TIPO_REMUNERACAO FROM {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 WHERE {clausula}",
+                "BUSCANDO PARAMETRIZAÇÃO NA 7013", DBEnum.Hana, logger, false);
         }
 
 

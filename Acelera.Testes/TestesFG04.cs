@@ -61,28 +61,32 @@ namespace Acelera.Testes
             }
         }
 
-        public void ValidarVlComissaoNaStage(string cdTpa, string cdSucursal, string cdCobertura, string cdProduto)
+        public void ValidarVlComissaoNaStage(string cdTpa, string cdSucursal, string cdCobertura, string cdProduto, string tpRemuneracao, string flRemuInformada, string cdTipoRemuneracao)
         {
             logger.AbrirBloco("INICIANDO VALIDAÇÃO DO VL_COMISSAO ENCONTRADO NA STAGE.");
-            var dadosRemuneracao = dados.ObterValorRemuneracaoParaFG04(cdTpa, cdSucursal, cdCobertura, cdProduto);
-            if (dadosRemuneracao.Rows.Count != 1)
-            {
-                logger.Erro("ERRO AO BUSCAR PARAMETRIZAÇÕES NA TABELA 7013");
-                ExplodeFalha();
-            }
-            logger.Escrever("VL_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString());
-            logger.Escrever("TP_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString());
+            var dadosRemuneracao = dados.ObterValorRemuneracaoParaFG04(cdTpa, cdSucursal, cdCobertura, cdProduto, tpRemuneracao, flRemuInformada, cdTipoRemuneracao);
+
+            //logger.Escrever("VL_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString());
+            //logger.Escrever("TP_REMUNERACAO ENCONTRADO NA TABELA 7013 : " + dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString());
 
             var count = 0;
             foreach (var linha in resultadoStageComissao)
             {
-                if (dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString() == "1")
+                var cdPnCorretor = dados.ObterCdPNCorretor(linha.ObterPorColuna("CD_CORRETOR").ValorFormatado);
+                var dadosDaRemuneracao = dadosRemuneracao.Select($"CD_PN_CORRETOR = '{cdPnCorretor}' AND CD_TIPO_REMUNERACAO = '{linha.ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado}'");
+                if(dadosDaRemuneracao.Count() != 1)
+                {
+                    ExplodeFalha($"DADOS INCORRETOS VINDOS DA 7013 PARA CD_PN_CORRETOR = '{cdPnCorretor}' AND CD_TIPO_REMUNERACAO = '{linha.ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado}'");
+                }
+
+
+                if (dadosDaRemuneracao[0]["TP_REMUNERACAO"].ToString() == "1")
                 {
                     //VL_COMISSAO
-                    logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("VL_COMISSAO")};");
+                    logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE COMISSAO: {linha.ObterPorColuna("VL_COMISSAO")};");
                     logger.Escrever("VL_COMISSAO DEVE SER : TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO * (TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO)");
                     if (linha.ObterPorColuna("VL_COMISSAO").ValorDecimal !=
-                       resultadoStageParcela[count].ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()))
+                       resultadoStageParcela[count].ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString()))
                     {
                         logger.Erro("VL_COMISSAO INVALIDO.");
                         ExplodeFalha();
@@ -90,9 +94,9 @@ namespace Acelera.Testes
                     logger.Escrever("VALOR CORRETO.");
 
                     //PC_COMISSAO
-                    logger.Escrever($"PC_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("PC_COMISSAO")};");
+                    logger.Escrever($"PC_COMISSAO ENCONTRADO NA STAGE COMISSAO: {linha.ObterPorColuna("PC_COMISSAO")};");
                     logger.Escrever("PC_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO");
-                    if (linha.ObterPorColuna("PC_COMISSAO").ValorDecimal != decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()))
+                    if (linha.ObterPorColuna("PC_COMISSAO").ValorDecimal != decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString()))
                     {
                         logger.Erro("PC_COMISSAO INVALIDO.");
                         ExplodeFalha();
@@ -100,12 +104,12 @@ namespace Acelera.Testes
                     logger.Escrever("VALOR CORRETO.");
 
                 }
-                else if (dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString() == "2")
+                else if (dadosDaRemuneracao[0]["TP_REMUNERACAO"].ToString() == "2")
                 {
                     //VL_COMISSAO
-                    logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("VL_COMISSAO")};");
+                    logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE COMISSAO: {linha.ObterPorColuna("VL_COMISSAO")};");
                     logger.Escrever("VL_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO");
-                    if (linha.ObterPorColuna("VL_COMISSAO").ValorDecimal != decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()))
+                    if (linha.ObterPorColuna("VL_COMISSAO").ValorDecimal != decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString()))
                     {
                         logger.Erro("VL_COMISSAO INVALIDO.");
                         ExplodeFalha();
@@ -113,10 +117,10 @@ namespace Acelera.Testes
                     logger.Escrever("VALOR CORRETO.");
 
                     //PC_COMISSAO
-                    logger.Escrever($"PC_COMISSAO ENCONTRADO NA STAGE : {linha.ObterPorColuna("PC_COMISSAO")};");
+                    logger.Escrever($"PC_COMISSAO ENCONTRADO NA STAGE COMISSAO: {linha.ObterPorColuna("PC_COMISSAO")};");
                     logger.Escrever("PC_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO / VL_PREMIO_LIQUIDO");
-                    if (linha.ObterPorColuna("PC_COMISSAO").ValorDecimal.ToString("C2") !=
-                        (decimal.Parse(dadosRemuneracao.Rows[0]["VL_REMUMERACAO"].ToString()) / linha.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal).ToString("C2"))
+                    if (decimal.Round(linha.ObterPorColuna("PC_COMISSAO").ValorDecimal,2) !=
+                        (decimal.Round(decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString()) / linha.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal,2)))
                     {
                         logger.Erro("PC_COMISSAO INVALIDO.");
                         ExplodeFalha();
@@ -125,7 +129,7 @@ namespace Acelera.Testes
                 }
                 else
                 {
-                    logger.Erro($"TP_REMUNERACAO INVALIDO : {dadosRemuneracao.Rows[0]["TP_REMUNERACAO"].ToString()}");
+                    logger.Erro($"TP_REMUNERACAO INVALIDO : {dadosDaRemuneracao[0]["TP_REMUNERACAO"].ToString()}");
                     ExplodeFalha();
                 }
                 count++;
