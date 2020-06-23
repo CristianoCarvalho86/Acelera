@@ -185,7 +185,7 @@ namespace Acelera.Testes
             ValidarTabelaDeRetorno(arquivo,false);
         }
 
-        public void ValidarStageComissaoComParcela()
+        public void ValidarDadosDaStageComissao()
         {
             logger.AbrirBloco("INICIANDO COMPARACAO ENTRE OS REGISTROS ENCONTRADOS EM PARC E COMISSAO.");
             int count = 0;
