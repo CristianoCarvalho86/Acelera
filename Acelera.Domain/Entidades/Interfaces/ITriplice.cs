@@ -27,7 +27,7 @@ namespace Acelera.Domain.Entidades.Interfaces
 
         void ReplicarLinhaNoParcEComissao(int posicaoLinha, int quantidadeDeVezes);
 
-        void Salvar();
+        void Salvar(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true);
 
         void IgualarArquivos();
 
