@@ -147,6 +147,12 @@ namespace Acelera.Testes
 
         }
 
+        protected void ExplodeFalha(string descricao)
+        {
+            logger.Erro(descricao);
+            ExplodeFalha();
+        }
+
         protected void ExplodeFalha()
         {
             sucessoDoTeste = false;
