@@ -86,7 +86,7 @@ namespace Acelera.Testes
                     logger.Escrever($"VL_COMISSAO ENCONTRADO NA STAGE COMISSAO: {linha.ObterPorColuna("VL_COMISSAO")};");
                     logger.Escrever("VL_COMISSAO DEVE SER : TAB_STG_PARCELA_1001.VL_PREMIO_LIQUIDO * (TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO)");
                     if (linha.ObterPorColuna("VL_COMISSAO").ValorDecimal !=
-                       resultadoStageParcela[count].ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString()))
+                       resultadoStageParcela[count].ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal * (decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString())/100M))
                     {
                         logger.Erro("VL_COMISSAO INVALIDO.");
                         ExplodeFalha();
