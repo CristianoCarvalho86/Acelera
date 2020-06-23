@@ -94,14 +94,19 @@ namespace Acelera.Testes.ConjuntoArquivos
             logger.FecharBloco();
         }
 
-        public void Salvar()
+        public void Salvar(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true)
         {
-            SalvarArquivo(ArquivoCliente, TipoArquivo.Cliente, ArquivoCliente.NomeArquivo);
-            if (Operadora == OperadoraEnum.VIVO)
-                SalvarArquivo(ArquivoParcEmissao, TipoArquivo.ParcEmissaoAuto, ArquivoParcEmissao.NomeArquivo);
-            else
-                SalvarArquivo(ArquivoParcEmissao, TipoArquivo.ParcEmissao, ArquivoParcEmissao.NomeArquivo);
-            SalvarArquivo(ArquivoComissao, TipoArquivo.Comissao, ArquivoComissao.NomeArquivo);
+            if(salvaCliente)
+                SalvarArquivo(ArquivoCliente, TipoArquivo.Cliente, ArquivoCliente.NomeArquivo);
+            if (salvaParcela)
+            {
+                if (Operadora == OperadoraEnum.VIVO)
+                    SalvarArquivo(ArquivoParcEmissao, TipoArquivo.ParcEmissaoAuto, ArquivoParcEmissao.NomeArquivo);
+                else
+                    SalvarArquivo(ArquivoParcEmissao, TipoArquivo.ParcEmissao, ArquivoParcEmissao.NomeArquivo);
+            }
+            if(salvaComissao)
+                SalvarArquivo(ArquivoComissao, TipoArquivo.Comissao, ArquivoComissao.NomeArquivo);
         }
 
         private void Carregar()
