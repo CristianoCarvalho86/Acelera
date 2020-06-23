@@ -192,7 +192,6 @@ namespace Acelera.Testes
                 ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "TIPO_REGISTRO", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela, resultadoStageComissao[count], "CD_INTERNO_RESSEGURADOR", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_SEGURADORA", ref errosEncontrados);
-                ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_CORRETOR", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_RAMO", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"CD_CONTRATO", ref errosEncontrados);
                 ValidaCamposIguais(linhaParcela,resultadoStageComissao[count],"NR_SEQUENCIAL_EMISSAO", ref errosEncontrados);
@@ -223,14 +222,13 @@ namespace Acelera.Testes
 
         private void ValidaCamposIguais(ILinhaTabela linhaOrigem, ILinhaTabela linhaDestino, string campo, ref string erro)
         {
-            if (linhaOrigem.ObterPorColuna(campo).ValorFormatado != linhaDestino.ObterPorColuna(campo).ValorFormatado) ;
-                erro += $"ERRO : {campo} EM PARCELA :{linhaOrigem.ObterPorColuna(campo).ValorFormatado} | {campo} EM COMISSAO : {linhaDestino.ObterPorColuna(campo).ValorFormatado} {Environment.NewLine}";
+            ValidaCamposIguais(linhaOrigem, linhaDestino, campo, campo, ref erro);
         }
 
         private void ValidaCamposIguais(ILinhaTabela linhaOrigem, ILinhaTabela linhaDestino, string campo1, string campo2, ref string erro)
         {
-            if (linhaOrigem.ObterPorColuna(campo1).ValorFormatado != linhaDestino.ObterPorColuna(campo2).ValorFormatado) ;
-            erro += $"ERRO : {campo1} EM PARCELA :{linhaOrigem.ObterPorColuna(campo1).ValorFormatado} | {campo2} EM COMISSAO : {linhaDestino.ObterPorColuna(campo2).ValorFormatado} {Environment.NewLine}";
+            if (linhaOrigem.ObterPorColuna(campo1).ValorFormatado != linhaDestino.ObterPorColuna(campo2).ValorFormatado)
+                erro += $"ERRO : {campo1} EM PARCELA :{linhaOrigem.ObterPorColuna(campo1).ValorFormatado} | {campo2} EM COMISSAO : {linhaDestino.ObterPorColuna(campo2).ValorFormatado} {Environment.NewLine}";
         }
 
     }
