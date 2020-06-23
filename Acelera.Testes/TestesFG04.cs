@@ -132,7 +132,7 @@ namespace Acelera.Testes
                     logger.Erro($"TP_REMUNERACAO INVALIDO : {dadosDaRemuneracao[0]["TP_REMUNERACAO"].ToString()}");
                     ExplodeFalha();
                 }
-                count++;
+               // count++;
             }
         }
 
