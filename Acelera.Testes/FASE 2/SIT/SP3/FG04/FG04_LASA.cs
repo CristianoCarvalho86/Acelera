@@ -52,10 +52,58 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
                 triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_COBERTURA"),
                 triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_PRODUTO"),"1","N", null);
 
-            //ValidarStageComissaoComParcela();
+            ValidarDadosDaStageComissao();
 
             ExecutarEValidarStageComissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
                 $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT",FGs.FG01 ,CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarStageComissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
+                $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT", FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+           
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4831()
+        {
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4831", "");
+
+            CarregarTriplice(OperadoraEnum.LASA);
+
+            var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
+
+            triplice.AlterarParcEComissao(0, "CD_COBERTURA", cobertura.CdCobertura);
+            triplice.AlterarParcEComissao(0, "CD_RAMO", cobertura.CdRamo);
+            triplice.AlterarParcEComissao(0, "CD_PRODUTO", cobertura.CdProduto);
+
+            triplice.AlterarParcEComissao(0, "VL_LMI", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "VL_IS"));
+            triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+            triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+
+            triplice.Salvar();
+
+            ValidarFlComissaoCalculada(triplice.ArquivoComissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado, "S");
+
+            ExecutarEValidarTriplice(FGs.FG00, CodigoStage.AprovadoNAFG00, CodigoStage.AprovadoNAFG00, null);
+
+            ValidarTabelaDeRetornoVazia(triplice.ArquivoComissao);
+
+            ExecutarEValidarTriplice(FGs.FG01, CodigoStage.AprovadoNaFG01, CodigoStage.AprovadoNaFG01, null);
+
+            ExecutarEValidarFG04Comissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
+                $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT", CodigoStage.AprovadoNAFG00);
+
+            ValidarVlComissaoNaStage(
+                triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado,
+                triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_SUCURSAL"),
+                triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_COBERTURA"),
+                triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_PRODUTO"), "1", "N", null);
+
+            //ValidarStageComissaoComParcela();
+
+            ExecutarEValidarStageComissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
+                $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT", FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidarStageComissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
                 $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT", FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidarTriplice(FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia, CodigoStage.AprovadoNegocioSemDependencia, null);
@@ -87,7 +135,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
             ExecutarEValidarFG04Comissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
                 $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT", CodigoStage.AprovadoNAFG00);
 
-            // TP_REMUNERACAO tem que ser igual a 2
             ValidarVlComissaoNaStage(
                 triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado,
                 triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_SUCURSAL"),
@@ -108,7 +155,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
         {
             IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4834", "");
 
-
             //não enviar comissao
             CarregarTriplice(OperadoraEnum.LASA);
 
@@ -117,7 +163,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
 
-            triplice.Salvar();
+            triplice.Salvar(true, true, false);
 
             ValidarFlComissaoCalculada(triplice.ArquivoComissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado, "S");
 
@@ -183,9 +229,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
                 $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT", FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidarStageComissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
                 $"C01.007.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT", FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4835", "");
-
 
             CarregarTriplice(OperadoraEnum.LASA);
 
