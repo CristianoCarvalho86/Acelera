@@ -89,7 +89,7 @@ namespace Acelera.Testes.DataAccessRep
                 $" AND TP_REMUNERACAO = '{tpRemuneracao}' AND FL_REMU_INFORMADA = '{flRemuInformada}'" +
                 $" AND CD_PN_CORRETOR IS NOT NULL " +
                 $" AND VL_REMUMERACAO IS NOT NULL ";
-            if(string.IsNullOrEmpty(cdTipoRemuneracao))
+            if(!string.IsNullOrEmpty(cdTipoRemuneracao))
                 clausula += $" AND CD_TIPO_REMUNERACAO = '{cdTipoRemuneracao}' ";
             return DataAccess.Consulta($"SELECT VL_REMUMERACAO, TP_REMUNERACAO, CD_PN_CORRETOR, CD_TIPO_REMUNERACAO FROM {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 WHERE {clausula}",
                 "BUSCANDO PARAMETRIZAÇÃO NA 7013", DBEnum.Hana, logger, false);
