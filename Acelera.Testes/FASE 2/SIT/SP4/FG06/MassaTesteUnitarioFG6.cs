@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 {
+    [TestClass]
     public class MassaTesteUnitarioFG06 : TestesFG06
     {
 
@@ -66,7 +67,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         [TestMethod]
         public void Teste3_FG06()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG06", "Teste1-FG06");
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste3-FG06", "Teste1-FG06");
             triplice = new TriplicePOMPEIA(1, logger);
             PrepararMassa(OperadoraEnum.POMPEIA);
 
@@ -320,7 +321,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         public void PrepararMassa(OperadoraEnum operadora)
         {
-            //triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
+            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
 
             Parametros.instanciaDB = "HDIDEV_1";
             DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
