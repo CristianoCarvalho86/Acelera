@@ -40,5 +40,13 @@ namespace Acelera.Testes
 
             ValidarTeste();
         }
+
+        protected void AlteraracoesPadraoDaTrinca(ITriplice triplice)
+        {
+            triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+            triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+        }
     }
 }

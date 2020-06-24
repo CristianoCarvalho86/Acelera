@@ -73,11 +73,11 @@ Enviar arquivo PARCEMSAUTO com movimentação de cancelamento para este mesmo co
 
             var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO);
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO,"",true);
             SetDev();
             AlterarLinha(arquivoParc, 0, "CD_RAMO", dados.ObterRamoDiferente(ObterValor(0, "CD_RAMO")));
             SetQA();
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", false);
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true);
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de um contrato com ramo parametrizado (tabela 7007)
 Enviar arquivo PARCEMSAUTO com o cancelamento da emissão anterior, com um codigo de ramo diferente da emissão, mas parametrizado na 7007
@@ -90,8 +90,8 @@ Enviar arquivo PARCEMSAUTO com o cancelamento da emissão anterior, com um codig
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste5-FG09", "FG09");
             var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.POMPEIA);
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.POMPEIA, "10", false);
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.POMPEIA,"",true);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.POMPEIA, "10", true);
             /*
 Enviar arquivo PARCEMS para ODS com dados de emissão de um contrato com ramo parametrizado (tabela 7007)
 Enviar arquivo PARCEMS com o cancelamento da emissão anterior, com um codigo de ramo igual da emissão
@@ -103,11 +103,12 @@ Enviar arquivo PARCEMS com o cancelamento da emissão anterior, com um codigo de
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste6-FG09", "FG09");
 
-            var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", false);
+            var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
+            var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", true);
+            arquivo = arquivoParc;
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValor(0, "VL_PREMIO_LIQUIDO", 100M));
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.VIVO, "10", false);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true);
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de uma única parcela
 "Enviar arquivo de cancelamento para esta parcela, informando VL PREMIO LIQUIDO maior que do registro de emissao
@@ -533,6 +534,8 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             AlterarLinhaSeExistirCampo(arquivo, 0, "NR_ENDOSSO", "0");
             if (!string.IsNullOrEmpty(nrParcela))
                 arquivo.AlterarLinhaSeExistirCampo(0, "NR_PARCELA", nrParcela);
+            if (alterarLayout)
+                arquivo.AlterarHeader("VERSAO", "9.6");
 
             AlterarLinhaSeExistirCampo(arquivo, 0, "NR_SEQUENCIAL_EMISSAO", "1");
 
@@ -552,6 +555,8 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
             IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_COMISSAO", tipoCorretor);
+            if (alterarLayout)
+                arquivo.AlterarHeader("VERSAO", "9.6");
             SalvarArquivo(true);
 
             logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);

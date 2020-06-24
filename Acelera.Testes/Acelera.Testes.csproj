@@ -535,7 +535,7 @@
     <Compile Include="FASE 2\SIT\SP3\FG05\Clientesods.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\TesteDaMassa.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG06\FG06.cs" />
-    <Compile Include="FASE 2\SIT\SP4\FG06\MassaTesteUnitario.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG06\MassaTesteUnitarioFG6.cs" />
     <Compile Include="TestesDashboard.cs" />
     <Compile Include="TestesFG02.cs" />
     <Compile Include="Layout942.cs" />
