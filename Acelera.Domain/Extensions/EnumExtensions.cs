@@ -236,5 +236,10 @@ namespace Acelera.Domain.Extensions
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
             }
         }
+
+        public static FG06_Tarefas ObterTarefaFG06Enum(this TipoArquivo tipoArquivo)
+        {
+            return FG06_Tarefas.Trinca;
+        }
     }
 }
