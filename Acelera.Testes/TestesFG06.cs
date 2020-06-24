@@ -41,7 +41,7 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        protected void AlteraracoesPadraoDaTrinca(ITriplice triplice)
+        protected void AlteracoesPadraoDaTrinca(ITriplice triplice)
         {
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));

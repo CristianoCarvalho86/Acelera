@@ -28,10 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CarregarTriplice(OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
-            triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
-            triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
-            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+            AlteraracoesPadraoDaTrinca()
 
             triplice.Salvar();
 
