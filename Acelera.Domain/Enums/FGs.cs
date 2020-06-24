@@ -20,7 +20,9 @@ namespace Acelera.Domain.Enums
         [Description("FGR_04")]
         FG04,
         [Description("FGR_05")]
-        FG05
+        FG05,
+        [Description("FGR_06")]
+        FG06
     }
     public enum FG00_Tarefas
     {
@@ -117,5 +119,11 @@ namespace Acelera.Domain.Enums
         [Description("FGR_05_PARCELA_AUTO")]
         ParcEmissaoAuto,
 
+    }
+
+    public enum FG06_Tarefas
+    {
+        [Description("FGR_06_TRINCA")]
+        Trinca,
     }
 }

@@ -18,6 +18,9 @@ namespace Acelera.Testes
     public class TestesFG06 : TestesFG04
     {
         protected override string NomeFG => "FG06";
+
+
+
         [TestMethod]
         public void Teste1_FG06()
         {
@@ -190,20 +193,52 @@ namespace Acelera.Testes
         }
 
 
-        public void CarregarDadosCancelamento(Arquivo arquivoDeCancelamento, LinhaArquivo linhaArquivoEmissao)
+        public void CarregarCancelamento(LinhaArquivo linhaArquivoEmissao, OperadoraEnum operadora, string cdTipoEmissao,
+            bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "") where T : Arquivo, new() where C : Arquivo, new()
         {
-            var idTransacaoDoArquivoOriginal = arquivoDeCancelamento.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
-            arquivoDeCancelamento.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivoDeCancelamento.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
-            arquivoDeCancelamento.RemoverTodasLinhasDoBody();
+            logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");
+            arquivo = new T();
+            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
+            var idTransacaoDoArquivoOriginal = arquivo.ObterLinha(0).ObterCampoSeExistir("ID_TRANSACAO").ValorFormatado;
+            RemoverTodasAsLinhas();
+            AdicionarLinha(0, linhaArquivoEmissao.Clone());
 
-            arquivoDeCancelamento.AdicionaLinhaNoBody(linhaArquivoEmissao.Clone());
-            arquivoDeCancelamento.AlterarLinha(0, "ID_TRANSACAO_CANC", linhaArquivoEmissao.ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado);
-            arquivoDeCancelamento.AlterarLinha(0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
-            arquivoDeCancelamento.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
-            arquivoDeCancelamento.AlterarLinha(0, "NR_ENDOSSO", "1");
-            arquivoDeCancelamento.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
-            arquivoDeCancelamento.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
-            arquivoDeCancelamento.AlterarLinha(0, "NR_PARCELA", (linhaArquivoEmissao.ObterCampoDoArquivo("NR_PARCELA").ValorInteiro + 1).ToString());
+            AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO_CANC", linhaArquivoEmissao.ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_EMISSAO", cdTipoEmissao);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "NR_PARCELA", SomarValor(0, "NR_PARCELA", 1M));
+            AlterarLinhaSeExistirCampo(arquivo, 0, "NR_ENDOSSO", "4");
+            AlterarLinhaSeExistirCampo(arquivo, 0, "NR_SEQUENCIAL_EMISSAO", "2");
+            if (!string.IsNullOrEmpty(nrSequencialEmissao))
+                AlterarLinhaSeExistirCampo(arquivo, 0, "NR_SEQUENCIAL_EMISSAO", nrSequencialEmissao);
+
+            AlterarLinhaSeExistirCampo(arquivo, 0, "CD_MOVTO_COBRANCA", "02");
+            if (!string.IsNullOrEmpty(cdMovtoCobranca))
+                AlterarLinhaSeExistirCampo(arquivo, 0, "CD_MOVTO_COBRANCA", cdMovtoCobranca);
+
+            if (alterarLayout)
+                arquivo.AlterarHeader("VERSAO", "9.6");
+
+            SalvarArquivo(true);
+
+            logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);
+
+            ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            var arquivoParc = arquivo.Clone();
+
+            logger.Escrever($"CRIANDO ARQUIDO DE COMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");
+
+            arquivo = new C();
+            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
+            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
+            if (!string.IsNullOrEmpty(valorComissao))
+                AlterarLinhaSeExistirCampo(arquivo, 0, "VL_COMISSAO", valorComissao);
+            SalvarArquivo(true);
+
+            logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);
         }
 
         public Arquivo EnviarEmissao<T, C>(OperadoraEnum operadora) where T : Arquivo, new() where C : Arquivo, new()
@@ -241,7 +276,7 @@ namespace Acelera.Testes
 
         public void PrepararMassa(OperadoraEnum operadora)
         {
-            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
+            //triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
 
             Parametros.instanciaDB = "HDIDEV_1";
             DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
