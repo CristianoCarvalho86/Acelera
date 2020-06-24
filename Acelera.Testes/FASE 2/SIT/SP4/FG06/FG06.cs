@@ -15,7 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP3.FG06
+namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 {
     [TestClass]
     public class FG06 : TestesFG06
