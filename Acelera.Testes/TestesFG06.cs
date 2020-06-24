@@ -24,7 +24,9 @@ namespace Acelera.Testes
             CodigoStage codigoEsperadoStageCliente,
             CodigoStage codigoEsperadoStageParcela,
             CodigoStage codigoEsperadoStageComissao,
-            string msgTabelaDeRetorno)
+            string msgTabelaDeRetornoCliente,
+            string msgTabelaDeRetornoParcela,
+            string msgTabelaDeRetornoComissao)
         {
             //Executar FG06
             ChamarExecucao(FG06_Tarefas.Trinca.ObterTexto());
@@ -32,7 +34,9 @@ namespace Acelera.Testes
             ValidarStages(triplice.ArquivoCliente, triplice.ArquivoCliente.tipoArquivo.ObterTabelaStageEnum(),true,(int)codigoEsperadoStageCliente);
             ValidarStages(triplice.ArquivoParcEmissao, triplice.ArquivoParcEmissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageParcela);
             ValidarStages(triplice.ArquivoComissao, triplice.ArquivoComissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageComissao);
-            //ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { erroNaoEsperadoNaTabelaDeRetorno });
+            ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoCliente });
+            ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoParcela });
+            ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoComissao });
 
             ValidarTeste();
         }
