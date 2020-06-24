@@ -78,7 +78,7 @@ namespace Acelera.Testes
                     ExplodeFalha($"DADOS INCORRETOS VINDOS DA 7013 PARA CD_PN_CORRETOR = '{cdPnCorretor}' AND CD_TIPO_REMUNERACAO = '{linha.ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado}'");
                 }
 
-                if (dadosDaRemuneracao[0]["CD_TIPO_REMUNERACAO"].ToString() != linha.ObterPorColuna("CD_TIPO_REMUNERACAO").ValorFormatado)
+                if (dadosDaRemuneracao[0]["CD_TIPO_REMUNERACAO"].ToString() != linha.ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado)
                 {
                     ExplodeFalha($"CD_TIPO_REMUNERACAO ESPERADO : {dadosDaRemuneracao[0]["CD_TIPO_REMUNERACAO"].ToString()} , OBTIDO : {linha.ObterPorColuna("CD_TIPO_REMUNERACAO").ValorFormatado}");
                 }
