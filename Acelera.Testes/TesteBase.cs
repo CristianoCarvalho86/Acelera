@@ -199,7 +199,7 @@ namespace Acelera.Testes
                 return;
             try
             {
-               // Thread.Sleep(15000);
+                // Thread.Sleep(15000);
                 var comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
                 logger.EscreverBloco($"EXECUTANDO TAREFA : '{taskName}'");
                 var retorno = helper.Execute(comando);
@@ -286,7 +286,7 @@ namespace Acelera.Testes
 
             if (arquivoOrigem.Linhas.Count != arquivoDestino.Linhas.Count)
                 throw new Exception("ARQUIVOS COM QUANTIDADE DE LINHAS DIFERENTES.");
-            
+
             var nomeCampo = string.Empty;
             foreach (var linha in arquivoOrigem.Linhas)
                 foreach (var campo in arquivoOrigem.CamposDoBody)
@@ -301,6 +301,29 @@ namespace Acelera.Testes
                     AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(linha.Index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, true);
                 }
         }
+
+        public LinhaArquivo EnviarCancelamento(LinhaArquivo linhaArquivoEmissao, string cdTipoEmissao, string cdMovtoCobranca = "02",
+        string nrSequencialEmissao = "")
+        {
+            logger.AbrirBloco("CRIANDO LINHA DE CANCELAMENTO.");
+            logger.Escrever($"Utilizando a linha de emissao : {linhaArquivoEmissao.ObterTexto()}");
+
+            var linhaCancelamento = linhaArquivoEmissao.Clone();
+            var idTransacaoDaLinhaOriginal = linhaArquivoEmissao.ObterCampoSeExistir("ID_TRANSACAO").ValorFormatado;
+
+
+            linhaCancelamento.ObterCampoDoArquivo("ID_TRANSACAO_CANC").AlterarValor(idTransacaoDaLinhaOriginal);
+            linhaCancelamento.ObterCampoDoArquivo("CD_TIPO_EMISSAO").AlterarValor(cdTipoEmissao);
+            linhaCancelamento.ObterCampoDoArquivo("NR_PARCELA").AlterarValor((linhaCancelamento.ObterValorInteiro("NR_PARCELA") + 1).ToString());
+            linhaCancelamento.ObterCampoDoArquivo("NR_ENDOSSO").AlterarValor(GerarNumeroAleatorio(8));
+            nrSequencialEmissao = string.IsNullOrEmpty(nrSequencialEmissao) ? (linhaCancelamento.ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString() : nrSequencialEmissao;
+            linhaCancelamento.ObterCampoDoArquivo("NR_SEQUENCIAL_EMISSAO").AlterarValor(nrSequencialEmissao);
+            linhaCancelamento.ObterCampoDoArquivo("CD_MOVTO_COBRANCA").AlterarValor(cdMovtoCobranca);
+
+            logger.FecharBloco();
+            return linhaCancelamento;
+        }
+
 
     }
 }

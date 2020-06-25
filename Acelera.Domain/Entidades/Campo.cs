@@ -36,7 +36,7 @@ namespace Acelera.Domain.Entidades
             }
         }
 
-        public decimal ValorInteiro
+        public int ValorInteiro
         {
             get
             {
