@@ -178,7 +178,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidar(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             ExecutarEValidarFG06(triplice, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, "", "", "");
-
         }
     }
 }
