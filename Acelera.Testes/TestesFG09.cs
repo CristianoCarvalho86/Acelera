@@ -103,12 +103,12 @@ Enviar arquivo PARCEMS com o cancelamento da emissão anterior, com um codigo de
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste6-FG09", "FG09");
 
-            var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
-            var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
+            var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", true);
             arquivo = arquivoParc;
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValor(0, "VL_PREMIO_LIQUIDO", 100M));
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true);
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true);
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de uma única parcela
 "Enviar arquivo de cancelamento para esta parcela, informando VL PREMIO LIQUIDO maior que do registro de emissao
@@ -221,14 +221,16 @@ Enviar arquivo de cancelamento para esta parcela, informando DT_FIM_VIGENCIA sup
              */
         }
 
+        [TestMethod]
         public void Teste10()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste10-FG09", "FG09");
 
             var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", false);
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", false,"", SomarValor(0, "VL_COMISSAO", 1000M));
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", true);
+            arquivo = arquivoComissao;
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true,"", SomarValor(0, "VL_COMISSAO", 1000M));
 
             /*
 Enviar arquivo COMISSAO para ODS com dados de emissão de uma única parcela
@@ -237,6 +239,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
              */
         }
 
+        [TestMethod]
         public void Teste11()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste11-FG09", "FG09");
@@ -261,6 +264,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             AlterarLinha(1, "VL_PREMIO_LIQUIDO", "100");
             AlterarLinha(1, "VL_IOF", "10");
             AlterarLinha(1, "VL_PREMIO_TOTAL", "110");
+            AlterarHeader("VERSAO", "9.6");
 
             PrepararMassa(arquivo, out string tipoComissao);
 
@@ -273,18 +277,18 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
 
             var arquivoParc = arquivo.Clone();
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, OperadoraEnum.SOFTBOX, Parametros.pastaOrigem), 1, 1, 1);
+            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, OperadoraEnum.LASA, Parametros.pastaOrigem), 1, 1, 1);
             ReplicarLinhaComCorrecao(0, 2);
             IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarTodasAsLinhas("CD_TIPO_COMISSAO", tipoComissao);
-
+            AlterarHeader("VERSAO", "9.6");
             SalvarArquivo(true);
 
             ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
 
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0), OperadoraEnum.LASA, "10", false, "3","99999");
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.LASA, "10", true, "3","99999");
 
             /*
 Enviar arquivo COMISSAO para ODS com dados de emissão de duas parcelas 
@@ -293,16 +297,17 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
              */
         }
 
+        [TestMethod]
         public void Teste12()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste12-FG09", "FG09");
 
             var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", false);
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", true);
             arquivo = arquivoParc;
             AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValor(0, "VL_ADIC_FRACIONADO", 1000M));
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", false);
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true);
 
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de uma única parcela
@@ -311,6 +316,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
              */
         }
 
+        [TestMethod]
         public void Teste13()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste13-FG09", "FG09");
@@ -370,16 +376,17 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
              */
         }
 
+        [TestMethod]
         public void Teste14()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste14-FG09", "FG09");
 
             var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.LASA, "", false);
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.LASA, "", true);
             arquivo = arquivoParc;
             AlterarLinha(0, "VL_IOF", SomarValor(0, "VL_IOF", 100M));
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.LASA, "10", false);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.LASA, "10", true);
 
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de uma única parcela
@@ -388,16 +395,17 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
              */
         }
 
+        [TestMethod]
         public void Teste15()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste15-FG09", "FG09");
 
             var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", false);
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", true);
             arquivo = arquivoParc;
             AlterarLinha(0, "VL_CUSTO_APOLICE", SomarValor(0, "VL_CUSTO_APOLICE", 1000M));
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", false);
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true);
 
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de uma única parcela
@@ -406,16 +414,17 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
              */
         }
 
+        [TestMethod]
         public void Teste16()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste16-FG09", "FG09");
 
             var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.POMPEIA, "", false);
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.POMPEIA, "", true);
             arquivo = arquivoParc;
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.POMPEIA, "10", false);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.POMPEIA, "10", true);
 
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de uma parcela com duas coberturas
@@ -423,16 +432,17 @@ Enviar cancelamento para apenas uma das coberturas
              */
         }
 
+        [TestMethod]
         public void Teste17()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste17-FG09", "FG09");
 
-            var arquivoParc = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.SOFTBOX, "", false);
             arquivo = arquivoParc;
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.SOFTBOX, "10", false);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.SOFTBOX, "10", false);
 
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de uma parcela com duas coberturas
@@ -440,14 +450,15 @@ Enviar cancelamento para apenas uma das coberturas
              */
         }
 
+        [TestMethod]
         public void Teste18()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste18-FG09", "FG09");
 
             var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", false);
-            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", false,"","","01");
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO, "", true);
+            EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "10", true,"","","01");
 
             /*
 Enviar arquivo PARCEMSAUTO para ODS com dados de emissão e com status de pagamento PG
@@ -455,15 +466,15 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=01
              */
         }
 
+        [TestMethod]
         public void Teste19()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste19-FG09", "FG09");
 
             var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.LASA, "", false);
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissaoAuto, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.LASA, "10", false, "", "", "03");
-
+            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.LASA, "", true);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.LASA, "10", true, "", "", "03");
             /*
 Enviar arquivo PARCEMS para ODS com dados de emissão e com status de pagamento PG
 Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
