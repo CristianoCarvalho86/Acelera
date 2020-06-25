@@ -535,7 +535,8 @@
     <Compile Include="FASE 2\SIT\SP3\FG05\Clientesods.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\TesteDaMassa.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG06\FG06.cs" />
-    <Compile Include="FASE 2\SIT\SP4\FG06\MassaTesteUnitarioFG6.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG06\MassaTesteUnitarioFG06.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG09\MassaTesteUnitarioFG09.cs" />
     <Compile Include="TestesDashboard.cs" />
     <Compile Include="TestesFG02.cs" />
     <Compile Include="Layout942.cs" />
@@ -582,9 +583,7 @@
       <Name>Acelera.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FASE 2\SIT\SP4\FG09\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -31,6 +31,20 @@ namespace Acelera.Domain.Layouts
             return campo;
         }
 
+        public string ObterValorFormatado(string nomeCampo)
+        {
+            var campo = Campos.Where(x => x.ColunaArquivo.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
+            Assert.IsNotNull(campo, $"CAMPO NAO ENCONTRADO : '{nomeCampo}'");
+            return campo.ValorFormatado;
+        }
+
+        public int ObterValorInteiro(string nomeCampo)
+        {
+            var campo = Campos.Where(x => x.ColunaArquivo.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
+            Assert.IsNotNull(campo, $"CAMPO NAO ENCONTRADO : '{nomeCampo}'");
+            return campo.ValorInteiro;
+        }
+
         public CampoDoArquivo ObterCampoSeExistir(string nomeCampo)
         {
             var campo = Campos.Where(x => x.Coluna.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();

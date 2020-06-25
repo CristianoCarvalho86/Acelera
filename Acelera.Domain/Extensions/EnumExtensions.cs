@@ -106,6 +106,10 @@ namespace Acelera.Domain.Extensions
                     return tipoArquivo.ObterTarefaFG04Enum().ObterTexto();
                 case FGs.FG05:
                     return tipoArquivo.ObterTarefaFG05Enum().ObterTexto();
+                case FGs.FG06:
+                    return tipoArquivo.ObterTarefaFG06Enum().ObterTexto();
+                case FGs.FG09:
+                    return tipoArquivo.ObterTarefaFG09Enum().ObterTexto();
                 default:
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
             }
@@ -240,6 +244,29 @@ namespace Acelera.Domain.Extensions
         public static FG06_Tarefas ObterTarefaFG06Enum(this TipoArquivo tipoArquivo)
         {
             return FG06_Tarefas.Trinca;
+        }
+
+        public static FG09_Tarefas ObterTarefaFG09Enum(this TipoArquivo tipoArquivo)
+        {
+            switch (tipoArquivo)
+            {
+                case TipoArquivo.Cliente:
+                    return FG09_Tarefas.Cliente;
+                case TipoArquivo.Comissao:
+                    return FG09_Tarefas.Comissao;
+                case TipoArquivo.LanctoComissao:
+                    return FG09_Tarefas.LanctoComissao;
+                case TipoArquivo.OCRCobranca:
+                    return FG09_Tarefas.OCRCobranca;
+                case TipoArquivo.ParcEmissao:
+                    return FG09_Tarefas.ParcEmissao;
+                case TipoArquivo.ParcEmissaoAuto:
+                    return FG09_Tarefas.ParcEmissaoAuto;
+                case TipoArquivo.Sinistro:
+                    return FG09_Tarefas.Sinistro;
+                default:
+                    throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
+            }
         }
     }
 }

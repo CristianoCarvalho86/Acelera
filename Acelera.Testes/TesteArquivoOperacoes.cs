@@ -56,6 +56,11 @@ namespace Acelera.Testes
             return arquivo.ObterLinha(posicaoLinha);
         }
 
+        public void LogarAlteracao()
+        {
+
+        }
+
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");

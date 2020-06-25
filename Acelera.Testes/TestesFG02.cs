@@ -160,6 +160,7 @@ namespace Acelera.Testes
             if (arquivo.tipoArquivo != TipoArquivo.ParcEmissao && arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
                 return;
 
+            /*
             var linhas = valoresAlteradosBody.LinhasAlteradasPorArquivo(arquivo.NomeArquivo);
             var linhasAColocarIdTransacao = new List<int>();
             foreach (var linha in linhas)
@@ -177,7 +178,8 @@ namespace Acelera.Testes
             }
             foreach(var linha in linhasAColocarIdTransacao)
                 AlterarLinha(linha, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(linha)));
-
+             */
+            Parallel.ForEach(arquivo.Linhas, linha => { AlterarLinha(linha.Index, "ID_TRANSACAO", CarregarIdtransacao(linha)); });
         }
 
         public virtual IList<ILinhaTabela> ExecutarEValidar(Arquivo arquivo, FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)

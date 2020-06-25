@@ -185,14 +185,19 @@ namespace Acelera.Testes
             dados = new TabelaParametrosDataSP3(logger);
         }
 
-        protected void ExecutarEValidar(CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = "", int qtdErrosNaTabelaDeRetorno = 0)
+        protected virtual void ExecutarEValidar(CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = "", int qtdErrosNaTabelaDeRetorno = 0)
         {
             ValidarFGsAnteriores();
 
             //Executar FG05
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
 
-            //VALIDAR NA FG01
+            //VALIDAR NA FG05
+            Validar(codigoEsperadoStage, erroEsperadoNaTabelaDeRetorno, qtdErrosNaTabelaDeRetorno);
+        }
+
+        protected void Validar(CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno, int qtdErrosNaTabelaDeRetorno)
+        {
             ValidarLogProcessamento(true);
             ValidarStages(codigoEsperadoStage);
             if (qtdErrosNaTabelaDeRetorno > 0)
@@ -203,18 +208,23 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        protected void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
+        protected virtual void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
         {
             ValidarFGsAnteriores();
 
             //Executar FG05
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
 
-            //VALIDAR NA FG01
+            ValidarDesconsiderandoErro(codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
+        }
+
+        protected void ValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
+        {
+            //VALIDAR NA FG05
             ValidarLogProcessamento(true);
             ValidarStagesSemGerarErro(codigoEsperadoStage);
             ValidarTabelaDeRetorno(true, false, new string[] { erroNaoEsperadoNaTabelaDeRetorno });
-            
+
             ValidarTeste();
         }
 

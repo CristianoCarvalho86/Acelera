@@ -126,4 +126,23 @@ namespace Acelera.Domain.Enums
         [Description("FGR_06_TRINCA")]
         Trinca,
     }
+
+    public enum FG09_Tarefas
+    {
+        [Description("FGR_09_CLIENTE")]
+        Cliente,           
+        [Description("FGR_09_COMISSAO")]
+        Comissao,          
+        [Description("FGR_09_BAIXA_COMISSAO")]
+        LanctoComissao,    
+        [Description("FGR_09_BAIXA_PARCELA")]
+        OCRCobranca,       
+        [Description("FGR_09_PARCELA")]
+        ParcEmissao,       
+        [Description("FGR_09_SINISTRO")]
+        Sinistro,          
+        [Description("FGR_09_PARCELA_AUTO")]
+        ParcEmissaoAuto,
+
+    }
 }
