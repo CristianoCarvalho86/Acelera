@@ -18,6 +18,7 @@ namespace Acelera.Testes
     [TestClass]
     public class TestesFG09 : TestesFG05
     {
+        protected override string NomeFG => "FG09";
         protected override void ExecutarEValidar(CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = "", int qtdErrosNaTabelaDeRetorno = 0)
         {
             ValidarFGsAnteriores();
@@ -34,9 +35,14 @@ namespace Acelera.Testes
             ValidarFGsAnteriores();
 
             //Executar FG09
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG09Enum().ObterTexto());
 
             ValidarDesconsiderandoErro(codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
+        }
+
+        protected override IList<string> ObterProceduresASeremExecutadas()
+        {
+            return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();
         }
 
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)

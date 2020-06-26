@@ -92,14 +92,6 @@ namespace Acelera.Testes
                 }
         }
 
-        //protected override void SalvarArquivo()
-        //{
-        //    //foreach (var linha in arquivo.Linhas)
-        //    //    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
-        //    base.SalvarArquivo();
-        //}
-
-
         public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
         {
             if (alterarCdCliente && operadora != OperadoraEnum.SGS)
@@ -143,13 +135,6 @@ namespace Acelera.Testes
                 foreach (var linha in linhas)
                     ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
 
-        }
-
-        public override void ValidarODS()
-        {
-            throw new NotImplementedException();
-            foreach (var arquivo in arquivosOds)
-                validadorODS = new ValidadorODSFG05(logger, arquivo);
         }
 
         //protected override void SalvarArquivo()
