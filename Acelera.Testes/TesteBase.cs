@@ -302,7 +302,7 @@ namespace Acelera.Testes
                 }
         }
 
-        public LinhaArquivo EnviarCancelamento(LinhaArquivo linhaArquivoEmissao, string cdTipoEmissao, string cdMovtoCobranca = "02",
+        public LinhaArquivo CriarLinhaCancelamento(LinhaArquivo linhaArquivoEmissao, string cdTipoEmissao, string cdMovtoCobranca = "02",
         string nrSequencialEmissao = "")
         {
             logger.AbrirBloco("CRIANDO LINHA DE CANCELAMENTO.");
