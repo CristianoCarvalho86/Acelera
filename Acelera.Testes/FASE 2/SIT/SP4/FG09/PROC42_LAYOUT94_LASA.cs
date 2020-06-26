@@ -27,10 +27,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
+            var contrato =AlterarUltimasPosicoes("CD_CONTRATO", GerarNumeroAleatorio(8));
+            AlterarLinha(0, "CD_CONTRATO", contrato);
+            AlterarLinha(0, "NR_APOLICE", contrato);
+            AlterarLinha(0, "NR_PROPOSTA", contrato);
+
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
-            var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
             EnviarParaOds(arquivo);
             var arquivoods1 = arquivo.Clone();
@@ -40,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13"));
             
 
             EnviarParaOds(arquivo);
@@ -51,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10");
+            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "13");
 
             SalvarArquivo();
 
