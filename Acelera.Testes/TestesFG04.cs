@@ -163,16 +163,18 @@ namespace Acelera.Testes
         {
             ChamarExecucao(FG04_Tarefas.Comissao.ObterTexto());
             var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
-            validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA"  }, new string[] { cdContrato , nomeArquivo },
-                "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
+            if (!validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA" }, new string[] { cdContrato, nomeArquivo },
+                "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao))
+                ExplodeFalha("ERRO NA VALIDACAO DA STAGE COMISSAO APOS EXECUCAO DA FG04");
         }
 
         public void ExecutarEValidarStageComissao(string cdContrato, string nomeArquivo,FGs fgAExecutar, CodigoStage codigoStage)
         {
             ChamarExecucao(TipoArquivo.Comissao.ObterTarefaDaFG(fgAExecutar));
             var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
-            validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA" }, new string[] { cdContrato, nomeArquivo },
-                "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao);
+            if (!validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA" }, new string[] { cdContrato, nomeArquivo },
+                "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao))
+                ExplodeFalha($"ERRO NA VALIDACAO DA STAGE COMISSAO APOS EXECUCAO DA {fgAExecutar.ObterTexto()}");
         }
 
         public void ValidarTabelaDeRetornoVazia(Arquivo arquivo)
