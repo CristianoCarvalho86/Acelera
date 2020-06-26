@@ -134,7 +134,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             triplice = new TripliceVIVO(1, logger);
             PrepararMassa(OperadoraEnum.VIVO);
-            //CarregarCancelamento<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>(triplice.ArquivoParcEmissao, arquivoEmissao.ObterLinha(0));
+            CarregarCancelamento<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>(triplice.ArquivoParcEmissao, OperadoraEnum.VIVO, arquivoEmissao.ObterLinha(0));
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, triplice.ArquivoComissao);
 
             triplice.Salvar();
