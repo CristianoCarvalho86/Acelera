@@ -32,10 +32,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "13");
-            AlterarLinha(0,"CD_RAMO",dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValor(0, "CD_COBERTURA"), ObterValor(0, "CD_RAMO"));
+            AlterarLinha(0,"CD_RAMO",dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValor(0, "CD_COBERTURA"), ObterValor(0, "CD_RAMO"), out string produto));
+            AlterarLinha(0, "CD_PRODUTO", produto);
 
-
-            AlterarCobertura(false);
+           AlterarCobertura(false);
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "45", 1);
