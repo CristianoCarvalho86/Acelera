@@ -24,16 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             IniciarTeste(TipoArquivo.Sinistro, "5284", "FG09 - PROC42 - ");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-
-            CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
-
-            EnviarParaOds(arquivo);
-            var arquivoods1 = arquivo.Clone();
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, 0);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -66,16 +57,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             IniciarTeste(TipoArquivo.Sinistro, "5285", "FG09 - PROC42 - ");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-
-            CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
-
-            EnviarParaOds(arquivo);
-            var arquivoods1 = arquivo.Clone();
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, 0);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();

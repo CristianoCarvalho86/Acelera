@@ -45,6 +45,20 @@ namespace Acelera.Testes
             return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();
         }
 
+        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, int posicaoLinha, string cdTipoEmissao = "20") where T : Arquivo, new()
+        {
+            arquivo = new T();
+            CarregarArquivo(arquivo, 1, operadora);
+            CriarNovoContrato(0);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", cdTipoEmissao);
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+
+            EnviarParaOds(arquivo);
+            return arquivo.Clone();
+        }
+
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
