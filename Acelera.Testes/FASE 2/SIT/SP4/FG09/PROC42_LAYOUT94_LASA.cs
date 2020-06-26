@@ -39,7 +39,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            EnviarCancelamento(arquivoods1.ObterLinha(0), "10");
+            RemoverTodasAsLinhas();
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             
 
             EnviarParaOds(arquivo);
@@ -49,7 +50,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            EnviarCancelamento(arquivoods2.ObterLinha(0), "10");
+            RemoverTodasAsLinhas();
+            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10");
 
             SalvarArquivo();
 
