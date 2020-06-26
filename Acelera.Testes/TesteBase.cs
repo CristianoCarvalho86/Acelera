@@ -324,6 +324,14 @@ namespace Acelera.Testes
             return linhaCancelamento;
         }
 
+        public void CriarNovoContrato(int posicaoLinha)
+        {
+            var contrato = AlterarUltimasPosicoes("CD_CONTRATO", GerarNumeroAleatorio(8));
+            AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
+            AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
+            AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
+        }
+
 
     }
 }
