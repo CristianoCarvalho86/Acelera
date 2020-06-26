@@ -128,7 +128,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         [TestMethod]
         public void Teste6_FG06()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG06", "Teste1-FG06");
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste6-FG06", "Teste6-FG06");
 
             var arquivoEmissao = EnviarEmissao<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>(OperadoraEnum.VIVO);
 

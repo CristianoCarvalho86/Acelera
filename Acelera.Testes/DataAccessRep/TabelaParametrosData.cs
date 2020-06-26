@@ -282,13 +282,16 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(select);
         }
 
-        public string ObterRamoRelacionadoACoberturaDiferenteDe(string cd_cobertura, string cdRamo)
+        public string ObterRamoRelacionadoACoberturaDiferenteDe(string cd_cobertura, string cdRamo, out string cdProduto)
         {
-            var select = $"SELECT TOP 1 P.CD_RAMO FROM {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P " +
+            var select = $"SELECT TOP 1 P.CD_RAMO, P.CD_PRODUTO FROM {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P " +
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C ON R.CD_RAMO = C.CD_RAMO " +
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
             $" WHERE C.CD_COBERTURA = '{cd_cobertura}' AND P.CD_RAMO <> '{cdRamo}' ";
-            return DataAccess.ConsultaUnica(select);
+            var table = DataAccess.Consulta(select,$"RAMO DIFERENTE DE {cdRamo}",logger);
+            cdProduto = table.Rows[0]["CD_PRODUTO"].ToString();
+            return table.Rows[0]["CD_RAMO"].ToString();
+            
         }
 
         public string ObterCDTipoMovimentoParaAtuacao(string atuacao, bool relacionado)
