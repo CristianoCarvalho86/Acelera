@@ -288,7 +288,7 @@ namespace Acelera.Testes.DataAccessRep
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C ON R.CD_RAMO = C.CD_RAMO " +
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
             $" WHERE C.CD_COBERTURA = '{cd_cobertura}' AND P.CD_RAMO <> '{cdRamo}' ";
-            var table = DataAccess.Consulta(select,$"RAMO DIFERENTE DE {cdRamo}",logger);
+            var table = DataAccess.Consulta(select,$"RAMO DIFERENTE DE {cdRamo} E ASSOCIADO A COBERTURA : {cd_cobertura}",logger);
             cdProduto = table.Rows[0]["CD_PRODUTO"].ToString();
             return table.Rows[0]["CD_RAMO"].ToString();
             
