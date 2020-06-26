@@ -17,6 +17,7 @@ namespace Acelera.Logger
         private StreamWriter writer;
         private string TextoFimArquivo;
         private bool sucessoExecucao;
+        public string NomeArquivo => path + nomeArquivoLog;
         public MyLogger(string _path, string nomeArquivo)
         {
             path = _path;

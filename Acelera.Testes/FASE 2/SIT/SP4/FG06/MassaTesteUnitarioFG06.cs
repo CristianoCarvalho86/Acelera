@@ -134,7 +134,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             triplice = new TripliceVIVO(1, logger);
             PrepararMassa(OperadoraEnum.VIVO);
-            //CarregarDadosCancelamento(triplice.ArquivoParcEmissao, arquivoEmissao.ObterLinha(0));
+            //CarregarCancelamento<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>(triplice.ArquivoParcEmissao, arquivoEmissao.ObterLinha(0));
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, triplice.ArquivoComissao);
 
             triplice.Salvar();
@@ -629,6 +629,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(arquivo, FGs.FG05, CodigoStage.AprovadoNegocioSemDependencia);
 
             var arquivoParc = arquivo.Clone();
 
@@ -644,6 +645,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
             ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(arquivo, FGs.FG05, CodigoStage.AprovadoNegocioSemDependencia);
 
             return arquivoParc.Clone();
         }

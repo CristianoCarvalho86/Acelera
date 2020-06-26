@@ -10,6 +10,7 @@ namespace Acelera.Logger
 {
     public interface IMyLogger
     {
+        string NomeArquivo { get; }
         void Escrever(string texto);
 
         void LinhaEmBranco();

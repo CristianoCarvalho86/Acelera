@@ -199,10 +199,10 @@ namespace Acelera.Testes
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = string.Empty;
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                nomeArquivoDeLog = arquivo.NomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+                nomeArquivoDeLog = logger.NomeArquivo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                File.Copy(Parametros.pastaDestino + arquivo.NomeArquivo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
+                File.Copy(logger.NomeArquivo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(Parametros.pastaLogArquivoCopia))
                 File.Copy(pathOrigem, Parametros.pastaLogArquivoCopia + nomeArquivoDeLog);
