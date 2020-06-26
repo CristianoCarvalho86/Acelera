@@ -132,9 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             var arquivoEmissao = EnviarEmissao<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>(OperadoraEnum.VIVO);
 
-            triplice = new TripliceVIVO(1, logger);
-            PrepararMassa(OperadoraEnum.VIVO);
-            //CarregarCancelamento<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>(triplice.ArquivoParcEmissao, OperadoraEnum.VIVO, arquivoEmissao.ObterLinha(0));
+            CarregarCancelamento<Arquivo_Layout_9_3_ParcEmissao, Arquivo_Layout_9_3_EmsComissao>(arquivoEmissao.ObterLinha(0), OperadoraEnum.VIVO, "10",false );
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, triplice.ArquivoComissao);
 
             triplice.Salvar();
@@ -235,6 +233,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             SalvarArquivo(true);
 
             logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);
+
+            ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
         }
 
         /*
@@ -624,6 +626,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            PrepararMassa(arquivo, out string tipoComissao);
+
             SalvarArquivo();
 
             ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
@@ -640,6 +644,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_COMISSAO", tipoComissao);
             SalvarArquivo();
 
             ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
@@ -655,8 +660,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
 
-            Parametros.instanciaDB = "HDIDEV_1";
-            DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
+            SetDev();
 
             var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoCliente.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_COBERTURA", cobertura.CdCobertura);
@@ -694,14 +698,76 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
                     throw new Exception("OPERACAO SEM CORRETOR CADASTRADO.");
             }
 
-            DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20274;UID=CCARVALHO;PWD=Cristiano@03;encrypt=TRUE;Connection Timeout=5000");
-            Parametros.instanciaDB = "HDIQAS_1";
+            SetQA();
 
             var novoContrato = AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CONTRATO", novoContrato);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_PROPOSTA", novoContrato);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_APOLICE", novoContrato);
 
+        }
+
+        public void PrepararMassa(Arquivo arquivo, out string tipoCorretor)
+        {
+            tipoCorretor = "";
+            //arquivo.AlterarLinhaSeExistirCampo(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
+
+            SetDev();
+
+            var cobertura = dados.ObterCoberturaSimples(arquivo.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
+            for (int i = 0; i < arquivo.Linhas.Count; i++)
+            {
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
+                arquivo.AlterarLinhaSeExistirCampo(i, "VL_LMI", arquivo.ObterValorFormatadoSeExistirCampo(0, "VL_IS"));
+            }
+
+
+            SetQA();
+
+
+            var novoContrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            for (int i = 0; i < arquivo.Linhas.Count; i++)
+            {
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_CONTRATO", novoContrato);
+                arquivo.AlterarLinhaSeExistirCampo(i, "NR_PROPOSTA", novoContrato);
+                arquivo.AlterarLinhaSeExistirCampo(i, "NR_APOLICE", novoContrato);
+
+
+                if (operadora == OperadoraEnum.VIVO)
+                {
+                    arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7239711");
+                    tipoCorretor = "C";
+                    //triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "C");
+                }
+                else if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+                {
+                    arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7150145");
+                    tipoCorretor = "P";
+                }
+                else if (operadora == OperadoraEnum.POMPEIA)
+                {
+                    arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7150166");
+                    tipoCorretor = "P";
+                }
+                else
+                    throw new Exception("OPERACAO SEM CORRETOR CADASTRADO.");
+
+            }
+
+        }
+
+        private static void SetQA()
+        {
+            DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20274;UID=CCARVALHO;PWD=Cristiano@03;encrypt=TRUE;Connection Timeout=5000");
+            Parametros.instanciaDB = "HDIQAS_1";
+        }
+
+        private static void SetDev()
+        {
+            Parametros.instanciaDB = "HDIDEV_1";
+            DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
         }
     }
 }

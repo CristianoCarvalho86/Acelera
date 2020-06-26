@@ -6,6 +6,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.Adapters;
+using Acelera.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -394,9 +395,10 @@ namespace Acelera.Testes
         public string GerarNumeroAleatorio(int posicoes)
         {
             var retorno = string.Empty;
-            int seed = DateTime.Now.Millisecond + DateTime.Now.Hour * DateTime.Now.Second + DateTime.Now.Minute * DateTime.Now.Day;
             for (int i = 0; i < posicoes; i++)
-                retorno += new Random(seed * i).Next(0, 9).ToString();
+            {
+                retorno += RandomNumber.Between(0, 9);
+            }
             return retorno;
         }
 
