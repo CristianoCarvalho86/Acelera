@@ -51,30 +51,50 @@ namespace Acelera.Testes
             switch (tipoArquivoTeste)
             {
                 case TipoArquivo.Cliente:
-                     lista.Add("PRC_0038_");
                     break;
                 case TipoArquivo.ParcEmissao:
-                    lista.Add("PRC_1015_NEG");
+                    lista.Add("PRC_0042_");
+                    lista.Add("PRC_0045_");
+                    lista.Add("PRC_0190_");
+                    lista.Add("PRC_0196_");
+                    lista.Add("PRC_0197_");
+                    lista.Add("PRC_0201_");
+                    lista.Add("PRC_0206_");
+                    lista.Add("PRC_0207_");
+                    lista.Add("PRC_0208_");
+                    lista.Add("PRC_0211_");
+                    lista.Add("PRC_0222_");
+                    lista.Add("PRC_0224_");
+                    lista.Add("PRC_0229_");
                     break;
 
                 case TipoArquivo.ParcEmissaoAuto:
-                    lista.Add("PRC_1015_NEG");
+                    lista.Add("PRC_0042_");
+                    lista.Add("PRC_0045_");
+                    lista.Add("PRC_0190_");
+                    lista.Add("PRC_0196_");
+                    lista.Add("PRC_0197_");
+                    lista.Add("PRC_0201_");
+                    lista.Add("PRC_0206_");
+                    lista.Add("PRC_0207_");
+                    lista.Add("PRC_0208_");
+                    lista.Add("PRC_0211_");
+                    lista.Add("PRC_0222_");
+                    lista.Add("PRC_0224_");
+                    lista.Add("PRC_0229_");
                     break;
 
                 case TipoArquivo.Comissao:
-                    lista.Add("PRC_0216_NEG");
+                    lista.Add("PRC_0197_");
+                    lista.Add("PRC_0200_");
                     break;
 
                 case TipoArquivo.LanctoComissao:
-                    lista.Add("PRC_0097_INT");
-
                     break;
                 case TipoArquivo.OCRCobranca:
-                    lista.Add("PRC_0097_INT");
                     break;
 
                 case TipoArquivo.Sinistro:
-                    lista.Add("PRC_0097_INT");
                     break;
                 default:
                     throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
