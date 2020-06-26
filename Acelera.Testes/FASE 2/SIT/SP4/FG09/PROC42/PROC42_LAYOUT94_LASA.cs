@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
+namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
 {
     [TestClass]
     public class PROC42_LAYOUT94_LASA : TestesFG09
@@ -27,11 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            var contrato =AlterarUltimasPosicoes("CD_CONTRATO", GerarNumeroAleatorio(8));
-            AlterarLinha(0, "CD_CONTRATO", contrato);
-            AlterarLinha(0, "NR_APOLICE", contrato);
-            AlterarLinha(0, "NR_PROPOSTA", contrato);
-
+            CriarNovoContrato(0);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
@@ -56,6 +52,49 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "13");
+
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "181", 1);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5285()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "5285", "FG09 - PROC42 - ");
+
+            //Envia parc normal
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            CriarNovoContrato(0);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(0, "NR_ENDOSSO", "0");
+
+            EnviarParaOds(arquivo);
+            var arquivoods1 = arquivo.Clone();
+
+            //Envia Parc com id cancelamento igual id transição do anterior
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            RemoverTodasAsLinhas();
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13"));
+
+
+            EnviarParaOds(arquivo);
+            var arquivoods2 = arquivo.Clone();
+
+            //Sinistro referente a cancelamento
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            RemoverTodasAsLinhas();
+            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "13");
+            AlterarLinha(0, "NR_PARCELA", "9");
 
             SalvarArquivo();
 
