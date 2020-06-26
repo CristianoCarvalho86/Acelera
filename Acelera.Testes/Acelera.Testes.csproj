@@ -538,7 +538,7 @@
     <Compile Include="FASE 2\SIT\SP4\FG06\MassaTesteUnitarioFG06.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG09\PROC42\PROC42_LAYOUT94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG09\MassaTesteUnitarioFG09.cs" />
-    <Compile Include="FASE 2\SIT\SP4\FG09\PROC45\PROC42_LAYOUT94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG09\PROC45\PROC45_LAYOUT94_LASA.cs" />
     <Compile Include="TestesDashboard.cs" />
     <Compile Include="TestesFG02.cs" />
     <Compile Include="Layout942.cs" />
