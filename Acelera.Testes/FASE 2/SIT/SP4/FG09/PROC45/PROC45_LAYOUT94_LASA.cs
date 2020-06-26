@@ -24,16 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             IniciarTeste(TipoArquivo.Sinistro, "5284", "FG09 - PROC45 - ");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-
-            CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
-
-            EnviarParaOds(arquivo);
-            var arquivoods = arquivo.Clone();
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, 0);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -41,7 +32,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "13");
+            AlterarLinha(0,"CD_RAMO",dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValor(0, "CD_COBERTURA"), ObterValor(0, "CD_RAMO"), out string produto));
+            AlterarLinha(0, "CD_PRODUTO", produto);
 
+           AlterarCobertura(false);
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "45", 1);
