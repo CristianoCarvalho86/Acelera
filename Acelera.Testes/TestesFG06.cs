@@ -48,5 +48,10 @@ namespace Acelera.Testes
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
         }
+
+        protected override void SalvarArquivo()
+        {
+            base.SalvarArquivo();
+        }
     }
 }

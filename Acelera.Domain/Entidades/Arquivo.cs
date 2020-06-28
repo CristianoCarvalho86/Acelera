@@ -129,6 +129,11 @@ namespace Acelera.Domain.Layouts
             return Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado;
         }
 
+        public string ObterValorFormatado(int posicaoLinha, string campo)
+        {
+            return Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado;
+        }
+
         public int ObterValorInteiro(int posicaoLinha, string campo)
         {
             return int.Parse(Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado);
@@ -232,6 +237,13 @@ namespace Acelera.Domain.Layouts
         public void AlterarFooter(string campo, string textoNovo, int posicaoLinhaFooter = 0)
         {
             Footer[posicaoLinhaFooter].ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
+        }
+
+        public bool ValidarCampo(int posicaoLinha, string campo, string valor)
+        {
+            if (ObterValorFormatado(posicaoLinha, campo) == valor)
+                return true;
+            return false;
         }
 
         public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha)
