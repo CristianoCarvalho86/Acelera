@@ -105,8 +105,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
             AlterarLinhaSeHouver(0, "CD_RAMO", cobertura.CdRamo);
             AlterarLinhaSeHouver(0, "CD_PRODUTO", cobertura.CdProduto);
 
+            decimal valorTotal = 0;
+            valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
+
+            if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
+                valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
+            //Valor do Prêmio Aceito = Valor do Prêmio calculado – (Valor do Prêmio calculado * Menor valor parametrizado)
+            else
+                valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
+
+            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
+
             decimal valorTotalLiq = 0;
-            valorTotalLiq = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
+            valorTotalLiq = ObterValorFormatado(0, "VL_PREMIO_TOTAL").ObterValorDecimal();
 
             if (cobertura.TP_APLICACAO_PREMIO_LQ == "PC")
                 valorTotalLiq = valorTotalLiq - (valorTotalLiq * cobertura.ValorPremioLiquidoMenorDecimal);

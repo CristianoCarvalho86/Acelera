@@ -78,11 +78,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             CarregarTriplice(OperadoraEnum.LASA);
 
-            var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
+            //var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
 
-            triplice.AlterarParcEComissao(0, "CD_COBERTURA", cobertura.CdCobertura);
-            triplice.AlterarParcEComissao(0, "CD_RAMO", cobertura.CdRamo);
-            triplice.AlterarParcEComissao(0, "CD_PRODUTO", cobertura.CdProduto);
+            triplice.AlterarParcEComissao(0, "CD_COBERTURA", "01589");
+            triplice.AlterarParcEComissao(0, "CD_RAMO","71");
+            triplice.AlterarParcEComissao(0, "CD_PRODUTO", "71724");
 
             triplice.AlterarParcEComissao(0, "CD_CORRETOR", "7150145");
             triplice.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "P");

@@ -107,7 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
 
             if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
-                valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMaiorDecimal);
+                valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
             //Valor do Prêmio Aceito = Valor do Prêmio calculado – (Valor do Prêmio calculado * Menor valor parametrizado)
             else
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
