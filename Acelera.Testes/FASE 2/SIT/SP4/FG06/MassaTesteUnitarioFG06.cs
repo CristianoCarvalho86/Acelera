@@ -391,31 +391,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         [TestMethod]
         public void Teste17_FG06()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "Teste17-FG06", "Teste17-FG06");
-            triplice = new TripliceTIM(1, logger, ref valoresAlteradosBody);
-            PrepararMassa(OperadoraEnum.TIM);
+            //FG 06 - Cancelamento - TIM - CLI sucesso, PARC rejeitado e CMS ñ enviado
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste17_FG06", "Teste17_FG06");
 
-            arquivo = triplice.ArquivoCliente;
-            AlterarLinha(0, "SEXO", "1");//Rejeitar na 02
+            var arquivoEmissao = EnviarEmissao<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM);
 
-            arquivo = triplice.ArquivoParcEmissao;
-            ReplicarLinhaComCorrecao(0, 1);
-
-            triplice.Salvar(true, false, false);
-
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
-            //ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            //ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
-
-            //ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            //ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
-
-            //ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            //ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            //ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
-
-
+            CarregarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoEmissao.ObterLinha(0), true, false, OperadoraEnum.TIM, "10", false);
         }
 
         [TestMethod]
@@ -617,6 +598,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
         }
 
+        [TestMethod]
+        public void Teste28_FG06()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "Teste27-FG06", "Teste27-FG06");
+            triplice = new TripliceTIM(1, logger, ref valoresAlteradosBody);
+            arquivo = triplice.ArquivoParcEmissao;
+            PrepararMassa(OperadoraEnum.TIM);
+
+            triplice.Salvar(false, true, false);
+        }
+
 
         public Arquivo EnviarEmissao<T, C>(OperadoraEnum operadora) where T : Arquivo, new() where C : Arquivo, new()
         {
@@ -630,9 +622,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             SalvarArquivo();
 
-            //ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            //ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            //ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             //ExecutarEValidar(arquivo, FGs.FG05, CodigoStage.ReprovadoNegocioComDependencia, "227");
 
             var arquivoParc = arquivo.Clone();
@@ -644,12 +636,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            if (tipoComissao != "") ;
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_COMISSAO", tipoComissao);
             SalvarArquivo();
 
-            //ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            //ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            //ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             //ExecutarEValidar(arquivo, FGs.FG05, CodigoStage.ReprovadoNegocioComDependencia, "54");
 
             return arquivoParc.Clone();
@@ -658,8 +651,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         public void PrepararMassa(OperadoraEnum operadora, bool alterarCorretor = true)
         {
-            if(operadora != OperadoraEnum.TIM)
-                triplice.AlterarCliente(0, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
+           triplice.AlterarCliente(0, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
 
             SetDev();
 
@@ -751,6 +743,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
                 else if (operadora == OperadoraEnum.POMPEIA)
                 {
                     arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7150166");
+                    tipoCorretor = "P";
+                }
+                else if (operadora == OperadoraEnum.TIM)
+                {
+                    arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7950129");
                     tipoCorretor = "P";
                 }
                 else

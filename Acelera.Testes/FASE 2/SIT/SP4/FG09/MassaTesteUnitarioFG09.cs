@@ -24,11 +24,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09
 
             var arquivoParc = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             var arquivoComissao = new Arquivo_Layout_9_3_EmsComissao();
+            arquivoParc.Carregar(ObterArquivoOrigem("ODS_TESTE1_FG09_C01.VIVO.PARCEMSAUTO-EV-0386-20200130.TXT"));
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.VIVO);
             EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.VIVO, "9");
             arquivo = arquivoParc;
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", SomarValores(arquivoParc.ObterValorInteiro(0, "NR_SEQUENCIAL_EMISSAO"), 1));
-            AlterarLinha(0, "CD_CONTRATO", "7231060360358");
+            //AlterarLinha(0, "CD_CONTRATO", "7231060360358");
             EnviarCancelamento<Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.VIVO, "9",false,"3");
             /*
              Enviar arquivo PARCEMSAUTO para ODS com dados de emissão de um contrato
@@ -45,6 +46,7 @@ Enviar arquivo PARCEMSAUTO com outra movimentação de cancelamento para este me
             var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.LASA);
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.LASA, "11");
             EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.LASA, "10");
             /*
 Enviar arquivo PARCEMS para ODS com dados de emissão de um contrato
