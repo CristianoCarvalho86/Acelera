@@ -18,17 +18,17 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 {
     [TestClass]
-    public class FG04 : TestesFG04
+    public class FG04_Softbox : TestesFG04
     {
-        private string nomeDoArquivoParaValidacao = $"C01.LASA.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT";
+        private string nomeDoArquivoParaValidacao = $"C01.SOFTBOX.EMSCMS-IN-0001-{DateTime.Now.ToString("yyyyMMdd")}.TXT";
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4831()
+        public void SAP_4850()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4831", "");
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4850", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
 
@@ -76,16 +76,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
         {
             IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4833", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
-            //var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
+            var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoParcEmissao.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
 
-            triplice.AlterarParcEComissao(0, "CD_COBERTURA", "01589");
-            triplice.AlterarParcEComissao(0, "CD_RAMO","71");
-            triplice.AlterarParcEComissao(0, "CD_PRODUTO", "71724");
+            triplice.AlterarParcEComissao(0, "CD_COBERTURA", cobertura.CdCobertura);
+            triplice.AlterarParcEComissao(0, "CD_RAMO", cobertura.CdRamo);
+            triplice.AlterarParcEComissao(0, "CD_PRODUTO", cobertura.CdProduto);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", "7150145");
-            triplice.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "P");
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
@@ -120,12 +118,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4834()
+        public void SAP_4854()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4834", "");
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4854", "");
 
             //não enviar comissao
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
@@ -161,12 +159,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4835()
+        public void SAP_4855()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4835", "");
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4855", "");
 
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
@@ -199,7 +197,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
             ExecutarEValidarStageComissao(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
                 nomeDoArquivoParaValidacao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
@@ -239,7 +237,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
         {
             IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4836", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             triplice.AlterarParcEComissao(0, "CD_CORRETOR", "");
             triplice.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "C");
@@ -281,7 +279,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
         {
             IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4837", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             triplice.AlterarParcEComissao(0, "CD_CORRETOR", "");
             triplice.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "P");
@@ -323,7 +321,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
         {
             IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4838", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             triplice.AlterarParcEComissao(0, "CD_CORRETOR", "");
             triplice.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "R");
@@ -400,7 +398,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
         {
             IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4840", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.SOFTBOX);
 
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));

@@ -232,7 +232,6 @@ namespace Acelera.Testes
                     //lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0038_INT");
-                    lista.Add("PRC_0034_INT");
                     lista.Add("PRC_0044_NEG");
                     lista.Add("PRC_0097_INT");
                     lista.Add("PRC_0212_NEG");
@@ -244,7 +243,6 @@ namespace Acelera.Testes
                 case TipoArquivo.ParcEmissaoAuto:
                     //lista.Add("PRC_0022_NEG");
                     lista.Add("PRC_0027_NEG");
-                    lista.Add("PRC_0034_INT");
                     lista.Add("PRC_0038_INT");
                     lista.Add("PRC_0044_NEG");
                     lista.Add("PRC_0097_INT");
@@ -258,7 +256,6 @@ namespace Acelera.Testes
 
                 case TipoArquivo.Comissao:
                     //lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0034_INT");
                     lista.Add("PRC_0038_INT");
                     lista.Add("PRC_0054_INT");
                     lista.Add("PRC_0097_INT");

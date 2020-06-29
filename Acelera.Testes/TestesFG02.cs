@@ -237,6 +237,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0026");
                     lista.Add("PRC_0028");
                     lista.Add("PRC_0032");
+                    lista.Add("PRC_0034");
                     lista.Add("PRC_0107");
                     lista.Add("PRC_0120");
                     lista.Add("PRC_0122");
@@ -279,6 +280,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0026");
                     lista.Add("PRC_0028");
                     lista.Add("PRC_0032");
+                    lista.Add("PRC_0034");
                     lista.Add("PRC_0107");
                     lista.Add("PRC_0120");
                     lista.Add("PRC_0122");
