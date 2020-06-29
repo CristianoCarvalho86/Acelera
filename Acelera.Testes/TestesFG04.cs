@@ -119,8 +119,8 @@ namespace Acelera.Testes
                     //PC_COMISSAO
                     logger.Escrever($"PC_COMISSAO ENCONTRADO NA STAGE COMISSAO: {linha.ObterPorColuna("PC_COMISSAO")};");
                     logger.Escrever("PC_COMISSAO DEVE SER : TAB_PRM_REMUNERACAO_7013.VL_REMUNERACAO / VL_PREMIO_LIQUIDO");
-                    if (decimal.Round(linha.ObterPorColuna("PC_COMISSAO").ValorDecimal,2) !=
-                        (decimal.Round(decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString()) / resultadoStageParcela[0].ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal,2)))
+                    var vlRemuneracaoCortado = decimal.Parse((decimal.Parse(dadosDaRemuneracao[0]["VL_REMUMERACAO"].ToString()) / resultadoStageParcela[0].ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal).ToString("0.00"));
+                    if (linha.ObterPorColuna("PC_COMISSAO").ValorDecimal != vlRemuneracaoCortado)
                     {
                         ExplodeFalha("PC_COMISSAO INVALIDO.");
                     }

@@ -636,8 +636,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            if (tipoComissao != "") ;
-            arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_COMISSAO", tipoComissao);
+            if (tipoComissao != "")
+                arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_COMISSAO", tipoComissao);
             SalvarArquivo();
 
             ExecutarEValidar(arquivo, FGs.FG00, CodigoStage.AprovadoNAFG00);
