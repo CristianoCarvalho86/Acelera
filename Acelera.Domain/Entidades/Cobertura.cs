@@ -70,8 +70,8 @@ namespace Acelera.Domain.Entidades
             cobertura.ValorAdicionalMenor = !linha.Table.Columns.Contains("VL_ADIC_FRAC_MENOR") ? "" : linha["VL_ADIC_FRAC_MENOR"].ToString();
             cobertura.ValorPremioLiquidoMenor = !linha.Table.Columns.Contains("VL_PREMIO_LQ_MENOR") ? "" : linha["VL_PREMIO_LQ_MENOR"].ToString();
             cobertura.ValorPremioLiquidoMaior = !linha.Table.Columns.Contains("VL_PREMIO_LQ_MAIOR") ? "" : linha["VL_PREMIO_LQ_MAIOR"].ToString();
-            cobertura.ValorPremioBrutoMenor = !linha.Table.Columns.Contains("VL_PREMIO_BR_MAIOR") ? "" : linha["VL_PREMIO_BR_MAIOR"].ToString();
-            cobertura.ValorPremioBrutoMaior = !linha.Table.Columns.Contains("VL_PREMIO_BR_MENOR") ? "" : linha["VL_PREMIO_BR_MENOR"].ToString();
+            cobertura.ValorPremioBrutoMaior = !linha.Table.Columns.Contains("VL_PREMIO_BR_MAIOR") ? "" : linha["VL_PREMIO_BR_MAIOR"].ToString();
+            cobertura.ValorPremioBrutoMenor = !linha.Table.Columns.Contains("VL_PREMIO_BR_MENOR") ? "" : linha["VL_PREMIO_BR_MENOR"].ToString();
             cobertura.ValorPercentualAlicotaIof = !linha.Table.Columns.Contains("VL_PERC_ALIQUOTA_IOF") ? "" : linha["VL_PERC_ALIQUOTA_IOF"].ToString();
             cobertura.VL_PERC_DISTRIBUICAO = !linha.Table.Columns.Contains("VL_PERC_DISTRIBUICAO") ? "" : linha["VL_PERC_DISTRIBUICAO"].ToString();
             cobertura.VL_PERC_TAXA_SEGURO = !linha.Table.Columns.Contains("VL_PERC_TAXA_SEGURO") ? "" : linha["VL_PERC_TAXA_SEGURO"].ToString();
