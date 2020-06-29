@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Interfaces;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -23,11 +24,13 @@ namespace Acelera.Testes.ConjuntoArquivos
         public string PastaOrigem { get; protected set; }
         public string PastaDestino { get; protected set; }
         private ControleNomeArquivo controleNomeArquivo;
+        private AlteracoesArquivo valoresAlteradosBody;
 
         private IMyLogger logger;
 
-        public Triplice(int quantidadeCliente, IMyLogger logger)
+        public Triplice(int quantidadeCliente, IMyLogger logger, ref AlteracoesArquivo valoresAlteradosBody)
         {
+            this.valoresAlteradosBody = valoresAlteradosBody;
             controleNomeArquivo = ControleNomeArquivo.Instancia;
             ArquivoCliente = new T1();
             ArquivoParcEmissao = new T2();
@@ -154,6 +157,7 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         protected void SalvarArquivo(Arquivo arquivo, TipoArquivo tipoArquivo, string nomeArquivo)
         {
+            var nomeOriginalArquivo = arquivo.NomeArquivo;
             logger.AbrirBloco($"SALVANDO ARQUIVO {tipoArquivo.ObterTexto()}");
             if (tipoArquivo == TipoArquivo.ParcEmissao || tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 for (int i = 0; i < arquivo.Linhas.Count; i++)
@@ -177,6 +181,7 @@ namespace Acelera.Testes.ConjuntoArquivos
             arquivo.Salvar(PastaDestino + nomeArquivo);
             arquivo.AtualizarNomeArquivoFinal(nomeArquivo);
             logger.FecharBloco();
+            valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, nomeArquivo);
         }
 
         protected string CarregarIdtransacao(LinhaArquivo linha)

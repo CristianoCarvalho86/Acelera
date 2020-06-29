@@ -62,7 +62,7 @@ namespace Acelera.Testes
             {
                 var i = 0;
                 foreach (var linha in arquivo.Linhas)
-                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
+                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
             }
 
 
@@ -99,7 +99,7 @@ namespace Acelera.Testes
                 //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
                 int i = 0;
                 foreach (var linha in arquivo.Linhas)
-                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ObterCDClienteCadastrado());
+                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
             }
 
             SalvarArquivo();
@@ -216,23 +216,6 @@ namespace Acelera.Testes
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
             return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();
-        }
-
-        private string ObterCDClienteCadastrado()
-        {
-            if (operadora == OperadoraEnum.VIVO)
-                return "10876063";
-            else if (operadora == OperadoraEnum.LASA)
-                return "00952570";
-            else if (operadora == OperadoraEnum.SOFTBOX)
-                return "00952146";
-            else if (operadora == OperadoraEnum.POMPEIA)
-                return "00952570";
-
-            throw new Exception("ERRO AO OBTER CD CLIENTE CADASTRADO");
-
-            //var list = new string[] { "abc","teste" };
-            //return list[new Random(DateTime.Now.Millisecond).Next(0, list.Length - 1)];
         }
 
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
