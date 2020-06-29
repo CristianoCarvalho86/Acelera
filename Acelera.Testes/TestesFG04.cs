@@ -40,9 +40,9 @@ namespace Acelera.Testes
         public void CarregarTriplice(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
-                triplice = new TripliceLASA(1, logger);
+                triplice = new TripliceLASA(1, logger, ref valoresAlteradosBody);
             else if (operadora == OperadoraEnum.SOFTBOX)
-                triplice = new TripliceSoftbox(1, logger);
+                triplice = new TripliceSoftbox(1, logger, ref valoresAlteradosBody);
             else
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
