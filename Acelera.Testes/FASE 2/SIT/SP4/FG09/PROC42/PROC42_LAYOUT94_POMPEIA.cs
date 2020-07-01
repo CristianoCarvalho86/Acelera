@@ -61,23 +61,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
 
-            //Envia Parc com id cancelamento igual id transição do anterior
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, operacaoDoTeste);
-
-            RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
-
-
-            EnviarParaOds(arquivo);
-            var arquivoods2 = arquivo.Clone();
-
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10");
+            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
             AlterarLinha(0, "NR_PARCELA", "9");
 
             SalvarArquivo();
@@ -95,25 +84,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
 
-            //Envia Parc com id cancelamento igual id transição do anterior
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, operacaoDoTeste);
-
-            RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
-
-
-            EnviarParaOds(arquivo);
-            var arquivoods2 = arquivo.Clone();
-
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "11");
+            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11");
 
-            AlterarDadosDeCobertura(0, dados.ObterCoberturaDiferenteDe(arquivoods2.ObterValorFormatado(0, "CD_COBERTURA")));
+            AlterarDadosDeCobertura(0, dados.ObterCoberturaDiferenteDe(arquivoods1.ObterValorFormatado(0, "CD_COBERTURA")));
 
             SalvarArquivo();
 
