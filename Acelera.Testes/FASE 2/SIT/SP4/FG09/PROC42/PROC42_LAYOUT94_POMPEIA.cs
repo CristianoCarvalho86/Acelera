@@ -15,15 +15,15 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
 {
     [TestClass]
-    public class PROC42_LAYOUT94_LASA : TestesFG09
+    public class PROC42_LAYOUT94_POMPEIA : TestesFG09
     {
-        private OperadoraEnum operacaoDoTeste => OperadoraEnum.LASA;
+        private OperadoraEnum operacaoDoTeste => OperadoraEnum.POMPEIA;
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5284()
+        public void SAP_5294()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "5284", "FG09 - PROC42 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "5294", "FG09 - PROC42 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
@@ -48,15 +48,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "42", 1);
+            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "42", 1);
 
         }
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5285()
+        public void SAP_5295()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "5285", "FG09 - PROC42 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "5295", "FG09 - PROC42 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
@@ -82,15 +82,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "42", 1);
+            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "42", 1);
 
         }
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5286()
+        public void SAP_5296()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "5286", "FG09 - PROC42 - ");
+            IniciarTeste(TipoArquivo.Sinistro, "5296", "FG09 - PROC42 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
@@ -117,19 +117,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "42", 1);
+            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "42", 1);
 
         }
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5287()
+        public void SAP_5297()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "5287", "FG09 - PROC42 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5297", "FG09 - PROC42 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
-
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -144,16 +143,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
 
         }
 
-
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5288()
+        public void SAP_5298()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "5288", "FG09 - PROC42 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5298", "FG09 - PROC42 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
-
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();

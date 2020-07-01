@@ -22,11 +22,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
     {
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4921()
+        public void SAP_5921()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4921", "");
+            //5921:FG06 - VIVO - CLI sucesso, PARC sucesso e CMS sucesso
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5921", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.VIVO);
 
             AlteracoesPadraoDaTrinca(triplice);
 
@@ -54,11 +55,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4922()
+        public void SAP_5922()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4922", "");
+            //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5922", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.VIVO);
 
             AlteracoesPadraoDaTrinca(triplice);
             triplice.AlterarCliente(0, "NR_CNPJ_CPF", "00000-00000");
@@ -86,11 +88,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4923()
+        public void SAP_5923()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4923", "");
+            //FG06 - VIVO - CLI sucesso, PARC rejeitado e CMS sucesso
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5923", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.VIVO);
 
             AlteracoesPadraoDaTrinca(triplice);
             triplice.AlterarParcEComissao(0, "VL_COMISSAO", "a");
@@ -117,14 +120,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4924()
+        public void SAP_5924()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4924", "");
+            //5924:FG06 - VIVO - CLI sucesso, PARC sucesso e CMS rejeitado
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5924", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.VIVO);
 
             AlteracoesPadraoDaTrinca(triplice);
-            triplice.AlterarParcEComissao(0, "CD_INTERNO_RESSEGURADOR", "");
+
+            triplice.AlterarCliente(0, "NR_CNPJ_CPF", "00000-00000");
+            triplice.AlterarParcEComissao(0, "VL_PREMIO_LIQUIDO", "abc");
 
             triplice.Salvar();
 
@@ -150,14 +156,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_4925()
+        public void SAP_5925()
         {
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "4925", "");
+            //POMPEIA - CLI rejeitado, PARC rejeitado e CMS sucesso
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5925", "");
 
-            CarregarTriplice(OperadoraEnum.LASA);
+            CarregarTriplice(OperadoraEnum.POMPEIA);
 
             AlteracoesPadraoDaTrinca(triplice);
-            triplice.AlterarParcEComissao(0, "NR_APOLICE", "0000000000");
+            triplice.AlterarParcEComissao(0, "VL_PREMIO_LIQUIDO", "abc");
+            triplice.AlterarCliente(0, "NR_CNPJ_CPF", "00000-00000");
 
             triplice.Salvar();
 

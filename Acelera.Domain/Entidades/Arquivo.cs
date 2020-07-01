@@ -390,5 +390,15 @@ namespace Acelera.Domain.Layouts
             return texto.Substring(0, texto.Length - 1);
         }
 
+        public decimal SomarLinhasDoArquivo(string nomeCampo)
+        {
+            decimal retorno = 0M;
+            foreach(var linha in Linhas)
+            {
+                retorno += linha.ObterCampoDoArquivo(nomeCampo).ValorDecimal;
+            }
+            return retorno;
+        }
+
     }
 }

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
 {
     [TestClass]
-    public class PROC45_LAYOUT94_LASA : TestesFG09
+    public class PROC45_LAYOUT96_VIVO : TestesFG09
     {
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -24,17 +24,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             IniciarTeste(TipoArquivo.Sinistro, "5303", "FG09 - PROC45 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO,true);
 
             //Sinistro referente a cancelamento
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValor(0, "CD_COBERTURA"), ObterValor(0, "CD_RAMO"), out string produto));
             AlterarLinha(0, "CD_PRODUTO", produto);
-
+            AlterarHeader("VERSAO", "9.6");
             AlterarCobertura(false);
             SalvarArquivo();
 
@@ -49,12 +49,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             IniciarTeste(TipoArquivo.Sinistro, "5306", "FG09 - PROC45 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO,true);
 
             //Sinistro referente a cancelamento
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-
+            AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
             SalvarArquivo();

@@ -45,7 +45,7 @@ namespace Acelera.Testes
             return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();
         }
 
-        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, int posicaoLinha, string cdTipoEmissao = "20") where T : Arquivo, new()
+        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false, string cdTipoEmissao = "20",int qtdParcelas = 1) where T : Arquivo, new()
         {
             arquivo = new T();
             CarregarArquivo(arquivo, 1, operadora);
@@ -54,7 +54,18 @@ namespace Acelera.Testes
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            for (int i = 1; i < qtdParcelas; i++)
+            {
+                AdicionarLinha(i, ObterLinha(0));
+                AlterarLinha(i, "CD_TIPO_EMISSAO", cdTipoEmissao);
+                AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", (i + 1).ToString());
+                AlterarLinha(i, "NR_ENDOSSO", "0");
+                AlterarLinha(i, "ID_TRANSACAO_CANC", "");
+            }
 
+
+            if(alterarVersaoHeader)
+                AlterarHeader("VERSAO", "9.6");
             EnviarParaOds(arquivo);
             return arquivo.Clone();
         }

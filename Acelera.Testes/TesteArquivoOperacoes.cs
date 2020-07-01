@@ -62,6 +62,13 @@ namespace Acelera.Testes
 
         }
 
+        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura)
+        {
+            AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdCobertura);
+            AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdCobertura);
+        }
+
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
