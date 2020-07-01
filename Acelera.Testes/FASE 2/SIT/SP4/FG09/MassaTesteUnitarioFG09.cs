@@ -45,9 +45,10 @@ Enviar arquivo PARCEMSAUTO com outra movimentação de cancelamento para este me
 
             var arquivoParc = new Arquivo_Layout_9_4_ParcEmissao();
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
-            EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.LASA);
+            //EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.LASA);
+            arquivoParc.Carregar(ObterArquivoOrigem("ODS_TESTE2_FG09_C01.LASA.PARCEMS-EV-0882-20200316.TXT"));
             EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.LASA, "11");
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.LASA, "10");
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.LASA, "10",false,"50");
             /*
 Enviar arquivo PARCEMS para ODS com dados de emissão de um contrato
 Enviar arquivo PARCEMS com movimentação de cancelamento para este mesmo contrato (CD_TIPO_EMISSAO=11). Preencher todos os campos relativos ao cancelamento

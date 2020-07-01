@@ -54,17 +54,31 @@ namespace Acelera.Testes
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "NR_PARCELA", "1");
             for (int i = 1; i < qtdParcelas; i++)
             {
                 AdicionarLinha(i, ObterLinha(0));
                 AlterarLinha(i, "CD_TIPO_EMISSAO", cdTipoEmissao);
                 AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", (i + 1).ToString());
-                AlterarLinha(i, "NR_ENDOSSO", "0");
+                AlterarLinha(i, "NR_PARCELA", (i + 1).ToString());
+                AlterarLinha(i, "NR_ENDOSSO", GerarNumeroAleatorio(6));
                 AlterarLinha(i, "ID_TRANSACAO_CANC", "");
             }
 
 
             if(alterarVersaoHeader)
+                AlterarHeader("VERSAO", "9.6");
+            EnviarParaOds(arquivo);
+            return arquivo.Clone();
+        }
+
+        protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
+        {
+            arquivo = new T();
+            CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
+            IgualarCamposQueExistirem(arquivoParcela, arquivo);
+
+            if (alterarVersaoHeader)
                 AlterarHeader("VERSAO", "9.6");
             EnviarParaOds(arquivo);
             return arquivo.Clone();
