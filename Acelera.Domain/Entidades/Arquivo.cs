@@ -400,5 +400,10 @@ namespace Acelera.Domain.Layouts
             return retorno;
         }
 
+        public void SelecionarLinhas(string nomeCampo, string valorFormatado)
+        {
+            Linhas = Linhas.Where(x => x.ObterCampoDoArquivo(nomeCampo).ValorFormatado == valorFormatado).ToList() ;
+        }
+
     }
 }

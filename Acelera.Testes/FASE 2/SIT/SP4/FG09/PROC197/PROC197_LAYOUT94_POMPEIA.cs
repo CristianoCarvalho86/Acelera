@@ -12,26 +12,23 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 {
     [TestClass]
-    public class PROC197_LAYOUT94_LASA : TestesFG09
+    public class PROC197_LAYOUT94_POMPEIA : TestesFG09
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5534()
+        public void SAP_6069()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5534", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5531", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
-            //AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 10));
-            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
-
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "197", 1);
@@ -40,19 +37,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5535()
+        public void SAP_5532()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5535", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5532", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), -1));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), -1));
             SalvarArquivo();
@@ -63,19 +60,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5536()
+        public void SAP_5533()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5536", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5533", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
             SalvarArquivo();

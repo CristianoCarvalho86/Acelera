@@ -29,7 +29,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.ObterValorDecimal(0,"VL_PREMIO_LIQUIDO"), 1000M));
             AlterarHeader("VERSAO", "9.6");
 
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
             AlterarHeader("VERSAO", "9.6");
 
@@ -77,7 +77,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
             AlterarHeader("VERSAO", "9.6");
 
@@ -101,7 +101,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO").ValorFormatado());
             AlterarHeader("VERSAO", "9.6");
 
@@ -125,7 +125,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", (arquivoods.ObterValorDecimal(0, "VL_PREMIO_LIQUIDO") - 1).ValorFormatado());
             AlterarHeader("VERSAO", "9.6");
 

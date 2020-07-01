@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 {
     [TestClass]
-    public class PROC197_LAYOUT94_LASA : TestesFG09
+    public class PROC197_LAYOUT94_SOFTBOX : TestesFG09
     {
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -21,11 +21,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
             IniciarTeste(TipoArquivo.ParcEmissao, "5534", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
@@ -40,16 +40,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5535()
+        public void SAP_5529()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5535", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5529", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
@@ -63,16 +63,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5536()
+        public void SAP_5530()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5536", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5530", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
