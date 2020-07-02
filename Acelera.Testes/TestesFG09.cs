@@ -42,6 +42,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
+            var list = base.ObterProceduresASeremExecutadas().Except(ObterProceduresFG05(arquivo.tipoArquivo)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
             return base.ObterProceduresASeremExecutadas().Except(ObterProceduresFG05(arquivo.tipoArquivo)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
         }
 
@@ -117,6 +118,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0190_");
                     lista.Add("PRC_0196_");
                     lista.Add("PRC_0197_");
+                    //lista.Add("PRC_0199_");
                     lista.Add("PRC_0201_");
                     lista.Add("PRC_0206_");
                     lista.Add("PRC_0207_");
@@ -131,6 +133,7 @@ namespace Acelera.Testes
                     //lista.Add("PRC_0042_");
                     //lista.Add("PRC_0045_");
                     //lista.Add("PRC_0190_");
+                    //lista.Add("PRC_0199_");
                     lista.Add("PRC_0196_");
                     lista.Add("PRC_0197_");
                     //lista.Add("PRC_0201_");
