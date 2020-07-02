@@ -9,11 +9,18 @@ namespace Acelera.Domain.Layouts
     {
         public List<CampoDoArquivo> Campos { get; set; }
         public int Index { get; set; }
+
+        public string this[string nomeCampo]
+        {
+            get => ObterCampoDoArquivo(nomeCampo).ValorFormatado;
+        }
+
         public LinhaArquivo(int index)
         {
             Campos = new List<CampoDoArquivo>();
             Index = index;
         }
+
 
         public CampoDoArquivo ObterCampoDoBanco(string nomeCampo)
         {

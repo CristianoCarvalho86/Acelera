@@ -379,9 +379,10 @@ namespace Acelera.Domain.Layouts
             return listaFooter;
         }
 
-        //public string ValorFormatado[][] ()
-        //    {
-        //    }
+        public LinhaArquivo this[int posicao]
+        {
+            get => ObterLinha(posicao);
+        }
 
         /// <summary>
         /// Busca a primeira linha para cada valor no campo especificado, removendo as outras.
