@@ -31,14 +31,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 0, operacaoDoTeste);
 
             arquivo.SelecionarLinhas("CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
+            arquivo.RemoverValoresRepetidosNoCampo("CD_COBERTURA");
 
+            SalvarArquivo();
+            //EnviarParaOds(arquivo);
+            var arquivoods = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
+            
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivo.ObterLinha(1), "11"));
+            CriarArquivoCancelamento(arquivoods, arquivo, "10");
 
             SalvarArquivo();
 
