@@ -181,5 +181,36 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             ExecutarEValidarFG06(triplice, CodigoStage.RecusadoNaFG01, CodigoStage.RecusadoNaFG01, CodigoStage.ReprovadoFG06, "41", "07", "105");
         }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5926()
+        {
+            //POMPEIA - CLI rejeitado, PARC rejeitado e CMS sucesso
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5925", "");
+
+            CarregarTriplice(OperadoraEnum.POMPEIA);
+
+            AlteracoesPadraoDaTrinca(triplice);
+            triplice.AlterarParcEComissao(0, "VL_PREMIO_LIQUIDO", "abc");
+            triplice.AlterarParcEComissao(0, "VL_COMISSAO", "a");
+
+
+            triplice.Salvar();
+
+            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+
+            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.RecusadoNaFG01);
+
+            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+
+            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+
+            ExecutarEValidarFG06(triplice, CodigoStage.RecusadoNaFG01, CodigoStage.RecusadoNaFG01, CodigoStage.ReprovadoFG06, "403", "07", "07");
+        }
     }
 }

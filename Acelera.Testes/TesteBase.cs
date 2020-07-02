@@ -302,6 +302,15 @@ namespace Acelera.Testes
                 }
         }
 
+        public void CriarArquivoCancelamento (Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento ,string cdTipoEmissao, string cdMovtoCobranca = "02",
+        string nrSequencialEmissao = "")
+        {
+            foreach(var linha in ArquivoEmissao.Linhas)
+            {
+                ArquivoCancelamento.AdicionarLinha(CriarLinhaCancelamento(linha, cdTipoEmissao, cdMovtoCobranca, nrSequencialEmissao));
+            }
+        }
+
         public LinhaArquivo CriarLinhaCancelamento(LinhaArquivo linhaArquivoEmissao, string cdTipoEmissao, string cdMovtoCobranca = "02",
         string nrSequencialEmissao = "")
         {
@@ -326,7 +335,7 @@ namespace Acelera.Testes
 
         public void CriarNovoContrato(int posicaoLinha)
         {
-            var contrato = AlterarUltimasPosicoes("CD_CONTRATO", GerarNumeroAleatorio(8));
+            var contrato = AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
             AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
             AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);

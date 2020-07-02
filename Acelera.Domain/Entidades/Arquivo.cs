@@ -247,12 +247,15 @@ namespace Acelera.Domain.Layouts
             return false;
         }
 
-        public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha)
+        public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha = null)
         {
             if (posicaoLinha.HasValue)
                 Linhas.Insert(posicaoLinha.Value, linha);
             else
                 Linhas.Add(linha);
+
+            AjustarQtdLinhasNoFooter();
+            ReIndexar();
         }
 
         public void ReplicarLinha(int posicaoLinha, int quantidadeVezes)
@@ -444,7 +447,6 @@ namespace Acelera.Domain.Layouts
             return linhaEncontrada;
         }
 
-        public string Obter
 
         public IList<KeyValuePair<string, string>> ObterValoresDosCamposChaves(LinhaArquivo linha)
         {
