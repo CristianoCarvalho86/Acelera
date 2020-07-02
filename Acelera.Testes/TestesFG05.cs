@@ -215,10 +215,10 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();
+            return base.ObterProceduresASeremExecutadas().Concat(ObterProceduresFG05(arquivo.tipoArquivo)).ToList();
         }
 
-        public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
+        public static IList<string> ObterProceduresFG05(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
             switch (tipoArquivoTeste)

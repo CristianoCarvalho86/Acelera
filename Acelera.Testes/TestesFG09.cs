@@ -42,7 +42,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return base.ObterProceduresASeremExecutadas().Concat(ObterProcedures(arquivo.tipoArquivo)).ToList();
+            return base.ObterProceduresASeremExecutadas().Except(ObterProceduresFG05(arquivo.tipoArquivo)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
         }
 
         protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false, string cdTipoEmissao = "20",int qtdParcelas = 1) where T : Arquivo, new()
@@ -104,7 +104,7 @@ namespace Acelera.Testes
             return arquivo;
         }
 
-        public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)
+        public static IList<string> ObterProceduresFG09(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
             switch (tipoArquivoTeste)
