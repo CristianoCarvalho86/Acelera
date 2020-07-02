@@ -21,7 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5508", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO,true);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), -10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), -10));
-            AlterarHeader("VERSAO", "9.6");
+            //AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();
 

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
+namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 {
     [TestClass]
     public class PROC196_LAYOUT94_LASA : TestesFG09
