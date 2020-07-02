@@ -3,8 +3,8 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
-using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -16,18 +16,18 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 {
     [TestClass]
-    public class PROC222_LAYOUT94_LASA : TestesFG09
+    public class PROC222_LAYOUT94_VIVO : TestesFG09
     {
-        private OperadoraEnum operacaoDoTeste => OperadoraEnum.LASA;
+        private OperadoraEnum operacaoDoTeste => OperadoraEnum.VIVO;
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5732()
+        public void SAP_5740()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5732", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5740", "FG09 - PROC222 - ");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 0, operacaoDoTeste);
 
             arquivo.SelecionarLinhas("CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
@@ -41,7 +41,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
             //Envia Parc com id cancelamento igual id transição do anterior
             
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
@@ -55,12 +55,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5733()
+        public void SAP_5741()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5733", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5741", "FG09 - PROC222 - ");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 0, operacaoDoTeste);
 
             arquivo.SelecionarLinhas("CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
@@ -74,7 +74,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
             //Envia Parc com id cancelamento igual id transição do anterior
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
@@ -89,12 +89,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5734()
+        public void SAP_5742()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5734", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5742", "FG09 - PROC222 - ");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 0, operacaoDoTeste);
 
             arquivo.SelecionarLinhas("CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
@@ -108,7 +108,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
             //Envia Parc com id cancelamento igual id transição do anterior
             
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
@@ -120,7 +120,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
             //Envia Parc com id cancelamento igual id transição do anterior
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
@@ -134,12 +134,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5735()
+        public void SAP_5743()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5735", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5743", "FG09 - PROC222 - ");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 0, operacaoDoTeste);
 
             arquivo.SelecionarLinhas("CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
@@ -153,7 +153,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
             //Envia Parc com id cancelamento igual id transição do anterior
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();

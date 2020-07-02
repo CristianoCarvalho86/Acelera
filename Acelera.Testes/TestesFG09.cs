@@ -108,19 +108,19 @@ namespace Acelera.Testes
                     break;
 
                 case TipoArquivo.ParcEmissaoAuto:
-                    lista.Add("PRC_0042_");
-                    lista.Add("PRC_0045_");
-                    lista.Add("PRC_0190_");
+                    //lista.Add("PRC_0042_");
+                    //lista.Add("PRC_0045_");
+                    //lista.Add("PRC_0190_");
                     lista.Add("PRC_0196_");
                     lista.Add("PRC_0197_");
-                    lista.Add("PRC_0201_");
-                    lista.Add("PRC_0206_");
-                    lista.Add("PRC_0207_");
-                    lista.Add("PRC_0208_");
-                    lista.Add("PRC_0211_");
-                    lista.Add("PRC_0222_");
-                    lista.Add("PRC_0224_");
-                    lista.Add("PRC_0229_");
+                    //lista.Add("PRC_0201_");
+                    //lista.Add("PRC_0206_");
+                    //lista.Add("PRC_0207_");
+                    //lista.Add("PRC_0208_");
+                    //lista.Add("PRC_0211_");
+                    //lista.Add("PRC_0222_");
+                    //lista.Add("PRC_0224_");
+                    //lista.Add("PRC_0229_");
                     break;
 
                 case TipoArquivo.Comissao:

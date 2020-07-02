@@ -16,15 +16,15 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 {
     [TestClass]
-    public class PROC222_LAYOUT94_LASA : TestesFG09
+    public class PROC222_LAYOUT94_POMPEIA : TestesFG09
     {
-        private OperadoraEnum operacaoDoTeste => OperadoraEnum.LASA;
+        private OperadoraEnum operacaoDoTeste => OperadoraEnum.POMPEIA;
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5732()
+        public void SAP_5740()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5732", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5740", "FG09 - PROC222 - ");
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -55,9 +55,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5733()
+        public void SAP_5741()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5733", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5741", "FG09 - PROC222 - ");
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -89,9 +89,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5734()
+        public void SAP_5742()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5734", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5742", "FG09 - PROC222 - ");
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -134,9 +134,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5735()
+        public void SAP_5743()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5735", "FG09 - PROC222 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5743", "FG09 - PROC222 - ");
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
