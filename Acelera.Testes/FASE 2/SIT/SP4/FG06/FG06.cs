@@ -212,5 +212,46 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             ExecutarEValidarFG06(triplice, CodigoStage.RecusadoNaFG01, CodigoStage.RecusadoNaFG01, CodigoStage.ReprovadoFG06, "403", "07", "07");
         }
+
+
+        public void InicioTesteFG06(string numeroTeste, string descricao, OperadoraEnum operadora)
+        {
+            //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, numeroTeste, descricao);
+
+            CarregarTriplice(operadora);
+
+            AlteracoesPadraoDaTrinca(triplice);
+        }
+
+        public void FimTesteFG06(KeyValuePair<bool,string> sucessoCliente, KeyValuePair<bool, string> sucessoParcela, KeyValuePair<bool, string> sucessoComissao)
+        {
+            triplice.Salvar();
+
+            var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG02, FGs.FG05 };
+
+            foreach (var fg in listaFgs)
+            {
+                if (sucessoCliente.Key == true)
+                {
+                    ExecutarEValidar(triplice.ArquivoCliente, fg, CodigoStage.AprovadoNAFG00);
+                    ExecutarEValidar(triplice.ArquivoParcEmissao, fg, CodigoStage.AprovadoNAFG00);
+                    ExecutarEValidar(triplice.ArquivoComissao, fg, CodigoStage.AprovadoNAFG00);
+                }
+            }
+
+            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+
+
+            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+
+            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+
+            ExecutarEValidarFG06(triplice, CodigoStage.RecusadoNaFG01, CodigoStage.ReprovadoFG06, CodigoStage.ReprovadoFG06, "41", "103", "105");
+        }
     }
 }

@@ -5,7 +5,10 @@ using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Utils;
+using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -500,7 +503,6 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO_CANC", linhaArquivoEmissao.ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado);
             AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
             AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_EMISSAO", cdTipoEmissao);
-            AlterarLinhaSeExistirCampo(arquivo, 0, "NR_PARCELA", SomarValor(0, "NR_PARCELA", 1M));
             AlterarLinhaSeExistirCampo(arquivo, 0, "NR_ENDOSSO", "4");
             AlterarLinhaSeExistirCampo(arquivo, 0, "NR_SEQUENCIAL_EMISSAO", "2");
             if (!string.IsNullOrEmpty(nrSequencialEmissao))
@@ -645,6 +647,17 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
         {
             Parametros.instanciaDB = "HDIDEV_1";
             DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
+        }
+
+        [TestMethod]
+        public void AlterarArquivo()
+        {
+            logger = new Mock<IMyLogger>().Object;
+            dados = new TabelaParametrosDataSP3(logger);
+            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("TESTE10_FG09_C01.VIVO.EMSCMS-EV-0351-20200130.TXT"));
+            arquivo.AlterarLinha(0,"NR_PARCELA","1");
+            SalvarArquivo();
         }
     }
 }

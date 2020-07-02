@@ -42,7 +42,7 @@ namespace Acelera.Testes
 
         protected override IList<string> ObterProceduresASeremExecutadas()
         {
-            return base.ObterProceduresASeremExecutadas().Except(ObterProceduresFG05(arquivo.tipoArquivo)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
+            return base.ObterProceduresASeremExecutadas().Where(x => !ObterProceduresFG05(arquivo.tipoArquivo).Contains(x)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
         }
 
         protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false, string cdTipoEmissao = "20",int qtdParcelas = 1) where T : Arquivo, new()
