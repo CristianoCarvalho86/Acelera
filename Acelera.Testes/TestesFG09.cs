@@ -74,14 +74,34 @@ namespace Acelera.Testes
 
         protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
         {
-            arquivo = new T();
-            CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
-            IgualarCamposQueExistirem(arquivoParcela, arquivo);
+            arquivo = CriarComissao<T>(operadora, arquivoParcela, alterarVersaoHeader);
 
             if (alterarVersaoHeader)
                 AlterarHeader("VERSAO", "9.6");
             EnviarParaOds(arquivo);
             return arquivo.Clone();
+        }
+
+        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
+        {
+            arquivo = new T();
+            CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
+            IgualarCamposQueExistirem(arquivoParcela, arquivo);
+            return arquivo;
+        } 
+        protected Arquivo CriarParcelaCancelamento<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, string cdTipoEmissao = "10", string cdMovtoCobranca = "02", string nrSequencialEmissao = "") where T : Arquivo, new()
+        {
+            arquivo = new T();
+            CarregarArquivo(arquivo, 1, operadora);
+
+            RemoverTodasAsLinhas();
+            var ultimoNrSeqUsado = int.Parse(arquivoParcela.Linhas.Last()["NR_SEQUENCIAL_EMISSAO"]);
+            foreach (var linha in arquivoParcela.Linhas)
+            {
+                ultimoNrSeqUsado++;
+                AdicionarLinha(0, CriarLinhaCancelamento(arquivoParcela.ObterLinha(0), cdTipoEmissao, cdMovtoCobranca, ultimoNrSeqUsado.ToString()));
+            }
+            return arquivo;
         }
 
         public static IList<string> ObterProcedures(TipoArquivo tipoArquivoTeste)

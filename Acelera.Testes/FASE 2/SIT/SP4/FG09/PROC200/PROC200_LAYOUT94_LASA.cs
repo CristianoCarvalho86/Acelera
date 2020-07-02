@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -12,28 +13,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
     [TestClass]
     public class PROC200_LAYOUT96_LASA : TestesFG09
     {
-            [TestMethod]
-            [TestCategory("Com Critica")]
-            public void SAP_5534()
-            {
-                IniciarTeste(TipoArquivo.ParcEmissao, "5534", "FG09 - PROC200 - ");
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5534()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "5534", "FG09 - PROC200 - ");
 
-                //Envia parc normal
-                var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA);
+            //Envia parc normal
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true);
 
-                //Sinistro referente a cancelamento
-                arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-                CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            //Sinistro referente a cancelamento
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
-                RemoverTodasAsLinhas();
-                AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-                //AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 10));
-                AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
-                AlterarHeader("VERSAO", "9.6");
-                SalvarArquivo();
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            SalvarArquivo();
+            var arquivoParcela = arquivo.Clone();
 
-                ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "200", 1);
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            }
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao[0]["VL_COMISSAO"], "1000"));
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+
+        }
     }
 }
