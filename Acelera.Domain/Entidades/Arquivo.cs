@@ -3,6 +3,7 @@ using Acelera.Domain.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -28,7 +29,7 @@ namespace Acelera.Domain.Layouts
 
         private int LimiteDeLinhas;
 
-        protected abstract string[] CamposChaves { get;}
+        protected abstract string[] CamposChaves { get; }
 
         public void AtualizarNomeArquivoFinal(string nomeArquivo)
         {
@@ -111,7 +112,7 @@ namespace Acelera.Domain.Layouts
         }
         public void AdicionaLinhaNoBody(IList<LinhaArquivo> linhas)
         {
-            foreach(var linha in linhas)
+            foreach (var linha in linhas)
                 Linhas.Add(linha);
             AjustarQtdLinhasNoFooter();
         }
@@ -163,7 +164,7 @@ namespace Acelera.Domain.Layouts
 
         public IList<LinhaArquivo> ObterLinhasComValores(string[] nomeCampo, string[] valor)
         {
-            Assert.AreEqual(nomeCampo.Length,valor.Length,"ERRO DE NUMERO DE PARAMETROS");
+            Assert.AreEqual(nomeCampo.Length, valor.Length, "ERRO DE NUMERO DE PARAMETROS");
             Assert.AreEqual(nomeCampo.Length, 6, "ERRO DE NUMERO DE PARAMETROS");
 
             return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(nomeCampo[0]).ValorFormatado == valor[0]
@@ -197,7 +198,7 @@ namespace Acelera.Domain.Layouts
         public void AlterarLinhaComCampoIgualAValor(string campoBusca, string valorBusca, string campoAlteracao, string valorAlteracao)
         {
             var linhas = ObterLinhasComValores(campoBusca, valorBusca);
-            foreach(var linha in linhas)
+            foreach (var linha in linhas)
                 linha.ObterCampoDoArquivo(campoAlteracao).AlterarValor(valorAlteracao);
         }
 
@@ -205,7 +206,7 @@ namespace Acelera.Domain.Layouts
         {
             if (!ExisteCampo(campo))
                 return false;
-            
+
             Assert.IsTrue(posicaoLinha < Linhas.Count, $"Linha Informada nao pertece ao BODY, Body contem : {Linhas.Count} , valor informado{posicaoLinha}");
             ObterLinha(posicaoLinha).ObterCampoDoArquivo(campo).AlterarValor(textoNovo);
             return true;
@@ -377,7 +378,25 @@ namespace Acelera.Domain.Layouts
             }
             return listaFooter;
         }
-        
+
+        //public string ValorFormatado[][] ()
+        //    {
+        //    }
+
+        /// <summary>
+        /// Busca a primeira linha para cada valor no campo especificado, removendo as outras.
+        /// </summary>
+        /// <param name="nomeCampo"></param>
+        public void RemoverValoresRepetidosNoCampo(string nomeCampo)
+        {
+            var valoresUnicos = Linhas.Select(x => x.ObterValorFormatado(nomeCampo)).Distinct();
+            var novaLista = new List<LinhaArquivo>();
+            Parallel.ForEach(valoresUnicos, valor => {
+                novaLista.Add(Linhas.Where(x => x.ObterValorFormatado(nomeCampo) == valor).First());
+            });
+            Linhas = novaLista;
+        }
+
         public string MontarCamposChaveParaLog(int posicaoLinha)
         {
             if (CamposChaves.Count() == 0)
@@ -403,6 +422,37 @@ namespace Acelera.Domain.Layouts
         public void SelecionarLinhas(string nomeCampo, string valorFormatado)
         {
             Linhas = Linhas.Where(x => x.ObterCampoDoArquivo(nomeCampo).ValorFormatado == valorFormatado).ToList() ;
+        }
+
+        public LinhaArquivo SelecionarPrimeiraLinhaEncontrada(IList<KeyValuePair<string, string>> valoresDosCampos)
+        {
+            LinhaArquivo linhaEncontrada = null;
+            Parallel.ForEach(Linhas, (linha, loopState) => {
+                var linhaValida = true;
+                foreach (var valorPorCampo in valoresDosCampos)
+                {
+                    if (linha.ObterValorFormatado(valorPorCampo.Key) != valorPorCampo.Value)
+                        linhaValida = false;
+                }
+                if (linhaValida)
+                {
+                    linhaEncontrada = linha;
+                    loopState.Break();
+                }
+            });
+            return linhaEncontrada;
+        }
+
+        public string Obter
+
+        public IList<KeyValuePair<string, string>> ObterValoresDosCamposChaves(LinhaArquivo linha)
+        {
+            var lista = new List<KeyValuePair<string, string>>();
+            foreach (var campoChave in CamposChaves)
+            {
+                lista.Add(new KeyValuePair<string, string>(campoChave, linha.ObterValorFormatado(campoChave)));
+            }
+            return lista;
         }
 
     }

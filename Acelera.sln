@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acelera.Utils", "Acelera.Ut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acelera.Data", "Acelera.Data\Acelera.Data.csproj", "{D87FCB24-4A72-418F-8F43-F2212AE2FACA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{00542908-A0AB-46F1-82C1-15EC13EF5A29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D87FCB24-4A72-418F-8F43-F2212AE2FACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D87FCB24-4A72-418F-8F43-F2212AE2FACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D87FCB24-4A72-418F-8F43-F2212AE2FACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00542908-A0AB-46F1-82C1-15EC13EF5A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00542908-A0AB-46F1-82C1-15EC13EF5A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00542908-A0AB-46F1-82C1-15EC13EF5A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00542908-A0AB-46F1-82C1-15EC13EF5A29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
