@@ -255,7 +255,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, OperadoraEnum.LASA, Parametros.pastaOrigem), 1, 1, 1);
-            ReplicarLinhaComCorrecao(0, 2);
+            ReplicarLinhaComCorrecao(0, 1);
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
@@ -266,7 +266,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             AlterarLinha(0, "VL_PREMIO_TOTAL", "110");
 
             AlterarLinha(1, "ID_TRANSACAO_CANC", "");
-            AlterarLinha(1, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(1, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "NR_ENDOSSO", "2");
             AlterarLinha(1, "NR_PARCELA", "2");
             AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", "2");
@@ -287,7 +287,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             var arquivoParc = arquivo.Clone();
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, OperadoraEnum.LASA, Parametros.pastaOrigem), 1, 1, 1);
-            ReplicarLinhaComCorrecao(0, 2);
+            ReplicarLinhaComCorrecao(0, 1);
             IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarTodasAsLinhas("CD_TIPO_COMISSAO", tipoComissao);
             AlterarHeader("VERSAO", "9.6");
@@ -297,7 +297,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             ExecutarEValidar(arquivo, FGs.FG01, CodigoStage.AprovadoNaFG01);
             ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
 
-            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0), OperadoraEnum.LASA, "10", true, "3", "99999");
+            EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(1), OperadoraEnum.LASA, "10", true, "3", "99999");
 
             /*
 Enviar arquivo COMISSAO para ODS com dados de emissão de duas parcelas 

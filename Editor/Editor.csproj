@@ -74,5 +74,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj">
+      <Project>{e2564765-084e-4573-973f-2e1a3bc798b9}</Project>
+      <Name>Acelera.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Acelera.Utils\Acelera.Utils.csproj">
+      <Project>{2dc50378-cd97-4910-be49-737dd530345e}</Project>
+      <Name>Acelera.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

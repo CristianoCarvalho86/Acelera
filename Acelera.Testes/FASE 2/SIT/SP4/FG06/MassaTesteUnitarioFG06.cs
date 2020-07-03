@@ -617,6 +617,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO_CANC", "");
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
+            arquivo.AlterarLinhaSeExistirCampo(0, "NR_PARCELA", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
             PrepararMassa(arquivo, operadora, out string tipoComissao);
 
@@ -635,6 +636,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO_CANC", "");
             arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
+            arquivo.AlterarLinhaSeExistirCampo(0, "NR_PARCELA", "1");
             arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
             if (tipoComissao != "")
                 arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_COMISSAO", tipoComissao);
