@@ -120,7 +120,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             RemoverTodasAsLinhas();
             CriarArquivoCancelamento(arquivoods, arquivo, "10");
             AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 1));
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(1, "DT_FIM_VIGENCIA", ObterValorFormatado(0, "DT_FIM_VIGENCIA"));
 
            // AlterarHeader("VERSAO", "9.6");
             SalvarArquivo();
