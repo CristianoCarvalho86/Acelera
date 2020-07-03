@@ -558,7 +558,10 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
         {
             logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA ODS - {operadora.ObterTexto()}");
             arquivo = arquivoParc;
-            arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
+            if (operadora == OperadoraEnum.TIM)
+                arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20191212.txt"),1,1,1);
+            else
+                arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
             AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO_CANC", "");
             AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_EMISSAO", "1");
             if (!string.IsNullOrEmpty(cdTipoEmissao))

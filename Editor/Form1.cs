@@ -17,6 +17,8 @@ namespace Editor
     {
         private Arquivo arquivo;
         private DataTable dadosDoArquivo;
+        private DataTable dadosDoHeader;
+        private DataTable dadosDoFooter;
         public FrmEditor()
         {
             InitializeComponent();
@@ -30,16 +32,31 @@ namespace Editor
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             arquivo.AlterarLinha(e.RowIndex, dadosDoArquivo.Columns[e.ColumnIndex].ColumnName, dadosDoArquivo.Rows[e.RowIndex][e.ColumnIndex].ToString());
-            MessageBox.Show("VALOR ALTERADO COM SUCESSO.");
+            Salvar();
         }
 
         private void btnCarregar_Click(object sender, EventArgs e)
         {
-            ValidarArquivo();
+            CarregarDados();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
+
+        }
+
+        private void CarregarDados()
+        {
+            arquivo = LayoutUtils.CarregarArquivo(txtArrquivo.Text);
+
+            dadosDoArquivo = ArquivoToDataTable.ConvertToDataTable(arquivo.Linhas);
+            dataGridView1.DataSource = dadosDoArquivo;
+
+            dadosDoHeader = ArquivoToDataTable.ConvertToDataTable(arquivo.Header);
+            gridHeader.DataSource = dadosDoHeader;
+
+            dadosDoFooter = ArquivoToDataTable.ConvertToDataTable(arquivo.Footer);
+            gridFooter.DataSource = dadosDoFooter;
 
         }
 
@@ -54,10 +71,6 @@ namespace Editor
                     {
                         txtArrquivo.Text = filePath;
                     }
-
-                    arquivo = LayoutUtils.CarregarArquivo(txtArrquivo.Text);
-                    dadosDoArquivo = ArquivoToDataTable.ConvertToDataTable(arquivo.Linhas);
-                    dataGridView1.DataSource = dadosDoArquivo;
                 }
                 catch (Exception ex)
                 {
@@ -65,6 +78,35 @@ namespace Editor
                     $"Details:\n\n{ex.StackTrace}");
                 }
             }
+        }
+
+        private void btnProcurar_Click(object sender, EventArgs e)
+        {
+            ValidarArquivo();
+        }
+
+        private void gridHeader_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            arquivo.AlterarHeader(dadosDoHeader.Columns[e.ColumnIndex].ColumnName, dadosDoHeader.Rows[e.RowIndex][e.ColumnIndex].ToString());
+            Salvar();
+        }
+
+        private void gridFooter_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            arquivo.AlterarFooter(dadosDoFooter.Columns[e.ColumnIndex].ColumnName, dadosDoFooter.Rows[e.RowIndex][e.ColumnIndex].ToString());
+            Salvar();
+        }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            arquivo.RemoverLinha(e.Row.Index);
+            Salvar();
+        }
+
+        private void Salvar()
+        {
+            arquivo.Salvar(arquivo.EnderecoCompleto);
+            MessageBox.Show("VALOR ALTERADO COM SUCESSO.");
         }
     }
 }
