@@ -21,6 +21,8 @@ namespace Acelera.Domain.Layouts
 
         public abstract TipoArquivo tipoArquivo { get; }
 
+        public string EnderecoCompleto { get; private set; }
+
         public IList<string> CamposDoBody => Linhas.FirstOrDefault()?.Campos?.Select(x => x.ColunaArquivo).ToList();
 
         public string NomeArquivo { get; private set; }
@@ -46,6 +48,7 @@ namespace Acelera.Domain.Layouts
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)
         {
+            EnderecoCompleto = enderecoArquivo;
             LimiteDeLinhas = limiteDeLinhas;
             NomeArquivo = enderecoArquivo.Split('\\').LastOrDefault();
             textoArquivo = File.ReadAllText(enderecoArquivo);
