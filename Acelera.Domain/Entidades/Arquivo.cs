@@ -105,15 +105,17 @@ namespace Acelera.Domain.Layouts
             Linhas = Linhas.Distinct().ToList();
         }
 
-        public void AdicionaLinhaNoBody(LinhaArquivo linha)
+        public virtual void AdicionaLinhaNoBody(LinhaArquivo linha)
         {
-            Linhas.Add(linha);
+            Linhas.Add(linha.Clone());
+            ReIndexar();
             AjustarQtdLinhasNoFooter();
         }
-        public void AdicionaLinhaNoBody(IList<LinhaArquivo> linhas)
+        public virtual void AdicionaLinhaNoBody(IList<LinhaArquivo> linhas)
         {
             foreach (var linha in linhas)
-                Linhas.Add(linha);
+                Linhas.Add(linha.Clone());
+            ReIndexar();
             AjustarQtdLinhasNoFooter();
         }
 
@@ -359,7 +361,7 @@ namespace Acelera.Domain.Layouts
 
         private void ValidaHeader(LinhaArquivo header)
         {
-            Assert.IsTrue(new string[] { "9.3", "9.4" }.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
+            Assert.IsTrue(new string[] { "9.3", "9.4","9.6" }.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
             var cdTpa = header.ObterCampoDoArquivo("CD_TPA").Valor.Trim();
             Assert.IsTrue(cdTpa.Length == 3 && int.TryParse(cdTpa, out int r), "CD_TPA DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
         }
