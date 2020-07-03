@@ -323,7 +323,7 @@ namespace Acelera.Testes
 
             linhaCancelamento.ObterCampoDoArquivo("ID_TRANSACAO_CANC").AlterarValor(idTransacaoDaLinhaOriginal);
             linhaCancelamento.ObterCampoDoArquivo("CD_TIPO_EMISSAO").AlterarValor(cdTipoEmissao);
-            linhaCancelamento.ObterCampoDoArquivo("NR_PARCELA").AlterarValor((linhaCancelamento.ObterValorInteiro("NR_PARCELA") + 1).ToString());
+            linhaCancelamento.ObterCampoDoArquivo("NR_PARCELA").AlterarValor((linhaCancelamento.ObterValorInteiro("NR_PARCELA")).ToString());
             linhaCancelamento.ObterCampoDoArquivo("NR_ENDOSSO").AlterarValor(GerarNumeroAleatorio(8));
             nrSequencialEmissao = string.IsNullOrEmpty(nrSequencialEmissao) ? (linhaCancelamento.ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString() : nrSequencialEmissao;
             linhaCancelamento.ObterCampoDoArquivo("NR_SEQUENCIAL_EMISSAO").AlterarValor(nrSequencialEmissao);
