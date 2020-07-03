@@ -30,8 +30,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarLinha(0, "DT_EMISSAO", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), -10));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), -10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), -10));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -70,9 +72,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, operadora);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
             CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");

@@ -46,16 +46,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5509", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO, true);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
-            AlterarHeader("VERSAO", "9.6");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 365));
+            //AlterarHeader("VERSAO", "9.6");
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
@@ -70,9 +71,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, operadora);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
             CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
@@ -85,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             AlterarLinha(1, "ID_TRANSACAO_CANC", "");
 
 
-            AlterarHeader("VERSAO", "9.6");
+            //AlterarHeader("VERSAO", "9.6");
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
 
@@ -94,10 +95,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 40));
-            AlterarHeader("VERSAO", "9.6");
+            //AlterarHeader("VERSAO", "9.6");
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
@@ -136,17 +137,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5511", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO, true);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
-            AlterarHeader("VERSAO", "9.6");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA",arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"));
+            AlterarLinha(0, "DT_FIM_VIGENCIA",arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"));
+            //AlterarHeader("VERSAO", "9.6");
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);

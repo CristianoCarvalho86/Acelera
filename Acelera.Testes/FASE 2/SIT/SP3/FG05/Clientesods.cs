@@ -45,6 +45,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
 
             EnviarParaOds(arquivo);
 
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("ODS_CLIENTES_VIVO_C01.VIVO.CLIENTE-EV-0270-20200201.TXT"));
+
+            EnviarParaOds(arquivo);
+        }
+
+        [TestMethod]
+        public void Teste1()
+        {
+
+            IniciarTeste(Domain.Enums.TipoArquivo.Cliente, "9999", "");
+
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+
+            EnviarParaOds(arquivo);
         }
 
     }
