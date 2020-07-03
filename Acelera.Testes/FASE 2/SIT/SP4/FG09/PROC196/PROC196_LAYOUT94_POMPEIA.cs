@@ -21,11 +21,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5523", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
@@ -45,11 +45,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5524", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
@@ -107,11 +107,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5526", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
@@ -131,11 +131,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5526", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
