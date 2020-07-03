@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
-            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao[0]["VL_COMISSAO"], "1000"));
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 1000));
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
@@ -43,7 +43,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
         [TestCategory("Com Critica")]
         public void SAP_5526()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5525", "FG09 - PROC200 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5526", "FG09 - PROC200 - ");
 
             //Envia parc normal
             var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 2);
@@ -58,7 +58,85 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
-            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao[0]["VL_COMISSAO"], "1000"));
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 1000));
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5527()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "5527", "FG09 - PROC200 - ");
+
+            //Envia parc normal
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 3);
+
+            //Sinistro referente a cancelamento
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            SalvarArquivo();
+            var arquivoParcela = arquivo.Clone();
+
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 1000));
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5528()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "5528", "FG09 - PROC200 - ");
+
+            //Envia parc normal
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 2);
+
+            //Sinistro referente a cancelamento
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            SalvarArquivo();
+            var arquivoParcela = arquivo.Clone();
+
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 0));
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5529()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "5529", "FG09 - PROC200 - ");
+
+            //Envia parc normal
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true);
+
+            //Sinistro referente a cancelamento
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            SalvarArquivo();
+            var arquivoParcela = arquivo.Clone();
+
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), -1));
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
