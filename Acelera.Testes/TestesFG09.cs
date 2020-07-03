@@ -55,6 +55,9 @@ namespace Acelera.Testes
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "NR_PARCELA", "1");
+            AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+
             for (int i = 1; i < qtdParcelas; i++)
             {
                 AdicionarLinha(i, ObterLinha(0));
@@ -63,6 +66,8 @@ namespace Acelera.Testes
                 AlterarLinha(i, "NR_PARCELA", (i + 1).ToString());
                 AlterarLinha(i, "NR_ENDOSSO", GerarNumeroAleatorio(6));
                 AlterarLinha(i, "ID_TRANSACAO_CANC", "");
+                AlterarLinha(0, "CD_SEGURADORA", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
+                AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
             }
 
 
