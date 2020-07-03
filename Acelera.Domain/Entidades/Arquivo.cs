@@ -463,5 +463,12 @@ namespace Acelera.Domain.Layouts
             return lista;
         }
 
+        public void CriarLinhaVazia()
+        {
+            var novaLinha = new LinhaArquivo(Linhas.Count);
+            novaLinha.CarregaTexto("".PadRight(700, ' '));
+            AdicionarLinha(novaLinha);
+        }
+
     }
 }

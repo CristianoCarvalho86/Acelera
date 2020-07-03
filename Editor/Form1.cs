@@ -31,13 +31,23 @@ namespace Editor
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            arquivo.AlterarLinha(e.RowIndex, dadosDoArquivo.Columns[e.ColumnIndex].ColumnName, dadosDoArquivo.Rows[e.RowIndex][e.ColumnIndex].ToString());
-            Salvar();
+            try
+            {
+                arquivo.AlterarLinha(e.RowIndex, dadosDoArquivo.Columns[e.ColumnIndex].ColumnName, dadosDoArquivo.Rows[e.RowIndex][e.ColumnIndex].ToString());
+                Salvar();
+            }
+            catch(Exception ex)
+            {
+                Erro(ex);
+            }
         }
 
         private void btnCarregar_Click(object sender, EventArgs e)
         {
-            CarregarDados();
+            if (string.IsNullOrEmpty(txtArrquivo.Text))
+                MessageBox.Show("Informe um arquivo válido.");
+            else
+                CarregarDados();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -47,6 +57,8 @@ namespace Editor
 
         private void CarregarDados()
         {
+            try
+            {
             arquivo = LayoutUtils.CarregarArquivo(txtArrquivo.Text);
 
             dadosDoArquivo = ArquivoToDataTable.ConvertToDataTable(arquivo.Linhas);
@@ -57,6 +69,11 @@ namespace Editor
 
             dadosDoFooter = ArquivoToDataTable.ConvertToDataTable(arquivo.Footer);
             gridFooter.DataSource = dadosDoFooter;
+            }
+            catch (Exception ex)
+            {
+                Erro(ex);
+            }
 
         }
 
@@ -74,8 +91,7 @@ namespace Editor
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error.\n\nError message: {ex.Message}\n\n" +
-                    $"Details:\n\n{ex.StackTrace}");
+                    Erro(ex);
                 }
             }
         }
@@ -99,14 +115,27 @@ namespace Editor
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            arquivo.RemoverLinha(e.Row.Index);
-            Salvar();
+            try
+            {
+                arquivo.RemoverLinha(e.Row.Index);
+                Salvar();
+            }
+            catch (Exception ex)
+            {
+                Erro(ex);
+            }
         }
 
         private void Salvar()
         {
-            arquivo.Salvar(arquivo.EnderecoCompleto);
-            MessageBox.Show("VALOR ALTERADO COM SUCESSO.");
+                arquivo.Salvar(arquivo.EnderecoCompleto);
+                MessageBox.Show("VALOR ALTERADO COM SUCESSO.");
+        }
+
+        private void Erro(Exception ex)
+        {
+            MessageBox.Show("ERRO : " + ex.Message + Environment.NewLine + "DESCRICAO : " + ex.StackTrace);
+
         }
     }
 }

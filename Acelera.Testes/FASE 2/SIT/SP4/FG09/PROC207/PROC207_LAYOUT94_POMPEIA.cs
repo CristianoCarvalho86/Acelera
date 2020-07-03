@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             IniciarTeste(TipoArquivo.ParcEmissao, "5696", "FG09 - PROC207 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, "20", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, 2);
 
             //ParcEmissao referente a cancelamento
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
@@ -80,7 +80,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             IniciarTeste(TipoArquivo.ParcEmissao, "5697", "FG09 - PROC207 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, "20", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, 2);
 
             //ParcEmissao referente a cancelamento
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             IniciarTeste(TipoArquivo.ParcEmissao, "5698", "FG09 - PROC207 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, "20", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, 2);
 
             //ParcEmissao referente a cancelamento
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
