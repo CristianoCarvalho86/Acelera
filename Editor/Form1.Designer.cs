@@ -30,6 +30,8 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnCarregar = new System.Windows.Forms.Button();
+            this.txtArrquivo = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +46,7 @@
             // 
             // btnCarregar
             // 
-            this.btnCarregar.Location = new System.Drawing.Point(572, 27);
+            this.btnCarregar.Location = new System.Drawing.Point(668, 27);
             this.btnCarregar.Name = "btnCarregar";
             this.btnCarregar.Size = new System.Drawing.Size(75, 23);
             this.btnCarregar.TabIndex = 1;
@@ -52,11 +54,24 @@
             this.btnCarregar.UseVisualStyleBackColor = true;
             this.btnCarregar.Click += new System.EventHandler(this.btnCarregar_Click);
             // 
+            // txtArrquivo
+            // 
+            this.txtArrquivo.Location = new System.Drawing.Point(12, 27);
+            this.txtArrquivo.Name = "txtArrquivo";
+            this.txtArrquivo.Size = new System.Drawing.Size(650, 20);
+            this.txtArrquivo.TabIndex = 2;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
             // FrmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 687);
+            this.Controls.Add(this.txtArrquivo);
             this.Controls.Add(this.btnCarregar);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmEditor";
@@ -64,6 +79,7 @@
             this.Load += new System.EventHandler(this.FrmEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -71,6 +87,8 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnCarregar;
+        private System.Windows.Forms.TextBox txtArrquivo;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
