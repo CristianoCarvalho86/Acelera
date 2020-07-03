@@ -20,7 +20,7 @@ namespace Acelera.Utils
             else if (operadora == OperadoraEnum.POMPEIA)
                 return "00952570";
             else if (operadora == OperadoraEnum.TIM)
-                return "29249584";
+                return "29249585";
 
             throw new Exception("ERRO AO OBTER CD CLIENTE CADASTRADO");
         }

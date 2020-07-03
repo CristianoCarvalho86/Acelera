@@ -59,8 +59,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
 
             arquivo = new Arquivo_Layout_9_3_Cliente();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            AlterarLinha(0, "CD_CLIENTE", "29249585");
 
-            EnviarParaOds(arquivo);
+            EnviarParaOds(arquivo, false);
         }
 
     }

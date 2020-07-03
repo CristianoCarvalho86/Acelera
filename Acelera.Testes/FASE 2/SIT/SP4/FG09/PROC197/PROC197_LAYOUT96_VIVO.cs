@@ -16,9 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5537()
+        public void SAP_6075()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5537", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "6075", "FG09 - PROC197 - ");
 
             //Envia parc normal
             var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO);
@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
 
@@ -37,31 +37,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "197", 1);
 
         }
-
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_5617()
-        {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5537", "FG09 - PROC197 - ");
-
-            //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO);
-
-            //Sinistro referente a cancelamento
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
-
-            RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
-            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 10));
-            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
-
-            SalvarArquivo();
-
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "197", 1);
-
-        }
-
 
         [TestMethod]
         [TestCategory("Sem Critica")]
@@ -77,8 +52,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
-            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), -1));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), -1));
             SalvarArquivo();
 
@@ -100,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
             SalvarArquivo();

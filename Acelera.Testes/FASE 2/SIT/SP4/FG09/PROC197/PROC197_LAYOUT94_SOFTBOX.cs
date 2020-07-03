@@ -12,23 +12,23 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 {
     [TestClass]
-    public class PROC197_LAYOUT94_SOFTBOX : TestesFG09
+    public class PROC197_LAYOUT94_TIM : TestesFG09
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5534()
+        public void SAP_6066()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5534", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "6066", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.TIM);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             //AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
 
@@ -40,16 +40,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5529()
+        public void SAP_6067()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5529", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "6067", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.TIM);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
@@ -63,16 +63,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5530()
+        public void SAP_6068()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5530", "FG09 - PROC197 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "6068", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.TIM);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             RemoverTodasAsLinhas();
             CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
