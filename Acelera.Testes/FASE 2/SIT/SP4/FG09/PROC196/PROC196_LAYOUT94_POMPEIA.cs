@@ -53,7 +53,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 365));
 
             SalvarArquivo();
 
@@ -69,12 +70,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, operadora);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
             CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
             AdicionarLinha(1, ObterLinha(0));
             AlterarLinha(1, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", "2");
@@ -82,6 +85,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 30));
             AlterarLinha(1, "NR_ENDOSSO", "0");
             AlterarLinha(1, "ID_TRANSACAO_CANC", "");
+            AlterarLinha(0, "CD_SEGURADORA", "5908");
+            AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
             EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
@@ -115,12 +120,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 1));
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
         }
 
@@ -139,12 +144,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
         }
     }

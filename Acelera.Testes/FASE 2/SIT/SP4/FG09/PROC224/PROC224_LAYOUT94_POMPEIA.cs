@@ -61,12 +61,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             IniciarTeste(TipoArquivo.ParcEmissao, "5264", "FG09 - PROC224 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, true);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
-            AlterarHeader("VERSAO", "9.6");
+           //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
 
@@ -80,7 +80,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10")); 
-            AlterarHeader("VERSAO", "9.6");
+            //AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();
 

@@ -52,7 +52,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 365));
 
             SalvarArquivo();
 
@@ -68,9 +69,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, operadora);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
             CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
@@ -103,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
         [TestCategory("Sem Critica")]
         public void SAP_5522()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5521", "FG09 - PROC196 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5522", "FG09 - PROC196 - ");
 
             //Envia parc normal
             var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.TIM);
@@ -113,9 +114,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 1));
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
 
             SalvarArquivo();
 
@@ -127,7 +128,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
         [TestCategory("Sem Critica")]
         public void SAP_5521()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "5522", "FG09 - PROC196 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5521", "FG09 - PROC196 - ");
 
             //Envia parc normal
             var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.TIM);
@@ -137,9 +138,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
-            AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
 
             SalvarArquivo();
 
