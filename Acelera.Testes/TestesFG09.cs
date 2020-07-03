@@ -50,7 +50,7 @@ namespace Acelera.Testes
             arquivo = new T();
             CarregarArquivo(arquivo, 1, operadora);
             CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", cdTipoEmissao);
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
