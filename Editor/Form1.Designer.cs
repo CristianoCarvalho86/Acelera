@@ -42,10 +42,15 @@
             this.btnAddRow = new System.Windows.Forms.Button();
             this.btnRemoveRow = new System.Windows.Forms.Button();
             this.btnCopiarLinha = new System.Windows.Forms.Button();
+            this.backgroundWorkerSalvar = new System.ComponentModel.BackgroundWorker();
+            this.btnFiltro = new System.Windows.Forms.Button();
+            this.panelFiltro = new System.Windows.Forms.Panel();
+            this.btnLimpar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFooter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoading)).BeginInit();
+            this.panelFiltro.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -59,7 +64,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1086, 462);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            this.dataGridView1.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserAddedRow);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             // 
             // btnCarregar
@@ -82,7 +86,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // btnProcurar
             // 
@@ -176,11 +179,55 @@
             this.btnCopiarLinha.UseVisualStyleBackColor = true;
             this.btnCopiarLinha.Click += new System.EventHandler(this.btnCopiarLinha_Click);
             // 
+            // backgroundWorkerSalvar
+            // 
+            this.backgroundWorkerSalvar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSalvar_DoWork);
+            this.backgroundWorkerSalvar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSalvar_RunWorkerCompleted);
+            // 
+            // btnFiltro
+            // 
+            this.btnFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltro.Location = new System.Drawing.Point(12, 139);
+            this.btnFiltro.Name = "btnFiltro";
+            this.btnFiltro.Size = new System.Drawing.Size(67, 32);
+            this.btnFiltro.TabIndex = 11;
+            this.btnFiltro.Text = "Filtro";
+            this.btnFiltro.UseVisualStyleBackColor = true;
+            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
+            // 
+            // panelFiltro
+            // 
+            this.panelFiltro.AutoScroll = true;
+            this.panelFiltro.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelFiltro.Controls.Add(this.btnLimpar);
+            this.panelFiltro.Location = new System.Drawing.Point(12, 173);
+            this.panelFiltro.Name = "panelFiltro";
+            this.panelFiltro.Size = new System.Drawing.Size(650, 462);
+            this.panelFiltro.TabIndex = 12;
+            this.panelFiltro.Visible = false;
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.BackColor = System.Drawing.Color.White;
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Location = new System.Drawing.Point(563, 0);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(67, 32);
+            this.btnLimpar.TabIndex = 13;
+            this.btnLimpar.Text = "Limpar Filtro";
+            this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
             // FrmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1110, 781);
+            this.Controls.Add(this.panelFiltro);
+            this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.btnCopiarLinha);
             this.Controls.Add(this.btnRemoveRow);
             this.Controls.Add(this.btnAddRow);
@@ -199,6 +246,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFooter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoading)).EndInit();
+            this.panelFiltro.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +267,10 @@
         private System.Windows.Forms.Button btnAddRow;
         private System.Windows.Forms.Button btnRemoveRow;
         private System.Windows.Forms.Button btnCopiarLinha;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerSalvar;
+        private System.Windows.Forms.Button btnFiltro;
+        private System.Windows.Forms.Panel panelFiltro;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }
 

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ArquivoToDataTable.cs" />
     <Compile Include="Assertions.cs" />
+    <Compile Include="DataTableUtils.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="LayoutUtils.cs" />
     <Compile Include="ParametrosBanco.cs" />
