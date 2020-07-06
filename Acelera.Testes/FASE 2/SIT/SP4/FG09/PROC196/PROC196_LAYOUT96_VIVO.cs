@@ -112,7 +112,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             IniciarTeste(TipoArquivo.ParcEmissao, "5512", "FG09 - PROC196 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO, false, "20", 2);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO, false, 2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();

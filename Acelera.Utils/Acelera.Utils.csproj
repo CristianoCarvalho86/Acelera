@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="ArquivoToDataTable.cs" />
     <Compile Include="Assertions.cs" />
+    <Compile Include="DataTableUtils.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="LayoutUtils.cs" />
     <Compile Include="ParametrosBanco.cs" />
+    <Compile Include="ParametrosRegras.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomUtils.cs" />
   </ItemGroup>

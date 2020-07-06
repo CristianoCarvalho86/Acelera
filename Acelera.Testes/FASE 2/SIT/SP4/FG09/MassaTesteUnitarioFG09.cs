@@ -499,7 +499,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.TIM, "", true);
             arquivo = arquivoParc;
-            arquivo.AlterarLinha(0,"CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(arquivo.ObterLinhaHeader().ObterValorFormatado("CD_TPA"), "P", true));
+            arquivo.AlterarLinha(0,"CD_CORRETOR", "7950129"/*dados.ObterCdCorretorParaTipoRemuneracao(arquivo.ObterLinhaHeader().ObterValorFormatado("CD_TPA"), "P", true)*/);
             EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.TIM, "10", true, "");
         }
 
@@ -650,7 +650,8 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
                 }
                 else if(operadora == OperadoraEnum.TIM)
                 {
-                    //arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao());
+                    arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7950129"/*dados.ObterCdCorretorParaTipoRemuneracao()*/);
+                    tipoCorretor = "C";
                 }
                 else
                     throw new Exception("OPERACAO SEM CORRETOR CADASTRADO.");

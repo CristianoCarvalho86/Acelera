@@ -45,23 +45,39 @@ namespace Acelera.Testes
             return base.ObterProceduresASeremExecutadas().Where(x => !ObterProceduresFG05(arquivo.tipoArquivo).Contains(x)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
         }
 
-        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false, string cdTipoEmissao = "20",int qtdParcelas = 1) where T : Arquivo, new()
+        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false,int qtdParcelas = 1, string nrParcela = "") where T : Arquivo, new()
         {
             arquivo = new T();
             CarregarArquivo(arquivo, 1, operadora);
             CriarNovoContrato(0);
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
+            if(operadora == OperadoraEnum.TIM)
+                AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
+            else if(operadora == OperadoraEnum.VIVO || operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX || operadora == OperadoraEnum.POMPEIA)
+                AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
-            AlterarLinha(0, "NR_PARCELA", "1");
+            
+            if (operadora == OperadoraEnum.TIM)
+                AlterarLinha(0, "NR_PARCELA", "0");
+            else
+                AlterarLinha(0, "NR_PARCELA", "1");
+
+            if(!string.IsNullOrEmpty(nrParcela))
+                AlterarLinha(0, "NR_PARCELA", nrParcela);
+
             AlterarLinha(0, "CD_SEGURADORA", "5908");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
             for (int i = 1; i < qtdParcelas; i++)
             {
                 AdicionarLinha(i, ObterLinha(0));
-                AlterarLinha(i, "CD_TIPO_EMISSAO", cdTipoEmissao);
+                if (operadora == OperadoraEnum.TIM)
+                    AlterarLinha(i, "CD_TIPO_EMISSAO", "20");
+                else if (operadora == OperadoraEnum.VIVO || operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX || operadora == OperadoraEnum.POMPEIA)
+                    AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+
                 AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", (i + 1).ToString());
                 AlterarLinha(i, "NR_PARCELA", (i + 1).ToString());
                 AlterarLinha(i, "NR_ENDOSSO", GerarNumeroAleatorio(6));
