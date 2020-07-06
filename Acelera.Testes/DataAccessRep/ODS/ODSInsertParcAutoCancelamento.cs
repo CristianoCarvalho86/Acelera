@@ -176,7 +176,7 @@ $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 co" +
 "  on cast(a.cd_corretor as int) = cast(co.cd_externo as int)  "+
 "  "+
 "  and co.cd_tipo_parceiro_negocio = 'CO' "+
-" WHERE CD_TIPO_EMISSAO IN('9', '10', '11', '12', '13')  "+
+" WHERE CD_TIPO_EMISSAO IN('9', '10', '11', '12', '13', '21')  "+
 " group by  "+
 " se.cd_parceiro_negocio,  "+
 " su.cd_parceiro_negocio,  "+

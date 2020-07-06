@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
-            AlterarHeader("VERSAO", "9.6");
+             
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
 
@@ -45,8 +45,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10"));
-            AlterarHeader("VERSAO", "9.6");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "02", "5"));
+             
 
             SalvarArquivo();
 
@@ -66,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
-           //AlterarHeader("VERSAO", "9.6");
+           // 
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
 
@@ -79,8 +79,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10")); 
-            //AlterarHeader("VERSAO", "9.6");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11", "02", "5")); 
+            // 
 
             SalvarArquivo();
 
@@ -95,12 +95,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             IniciarTeste(TipoArquivo.ParcEmissao, "5265", "FG09 - PROC224 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, true);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, false);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
-            AlterarHeader("VERSAO", "9.6");
+             
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
 
@@ -113,8 +113,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10")); 
-            AlterarHeader("VERSAO", "9.6");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11", "02", "5")); 
+             
 
             SalvarArquivo();
 
@@ -129,12 +129,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             IniciarTeste(TipoArquivo.ParcEmissao, "5266", "FG09 - PROC224 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, true, "5", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, false, "20", 2);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
-            AlterarHeader("VERSAO", "9.6");
+             
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "11"));
 
@@ -147,8 +147,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10"));
-            AlterarHeader("VERSAO", "9.6");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "02", "5"));
+             
 
             SalvarArquivo();
 

@@ -123,10 +123,10 @@ namespace Acelera.Testes
                     lista.Add("PRC_0196_");
                     lista.Add("PRC_0197_");
                     //lista.Add("PRC_0199_");
-                    //lista.Add("PRC_0201_");
+                    lista.Add("PRC_0201_");
                     //lista.Add("PRC_0206_");
                     //lista.Add("PRC_0207_");
-                    //lista.Add("PRC_0208_");
+                    lista.Add("PRC_0208_");
                     //lista.Add("PRC_0211_");
                     //lista.Add("PRC_0222_");
                     lista.Add("PRC_0224_");
@@ -140,10 +140,10 @@ namespace Acelera.Testes
                     //lista.Add("PRC_0199_");
                     lista.Add("PRC_0196_");
                     lista.Add("PRC_0197_");
-                    //lista.Add("PRC_0201_");
+                    lista.Add("PRC_0201_");
                     //lista.Add("PRC_0206_");
                     //lista.Add("PRC_0207_");
-                    //lista.Add("PRC_0208_");
+                    lista.Add("PRC_0208_");
                     //lista.Add("PRC_0211_");
                     //lista.Add("PRC_0222_");
                     lista.Add("PRC_0224_");

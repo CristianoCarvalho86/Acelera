@@ -22,11 +22,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5655()
+        public void SAP_5640()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5655", "FG09 - PROC201 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5640", "FG09 - PROC201 - ");
 
             //Envia parc normal
+
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissaoAuto>(operacaoDoTeste, true);
 
             //ParcEmissaoAuto referente a cancelamento
@@ -36,7 +37,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", arquivoods1.ObterValorFormatado(0, "VL_ADIC_FRACIONADO"));
             AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValor(0, "VL_ADIC_FRACIONADO", 1));
 
             SalvarArquivo();
@@ -47,9 +47,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5656()
+        public void SAP_5641()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5656", "FG09 - PROC201 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5641", "FG09 - PROC201 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissaoAuto>(operacaoDoTeste, true, "20", 2);
@@ -59,10 +59,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
             AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", arquivoods1.ObterValorFormatado(1, "VL_ADIC_FRACIONADO"));
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValor(0, "VL_ADIC_FRACIONADO", -1));
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", "9999");
 
 
             SalvarArquivo();
@@ -73,9 +72,33 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_5657()
+        public void SAP_5642()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5657", "FG09 - PROC201 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5642", "FG09 - PROC201 - ");
+
+            //Envia parc normal
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissaoAuto>(operacaoDoTeste, true, "20", 3);
+
+            //ParcEmissaoAuto referente a cancelamento
+            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
+            CarregarArquivo(arquivo, 1, operacaoDoTeste);
+
+            RemoverTodasAsLinhas();
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(2), "10"));
+            AlterarHeader("VERSAO", "9.6");
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", "9999");
+
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "201", 1);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_5643()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5643", "FG09 - PROC201 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissaoAuto>(operacaoDoTeste, true, "20", 2);
@@ -91,39 +114,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "201", 1);
-
-        }
-
-        [TestMethod]
-        [TestCategory("Sem Critica")]
-        public void SAP_5658()
-        {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5658", "FG09 - PROC201 - ");
-
-            //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissaoAuto>(operacaoDoTeste, true, "20", 2);
-
-            //ParcEmissaoAuto referente a cancelamento
-            arquivo = new Arquivo_Layout_9_6_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, operacaoDoTeste);
-
-            RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
-            AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", arquivoods1.ObterValorFormatado(1, "VL_ADIC_FRACIONADO"));
-
-            SalvarArquivo();
-
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
         }
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_5659()
+        public void SAP_5644()
         {
-            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5659", "FG09 - PROC201 - ");
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "5644", "FG09 - PROC201 - ");
 
             //Envia parc normal
             var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissaoAuto>(operacaoDoTeste, true);
@@ -135,7 +134,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", arquivoods1.ObterValorFormatado(0, "VL_ADIC_FRACIONADO"));
 
             SalvarArquivo();
 

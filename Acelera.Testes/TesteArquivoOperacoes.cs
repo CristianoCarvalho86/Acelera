@@ -147,7 +147,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
 
             AdicionaAlteracao(valoresAlteradosHeader, linhaAlterada, posicaoLinha, campo, valorNovo);
-            SelecionarLinhaParaValidacao(0);
+            //SelecionarLinhaParaValidacao(0);
         }
 
         public void AlterarFooter(string campo, string valorNovo, int posicaoLinha = 0)

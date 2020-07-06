@@ -55,8 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), -1));
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
-
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNaFG09, "197");
         }
 
         [TestMethod]

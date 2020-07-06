@@ -27,17 +27,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             IniciarTeste(TipoArquivo.ParcEmissao, "5710", "FG09 - PROC208 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, false);
 
             //ParcEmissao referente a cancelamento
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
-            AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_CUSTO_APOLICE", arquivoods1.ObterValorFormatado(0, "VL_CUSTO_APOLICE"));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+
             AlterarLinha(0, "VL_CUSTO_APOLICE", SomarValor(0, "VL_CUSTO_APOLICE", 5));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -52,17 +52,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             IniciarTeste(TipoArquivo.ParcEmissao, "5711", "FG09 - PROC208 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, "20", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, false, "20", 2);
 
             //ParcEmissao referente a cancelamento
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
-            AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_CUSTO_APOLICE", arquivoods1.ObterValorFormatado(1, "VL_CUSTO_APOLICE"));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
+            //AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_CUSTO_APOLICE", SomarValor(0, "VL_CUSTO_APOLICE", -5));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
 
             SalvarArquivo();
@@ -78,16 +78,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             IniciarTeste(TipoArquivo.ParcEmissao, "5712", "FG09 - PROC208 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, "20", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, false, "20", 2);
 
             //ParcEmissao referente a cancelamento
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
-            AlterarHeader("VERSAO", "9.6");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10")); 
+
             AlterarLinha(0, "VL_CUSTO_APOLICE", SomarValores(arquivoods1.ObterValorFormatado(0, "VL_CUSTO_APOLICE"), arquivoods1.ObterValorFormatado(1, "VL_CUSTO_APOLICE")));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -102,16 +103,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             IniciarTeste(TipoArquivo.ParcEmissao, "5713", "FG09 - PROC208 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, "20", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, false, "20", 2);
 
             //ParcEmissao referente a cancelamento
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
-            AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_CUSTO_APOLICE",arquivoods1.ObterValorFormatado(1, "VL_CUSTO_APOLICE"));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
+
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -126,16 +127,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             IniciarTeste(TipoArquivo.ParcEmissao, "5714", "FG09 - PROC208 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, false);
 
             //ParcEmissao referente a cancelamento
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
-            AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_CUSTO_APOLICE", arquivoods1.ObterValorFormatado(0, "VL_CUSTO_APOLICE"));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 

@@ -112,7 +112,7 @@ namespace Acelera.Testes
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)
                 {
-                    if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                    if (new string[] { "10", "11", "9", "12", "13", "21" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
                     {
                         ODSInsertParcAutoCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                         ODSUpdateParcCancelamento.Update(logger);
