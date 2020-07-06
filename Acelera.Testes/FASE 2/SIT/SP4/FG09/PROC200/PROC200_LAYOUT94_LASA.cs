@@ -92,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
         }
 
         [TestMethod]
-        [TestCategory("Com Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_5528()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "5528", "FG09 - PROC200 - ");
@@ -118,7 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
         }
 
         [TestMethod]
-        [TestCategory("Com Critica")]
+        [TestCategory("Sem Critica")]
         public void SAP_5529()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "5529", "FG09 - PROC200 - ");

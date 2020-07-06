@@ -46,7 +46,7 @@
             // 
             // txtValorPropriedade
             // 
-            this.txtValorPropriedade.Location = new System.Drawing.Point(324, 3);
+            this.txtValorPropriedade.Location = new System.Drawing.Point(294, 3);
             this.txtValorPropriedade.Name = "txtValorPropriedade";
             this.txtValorPropriedade.Size = new System.Drawing.Size(276, 20);
             this.txtValorPropriedade.TabIndex = 1;
@@ -65,7 +65,7 @@
             this.Controls.Add(this.txtValorPropriedade);
             this.Controls.Add(this.lblPropriedade);
             this.Name = "LinhaFiltro";
-            this.Size = new System.Drawing.Size(603, 27);
+            this.Size = new System.Drawing.Size(572, 27);
             this.Load += new System.EventHandler(this.LinhaFiltro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
