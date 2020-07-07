@@ -131,7 +131,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             IniciarTeste(TipoArquivo.ParcEmissao, "5266", "FG09 - PROC224 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true, "20", 2);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true,  2);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
