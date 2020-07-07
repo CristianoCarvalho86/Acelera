@@ -28,8 +28,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.ObterValorDecimal(0,"VL_PREMIO_LIQUIDO"), 1000M));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            //AlterarHeader("VERSAO", "9.6");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValor(0, "VL_PREMIO_LIQUIDO", 1));
 
             SalvarArquivo();
 
@@ -51,8 +52,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
+            AlterarHeader("VERSAO", "9.6");
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "9999");
 
             SalvarArquivo();
 
@@ -74,8 +76,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(2), "10"));
+            AlterarHeader("VERSAO", "9.6");
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", "9999");
 
             SalvarArquivo();
 
@@ -100,6 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO").ValorFormatado());
 
+            AlterarCobertura(false);
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "190", 1);
@@ -121,8 +125,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", (arquivoods.ObterValorDecimal(0, "VL_PREMIO_LIQUIDO") - 1).ValorFormatado());
+            var soma =  arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO").ValorFormatado();
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO",soma +1);
 
+            AlterarCobertura(false);
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "190", 1);

@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10"));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "02", "5"));
             AlterarLinha(0, "VL_LMI", arquivo[0]["VL_IS"]);
             //AlterarHeader("VERSAO", "9.6");
 
@@ -62,12 +62,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             IniciarTeste(TipoArquivo.ParcEmissao, "5264", "FG09 - PROC224 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste);
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste,true);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
-            //AlterarHeader("VERSAO", "9.6");
+            AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
 
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "11");
+            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "10");
             AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();
@@ -131,25 +131,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             IniciarTeste(TipoArquivo.ParcEmissao, "5266", "FG09 - PROC224 - ");
 
             //Envia parc normal
-            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(operacaoDoTeste, true, 2, "5");
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true,  2);
 
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
-            AlterarHeader("VERSAO", "9.6");
+            //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "11"));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
 
 
             EnviarParaOds(arquivo);
             var arquivoods2 = arquivo.Clone();
 
             //ParcEmissao referente a cancelamento
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "21");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "02", "5"));
+            AlterarLinha(0, "VL_LMI", arquivo[0]["VL_IS"]);
             AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();
