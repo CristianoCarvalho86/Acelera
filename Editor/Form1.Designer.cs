@@ -63,9 +63,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(945, 441);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             // 
             // btnCarregar
             // 
@@ -206,7 +204,6 @@
             this.panelFiltro.Size = new System.Drawing.Size(650, 414);
             this.panelFiltro.TabIndex = 12;
             this.panelFiltro.Visible = false;
-            this.panelFiltro.Paint += new System.Windows.Forms.PaintEventHandler(this.panelFiltro_Paint);
             // 
             // btnLimpar
             // 

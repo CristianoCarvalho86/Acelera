@@ -21,7 +21,7 @@ namespace Editor
         private DataTable dadosDoHeader ;
         private DataTable dadosDoFooter ;
         private DataTable tabelaTemporaria;
-        private const string nomeColunaId = "INDEX_ARQUIVO_TABELA";
+        private const string nomeColunaId = "ID_ARQUIVO_9999";
         private IList<LinhaFiltro> linhasFiltro;
         private IList<ChaveValor> filtrosAtivos;
         public FrmEditor()
@@ -57,6 +57,8 @@ namespace Editor
                 dadosDoHeader = ArquivoToDataTable.ConvertToDataTable(arquivo.Header);
 
                 dadosDoFooter = ArquivoToDataTable.ConvertToDataTable(arquivo.Footer);
+
+                GC.Collect();
             }
             catch (Exception ex)
             {
@@ -67,9 +69,9 @@ namespace Editor
         private void IndexarTabela()
         {
             if(!dadosDoArquivo.Columns.Contains(nomeColunaId))
-                dadosDoArquivo.Columns.Add(nomeColunaId, typeof(int));
+                dadosDoArquivo.Columns.Add(nomeColunaId, typeof(Guid));
             for (int i = 0; i < dadosDoArquivo.Rows.Count; i++)
-                dadosDoArquivo.Rows[i][nomeColunaId] = i;
+                dadosDoArquivo.Rows[i][nomeColunaId] = arquivo.Linhas[i].Id;
             dataGridView1.Columns[nomeColunaId].Visible = false;
         }
 
@@ -91,6 +93,7 @@ namespace Editor
                     {
                         txtArrquivo.Text = filePath;
                     }
+                    btnCarregar_Click(null, null);
                 }
                 catch (Exception ex)
                 {
@@ -107,34 +110,24 @@ namespace Editor
         private void gridHeader_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             arquivo.AlterarHeader(dadosDoHeader.Columns[e.ColumnIndex].ColumnName, dadosDoHeader.Rows[e.RowIndex][e.ColumnIndex].ToString());
-            Salvar();
         }
 
         private void gridFooter_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             arquivo.AlterarFooter(dadosDoFooter.Columns[e.ColumnIndex].ColumnName, dadosDoFooter.Rows[e.RowIndex][e.ColumnIndex].ToString());
-            Salvar();
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                arquivo.AlterarLinha(ObterIndexDoArquivo(e.RowIndex), dadosDoArquivo.Columns[e.ColumnIndex].ColumnName, dadosDoArquivo.Rows[e.RowIndex][e.ColumnIndex].ToString());
-                //Salvar();
-            }
-            catch (Exception ex)
-            {
-                Erro(ex);
-            }
-        }
-
-        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-            try
-            {
-                arquivo.RemoverLinha(ObterIndexDoArquivo(e.Row.Index));
-                //Salvar();
+                var indexArquivo = ObterIndexDoArquivo(e.RowIndex);
+                arquivo.AlterarLinha(indexArquivo, dadosDoArquivo.Columns[e.ColumnIndex].ColumnName, dadosDoArquivo.Rows[e.RowIndex][e.ColumnIndex].ToString());
+                if (arquivo.CamposDoBody.Contains("ID_TRANSACAO"))
+                {
+                    arquivo.AlterarLinha(indexArquivo, "ID_TRANSACAO", CarregarIdTransacao(arquivo.ObterLinha(indexArquivo)));
+                    dadosDoArquivo.Rows[e.RowIndex]["ID_TRANSACAO"] = CarregarIdTransacao(arquivo.ObterLinha(indexArquivo));
+                }
             }
             catch (Exception ex)
             {
@@ -177,16 +170,34 @@ namespace Editor
             IndexarTabela();
         }
 
-        private int ObterIndexDoArquivo(int indexLinha)
+        private Guid ObterChaveDoArquivo(int indexLinha)
         {
-            return Convert.ToInt32(dataGridView1.Rows[indexLinha].Cells[nomeColunaId].Value);
+            return (Guid)dataGridView1.Rows[indexLinha].Cells[nomeColunaId].Value;
+        }
+
+        private int ObterIndexDoArquivo(int indexLinhaGrid)
+        {
+           return arquivo.ObterLinha((Guid)dataGridView1.Rows[indexLinhaGrid].Cells[nomeColunaId].Value).Index;
         }
 
         private void btnAddRow_Click(object sender, EventArgs e)
         {
-            dadosDoArquivo.Rows.Add(dadosDoArquivo.NewRow());
-            dadosDoArquivo.Rows[dadosDoArquivo.Rows.Count - 1][nomeColunaId] = dadosDoArquivo.Rows.Count - 1;
-            arquivo.AdicionarLinha(arquivo.CriarLinhaVazia());
+            var novaLinhaArquivo = arquivo.CriarLinhaVazia();
+            var novaLinhaTabela = dadosDoArquivo.NewRow();
+            novaLinhaTabela[nomeColunaId] = novaLinhaArquivo.Id;
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                dadosDoArquivo.Rows.Add(novaLinhaTabela);
+                arquivo.AdicionarLinha(novaLinhaArquivo);
+                MessageBox.Show("Linha inserida no fim do arquivo.");
+            }
+            else
+            {
+                var indexDeInsert = dataGridView1.SelectedRows[0].Index;
+                arquivo.AdicionarLinha(novaLinhaArquivo,ObterIndexDoArquivo(indexDeInsert));
+                dadosDoArquivo.Rows.InsertAt(novaLinhaTabela, indexDeInsert);
+            }
+            AtualizarFooter();
         }
 
         private void btnRemoveRow_Click(object sender, EventArgs e)
@@ -196,15 +207,17 @@ namespace Editor
                 MessageBox.Show("Selecione uma linha para remover.");
                 return;
             }
-            var indexDaTabela = dataGridView1.SelectedRows[0].Index;
-            var indexDoArquivo = ObterIndexDoArquivo(dataGridView1.SelectedRows[0].Index);
-            dadosDoArquivo.Rows.RemoveAt(indexDaTabela);
-            arquivo.RemoverLinha(indexDoArquivo);
+            var indexDoGrid = dataGridView1.SelectedRows[0].Index;
+            var chaveDoArquivo = ObterChaveDoArquivo(indexDoGrid);
+            dadosDoArquivo.Rows.RemoveAt(indexDoGrid);
+            arquivo.RemoverLinhaComAjuste(chaveDoArquivo);
+            AtualizarFooter();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Salvar();
+            picLoading.Visible = true;
+            backgroundWorkerSalvar.RunWorkerAsync();
         }
 
         private void btnCopiarLinha_Click(object sender, EventArgs e)
@@ -214,11 +227,23 @@ namespace Editor
                 MessageBox.Show("Selecione uma linha para copiar.");
                 return;
             }
-            var indexDaTabela = dataGridView1.SelectedRows[0].Index;
-            var indexDoArquivo = ObterIndexDoArquivo(dataGridView1.SelectedRows[0].Index);
-            dadosDoArquivo.Rows.InsertAt(DataTableUtils.ClonarLinha(dadosDoArquivo.Rows[indexDaTabela]),indexDaTabela) ;
+            var indexDoGrid = dataGridView1.SelectedRows[0].Index;
+            var chaveDoArquivo = ObterChaveDoArquivo(indexDoGrid);
+
+            var novaLinhaArquivo = arquivo.ObterLinha(chaveDoArquivo).Clone();
+            arquivo.AdicionarLinha(novaLinhaArquivo, arquivo.ObterLinha(chaveDoArquivo).Index);
+
+            var linhaTabela = DataTableUtils.ClonarLinha(dadosDoArquivo.Rows[indexDoGrid]);
+            linhaTabela[nomeColunaId] = novaLinhaArquivo.Id;
+            dadosDoArquivo.Rows.InsertAt(linhaTabela, indexDoGrid) ;
             
-            arquivo.AdicionarLinha(arquivo.ObterLinha(indexDoArquivo),indexDoArquivo);
+            
+            AtualizarFooter();
+        }
+
+        private void AtualizarFooter()
+        {
+            dadosDoFooter.Rows[0]["QT_LIN"] = dadosDoArquivo.Rows.Count;
         }
 
         private void EstadoTelaInicial()
@@ -229,18 +254,17 @@ namespace Editor
             dadosDoFooter = new DataTable();
         }
 
-        private void DefinirVisibilidadeBotoes(bool arquivoCarregado)
+        private void DefinirVisibilidadeBotoes(bool arquivoCarregado, bool filtroAplicado = false)
         {
             btnSalvar.Visible = arquivoCarregado;
-            btnAddRow.Visible = arquivoCarregado;
-            btnRemoveRow.Visible = arquivoCarregado;
-            btnCopiarLinha.Visible = arquivoCarregado;
+            btnAddRow.Visible = !filtroAplicado ? arquivoCarregado : filtroAplicado; ;
+            btnRemoveRow.Visible = !filtroAplicado ? arquivoCarregado : filtroAplicado; ;
+            btnCopiarLinha.Visible = !filtroAplicado ? arquivoCarregado : filtroAplicado; ;
             btnFiltro.Visible = arquivoCarregado;
         }
 
         private void backgroundWorkerSalvar_DoWork(object sender, DoWorkEventArgs e)
         {
-            picLoading.Visible = true;
             Salvar();
         }
 
@@ -252,6 +276,7 @@ namespace Editor
         private void btnFiltro_Click(object sender, EventArgs e)
         {
             panelFiltro.Visible = !panelFiltro.Visible;
+            btnFiltro.Text = panelFiltro.Visible ? "Esconder Filtro" : "Filtro";
             CarregaPainelFiltro();
         }
 
@@ -284,6 +309,7 @@ namespace Editor
 
         private void AtualizarGrid()
         {
+            DefinirVisibilidadeBotoes(true, true);
             var select = "";
             foreach (var filtro in filtrosAtivos)
             {
@@ -319,16 +345,12 @@ namespace Editor
             });
             t.Start();
             dataGridView1.DataSource = dadosDoArquivo;
+            DefinirVisibilidadeBotoes(true, false);
         }
 
-        private void panelFiltro_Paint(object sender, PaintEventArgs e)
+        private string CarregarIdTransacao(LinhaArquivo linha)
         {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }
     }
 }
