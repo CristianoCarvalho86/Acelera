@@ -155,6 +155,11 @@ namespace Acelera.Domain.Layouts
             return Linhas.ToList()[posicaoLinha];
         }
 
+        public LinhaArquivo ObterLinha(Guid idLinha)
+        {
+            return Linhas.ToList().Where(x => x.Id == idLinha).First();
+        }
+
         public bool ExisteCampo(string nomeCampo)
         {
             if (!CamposDoBody.Contains(nomeCampo))
@@ -280,6 +285,20 @@ namespace Acelera.Domain.Layouts
         public void RemoverLinha(int posicaoLinha)
         {
             Linhas.RemoveAt(posicaoLinha);
+            ReIndexar();
+        }
+
+        public void RemoverLinhaComAjuste(Guid idLinha)
+        {
+            Linhas.Remove(ObterLinha(idLinha));
+            ReIndexar();
+            AjustarQtdLinhasNoFooter();
+        }
+
+        public void RemoverLinhaComAjuste(int posicaoLinha)
+        {
+            RemoverLinha(posicaoLinha);
+            AjustarQtdLinhasNoFooter();
         }
 
         public void RemoverHeader()

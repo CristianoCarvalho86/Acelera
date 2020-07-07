@@ -1,0 +1,45 @@
+{
+  "Layouts": [
+    {
+      "TIPO": "SINISTRO",
+      "VERSAO": "9.4",
+      "CAMPOS": [
+        {
+          "NOME": "TIPO REGISTRO",
+          "TAMANHO": "2"
+        },
+        {
+          "NOME": "CD_CORRETOR",
+          "TAMANHO": "12"
+        },
+        {
+          "NOME": "CD_CONTRATO",
+          "TAMANHO": "22"
+        },
+        {
+          "NOME": "NR_ENDOSSO",
+          "TAMANHO": "21"
+        },
+        {
+          "NOME": "CD_EXTRATO_COMISSAO",
+          "TAMANHO": "21"
+        },
+        {
+          "NOME": "CD_LANCAMENTO",
+          "TAMANHO": "24"
+        },
+        {
+          "NOME": "CD_TIPO_LANCAMENTO",
+          "TAMANHO": "23"
+        },
+        {
+          "NOME": "FILLER",
+          "TAMANHO": "52"
+        }
+      ]
+    }
+      
+
+    }
+  ]
+}

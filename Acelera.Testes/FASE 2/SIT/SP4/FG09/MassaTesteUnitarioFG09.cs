@@ -432,7 +432,9 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.POMPEIA, "", true);
             arquivo = arquivoParc;
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            var contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            AlterarLinha(0, "CD_CONTRATO", contrato);
+            AlterarLinha(0, "NR_APOLICE", contrato);
             EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.POMPEIA, "10", true);
 
             /*

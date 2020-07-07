@@ -10,6 +10,8 @@ namespace Acelera.Domain.Layouts
         public List<CampoDoArquivo> Campos { get; set; }
         public int Index { get; set; }
 
+        public Guid Id { get; set; }
+
         public string this[string nomeCampo]
         {
             get => ObterCampoDoArquivo(nomeCampo).ValorFormatado;
@@ -19,6 +21,7 @@ namespace Acelera.Domain.Layouts
         {
             Campos = new List<CampoDoArquivo>();
             Index = index;
+            Id = Guid.NewGuid();
         }
 
 
@@ -85,6 +88,7 @@ namespace Acelera.Domain.Layouts
             var linha = new LinhaArquivo(Index);
             foreach (var c in Campos)
                 linha.Campos.Add(c.Clone());
+            linha.Id = Guid.NewGuid();
             return linha;
         }
     }
