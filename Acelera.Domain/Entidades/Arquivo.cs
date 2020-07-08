@@ -26,7 +26,7 @@ namespace Acelera.Domain.Layouts
         public IList<string> CamposDoBody => Linhas.FirstOrDefault()?.Campos?.Select(x => x.ColunaArquivo).ToList();
 
         public string NomeArquivo { get; private set; }
-
+        
         public string NomeArquivoOriginal { get; private set; }
 
         private int LimiteDeLinhas;

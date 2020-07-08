@@ -33,6 +33,8 @@ namespace Acelera.Domain.Enums
         OdsCobertura,
         [Description("TAB_ODS_COMISSAO_2006")]
         OdsComissao,
+        [Description("TAB_ODS_COBERTURA_COMISSAO_2008")]
+        OdsCoberturaComissao,
         [Description("TAB_ODS_ENDERECO_2001")]
         OdsEndereco,
         [Description("TAB_ODS_ITEM_AUTO_2004")]
