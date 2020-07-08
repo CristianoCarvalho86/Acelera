@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
@@ -50,10 +50,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
             AlterarHeader("VERSAO", "9.6");
 
@@ -74,10 +74,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(2), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
             AlterarHeader("VERSAO", "9.6");
 
@@ -98,16 +98,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO").ValorFormatado());
             AlterarHeader("VERSAO", "9.6");
+            AlterarCobertura(false);
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "190", 1);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNaFG09, "190");
 
         }
 
@@ -122,16 +123,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", (arquivoods.ObterValorDecimal(0, "VL_PREMIO_LIQUIDO") - 1).ValorFormatado());
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", (arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO") - 1).ValorFormatado());
             AlterarHeader("VERSAO", "9.6");
+            AlterarCobertura(false);
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "190", 1);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNaFG09, "190");
 
         }
     }

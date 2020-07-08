@@ -18,7 +18,7 @@ namespace Acelera.Utils
             else if (operadora == OperadoraEnum.SOFTBOX)
                 return "00952146";
             else if (operadora == OperadoraEnum.POMPEIA)
-                return "00952570";
+                return "00900809";
             else if (operadora == OperadoraEnum.TIM)
                 return "29249585";
 

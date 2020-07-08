@@ -315,6 +315,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0218");
                     lista.Add("PRC_1048");
                     lista.Add("PRC_0108");
+                    lista.Add("PRC_0034");
                     //lista.Add("PRC_1049");
                     //lista.Add("PRC_1111");
                     break;
