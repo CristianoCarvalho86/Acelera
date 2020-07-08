@@ -66,13 +66,13 @@ namespace Acelera.Testes.DataAccessRep.ODS
             var detalheLinha = $" select '{idRegistro}' AS ID_REGISTRO FROM DUMMY ";
             var sql = InsertText(detalheLinha);
 
-            var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsComissao.ObterTexto(), logger);
+            var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsCoberturaComissao.ObterTexto(), logger);
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
-            var count2 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsComissao.ObterTexto(), logger);
+            var count2 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsCoberturaComissao.ObterTexto(), logger);
             if (count1 == count2)
             {
-                logger.Erro($"ERRO NO INSERT DA COMISSAO COBERTURA PARA O ID_REGISTRO : '{idRegistro}' - NENHUMA LINHA INSERIDA");
-                throw new Exception("NENHUMA LINHA INSERIDA NA ODS COMISSAO COBERTURA PARA O ID_REGISTRO: " + idRegistro);
+                logger.Erro($"ERRO NO INSERT DA {TabelasEnum.OdsCoberturaComissao.ObterTexto()} PARA O ID_REGISTRO : '{idRegistro}' - NENHUMA LINHA INSERIDA");
+                throw new Exception("NENHUMA LINHA INSERIDA NA "+ TabelasEnum.OdsCoberturaComissao.ObterTexto() + " PARA O ID_REGISTRO: " + idRegistro);
             }
         }
     }

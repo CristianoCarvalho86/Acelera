@@ -25,6 +25,7 @@ namespace Acelera.Testes
 
         protected string VlRemuneracao7013;
         protected string TPRemuneracao7013;
+        protected string NomeDoTeste;
 
         public TestesFG04()
         {
@@ -33,6 +34,7 @@ namespace Acelera.Testes
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {
+            NomeDoTeste = numeroDoTeste;
             base.IniciarTeste(tipo, numeroDoTeste, nomeDoTeste);
             dados = new TabelaParametrosDataSP3(logger);
         }
