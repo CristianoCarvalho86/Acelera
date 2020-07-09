@@ -57,8 +57,8 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" stg.DT_MUDANCA"+
             $" from {Parametros.instanciaDB}.{tabelaStage.ObterTexto()} STG" +
             $" INNER JOIN ({dadosWhere}) TMP " +
-            $" ON STG.ID_REGISTRO = TMP.ID_REGISTRO"+
-            $" INNER JOIN  {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003 ODS " +
+            $" ON STG.ID_REGISTRO = TMP.ID_REGISTRO                               "+
+            $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003 ODS " +
             $" ON STG.NR_APOLICE = ODS.NR_APOLICE"+
             $" AND STG.NR_ENDOSSO = ODS.NR_ENDOSSO "+
             $" AND STG.NR_PARCELA = ODS.NR_PARCELA "+
@@ -67,13 +67,16 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCEIRO_NEGOCIO_2000 OP " +
             $" ON OP.CD_PARCEIRO_NEGOCIO = ODS.CD_PN_OPERACAO"+
             $" AND CAST(STG.CD_OPERACAO AS INT) = CAST(OP.CD_EXTERNO AS INT) "+
+            $" AND OP.CD_TIPO_PARCEIRO_NEGOCIO = 'OP'"+
             $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCEIRO_NEGOCIO_2000 SE " +
             $" ON SE.CD_PARCEIRO_NEGOCIO = ODS.CD_PN_SEGURADORA"+
             $" AND CAST(STG.CD_SEGURADORA AS INT) = CAST(SE.CD_EXTERNO AS INT) "+
+            $" AND SE.CD_TIPO_PARCEIRO_NEGOCIO = 'SE'"+
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 COB " +
             $" ON STG.CD_COBERTURA = COB.CD_COBERTURA"+
             $" AND STG.CD_PRODUTO = COB.CD_PRODUTO "+
-            $" WHERE CD_TIPO_EMISSAO IN(1, 18, 20)"; 
+            $" and STG.CD_RAMO = COB.CD_RAMO_COBERTURA "+
+            $" WHERE CD_TIPO_EMISSAO IN(1, 18, 20); "; 
 
         }
 
