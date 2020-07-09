@@ -1,25 +1,16 @@
 ﻿using Acelera.Domain.Enums;
-using Acelera.Domain.Extensions;
-using Acelera.Domain.Layouts._9_3;
-using Acelera.Domain.Layouts._9_4;
-using Acelera.Domain.Layouts._9_4_2;
-using Acelera.Logger;
-using Acelera.Testes.DataAccessRep;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 {
-    [TestClass]
-    public class FG06 : TestesFG06
+    public class Emissao_FG06 : FG06_Base
     {
+
         [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_5921()
@@ -97,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             AlteracoesPadraoDaTrinca(triplice);
             triplice.AlterarParcEComissao(0, "VL_PREMIO_LIQUIDO", "abc");
-            
+
 
             triplice.Salvar();
 
@@ -187,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void SAP_5926()
         {
             //POMPEIA - CLI rejeitado, PARC rejeitado e CMS sucesso
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5925", "");
+            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, "5926", "");
 
             CarregarTriplice(OperadoraEnum.POMPEIA);
 
@@ -213,45 +204,156 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidarFG06(triplice, CodigoStage.RecusadoNaFG01, CodigoStage.RecusadoNaFG01, CodigoStage.ReprovadoFG06, "403", "07", "07");
         }
 
-
-        public void InicioTesteFG06(string numeroTeste, string descricao, OperadoraEnum operadora)
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5927()
         {
-            //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
-            IniciarTeste(Domain.Enums.TipoArquivo.Comissao, numeroTeste, descricao);
+            // POMPEIA - CLI rejeitado, PARC sucesso e CMS rejeitado
+            InicioTesteFG06("5927", "", OperadoraEnum.POMPEIA);
 
-            CarregarTriplice(operadora);
+            AdicionaErro(TipoArquivo.Cliente);
+            AdicionaErro(TipoArquivo.Comissao);
 
-            AlteracoesPadraoDaTrinca(triplice);
+            SalvarTrinca();
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
         }
 
-        public void FimTesteFG06(KeyValuePair<bool,string> sucessoCliente, KeyValuePair<bool, string> sucessoParcela, KeyValuePair<bool, string> sucessoComissao)
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5928()
         {
-            triplice.Salvar();
+            // SAP-5928:FG06 - POMPEIA - CLI rejeitado, PARC rejeitado e CMS rejeitado
+            InicioTesteFG06("5928", "SAP-5928:FG06 - POMPEIA - CLI rejeitado, PARC rejeitado e CMS rejeitado", OperadoraEnum.POMPEIA);
 
-            var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG02, FGs.FG05 };
+            AdicionaErro(TipoArquivo.Cliente);
+            AdicionaErro(TipoArquivo.Comissao);
+            AdicionaErro(TipoArquivo.ParcEmissao);
 
-            foreach (var fg in listaFgs)
-            {
-                if (sucessoCliente.Key == true)
-                {
-                    ExecutarEValidar(triplice.ArquivoCliente, fg, CodigoStage.AprovadoNAFG00);
-                    ExecutarEValidar(triplice.ArquivoParcEmissao, fg, CodigoStage.AprovadoNAFG00);
-                    ExecutarEValidar(triplice.ArquivoComissao, fg, CodigoStage.AprovadoNAFG00);
-                }
-            }
+            SalvarTrinca();
+            ValidarFGsAnterioresEErros();
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarFG06EmissaoComErro();
+        }
 
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5929()
+        {
+            // SAP-5929:FG06 - POMPEIA - CLI rejeitado, PARC ñ enviado e CMS sucesso
+            InicioTesteFG06("5929", "FG06 - POMPEIA - CLI rejeitado, PARC ñ enviado e CMS sucesso", OperadoraEnum.POMPEIA);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            AdicionaErro(TipoArquivo.Cliente);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            SalvarTrinca(true, false, true);
+            ValidarFGsAnterioresEErros();
 
-            ExecutarEValidarFG06(triplice, CodigoStage.RecusadoNaFG01, CodigoStage.ReprovadoFG06, CodigoStage.ReprovadoFG06, "41", "103", "105");
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5930()
+        {
+            // SAP-5930:FG06 - LASA - CLI rejeitado, PARC sucesso e CMS ñ enviado
+            InicioTesteFG06("5930", "FG06 - POMPEIA - CLI rejeitado, PARC ñ enviado e CMS sucesso", OperadoraEnum.POMPEIA);
+
+            AdicionaErro(TipoArquivo.Cliente);
+            AdicionaErro(TipoArquivo.Comissao);
+
+            SalvarTrinca(true, true, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5931()
+        {
+            // FG06 - LASA - CLI rejeitado ODS, PARC sucesso e CMS sucesso
+            InicioTesteFG06("5931", "FG06 - LASA - CLI rejeitado ODS, PARC sucesso e CMS sucesso", OperadoraEnum.LASA);
+
+            AdicionaErro(TipoArquivo.Cliente);
+
+            SalvarTrinca();
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5932()
+        {
+            // FG06 - LASA - CLI rejeitado, PARC ñ enviado e ñ enviado
+            InicioTesteFG06("5932", "FG06 - LASA - CLI rejeitado, PARC ñ enviado e ñ enviado", OperadoraEnum.LASA);
+
+            AdicionaErro(TipoArquivo.Cliente);
+
+            SalvarTrinca(true,false,false);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5933()
+        {
+            // FG06 - LASA - CLI rejeitado ODS, PARC sucesso e CMS sucesso
+            InicioTesteFG06("5933", " SAP-5933:FG06 - LASA - CLI sucesso, PARC rejeitado e CMS ñ enviado", OperadoraEnum.LASA);
+
+            AdicionaErro(TipoArquivo.Cliente);
+
+            SalvarTrinca(true,true,false);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5934()
+        {
+            //  SAP-5934:FG06 - LASA - CLI ñ enviado, PARC rejeitado e CMS sucesso
+            InicioTesteFG06("5934", "SAP-5934:FG06 - LASA - CLI ñ enviado, PARC rejeitado e CMS sucesso", OperadoraEnum.LASA);
+
+            AdicionaErro(TipoArquivo.ParcEmissao);
+
+            SalvarTrinca(false, true, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5935()
+        {
+            InicioTesteFG06("5935", "SAP-5935:FG06 - SOFTBOX - CLI ñ enviado, PARC rejeitado e CMS ñ enviado", OperadoraEnum.SOFTBOX);
+
+            AdicionaErro(TipoArquivo.ParcEmissao);
+
+            SalvarTrinca(false, true, false);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5936()
+        {
+            InicioTesteFG06("5936", "SAP-5936:FG06 - SOFTBOX - CLI ñ enviado, PARC sucesso e CMS rejeitado", OperadoraEnum.SOFTBOX);
+
+            AdicionaErro(TipoArquivo.Comissao);
+
+            SalvarTrinca(false, true, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
         }
     }
 }
