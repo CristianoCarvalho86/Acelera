@@ -34,12 +34,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC206
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_PREMIO_TOTAL", arquivoods1.ObterValorFormatado(0, "VL_PREMIO_TOTAL"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValor(0, "VL_PREMIO_TOTAL", 5));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValor(0, "VL_PREMIO_TOTAL", -4));
             AlterarLinha(0, "VL_IOF", "4");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
+
 
             SalvarArquivo();
 
@@ -61,13 +62,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC206
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_PREMIO_TOTAL", arquivoods1.ObterValorFormatado(1, "VL_PREMIO_TOTAL"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValor(0, "VL_PREMIO_TOTAL", -5));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValor(0, "VL_PREMIO_TOTAL", -4));
             AlterarLinha(0, "VL_IOF", "4");
-
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -89,11 +89,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC206
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarValores(arquivoods1.ObterValorFormatado(0, "VL_PREMIO_TOTAL"), arquivoods1.ObterValorFormatado(1, "VL_PREMIO_TOTAL")));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValor(0, "VL_PREMIO_TOTAL", -4));
             AlterarLinha(0, "VL_IOF", "4");
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -115,11 +116,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC206
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_PREMIO_TOTAL",arquivoods1.ObterValorFormatado(1, "VL_PREMIO_TOTAL"));
-            AlterarLinha(0, "VL_IOF", arquivoods1.ObterValorFormatado(1, "VL_IOF"));
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", arquivoods1.ObterValorFormatado(1, "VL_PREMIO_LIQUIDO"));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
@@ -141,15 +140,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC206
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
-            AlterarLinha(0, "VL_PREMIO_TOTAL", arquivoods1.ObterValorFormatado(0, "VL_PREMIO_TOTAL"));
-            AlterarLinha(0, "VL_IOF", arquivoods1.ObterValorFormatado(1, "VL_IOF"));
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", arquivoods1.ObterValorFormatado(1, "VL_PREMIO_LIQUIDO"));
+            AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNaFG09, "206");
 
         }
     }

@@ -57,9 +57,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
 
             IniciarTeste(Domain.Enums.TipoArquivo.Cliente, "9999", "");
 
-            arquivo = new Arquivo_Layout_9_3_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
-            AlterarLinha(0, "CD_CLIENTE", "29249585");
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-0272-20200228.TXT"));
 
             EnviarParaOds(arquivo, false);
         }

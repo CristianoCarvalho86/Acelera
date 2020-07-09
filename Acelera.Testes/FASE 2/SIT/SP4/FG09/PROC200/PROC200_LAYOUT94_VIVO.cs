@@ -29,13 +29,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             SalvarArquivo();
             var arquivoParcela = arquivo.Clone();
 
-            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "222", 1);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.VIVO, arquivoParcela, true);
             AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 1000));
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "200", 1);
 
         }
 

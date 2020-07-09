@@ -43,14 +43,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC229
             IniciarTeste(TipoArquivo.ParcEmissao, "5751", "FG09 - PROC197 - ");
 
             //Envia parc normal
-            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.SOFTBOX);
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.TIM);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "03");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "03"));
 
             SalvarArquivo();
 

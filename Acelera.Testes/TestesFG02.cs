@@ -257,7 +257,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_1065");
                     lista.Add("PRC_1067");
                     lista.Add("PRC_1083");
-                    lista.Add("PRC_1091");
+                    //lista.Add("PRC_1091");
                     lista.Add("PRC_1092");
                     lista.Add("PRC_1182");
                     lista.Add("PRC_1183");
@@ -300,7 +300,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_1065");
                     lista.Add("PRC_1067");
                     lista.Add("PRC_1083");
-                    lista.Add("PRC_1091");
+                    //lista.Add("PRC_1091");
                     lista.Add("PRC_1092");
                     lista.Add("PRC_1182");
                     lista.Add("PRC_1183");
@@ -315,6 +315,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0218");
                     lista.Add("PRC_1048");
                     lista.Add("PRC_0108");
+                    lista.Add("PRC_0034");
                     //lista.Add("PRC_1049");
                     //lista.Add("PRC_1111");
                     break;
@@ -325,7 +326,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0026");
                     lista.Add("PRC_0124");
                     lista.Add("PRC_1190");
-                    lista.Add("PRC_1191");
+                    //lista.Add("PRC_1191");
                     lista.Add("PRC_1193");
                     break;
                 case TipoArquivo.OCRCobranca:

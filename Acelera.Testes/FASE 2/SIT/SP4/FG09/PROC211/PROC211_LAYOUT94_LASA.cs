@@ -26,12 +26,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC211
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "5722", "FG09 - PROC211 - ");
 
+            var arquivoods1 = CriarEmissaoODS<Arquivo_Layout_9_6_ParcEmissao>(operacaoDoTeste, true);
+
             //Envia Parc com id cancelamento igual id transição do anterior
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
+
+            RemoverTodasAsLinhas();
             AlterarHeader("VERSAO", "9.6");
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivo.ObterLinha(0), "10"));
-            RemoverLinhasExcetoAsPrimeiras(1);
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            CriarNovoContrato(0);
 
             SalvarArquivo();
 
