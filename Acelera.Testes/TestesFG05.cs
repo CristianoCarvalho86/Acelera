@@ -116,9 +116,13 @@ namespace Acelera.Testes
                     {
                         ODSInsertParcAutoCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                         ODSUpdateParcCancelamento.Update(logger);
+
                     }
                     else
+                    {
                         ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissaoAuto, logger);
+                    }
                 }
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
                 foreach (var linha in linhas)
@@ -127,14 +131,21 @@ namespace Acelera.Testes
                     {
                         ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                         ODSUpdateParcCancelamento.Update(logger);
+
                     }
                     else
+                    {
                         ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissao, logger);
+                    } // se não for cancelamento
                 }
             else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
                 foreach (var linha in linhas)
                     ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
 
+            else if (arquivo.tipoArquivo == TipoArquivo.Comissao)
+                foreach (var linha in linhas)
+                    ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
         }
 
         //protected override void SalvarArquivo()

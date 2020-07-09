@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC229
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "01");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "01"));
 
             SalvarArquivo();
 

@@ -89,8 +89,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " CD_TIPO_COMISSAO," +
             " A.NM_ARQUIVO_TPA," +
             " PARCODS.NM_USUARIO," +
-            " A.TP_MUDANCA;" +
-            " end";
+            " A.TP_MUDANCA;";
         }
 
 

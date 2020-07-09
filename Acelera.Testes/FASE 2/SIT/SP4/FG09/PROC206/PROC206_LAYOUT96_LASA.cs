@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC206
 
             SalvarArquivo();
 
-            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNaFG09, "206");
+            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
         }
 
