@@ -18,9 +18,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
         public void SAP_5525()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "5525", "FG09 - PROC199 - ");
+            AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true);
+            var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false, cobertura.CdCobertura);
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+            AlterarLinha(0, "CD_RAMO", cobertura.CdRamoCobertura);
+            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
