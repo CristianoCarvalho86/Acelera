@@ -26,7 +26,7 @@ namespace Acelera.Testes.Validadores
             var consultaBase = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
             var consultas = new ConjuntoConsultas();
 
-            if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())
+            if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
             {
                 var linhasAlteradas = consultaBase.Select(x => x.Key).Distinct().ToList();
                 foreach (var linha in linhasAlteradas)

@@ -21,9 +21,9 @@ namespace Acelera.Domain.Entidades
             Alteracoes.Add(alteracao);
         }
 
-        public bool ExisteAlteracaoValida()
+        public bool ExisteAlteracaoValidaParaOArquivo(string arquivo)
         {
-            return Alteracoes.Any(x => x.AlteracaoNula == false);
+            return Alteracoes.Any(x => x.AlteracaoNula == false && x.NomeArquivo == arquivo);
         }
 
         public IEnumerable<Alteracao> AlteracoesPorLinha(string nomeArquivo, int linha)

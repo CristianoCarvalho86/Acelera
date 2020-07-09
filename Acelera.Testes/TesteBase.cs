@@ -88,6 +88,7 @@ namespace Acelera.Testes
                 return;
             }
 
+            _nomeArquivo = nomeDoTeste.Replace("-", "_") + _nomeArquivo;
             FinalizarAlteracaoArquivo();
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
@@ -264,7 +265,7 @@ namespace Acelera.Testes
             return string.IsNullOrEmpty(texto) ? null : texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
         }
 
-        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false)
+        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false, bool adicionaValidacao = true)
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
             var nomeCampo = string.Empty;
@@ -276,8 +277,31 @@ namespace Acelera.Testes
                         nomeCampo = "NR_SEQUENCIAL_EMISSAO";
 
                     var index = linhaUnicaNaOrigem ? 0 : linha.Index;
-                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, true);
+                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, adicionaValidacao);
                 }
+            logger.FecharBloco();
+        }
+
+        public void IgualarCampos(LinhaArquivo linhaOrigem, LinhaArquivo linhaDestino, string[] campos)
+        {
+            logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
+            var nomeCampo = string.Empty;
+                 foreach (var campo in campos)
+                {
+                    linhaDestino.ObterCampoDoArquivo(campo).AlterarValor(linhaOrigem.ObterCampoDoArquivo(campo).ValorFormatado);
+                }
+            logger.FecharBloco();
+        }
+
+        public void IgualarCamposQueExistirem(LinhaArquivo linhaOrigem, LinhaArquivo linhaDestino)
+        {
+            logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
+            var nomeCampo = string.Empty;
+            foreach (var campo in linhaOrigem.Campos)
+            {
+                linhaDestino.ObterCampoSeExistir(campo.ColunaArquivo)?.AlterarValor(linhaOrigem[campo.ColunaArquivo]);
+            }
+            logger.FecharBloco();
         }
 
         public void IgualarCamposQueExistirem(Arquivo arquivoOrigem, Arquivo arquivoDestino)

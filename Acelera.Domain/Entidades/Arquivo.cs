@@ -324,6 +324,8 @@ namespace Acelera.Domain.Layouts
         public void RemoverExcetoEstas(int posicaoLinhaInicial, int quantidadeLinhas)
         {
             Linhas = Linhas.Where(x => x.Index >= posicaoLinhaInicial && x.Index < (posicaoLinhaInicial + quantidadeLinhas)).ToList();
+            ReIndexar();
+            AjustarQtdLinhasNoFooter();
         }
 
         public void RemoverLinhasMenosUma(int posicaoLinhaAManter)

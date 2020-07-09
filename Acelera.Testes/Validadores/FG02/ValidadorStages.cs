@@ -31,7 +31,7 @@ namespace Acelera.Testes.Validadores.FG02
             if (alteracaoHeader != null)
                 AdicionaConsulta(consultaBase.First().Value, valoresAlteradosHeader,true);//NAO HAVERA ALTERAÇÕES NO HEADER E NAS LINHAS SIMULTANEAMENTE
 
-            if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValida())
+            if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
             {
                 var linhasAlteradas = valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
                 foreach(var linha in linhasAlteradas)

@@ -16,7 +16,7 @@ namespace Acelera.Testes.ConjuntoArquivos
     public abstract class Triplice<T1, T2, T3> : ITriplice where T1 : Arquivo, new() where T2 : Arquivo, new() where T3 : Arquivo, new()
     {
         public Arquivo ArquivoCliente { get; protected set; }
-        public Arquivo ArquivoParcEmissao { get; protected set; }
+        public Arquivo ArquivoParcEmissao { get; set; }
         public Arquivo ArquivoComissao { get; protected set; }
 
         public abstract OperadoraEnum Operadora { get; }

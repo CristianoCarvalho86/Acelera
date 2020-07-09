@@ -11,7 +11,7 @@ namespace Acelera.Domain.Entidades.Interfaces
     public interface ITriplice
     {
         Arquivo ArquivoCliente { get; }
-        Arquivo ArquivoParcEmissao { get; }
+        Arquivo ArquivoParcEmissao { get; set; }
         Arquivo ArquivoComissao { get; }
 
         OperadoraEnum Operadora { get; }
