@@ -18,9 +18,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
         public void SAP_5525()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "5525", "FG09 - PROC200 - ");
+            AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true,1,"",true);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);

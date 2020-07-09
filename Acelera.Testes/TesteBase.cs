@@ -88,7 +88,7 @@ namespace Acelera.Testes
                 return;
             }
 
-            _nomeArquivo = nomeDoTeste.Replace("-", "_") + _nomeArquivo;
+            //_nomeArquivo = nomeDoTeste.Replace("-", "_") + _nomeArquivo;
             FinalizarAlteracaoArquivo();
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));

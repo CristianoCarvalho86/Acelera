@@ -90,13 +90,14 @@ namespace Acelera.Testes
             return arquivo.Clone();
         }
 
-        protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
+        protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, bool enviarOds = true) where T : Arquivo, new()
         {
             arquivo = CriarComissao<T>(operadora, arquivoParcela, alterarVersaoHeader);
 
             if (alterarVersaoHeader)
                 AlterarHeader("VERSAO", "9.6");
-            EnviarParaOds(arquivo);
+            if (enviarOds)
+                EnviarParaOds(arquivo);
             return arquivo.Clone();
         }
 
