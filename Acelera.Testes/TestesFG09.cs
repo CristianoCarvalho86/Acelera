@@ -46,7 +46,8 @@ namespace Acelera.Testes
             return base.ObterProceduresASeremExecutadas().Where(x => !ObterProceduresFG05(arquivo.tipoArquivo).Contains(x)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
         }
 
-        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false,int qtdParcelas = 1, string nrParcela = "") where T : Arquivo, new()
+        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false,int qtdParcelas = 1, string nrParcela = ""
+            ,bool enviarParaOds = true, string cdCoberturaDoCorretor = "") where T : Arquivo, new()
         {
             arquivo = new T();
             CarregarArquivo(arquivo, 1, operadora);
@@ -65,7 +66,10 @@ namespace Acelera.Testes
             if (operadora != OperadoraEnum.VIVO)
             {
                 AlterarLinha(0, "CD_SEGURADORA", "5908");
-                AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+                if(string.IsNullOrEmpty(cdCoberturaDoCorretor))
+                    AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
+                else
+                    AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura(ObterValorHeader("CD_TPA"), "P", cdCoberturaDoCorretor));
             }
 
             for (int i = 1; i < qtdParcelas; i++)
@@ -76,17 +80,13 @@ namespace Acelera.Testes
                 AlterarLinha(i, "NR_PARCELA",  (i + ObterValorFormatado(0, "NR_PARCELA").ObterValorInteiro()).ToString());
                 AlterarLinha(i, "NR_ENDOSSO", GerarNumeroAleatorio(6));
                 AlterarLinha(i, "ID_TRANSACAO_CANC", "");
-                if (operadora != OperadoraEnum.VIVO)
-                {
-                    AlterarLinha(i, "CD_SEGURADORA", "5908");
-                    AlterarLinha(i, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
-                }
             }
 
 
             if(alterarVersaoHeader)
                 AlterarHeader("VERSAO", "9.6");
-            EnviarParaOds(arquivo);
+            if(enviarParaOds)
+                EnviarParaOds(arquivo);
             return arquivo.Clone();
         }
 
