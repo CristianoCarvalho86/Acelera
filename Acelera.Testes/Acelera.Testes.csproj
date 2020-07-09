@@ -536,7 +536,8 @@
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC97\PROC97_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\Clientesods.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\TesteDaMassa.cs" />
-    <Compile Include="FASE 2\SIT\SP4\FG06\FG06.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG06\Emissao_FG06.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG06\FG06_Base.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG06\MassaTesteUnitarioFG06.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG09\PROC190\PROC190_LAYOUT94_POMPEIA.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG09\PROC190\PROC190_LAYOUT94_LASA.cs" />

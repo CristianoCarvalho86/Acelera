@@ -22,10 +22,10 @@ namespace Acelera.Testes
     {
         protected override string NomeFG => "FG06";
 
-        protected void ExecutarEValidarFG06(ITriplice triplice,
-            CodigoStage codigoEsperadoStageCliente,
-            CodigoStage codigoEsperadoStageParcela,
-            CodigoStage codigoEsperadoStageComissao,
+        protected virtual void ExecutarEValidarFG06(ITriplice triplice,
+            CodigoStage? codigoEsperadoStageCliente,
+            CodigoStage? codigoEsperadoStageParcela,
+            CodigoStage? codigoEsperadoStageComissao,
             string msgTabelaDeRetornoCliente,
             string msgTabelaDeRetornoParcela,
             string msgTabelaDeRetornoComissao)
@@ -33,13 +33,21 @@ namespace Acelera.Testes
             //Executar FG06
             ChamarExecucao(FG06_Tarefas.Trinca.ObterTexto());
 
-            ValidarStages(triplice.ArquivoCliente, triplice.ArquivoCliente.tipoArquivo.ObterTabelaStageEnum(),true,(int)codigoEsperadoStageCliente);
-            ValidarStages(triplice.ArquivoParcEmissao, triplice.ArquivoParcEmissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageParcela);
-            ValidarStages(triplice.ArquivoComissao, triplice.ArquivoComissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageComissao);
-            ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoCliente });
-            ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoParcela });
-            ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoComissao });
-
+            if (codigoEsperadoStageCliente.HasValue)
+            {
+                ValidarStages(triplice.ArquivoCliente, triplice.ArquivoCliente.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageCliente.Value);
+                ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoCliente });
+            }
+            if (codigoEsperadoStageParcela.HasValue)
+            {
+                ValidarStages(triplice.ArquivoParcEmissao, triplice.ArquivoParcEmissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageParcela.Value);
+                ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoParcela });
+            }
+            if (codigoEsperadoStageComissao.HasValue)
+            {
+                ValidarStages(triplice.ArquivoComissao, triplice.ArquivoComissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageComissao.Value);
+                ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoComissao });
+            }
             ValidarTeste();
         }
 

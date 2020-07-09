@@ -92,7 +92,7 @@ namespace Acelera.Domain.Extensions
 
         public static string ObterTarefaDaFG(this TipoArquivo tipoArquivo, FGs FGdaTarefa)
         {
-            switch(FGdaTarefa)
+            switch (FGdaTarefa)
             {
                 case FGs.FG00:
                     return tipoArquivo.ObterTarefaFG00Enum().ObterTexto();
@@ -266,6 +266,27 @@ namespace Acelera.Domain.Extensions
                     return FG09_Tarefas.Sinistro;
                 default:
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
+            }
+        }
+
+        public static CodigoStage ObterCodigoDeSucessoOuFalha(this FGs fgCorrespondente, bool sucesso = true)
+        {
+            switch (fgCorrespondente)
+            {
+                case FGs.FG00:
+                    return sucesso ? CodigoStage.AprovadoNAFG00 : CodigoStage.RecusadoNaFG01;
+                case FGs.FG01:
+                    return sucesso ? CodigoStage.AprovadoNaFG01 : CodigoStage.RecusadoNaFG01;
+                case FGs.FG02:
+                    return sucesso ? CodigoStage.AprovadoNegocioSemDependencia : CodigoStage.ReprovadoNegocioSemDependencia;
+                case FGs.FG05:
+                    return sucesso ? CodigoStage.AprovadoNegocioComDependencia : CodigoStage.ReprovadoNegocioComDependencia;
+                case FGs.FG06:
+                    return sucesso ? CodigoStage.AprovadoFG06 : CodigoStage.ReprovadoFG06;
+                case FGs.FG09:
+                    return sucesso ? CodigoStage.AprovadoNaFG09 : CodigoStage.ReprovadoNaFG09;
+                default:
+                    throw new Exception("Codigo nao definido para o Enum da FG." + fgCorrespondente.ObterTexto());
             }
         }
     }
