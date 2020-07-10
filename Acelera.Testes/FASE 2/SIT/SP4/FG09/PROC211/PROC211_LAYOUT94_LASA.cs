@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC211
             RemoverTodasAsLinhas();
             AlterarHeader("VERSAO", "9.6");
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
-            CriarNovoContrato(0);
+            AlterarLinha(0, "ID_TRANSACAO_CANC", AlterarUltimasPosicoes(ObterValorFormatado(0, "ID_TRANSACAO_CANC"), "5"));
 
             SalvarArquivo();
 
