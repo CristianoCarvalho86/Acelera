@@ -5,6 +5,7 @@ using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4_2;
+using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -80,6 +81,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             AlteracoesPadraoDaTrinca(triplice);
         }
 
+
+        protected void CriarEmissaoCompleta()
+        {
+            SalvarTrinca();
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoSucesso();
+        }
+
+        protected void CriarCancelamento(bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
+            out Arquivo arquivoParcCriado, out Arquivo arquivoComissaoCriado,
+bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "")
+        {
+            CarregarCancelamento(0, erroEmParc, erroEmComissao, operadora,
+                cdTipoEmissao, out arquivoParcCriado, out arquivoComissaoCriado, false,
+                nrSequencialEmissao, valorComissao, cdMovtoCobranca);
+        }
+
         public void ValidarFGsAnterioresEErros()
         {
             var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG02, FGs.FG05 };
@@ -104,6 +123,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
                 "267", "25", "25");
         }
 
+        protected void ExecutarEValidarFG06EmissaoSucesso()
+        {
+            ExecutarEValidarFG06(triplice, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, "", "", "");
+        }
+
         private void ExecFgs(bool sucesso, FGs fg, Arquivo arquivo)
         {
             if (sucesso || fg == FGs.FG00 || fg == FGs.FG01)
@@ -114,6 +138,77 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             {
                 ExecutarEValidarEsperandoErro(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(false));
             }
+        }
+
+        public void CarregarCancelamento(int indexLinhaArquivoEmissao, bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
+            out Arquivo arquivoParcCriado,out Arquivo arquivoComissaoCriado,
+bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "")
+        {
+            logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");
+            arquivo = triplice.ArquivoParcEmissao.Clone();
+            var idTransacaoDoArquivoOriginal = arquivo[indexLinhaArquivoEmissao]["ID_TRANSACAO"];
+            RemoverLinhasExcetoAsPrimeiras(1);
+
+            AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO_CANC", arquivo[0]["ID_TRANSACAO"]);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_EMISSAO", cdTipoEmissao);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "NR_PARCELA", SomarValor(0, "NR_PARCELA", 1M));
+            AlterarLinhaSeExistirCampo(arquivo, 0, "NR_ENDOSSO", GerarNumeroAleatorio(5));
+            AlterarLinhaSeExistirCampo(arquivo, 0, "NR_SEQUENCIAL_EMISSAO", SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1M));
+            if (!string.IsNullOrEmpty(nrSequencialEmissao))
+                AlterarLinhaSeExistirCampo(arquivo, 0, "NR_SEQUENCIAL_EMISSAO", nrSequencialEmissao);
+
+            AlterarLinhaSeExistirCampo(arquivo, 0, "CD_MOVTO_COBRANCA", "02");
+            if (!string.IsNullOrEmpty(cdMovtoCobranca))
+                AlterarLinhaSeExistirCampo(arquivo, 0, "CD_MOVTO_COBRANCA", cdMovtoCobranca);
+
+            if (alterarLayout)
+                arquivo.AlterarHeader("VERSAO", "9.6");
+
+            var codigoRamoCorreto = arquivo[0]["CD_RAMO"];
+            if (erroEmParc)
+            {
+                AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
+            }
+
+            SalvarArquivo();
+
+            logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);
+
+            var arquivoParc = arquivo.Clone();
+
+            logger.Escrever($"CRIANDO ARQUIDO DE COMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");
+            arquivoParcCriado = arquivo.Clone();
+
+            //COMISSAO
+
+            arquivo = triplice.ArquivoParcEmissao.Clone();
+            RemoverLinhasExcetoAsPrimeiras(1);
+            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
+            if (!string.IsNullOrEmpty(valorComissao))
+                AlterarLinhaSeExistirCampo(arquivo, 0, "VL_COMISSAO", valorComissao);
+
+            if (erroEmComissao)
+            {
+                AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
+            }
+            else
+                AlterarLinha(0, "CD_RAMO", codigoRamoCorreto);
+
+            if (arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0)
+                AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), "-0.05"));
+            else
+                AlterarLinha(0, "VL_COMISSAO", "0");
+
+            if (ObterValorFormatado(0, "VL_COMISSAO").ObterValorDecimal() < 0)
+                throw new Exception("VL_COMISSAO INVALIDO.");
+
+            SalvarArquivo();
+
+            logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);
+
+            arquivoComissaoCriado = arquivo.Clone();
         }
     }
 }

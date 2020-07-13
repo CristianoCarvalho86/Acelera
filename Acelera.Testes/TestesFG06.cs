@@ -51,6 +51,20 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
+        public override void CarregarTriplice(OperadoraEnum operadora)
+        {
+            if (operadora == OperadoraEnum.LASA)
+                triplice = new TripliceLASA(1, logger, ref valoresAlteradosBody);
+            else if (operadora == OperadoraEnum.SOFTBOX)
+                triplice = new TripliceSoftbox(1, logger, ref valoresAlteradosBody);
+            else if (operadora == OperadoraEnum.POMPEIA)
+                triplice = new TriplicePOMPEIA(1, logger, ref valoresAlteradosBody);
+            else if (operadora == OperadoraEnum.VIVO)
+                triplice = new TripliceVIVO(1, logger, ref valoresAlteradosBody);
+            else if (operadora == OperadoraEnum.TIM)
+                triplice = new TripliceTIM(1, logger, ref valoresAlteradosBody);
+        }
+
         protected void AlteracoesPadraoDaTrinca(ITriplice triplice)
         {
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
@@ -65,8 +79,6 @@ namespace Acelera.Testes
 
             if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
                 return;
-
-            
 
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());

@@ -168,7 +168,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             var arquivoEmissao = EnviarEmissao<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA);
 
-            CarregarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoEmissao.ObterLinha(0), true, true, OperadoraEnum.POMPEIA, "10", false);
+            CarregarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoEmissao.ObterLinha(0), false, false, OperadoraEnum.POMPEIA, "10", false);
 
         }
 
@@ -180,7 +180,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             var arquivoEmissao = EnviarEmissao<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.SOFTBOX);
 
-            CarregarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoEmissao.ObterLinha(0), true, true, OperadoraEnum.SOFTBOX, "10", false);
+            CarregarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoEmissao.ObterLinha(0), true, false, OperadoraEnum.SOFTBOX, "10", false);
 
         }
 

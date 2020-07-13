@@ -39,7 +39,7 @@ namespace Acelera.Testes
             dados = new TabelaParametrosDataSP3(logger);
         }
 
-        public void CarregarTriplice(OperadoraEnum operadora)
+        public virtual void CarregarTriplice(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
                 triplice = new TripliceLASA(1, logger, ref valoresAlteradosBody);

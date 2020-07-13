@@ -72,6 +72,7 @@ namespace Acelera.Testes
 
         protected virtual void SalvarArquivo(Arquivo arquivo)
         {
+            this.arquivo = arquivo;
             var array = arquivo.NomeArquivo.Split('-');
             array[2] = "/*R*/";
             SalvarArquivo(array.ToList().ObterListaConcatenada("-"), true);
