@@ -120,7 +120,9 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 ClienteEnviado ? ClienteTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
                 ParcelaEnviado ? ParcelaTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
                 ComissaoEnviado ? ComissaoTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
-                "267", "25", "25");
+                ClienteTemErro ? "267" : "403",//SE CLIENTE NAO FOI ADICIONADO, ESPERA-SE O ERRO DA TRINCA. - TESTE PARA CENARIOS COM ERRO.
+                ParcelaTemErro ? "25" : "103",
+                ComissaoTemErro ? "25" : "105");
         }
 
         protected void ExecutarEValidarFG06EmissaoSucesso()
