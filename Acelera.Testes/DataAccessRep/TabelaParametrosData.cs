@@ -285,8 +285,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterRamoRelacionadoACoberturaDiferenteDe(string cd_cobertura, string cdRamo, out string cdProduto)
         {
             var select = $"SELECT TOP 1 P.CD_RAMO, P.CD_PRODUTO FROM {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P " +
-            $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C ON P.CD_RAMO = C.CD_RAMO " +
-            $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PRODUTO_7003 P ON C.CD_PRODUTO = P.CD_PRODUTO " +
+            $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 C ON C.CD_PRODUTO = P.CD_PRODUTO " +
             $" WHERE C.CD_COBERTURA = '{cd_cobertura}' AND P.CD_RAMO <> '{cdRamo}' ";
             var table = DataAccess.Consulta(select,$"RAMO DIFERENTE DE {cdRamo} E ASSOCIADO A COBERTURA : {cd_cobertura}",logger);
             cdProduto = table.Rows[0]["CD_PRODUTO"].ToString();
