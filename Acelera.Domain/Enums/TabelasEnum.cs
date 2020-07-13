@@ -46,6 +46,7 @@ namespace Acelera.Domain.Enums
         [Description("TAB_ODS_SINISTRO_2007")]
         OdsSinistro,
         [Description("TAB_ODS_TELEFONE_2002")]
-        OdsTelefone
+        OdsTelefone,
+
     }
 }
