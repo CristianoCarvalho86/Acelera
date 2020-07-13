@@ -79,6 +79,7 @@
     <Compile Include="ConjuntoArquivos\TripliceSOFTBOX.cs" />
     <Compile Include="ConjuntoArquivos\TripliceTIM.cs" />
     <Compile Include="ConjuntoArquivos\TripliceVIVO.cs" />
+    <Compile Include="DataAccessRep\DadosXML.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertComissaoCancelamentoData.cs" />
