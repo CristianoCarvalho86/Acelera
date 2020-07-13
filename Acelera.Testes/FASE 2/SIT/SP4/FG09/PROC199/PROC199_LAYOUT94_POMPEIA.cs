@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 {
     [TestClass]
-    public class PROC199_LAYOUT96_LASA : TestesFG09
+    public class PROC199_LAYOUT96_POMPEIA : TestesFG09
     {
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -31,12 +31,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -70,12 +70,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             SalvarArquivo();
@@ -100,7 +100,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -109,12 +109,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             SalvarArquivo();
@@ -139,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -148,12 +148,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -178,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -187,12 +187,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -200,7 +200,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -217,7 +217,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -226,12 +226,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -239,7 +239,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             SalvarArquivo();
@@ -256,7 +256,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -265,12 +265,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -278,7 +278,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -295,7 +295,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -304,12 +304,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -317,7 +317,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -334,7 +334,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -343,12 +343,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -356,7 +356,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             SalvarArquivo();
@@ -373,7 +373,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -382,12 +382,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -395,7 +395,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -412,7 +412,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -421,12 +421,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -434,7 +434,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -451,22 +451,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
-            AlterarLinha(0, "CD_CORRETOR", "0002783");
-            AlterarLinha(0, "CD_COBERTURA", "01592");
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
+            AlterarLinha(0, "CD_CORRETOR", "7150166");
+            AlterarLinha(0, "CD_COBERTURA", "01514");
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
-            AlterarHeader("VERSAO", "9.6");
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -474,9 +473,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
-            AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();
 
@@ -492,7 +490,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -501,12 +499,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -514,7 +512,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -531,7 +529,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -540,23 +538,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
-            AlterarHeader("VERSAO", "9.6");
-
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
+            AlterarLinha(0, "CD_CORRETOR", "0002783");
+            AlterarLinha(0, "CD_COBERTURA", "01592");
+            AlterarLinha(0, "CD_RAMO", "71");
+            AlterarLinha(0, "CD_PRODUTO", "71724");
 
             SalvarArquivo();
             var arquivoParcela = arquivo.Clone();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
-            AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();
 
@@ -572,7 +571,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -581,12 +580,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -594,7 +593,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -611,7 +610,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarCobertura(false);
 
             //Envia parc normal
-            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, true, 1, "", false);
+            var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 1, "", false);
             AlterarLinha(0, "CD_CORRETOR", "0002783");
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -620,12 +619,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             EnviarParaOds(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             EnviarParaOds(arquivoodsComissao);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
 
             SalvarArquivo();
@@ -633,7 +632,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             SalvarArquivo();

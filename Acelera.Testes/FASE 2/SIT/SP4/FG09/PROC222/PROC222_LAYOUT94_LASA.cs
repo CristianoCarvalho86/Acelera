@@ -33,6 +33,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             arquivo.SelecionarLinhas("CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
             arquivo.RemoverValoresRepetidosNoCampo("CD_COBERTURA");
 
+            var contrato = AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+            AlterarTodasAsLinhas("NR_APOLICE", contrato);
+            AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
+
             AlterarCobertura(false);
 
             SalvarArquivo();

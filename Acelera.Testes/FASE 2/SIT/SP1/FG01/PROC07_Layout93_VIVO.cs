@@ -109,11 +109,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "A");
-            AlterarLinha(0, "NR_PARCELA", "!");
+            AlterarLinha(0, "NR_PARCELA", "A");
             AlterarLinha(0, "CD_ITEM", "A");
             AlterarLinha(0, "VL_COMISSAO", "A");
             AlterarLinha(0, "VL_BASE_CALCULO", "A");
-            AlterarLinha(0, "PC_COMISSAO", "!");
+            AlterarLinha(0, "PC_COMISSAO", "A");
             AlterarLinha(0, "PC_PARTICIPACAO", "A");
             RemoverLinhasExcetoAsPrimeiras(100);
 

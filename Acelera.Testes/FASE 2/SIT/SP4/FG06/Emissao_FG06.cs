@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 {
+    [TestClass]
     public class Emissao_FG06 : FG06_Base
     {
 
         [TestMethod]
-        [TestCategory("Sem Critica")]
+        [TestCategory("Com Critica")]
         public void SAP_5921()
         {
             //5921:FG06 - VIVO - CLI sucesso, PARC sucesso e CMS sucesso
@@ -351,6 +352,99 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             AdicionaErro(TipoArquivo.Comissao);
 
             SalvarTrinca(false, true, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5937()
+        {
+            InicioTesteFG06("5937", "SOFTBOX - CLI sucesso, PARC ñ enviado e CMS rejeitado", OperadoraEnum.SOFTBOX);
+
+            AdicionaErro(TipoArquivo.Comissao);
+
+            SalvarTrinca(true, false, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5938()
+        {
+            InicioTesteFG06("5938", "SOFTBOX - CLI ñ enviado, PARC ñ enviado e CMS rejeitado", OperadoraEnum.SOFTBOX);
+
+            AdicionaErro(TipoArquivo.Comissao);
+
+            SalvarTrinca(false, false, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5939()
+        {
+            InicioTesteFG06("5939", "SOFTBOX - CLI ñ enviado, PARC sucesso e CMS sucesso", OperadoraEnum.SOFTBOX);
+
+
+            SalvarTrinca(false, true, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5940()
+        {
+            InicioTesteFG06("5940", "SOFTBOX - CLI ñ enviado, PARC sucesso e CMS sucesso", OperadoraEnum.SOFTBOX);
+
+
+            SalvarTrinca(true, false, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5941()
+        {
+            InicioTesteFG06("5941", "SOFTBOX - CLI sucesso, PARC sucesso e CMS ñ enviado", OperadoraEnum.SOFTBOX);
+
+
+            SalvarTrinca(true, true, false);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5942()
+        {
+            InicioTesteFG06("5942", "VIVO - CLI ñ enviado, PARC ñ enviado e CMS sucesso", OperadoraEnum.VIVO);
+
+
+            SalvarTrinca(false, false, true);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoComErro();
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5944()
+        {
+            InicioTesteFG06("5944", "VIVO - CLI ñ enviado, PARC ñ enviado e CMS sucesso", OperadoraEnum.VIVO);
+
+
+            SalvarTrinca(false, true, false);
             ValidarFGsAnterioresEErros();
 
             ExecutarEValidarFG06EmissaoComErro();
