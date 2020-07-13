@@ -125,6 +125,11 @@ namespace Acelera.Testes.ConjuntoArquivos
                 ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 1);
 
             ArquivoComissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Comissao, Operadora, PastaOrigem), 1, 1, 1);
+
+            Parametrizacoes(ArquivoCliente);
+            Parametrizacoes(ArquivoParcEmissao);
+            Parametrizacoes(ArquivoComissao);
+
         }
 
         public void IgualarArquivos()
@@ -159,7 +164,6 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         protected void SalvarArquivo(Arquivo arquivo, TipoArquivo tipoArquivo, string nomeArquivo)
         {
-            Parametrizacoes(arquivo);
             var nomeOriginalArquivo = arquivo.NomeArquivo;
             logger.AbrirBloco($"SALVANDO ARQUIVO {tipoArquivo.ObterTexto()}");
             if (tipoArquivo == TipoArquivo.ParcEmissao || tipoArquivo == TipoArquivo.ParcEmissaoAuto)
