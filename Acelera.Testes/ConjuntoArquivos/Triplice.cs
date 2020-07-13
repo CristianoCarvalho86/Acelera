@@ -5,6 +5,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -157,6 +158,7 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         protected void SalvarArquivo(Arquivo arquivo, TipoArquivo tipoArquivo, string nomeArquivo)
         {
+            Parametrizacoes(arquivo);
             var nomeOriginalArquivo = arquivo.NomeArquivo;
             logger.AbrirBloco($"SALVANDO ARQUIVO {tipoArquivo.ObterTexto()}");
             if (tipoArquivo == TipoArquivo.ParcEmissao || tipoArquivo == TipoArquivo.ParcEmissaoAuto)
@@ -187,6 +189,17 @@ namespace Acelera.Testes.ConjuntoArquivos
         protected string CarregarIdtransacao(LinhaArquivo linha)
         {
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
+        }
+
+        private void Parametrizacoes(Arquivo arquivo)
+        {
+            for (int i = 0; i < arquivo.Linhas.Count; i++)
+            {
+                var cobertura = new TabelaParametrosData(logger).ObterCoberturaSimples(arquivo.ObterLinhaHeader()["CD_TPA"]);
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
+            }
         }
 
     }
