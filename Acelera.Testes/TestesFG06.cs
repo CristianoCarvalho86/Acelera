@@ -67,6 +67,12 @@ namespace Acelera.Testes
 
         protected void AlteracoesPadraoDaTrinca(ITriplice triplice)
         {
+            arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO_CANC", "");
+            arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));
+            arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
+            arquivo.AlterarLinhaSeExistirCampo(0, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(triplice.Operadora));
+            arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
+
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));

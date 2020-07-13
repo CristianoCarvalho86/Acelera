@@ -132,6 +132,24 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         }
 
+        private void CarregarCancelamento()
+        {
+            ArquivoCliente.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Cliente, Operadora, PastaOrigem), 1, 1, QuantidadeInicialCliente);
+            ArquivoCliente.AjustarQtdLinhasNoFooter();
+
+            if (Operadora == OperadoraEnum.VIVO)
+                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissaoAuto, Operadora, PastaOrigem), 1, 1, 1);
+            else
+                ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 1);
+
+            ArquivoComissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Comissao, Operadora, PastaOrigem), 1, 1, 1);
+
+            Parametrizacoes(ArquivoCliente);
+            Parametrizacoes(ArquivoParcEmissao);
+            Parametrizacoes(ArquivoComissao);
+
+        }
+
         public void IgualarArquivos()
         {
             logger.AbrirBloco("IGUALANDO ARQUIVOS DA TRINCA.");
