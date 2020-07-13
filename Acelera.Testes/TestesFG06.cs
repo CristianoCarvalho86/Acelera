@@ -67,16 +67,25 @@ namespace Acelera.Testes
 
         protected void AlteracoesPadraoDaTrinca(ITriplice triplice)
         {
-            arquivo.AlterarLinhaSeExistirCampo(0, "ID_TRANSACAO_CANC", "");
-            arquivo.AlterarLinhaSeExistirCampo(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));
-            arquivo.AlterarLinhaSeExistirCampo(0, "NR_ENDOSSO", "0");
-            arquivo.AlterarLinhaSeExistirCampo(0, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(triplice.Operadora));
-            arquivo.AlterarLinhaSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO", "1");
+            triplice.AlterarParcEComissao(0, "ID_TRANSACAO_CANC", "");
+            triplice.AlterarParcEComissao(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));
+            triplice.AlterarParcEComissao(0, "NR_ENDOSSO", "0");
+            triplice.AlterarParcEComissao(0, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(triplice.Operadora));
+            triplice.AlterarParcEComissao(0, "NR_SEQUENCIAL_EMISSAO", "1");
 
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+        }
+
+        protected void CriarNovaLinhaParaEmissao(Arquivo arquivoParc)
+        {
+            arquivoParc.AdicionarLinha(ObterLinha(0).Clone());
+            arquivoParc.AlterarLinhaSeExistirCampo(1, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(triplice.Operadora));
+            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_ENDOSSO", GerarNumeroAleatorio(3));
+            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_PARCELA", (ObterLinha(0).ObterValorInteiro("NR_PARCELA") + 1).ToString()) ;
+            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_SEQUENCIAL_EMISSAO", (ObterLinha(0).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
         }
 
         public void EnviarParaOds(Arquivo arquivo, string nomeProc = "")
