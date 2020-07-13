@@ -25,6 +25,28 @@ namespace Acelera.Utils
             throw new Exception("ERRO AO OBTER CD CLIENTE CADASTRADO");
         }
 
+        public static KeyValuePair<string, string> ObterCdCorretorETipoComissao(OperadoraEnum operadora)
+        {
+            if (operadora == OperadoraEnum.VIVO)
+            {
+                return new KeyValuePair<string, string>("7239711","C");
+            }
+            else if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+            {
+                return new KeyValuePair<string, string>("7150145", "P");
+            }
+            else if (operadora == OperadoraEnum.POMPEIA)
+            {
+                return new KeyValuePair<string, string>("7150166", "P");
+            }
+            else if (operadora == OperadoraEnum.TIM)
+            {
+                return new KeyValuePair<string, string>("7950129", "P");
+            }
+            throw new Exception("OPERACAO NAO DEFINIDA PARA BUSCA DE CORRETOR E TIPO COMISSAO.");
+        }
+
+
         public static string ObterCdTpa(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.VIVO)

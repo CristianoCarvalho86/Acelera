@@ -6,6 +6,7 @@ using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -193,12 +194,17 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         private void Parametrizacoes(Arquivo arquivo)
         {
+            var dados = new TabelaParametrosData(logger);
             for (int i = 0; i < arquivo.Linhas.Count; i++)
             {
                 var cobertura = new TabelaParametrosData(logger).ObterCoberturaSimples(arquivo.ObterLinhaHeader()["CD_TPA"]);
                 arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
                 arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
                 arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
+
+                var corretor = ParametrosBanco.ObterCdCorretorETipoComissao(Operadora);
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", corretor.Key);
+                arquivo.AlterarLinhaSeExistirCampo(i, "CD_TIPO_COMISSAO", corretor.Value);
             }
         }
 
