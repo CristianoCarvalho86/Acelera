@@ -36,17 +36,17 @@ namespace Acelera.Testes
             if (codigoEsperadoStageCliente.HasValue)
             {
                 ValidarStages(triplice.ArquivoCliente, triplice.ArquivoCliente.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageCliente.Value);
-                ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoCliente });
+                ValidarTabelaDeRetorno(triplice.ArquivoCliente, false, false, new string[] { msgTabelaDeRetornoCliente });
             }
             if (codigoEsperadoStageParcela.HasValue)
             {
                 ValidarStages(triplice.ArquivoParcEmissao, triplice.ArquivoParcEmissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageParcela.Value);
-                ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoParcela });
+                ValidarTabelaDeRetorno(triplice.ArquivoCliente, false, false, new string[] { msgTabelaDeRetornoParcela });
             }
             if (codigoEsperadoStageComissao.HasValue)
             {
                 ValidarStages(triplice.ArquivoComissao, triplice.ArquivoComissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageComissao.Value);
-                ValidarTabelaDeRetorno(triplice.ArquivoCliente, true, false, new string[] { msgTabelaDeRetornoComissao });
+                ValidarTabelaDeRetorno(triplice.ArquivoCliente, false, false, new string[] { msgTabelaDeRetornoComissao });
             }
             ValidarTeste();
         }
