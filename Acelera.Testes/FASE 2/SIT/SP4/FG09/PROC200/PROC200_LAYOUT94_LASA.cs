@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 1000));
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNaFG09);
+            ExecutarEValidar(CodigoStage.ReprovadoNaFG09);
 
         }
 

@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
-            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             EnviarParaOds(arquivoodsComissao);
 
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela, true);
-            AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
 

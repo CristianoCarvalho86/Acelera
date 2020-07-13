@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 {
+    [TestClass]
     public class Emissao_FG06 : FG06_Base
     {
 
         [TestMethod]
-        [TestCategory("Sem Critica")]
+        [TestCategory("Com Critica")]
         public void SAP_5921()
         {
             //5921:FG06 - VIVO - CLI sucesso, PARC sucesso e CMS sucesso
