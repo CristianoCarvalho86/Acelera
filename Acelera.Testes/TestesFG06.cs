@@ -45,6 +45,8 @@ namespace Acelera.Testes
             }
             if (codigoEsperadoStageComissao.HasValue)
             {
+                //logger.Escrever("abcdefgh");
+                //ChamarExecucao(FG06_Tarefas.Trinca.ObterTexto());
                 ValidarStages(triplice.ArquivoComissao, triplice.ArquivoComissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageComissao.Value);
                 ValidarTabelaDeRetorno(triplice.ArquivoComissao, false, false, new string[] { msgTabelaDeRetornoComissao });
             }

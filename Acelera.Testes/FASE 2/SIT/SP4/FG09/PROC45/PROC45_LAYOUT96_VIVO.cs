@@ -31,8 +31,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValor(0, "CD_COBERTURA"), ObterValor(0, "CD_RAMO"), out string produto));
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValorFormatado(0, "CD_COBERTURA"), ObterValorFormatado(0, "CD_RAMO"), out string produto));
             AlterarLinha(0, "CD_PRODUTO", produto);
             AlterarHeader("VERSAO", "9.6");
             AlterarCobertura(false);
