@@ -160,25 +160,6 @@ namespace Acelera.Testes
             if (arquivo.tipoArquivo != TipoArquivo.ParcEmissao && arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
                 return;
 
-            /*
-            var linhas = valoresAlteradosBody.LinhasAlteradasPorArquivo(arquivo.NomeArquivo);
-            var linhasAColocarIdTransacao = new List<int>();
-            foreach (var linha in linhas)
-            {
-                var alteracoes = valoresAlteradosBody.AlteracoesPorLinha(arquivo.NomeArquivo,linha.Value).ToList();
-                foreach (var alteracao in alteracoes)
-                {
-                    //nr_apolice, nr_endosso, cd_ramo ou nr_parcela
-                    if (alteracao.CamposAlterados.Any(x => x.Coluna == "NR_APOLICE"
-                    || x.Coluna == "NR_ENDOSSO"
-                    || x.Coluna == "CD_RAMO"
-                    || x.Coluna == "NR_PARCELA"))
-                        linhasAColocarIdTransacao.Add(alteracao.PosicaoDaLinha);
-                }
-            }
-            foreach(var linha in linhasAColocarIdTransacao)
-                AlterarLinha(linha, "ID_TRANSACAO", CarregarIdtransacao(arquivo.ObterLinha(linha)));
-             */
             Parallel.ForEach(arquivo.Linhas, linha => { AlterarLinha(linha.Index, "ID_TRANSACAO", CarregarIdtransacao(linha)); });
         }
 

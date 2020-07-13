@@ -113,6 +113,23 @@ namespace Acelera.Testes
 
         }
 
+        private void Parametrizacoes()
+        {
+                for (int i = 0; i < arquivo.Linhas.Count; i++)
+                {
+                    var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+                    AlterarLinhaSeHouver(i, "CD_COBERTURA", cobertura.CdCobertura);
+                    AlterarLinhaSeHouver(i, "CD_RAMO", cobertura.CdRamo);
+                    AlterarLinhaSeHouver(i, "CD_PRODUTO", cobertura.CdProduto);
+                }
+        }
+
+        public override void FinalizarAlteracaoArquivo()
+        {
+            Parametrizacoes();
+            base.FinalizarAlteracaoArquivo();
+        }
+
         protected override void SalvarArquivo()
         {
             base.SalvarArquivo();
