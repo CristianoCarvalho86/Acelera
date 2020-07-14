@@ -47,6 +47,5 @@ namespace Acelera.Domain.Enums
         OdsSinistro,
         [Description("TAB_ODS_TELEFONE_2002")]
         OdsTelefone,
-
     }
 }

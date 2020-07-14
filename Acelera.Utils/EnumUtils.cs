@@ -26,5 +26,10 @@ namespace Acelera.Utils
                 return OperadoraEnum.SOFTBOX;
             throw new Exception("OPERACAO NAO ENCONTRADA NO NOME DO ARQUIVO : " + nomeArquivo);
         }
+
+        public static IList<T> ObterListaComTodos<T>() where T : Enum
+        {
+            return Enum.GetValues(typeof(T)).Cast<T>().ToList();
+        }
     }
 }
