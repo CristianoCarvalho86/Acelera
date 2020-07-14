@@ -90,6 +90,11 @@ namespace Acelera.Testes
             arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_SEQUENCIAL_EMISSAO", (ObterLinha(0).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
         }
 
+        protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
+        {
+            IgualarCamposQueExistirem(linhaParc, linhaComissao);
+        }
+
         public void EnviarParaOds(Arquivo arquivo, string nomeProc = "")
         {
             SalvarArquivo();

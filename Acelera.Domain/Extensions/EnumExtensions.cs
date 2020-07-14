@@ -289,5 +289,44 @@ namespace Acelera.Domain.Extensions
                     throw new Exception("Codigo nao definido para o Enum da FG." + fgCorrespondente.ObterTexto());
             }
         }
+
+        public static string ObterTagNoXML(this TabelasOIMEnum tabela)
+        {
+            switch (tabela)
+            {
+                case TabelasOIMEnum.OIM_APL01:
+                    return "apl01";
+
+                case TabelasOIMEnum.OIM_CMS01:
+                    return "cms01";
+                case TabelasOIMEnum.OIM_COB01:
+                    return "cob01";
+                case TabelasOIMEnum.OIM_PARC01:
+                    return "parc01";
+                case TabelasOIMEnum.OIM_ITAUTO01:
+                    return "ITAUTO01";
+                default:
+                    throw new Exception("TAG NAO ENCONTRADA PARA " + tabela.ObterTexto());
+            }
+        }
+        public static string[] ObterCamposChaves(this TabelasOIMEnum tabela)
+        {
+            switch (tabela)
+            {
+                case TabelasOIMEnum.OIM_APL01:
+                    return new string[] {"nr_apolice", "nr_endosso"};
+
+                case TabelasOIMEnum.OIM_CMS01:
+                    return new string[] { "nr_apolice", "nr_parcela", "cp_corretor" };
+                case TabelasOIMEnum.OIM_COB01:
+                    return new string[] { "nr_apolice","vl_premio", "cd_cobertura" };
+                case TabelasOIMEnum.OIM_PARC01:
+                    return new string[] { "nr_apolice", "vl_premio", "nr_parcela" };
+                case TabelasOIMEnum.OIM_ITAUTO01:
+                    return new string[] { "cd_modelo", "ref_origem" };
+                default:
+                    throw new Exception("TAG NAO ENCONTRADA PARA " + tabela.ObterTexto());
+            }
+        }
     }
 }
