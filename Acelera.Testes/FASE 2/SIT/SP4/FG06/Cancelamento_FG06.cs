@@ -24,8 +24,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
+            
 
-            ValidarFGsAnterioresEErros();
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
 
             ChamarExecucao("FGR_10_TRINCA_CANCELAMENTO");
             

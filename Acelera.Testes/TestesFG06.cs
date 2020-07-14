@@ -83,11 +83,11 @@ namespace Acelera.Testes
 
         protected void CriarNovaLinhaParaEmissao(Arquivo arquivoParc)
         {
-            arquivoParc.AdicionarLinha(ObterLinha(0).Clone());
+            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(0).Clone());
             arquivoParc.AlterarLinhaSeExistirCampo(1, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(triplice.Operadora));
             arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_ENDOSSO", GerarNumeroAleatorio(3));
-            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_PARCELA", (ObterLinha(0).ObterValorInteiro("NR_PARCELA") + 1).ToString()) ;
-            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_SEQUENCIAL_EMISSAO", (ObterLinha(0).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
+            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_PARCELA", (arquivoParc.ObterLinha(0).ObterValorInteiro("NR_PARCELA") + 1).ToString()) ;
+            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_SEQUENCIAL_EMISSAO", (arquivoParc.ObterLinha(0).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
         }
 
         protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
@@ -95,17 +95,25 @@ namespace Acelera.Testes
             IgualarCamposQueExistirem(linhaParc, linhaComissao);
         }
 
-        public void EnviarParaOds(Arquivo arquivo, string nomeProc = "")
+        public void EnviarParaOds(Arquivo arquivo, bool executaFGs = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNaFG01)
         {
-            SalvarArquivo();
+            
 
             if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
+            {
+                SalvarArquivo();
                 return;
+            }
+                
 
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+            if (executaFGs)
+            {
+                SalvarArquivo();
+                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
+                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+            }
 
-            var linhas = ValidarStages(CodigoStage.AprovadoNaFG01);
+            var linhas = ValidarStages(codigoesperadostg);
 
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)

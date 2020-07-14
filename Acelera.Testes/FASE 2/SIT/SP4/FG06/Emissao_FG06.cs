@@ -232,12 +232,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             InicioTesteFG06("5935", "SAP-5935:FG06 - SOFTBOX - CLI ñ enviado, PARC rejeitado e CMS ñ enviado", OperadoraEnum.TIM);
 
-            AdicionaErro(TipoArquivo.ParcEmissao);
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
 
-            SalvarTrinca(false, true, false);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
+
+            SalvarTrinca(true, true, true);
             ValidarFGsAnterioresEErros();
 
-            ExecutarEValidarFG06EmissaoComErro();
+            ExecutarEValidarFG06EmissaoSucesso();
         }
 
         [TestMethod]
@@ -245,6 +247,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void SAP_5936()
         {
             InicioTesteFG06("5936", "SAP-5936:FG06 - SOFTBOX - CLI ñ enviado, PARC sucesso e CMS rejeitado", OperadoraEnum.TIM);
+
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
+
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
 
             AdicionaErro(TipoArquivo.Comissao);
 
@@ -260,11 +266,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             InicioTesteFG06("5937", "SOFTBOX - CLI sucesso, PARC ñ enviado e CMS rejeitado", OperadoraEnum.TIM);
 
-            AdicionaErro(TipoArquivo.Comissao);
-
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
 
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
 
+            AdicionaErro(TipoArquivo.Comissao);
 
             SalvarTrinca(true, false, true);
             ValidarFGsAnterioresEErros();

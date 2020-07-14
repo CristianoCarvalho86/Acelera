@@ -88,6 +88,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ValidarFGsAnterioresEErros();
 
             ExecutarEValidarFG06EmissaoSucesso();
+
+            EnviarParaOds(triplice.ArquivoCliente, false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(triplice.ArquivoComissao, false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(triplice.ArquivoParcEmissao, false, CodigoStage.AprovadoFG06);
         }
 
         protected void CriarCancelamento(bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
@@ -111,6 +115,17 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                     ExecFgs(!ParcelaTemErro, fg, triplice.ArquivoParcEmissao);
                 if (ComissaoEnviado)
                     ExecFgs(!ComissaoTemErro, fg, triplice.ArquivoComissao);
+            }
+        }
+
+        public void ValidarFGsAnterioresEErros( Arquivo arquivo)
+        {
+            var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG02, FGs.FG09 };
+
+            foreach (var fg in listaFgs)
+            {
+                ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
+
             }
         }
 
@@ -173,7 +188,6 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
             }
 
-            SalvarArquivo();
 
             logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);
 
@@ -184,10 +198,10 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             //COMISSAO
 
-            arquivo = triplice.ArquivoParcEmissao.Clone();
+            arquivo = triplice.ArquivoComissao.Clone();
             RemoverLinhasExcetoAsPrimeiras(1);
             IgualarCamposQueExistirem(arquivoParc, arquivo);
-            AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
+            AlterarLinha(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
             if (!string.IsNullOrEmpty(valorComissao))
                 AlterarLinhaSeExistirCampo(arquivo, 0, "VL_COMISSAO", valorComissao);
 
@@ -198,15 +212,14 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             else
                 AlterarLinha(0, "CD_RAMO", codigoRamoCorreto);
 
-            //if (arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0)
-            //    AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), "-0.05"));
-            //else
-            //    AlterarLinha(0, "VL_COMISSAO", "0");
+            if (arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0)
+                AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), "-0.05"));
+            else
+                AlterarLinha(0, "VL_COMISSAO", "0");
 
-            //if (ObterValorFormatado(0, "VL_COMISSAO").ObterValorDecimal() < 0)
-            //    throw new Exception("VL_COMISSAO INVALIDO.");
+            if (ObterValorFormatado(0, "VL_COMISSAO").ObterValorDecimal() < 0)
+                throw new Exception("VL_COMISSAO INVALIDO.");
 
-            SalvarArquivo();
 
             logger.Escrever("ARQUIVO CRIADO COM O NOME : " + arquivo.NomeArquivo);
 
