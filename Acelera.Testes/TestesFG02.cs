@@ -189,6 +189,20 @@ namespace Acelera.Testes
             return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
         }
 
+        public virtual IList<ILinhaTabela> ValidarEsperandoErro(Arquivo arquivo, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
+        {
+            this.arquivo = arquivo;
+            SelecionarLinhaParaValidacao(0);
+
+            ValidarTabelaDeRetornoSemGerarErro();
+
+            if (codigoEsperado == null)
+            {
+                return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), false);
+            }
+            return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
+        }
+
         #region Procedures
         public static IList<string> ObterProceduresFG02(TipoArquivo tipoArquivoTeste)
         {

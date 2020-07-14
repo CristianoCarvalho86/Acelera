@@ -198,13 +198,13 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             else
                 AlterarLinha(0, "CD_RAMO", codigoRamoCorreto);
 
-            if (arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0)
-                AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), "-0.05"));
-            else
-                AlterarLinha(0, "VL_COMISSAO", "0");
+            //if (arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0)
+            //    AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoParc.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), "-0.05"));
+            //else
+            //    AlterarLinha(0, "VL_COMISSAO", "0");
 
-            if (ObterValorFormatado(0, "VL_COMISSAO").ObterValorDecimal() < 0)
-                throw new Exception("VL_COMISSAO INVALIDO.");
+            //if (ObterValorFormatado(0, "VL_COMISSAO").ObterValorDecimal() < 0)
+            //    throw new Exception("VL_COMISSAO INVALIDO.");
 
             SalvarArquivo();
 

@@ -19,10 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //5921:FG06 - VIVO - CLI sucesso, PARC sucesso e CMS sucesso
             InicioTesteFG06("5927", "", OperadoraEnum.VIVO);
 
-            SalvarTrinca();
-            ValidarFGsAnterioresEErros();
-
-            ExecutarEValidarFG06EmissaoComErro();
+            CriarEmissaoCompleta();
 
         }
 
@@ -233,7 +230,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         [TestCategory("Com Critica")]
         public void SAP_5935()
         {
-            InicioTesteFG06("5935", "SAP-5935:FG06 - SOFTBOX - CLI ñ enviado, PARC rejeitado e CMS ñ enviado", OperadoraEnum.SOFTBOX);
+            InicioTesteFG06("5935", "SAP-5935:FG06 - SOFTBOX - CLI ñ enviado, PARC rejeitado e CMS ñ enviado", OperadoraEnum.TIM);
 
             AdicionaErro(TipoArquivo.ParcEmissao);
 
@@ -247,7 +244,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         [TestCategory("Com Critica")]
         public void SAP_5936()
         {
-            InicioTesteFG06("5936", "SAP-5936:FG06 - SOFTBOX - CLI ñ enviado, PARC sucesso e CMS rejeitado", OperadoraEnum.SOFTBOX);
+            InicioTesteFG06("5936", "SAP-5936:FG06 - SOFTBOX - CLI ñ enviado, PARC sucesso e CMS rejeitado", OperadoraEnum.TIM);
 
             AdicionaErro(TipoArquivo.Comissao);
 
@@ -261,9 +258,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         [TestCategory("Com Critica")]
         public void SAP_5937()
         {
-            InicioTesteFG06("5937", "SOFTBOX - CLI sucesso, PARC ñ enviado e CMS rejeitado", OperadoraEnum.SOFTBOX);
+            InicioTesteFG06("5937", "SOFTBOX - CLI sucesso, PARC ñ enviado e CMS rejeitado", OperadoraEnum.TIM);
 
             AdicionaErro(TipoArquivo.Comissao);
+
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
+
+
 
             SalvarTrinca(true, false, true);
             ValidarFGsAnterioresEErros();
@@ -302,7 +303,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         [TestCategory("Com Critica")]
         public void SAP_5940()
         {
-            InicioTesteFG06("5940", "SOFTBOX - CLI ñ enviado, PARC sucesso e CMS sucesso", OperadoraEnum.SOFTBOX);
+            InicioTesteFG06("5940", "SOFTBOX - CLI sucesso, PARC ñ enviado e CMS sucesso", OperadoraEnum.SOFTBOX);
 
 
             SalvarTrinca(true, false, true);
@@ -329,7 +330,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void SAP_5942()
         {
             InicioTesteFG06("5942", "VIVO - CLI ñ enviado, PARC ñ enviado e CMS sucesso", OperadoraEnum.VIVO);
-
+            // parc não enviado, erro na comissão
 
             SalvarTrinca(false, false, true);
             ValidarFGsAnterioresEErros();
@@ -342,7 +343,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void SAP_5944()
         {
             InicioTesteFG06("5944", "VIVO - CLI ñ enviado, PARC sucesso e CMS ñ enviado", OperadoraEnum.VIVO);
-
+            // sem cliente da erro antes
 
             SalvarTrinca(false, true, false);
             ValidarFGsAnterioresEErros();

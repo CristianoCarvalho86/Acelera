@@ -21,7 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
         [TestCategory("Com Critica")]
         public void SAP_5303()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "5303", "FG09 - PROC45 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5303", "FG09 - PROC45 - ");
 
             //Envia parc normal
             var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO,true);
@@ -32,10 +32,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValorFormatado(0, "CD_COBERTURA"), ObterValorFormatado(0, "CD_RAMO"), out string produto));
-            AlterarLinha(0, "CD_PRODUTO", produto);
+            //AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValorFormatado(0, "CD_COBERTURA"), ObterValorFormatado(0, "CD_RAMO"), out string produto));
+            //AlterarLinha(0, "CD_PRODUTO", produto);
             AlterarHeader("VERSAO", "9.6");
-            AlterarCobertura(false);
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "45", 1);
@@ -46,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
         [TestCategory("Sem Critica")]
         public void SAP_5306()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "5306", "FG09 - PROC45 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "5306", "FG09 - PROC45 - ");
 
             //Envia parc normal
             var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_3_ParcEmissaoAuto>(OperadoraEnum.VIVO,true);
