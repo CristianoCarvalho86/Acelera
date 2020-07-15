@@ -35,6 +35,18 @@ namespace Acelera.Testes
                 return origem;
             }
         }
+        public static string pastaDestinoXml
+        {
+            get
+            {
+                var destino = ConfigurationManager.AppSettings.Get("PastaDestinoXml");
+                if (string.IsNullOrEmpty(destino))
+                    throw new Exception("Pasta de Destino nao definida");
+                if (!destino.EndsWith("\\"))
+                    destino += "\\";
+                return destino;
+            }
+        }
 
         public static string pastaLog
         {

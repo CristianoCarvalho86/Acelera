@@ -161,7 +161,6 @@ namespace Acelera.Testes
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
             arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
             logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
-            nomeArquivo = arquivo.NomeArquivo;
 
             logger.FecharBloco();
         }
@@ -170,7 +169,6 @@ namespace Acelera.Testes
             logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem);
             arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
-            nomeArquivo = arquivo.NomeArquivo;
             logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
             logger.FecharBloco();
         }

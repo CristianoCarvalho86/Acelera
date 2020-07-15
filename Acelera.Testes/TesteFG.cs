@@ -40,7 +40,7 @@ namespace Acelera.Testes
             try
             {
                 var consulta = new Consulta();
-                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
                 var consultas = new ConjuntoConsultas();
                 consultas.AdicionarConsulta(consulta);
                 var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consultas, logger);
@@ -90,7 +90,7 @@ namespace Acelera.Testes
             try
             {
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-                var validador = new ValidadorStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), nomeArquivo, logger,
+                var validador = new ValidadorStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), arquivo.NomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
 
@@ -110,7 +110,7 @@ namespace Acelera.Testes
             return linhasEncontradas;
         }
 
-        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
+        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return null;
@@ -118,19 +118,19 @@ namespace Acelera.Testes
             var linhasEncontradas = new List<ILinhaTabela>();
             try
             {
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{arquivo.tipoArquivo.ObterTabelaStageEnum().ObterTexto()}");
                 var validador = new ValidadorStages(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
 
                 if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado, aoMenosUmCodigoEsperado))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
+                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{arquivo.tipoArquivo.ObterTabelaStageEnum().ObterTexto()}");
                 else
                     ExplodeFalha();
             }
             catch (Exception ex)
             {
-                TratarErro($" Validação da Stage : {tabela.ObterTexto()} - {ex.Message}");
+                TratarErro($" Validação da Stage : {arquivo.tipoArquivo.ObterTabelaStageEnum().ObterTexto()} - {ex.Message}");
             }
 
             if (sucessoDoTeste == false)

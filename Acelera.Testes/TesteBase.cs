@@ -38,13 +38,11 @@ namespace Acelera.Testes
         protected string nomeDoTeste;
         protected string localDoErro = string.Empty;
         protected string pathOrigem;
-        protected string nomeArquivo = string.Empty;
         protected TipoArquivo tipoArquivoTeste { get; set; }
         protected OperadoraEnum operadora => EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo);
 
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
-            this.nomeArquivo = nomeArquivo;
             var path = Parametros.pastaOrigem + nomeArquivo;
             logger.EscreverBloco("Obtendo arquivo origem : " + path);
             pathOrigem = path;
@@ -66,7 +64,7 @@ namespace Acelera.Testes
         {
             var array = arquivo.NomeArquivo.Split('-');
             array[2] = "/*R*/";
-            nomeArquivo = array.ToList().ObterListaConcatenada("-");
+            var nomeArquivo = array.ToList().ObterListaConcatenada("-");
             SalvarArquivo(nomeArquivo, true);
         }
 
@@ -98,7 +96,7 @@ namespace Acelera.Testes
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
 
-            valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, this.nomeArquivo);
+            valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, arquivo.NomeArquivo);
         }
 
         public virtual void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
@@ -144,16 +142,14 @@ namespace Acelera.Testes
             numeroDoLote = numeroArquivoNovo;
             if (AlterarNomeArquivo)
             {
-                this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
+                _nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
                 if (arquivo.Header.Count > 0)
                     arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
             }
-            else
-                this.nomeArquivo = _nomeArquivo;
 
-            var path = Parametros.pastaDestino + nomeArquivo;
+            var path = Parametros.pastaDestino + _nomeArquivo;
 
-            arquivo.AtualizarNomeArquivoFinal(this.nomeArquivo);
+            arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
@@ -183,13 +179,13 @@ namespace Acelera.Testes
             var numeroArquivoNovo = controleNomeArquivo.ObtemValor(arquivo.tipoArquivo);
             numeroDoLote = numeroArquivoNovo;
 
-            nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
+            _nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
             if (arquivo.Header.Count > 0)
                 arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
-            var path = Parametros.pastaDestino + nomeArquivo;
+            var path = Parametros.pastaDestino + _nomeArquivo;
 
-            arquivo.AtualizarNomeArquivoFinal(this.nomeArquivo);
+            arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;

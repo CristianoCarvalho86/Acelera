@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -33,20 +34,50 @@ namespace Acelera.Testes.Validadores
             return string.IsNullOrEmpty(retorno);
         }
 
-        public bool ValidarInclusaoNasTabelas(LinhaTabela linhaDaStage)
+        public bool ValidarInclusaoNasTabelas(ILinhaTabela linhaDaStage, string cdStatusEsperado, bool ehParcAuto,out string idArquivo)
         {
+            logger.AbrirBloco("VALIDANDO INCLUSAO NAS TABELAS.");
             var listaDeTabelas = EnumUtils.ObterListaComTodos<TabelasOIMEnum>();
             var where = "";
             var erros = "";
+            var campoConsulta = "'1'";
+            idArquivo = "";
+            var retorno = "";
+            if (!ehParcAuto)
+                listaDeTabelas.Remove(TabelasOIMEnum.OIM_ITAUTO01);
+
             foreach (var tabela in listaDeTabelas)
             {
+                if (tabela == TabelasOIMEnum.OIM_APL01)
+                    campoConsulta = "id_arquivo";
+
                 where = ObterWhereCamposChaves(linhaDaStage, tabela.ObterCamposChaves());
-                var retorno = DataAccess.ConsultaUnica($"SELECT '1' FROM {tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
+                retorno = DataAccess.ConsultaUnica($"SELECT {campoConsulta} FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
                 if (string.IsNullOrEmpty(retorno))
                     erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
                 else
                     logger.Escrever("REGISTRO ENCONTRADO NA TABELA : " +tabela.ObterTexto());
+                
+                if (tabela == TabelasOIMEnum.OIM_APL01)
+                    idArquivo = retorno;
             }
+
+            retorno = DataAccess.ConsultaUnica($"SELECT CD_STATUS FROM {Parametros.instanciaDB}.TAB_OIM_XML_CONTROLE_8003 where id_arquivo = '{idArquivo}' ", $"VALIDACAO REGISTRO INSERIDO TAB_OIM_XML_CONTROLE_8003", DBEnum.Hana, logger, false);
+            if(string.IsNullOrEmpty(retorno))
+            {
+                logger.Erro($"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', NAO ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003");
+                return false;
+            }
+            if (retorno != cdStatusEsperado)
+            {
+                logger.Erro($"CD_STATUS DA TABELA TAB_OIM_XML_CONTROLE_8003 NAO ERA O ESPERADO {Environment.NewLine} OBTIDO :{retorno} ; ESPERADO :{cdStatusEsperado}");
+                return false;
+            }
+
+            logger.Escrever($"CD_STATUS DA TABELA TAB_OIM_XML_CONTROLE_8003 ENCONTRADO COMO O ESPERADO {Environment.NewLine} OBTIDO :{retorno} ; ESPERADO :{cdStatusEsperado}");
+            logger.Escrever($"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003 COM SUCESSO.");
+
+            logger.FecharBloco();
             if(string.IsNullOrEmpty(erros))
             {
                 logger.Erro(erros);
@@ -112,12 +143,15 @@ namespace Acelera.Testes.Validadores
             return where.Substring(0, where.Length - 3);
         }
 
-        private string ObterWhereCamposChaves(LinhaTabela linha, string[] camposChaves)
+        private string ObterWhereCamposChaves(ILinhaTabela linha, string[] camposChaves)
         {
             var where = "";
+            var campoAjustado = "";
             foreach (var campo in camposChaves)
             {
-                where += $"{campo} = '{linha.ObterPorColuna(campo.ToUpper()).ValorFormatado}' AND";
+                if (campo == "vl_premio")
+                    campoAjustado = "VL_PREMIO_LIQUIDO";
+                where += $"{campoAjustado} = '{linha.ObterPorColuna(campoAjustado.ToUpper()).ValorFormatado}' AND";
             }
             return where.Substring(0, where.Length - 3);
         }

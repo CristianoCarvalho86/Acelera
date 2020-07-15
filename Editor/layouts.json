@@ -3,43 +3,280 @@
     {
       "TIPO": "SINISTRO",
       "VERSAO": "9.4",
-      "CAMPOS": [
+      "HEADER": [
         {
-          "NOME": "TIPO REGISTRO",
+          "NOME": "TIPO_REGISTRO",
           "TAMANHO": "2"
         },
         {
-          "NOME": "CD_CORRETOR",
-          "TAMANHO": "12"
+          "NOME": "NM_ARQ",
+          "TAMANHO": "30"
         },
         {
-          "NOME": "CD_CONTRATO",
-          "TAMANHO": "22"
+          "NOME": "DT_ARQ",
+          "TAMANHO": "10"
         },
         {
-          "NOME": "NR_ENDOSSO",
-          "TAMANHO": "21"
+          "NOME": "NR_ARQ",
+          "TAMANHO": "6"
         },
         {
-          "NOME": "CD_EXTRATO_COMISSAO",
-          "TAMANHO": "21"
+          "NOME": "NM_BRIDGE",
+          "TAMANHO": "30"
         },
         {
-          "NOME": "CD_LANCAMENTO",
-          "TAMANHO": "24"
+          "NOME": "CD_TPA",
+          "TAMANHO": "3"
         },
         {
-          "NOME": "CD_TIPO_LANCAMENTO",
-          "TAMANHO": "23"
+          "NOME": "NOMEARQ",
+          "TAMANHO": "40"
+        },
+        {
+          "NOME": "VERSAO",
+          "TAMANHO": "4"
         },
         {
           "NOME": "FILLER",
-          "TAMANHO": "52"
+          "TAMANHO": "575"
+        }
+      ],
+      "BODY": [
+        {
+          "NOME": "TIPO_REGISTRO",
+          "TAMANHO": "2"
+        },
+        {
+          "NOME": "CD_INTERNO_RESSEGURADOR",
+          "TAMANHO": "5"
+        },
+        {
+          "NOME": "CD_SEGURADORA",
+          "TAMANHO": "5"
+        },
+        {
+          "NOME": "CD_TIPO_MOVIMENTO",
+          "TAMANHO": "4"
+        },
+        {
+          "NOME": "DT_MOVIMENTO",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "CD_AVISO",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "CD_SINISTRO",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "CD_CONTRATO_RESSEGURO",
+          "TAMANHO": "5"
+        },
+        {
+          "NOME": "CD_RAMO",
+          "TAMANHO": "4"
+        },
+        {
+          "NOME": "CD_CLIENTE",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "DT_AVISO",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "DT_OCORRENCIA",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "DT_REGISTRO",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "CD_CAUSA",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "CD_CONTRATO",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "NR_SEQUENCIAL_EMISSAO",
+          "TAMANHO": "5"
+        },
+        {
+          "NOME": "NR_APOLICE",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "CD_ITEM",
+          "TAMANHO": "18"
+        },
+        {
+          "NOME": "CD_MOVIMENTO",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "VL_MOVIMENTO",
+          "TAMANHO": "16"
+        },
+        {
+          "NOME": "TP_SINISTRO",
+          "TAMANHO": "002"
+        },
+        {
+          "NOME": "VL_TAXA_PAGTO",
+          "TAMANHO": "15"
+        },
+        {
+          "NOME": "NM_BENEFICIARIO",
+          "TAMANHO": "60"
+        },
+        {
+          "NOME": "EN_BENEFICIARIO",
+          "TAMANHO": "50"
+        },
+        {
+          "NOME": "EN_COMPL_BENEFICIARIO",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "EN_BAIRRO_BENEFICIARIO",
+          "TAMANHO": "30"
+        },
+        {
+          "NOME": "EN_CIDADE_BENEFICIARIO",
+          "TAMANHO": "30"
+        },
+        {
+          "NOME": "EN_UF_BENEFICIARIO",
+          "TAMANHO": "2"
+        },
+        {
+          "NOME": "EN_CEP_BENEFICIARIO",
+          "TAMANHO": "10"
+        },
+        {
+          "NOME": "EN_PAIS_BENEFICIARIO",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "DT_NASC_BENEFICIARIO",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "CD_COBERTURA",
+          "TAMANHO": "10"
+        },
+        {
+          "NOME": "CD_MOEDA",
+          "TAMANHO": "1"
+        },
+        {
+          "NOME": "CD_BANCO_SEG",
+          "TAMANHO": "4"
+        },
+        {
+          "NOME": "NR_AGENCIA_SEG",
+          "TAMANHO": "4"
+        },
+        {
+          "NOME": "NR_AGENCIA_DIG_SEG",
+          "TAMANHO": "1"
+        },
+        {
+          "NOME": "NR_CONTA_SEG",
+          "TAMANHO": "9"
+        },
+        {
+          "NOME": "NR_CONTA_DIG_SEG",
+          "TAMANHO": "2"
+        },
+        {
+          "NOME": "CD_FORMA_PAGTO",
+          "TAMANHO": "1"
+        },
+        {
+          "NOME": "CD_SISTEMA",
+          "TAMANHO": "3"
+        },
+        {
+          "NOME": "DT_PAGAMENTO",
+          "TAMANHO": "8"
+        },
+        {
+          "NOME": "NR_SEQ_MOV",
+          "TAMANHO": "6"
+        },
+        {
+          "NOME": "VL_CEDIDO",
+          "TAMANHO": "16"
+        },
+        {
+          "NOME": "CD_TIPO_BENEFICIARIO",
+          "TAMANHO": "1"
+        },
+        {
+          "NOME": "NR_DOCTO_BENEFICIARIO",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "CD_PRODUTO",
+          "TAMANHO": "10"
+        },
+        {
+          "NOME": "TP_RAMO_SINISTRO",
+          "TAMANHO": "2"
+        },
+        {
+          "NOME": "NR_ENDOSSO",
+          "TAMANHO": "20"
+        },
+        {
+          "NOME": "CD_BANCO",
+          "TAMANHO": "4"
+        },
+        {
+          "NOME": "NR_AGENCIA",
+          "TAMANHO": "4"
+        },
+        {
+          "NOME": "NR_AGENCIA_DIG",
+          "TAMANHO": "1"
+        },
+        {
+          "NOME": "NR_CONTA",
+          "TAMANHO": "9"
+        },
+        {
+          "NOME": "NR_CONTA_DIG",
+          "TAMANHO": "2"
+        },
+        {
+          "NOME": "FILLER",
+          "TAMANHO": "115"
+        }
+      ],
+      "FOOTER": [
+        {
+          "NOME": "TIPO_REGISTRO",
+          "TAMANHO": "2"
+        },
+        {
+          "NOME": "NM_ARQ",
+          "TAMANHO": "30"
+        },
+        {
+          "NOME": "QT_LIN",
+          "TAMANHO": "6"
+        },
+        {
+          "NOME": "FILLER",
+          "TAMANHO": "115"
         }
       ]
-    }
-      
-
     }
   ]
 }

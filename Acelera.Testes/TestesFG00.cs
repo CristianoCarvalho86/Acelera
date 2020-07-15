@@ -31,7 +31,7 @@ namespace Acelera.Testes
             { 
             AjustarEntradaErros(ref descricaoErroSeHouver);
             var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
             var lista = DataAccess.ChamarConsultaAoBanco<LinhaControleArquivo>(new ConjuntoConsultas(consulta), logger);
 
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
@@ -97,7 +97,7 @@ namespace Acelera.Testes
             try { 
             AjustarEntradaErros(ref codigosDeErroEsperados);
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-            var validador = new ValidadorTabelaRetorno(arquivo.tipoArquivo.ObterTabelaStageEnum(),nomeArquivo,logger,
+            var validador = new ValidadorTabelaRetorno(arquivo.tipoArquivo.ObterTabelaStageEnum(),arquivo.NomeArquivo,logger,
                 valoresAlteradosBody,valoresAlteradosHeader,valoresAlteradosFooter);
             
             if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrar, validaQuantidadeErros,codigosDeErroEsperados))

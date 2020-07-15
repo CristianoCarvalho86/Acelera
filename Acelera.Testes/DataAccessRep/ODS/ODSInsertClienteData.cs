@@ -16,7 +16,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
         public static string InsertText(string dadosWhere)
         {
             return $" insert into {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 " +
-            $" select  {Parametros.instanciaDB}.SEQ_ODS_PARCEIRO_NEGOCIO_2000.nextval as cd_parceiro_negocio, " +
+            $" select (max(cd_parceiro_negocio) + 1) from {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 as cd_parceiro_negocio  , " +// {Parametros.instanciaDB}.SEQ_ODS_PARCEIRO_NEGOCIO_2000.nextval as cd_parceiro_negocio, " +
             @" 'CL' as cd_tipo_parceiro_negocio, " +
             @" a.cd_cliente as cd_externo, " +
             @" tp_pessoa as cd_tipo_pessoa, " +

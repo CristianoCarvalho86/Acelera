@@ -131,6 +131,12 @@ namespace Acelera.Domain.Enums
         TrincaCancelamento,
     }
 
+    public enum FG07_Tarefas
+    {
+        [Description("FGR_07_TRINCA_EMISSAO")]
+        Trinca
+    }
+
     public enum FG09_Tarefas
     {
         [Description("FGR_09_CLIENTE")]

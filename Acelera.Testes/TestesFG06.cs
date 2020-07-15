@@ -35,19 +35,19 @@ namespace Acelera.Testes
 
             if (codigoEsperadoStageCliente.HasValue)
             {
-                ValidarStages(triplice.ArquivoCliente, triplice.ArquivoCliente.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageCliente.Value);
+                ValidarStages(triplice.ArquivoCliente, true, (int)codigoEsperadoStageCliente.Value);
                 ValidarTabelaDeRetorno(triplice.ArquivoCliente, false, false, new string[] { msgTabelaDeRetornoCliente });
             }
             if (codigoEsperadoStageParcela.HasValue)
             {
-                ValidarStages(triplice.ArquivoParcEmissao, triplice.ArquivoParcEmissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageParcela.Value);
+                ValidarStages(triplice.ArquivoParcEmissao, true, (int)codigoEsperadoStageParcela.Value);
                 ValidarTabelaDeRetorno(triplice.ArquivoParcEmissao, false, false, new string[] { msgTabelaDeRetornoParcela });
             }
             if (codigoEsperadoStageComissao.HasValue)
             {
                 //logger.Escrever("abcdefgh");
                 //ChamarExecucao(FG06_Tarefas.Trinca.ObterTexto());
-                ValidarStages(triplice.ArquivoComissao, triplice.ArquivoComissao.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperadoStageComissao.Value);
+                ValidarStages(triplice.ArquivoComissao, true, (int)codigoEsperadoStageComissao.Value);
                 ValidarTabelaDeRetorno(triplice.ArquivoComissao, false, false, new string[] { msgTabelaDeRetornoComissao });
             }
             ValidarTeste();
@@ -97,8 +97,8 @@ namespace Acelera.Testes
 
         public void EnviarParaOds(Arquivo arquivo, bool executaFGs = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNaFG01)
         {
-            
 
+            this.arquivo = arquivo;
             if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
             {
                 SalvarArquivo();
@@ -112,7 +112,6 @@ namespace Acelera.Testes
                 ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
                 ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
             }
-
             var linhas = ValidarStages(codigoesperadostg);
 
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)

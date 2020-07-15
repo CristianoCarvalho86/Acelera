@@ -317,13 +317,13 @@ namespace Acelera.Domain.Extensions
                     return new string[] {"nr_apolice", "nr_endosso"};
 
                 case TabelasOIMEnum.OIM_CMS01:
-                    return new string[] { "nr_apolice", "nr_parcela", "cp_corretor" };
+                    return new string[] { "nr_apolice", "nr_parcela", "cd_corretor" };
                 case TabelasOIMEnum.OIM_COB01:
                     return new string[] { "nr_apolice","vl_premio", "cd_cobertura" };
                 case TabelasOIMEnum.OIM_PARC01:
                     return new string[] { "nr_apolice", "vl_premio", "nr_parcela" };
                 case TabelasOIMEnum.OIM_ITAUTO01:
-                    return new string[] { "cd_modelo", "ref_origem" };
+                    return new string[] { "cd_modelo", "cd_item" };
                 default:
                     throw new Exception("TAG NAO ENCONTRADA PARA " + tabela.ObterTexto());
             }

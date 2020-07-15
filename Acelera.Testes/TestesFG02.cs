@@ -171,7 +171,7 @@ namespace Acelera.Testes
 
             ValidarTabelaDeRetorno(arquivo, false, true, new string[] { cdMensagemNaTabelaDeRetorno });
 
-            return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), deveHaverRegistro, (int)codigoEsperado);
+            return ValidarStages(arquivo, deveHaverRegistro, (int)codigoEsperado);
         }
 
         public virtual IList<ILinhaTabela> ExecutarEValidarEsperandoErro(Arquivo arquivo, FGs fG, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
@@ -184,9 +184,9 @@ namespace Acelera.Testes
 
             if (codigoEsperado == null)
             {
-                return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), false);
+                return ValidarStages(arquivo, false);
             }
-            return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
+            return ValidarStages(arquivo, true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
         }
 
         public virtual IList<ILinhaTabela> ValidarEsperandoErro(Arquivo arquivo, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
@@ -198,9 +198,9 @@ namespace Acelera.Testes
 
             if (codigoEsperado == null)
             {
-                return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), false);
+                return ValidarStages(arquivo, false);
             }
-            return ValidarStages(arquivo, arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
+            return ValidarStages(arquivo, true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
         }
 
         #region Procedures
