@@ -81,13 +81,14 @@ namespace Acelera.Testes
             triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
         }
 
-        protected void CriarNovaLinhaParaEmissao(Arquivo arquivoParc)
+        protected void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(0).Clone());
-            arquivoParc.AlterarLinhaSeExistirCampo(1, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(triplice.Operadora));
-            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_ENDOSSO", GerarNumeroAleatorio(3));
-            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_PARCELA", (arquivoParc.ObterLinha(0).ObterValorInteiro("NR_PARCELA") + 1).ToString()) ;
-            arquivoParc.AlterarLinhaSeExistirCampo(1, "NR_SEQUENCIAL_EMISSAO", (arquivoParc.ObterLinha(0).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
+            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
+            var index = arquivoParc.Linhas.Count - 1;
+            arquivoParc.AlterarLinhaSeExistirCampo(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(triplice.Operadora));
+            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_ENDOSSO", GerarNumeroAleatorio(3));
+            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_PARCELA", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_PARCELA") + 1).ToString()) ;
+            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_SEQUENCIAL_EMISSAO", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
         }
 
         protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)

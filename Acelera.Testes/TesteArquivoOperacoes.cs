@@ -62,11 +62,13 @@ namespace Acelera.Testes
 
         }
 
-        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura)
+        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, Arquivo _arquivo = null)
         {
-            AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
-            AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdCobertura);
-            AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdCobertura);
+            if (_arquivo == null)
+                _arquivo = arquivo;
+            _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
+            _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdCobertura);
+            _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdCobertura);
         }
 
         public void AlterarLinha(int posicaoLinha, string campo, string valorNovo)

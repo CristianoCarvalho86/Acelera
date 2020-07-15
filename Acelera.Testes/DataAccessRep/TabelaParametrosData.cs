@@ -406,9 +406,9 @@ namespace Acelera.Testes.DataAccessRep
             return ObterNaoExistenteNaTabela("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", 99999);
         }
 
-        public Cobertura ObterCoberturaDiferenteDe(string cdCobertura)
+        public Cobertura ObterCoberturaDiferenteDe(string cdCobertura, string cdTpa = "")
         {
-            var select = QueryCobertura() + $" WHERE C.CD_COBERTURA <> '{cdCobertura}'";
+            var select = QueryCobertura(0, cdTpa) + $" WHERE C.CD_COBERTURA <> '{cdCobertura}'";
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];

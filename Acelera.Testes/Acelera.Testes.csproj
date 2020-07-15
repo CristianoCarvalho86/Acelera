@@ -82,7 +82,6 @@
     <Compile Include="ConjuntoArquivos\TripliceVIVO.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_Base.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_LASA.cs" />
-    <Compile Include="TestesFG07.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />

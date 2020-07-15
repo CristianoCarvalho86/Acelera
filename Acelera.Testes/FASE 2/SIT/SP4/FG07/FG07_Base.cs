@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             validadorXML = new ValidadorXML(logger);
         }
 
-        private void ValidarXMLComTabelasOIM(string idArquivo, bool ehParcAuto)
+        protected void ValidarXMLComTabelasOIM(string idArquivo, bool ehParcAuto)
         {
             var xmlDocument = ObterArquivoXML(idArquivo);
             var listaDeTabelas = EnumUtils.ObterListaComTodos<TabelasOIMEnum>();
@@ -48,9 +48,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return ValidarStages(triplice.ArquivoParcEmissao, true, (int)CodigoStage.AprovadoFG07).First();
         }
 
-        protected new void CriarEmissaoCompleta()
+        protected new void CriarEmissaoCompleta(bool salvaCliente)
         {
-            SalvarTrinca();
+            SalvarTrinca(salvaCliente);
             ValidarFGsAnterioresEErros();
 
             ExecutarEValidarFG06EmissaoSucesso();
