@@ -81,7 +81,9 @@ namespace Acelera.Testes
             if(geraCliente)
                 triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
             else
-                triplice.AlterarCliente(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true));
+                triplice.AlterarCliente(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]));
+
+
         }
 
         protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
