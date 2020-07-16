@@ -31,5 +31,15 @@ namespace Acelera.Utils
 
             return (int)(minimumValue + randomValueInRange);
         }
+
+        public static string GerarNumeroAleatorio(int posicoes)
+        {
+            var retorno = string.Empty;
+            for (int i = 0; i < posicoes; i++)
+            {
+                retorno += RandomNumber.Between(0, 9);
+            }
+            return retorno;
+        }
     }
 }

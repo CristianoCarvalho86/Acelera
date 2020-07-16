@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

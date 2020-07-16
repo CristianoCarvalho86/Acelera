@@ -67,7 +67,7 @@ namespace Acelera.Testes
                 triplice = new TripliceTIM(1, logger, ref valoresAlteradosBody);
         }
 
-        protected void AlteracoesPadraoDaTrinca(ITriplice triplice)
+        protected void AlteracoesPadraoDaTrinca(ITriplice triplice, bool geraCliente = true)
         {
             triplice.AlterarParcEComissao(0, "ID_TRANSACAO_CANC", "");
             triplice.AlterarParcEComissao(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));
@@ -78,17 +78,10 @@ namespace Acelera.Testes
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
-            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
-        }
-
-        protected void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
-        {
-            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
-            var index = arquivoParc.Linhas.Count - 1;
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(triplice.Operadora));
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_ENDOSSO", GerarNumeroAleatorio(3));
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_PARCELA", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_PARCELA") + 1).ToString()) ;
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_SEQUENCIAL_EMISSAO", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
+            if(geraCliente)
+                triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+            else
+                triplice.AlterarCliente(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true));
         }
 
         protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)

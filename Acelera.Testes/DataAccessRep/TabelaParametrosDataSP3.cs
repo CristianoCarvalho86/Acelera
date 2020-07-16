@@ -19,8 +19,9 @@ namespace Acelera.Testes.DataAccessRep
 
         }
 
-        public string ObterCdClienteParceiro(bool existente)
+        public string ObterCdClienteParceiro(bool existente, string cdTpa = "")
         {
+
              return  ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente , "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'", true);
         }
 

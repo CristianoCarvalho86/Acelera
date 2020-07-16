@@ -48,9 +48,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return ValidarStages(triplice.ArquivoParcEmissao, true, (int)CodigoStage.AprovadoFG07).First();
         }
 
-        protected new void CriarEmissaoCompleta(bool salvaCliente)
+        protected void CriarEmissaoCompletaFG07(bool salvaCliente, bool salvaComissao = true)
         {
-            SalvarTrinca(salvaCliente);
+            SalvarTrinca(salvaCliente, true, salvaComissao);
             ValidarFGsAnterioresEErros();
 
             ExecutarEValidarFG06EmissaoSucesso();
@@ -65,6 +65,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlteracoesPadraoDaTrinca(triplice);
         }
+
+        protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true)
+        {
+            CriarEmissaoCompletaFG07(salvaCliente, salvaComissao);
+            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
+            var linhaStageParc = ValidarStageSucessoFG07();
+            var ehParcAuto = triplice.ArquivoParcEmissao.tipoArquivo == TipoArquivo.ParcEmissaoAuto;
+
+
+            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", ehParcAuto , out string idArquivo);
+            ValidarXMLComTabelasOIM(idArquivo, ehParcAuto);
+        }
+
 
 
     }

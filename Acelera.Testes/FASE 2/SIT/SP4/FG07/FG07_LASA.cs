@@ -19,31 +19,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             InicioTesteFG07("6154", "FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "C", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
+            SalvaExecutaEValidaFG07();
 
         }
+
         [TestMethod]
         public void SAP_6155()
         {
             InicioTesteFG07("6155", "SAP-6155:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "P", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
 
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
+            SalvaExecutaEValidaFG07();
 
         }
         [TestMethod]
@@ -51,16 +40,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             InicioTesteFG07("6156", "SAP-6156:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "C", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
-            triplice.AlterarCliente(0, "CD_CLIENTE", ClienteCadastradoNoOIM);
-            CriarEmissaoCompleta(false);
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
+            triplice.AlterarCliente(0, "CD_CLIENTE", ClienteCadastradoNoOIM);
+
+            SalvaExecutaEValidaFG07(false);
 
         }
 
@@ -70,9 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             //?
             InicioTesteFG07("6157", "SAP-6157:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "C", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));//COLOCAR CD_CORRETOR com C e P,
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
             var valor = triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"].ObterValorDecimal() / 2;
             triplice.ArquivoComissao.AlterarLinha(0, "VL_COMISSAO",valor.ValorFormatado());
@@ -80,12 +62,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             triplice.ArquivoComissao.AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
             triplice.ArquivoComissao.AlterarLinha(1, "VL_COMISSAO", valor.ValorFormatado());
 
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
-
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
+            SalvaExecutaEValidaFG07();
 
         }
 
@@ -95,21 +72,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             //?
             InicioTesteFG07("6158", " SAP-6158:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "C", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
-
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
             triplice.ArquivoParcEmissao.ReplicarLinha(0, 1);
             var cobertura = dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[0]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]);
             AlterarDadosDeCobertura(1, cobertura, triplice.ArquivoParcEmissao);
-            
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
 
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
+            SalvaExecutaEValidaFG07();
 
         }
 
@@ -119,15 +88,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             InicioTesteFG07("6159", "SAP-6159:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura //COLOCAR CD_CORRETOR com C e P,
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "C", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados); //COLOCAR CD_CORRETOR com C e P,
 
             //ALTERACAO PARCELA
-            triplice.ArquivoParcEmissao.ReplicarLinha(0, 1);
-            
-            var cobertura = dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[0]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]);
-            AlterarDadosDeCobertura(1, cobertura, triplice.ArquivoParcEmissao);
+            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao,dados);
 
             //ALTERACAO COMISSAO
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
@@ -140,14 +104,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[2]);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[3]);
             triplice.ArquivoComissao.AlterarLinha(3, "CD_TIPO_COMISSAO", "P");
-                       
 
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
 
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
+            SalvaExecutaEValidaFG07();
 
         }
 
@@ -157,30 +116,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             //?
             InicioTesteFG07("6160", "SAP-6160:FG07 - Lasa - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "C", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
-
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
-
+            SalvaExecutaEValidaFG07();
 
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
             triplice.ArquivoParcEmissao.RemoverLinha(0);
-
+            
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
 
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            linhaStageParc = ValidarStageSucessoFG07();
-
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
-
+            SalvaExecutaEValidaFG07(false);
         }
 
         [TestMethod]
@@ -189,32 +134,39 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             InicioTesteFG07("6161", "SAP-6161:FG07 - Lasa - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.LASA);
 
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-                (triplice.ArquivoComissao.Header[0]["CD_TPA"], "R", triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
+            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
 
-            //ALTERACAO PARCELA
-            triplice.ArquivoParcEmissao.ReplicarLinha(0, 1);
+            SalvaExecutaEValidaFG07();
 
-            var cobertura = dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[0]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]);
-            AlterarDadosDeCobertura(1, cobertura, triplice.ArquivoParcEmissao);
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao,0);
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 1);
+            triplice.ArquivoParcEmissao.RemoverLinha(0);
+            triplice.ArquivoParcEmissao.RemoverLinha(1);
 
-
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao,1);
-
-            //ALTERACAO COMISSAO
-            triplice.ArquivoComissao.ReplicarLinha(0, 3);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[2], triplice.ArquivoComissao[2]);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[3], triplice.ArquivoComissao[3]);
 
-            CriarEmissaoCompleta();
-            ChamarExecucao(FG07_Tarefas.Trinca.ObterTexto());
-            var linhaStageParc = ValidarStageSucessoFG07();
+            SalvaExecutaEValidaFG07(false);
 
-            validadorXML.ValidarInclusaoNasTabelas(linhaStageParc, "1210", false, out string idArquivo);
-            ValidarXMLComTabelasOIM(idArquivo, false);
+        }
+
+        [TestMethod]
+        public void SAP_6162()
+        {
+
+            InicioTesteFG07("6162", "SAP-6162:FG07 - Lasa - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
+              
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
+
+            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
+
+            SalvaExecutaEValidaFG07();
 
         }
 
