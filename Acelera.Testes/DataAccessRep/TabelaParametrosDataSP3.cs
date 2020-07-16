@@ -14,15 +14,16 @@ namespace Acelera.Testes.DataAccessRep
 {
     public class TabelaParametrosDataSP3 : TabelaParametrosData
     {
-        public TabelaParametrosDataSP3(IMyLogger logger):base(logger)
+        public TabelaParametrosDataSP3(IMyLogger logger) : base(logger)
         {
 
         }
 
         public string ObterCdClienteParceiro(bool existente, string cdTpa = "")
         {
-
-             return  ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente , "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'", true);
+            var clausula = "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'";
+            clausula = string.IsNullOrEmpty(cdTpa) ? clausula : clausula + $" AND CD_OPERACAO = '{ObterCdParceiroNegocioParaTPA(cdTpa)}'";
+            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente, clausula, true);
         }
 
         public string ObterCdPNCorretor(string cdCorretor)
@@ -38,7 +39,7 @@ namespace Acelera.Testes.DataAccessRep
         public string[] ObterAtributosDoLayout(TipoArquivo tipo, string layout)
         {
             var sql = $"select DISTINCT(NM_ATRIBUTO_LAYOUT) from {Parametros.instanciaDB}.TAB_PRM_LAYOUT_7016 where NM_TIPO_ARQUIVO = '{tipo.ObterPrefixoOperadoraNoArquivo()}' AND CD_VERSAO_ARQUIVO = '{layout}' AND TP_REGISTRO = 3 AND ID_PRIMARY_KEY = '1'";
-            var linhas = DataAccess.Consulta(sql, "NM_ATRIBUTO_LAYOUT" ,logger);
+            var linhas = DataAccess.Consulta(sql, "NM_ATRIBUTO_LAYOUT", logger);
             var lista = new List<string>();
             foreach (DataRow row in linhas.Rows)
                 lista.Add(row[0].ToString().ToUpper());
@@ -48,12 +49,12 @@ namespace Acelera.Testes.DataAccessRep
             return lista.ToArray();
         }
 
-        public string ObterParceiroNegocioComEndereco(string tipoParceiro ,bool enderecoCompleto)
+        public string ObterParceiroNegocioComEndereco(string tipoParceiro, bool enderecoCompleto)
         {
             var sql = $" select TOP 1 CD_EXTERNO from {Parametros.instanciaDB}.TAB_ODS_PARCEIRO_NEGOCIO_2000 PN INNER JOIN " +
              $" {Parametros.instanciaDB}.TAB_ODS_ENDERECO_2001 E ON PN.CD_PARCEIRO_NEGOCIO = E.CD_PARCEIRO_NEGOCIO" +
              $" WHERE PN.CD_TIPO_PARCEIRO_NEGOCIO = '{tipoParceiro}'";
-            if(enderecoCompleto)
+            if (enderecoCompleto)
                 sql += $" PN.NR_CNPJ_CPF_RNE IS NOT NULL AND" +
                  $" E.EN_ENDERECO IS NOT NULL AND" +
                  $" E.EN_CIDADE IS NOT NULL AND" +
@@ -90,7 +91,7 @@ namespace Acelera.Testes.DataAccessRep
                 $" AND TP_REMUNERACAO = '{tpRemuneracao}' AND FL_REMU_INFORMADA = '{flRemuInformada}'" +
                 $" AND CD_PN_CORRETOR IS NOT NULL " +
                 $" AND VL_REMUMERACAO IS NOT NULL ";
-            if(!string.IsNullOrEmpty(cdTipoRemuneracao))
+            if (!string.IsNullOrEmpty(cdTipoRemuneracao))
                 clausula += $" AND CD_TIPO_REMUNERACAO = '{cdTipoRemuneracao}' ";
             return DataAccess.Consulta($"SELECT VL_REMUMERACAO, TP_REMUNERACAO, CD_PN_CORRETOR, CD_TIPO_REMUNERACAO FROM {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 WHERE {clausula}",
                 "BUSCANDO PARAMETRIZAÇÃO NA 7013", DBEnum.Hana, logger, false);
