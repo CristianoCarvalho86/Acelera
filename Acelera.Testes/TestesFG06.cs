@@ -30,7 +30,6 @@ namespace Acelera.Testes
             string msgTabelaDeRetornoParcela,
             string msgTabelaDeRetornoComissao)
         {
-            //Executar FG06
             ChamarExecucao(FG06_Tarefas.Trinca.ObterTexto());
 
             if (codigoEsperadoStageCliente.HasValue)
@@ -45,8 +44,6 @@ namespace Acelera.Testes
             }
             if (codigoEsperadoStageComissao.HasValue)
             {
-                //logger.Escrever("abcdefgh");
-                //ChamarExecucao(FG06_Tarefas.Trinca.ObterTexto());
                 ValidarStages(triplice.ArquivoComissao, true, (int)codigoEsperadoStageComissao.Value);
                 ValidarTabelaDeRetorno(triplice.ArquivoComissao, false, false, new string[] { msgTabelaDeRetornoComissao });
             }

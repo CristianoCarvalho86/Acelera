@@ -241,9 +241,13 @@ namespace Acelera.Domain.Extensions
             }
         }
 
-        public static FG06_Tarefas ObterTarefaFG06Enum(this TipoArquivo tipoArquivo)
+        public static FG06_Tarefas ObterTarefaFG06Enum(this TipoArquivo tipoArquivo, bool emissao)
         {
-            return FG06_Tarefas.Trinca;
+            if (emissao)
+                return FG06_Tarefas.Trinca;
+            else
+                return FG06_Tarefas.TrincaCancelamento;
+
         }
 
         public static FG09_Tarefas ObterTarefaFG09Enum(this TipoArquivo tipoArquivo)

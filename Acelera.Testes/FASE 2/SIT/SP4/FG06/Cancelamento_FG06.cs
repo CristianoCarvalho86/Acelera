@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -29,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ValidarFGsAnterioresEErros(arquivoParcCancelamento);
             ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
 
-            ChamarExecucao("FGR_10_TRINCA_CANCELAMENTO");
+            ChamarExecucao(FG06_Tarefas.TrincaCancelamento.ObterTexto()) ;
             
             ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.AprovadoFG06);
             ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG06);
@@ -54,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ValidarFGsAnterioresEErros(arquivoParcCancelamento);
             ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
 
-            ChamarExecucao("FGR_10_TRINCA_CANCELAMENTO");
+            ChamarExecucao(FG06_Tarefas.TrincaCancelamento.ObterTexto());
 
             ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.AprovadoFG06);
             ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG06);
