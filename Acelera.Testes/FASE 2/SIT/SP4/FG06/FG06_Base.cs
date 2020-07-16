@@ -63,6 +63,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
                 throw new Exception("TIPO ARQUIVO NAO DEFINIDO.");
         }
 
+        protected void AdicionaErro(TipoArquivo tipo, Arquivo arquivo, int posicaoLinha = 0)
+        {
+            logger.AbrirBloco("ADICIONANDO ERRO NO ARQUIVO DE " + tipo.ObterTexto());
+            if (tipo == TipoArquivo.Cliente)
+            {
+                logger.Escrever("DEFINIDO : DT_NASCIMENTO = 20120416 ESPERANDO ERRO NA FG02");
+                arquivo.AlterarLinha(posicaoLinha, "DT_NASCIMENTO", "20120416");
+            }
+            else if (tipo == TipoArquivo.ParcEmissao || tipo == TipoArquivo.ParcEmissaoAuto || tipo == TipoArquivo.Comissao)
+            {
+                logger.Escrever("DEFINIDO : CD_RAMO = 00 ESPERANDO ERRO NA FG02");
+                arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", "00");
+            }
+            else
+                throw new Exception("TIPO ARQUIVO NAO DEFINIDO.");
+        }
+
         protected void SalvarTrinca(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true)
         {
             ClienteEnviado = salvaCliente;
@@ -118,14 +135,15 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             }
         }
 
-        public void ValidarFGsAnterioresEErros( Arquivo arquivo)
+        public void ValidarFGsAnterioresEErros( Arquivo arquivo, bool esperaSucesso = true)
         {
             var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG02, FGs.FG09 };
 
             foreach (var fg in listaFgs)
             {
-                ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
-
+                ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(esperaSucesso));
+                if (!esperaSucesso && fg == FGs.FG02)
+                    break;
             }
         }
 
