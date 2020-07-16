@@ -22,6 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarCancelamento(false, false, OperadoraEnum.VIVO, "9", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
 
+
+
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
             

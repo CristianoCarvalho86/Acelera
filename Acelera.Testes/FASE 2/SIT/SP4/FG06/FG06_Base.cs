@@ -38,26 +38,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ComissaoTemErro = false;
         }
 
-        protected void AdicionaErro(TipoArquivo tipo)
+        protected void AdicionaErro(TipoArquivo tipo, int posicaoLinha = 0)
         {
             logger.AbrirBloco("ADICIONANDO ERRO NO ARQUIVO DE " + tipo.ObterTexto());
             if (tipo == TipoArquivo.Cliente)
             {
                 ClienteTemErro = true;
                 logger.Escrever("DEFINIDO : DT_NASCIMENTO = 20120416 ESPERANDO ERRO NA FG02");
-                triplice.ArquivoCliente.AlterarLinha(0, "DT_NASCIMENTO", "20120416");
+                triplice.ArquivoCliente.AlterarLinha(posicaoLinha, "DT_NASCIMENTO", "20120416");
             }
             else if (tipo == TipoArquivo.ParcEmissao || tipo == TipoArquivo.ParcEmissaoAuto)
             {
                 ParcelaTemErro = true;
                 logger.Escrever("DEFINIDO : CD_RAMO = 00 ESPERANDO ERRO NA FG02");
-                triplice.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
+                triplice.ArquivoParcEmissao.AlterarLinha(posicaoLinha, "CD_RAMO", "00");
             }
             else if (tipo == TipoArquivo.Comissao)
             {
                 ComissaoTemErro = true;
                 logger.Escrever("DEFINIDO : CD_RAMO = 00 ESPERANDO ERRO NA FG02");
-                triplice.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");
+                triplice.ArquivoComissao.AlterarLinha(posicaoLinha, "CD_RAMO", "00");
             }
             else
                 throw new Exception("TIPO ARQUIVO NAO DEFINIDO.");
