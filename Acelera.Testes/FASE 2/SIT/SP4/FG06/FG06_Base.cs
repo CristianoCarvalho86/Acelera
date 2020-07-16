@@ -124,8 +124,12 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             foreach (var fg in listaFgs)
             {
-                ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
-
+                if (ClienteEnviado)
+                    ExecFgs(!ClienteTemErro, fg, triplice.ArquivoCliente);
+                if (ParcelaEnviado)
+                    ExecFgs(!ParcelaTemErro, fg, triplice.ArquivoParcEmissao);
+                if (ComissaoEnviado)
+                    ExecFgs(!ComissaoTemErro, fg, triplice.ArquivoComissao);
             }
         }
 

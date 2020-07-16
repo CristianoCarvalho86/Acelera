@@ -22,8 +22,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarCancelamento(false, false, OperadoraEnum.VIVO, "9", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
 
-
-
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
             
@@ -33,6 +31,31 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             ChamarExecucao("FGR_10_TRINCA_CANCELAMENTO");
             
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.AprovadoFG06);
+            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG06);
+        }
+
+        [TestMethod]
+        public void SAP_5947()
+        {
+            // VIVO - PARC rejeitado e CMS sucesso - Canc = 10
+            InicioTesteFG06("5947", "SAP-5947:FG06 - VIVO - PARC rejeitado e CMS sucesso - Canc = 10", OperadoraEnum.VIVO);
+
+            CriarEmissaoCompleta();
+
+            CriarCancelamento(false, false, OperadoraEnum.VIVO, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+
+            AdicionaErro(TipoArquivo.ParcEmissaoAuto);
+
+            SalvarArquivo(arquivoParcCancelamento);
+            SalvarArquivo(arquivoComissaoCancelamento);
+
+
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+
+            ChamarExecucao("FGR_10_TRINCA_CANCELAMENTO");
+
             ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.AprovadoFG06);
             ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG06);
         }
