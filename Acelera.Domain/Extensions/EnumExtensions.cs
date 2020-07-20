@@ -90,7 +90,7 @@ namespace Acelera.Domain.Extensions
             }
         }
 
-        public static string ObterTarefaDaFG(this TipoArquivo tipoArquivo, FGs FGdaTarefa)
+        public static string ObterTarefaDaFG(this TipoArquivo tipoArquivo, FGs FGdaTarefa, bool ehEmissao = true)
         {
             switch (FGdaTarefa)
             {
@@ -107,7 +107,7 @@ namespace Acelera.Domain.Extensions
                 case FGs.FG05:
                     return tipoArquivo.ObterTarefaFG05Enum().ObterTexto();
                 case FGs.FG06:
-                    return tipoArquivo.ObterTarefaFG06Enum().ObterTexto();
+                    return tipoArquivo.ObterTarefaFG06Enum(ehEmissao).ObterTexto();
                 case FGs.FG09:
                     return tipoArquivo.ObterTarefaFG09Enum().ObterTexto();
                 default:

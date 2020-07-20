@@ -5,7 +5,9 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.DataAccessRep.ODS;
 using Acelera.Testes.Validadores.FG02;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -137,6 +139,74 @@ namespace Acelera.Testes
                 ExplodeFalha();
 
             return linhasEncontradas;
+        }
+
+        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
+        {
+            if (alterarCdCliente && operadora != OperadoraEnum.SGS)
+            {
+                //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
+                int i = 0;
+                foreach (var linha in arquivo.Linhas)
+                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
+            }
+
+            SalvarArquivo();
+
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+
+            var linhas = ValidarStages(CodigoStage.AprovadoNaFG01);
+
+            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
+                foreach (var linha in linhas)
+                {
+                    if (new string[] { "10", "11", "9", "12", "13", "21" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                    {
+                        ODSInsertParcAutoCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSUpdateParcCancelamento.Update(logger);
+
+                    }
+                    else
+                    {
+                        ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissaoAuto, logger);
+                    }
+                }
+            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+                foreach (var linha in linhas)
+                {
+                    if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                    {
+                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSUpdateParcCancelamento.Update(logger);
+
+                    }
+                    else
+                    {
+                        ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissao, logger);
+                    } // se não for cancelamento
+                }
+            else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
+                foreach (var linha in linhas)
+                    ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+
+            else if (arquivo.tipoArquivo == TipoArquivo.Comissao)
+                foreach (var linha in linhas)
+                    ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+        }
+
+        public IList<ILinhaTabela> ValidarStages(CodigoStage codigo)
+        {
+            return ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigo);
+        }
+
+        public void ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado)
+        {
+            AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
+            ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigo);
+            AoMenosUmComCodigoEsperado = false;
         }
 
 

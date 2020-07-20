@@ -92,86 +92,12 @@ namespace Acelera.Testes
                 }
         }
 
-        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
-        {
-            if (alterarCdCliente && operadora != OperadoraEnum.SGS)
-            {
-                //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
-                int i = 0;
-                foreach (var linha in arquivo.Linhas)
-                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
-            }
-
-            SalvarArquivo();
-
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
-
-            var linhas = ValidarStages(CodigoStage.AprovadoNaFG01);
-
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
-                foreach (var linha in linhas)
-                {
-                    if (new string[] { "10", "11", "9", "12", "13", "21" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                    {
-                        ODSInsertParcAutoCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSUpdateParcCancelamento.Update(logger);
-
-                    }
-                    else
-                    {
-                        ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissaoAuto, logger);
-                    }
-                }
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
-                foreach (var linha in linhas)
-                {
-                    if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                    {
-                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSUpdateParcCancelamento.Update(logger);
-
-                    }
-                    else
-                    {
-                        ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissao, logger);
-                    } // se não for cancelamento
-                }
-            else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
-                foreach (var linha in linhas)
-                    ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-
-            else if (arquivo.tipoArquivo == TipoArquivo.Comissao)
-                foreach (var linha in linhas)
-                    ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-        }
-
         //protected override void SalvarArquivo()
         //{
         //    //foreach (var linha in arquivo.Linhas)
         //    //    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
         //    base.SalvarArquivo();
         //}
-
-        protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
-        {
-            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
-            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
-            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
-            logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
-
-            logger.FecharBloco();
-        }
-        protected void CarregarArquivo(Arquivo arquivo, TipoArquivo tipo, int qtdLinhas, OperadoraEnum operadora)
-        {
-            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
-            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(tipo, operadora, Parametros.pastaOrigem);
-            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
-            logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
-            logger.FecharBloco();
-        }
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {

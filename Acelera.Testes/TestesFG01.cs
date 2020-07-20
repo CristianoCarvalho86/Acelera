@@ -16,7 +16,7 @@ namespace Acelera.Testes
     public class TestesFG01 : TestesFG00
     {
         protected override string NomeFG => "FG01";
-        protected bool AoMenosUmComCodigoEsperado = false;
+
         public static IList<string> ObterProceduresFG01(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
@@ -97,17 +97,6 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        public IList<ILinhaTabela> ValidarStages(CodigoStage codigo)
-        {
-            return ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(),true,(int)codigo);
-        }
-
-        public void ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado)
-        {
-            AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
-            ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigo);
-            AoMenosUmComCodigoEsperado = false;
-        }
         public override void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             ValidarTabelaDeRetornoFG01(naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados);

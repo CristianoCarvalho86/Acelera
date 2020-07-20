@@ -23,6 +23,7 @@ namespace Acelera.Utils
 
             var fileName = new FileInfo(path).Name;
             var tipoArquivo = ObterTipoArquivo(fileName);
+
             if (header.Substring(121, 125).Contains("9.4"))
             {
                 if (tipoArquivo == TipoArquivo.Cliente)

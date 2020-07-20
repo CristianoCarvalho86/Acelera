@@ -1,6 +1,7 @@
 ﻿using Acelera.Data;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -38,6 +39,7 @@ namespace Acelera.Testes
         protected string nomeDoTeste;
         protected string localDoErro = string.Empty;
         protected string pathOrigem;
+        protected bool AoMenosUmComCodigoEsperado = false;
         protected TipoArquivo tipoArquivoTeste { get; set; }
         protected OperadoraEnum operadora => EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo);
 
@@ -99,41 +101,20 @@ namespace Acelera.Testes
             valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, arquivo.NomeArquivo);
         }
 
-        public virtual void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
+
+        protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {
-            //if(arquivo.tipoArquivo == TipoArquivo.Cliente)
-            //{
-            //    SalvarArquivo();
-            //    ChamarExecucao(FG00_Tarefas.Cliente.ObterTexto());
-            //    ChamarExecucao(FG01_Tarefas.Cliente.ObterTexto());
-            //    ODSInsertClienteData.Insert(arquivo.NomeArquivo, logger);
-            //}
-            //else if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
-            //{
-            //    SalvarArquivo();
-            //    ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
-            //    ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            //    ODSInsertParcData.Insert(arquivo.NomeArquivo, logger);
-            //}
-            //else if (arquivo.tipoArquivo == TipoArquivo.Sinistro)
-            //{
-            //    SalvarArquivo();
-            //    ChamarExecucao(FG00_Tarefas.ParcEmissao.ObterTexto());
-            //    ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
-            //    ODSInsertSinistroData.Insert(arquivo.NomeArquivo, logger);
-            //}
+            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
+            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
+            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
+            logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
+
+            logger.FecharBloco();
         }
 
         protected virtual void SalvarArquivo(bool alterarCdCliente, string nomeProc = "")
         {
             throw new NotImplementedException();
-        }
-
-        public virtual void ValidarODS()
-        {
-            throw new NotImplementedException();
-            //foreach (var arquivo in arquivosOds)
-            //    validadorODS = new ValidadorODSFG05(logger, arquivo);
         }
 
         protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)

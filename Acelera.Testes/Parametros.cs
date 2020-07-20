@@ -110,6 +110,16 @@ namespace Acelera.Testes
                 return dataArquivo;
             }
         }
+        public static string OperacaoTeste
+        {
+            get
+            {
+                var operacao = ConfigurationManager.AppSettings.Get("OperacaoTeste");
+                if (string.IsNullOrEmpty(operacao))
+                    throw new Exception("OperacaoTeste Atributo OperacaoTeste nao informado.") ;
+                return operacao;
+            }
+        }
 
         private static string _instanciaDB;
         public static string instanciaDB
