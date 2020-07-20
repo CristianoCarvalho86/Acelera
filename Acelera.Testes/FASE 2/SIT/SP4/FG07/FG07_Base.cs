@@ -56,14 +56,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             ExecutarEValidarFG06EmissaoSucesso();
         }
 
-        public void InicioTesteFG07(string numeroTeste, string descricao, OperadoraEnum operadora)
+        public void InicioTesteFG07(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true)
         {
             //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
             IniciarTeste(TipoArquivo.Comissao, numeroTeste, descricao);
 
             CarregarTriplice(operadora);
 
-            AlteracoesPadraoDaTrinca(triplice);
+            AlteracoesPadraoDaTrinca(triplice, geraCliente);
         }
 
         protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true)

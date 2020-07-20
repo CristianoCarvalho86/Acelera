@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6156()
         {
-            InicioTesteFG07("6156", "SAP-6156:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.LASA);
+            InicioTesteFG07("6156", "SAP-6156:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.LASA,false);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -51,16 +52,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6157()
         {
-            //?
             InicioTesteFG07("6157", "SAP-6157:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.LASA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
-            var valor = triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"].ObterValorDecimal() / 2;
-            triplice.ArquivoComissao.AlterarLinha(0, "VL_COMISSAO",valor.ValorFormatado());
-            triplice.ArquivoComissao.ReplicarLinha(0,1);
-            triplice.ArquivoComissao.AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
-            triplice.ArquivoComissao.AlterarLinha(1, "VL_COMISSAO", valor.ValorFormatado());
+            AdicionarTipoComissao(triplice.ArquivoComissao,triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"],"P",0);
 
             SalvaExecutaEValidaFG07();
 
@@ -69,14 +65,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6158()
         {
-            //?
             InicioTesteFG07("6158", " SAP-6158:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.LASA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
-            triplice.ArquivoParcEmissao.ReplicarLinha(0, 1);
-            var cobertura = dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[0]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]);
-            AlterarDadosDeCobertura(1, cobertura, triplice.ArquivoParcEmissao);
+            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
+            
+            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
 
             SalvaExecutaEValidaFG07();
 
@@ -94,11 +90,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao,dados);
 
             //ALTERACAO COMISSAO
-            triplice.ArquivoComissao.ReplicarLinha(0, 1);
-            var valor = triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"].ObterValorDecimal() / 2;
-            triplice.ArquivoComissao.AlterarLinha(0, "VL_COMISSAO", valor.ValorFormatado());
-            triplice.ArquivoComissao.AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
-            triplice.ArquivoComissao.AlterarLinha(1, "VL_COMISSAO", valor.ValorFormatado());
+            AdicionarTipoComissao(triplice.ArquivoComissao, triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
 
             triplice.ArquivoComissao.ReplicarLinha(0, 2);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[2]);
@@ -136,6 +128,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
+            
+            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
 
             SalvaExecutaEValidaFG07();
 
