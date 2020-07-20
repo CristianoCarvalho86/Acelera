@@ -429,8 +429,17 @@ namespace Acelera.Testes
         {
             arquivoParc.ReplicarLinha(posicaoLinha, 1);
 
-            var cobertura = dados.ObterCoberturaDiferenteDe(arquivoParc[0]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"]);
-            AlterarDadosDeCobertura(1, cobertura, arquivoParc);
+            var cobertura = dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"]);
+            AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
+        }
+
+        protected void AdicionarTipoComissao(Arquivo arquivo, string valorPremioLiquido, string cdTipoComissao, int posicaoLinha)
+        {
+            var valor = valorPremioLiquido.ObterValorDecimal() / 2;
+            arquivo.AlterarLinha(posicaoLinha, "VL_COMISSAO", valor.ValorFormatado());
+            arquivo.ReplicarLinha(posicaoLinha, 1);
+            arquivo.AlterarLinha(arquivo.Linhas.Count - 1, "CD_TIPO_COMISSAO", cdTipoComissao);
+            arquivo.AlterarLinha(arquivo.Linhas.Count - 1, "VL_COMISSAO", valor.ValorFormatado());
         }
 
     }

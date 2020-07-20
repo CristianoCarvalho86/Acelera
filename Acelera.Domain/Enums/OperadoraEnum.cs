@@ -20,6 +20,12 @@ namespace Acelera.Domain.Enums
         [Description("SGS")]
         SGS,
         [Description("POMPEIA")]
-        POMPEIA
+        POMPEIA,
+        [Description("PITZI")]
+        PITZI,
+        [Description("PAPCARD")]
+        PAPCARD,
+        [Description("COOP")]
+        COOP
     }
 }
