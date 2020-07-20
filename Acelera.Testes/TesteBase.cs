@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -224,14 +225,16 @@ namespace Acelera.Testes
             return linhaDeValidacao;
         }
 
-        protected virtual void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
+        protected virtual void IniciarTeste(TipoArquivo tipo, string numeroDoTeste = "", string nomeDoTeste = "")
         {
+            StackTrace stackTrace = new StackTrace();
             sucessoDoTeste = true;
-            this.numeroDoTeste = numeroDoTeste;
+            this.numeroDoTeste = stackTrace.GetFrame(1).GetMethod().Name.Remove(0, 4).Substring(0, 4);
             this.nomeDoTeste = nomeDoTeste;
             tipoArquivoTeste = tipo;
             CriarLog();
         }
+
 
         protected string[] ErrosEsperados(params string[] erros)
         {
