@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -143,7 +143,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -170,7 +170,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -197,7 +197,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Sinistro.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
