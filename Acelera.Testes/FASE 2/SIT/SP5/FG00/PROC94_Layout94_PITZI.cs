@@ -4,7 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
+namespace Acelera.Testes.FASE_2.SIT.SP5.FG00
 {
     [TestClass]
     public class PROC94_Layout94_PITZI : TestesFG00
