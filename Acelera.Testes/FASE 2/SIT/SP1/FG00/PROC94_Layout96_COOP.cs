@@ -1,26 +1,26 @@
 ﻿using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
-using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
 {
     [TestClass]
-    public class PROC94_Layout94_PITZI : TestesFG00
+    public class PROC96_Layout96_COOP : TestesFG00
     {
         /// <summary>
         /// No Body do arquivo CLIENTE no campo TIPO_REGISTRO, não informar valor, campo em branco, respeitando a tamanho do campo
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7922_CLIENTE_SemTipoRegistro()
+        public void SAP_7104_CLIENTE_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Cliente, "7922", "FG00 - PROC94 - Não informar o registro do Trailler no arquivo");
+            IniciarTeste(TipoArquivo.Cliente, "7104", "FG00 - PROC94 - Não informar o registro do Trailler no arquivo");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             RemoverTodasAsLinhas();
@@ -44,13 +44,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7923_PARC_EMISSAO_SemTipoRegistro()
+        public void SAP_7105_PARC_EMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "7923", "FG00 - PROC94 - No Body do arquivo PARC_EMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissao, "7105", "FG00 - PROC94 - No Body do arquivo PARC_EMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             RemoverTodasAsLinhas();
@@ -74,13 +74,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7924_COMISSAO_SemTipoRegistro()
+        public void SAP_7106_COMISSAO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Comissao, "7924", "FG00 - PROC94 - No Body do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "7106", "FG00 - PROC94 - No Body do arquivo EMS_COMISSAO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             RemoverTodasAsLinhas();
@@ -104,13 +104,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7925_OCR_COBRANCA_SemTipoRegistro()
+        public void SAP_7107_OCR_COBRANCA_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "7925", "FG00 - PROC94 - No Body do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "7107", "FG00 - PROC94 - No Body do arquivo OCR_COBRANCA no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             RemoverTodasAsLinhas();
@@ -134,13 +134,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7926_SINISTRO_SemTipoRegistro()
+        public void SAP_7109_SINISTRO_SemTipoRegistro()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "7926", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "7109", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             RemoverTodasAsLinhas();
@@ -165,13 +165,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7927_CLIENTE_TipoRegistro100()
+        public void SAP_7110_CLIENTE_TipoRegistro100()
         {
-            IniciarTeste(TipoArquivo.Cliente, "7927", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Cliente, "7110", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "TIPO_REGISTRO", "");
@@ -196,13 +196,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7928_PARC_EMISSAO_TipoRegistro100()
+        public void SAP_7111_PARC_EMISSAO_TipoRegistro100()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "7928", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.ParcEmissao, "7111", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "TIPO_REGISTRO", "");
@@ -227,13 +227,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7929_COMISSAO_TipoRegistro100()
+        public void SAP_7112_COMISSAO_TipoRegistro100()
         {
-            IniciarTeste(TipoArquivo.Comissao, "7929", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Comissao, "7112", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_EmsComissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "TIPO_REGISTRO", "");
@@ -258,13 +258,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_79230_OCR_COBRANCA_TipoRegistro100()
+        public void SAP_7113_OCR_COBRANCA_TipoRegistro100()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "7930", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.OCRCobranca, "7113", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "TIPO_REGISTRO", "");
@@ -289,13 +289,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG00
         [Ignore]
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_7931_SINISTRO_TipoRegistro100()
+        public void SAP_7115_SINISTRO_TipoRegistro100()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "7931", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
+            IniciarTeste(TipoArquivo.Sinistro, "7115", "FG00 - PROC94 - No Body do arquivo SINISTRO no campo TIPO_REGISTRO, não informar valor");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            arquivo = new Arquivo_Layout_9_6_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "TIPO_REGISTRO", "");
