@@ -84,6 +84,10 @@
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_Base.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_TIM.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG01\PROC192_Layout96_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG01\PROC192_Layout96_COOP.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG02\PROC72_Layout96_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG02\PROC72_Layout96_COOP.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />
