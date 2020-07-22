@@ -144,6 +144,11 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(esperaSucesso));
                 if (!esperaSucesso && fg == FGs.FG02)
                     break;
+                if(fg == FGs.FG00)
+                {
+                    ValidarControleArquivo();
+                    ValidarLogProcessamento(true, 1);
+                }
             }
         }
 
