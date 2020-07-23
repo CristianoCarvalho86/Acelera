@@ -6,6 +6,7 @@ using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace Acelera.Testes
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {
+            StackTrace stackTrace = new StackTrace();
+            sucessoDoTeste = true;
+            this.numeroDoTeste = stackTrace.GetFrame(1).GetMethod().Name.Remove(0, 4).Substring(0, 4);
+
             base.IniciarTeste(tipo, numeroDoTeste, nomeDoTeste);
             dados = new TabelaParametrosData(logger);
         }
