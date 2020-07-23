@@ -102,7 +102,6 @@ namespace Acelera.Testes
             valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, arquivo.NomeArquivo);
         }
 
-
         protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {
             logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
@@ -235,6 +234,9 @@ namespace Acelera.Testes
             StackTrace stackTrace = new StackTrace();
             sucessoDoTeste = true;
             this.numeroDoTeste = stackTrace.GetFrame(1).GetMethod().Name.Remove(0, 4).Substring(0, 4);
+            if(!int.TryParse(this.numeroDoTeste,out int r))
+                this.numeroDoTeste = numeroDoTeste;
+
             this.nomeDoTeste = nomeDoTeste;
             tipoArquivoTeste = tipo;
             CriarLog();

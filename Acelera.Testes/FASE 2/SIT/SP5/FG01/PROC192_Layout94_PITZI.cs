@@ -12,16 +12,16 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
 {
     [TestClass]
-    public class PROC192_Layout96_COOP : TestesFG01
+    public class PROC192_Layout94_LASA : TestesFG01
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_8906()
+        public void SAP_8965()
         {
             IniciarTeste(TipoArquivo.Cliente, "", "SAP-8906:FG01 - PROC 192 - C/C - CLIENTE - Informar endereço com em branco");
 
-            arquivo = new Arquivo_Layout_9_6_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "EN_ENDERECO", "");
 
@@ -43,12 +43,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_8907()
+        public void SAP_8966()
         {
             IniciarTeste(TipoArquivo.Cliente, "", "SAP-8907:FG01 - PROC 192 - C/C - CLIENTE - Informar endereço com um caracter");
 
-            arquivo = new Arquivo_Layout_9_6_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "EN_ENDERECO", "A");
 
@@ -69,12 +69,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
         }
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_8908()
+        public void SAP_8967()
         {
             IniciarTeste(TipoArquivo.Cliente, "", "SAP-8908:FG01 - PROC 192 - C/C - CLIENTE - Informar endereço com dois caracteres");
 
-            arquivo = new Arquivo_Layout_9_6_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "EN_ENDERECO", "AA");
 
@@ -96,12 +96,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_8909()
+        public void SAP_8968()
         {
             IniciarTeste(TipoArquivo.Cliente, "", " SAP-8909:FG01 - PROC 192 - S/C - CLIENTE - Informar endereço com três caracterws");
 
-            arquivo = new Arquivo_Layout_9_6_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "EN_ENDERECO", "AAA");
 
@@ -123,12 +123,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_8910()
+        public void SAP_8969()
         {
             IniciarTeste(TipoArquivo.Cliente, "", " SAP-8909:FG01 - PROC 192 - S/C - CLIENTE - Informar endereço com três caracterws");
 
-            arquivo = new Arquivo_Layout_9_6_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AlterarLinha(0, "EN_ENDERECO", "AAAA");
 
@@ -147,5 +147,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             ValidarTabelaDeRetorno();
             ValidarTeste();
         }
+
     }
 }
