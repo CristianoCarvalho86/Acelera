@@ -1,25 +1,25 @@
 ﻿using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
-using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG00
 {
     [TestClass]
-    public class PROC401_Layout94_PAPCARD : TestesFG00
+    public class PROC401_Layout96_PAPCARD : TestesFG00
     {
         /// <summary>
         /// CLIENTE - Importar arquivo com parceiro inexistente
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2624_CLIENTE_ParceiroInex()
+        public void SAP_7199_CLIENTE_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.Cliente, "2624", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.Cliente, "7199", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo = new Arquivo_Layout_9_6_Cliente();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
@@ -43,16 +43,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2625_PARC_EMISSAO_ParceiroInex()
+        public void SAP_7200_PARC_EMISSAO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "2625", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.ParcEmissao, "7200", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.PARCEIRO.PARCEMS-EV-/*R*/-20200103.TXT");
+            SalvarArquivo();
 
             AlterarNomeArquivo();
 
@@ -72,16 +72,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2626_EMS_COMISSAO_ParceiroInex()
+        public void SAP_7201_EMS_COMISSAO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.Comissao, "2626", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.Comissao, "7201", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.PARCEIRO.EMSCMS-EV-/*R*/-20200109.TXT");
+            SalvarArquivo();
 
             AlterarNomeArquivo();
 
@@ -101,16 +101,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2627_OCR_COBRANCA_ParceiroInex()
+        public void SAP_7202_OCR_COBRANCA_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.OCRCobranca, "2627", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.OCRCobranca, "7202", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            arquivo = new Arquivo_Layout_9_6_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.PARCEIRO.COBRANCA-EV-/*R*/-20191227.TXT");
+            SalvarArquivo();
 
             AlterarNomeArquivo();
 
@@ -130,16 +130,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2628_LANCTO_COMISSAO_ParceiroInex()
+        public void SAP_7203_LANCTO_COMISSAO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.LanctoComissao, "2628", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.LanctoComissao, "7203", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_LanctoComissao();
+            arquivo = new Arquivo_Layout_9_6_LanctoComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.PARCEIRO.LCTCMS-EV-/*R*/-20190531.TXT");
+            SalvarArquivo();
 
             AlterarNomeArquivo();
 
@@ -159,16 +159,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG00
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_2629_SINISTRO_ParceiroInex()
+        public void SAP_7204_SINISTRO_ParceiroInex()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "2629", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
+            IniciarTeste(TipoArquivo.Sinistro, "7204", "FG00 - PROC401 - Importar arquivo com parceiro inexistente");
 
             //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo = new Arquivo_Layout_9_6_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo($"C01.PARCEIRO.SINISTRO-EV-/*R*/-20200219.TXT");
+            SalvarArquivo();
 
             AlterarNomeArquivo();
 
