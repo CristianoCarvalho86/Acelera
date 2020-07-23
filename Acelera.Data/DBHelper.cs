@@ -93,6 +93,12 @@ namespace Acelera.Data
 
         public int Execute(string sql)
         {
+            return Execute(sql, out string erro);
+        }
+
+        public int Execute(string sql, out string erro)
+        {
+            erro = "";
             if (Conn.State == ConnectionState.Closed)
             {
                 Conn.Open();
@@ -101,13 +107,13 @@ namespace Acelera.Data
             {
                 command = new HanaCommand(sql);
                 command.Connection = Conn;
-                command.Prepare();
                 return command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                if(!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL"))
-                throw new Exception("ERRO AO EXECUTAR : " + ex.ToString());
+                erro = ex.Message;
+                if (!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL") && !ex.Message.ToUpper().Contains("INVALID SEQUENCE: SEQ_LOG_PROCESSAMENTO_8000"))
+                    throw new Exception("ERRO AO EXECUTAR : " + ex.ToString());
             }
             return 999;
         }

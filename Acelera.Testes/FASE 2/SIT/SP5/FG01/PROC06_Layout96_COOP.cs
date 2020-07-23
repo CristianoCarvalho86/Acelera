@@ -8,22 +8,21 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
 {
     [TestClass]
-    public class PROC01_Layout94_COOP : TestesFG01
+    public class PROC06_Layout96_COOP : TestesFG01
     {
-
         /// <summary>
-        /// No Header do arquivo CLIENTE no campo CD_TPA informar código 9.3
+        /// No Body do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_8118_CLIENTE_CD_TPA_9_3()
+        public void SAP_8176_CLIENTE_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.Cliente, "8118", "FG01 - PROC01 - No Header do arquivo CLIENTE no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.Cliente, "2399", "FG01 - PROC6 - No Header do arquivo CLIENTE no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_NASCIMENTO");
             arquivo = new Arquivo_Layout_9_6_Cliente();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.3");
+            AlterarLinha(0, "DT_NASCIMENTO", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -37,23 +36,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("1");
+            ValidarTabelaDeRetorno("6");
             ValidarTeste();
         }
 
         /// <summary>
-        /// No Header do arquivo PARC_EMISSAO no campo CD_TPA informar código 9.3
+        /// No Body do arquivo PARC_EMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_INICIO_VIGENCIA DT_FIM_VIGENCIA DT_VENCIMENTO DT_NASC_CONDUTOR
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_8119_PARC_EMISSAO_CD_TPA_9_3()
+        public void SAP_8177_PARC_EMISSAO_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "8119", "FG01 - PROC01 - No Header do arquivo PARC_EMISSAO no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.ParcEmissao, "2400", "FG01 - PROC6 - No Body do arquivo PARC_EMISSAO nos campos abaixo informar data inválida (Ex. 32131234) DT_REFERENCIA DT_PROPOSTA DT_EMISSAO DT_EMISSAO_ORIGINAL");
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.3");
+            AlterarLinha(0,"DT_REFERENCIA", "32131234");
+            AlterarLinha(0,"DT_PROPOSTA", "32131234");
+            AlterarLinha(0,"DT_EMISSAO", "32131234");
+            AlterarLinha(0, "DT_EMISSAO_ORIGINAL", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -67,53 +69,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("1");
+            ValidarTabelaDeRetorno("6");
             ValidarTeste();
         }
 
         /// <summary>
-        /// No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.3
+        /// No Body do arquivo OCR_COBRANCA nos campos abaixo informar data inválida (Ex. 32131234) DT_OCORRENCIA
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_8120_EMS_COMISSAO_CD_TPA_9_3()
+        public void SAP_8178_OCR_COBRANCA_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.Comissao, "8120", "FG01 - PROC01 - No Header do arquivo EMS_COMISSAO no campo CD_TPA informar código 9.3");
-            arquivo = new Arquivo_Layout_9_6_EmsComissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-
-            //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.3");
-
-            //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo();
-
-            //VALIDAR NA FG00
-            ValidarFGsAnteriores();
-
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.Comissao.ObterTexto());
-
-            //VALIDAR NA FG01
-            ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("1");
-            ValidarTeste();
-        }
-
-        /// <summary>
-        /// No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.3
-        /// </summary>
-        [TestMethod]
-        [TestCategory("Com Critica")]
-        public void SAP_8121_OCR_COBRANCA_CD_TPA_9_3()
-        {
-            IniciarTeste(TipoArquivo.OCRCobranca, "8121", "FG01 - PROC01 - No Header do arquivo OCR_COBRANCA no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.OCRCobranca, "2401", "FG01 - PROC6 - No Body do arquivo OCR_COBRANCA nos campos abaixo informar data inválida (Ex. 32131234) DT_OCORRENCIA");
             arquivo = new Arquivo_Layout_9_6_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.3");
+            AlterarLinha(0, "DT_OCORRENCIA", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -127,23 +99,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("1");
+            ValidarTabelaDeRetorno("6");
             ValidarTeste();
         }
 
+
         /// <summary>
-        /// No Header do arquivo SINISTRO no campo CD_TPA informar código 9.3
+        /// No Body do arquivo SINISTRO nos campos abaixo informar data inválida (Ex. 32131234) DT_REGISTRO DT_NASC_BENEFICIARIO DT_PAGAMENTO
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_8122_SINISTRO_CD_TPA_9_3()
+        public void SAP_8179_SINISTRO_DataInv_Body()
         {
-            IniciarTeste(TipoArquivo.Sinistro, "8122", "FG01 - PROC01 - No Header do arquivo SINISTRO no campo CD_TPA informar código 9.3");
+            IniciarTeste(TipoArquivo.Sinistro, "2403", "FG01 - PROC6 - No Body do arquivo SINISTRO no(s) campo(s) abaixo informar data inválida (Ex. 32131234) DT_REGISTRO DT_NASC_BENEFICIARIO DT_PAGAMENTO");
             arquivo = new Arquivo_Layout_9_6_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarHeader("CD_TPA", "9.3");
+            AlterarLinha(0,"DT_REGISTRO", "32131234");
+            AlterarLinha(0,"DT_NASC_BENEFICIARIO", "32131234");
+            AlterarLinha(0, "DT_PAGAMENTO", "32131234");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -157,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("1");
+            ValidarTabelaDeRetorno("6");
             ValidarTeste();
         }
 

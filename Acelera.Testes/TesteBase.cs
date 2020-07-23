@@ -177,13 +177,18 @@ namespace Acelera.Testes
         {
             if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
                 return;
+            string erroEncontrado = "";
             try
             {
                 // Thread.Sleep(15000);
                 var comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
                 logger.EscreverBloco($"EXECUTANDO TAREFA : '{taskName}'");
-                var retorno = helper.Execute(comando);
+                var retorno = helper.Execute(comando, out erroEncontrado);
+
                 logger.EscreverBloco($"RESULTADO DA TAREFA : '{retorno}'");
+
+                if (retorno == 999)
+                    logger.Escrever("HOUVE UM ERRO DESCARTADO NA EXECUÇÃO : " + erroEncontrado);
             }
             catch (Exception ex)
             {
