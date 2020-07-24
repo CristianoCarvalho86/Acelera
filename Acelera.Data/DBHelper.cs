@@ -112,7 +112,7 @@ namespace Acelera.Data
             catch (Exception ex)
             {
                 erro = ex.Message;
-                if (!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL") && !ex.Message.ToUpper().Contains("INVALID SEQUENCE: SEQ_LOG_PROCESSAMENTO_8000"))
+                if (!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL"))
                     throw new Exception("ERRO AO EXECUTAR : " + ex.ToString());
             }
             return 999;

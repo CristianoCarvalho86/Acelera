@@ -412,10 +412,20 @@ namespace Acelera.Testes
         {
             arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
             var index = arquivoParc.Linhas.Count - 1;
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_ENDOSSO", RandomNumber.GerarNumeroAleatorio(3));
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_PARCELA", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_PARCELA") + 1).ToString());
-            arquivoParc.AlterarLinhaSeExistirCampo(index, "NR_SEQUENCIAL_EMISSAO", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
+            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
+            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", arquivoParc[index]["CD_SUCURSAL"] + arquivoParc[index]["CD_RAMO"] +  RandomNumber.GerarNumeroAleatorio(7));
+            arquivoParc.AlterarLinha(index, "NR_PARCELA", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_PARCELA") + 1).ToString());
+            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
+        }
+
+        public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        {
+            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
+            var index = arquivoParc.Linhas.Count - 1;
+            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
+            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", "0");
+            arquivoParc.AlterarLinha(index, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
+            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO","1");
         }
 
         public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)
