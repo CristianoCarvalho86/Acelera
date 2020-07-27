@@ -98,6 +98,8 @@ namespace Acelera.Domain.Extensions
                     return tipoArquivo.ObterTarefaFG00Enum().ObterTexto();
                 case FGs.FG01:
                     return tipoArquivo.ObterTarefaFG01Enum().ObterTexto();
+                case FGs.FG01_2:
+                    return tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto();
                 case FGs.FG02:
                     return tipoArquivo.ObterTarefaFG02Enum().ObterTexto();
                 case FGs.FG03:

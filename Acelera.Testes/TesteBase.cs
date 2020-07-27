@@ -358,6 +358,12 @@ namespace Acelera.Testes
             AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
         }
 
-
+        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
+        {
+            arquivo = new T();
+            CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
+            IgualarCamposQueExistirem(arquivoParcela, arquivo);
+            return arquivo;
+        }
     }
 }

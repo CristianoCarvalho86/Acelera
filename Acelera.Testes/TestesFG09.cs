@@ -101,13 +101,7 @@ namespace Acelera.Testes
             return arquivo.Clone();
         }
 
-        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
-        {
-            arquivo = new T();
-            CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
-            IgualarCamposQueExistirem(arquivoParcela, arquivo);
-            return arquivo;
-        } 
+        
         protected Arquivo CriarParcelaCancelamento<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, string cdTipoEmissao = "10", string cdMovtoCobranca = "02", string nrSequencialEmissao = "") where T : Arquivo, new()
         {
             arquivo = new T();
