@@ -77,40 +77,7 @@ namespace Acelera.Testes
             }
         }
 
-        public abstract void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
-        public virtual void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false , params string[] codigosDeErroEsperados)
-        {
-            ValidarTabelaDeRetorno(naoDeveEncontrar, false, codigosDeErroEsperados);
-        }
-
-        public virtual IList<ILinhaTabela> ValidarStages(TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0)
-        {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return null;
-
-            var linhasEncontradas = new List<ILinhaTabela>();
-            try
-            {
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-                var validador = new ValidadorStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), arquivo.NomeArquivo, logger,
-                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
-
-
-                if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{tabela.ObterTexto()}");
-                else
-                    ExplodeFalha();
-            }
-            catch (Exception ex)
-            {
-                TratarErro($" Validação da Stage : {tabela.ObterTexto()} - {ex.Message}");
-            }
-
-            if (sucessoDoTeste == false)
-                ExplodeFalha();
-
-            return linhasEncontradas;
-        }
+        public abstract void ValidarTabelaDeRetorno(Arquivo arquivo,bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
 
         public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
         {
@@ -139,6 +106,15 @@ namespace Acelera.Testes
                 ExplodeFalha();
 
             return linhasEncontradas;
+        }
+
+        public void ExecutarEValidarFG01_2(Arquivo arquivo)
+        {
+            logger.EscreverBloco("Inicio da Validação da FG01_2.");
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
+            ValidarStages(CodigoStage.AprovadoNaFG01_2,false, arquivo);
+            ValidarTabelaDeRetorno(arquivo,false);
+            logger.EscreverBloco("Fim da Validação da FG01_2. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
         }
 
         public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
@@ -197,34 +173,28 @@ namespace Acelera.Testes
                     ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
         }
 
-        public IList<ILinhaTabela> ValidarStages(CodigoStage codigo)
-        {
-            return ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigo);
-        }
 
-        public void ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado)
+        public IList<ILinhaTabela> ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false, Arquivo arquivo = null)
         {
+            arquivo = arquivo == null ? this.arquivo : arquivo;
             AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
-            ValidarStages(arquivo.tipoArquivo.ObterTabelaStageEnum(), true, (int)codigo);
+            var linhas = ValidarStages(arquivo,true, (int)codigo);
             AoMenosUmComCodigoEsperado = false;
+            return linhas;
         }
 
 
         protected void AjustarEntradaErros(ref string[] erros)
         {
-            if (erros.Length == 1 && erros.Contains(string.Empty))
+            if (erros == null || (erros.Length == 1 && erros.Contains(string.Empty)))
                 erros = new string[] { };
 
         }
 
-        protected void ExplodeFalha(string descricao)
+        protected void ExplodeFalha(string descricao = null)
         {
-            logger.Erro(descricao);
-            ExplodeFalha();
-        }
-
-        protected void ExplodeFalha()
-        {
+            if(!string.IsNullOrEmpty(descricao))
+                logger.Erro(descricao);
             sucessoDoTeste = false;
             logger.TesteComFalha();
             Assert.Fail();

@@ -97,12 +97,13 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        public override void ValidarTabelaDeRetorno(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(Arquivo arquivo = null, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetornoFG01(naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados);
+            arquivo = arquivo == null ? this.arquivo : arquivo;
+            ValidarTabelaDeRetornoFG01(arquivo,naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados);
         }
 
-        public void ValidarTabelaDeRetornoFG01(bool naoDeveEncontrar = false,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public void ValidarTabelaDeRetornoFG01(Arquivo arquivo ,bool naoDeveEncontrar = false,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -123,6 +124,12 @@ namespace Acelera.Testes
             {
                 TratarErro($" Validação da Tabela Retorno");
             }
+        }
+
+        public void ValidarFG01_2(Arquivo arquivo, CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = null)
+        {
+            ValidarTabelaDeRetorno(erroEsperadoNaTabelaDeRetorno);
+            ValidarStages(codigoEsperadoStage);
         }
 
         public string ObterContratoPlanoB()

@@ -138,6 +138,29 @@ namespace Acelera.Domain.Extensions
             }
         }
 
+        public static FG01_2_Tarefas ObterTarefaFG01_2Enum(this TipoArquivo tipoArquivo)
+        {
+            switch (tipoArquivo)
+            {
+                case TipoArquivo.Cliente:
+                    return FG01_2_Tarefas.Cliente;
+                case TipoArquivo.Comissao:
+                    return FG01_2_Tarefas.Comissao;
+                case TipoArquivo.LanctoComissao:
+                    return FG01_2_Tarefas.LanctoComissao;
+                case TipoArquivo.OCRCobranca:
+                    return FG01_2_Tarefas.OCRCobranca;
+                case TipoArquivo.ParcEmissao:
+                    return FG01_2_Tarefas.ParcEmissao;
+                case TipoArquivo.ParcEmissaoAuto:
+                    return FG01_2_Tarefas.ParcEmissaoAuto;
+                case TipoArquivo.Sinistro:
+                    return FG01_2_Tarefas.Sinistro;
+                default:
+                    throw new Exception($"Tabela nao definida para o Enum {tipoArquivo.ObterTexto()}.");
+            }
+        }
+
         public static FG01_1_Tarefas ObterTarefaFG01_1_Enum(this TipoArquivo tipoArquivo)
         {
             switch (tipoArquivo)

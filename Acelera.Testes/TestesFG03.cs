@@ -364,7 +364,7 @@ namespace Acelera.Testes
                 base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
                 base.ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList());
                 base.ValidarStages(CodigoStage.AprovadoNaFG01);
-                ValidarTabelaDeRetornoFG01();
+                ValidarTabelaDeRetornoFG01(arquivo);
                 logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
                 ValidarTeste();
 

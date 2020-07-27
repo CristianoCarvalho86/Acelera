@@ -45,8 +45,17 @@ namespace Acelera.Testes
             base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
             base.ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
             base.ValidarStages(CodigoStage.AprovadoNaFG01);
-            ValidarTabelaDeRetornoFG01();
+            ValidarTabelaDeRetornoFG01(arquivo);
             logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
+            if(arquivo.tipoArquivo == TipoArquivo.Sinistro)
+            {
+                logger.EscreverBloco("Inicio da Execução da FG01_1.");
+                base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_1_Enum().ObterTexto());
+                logger.EscreverBloco("Fim da Execução da FG01_1. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
+            }
+
+
+
             ValidarTeste();
             logger.EscreverBloco("Inicio da FG02.");
         }
@@ -61,7 +70,7 @@ namespace Acelera.Testes
             ValidarTabelaDeRetorno(naoDeveEncontarOsErrosDefinidos, false, codigosDeErroEsperados);
         }
 
-        public override void ValidarTabelaDeRetorno(bool naoDeveEncontrarOsErrosDefinidos,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(Arquivo arquivo, bool naoDeveEncontrarOsErrosDefinidos,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -71,29 +80,6 @@ namespace Acelera.Testes
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
                 var validador = new ValidadorTabelaRetorno(arquivo.tipoArquivo.ObterTabelaStageEnum(), arquivo.NomeArquivo, logger,
-                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
-
-                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))
-                    logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                else
-                    ExplodeFalha();
-            }
-            catch (Exception)
-            {
-                TratarErro($" Validação da Tabela Retorno");
-            }
-        }
-
-        public void ValidarTabelaDeRetorno(Arquivo _arquivo, bool naoDeveEncontrarOsErrosDefinidos, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
-        {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                return;
-
-            try
-            {
-                AjustarEntradaErros(ref codigosDeErroEsperados);
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetorno(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger,
                     valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))
@@ -120,7 +106,7 @@ namespace Acelera.Testes
 
             ValidarTabelaDeRetorno(naoDeveEncontrar, true, erros);
         }
-        public void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
+        public new void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
         {
             ValidarTabelaDeRetorno(false, false, codigosDeErroEsperados);
         }

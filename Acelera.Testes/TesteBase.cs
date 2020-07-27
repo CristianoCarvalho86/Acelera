@@ -176,18 +176,23 @@ namespace Acelera.Testes
         {
             if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
                 return;
-            string erroEncontrado = "";
             try
             {
-                // Thread.Sleep(15000);
-                var comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
-                logger.EscreverBloco($"EXECUTANDO TAREFA : '{taskName}'");
-                var retorno = helper.Execute(comando, out erroEncontrado);
+                var comando = "";
+                if (taskName.Contains("FGR_01_") && !char.IsDigit(taskName[7]))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
+                    comando = $"CALL {Parametros.instanciaDB}.FGR_01_PARCELA_SP()";
+                else
+                    comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
+
+                logger.AbrirBloco($"EXECUTANDO TAREFA : '{taskName}'");
+                logger.Escrever($"EXECUTANDO COMANDO : {comando}");
+                var retorno = helper.Execute(comando, out string erroEncontrado);
 
                 logger.EscreverBloco($"RESULTADO DA TAREFA : '{retorno}'");
 
                 if (retorno == 999)
                     logger.Escrever("HOUVE UM ERRO DESCARTADO NA EXECUÇÃO : " + erroEncontrado);
+                logger.FecharBloco();
             }
             catch (Exception ex)
             {

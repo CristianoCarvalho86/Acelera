@@ -231,7 +231,7 @@ namespace Acelera.Testes
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
             ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetornoFG01();
+            ValidarTabelaDeRetornoFG01(arquivo);
             logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             ValidarTeste();
             logger.EscreverBloco("Fim da FG02.");
