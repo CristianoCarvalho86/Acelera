@@ -1,0 +1,97 @@
+﻿using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_6;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
+{
+    [TestClass]
+    public class PROC231_Layout94_TIM : TestesFG05
+    {
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9305()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "9305", "FG05 - PROC231 - ");
+            
+
+            //Envia parc normal
+            var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
+            EnviarParaOds(arquivoods1);
+
+            arquivo = new Arquivo_Layout_9_6_EmsComissao();
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+
+            //CriarComissao();
+
+            AlterarLinha(0, "VL_COMISSAO", "100");
+
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "231", 1);
+        }
+
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_9306()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "9306", "FG05 - PROC231 - ");
+
+
+            //Envia parc normal
+            var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            CriarNovaLinhaParaEmissao(arquivoods1, 0);
+
+            EnviarParaOds(arquivoods1);
+
+            arquivo = new Arquivo_Layout_9_6_EmsComissao();
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+
+            //CriarComissao();
+
+            AlterarLinha(0, "VL_COMISSAO", "0");
+
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_9307()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "9307", "FG05 - PROC231 - ");
+
+
+            //Envia parc normal
+            var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
+            EnviarParaOds(arquivoods1);
+
+            arquivo = new Arquivo_Layout_9_6_EmsComissao();
+            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+
+            //CriarComissao();
+
+            AlterarLinha(0, "VL_COMISSAO", "0");
+
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+        }
+
+    }
+}

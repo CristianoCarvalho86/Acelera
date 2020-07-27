@@ -12,9 +12,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9267()
+        public void SAP_9255()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9267", "FG05 - PROC219 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9255", "FG05 - PROC219 - ");
 
 
             //Envia parc normal
@@ -34,9 +34,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9268()
+        public void SAP_9256()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9180", "FG05 - PROC46 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9256", "FG05 - PROC46 - ");
 
             //Envia parc normal
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
@@ -66,9 +66,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9184()
+        public void SAP_9257()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9267", "FG05 - PROC219 - ");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9257", "FG05 - PROC219 - ");
 
 
             //Envia parc normal

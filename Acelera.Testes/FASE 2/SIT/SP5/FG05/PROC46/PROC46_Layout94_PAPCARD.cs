@@ -21,9 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
             EnviarParaOds(arquivoods1);
 
@@ -47,9 +45,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
 
             EnviarParaOds(arquivoods1);
 
@@ -74,9 +71,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
 
             EnviarParaOds(arquivoods1);
 
@@ -100,9 +96,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
 
             EnviarParaOds(arquivoods1);
 
@@ -127,10 +122,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
-            //var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
 
             EnviarParaOds(arquivoods1);
 
@@ -153,10 +146,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
-            //var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
 
             SalvarArquivo();
 
@@ -174,10 +165,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
-            //var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
 
             EnviarParaOds(arquivoods1);
 
@@ -200,10 +189,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            //arquivoods1.AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
-            //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
-            //var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
+            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+
 
             SalvarArquivo();
 
