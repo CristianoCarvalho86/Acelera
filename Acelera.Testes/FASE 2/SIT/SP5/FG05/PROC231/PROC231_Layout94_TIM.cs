@@ -25,10 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
 
             EnviarParaOds(arquivoods1);
 
-            arquivo = new Arquivo_Layout_9_6_EmsComissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
-
-            //CriarComissao();
+            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
 
             AlterarLinha(0, "VL_COMISSAO", "100");
 
@@ -57,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             arquivo = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
 
-            //CriarComissao();
+            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
 
             AlterarLinha(0, "VL_COMISSAO", "0");
 
@@ -84,7 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             arquivo = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
 
-            //CriarComissao();
+            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
 
             AlterarLinha(0, "VL_COMISSAO", "0");
 
