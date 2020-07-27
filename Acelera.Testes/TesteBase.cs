@@ -179,7 +179,7 @@ namespace Acelera.Testes
             try
             {
                 var comando = "";
-                if (taskName.Contains("FGR_01_") && !char.IsDigit(taskName[7]))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
+                if (taskName.Contains("FGR_01_PARCELA"))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
                     comando = $"CALL {Parametros.instanciaDB}.FGR_01_PARCELA_SP()";
                 else
                     comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
