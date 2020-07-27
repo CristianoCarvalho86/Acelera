@@ -152,7 +152,7 @@
     <Compile Include="FASE 2\SIT\SP5\FG02\PROC72_Layout96_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC219\PROC219_Layout94_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC225\PROC225_Layout94_PAPCARD.cs" />
-    <Compile Include="FASE 2\SIT\SP5\FG05\PROC46\PROC46_Layout96_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG05\PROC46\PROC46_Layout94_PAPCARD.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />
