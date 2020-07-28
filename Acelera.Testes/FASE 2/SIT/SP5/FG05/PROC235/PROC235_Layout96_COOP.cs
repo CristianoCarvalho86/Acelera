@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
+namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
 {
     [TestClass]
     public class PROC235_Layout96_COOP : TestesFG05
@@ -17,18 +17,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
         [TestCategory("Com Critica")]
         public void SAP_9368()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9360", "SAP-9368:FG05 - PROC 233 - C/C - PARCELA - Contrato com registro rejeitado - Mesmo arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9368", "SAP-9368:FG05 - PROC 235 - C/C - PARCELA - Contrato com registro rejeitado - Mesmo arquivo");
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
-            AlterarLinha(1, "CD_RAMO", "00");
+            AlterarLinha(1, "CD_RAMO", cobertura.CdRamo);
 
             SalvarArquivo();
+            var arquivoparc = arquivo.Clone();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "233", 1);
+            CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivoparc);
+            AlterarLinha(1, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], arquivo[0]["CD_RAMO"], out string produto));
+
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "235", 1);
         }
 
 
