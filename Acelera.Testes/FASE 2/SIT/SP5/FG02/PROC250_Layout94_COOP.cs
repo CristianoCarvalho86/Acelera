@@ -24,17 +24,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             AlterarLinha(0, "VL_PREMIO_TOTAL", "200");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "100");
             AlterarLinha(0, "VL_IOF", "100");
+            AlterarHeader("VERSAO", "9.6");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
-            //VALIDAR NA FG00
             ValidarFGsAnteriores();
 
-            //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
-            //VALIDAR NA FG01
             ValidarLogProcessamento(true);
             ValidarStages(CodigoStage.RecusadoNaFG01);
             ValidarTabelaDeRetorno("250");

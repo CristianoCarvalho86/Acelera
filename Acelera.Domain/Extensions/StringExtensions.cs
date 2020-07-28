@@ -21,7 +21,7 @@ namespace Acelera.Domain.Extensions
             return texto.Remove(novoTexto.Length - 1) + novoTexto;
         }
 
-        public static int? ObterValorInteiro(this string texto)
+        public static int? ObterParteNumericaDoTexto(this string texto)
         {
             string b = string.Empty;
 
@@ -40,6 +40,16 @@ namespace Acelera.Domain.Extensions
         public static decimal ObterValorDecimal(this string texto)
         {
             return decimal.Parse(texto.Replace(".", ","));
+        }
+
+        public static long ObterValorLong(this string texto)
+        {
+            return long.Parse(texto.Replace(".", ","));
+        }
+
+        public static int ObterValorInteiro(this string texto)
+        {
+            return int.Parse(texto.Replace(".", ","));
         }
     }
 }
