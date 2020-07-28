@@ -170,7 +170,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
         private void ExecFgs(bool sucesso, FGs fg, Arquivo arquivo)
         {
-            if (sucesso || fg == FGs.FG00 || fg == FGs.FG01)
+            if (sucesso || fg == FGs.FG00 || fg == FGs.FG01 || fg == FGs.FG01_2)
             {
                 ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
             }
