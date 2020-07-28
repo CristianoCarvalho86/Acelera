@@ -168,6 +168,10 @@
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC241\PROC241_Layout94_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC242\PROC242_Layout94_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC242\PROC242_Layout94_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG05\PROC243\PROC243_Layout94_COOP.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG05\PROC243\PROC243_Layout94_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG05\PROC249\PROC249_Layout94_COOP.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG05\PROC249\PROC249_Layout94_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC46\PROC46_Layout96_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC46\PROC46_Layout94_PAPCARD.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />
@@ -736,9 +740,7 @@
       <Name>Acelera.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FASE 2\SIT\SP5\FG05\PROC243\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
