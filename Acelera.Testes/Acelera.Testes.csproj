@@ -158,6 +158,7 @@
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC231\PROC231_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC232\PROC232_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC233\PROC233_Layout94_TIM.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG05\PROC235\PROC235_Layout96_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC235\PROC235_Layout96_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC46\PROC46_Layout94_PAPCARD.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />
