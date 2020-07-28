@@ -76,6 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             arquivo = new Arquivo_Layout_9_6_Cliente();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
+            AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "EN_ENDERECO", "AA");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
