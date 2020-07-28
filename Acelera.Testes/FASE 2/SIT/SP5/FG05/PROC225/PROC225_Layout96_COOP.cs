@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 {
     [TestClass]
-    public class PROC225_Layout94_PAPCARD : TestesFG05
+    public class PROC225_Layout96_COOP : TestesFG05
     {
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -72,14 +72,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
-            CarregarArquivo(arquivo, 2, OperadoraEnum.PAPCARD);
+            var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivoods1, 2, OperadoraEnum.PAPCARD);
 
             CriarNovoContrato(0);
             CriarNovoContrato(1);
             var campos = new string[]
             { "CD_COBERTURA","NR_SEQ_EMISSAO","TIPO_EMISSAO", "NR_ENDOSSO" };
-            IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), campos);
+            IgualarCampos(arquivoods1.ObterLinha(0), arquivoods1.ObterLinha(1), campos);
 
             SalvarArquivo();
 

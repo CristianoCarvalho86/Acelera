@@ -77,7 +77,7 @@ namespace Acelera.Testes
                 AdicionarLinha(i, ObterLinha(0));
                 AlterarLinha(i, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
                 AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", (i + 1).ToString());
-                AlterarLinha(i, "NR_PARCELA",  (i + ObterValorFormatado(0, "NR_PARCELA").ObterValorInteiro()).ToString());
+                AlterarLinha(i, "NR_PARCELA",  (i + ObterValorFormatado(0, "NR_PARCELA").ObterParteNumericaDoTexto()).ToString());
                 AlterarLinha(i, "NR_ENDOSSO", GerarNumeroAleatorio(6));
                 AlterarLinha(i, "ID_TRANSACAO_CANC", "");
             }

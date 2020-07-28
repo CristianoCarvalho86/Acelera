@@ -350,12 +350,13 @@ namespace Acelera.Testes
             return linhaCancelamento;
         }
 
-        public void CriarNovoContrato(int posicaoLinha)
+        public void CriarNovoContrato(int posicaoLinha, Arquivo arquivo = null)
         {
-            var contrato = AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
-            AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
-            AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
-            AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
+            arquivo = arquivo == null ? this.arquivo : arquivo;
+            var contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
+            arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
+            arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
         }
 
         protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()

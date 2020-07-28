@@ -26,14 +26,15 @@ namespace Acelera.Testes
                     lista.Add("PRC_0008");
                     lista.Add("PRC_0041");
                     lista.Add("PRC_0126");
-                    lista.Add("PRC_0022");
+                    //lista.Add("PRC_0022"); PASSAR PRA 1_2
                     break;
                 case TipoArquivo.ParcEmissao:
                     lista.Add("PRC_0014");
                     lista.Add("PRC_0015");
                     lista.Add("PRC_0126");
-                    lista.Add("PRC_200000");
-                    lista.Add("PRC_0022");
+                    lista.Add("PRC_0010");
+                    //lista.Add("PRC_200000");
+                    //lista.Add("PRC_0022");
                     break;
 
                 case TipoArquivo.ParcEmissaoAuto:
@@ -42,12 +43,13 @@ namespace Acelera.Testes
                     lista.Add("PRC_0015");
                     lista.Add("PRC_0126");
                     lista.Add("PRC_0213");
-                    lista.Add("PRC_200000");
-                    lista.Add("PRC_0022");
+                    lista.Add("PRC_0010");
+                    //lista.Add("PRC_200000");
+                    //lista.Add("PRC_0022");
                     break;
                 case TipoArquivo.Comissao:
-                    lista.Add("PRC_0022");
-                    lista.Add("PRC_200000");
+                    //lista.Add("PRC_0022");
+                    //lista.Add("PRC_200000");
                     break;
                 case TipoArquivo.LanctoComissao:
                 case TipoArquivo.OCRCobranca:
@@ -58,9 +60,9 @@ namespace Acelera.Testes
                     lista.Add("PRC_0062");
                     lista.Add("PRC_0066");
                     lista.Add("PRC_0126");
-                    lista.Add("PRC_200000");
+                    //lista.Add("PRC_200000");
                     lista.Add("PRC_0074");
-                    lista.Add("PRC_0022");
+                    //lista.Add("PRC_0022");
                     break;
                 default:
                     throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
