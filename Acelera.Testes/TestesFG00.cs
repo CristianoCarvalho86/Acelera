@@ -96,6 +96,8 @@ namespace Acelera.Testes
 
         public void ValidarTabelaDeRetornoFG00(bool naoDeveEncontrar = false ,bool validaQuantidadeErros = false, Arquivo arquivo = null, params string[] codigosDeErroEsperados)
         {
+            arquivo = arquivo == null ? this.arquivo : arquivo;
+
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
@@ -110,9 +112,9 @@ namespace Acelera.Testes
             else
                 ExplodeFalha();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TratarErro("FG00: Validação da Tabela de Retorno");
+                TratarErro("FG00: Validação da Tabela de Retorno - "+ex.Message);
             }
         }
 
