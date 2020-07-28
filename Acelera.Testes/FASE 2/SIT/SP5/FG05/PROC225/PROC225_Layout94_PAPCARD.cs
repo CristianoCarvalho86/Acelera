@@ -79,7 +79,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             CriarNovoContrato(1);
             var campos = new string[]
             { "CD_COBERTURA","NR_SEQ_EMISSAO","TIPO_EMISSAO", "NR_ENDOSSO" };
-            IgualarCampos(arquivoods1.ObterLinha(0), arquivoods1.ObterLinha(1), campos);
+            IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), campos);
 
             SalvarArquivo();
 
