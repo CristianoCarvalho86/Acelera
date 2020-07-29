@@ -47,7 +47,7 @@ namespace Acelera.Testes
 
         public TesteBase()
         {
-            dados = new TabelaParametrosData(logger);
+
         }
 
         protected string ObterArquivoOrigem(string nomeArquivo)
@@ -66,7 +66,7 @@ namespace Acelera.Testes
             //else
             logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
-
+            dados = new TabelaParametrosData(logger);
         }
 
         protected virtual void SalvarArquivo()

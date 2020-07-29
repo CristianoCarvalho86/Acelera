@@ -67,7 +67,7 @@ namespace Acelera.Domain.Layouts._9_4
                 linha.Campos.Add(new CampoDoArquivo("ID_TRANSACAO_CANC", 040));
                 linha.Campos.Add(new CampoDoArquivo("CD_PLANO", 005));
                 linha.Campos.Add(new CampoDoArquivo("CD_UF_RISCO", 002));
-                linha.Campos.Add(new CampoDoArquivo("FILLER", 105));
+                linha.Campos.Add(new CampoDoArquivo("FILLER", 100));
         }
     }
 }
