@@ -56,8 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             RemoverLinha(0);
             AjustarQtdLinFooter();
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
-            AlterarLinha(0, "NR_PARCELA", "1");
+            AlterarLinha(0, "NR_PARCELA", "2");
 
             SalvarArquivo();
 

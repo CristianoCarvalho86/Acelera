@@ -15,8 +15,6 @@ namespace Acelera.Testes
 {
     public class TestesFG02 : TestesFG01
     {
-        public TabelaParametrosData dados { get; private set; }
-
         protected override string NomeFG => "FG02";
         public TestesFG02():base()
         {

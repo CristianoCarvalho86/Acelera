@@ -33,6 +33,7 @@ namespace Acelera.Testes
     {
         private DBHelperHana helper = DBHelperHana.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
+        public TabelaParametrosData dados { get; private set; }
         protected string numeroDoTeste;
         protected bool sucessoDoTeste;
         protected string numeroDoLote;
