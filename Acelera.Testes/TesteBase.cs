@@ -370,6 +370,10 @@ namespace Acelera.Testes
             arquivo = new T();
             CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
             IgualarCamposQueExistirem(arquivoParcela, arquivo);
+
+            foreach (var linha in arquivoParcela.Linhas)
+                AlterarLinha(linha.Index, "CD_TIPO_EMISSAO","");
+
             return arquivo;
         }
     }
