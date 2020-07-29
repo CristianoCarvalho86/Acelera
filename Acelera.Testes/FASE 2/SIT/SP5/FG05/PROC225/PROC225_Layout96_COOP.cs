@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             CriarNovaLinhaParaEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo, 1);
 
-            IgualarCampos(arquivo.ObterLinha(1), arquivo.ObterLinha(0), new string[]{ "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };);
+            IgualarCampos(arquivo.ObterLinha(1), arquivo.ObterLinha(0), new string[]{ "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" });
 
 
             SalvarArquivo();
