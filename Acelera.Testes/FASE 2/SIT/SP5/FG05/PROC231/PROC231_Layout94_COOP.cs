@@ -22,6 +22,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
             AlterarHeader("VERSAO", "9.6");
+            CriarNovoContrato(0);
+
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             EnviarParaOds(arquivo);

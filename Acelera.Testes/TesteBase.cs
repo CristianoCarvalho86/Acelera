@@ -45,6 +45,11 @@ namespace Acelera.Testes
         protected TipoArquivo tipoArquivoTeste { get; set; }
         protected OperadoraEnum operadora => EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo);
 
+        public TesteBase()
+        {
+            dados = new TabelaParametrosData(logger);
+        }
+
         protected string ObterArquivoOrigem(string nomeArquivo)
         {
             var path = Parametros.pastaOrigem + nomeArquivo;
@@ -286,10 +291,10 @@ namespace Acelera.Testes
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
             var nomeCampo = string.Empty;
-                 foreach (var campo in campos)
-                {
-                    linhaDestino.ObterCampoDoArquivo(campo).AlterarValor(linhaOrigem.ObterCampoDoArquivo(campo).ValorFormatado);
-                }
+            foreach (var campo in campos)
+            {
+                linhaDestino.ObterCampoDoArquivo(campo).AlterarValor(linhaOrigem.ObterCampoDoArquivo(campo).ValorFormatado);
+            }
             logger.FecharBloco();
         }
 
@@ -326,10 +331,10 @@ namespace Acelera.Testes
                 }
         }
 
-        public void CriarArquivoCancelamento (Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento ,string cdTipoEmissao, string cdMovtoCobranca = "02",
+        public void CriarArquivoCancelamento(Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
         string nrSequencialEmissao = "")
         {
-            foreach(var linha in ArquivoEmissao.Linhas)
+            foreach (var linha in ArquivoEmissao.Linhas)
             {
                 ArquivoCancelamento.AdicionarLinha(CriarLinhaCancelamento(linha, cdTipoEmissao, cdMovtoCobranca, nrSequencialEmissao));
             }
@@ -372,8 +377,8 @@ namespace Acelera.Testes
             CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
             IgualarCamposQueExistirem(arquivoParcela, arquivo);
 
-            foreach (var linha in arquivoParcela.Linhas)
-                AlterarLinha(linha.Index, "CD_TIPO_EMISSAO","");
+            foreach (var linha in arquivo.Linhas)
+                AlterarLinha(linha.Index, "CD_TIPO_EMISSAO", dados.ObterTipoRemuneracaoDoCorretor(arquivo[linha.Index]["CD_CORRETOR"]));
 
             return arquivo;
         }

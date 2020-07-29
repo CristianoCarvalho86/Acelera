@@ -26,7 +26,7 @@ namespace Acelera.Testes
             sucessoDoTeste = true;
 
             base.IniciarTeste(tipo, this.numeroDoTeste, nomeDoTeste);
-            dados = new TabelaParametrosData(logger);
+            
         }
 
         public override void ValidarFGsAnteriores()
