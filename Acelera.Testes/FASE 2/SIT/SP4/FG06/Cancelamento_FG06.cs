@@ -61,6 +61,31 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG06);
         }
 
+        [TestMethod]
+        public void SAP_5948()
+        {
+            // VIVO - PARC rejeitado e CMS sucesso - Canc = 10
+            InicioTesteFG06("5948", "SAP-5947:FG06 - VIVO - PARC rejeitado e CMS sucesso - Canc = 10", OperadoraEnum.POMPEIA);
+
+            CriarEmissaoCompleta();
+
+            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+
+            AdicionaErro(TipoArquivo.ParcEmissao);
+
+            SalvarArquivo(arquivoParcCancelamento);
+            SalvarArquivo(arquivoComissaoCancelamento);
+
+
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+
+            ChamarExecucao(FG06_Tarefas.TrincaCancelamento.ObterTexto());
+
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.AprovadoFG06);
+            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG06);
+        }
+
 
     }
 }

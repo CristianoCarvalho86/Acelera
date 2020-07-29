@@ -137,7 +137,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
         public void ValidarFGsAnterioresEErros( Arquivo arquivo, bool esperaSucesso = true)
         {
-            var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG02, FGs.FG09 };
+            var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2 , FGs.FG02, FGs.FG09 };
 
             foreach (var fg in listaFgs)
             {
