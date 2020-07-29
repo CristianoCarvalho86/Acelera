@@ -324,6 +324,15 @@ namespace Acelera.Testes.DataAccessRep
             return DataAccess.ConsultaUnica(sql,$"CD_TIPO_REMUNERACAO {operador} '{cdTipoRemuneracao}'",logger);
         }
 
+        public string ObterTipoRemuneracaoDoCorretor(string cdCorretor)
+        {
+            var sql = $"select C.CD_TIPO_REMUNERACAO from {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 C " +
+                      $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCEIRO_NEGOCIO_2000 PN ON C.CD_PN_CORRETOR = PN.CD_PARCEIRO_NEGOCIO " +
+                      $" where PN.CD_EXTERNO = '{cdCorretor}' AND PN.CD_TIPO_PARCEIRO_NEGOCIO = 'CO' ";
+
+            return DataAccess.ConsultaUnica(sql, $"CD_TIPO_REMUNERACAO DO CORRETOR = {cdCorretor}", logger);
+        }
+
         public string ObterCdCorretorParaTipoRemuneracaoECobertura(string cdTpa, string cdTipoRemuneracao, string cdCobertura)
         {
             var pnOperacaoDoTpa = ObterCdParceiroNegocioParaTPA(cdTpa);
