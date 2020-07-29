@@ -20,14 +20,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 2, OperadoraEnum.COOP);
-
+            AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo,0);
             
-            var campos = new string[] 
-            { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };
+            CriarNovaLinhaParaEmissao(arquivo, 0);
 
-            IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), campos);
+            IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), new string[]{ "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };);
 
             AlterarLinha(1, "NR_PARCELA", "2");
 
