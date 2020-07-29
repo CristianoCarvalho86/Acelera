@@ -11,23 +11,23 @@ namespace Acelera.Utils
     {
         public static string CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(OperadoraEnum operadora)
         {
-            if (operadora == OperadoraEnum.TIM)
+            if (operadora == OperadoraEnum.TIM || operadora == OperadoraEnum.PAPCARD)
                 return "18";
-            else if (operadora == OperadoraEnum.VIVO || operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX || operadora == OperadoraEnum.POMPEIA)
+            else //if (operadora == OperadoraEnum.VIVO || operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX || operadora == OperadoraEnum.POMPEIA)
                 return "1";
             throw new Exception("OPERACAO NAO DEFINIDA PARA OBTER TIPO EMISSAO");
         }
         public static string CarregaTipoEmissaoParaSegundaLinhaDaEmissao(OperadoraEnum operadora)
         {
-            if (operadora == OperadoraEnum.TIM)
+            if (operadora == OperadoraEnum.TIM || operadora == OperadoraEnum.PAPCARD)
                 return "20";
-            else if (operadora == OperadoraEnum.VIVO || operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX || operadora == OperadoraEnum.POMPEIA)
+            else //if (operadora == OperadoraEnum.VIVO || operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX || operadora == OperadoraEnum.POMPEIA)
                 return "1";
             throw new Exception("OPERACAO NAO DEFINIDA PARA OBTER TIPO EMISSAO");
         }
         public static string CarregaPrimeiroNrParcela(OperadoraEnum operadora)
         {
-            if (operadora == OperadoraEnum.TIM)
+            if (operadora == OperadoraEnum.TIM || operadora == OperadoraEnum.PAPCARD)
                 return "0";
             else
                 return "1";

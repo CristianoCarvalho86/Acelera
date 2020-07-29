@@ -24,6 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(false));
+            AlterarHeader("VERSAO", "9.6");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -36,8 +37,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("163");
+            //ValidarStages(CodigoStage.RecusadoNaFG01);
+            //ValidarTabelaDeRetorno("163");
             ValidarTeste();
         }
 

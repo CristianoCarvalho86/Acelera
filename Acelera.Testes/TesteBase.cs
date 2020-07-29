@@ -238,9 +238,15 @@ namespace Acelera.Testes
         {
             StackTrace stackTrace = new StackTrace();
             sucessoDoTeste = true;
-            this.numeroDoTeste = stackTrace.GetFrame(1).GetMethod().Name.Remove(0, 4).Substring(0, 4);
-            if(!int.TryParse(this.numeroDoTeste,out int r))
-                this.numeroDoTeste = numeroDoTeste;
+            for (int i = 1; i < 11; i++)
+            {
+                this.numeroDoTeste = stackTrace.GetFrame(i).GetMethod().Name.Remove(0, 4).Substring(0, 4);
+                if (int.TryParse(this.numeroDoTeste, out int r))
+                    break;
+                if (i == 10)
+                    throw new Exception("NUMERO DO TESTE NAO ESPECIFICADO NO TITULO DO TESTE.");
+            }
+
 
             this.nomeDoTeste = nomeDoTeste;
             tipoArquivoTeste = tipo;

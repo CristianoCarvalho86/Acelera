@@ -25,11 +25,9 @@ namespace Acelera.Testes
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {
-            StackTrace stackTrace = new StackTrace();
             sucessoDoTeste = true;
-            this.numeroDoTeste = stackTrace.GetFrame(1).GetMethod().Name.Remove(0, 4).Substring(0, 4);
 
-            base.IniciarTeste(tipo, numeroDoTeste, nomeDoTeste);
+            base.IniciarTeste(tipo, this.numeroDoTeste, nomeDoTeste);
             dados = new TabelaParametrosData(logger);
         }
 
@@ -53,7 +51,11 @@ namespace Acelera.Testes
                 base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_1_Enum().ObterTexto());
                 logger.EscreverBloco("Fim da Execução da FG01_1. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             }
-
+            logger.EscreverBloco("Inicio da Execução da FG01_2.");
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
+            base.ValidarStages(CodigoStage.AprovadoNaFG01_2);
+            ValidarTabelaDeRetornoFG01(arquivo);
+            logger.EscreverBloco("Fim da Execução da FG01_2. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
 
 
             ValidarTeste();
@@ -198,6 +200,7 @@ namespace Acelera.Testes
         public static IList<string> ObterProceduresFG02(TipoArquivo tipoArquivoTeste)
         {
             var lista = new List<string>();
+            lista.Add("PRC_0022");
             switch (tipoArquivoTeste)
             {
                 case TipoArquivo.Cliente:

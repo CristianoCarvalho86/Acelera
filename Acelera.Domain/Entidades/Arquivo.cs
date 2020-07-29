@@ -385,7 +385,7 @@ namespace Acelera.Domain.Layouts
 
         private void ValidaHeader(LinhaArquivo header)
         {
-            Assert.IsTrue(new string[] { "9.3", "9.4","9.6" }.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
+            //Assert.IsTrue(new string[] { "9.3", "9.4","9.6" }.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
             var cdTpa = header.ObterCampoDoArquivo("CD_TPA").Valor.Trim();
             Assert.IsTrue(cdTpa.Length == 3 && int.TryParse(cdTpa, out int r), "CD_TPA DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
         }

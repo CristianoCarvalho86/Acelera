@@ -37,8 +37,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("72");
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            //ValidarTabelaDeRetorno("72");
             ValidarTeste();
         }
 
@@ -65,7 +65,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno("72");
             ValidarTeste();
         }
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno();
             ValidarTeste();
         }
@@ -120,7 +120,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno();
             ValidarTeste();
         }
@@ -147,7 +147,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno();
             ValidarTeste();
         }
@@ -174,7 +174,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno();
             ValidarTeste();
         }
@@ -201,7 +201,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno();
             ValidarTeste();
         }

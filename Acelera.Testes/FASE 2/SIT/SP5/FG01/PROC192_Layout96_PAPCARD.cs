@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
 
             AlterarLinha(0, "EN_ENDERECO", "");
-
+            AlterarHeader("VERSAO", "9.6");
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 

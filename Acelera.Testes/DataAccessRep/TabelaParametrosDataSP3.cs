@@ -22,7 +22,7 @@ namespace Acelera.Testes.DataAccessRep
         public string ObterCdClienteParceiro(bool existente, string cdTpa = "", string[] diferenteDesses = null)
         {
             var clausula = "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'";
-            clausula = string.IsNullOrEmpty(cdTpa) ? clausula : clausula + $" AND CD_OPERACAO = '{ObterCdParceiroNegocioParaTPA(cdTpa)}'";
+            clausula = string.IsNullOrEmpty(cdTpa) ? clausula : clausula + $" AND CD_OPERACAO = '{cdTpa}'";
             if (diferenteDesses != null)
             {
                 foreach (var cdCliente in diferenteDesses)

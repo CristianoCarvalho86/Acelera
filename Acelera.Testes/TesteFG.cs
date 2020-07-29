@@ -102,9 +102,6 @@ namespace Acelera.Testes
                 TratarErro($" Validação da Stage : {arquivo.tipoArquivo.ObterTabelaStageEnum().ObterTexto()} - {ex.Message}");
             }
 
-            if (sucessoDoTeste == false)
-                ExplodeFalha();
-
             return linhasEncontradas;
         }
 
@@ -121,7 +118,6 @@ namespace Acelera.Testes
         {
             if (alterarCdCliente && operadora != OperadoraEnum.SGS)
             {
-                //TODO LEMBRAR DE ALTERAR CD_CLIENTE POR UM DA LISTA
                 int i = 0;
                 foreach (var linha in arquivo.Linhas)
                     arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));

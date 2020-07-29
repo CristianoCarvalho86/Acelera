@@ -65,8 +65,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("72");
+            //ValidarStages(CodigoStage.RecusadoNaFG01);
+            //ValidarTabelaDeRetorno("72");
             ValidarTeste();
         }
 

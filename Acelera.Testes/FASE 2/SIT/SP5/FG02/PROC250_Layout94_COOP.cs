@@ -16,7 +16,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "8951", "COOP - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            arquivo.Carregar(ObterArquivoOrigem("C01.COOP.PARCEMS-EV-0002-20200418.TXT"),1,1,1);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -25,6 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "100");
             AlterarLinha(0, "VL_IOF", "100");
             AlterarHeader("VERSAO", "9.6");
+            AlterarLinha(0, "CD_CONTRATO", GerarNumeroAleatorio(8));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

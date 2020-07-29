@@ -40,20 +40,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "", "FG05 - PROC46 - SAP-9189:FG05 - PROC 46 - C/C - PARCELA - cd_tipo_emissao=7 e nr_seq_emissão=1");
 
-
             //Envia parc normal
-            var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.COOP);
+            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            AlterarHeader("VERSAO","9.6");
+            CriarNovoContrato(0, arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
+            
+            EnviarParaOds(arquivo);
+            var arquivoODS = arquivo.Clone();
 
-            EnviarParaOds(arquivoods1);
-
-            CriarNovaLinhaParaEmissao(arquivoods1);
+            CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinha(0);
+            AjustarQtdLinFooter();
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "NR_PARCELA", "1");
 
             SalvarArquivo();
 

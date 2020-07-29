@@ -21,7 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
-
+            AlterarHeader("VERSAO", "9.6");
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
 
@@ -29,12 +29,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
-            ValidarTabelaDeRetorno("163");
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno("55");
             ValidarTeste();
         }
 
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);

@@ -15,18 +15,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC219
         public void SAP_9225()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "", "FG05 - PROC219 - SAP-9225:FG05 - PROC 219 - C/C - PARCELA - Mais de um cliente para mesmo NR_APOLICE");
-            
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-
+            AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
 
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             ReplicarLinha(0, 1);
             AlterarLinha(1, "CD_CLIENTE", dados.ObterCdClienteParceiro(true,arquivo.Header[0]["CD_TPA"], new string[] { arquivo[0]["CD_CLIENTE"] }));
-            AlterarLinha(1, "NR_ENDOSSO", (arquivo[0]["NR_ENDOSSO"].ObterValorLong() + 1).ToString());
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", (arquivo[0]["NR_ENDOSSO"].ObterValorInteiro() + 1).ToString());
 
             SalvarArquivo();
 
