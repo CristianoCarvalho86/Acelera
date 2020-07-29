@@ -420,12 +420,10 @@ namespace Acelera.Testes
 
         public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
-            var index = arquivoParc.Linhas.Count - 1;
-            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
-            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", "0");
-            arquivoParc.AlterarLinha(index, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
-            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO","1");
+            arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", "0");
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO","1");
         }
 
         public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)
