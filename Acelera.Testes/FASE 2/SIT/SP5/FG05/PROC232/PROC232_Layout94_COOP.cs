@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
 
             AlterarHeader("VERSAO", "9.6");
             IgualarCamposQueExistirem(arquivoods1, arquivo);
-            AlterarLinha(0, "CD_ITEM", arquivoods1[0]["CD_ITEM"].ObterProximoValorInteiro());
+            AlterarLinha(0, "CD_ITEM","12345");
 
             SalvarArquivo();
 
