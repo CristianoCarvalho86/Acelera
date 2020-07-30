@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
             EnviarParaOds(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo, 1);
-            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "1");
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "2");
             RemoverLinha(0);
             RemoverLinha(0);
             AjustarQtdLinFooter();
