@@ -147,8 +147,15 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 if(fg == FGs.FG00)
                 {
                     ValidarControleArquivo();
-                    ValidarLogProcessamento(true, 1);
+                    ValidarLogProcessamento(true, 1, ObterProceduresFG00());
                 }
+                else if(fg == FGs.FG01)
+                    ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList());
+                else if (fg == FGs.FG02)
+                    ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo)).ToList());
+                else if (fg == FGs.FG09)
+                    ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
+                        .Concat(TestesFG09.ObterProceduresFG09(arquivo.tipoArquivo)).ToList());
             }
         }
 
