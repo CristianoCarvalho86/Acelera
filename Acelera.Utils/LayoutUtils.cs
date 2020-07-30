@@ -2,6 +2,7 @@
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Domain.Layouts._9_6;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ namespace Acelera.Utils
                 if (tipoArquivo == TipoArquivo.ParcEmissao)
                     return new Arquivo_Layout_9_4_2_new_ParcEmissao().Carregar(path);
                 throw new Exception("TIPO ARQUIVO NAO PARAMETRIZADO PARA O LAYOUT 94.2");
+            }
+            if (header.Substring(121, 125).Contains("9.42"))
+            {
+                if (tipoArquivo == TipoArquivo.Sinistro)
+                    return new Arquivo_Layout_9_4_2().Carregar(path);
+                throw new Exception("TIPO ARQUIVO NAO PARAMETRIZADO PARA O LAYOUT 9.42");
             }
             if (header.Substring(121, 125).Contains("9.4"))
             {

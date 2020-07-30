@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -20,8 +21,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "", "SAP-8922:FG02 - 72 - C/C - PAPCARD - SINISTRO - CD_TIPO_MOVIMENTO = 2 e informar DT_PAGAMENTO");
 
-            arquivo = new Arquivo_Layout_9_6_Sinistro();
+            arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "DT_PAGAMENTO", dados.ObterDataDoBanco());
@@ -48,8 +50,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         {
             IniciarTeste(TipoArquivo.Sinistro, "", "SAP-8923:FG02 - 72 - C/C - PAPCARD - SINISTRO - CD_TIPO_MOVIMENTO = 30 e informar DT_PAGAMENTO");
 
-            arquivo = new Arquivo_Layout_9_6_Sinistro();
+            arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(0, "DT_PAGAMENTO", "");
@@ -78,6 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_6_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "DT_PAGAMENTO", "");
@@ -105,6 +109,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_6_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(0, "DT_PAGAMENTO", "");

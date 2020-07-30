@@ -331,26 +331,27 @@ namespace Acelera.Testes
                 }
         }
 
-        public void AlterarLayout<T>(Arquivo arquivo) where T : Arquivo, new()
+        public void AlterarLayout<T>(ref Arquivo _arquivo) where T : Arquivo, new()
         {
-            logger.AbrirBloco($"ALTERANDO LAYOUT DE {arquivo.GetType().Name} para {typeof(T)}");
+            logger.AbrirBloco($"ALTERANDO LAYOUT DE {_arquivo.GetType().Name} para {typeof(T)}");
             var novoArquivo = new T();
             novoArquivo.Linhas = new List<LinhaArquivo>();
             novoArquivo.Header = new List<LinhaArquivo>();
             novoArquivo.Footer = new List<LinhaArquivo>();
-            novoArquivo.AtualizarNomeArquivoFinal(arquivo.NomeArquivo);
+            novoArquivo.AtualizarNomeArquivoFinal(_arquivo.NomeArquivo);
 
-            novoArquivo.Header.Add(arquivo.Header[0].Clone());
-            novoArquivo.Footer.Add(arquivo.Footer[0].Clone());
-            for (int i = 0; i < arquivo.Linhas.Count; i++)
+            novoArquivo.Header.Add(_arquivo.Header[0].Clone());
+            novoArquivo.Footer.Add(_arquivo.Footer[0].Clone());
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
                 novoArquivo.AdicionarLinha(novoArquivo.CriarLinhaVazia(i));
 
-            IgualarCamposQueExistirem(arquivo, novoArquivo);
+            novoArquivo.AjustarQtdLinhasNoFooter();
+            IgualarCamposQueExistirem(_arquivo, novoArquivo);
 
             novoArquivo.AlterarHeader("VERSAO",novoArquivo.TextoVersaoHeader);
             
             logger.FecharBloco();
-            arquivo = novoArquivo;
+            _arquivo = novoArquivo;
         }
 
         public void CriarArquivoCancelamento(Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
