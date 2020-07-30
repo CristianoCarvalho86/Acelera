@@ -109,9 +109,11 @@ namespace Acelera.Domain.Extensions
                 case FGs.FG05:
                     return tipoArquivo.ObterTarefaFG05Enum().ObterTexto();
                 case FGs.FG06:
-                    return tipoArquivo.ObterTarefaFG06Enum(ehEmissao).ObterTexto();
+                    return tipoArquivo.ObterTarefaFG06Enum().ObterTexto();
                 case FGs.FG09:
                     return tipoArquivo.ObterTarefaFG09Enum().ObterTexto();
+                case FGs.FG10:
+                    return tipoArquivo.ObterTarefaFG10Enum().ObterTexto();
                 default:
                     throw new Exception("Tabela nao definida para o Enum TipoArquivo.");
             }
@@ -266,13 +268,17 @@ namespace Acelera.Domain.Extensions
             }
         }
 
-        public static FG06_Tarefas ObterTarefaFG06Enum(this TipoArquivo tipoArquivo, bool emissao)
+        public static FG06_Tarefas ObterTarefaFG06Enum(this TipoArquivo tipoArquivo)
         {
-            if (emissao)
-                return FG06_Tarefas.Trinca;
-            else
-                return FG06_Tarefas.TrincaCancelamento;
 
+            return FG06_Tarefas.Trinca;
+
+        }
+
+        public static FG10_Tarefas ObterTarefaFG10Enum(this TipoArquivo tipoArquivo)
+        {
+
+            return FG10_Tarefas.TrincaCancelamento;
         }
 
         public static FG09_Tarefas ObterTarefaFG09Enum(this TipoArquivo tipoArquivo)
@@ -316,6 +322,8 @@ namespace Acelera.Domain.Extensions
                     return sucesso ? CodigoStage.AprovadoFG06 : CodigoStage.ReprovadoFG06;
                 case FGs.FG09:
                     return sucesso ? CodigoStage.AprovadoNaFG09 : CodigoStage.ReprovadoNaFG09;
+                case FGs.FG10:
+                    return sucesso ? CodigoStage.AprovadoFG10 : CodigoStage.AprovadoFG10;
                 default:
                     throw new Exception("Codigo nao definido para o Enum da FG." + fgCorrespondente.ObterTexto());
             }
@@ -345,12 +353,12 @@ namespace Acelera.Domain.Extensions
             switch (tabela)
             {
                 case TabelasOIMEnum.OIM_APL01:
-                    return new string[] {"nr_apolice", "nr_endosso"};
+                    return new string[] { "nr_apolice", "nr_endosso" };
 
                 case TabelasOIMEnum.OIM_CMS01:
                     return new string[] { "nr_apolice", "nr_parcela", "cd_corretor" };
                 case TabelasOIMEnum.OIM_COB01:
-                    return new string[] { "nr_apolice","vl_premio", "cd_cobertura" };
+                    return new string[] { "nr_apolice", "vl_premio", "cd_cobertura" };
                 case TabelasOIMEnum.OIM_PARC01:
                     return new string[] { "nr_apolice", "vl_premio", "nr_parcela" };
                 case TabelasOIMEnum.OIM_ITAUTO01:
