@@ -141,9 +141,15 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             foreach (var fg in listaFgs)
             {
-                ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(esperaSucesso));
                 if (!esperaSucesso && fg == FGs.FG02)
+                {
+                    ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(false));
                     break;
+                }
+
+                ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
+
+
                 if(fg == FGs.FG00)
                 {
                     ValidarControleArquivo();
