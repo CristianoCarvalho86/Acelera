@@ -182,7 +182,7 @@ namespace Editor
 
         private void btnAddRow_Click(object sender, EventArgs e)
         {
-            var novaLinhaArquivo = arquivo.CriarLinhaVazia();
+            var novaLinhaArquivo = arquivo.CriarLinhaVazia(arquivo.Linhas.Count - 1);
             var novaLinhaTabela = dadosDoArquivo.NewRow();
             novaLinhaTabela[nomeColunaId] = novaLinhaArquivo.Id;
             if (dataGridView1.SelectedRows.Count == 0)
@@ -194,6 +194,7 @@ namespace Editor
             else
             {
                 var indexDeInsert = dataGridView1.SelectedRows[0].Index;
+                novaLinhaArquivo.Index = indexDeInsert;
                 arquivo.AdicionarLinha(novaLinhaArquivo,ObterIndexDoArquivo(indexDeInsert));
                 dadosDoArquivo.Rows.InsertAt(novaLinhaTabela, indexDeInsert);
             }

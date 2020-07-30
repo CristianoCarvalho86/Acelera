@@ -331,6 +331,19 @@ namespace Acelera.Testes
                 }
         }
 
+        public T AlterarLayout<T>(Arquivo arquivo) where T : Arquivo, new()
+        {
+            logger.AbrirBloco($"ALTERANDO LAYOUT DE {arquivo.GetType().Name} para {typeof(T)}");
+            var novoArquivo = new T();
+            for (int i = 0; i < arquivo.Linhas.Count; i++)
+                novoArquivo.AdicionarLinha(novoArquivo.CriarLinhaVazia(i));
+
+            IgualarCamposQueExistirem(arquivo, novoArquivo);
+            
+            logger.FecharBloco();
+            return novoArquivo;
+        }
+
         public void CriarArquivoCancelamento(Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
         string nrSequencialEmissao = "")
         {
