@@ -220,6 +220,12 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
+        public void RemoverLinhaComAjusteDeFooter(int posicaoLinha)
+        {
+            RemoverLinha(posicaoLinha);
+            AjustarQtdLinFooter();
+        }
+
         public void AjustarQtdLinFooter()
         {
             arquivo.AjustarQtdLinhasNoFooter();

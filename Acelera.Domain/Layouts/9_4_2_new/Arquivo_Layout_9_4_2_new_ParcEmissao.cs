@@ -14,7 +14,7 @@ namespace Acelera.Domain.Layouts._9_4
         protected override string[] CamposChaves => new string[] { "NR_APOLICE", "NR_ENDOSSO" };
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
-            linha.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 002));
+            linha.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
             linha.Campos.Add(new CampoDoArquivo("CD_INTERNO_RESSEGURADOR", 005));
             linha.Campos.Add(new CampoDoArquivo("CD_RAMO", 002));
             linha.Campos.Add(new CampoDoArquivo("CD_MOVTO_COBRANCA", 003));

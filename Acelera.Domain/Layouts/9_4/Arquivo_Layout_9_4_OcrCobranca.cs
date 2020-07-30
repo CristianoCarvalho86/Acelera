@@ -14,7 +14,7 @@ namespace Acelera.Domain.Layouts._9_4
         public override string TextoVersaoHeader => "9.4";
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
-            linha.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 002, "TIPO_REGISTRO"));
+            linha.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
             linha.Campos.Add(new CampoDoArquivo("CD_CONTRATO", 020, "NR_APOLICE"));
             linha.Campos.Add(new CampoDoArquivo("NR_SEQUENCIAL_EMISSAO", 005));
             linha.Campos.Add(new CampoDoArquivo("NR_PARCELA", 004));

@@ -20,8 +20,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-8936:FG02 - 163 - C/C - PAPCARD - PARCELA - CD_SUCURSAL inválido");
 
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(false));
 
@@ -47,8 +48,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-8937:FG02 - 163 - S/C - PAPCARD - PARCELA - CD_SUCURSAL válido");
 
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(true));
 
@@ -74,8 +76,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-8938:FG02 - 163 - S/C - TIM - PARCELA - CD_SUCURSAL inválido");
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(true));

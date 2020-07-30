@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "8942", "PAPCARD - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -50,15 +50,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "8943", "SAP-8943:FG02 - 250 - C/C - PAPCARD - PARCELA - CD_TIPO_EMISSAO = 10 com prêmio dif. de zero");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
-            AlterarLinha(0, "VL_PREMIO_TOTAL", "200");
-            AlterarLinha(0, "VL_PREMIO_LIQUIDO", "100");
-            AlterarLinha(0, "VL_IOF", "100");
-            AlterarHeader("VERSAO", "9.6");
+            CriarNovaLinhaParaEmissao(arquivo, 0);
+            AlterarLinha(1, "CD_MOVTO_COBRANCA", "03");
+            AlterarLinha(1, "CD_TIPO_EMISSAO", "10");
+            AlterarLinha(1, "VL_PREMIO_TOTAL", "200");
+            AlterarLinha(1, "VL_PREMIO_LIQUIDO", "100");
+            AlterarLinha(1, "VL_IOF", "100");
+            AlterarLinha(1, "ID_TRANSACAO_CANC", arquivo[0]["ID_TRANSACAO"]);
+
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();
@@ -83,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "8944", "PAPCARD - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -115,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "", "COOP - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -147,7 +149,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "8952", "COOP - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -179,7 +181,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "8953", "COOP - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
