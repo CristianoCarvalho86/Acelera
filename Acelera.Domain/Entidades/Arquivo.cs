@@ -21,6 +21,8 @@ namespace Acelera.Domain.Layouts
 
         public abstract TipoArquivo tipoArquivo { get; }
 
+        public abstract string TextoVersaoHeader { get; }
+
         public string EnderecoCompleto { get; private set; }
 
         public IList<string> CamposDoBody => Linhas.FirstOrDefault()?.Campos?.Select(x => x.ColunaArquivo).ToList();

@@ -10,6 +10,7 @@ namespace Acelera.Domain.Layouts._9_4
     public class Arquivo_Layout_9_4_ParcEmissao : Arquivo
     {
         public override TipoArquivo tipoArquivo => TipoArquivo.ParcEmissao;
+        public override string TextoVersaoHeader => "9.4";
         protected override string[] CamposChaves => new string[] { "NR_APOLICE", "NR_ENDOSSO" };
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {

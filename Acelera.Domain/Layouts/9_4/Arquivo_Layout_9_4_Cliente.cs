@@ -10,6 +10,9 @@ namespace Acelera.Domain.Layouts._9_4
     public class Arquivo_Layout_9_4_Cliente : Arquivo
     {
         public override TipoArquivo tipoArquivo => TipoArquivo.Cliente;
+
+        public override string TextoVersaoHeader => "9.4";
+
         protected override string[] CamposChaves => new string[] { "CD_CLIENTE", "NR_CNPJ_CPF" };
 
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)

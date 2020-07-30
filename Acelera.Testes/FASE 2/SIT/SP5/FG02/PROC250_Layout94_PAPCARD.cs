@@ -16,8 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         public void SAP_8942_PARC_EMISSAO_ID_SemTRANSACAO_CANC()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "8942", "PAPCARD - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -37,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno("250");
             ValidarTeste();
         }
@@ -46,9 +47,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         [TestCategory("Com Critica")]
         public void SAP_8943_PARC_EMISSAO_ID_SemTRANSACAO_CANC()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "8943", "PAPCARD - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            IniciarTeste(TipoArquivo.ParcEmissao, "8943", "SAP-8943:FG02 - 250 - C/C - PAPCARD - PARCELA - CD_TIPO_EMISSAO = 10 com prêmio dif. de zero");
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -69,7 +71,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
             //ValidarTabelaDeRetorno("250");
             ValidarTeste();
         }
@@ -79,8 +81,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         public void SAP_8944_PARC_EMISSAO_ID_SemTRANSACAO_CANC()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "8944", "PAPCARD - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -100,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno("250");
             ValidarTeste();
         }
@@ -110,8 +113,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         public void SAP_8945_PARC_EMISSAO_ID_SemTRANSACAO_CANC()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "", "COOP - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -131,7 +135,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno("250");
             ValidarTeste();
         }
@@ -141,8 +145,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         public void SAP_8946_PARC_EMISSAO_ID_SemTRANSACAO_CANC()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "8952", "COOP - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -162,7 +167,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno("250");
             ValidarTeste();
         }
@@ -172,8 +177,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         public void SAP_8947_PARC_EMISSAO_ID_SemTRANSACAO_CANC()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "8953", "COOP - PARCELA - CD_TIPO_EMISSAO = 7 com prêmio dif. de zero");
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
@@ -193,7 +199,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
-            ValidarStages(CodigoStage.RecusadoNaFG01);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarTabelaDeRetorno("250");
             ValidarTeste();
         }

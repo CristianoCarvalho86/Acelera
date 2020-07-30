@@ -331,17 +331,26 @@ namespace Acelera.Testes
                 }
         }
 
-        public T AlterarLayout<T>(Arquivo arquivo) where T : Arquivo, new()
+        public void AlterarLayout<T>(Arquivo arquivo) where T : Arquivo, new()
         {
             logger.AbrirBloco($"ALTERANDO LAYOUT DE {arquivo.GetType().Name} para {typeof(T)}");
             var novoArquivo = new T();
+            novoArquivo.Linhas = new List<LinhaArquivo>();
+            novoArquivo.Header = new List<LinhaArquivo>();
+            novoArquivo.Footer = new List<LinhaArquivo>();
+            novoArquivo.AtualizarNomeArquivoFinal(arquivo.NomeArquivo);
+
+            novoArquivo.Header.Add(arquivo.Header[0].Clone());
+            novoArquivo.Footer.Add(arquivo.Footer[0].Clone());
             for (int i = 0; i < arquivo.Linhas.Count; i++)
                 novoArquivo.AdicionarLinha(novoArquivo.CriarLinhaVazia(i));
 
             IgualarCamposQueExistirem(arquivo, novoArquivo);
+
+            novoArquivo.AlterarHeader("VERSAO",novoArquivo.TextoVersaoHeader);
             
             logger.FecharBloco();
-            return novoArquivo;
+            arquivo = novoArquivo;
         }
 
         public void CriarArquivoCancelamento(Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
