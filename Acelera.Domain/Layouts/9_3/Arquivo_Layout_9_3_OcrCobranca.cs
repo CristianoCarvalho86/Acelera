@@ -11,6 +11,7 @@ namespace Acelera.Domain.Layouts._9_3
     {
         public override TipoArquivo tipoArquivo => TipoArquivo.OCRCobranca;
         protected override string[] CamposChaves => new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO" };
+        public override string TextoVersaoHeader => "9.3";
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
             linha.Campos.Add(new CampoDoArquivo("TIPO REGISTRO", 2, "TIPO_REGISTRO"));

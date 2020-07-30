@@ -10,6 +10,7 @@ namespace Acelera.Domain.Layouts._9_4_2
     public class Arquivo_Layout_9_4_2 : Arquivo
     {
         public override TipoArquivo tipoArquivo => TipoArquivo.Sinistro;
+        public override string TextoVersaoHeader => "9.4";
         protected override string[] CamposChaves => new string[] { "CD_SINISTRO", "CD_AVISO" };
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
