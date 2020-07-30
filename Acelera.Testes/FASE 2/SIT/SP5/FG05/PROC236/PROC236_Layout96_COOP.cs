@@ -20,13 +20,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             IniciarTeste(TipoArquivo.ParcEmissao, "9383", "SAP-9368:FG05 - PROC 236 - C/C - PARCELA - Contrato com registro rejeitado - Mesmo arquivo");
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
+            AlterarHeader("VERSAO", "9.6");
+            CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados);
 
             AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivo[0]["DT_INICIO_VIGENCIA"], 30));
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivo[0]["DT_FIM_VIGENCIA"], 30));
+            AlterarCobertura(false);
 
             SalvarArquivo();
 

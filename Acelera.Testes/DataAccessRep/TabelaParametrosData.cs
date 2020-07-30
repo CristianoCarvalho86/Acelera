@@ -415,9 +415,9 @@ namespace Acelera.Testes.DataAccessRep
             return ObterNaoExistenteNaTabela("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", 99999);
         }
 
-        public Cobertura ObterCoberturaDiferenteDe(string cdCobertura, string cdTpa = "")
+        public Cobertura ObterCoberturaDiferenteDe(string cdCobertura, string cdTpa = "", bool simples = false)
         {
-            var select = QueryCobertura(0, cdTpa) + $" WHERE C.CD_COBERTURA <> '{cdCobertura}'";
+            var select = QueryCobertura(0, cdTpa,"", simples) + $" AND C.CD_COBERTURA <> '{cdCobertura}'";
 
             var tabela = DataAccess.Consulta(select, "COBERTURA", logger);
             var linha = tabela.Rows[new Random(DateTime.Now.Millisecond).Next(0, tabela.Rows.Count - 1)];
@@ -441,13 +441,14 @@ namespace Acelera.Testes.DataAccessRep
             if (!simples)
                 sql += $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_PERCENT_PREMIO_7012 PP ON PRDC.ID_PRD_COBERTURA = PP.ID_PRD_COBERTURA ";
 
+            var where = "";
             if (idCobertura != 0)
-                sql += $" WHERE C.ID_COBERTURA = {idCobertura}";
+                where += $" WHERE C.ID_COBERTURA = {idCobertura}";
             else if (!string.IsNullOrEmpty(cdCobertura))
-                sql += $" WHERE C.CD_COBERTURA = {cdCobertura}";
+                where += (string.IsNullOrEmpty(where) ? " WHERE " : " AND ") + $"C.CD_COBERTURA = '{cdCobertura}'" ;
             else if (!string.IsNullOrEmpty(cdTpa))
-                sql += $" WHERE PRDC.CD_PN_OPERACAO = '{ObterCdParceiroNegocioParaTPA(cdTpa)}'";
-            return sql;
+                where += (string.IsNullOrEmpty(where) ? " WHERE " : " AND ") + $"PRDC.CD_PN_OPERACAO = '{ObterCdParceiroNegocioParaTPA(cdTpa)}'";
+            return sql + where;
         }
 
     }
