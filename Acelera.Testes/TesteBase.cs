@@ -378,7 +378,7 @@ namespace Acelera.Testes
             IgualarCamposQueExistirem(arquivoParcela, arquivo);
 
             foreach (var linha in arquivo.Linhas)
-                AlterarLinha(linha.Index, "CD_TIPO_EMISSAO", dados.ObterTipoRemuneracaoDoCorretor(arquivo[linha.Index]["CD_CORRETOR"]));
+                AlterarLinha(linha.Index, "CD_TIPO_COMISSAO", dados.ObterTipoRemuneracaoDoCorretor(arquivo[linha.Index]["CD_CORRETOR"], arquivo[linha.Index]["CD_COBERTURA"], arquivoParcela[linha.Index]["CD_PRODUTO"]));
 
             return arquivo;
         }

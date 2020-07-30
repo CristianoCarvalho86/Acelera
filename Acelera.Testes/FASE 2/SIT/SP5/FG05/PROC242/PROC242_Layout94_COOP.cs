@@ -14,27 +14,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9419()
+        public void SAP_9405()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9419", "SAP-9318:FG05 - PROC 242 - C/C - PARCELA - ID_TRANSACAO já processado - Capa");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9405", "SAP-9318:FG05 - PROC 242 - C/C - PARCELA - ID_TRANSACAO já processado - Capa");
+
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            CriarNovoContrato(0);
+            AlterarHeader("VERSAO", "9.6");
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo);
 
             EnviarParaOds(arquivo);
 
-            CriarNovaLinhaParaEmissao(arquivo);
+            CriarNovaLinhaParaEmissao(arquivo, 1);
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", "1");
             RemoverLinha(0);
-            RemoverLinha(1);
+            RemoverLinha(0);
             AjustarQtdLinFooter();
-            AlterarLinha(0, "NR_SEQ_EMISSAO", "1");
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "242", 1);
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "243", 1);
         }
     }
 }

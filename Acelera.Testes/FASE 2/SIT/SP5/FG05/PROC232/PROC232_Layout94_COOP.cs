@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -24,16 +25,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
 
             EnviarParaOds(arquivo);
             var arquivoods1 = arquivo.Clone();
-            AlterarHeader("VERSAO", "9.6");
+            
 
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+
+            AlterarHeader("VERSAO", "9.6");
             IgualarCamposQueExistirem(arquivoods1, arquivo);
-            AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
+            AlterarLinha(0, "CD_ITEM", arquivoods1[0]["CD_ITEM"].ObterProximoValorInteiro());
 
             SalvarArquivo();
 
