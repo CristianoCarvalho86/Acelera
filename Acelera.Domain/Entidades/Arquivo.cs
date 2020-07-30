@@ -484,9 +484,10 @@ namespace Acelera.Domain.Layouts
             return lista;
         }
 
-        public LinhaArquivo CriarLinhaVazia()
+        public LinhaArquivo CriarLinhaVazia(int index)
         {
-            var novaLinha = ObterLinha(0).Clone();
+            var novaLinha = new LinhaArquivo(index);
+            CarregaCamposDoLayout(novaLinha);
             novaLinha.CarregaTexto("".PadRight(700, ' '));
             return novaLinha;
         }
