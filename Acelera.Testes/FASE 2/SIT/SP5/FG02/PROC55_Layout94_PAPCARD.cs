@@ -3,6 +3,7 @@ using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
@@ -16,8 +17,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
         public void SAP_8913()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "", "Corretor com código SUSEP nulo");
-            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo = new Arquivo_Layout_9_4_2_new_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("CO"));
@@ -29,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -45,6 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "", "Corretor com código SUSEP invalido");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
@@ -56,7 +59,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);
@@ -78,6 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "9019", "Corretor com código SUSEP invalido");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("CO"));
@@ -89,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             ValidarFGsAnteriores();
 
             //Executar FG01
-            ChamarExecucao(FG01_Tarefas.ParcEmissao.ObterTexto());
+            ChamarExecucao(FG02_Tarefas.ParcEmissao.ObterTexto());
 
             //VALIDAR NA FG01
             ValidarLogProcessamento(true);

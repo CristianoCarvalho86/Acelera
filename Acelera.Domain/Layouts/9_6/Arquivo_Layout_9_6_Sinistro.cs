@@ -14,7 +14,7 @@ namespace Acelera.Domain.Layouts._9_6
         public override string TextoVersaoHeader => "9.6";
         protected override void CarregaCamposDoLayout(LinhaArquivo linha)
         {
-            linha.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
+            linha.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 002));
             linha.Campos.Add(new CampoDoArquivo("CD_INTERNO_RESSEGURADOR", 005));
             linha.Campos.Add(new CampoDoArquivo("CD_SEGURADORA", 005));
             linha.Campos.Add(new CampoDoArquivo("CD_TIPO_MOVIMENTO", 004));
@@ -29,7 +29,7 @@ namespace Acelera.Domain.Layouts._9_6
             linha.Campos.Add(new CampoDoArquivo("DT_REGISTRO", 008));
             linha.Campos.Add(new CampoDoArquivo("CD_CAUSA", 020));
             linha.Campos.Add(new CampoDoArquivo("CD_CONTRATO", 020));
-            linha.Campos.Add(new CampoDoArquivo("NR_SEQUENCIAL_EMISSAO", 005, "NR_SEQUENCIAL_EMISSAO"));
+            linha.Campos.Add(new CampoDoArquivo("NR_SEQUENCIAL_EMISSAO", 005));
             linha.Campos.Add(new CampoDoArquivo("NR_APOLICE", 020));
             linha.Campos.Add(new CampoDoArquivo("CD_ITEM", 018));
             linha.Campos.Add(new CampoDoArquivo("CD_MOVIMENTO", 008));
@@ -67,11 +67,11 @@ namespace Acelera.Domain.Layouts._9_6
             linha.Campos.Add(new CampoDoArquivo("NR_AGENCIA_DIG", 001));
             linha.Campos.Add(new CampoDoArquivo("NR_CONTA", 009));
             linha.Campos.Add(new CampoDoArquivo("NR_CONTA_DIG", 002));
-            linha.Campos.Add(new CampoDoArquivo("NR_DOCUMENTO", 20));
-            linha.Campos.Add(new CampoDoArquivo("VL_JUROS", 16));
-            linha.Campos.Add(new CampoDoArquivo("VL_CORRECAO_MONETARIA", 16));
-            linha.Campos.Add(new CampoDoArquivo("NR_SEQUENCIAL_EMISSAO_EST", 16));
-            linha.Campos.Add(new CampoDoArquivo("FILLER", 53));
+            linha.Campos.Add(new CampoDoArquivo("NR_DOCUMENTO", 020));
+            linha.Campos.Add(new CampoDoArquivo("VL_JUROS", 016));
+            linha.Campos.Add(new CampoDoArquivo("VL_CORRECAO_MONETARIA ", 016));
+            linha.Campos.Add(new CampoDoArquivo("NR_SEQUENCIAL_EMISSAO_EST", 010));
+            linha.Campos.Add(new CampoDoArquivo("FILLER", 053));
         }
     }
 }
