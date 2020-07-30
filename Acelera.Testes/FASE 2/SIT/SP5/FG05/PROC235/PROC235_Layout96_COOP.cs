@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
         [TestCategory("Com Critica")]
         public void SAP_9368()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9368", "SAP-9368:FG05 - PROC 235 - C/C - PARCELA - Contrato com registro rejeitado - Mesmo arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9368", "SAP-9368:FG05 - PROC 235 - C/C - PARCELA - Ramo da comissão diferente do ramo da parcela");
             //Envia parc normal
             AlterarCobertura(false);
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -25,15 +25,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
             AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
 
-            var cobertura = dados.ObterCoberturaPeloCodigo(arquivo[0]["CD_COBERTURA"]);
+            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AlterarLinha(0, "CD_RAMO", cobertura.CdRamo);
+            AlterarLinha(0, "CD_RAMO", cobertura.CdRamoCobertura);
             AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
+            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
 
-            SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
-
-
+            EnviarParaOds(arquivo);
             var arquivoparc = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivoparc);
