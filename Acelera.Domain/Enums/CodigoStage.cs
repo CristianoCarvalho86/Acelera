@@ -23,6 +23,8 @@ namespace Acelera.Domain.Enums
         ReprovadoNegocioComDependencia = 520,
         AprovadoFG06 = 610,
         ReprovadoFG06 = 620,
+        AprovadoFG10 = 1010,
+        ReprovadoFG10 = 1020,
         AprovadoFG07 = 710,
         AprovadoNaFG09 = 910,
         ReprovadoNaFG09 = 920

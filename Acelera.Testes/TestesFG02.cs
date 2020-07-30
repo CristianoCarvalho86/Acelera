@@ -191,7 +191,10 @@ namespace Acelera.Testes
             {
                 return ValidarStages(arquivo, false);
             }
-            return ValidarStages(arquivo, true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
+            
+            var linhas = ValidarStages(arquivo, true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
+            ValidarTeste();
+            return linhas;
         }
 
         #region Procedures
