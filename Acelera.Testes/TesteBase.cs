@@ -331,7 +331,7 @@ namespace Acelera.Testes
                 }
         }
 
-        public T AlterarLayout<T>(Arquivo arquivo) where T : Arquivo, new()
+        public void AlterarLayout<T>(Arquivo arquivo) where T : Arquivo, new()
         {
             logger.AbrirBloco($"ALTERANDO LAYOUT DE {arquivo.GetType().Name} para {typeof(T)}");
             var novoArquivo = new T();
@@ -350,7 +350,7 @@ namespace Acelera.Testes
             novoArquivo.AlterarHeader("VERSAO",novoArquivo.TextoVersaoHeader);
             
             logger.FecharBloco();
-            return novoArquivo;
+            arquivo = novoArquivo;
         }
 
         public void CriarArquivoCancelamento(Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
