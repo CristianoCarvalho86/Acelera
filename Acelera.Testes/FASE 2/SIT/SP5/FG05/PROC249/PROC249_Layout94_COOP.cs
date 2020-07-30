@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOds(arquivo);
+            SalvarArquivo(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinha(0);
