@@ -26,21 +26,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             EnviarParaOds(arquivo);
+            var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.PAPCARD, arquivo, "9.6");
+            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             EnviarParaOds(arquivo);
             LimparValidacao();
 
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivo[0], "10", "02", "1"));
-            AlterarLinha(1, "CD_ITEM", "12345");
+            arquivo = arquivoParc1.Clone();
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02", "1"));
             RemoverLinhaComAjusteDeFooter(0);
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_6_ParcEmissao>(OperadoraEnum.PAPCARD, arquivo, "9.6");
+            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
+            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             SalvarArquivo();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
