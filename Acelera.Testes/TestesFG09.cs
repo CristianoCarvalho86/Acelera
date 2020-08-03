@@ -31,6 +31,27 @@ namespace Acelera.Testes
             Validar(codigoEsperadoStage, erroEsperadoNaTabelaDeRetorno, qtdErrosNaTabelaDeRetorno);
         }
 
+        protected void ExecutarEValidarAteFg02(Arquivo arquivo, string falhaEsperada = "")
+        {
+            ExecutarEValidar(arquivo, FGs.FG00, FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
+            ValidarControleArquivo();
+            ValidarLogProcessamento(true, 1, ObterProceduresFG00());
+
+            ExecutarEValidar(arquivo, FGs.FG01, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));
+            ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList());
+
+            ExecutarEValidar(arquivo, FGs.FG02, FGs.FG02.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(falhaEsperada)),falhaEsperada);
+            ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo)).ToList());
+        }
+        
+        protected void ExecutarEValidarApenasFg09(Arquivo arquivo, string falhaEsperada = "")
+        {
+            ExecutarEValidar(arquivo, FGs.FG09, FGs.FG09.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(falhaEsperada)), falhaEsperada);
+            ValidarLogProcessamento(true, 1, ObterProceduresFG00());
+            ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
+            .Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList());
+        }
+
         protected override void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
         {
             ValidarFGsAnteriores();
