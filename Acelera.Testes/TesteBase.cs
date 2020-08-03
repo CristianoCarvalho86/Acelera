@@ -108,6 +108,13 @@ namespace Acelera.Testes
             valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, arquivo.NomeArquivo);
         }
 
+        protected void LimparValidacao()
+        {
+            valoresAlteradosBody = new AlteracoesArquivo();
+            valoresAlteradosHeader = new AlteracoesArquivo();
+            valoresAlteradosFooter = new AlteracoesArquivo();
+        }
+
         protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {
             logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
@@ -348,8 +355,8 @@ namespace Acelera.Testes
             novoArquivo.AjustarQtdLinhasNoFooter();
             IgualarCamposQueExistirem(_arquivo, novoArquivo);
 
-            novoArquivo.AlterarHeader("VERSAO",novoArquivo.TextoVersaoHeader);
-            
+            novoArquivo.AlterarHeader("VERSAO", novoArquivo.TextoVersaoHeader);
+
             logger.FecharBloco();
             _arquivo = novoArquivo;
         }
@@ -372,12 +379,11 @@ namespace Acelera.Testes
             var linhaCancelamento = linhaArquivoEmissao.Clone();
             var idTransacaoDaLinhaOriginal = linhaArquivoEmissao.ObterCampoSeExistir("ID_TRANSACAO").ValorFormatado;
 
-
             linhaCancelamento.ObterCampoDoArquivo("ID_TRANSACAO_CANC").AlterarValor(idTransacaoDaLinhaOriginal);
             linhaCancelamento.ObterCampoDoArquivo("CD_TIPO_EMISSAO").AlterarValor(cdTipoEmissao);
             linhaCancelamento.ObterCampoDoArquivo("NR_PARCELA").AlterarValor((linhaCancelamento.ObterValorInteiro("NR_PARCELA")).ToString());
-            linhaCancelamento.ObterCampoDoArquivo("NR_ENDOSSO").AlterarValor(GerarNumeroAleatorio(8));
-            nrSequencialEmissao = string.IsNullOrEmpty(nrSequencialEmissao) ? (linhaCancelamento.ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString() : nrSequencialEmissao;
+            linhaCancelamento.ObterCampoDoArquivo("NR_ENDOSSO").AlterarValor(ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(linhaCancelamento));
+            nrSequencialEmissao = string.IsNullOrEmpty(nrSequencialEmissao) ? ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(linhaArquivoEmissao,operadora).ToString() : nrSequencialEmissao;
             linhaCancelamento.ObterCampoDoArquivo("NR_SEQUENCIAL_EMISSAO").AlterarValor(nrSequencialEmissao);
             linhaCancelamento.ObterCampoDoArquivo("CD_MOVTO_COBRANCA").AlterarValor(cdMovtoCobranca);
 
@@ -388,13 +394,25 @@ namespace Acelera.Testes
         public void CriarNovoContrato(int posicaoLinha, Arquivo arquivo = null)
         {
             arquivo = arquivo == null ? this.arquivo : arquivo;
-            var contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var contrato = "";
+            if (EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo) == OperadoraEnum.PAPCARD)
+                contrato = "759303900006209";
+            else
+                contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
         }
 
         protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
+        {
+            if (alterarVersaoHeader)
+                return CriarComissao<T>(operadora, arquivoParcela, "9.6");
+            return CriarComissao<T>(operadora, arquivoParcela, "");
+
+        }
+
+        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, string alterarVersaoHeader) where T : Arquivo, new()
         {
             arquivo = new T();
             CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
@@ -403,7 +421,11 @@ namespace Acelera.Testes
             foreach (var linha in arquivo.Linhas)
                 AlterarLinha(linha.Index, "CD_TIPO_COMISSAO", dados.ObterTipoRemuneracaoDoCorretor(arquivo[linha.Index]["CD_CORRETOR"], arquivo[linha.Index]["CD_COBERTURA"], arquivoParcela[linha.Index]["CD_PRODUTO"]));
 
+            if (!string.IsNullOrEmpty(alterarVersaoHeader))
+                arquivo.AlterarHeader("VERSAO", alterarVersaoHeader);
+
             return arquivo;
         }
+
     }
 }

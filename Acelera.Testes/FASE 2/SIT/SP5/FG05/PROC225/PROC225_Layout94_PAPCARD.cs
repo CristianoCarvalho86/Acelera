@@ -2,6 +2,7 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -68,18 +69,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
         [TestCategory("Sem Critica")]
         public void SAP_9257()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9257", "FG05 - PROC219 - ");
-
+            IniciarTeste(TipoArquivo.ParcEmissao, "9257", "SAP-9257:FG05 - PROC 225 - C/C - PAPCARD - PARCELA - Enviar 2x o mesmo endosso - Arquivos diferentes");
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
-            CarregarArquivo(arquivo, 2, OperadoraEnum.PAPCARD);
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             CriarNovoContrato(0);
-            CriarNovoContrato(1);
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+
+            SalvarArquivo();
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+
+            LimparValidacao();
+
+            CriarNovaLinhaParaEmissao(arquivo, 0);
+
             var campos = new string[]
-            { "CD_COBERTURA","NR_SEQ_EMISSAO","TIPO_EMISSAO", "NR_ENDOSSO" };
+            { "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };
             IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), campos);
+
+            RemoverLinhaComAjusteDeFooter(0);
 
             SalvarArquivo();
 

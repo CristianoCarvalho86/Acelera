@@ -26,8 +26,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC219
 
             ReplicarLinha(0, 1);
             AlterarLinha(1, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"], new string[] { arquivo[0]["CD_CLIENTE"] }));
-            AlterarLinha(1, "NR_ENDOSSO", (arquivo[0]["NR_ENDOSSO"].ObterValorLong() + 1).ToString());
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", (arquivo[0]["NR_ENDOSSO"].ObterValorLong() + 1).ToString());
+            AlterarLinha(1, "NR_ENDOSSO", arquivo[0]["NR_ENDOSSO"].ObterProximoValorLong());
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", arquivo[0]["NR_SEQUENCIAL_EMISSAO"].ObterProximoValorInteiro());
 
             SalvarArquivo();
 

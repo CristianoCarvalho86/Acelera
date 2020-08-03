@@ -94,10 +94,15 @@ namespace Acelera.Testes
 
         protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, bool enviarOds = true) where T : Arquivo, new()
         {
+            if (alterarVersaoHeader)
+                return CriarEmissaoComissaoODS<T>(operadora, arquivoParcela, "9.6", enviarOds);
+            return CriarEmissaoComissaoODS<T>(operadora, arquivoParcela, "", enviarOds);
+        }
+
+        protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, string alterarVersaoHeader = "", bool enviarOds = true) where T : Arquivo, new()
+        {
             arquivo = CriarComissao<T>(operadora, arquivoParcela, alterarVersaoHeader);
 
-            if (alterarVersaoHeader)
-                AlterarHeader("VERSAO", "9.6");
             if (enviarOds)
                 EnviarParaOds(arquivo);
             return arquivo.Clone();
