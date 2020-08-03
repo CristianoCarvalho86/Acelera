@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Data;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,24 +22,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
             //Envia parc normal
             AlterarCobertura(false);
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
             AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
 
-            var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
+            //SetDev();
+
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AlterarLinha(0, "CD_RAMO", cobertura.CdRamoCobertura);
-            AlterarLinha(0, "CD_PRODUTO", cobertura.CdProduto);
-            AlterarLinha(0, "CD_COBERTURA", cobertura.CdCobertura);
+
+            //SetQA();
 
             EnviarParaOds(arquivo);
             var arquivoparc = arquivo.Clone();
 
+            //SetDev();
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivoparc);
             AlterarHeader("VERSAO", "9.6");
 
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], arquivo[0]["CD_RAMO"], out string produto));
+            AlterarLinha(0, "CD_RAMO",  dados.ObterRamoRelacionadoACoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], arquivo[0]["CD_RAMO"], out string produto));
 
+            SalvarArquivo();
+
+            //SetQA();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "235", 1);
         }
     }

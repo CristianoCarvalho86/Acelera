@@ -15,9 +15,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9318()
+        public void SAP_9308()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9319", "SAP-9318:FG05 - PROC 232 - C/C - PARCELA - ID_TRANSACAO já processado - Capa");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9319", "SAP-9308:FG05 - PROC 232 - C/C - PARCELA - ID_TRANSACAO já processado");
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);

@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "222", 1);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.VIVO, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.VIVO, arquivoParcela, "9.6");
             AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 1000));
             SalvarArquivo();
 
@@ -135,7 +135,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.VIVO, arquivoParcela, true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.VIVO, arquivoParcela, "9.6");
             AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), -1));
             SalvarArquivo();
 

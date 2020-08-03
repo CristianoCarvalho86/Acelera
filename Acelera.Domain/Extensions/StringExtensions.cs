@@ -55,5 +55,13 @@ namespace Acelera.Domain.Extensions
         {
             return (ObterValorInteiro(texto) + 1).ToString();
         }
+        public static string ObterValorInteiroAnterior(this string texto)
+        {
+            return (ObterValorInteiro(texto) - 1).ToString();
+        }
+        public static string ObterProximoValorLong(this string texto)
+        {
+            return (ObterValorLong(texto) + 1).ToString();
+        }
     }
 }

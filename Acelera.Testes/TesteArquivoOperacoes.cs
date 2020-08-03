@@ -417,19 +417,33 @@ namespace Acelera.Testes
         public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
             arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
+            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
             var index = arquivoParc.Linhas.Count - 1;
-            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
-            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", arquivoParc[index]["CD_SUCURSAL"] + arquivoParc[index]["CD_RAMO"] +  RandomNumber.GerarNumeroAleatorio(7));
-            arquivoParc.AlterarLinha(index, "NR_PARCELA", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_PARCELA") + 1).ToString());
-            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", (arquivoParc.ObterLinha(linhaDeReferencia).ObterValorInteiro("NR_SEQUENCIAL_EMISSAO") + 1).ToString());
+            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
+            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(arquivoParc[linhaDeReferencia]));
+            arquivoParc.AlterarLinha(index, "NR_PARCELA", arquivoParc[linhaDeReferencia]["NR_PARCELA"].ObterProximoValorInteiro());
+            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivoParc[linhaDeReferencia], operadora));
         }
+
+        public void CriarNovaLinhaParaEmissaoComMesmoEndossoEParcela(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        {
+            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
+            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
+            var index = arquivoParc.Linhas.Count - 1;
+            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
+            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", arquivoParc[linhaDeReferencia]["NR_ENDOSSO"]);
+            arquivoParc.AlterarLinha(index, "NR_PARCELA", arquivoParc[linhaDeReferencia]["NR_PARCELA"]);
+            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", arquivoParc[linhaDeReferencia]["NR_SEQUENCIAL_EMISSAO"]);
+        }
+
 
         public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
-            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", "0");
-            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo)));
-            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO","1");
+            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
+            arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(operadora));
         }
 
         public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)

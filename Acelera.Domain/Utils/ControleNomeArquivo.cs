@@ -18,7 +18,8 @@ namespace Acelera.Domain.Utils
         //LanctoComissao:0,
         //OCRCobranca:0,
         //ParcEmissao:0,
-        //ParcEmissaoAuto:0
+        //ParcEmissaoAuto:0,
+        //SequencialPapcard:0
 
         private static ControleNomeArquivo instancia;
         private string enderecoArquivo;
@@ -50,26 +51,37 @@ namespace Acelera.Domain.Utils
 
         public string ObtemValor(TipoArquivo tipo)
         {
+            return ObtemValor(tipo.ObterTexto(),4);
+        }
+
+        public string ObtemValor(string chave, int posicoesTotais = 0)
+        {
             var valoresAtuais = File.ReadAllText(enderecoArquivo).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Replace(Environment.NewLine, ""));
-            var registroAtual = valoresAtuais.Where(x => x.Contains(tipo.ObterTexto())).FirstOrDefault();
+            var registroAtual = valoresAtuais.Where(x => x.Contains(chave)).FirstOrDefault();
             if (string.IsNullOrEmpty(registroAtual))
                 throw new Exception("NAO FOI ENCONTRADO O NUMERO PARA SER COLOCADO NO ARQUIVO.");
 
-            var valor = registroAtual.Substring(tipo.ObterTexto().Length + 1).Replace(",", "");// +1 para remover o ':'
+            var valor = registroAtual.Substring(chave.Length + 1).Replace(",", "");// +1 para remover o ':'
             if (!int.TryParse(valor, out int resultado))
-                throw new Exception($"NAO EXISTE VALOR PARA O CAMPO {tipo.ObterTexto()}");
+                throw new Exception($"NAO EXISTE VALOR PARA O CAMPO {chave}");
 
-            AtualizaResultado(tipo, resultado, resultado + 1);
+            AtualizaResultado(chave, resultado, resultado + 1);
 
-            return (resultado + 1).ToString().PadLeft(4, '0');
+            var retorno = "";
+            if (posicoesTotais > 0)
+                retorno = (resultado + 1).ToString().PadLeft(posicoesTotais, '0');
+            else
+                retorno = (resultado + 1).ToString();
+            return retorno;
         }
 
-        private void AtualizaResultado(TipoArquivo tipo, int valorAnterior, int valorNovo)
+
+        private void AtualizaResultado(string chave, int valorAnterior, int valorNovo)
         {
             try
             {
                 var texto = File.ReadAllText(enderecoArquivo);
-                texto = texto.Replace($"{tipo.ObterTexto()}:{valorAnterior.ToString()}", $"{tipo.ObterTexto()}:{valorNovo.ToString()}");
+                texto = texto.Replace($"{chave}:{valorAnterior.ToString()}", $"{chave}:{valorNovo.ToString()}");
                 File.WriteAllText(enderecoArquivo, texto);
             }
             catch (Exception ex)

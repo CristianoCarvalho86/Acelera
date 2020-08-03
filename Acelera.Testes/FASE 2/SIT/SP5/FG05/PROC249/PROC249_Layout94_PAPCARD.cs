@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -14,23 +15,29 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9401()
+        public void SAP_9471()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9401", "SAP-9318:FG05 - PROC 249 - C/C - PARCELA - ID_TRANSACAO já processado - Capa");
-            //Envia parc normal
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9471:FG05 - PROC 249 - PAPCARD - PARCELA - NR_ENDOSSO já processado - Parcela 3 - Msm arquivo");
+            
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            SalvarArquivo(arquivo);
+            EnviarParaOds(arquivo);
+            var arquivoOds = arquivo.Clone();
+            LimparValidacao();
 
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo);
-            CriarNovaLinhaParaEmissao(arquivo);
-            AlterarLinha(2, "NR_SEQ_EMISSAO", arquivo[0]["NR_SEQ_EMISSAO"]);
-            RemoverLinha(0);
-            AjustarQtdLinFooter();
 
+            CriarNovaLinhaParaEmissao(arquivo, 1);
+            AlterarLinha(2, "NR_ENDOSSO", arquivo[1]["NR_ENDOSSO"]);
+            AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", arquivo[1]["NR_SEQUENCIAL_EMISSAO"]);
+            AlterarLinha(2, "CD_ITEM", "12345");
+            RemoverLinhaComAjusteDeFooter(0);
+            
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "249", 1);

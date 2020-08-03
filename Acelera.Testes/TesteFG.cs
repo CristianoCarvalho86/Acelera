@@ -129,6 +129,10 @@ namespace Acelera.Testes
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
 
             var linhas = ValidarStages(CodigoStage.AprovadoNaFG01);
+            ValidarTeste();
+
+            //remover//
+            //return;
 
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)
@@ -213,6 +217,13 @@ namespace Acelera.Testes
                 return true;
             return false;
         }
+
+        public void ConfereQtdLinhas(Arquivo arquivo, int numeroDeLinhasEsperado)
+        {
+            if (arquivo.Linhas.Count != numeroDeLinhasEsperado)
+                ExplodeFalha($"ERRO NA CONFERENCIA DE QTD LINHAS. ESPERADO :{numeroDeLinhasEsperado}; OBTIDO :{arquivo.Linhas.Count}");
+        }
+
 
         protected void ValidarTeste()
         {

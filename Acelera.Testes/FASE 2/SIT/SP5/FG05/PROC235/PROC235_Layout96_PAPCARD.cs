@@ -17,24 +17,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
         [TestCategory("Com Critica")]
         public void SAP_9372()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "9372", "SAP-9368:FG05 - PROC 235 - C/C - PARCELA - Contrato com registro rejeitado - Mesmo arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "9368", "SAP-9368:FG05 - PROC 235 - C/C - PARCELA - Ramo da comissão diferente do ramo da parcela");
             //Envia parc normal
             AlterarCobertura(false);
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            CriarNovoContrato(0);
 
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            var cobertura = dados.ObterCobertura(arquivo.Header[0]["CD_TPA"], 0, true);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados);
-            AlterarLinha(1, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(arquivo[1]["CD_COBERTURA"], arquivo[0]["CD_RAMO"], out string produto));
-            AlterarLinha(1, "CD_PRODUTO", produto);
 
-            SalvarArquivo();
+            EnviarParaOds(arquivo);
             var arquivoparc = arquivo.Clone();
 
-            CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.PAPCARD, arquivoparc);
-            AlterarLinha(0, "CD_RAMO", arquivoparc[1]["CD_RAMO"]);
-            AlterarLinha(1, "CD_RAMO", arquivoparc[0]["CD_RAMO"]);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.COOP, arquivoparc);
+            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+
+            AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], arquivo[0]["CD_RAMO"], out string produto));
+
+            SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "235", 1);
         }

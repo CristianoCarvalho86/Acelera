@@ -2,6 +2,7 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,6 +11,60 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
     [TestClass]
     public class PROC46_Layout96_COOP : TestesFG05
     {
+
+        [TestMethod]
+        public void abc_1111()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9247:FG05 - PROC 46 - C/C - COOP - PARCELA - Cancelamento e nr_seq_emissão=1");
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(@"C:\Cristiano\Exportacao\teste\C01.LASA.CLIENTE-EV-7878-20200423.TXT");
+            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
+            AlterarLinha(0, "NR_CNPJ_CPF", "16154357788");
+            SalvarArquivo();
+            var arquivoCliente = arquivo.Clone();
+
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(@"C:\Cristiano\Exportacao\teste\C01.LASA.PARCEMS-EV-7880-20200423.TXT");
+            AlterarLinha(0, "CD_CLIENTE", arquivoCliente[0]["CD_CLIENTE"]);
+            CriarNovoContrato(0, arquivo);
+            SalvarArquivo();
+            var arquivoParcela = arquivo.Clone();
+
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo.Carregar(@"C:\Cristiano\Exportacao\teste\C01.LASA.EMSCMS-EV-7879-20200423.TXT");
+            AlterarLinha(0, "CD_CONTRATO", arquivoParcela[0]["CD_CONTRATO"]);
+            SalvarArquivo();
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9247_Cancelamento()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9247:FG05 - PROC 46 - C/C - COOP - PARCELA - Cancelamento e nr_seq_emissão=1");
+
+            //Envia parc normal
+            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            AlterarHeader("VERSAO", "9.6");
+            CriarNovoContrato(0);
+
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+
+            EnviarParaOds(arquivo);
+
+            LimparValidacao();
+
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivo[0], "10", "02", "1"));
+            AlterarLinha(1, "CD_ITEM", "12345");
+            RemoverLinhaComAjusteDeFooter(0);
+            //NAO PRECISA COLOCAR O NR_SEQUENCIAL_EMISSAO, POIS O METODOS DE CRIAR LINHA DE CANCELAMENTO JÁ ESTÁ FAZENDO
+
+            SalvarArquivo();
+
+            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+        }
+
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_9188()
