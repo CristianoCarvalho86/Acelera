@@ -131,14 +131,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
             SalvarArquivo();
             var arquivoParcela = arquivo.Clone();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
-            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), -1));
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"),0));
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);

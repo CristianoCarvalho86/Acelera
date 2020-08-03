@@ -32,8 +32,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto()) ;
             
-            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.AprovadoFG06);
-            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG06);
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.AprovadoFG10);
+            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.AprovadoFG10);
         }
 
         [TestMethod]
@@ -44,45 +44,41 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(false, false, OperadoraEnum.VIVO, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
-
-            AdicionaErro(TipoArquivo.ParcEmissaoAuto);
+            CriarCancelamento(true, false, OperadoraEnum.VIVO, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
 
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
-
-            ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
-
-            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoFG06);
-            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.ReprovadoFG06);
-        }
-
-        [TestMethod]
-        public void SAP_5948()
-        {
-            // VIVO - PARC rejeitado e CMS sucesso - Canc = 10
-            InicioTesteFG06("5948", "SAP-5947:FG06 - VIVO - PARC rejeitado e CMS sucesso - Canc = 10", OperadoraEnum.POMPEIA);
-
-            CriarEmissaoCompleta();
-
-            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
-
-            AdicionaErro(TipoArquivo.ParcEmissao);
-
-            SalvarArquivo(arquivoParcCancelamento);
-            SalvarArquivo(arquivoComissaoCancelamento);
-
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento, false);
             ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
             ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoNegocioSemDependencia);
             ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.ReprovadoFG10);
+        }
+
+        [TestMethod]
+        public void SAP_5948()
+        {
+            // VIVO - PARC rejeitado e CMS sucesso - Canc = 10
+            InicioTesteFG06("5948", "SAP-5947:FG06 - VIVO - PARC rejeitado e CMS sucesso - Canc = 10", OperadoraEnum.VIVO);
+
+            CriarEmissaoCompleta();
+
+            CriarCancelamento(false, true, OperadoraEnum.POMPEIA, "13", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+
+            SalvarArquivo(arquivoParcCancelamento);
+            SalvarArquivo(arquivoComissaoCancelamento);
+
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento, false);
+
+            ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
+
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoFG10);
+            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.ReprovadoNegocioSemDependencia);
 
 
         }
@@ -95,22 +91,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
-
-            AdicionaErro(TipoArquivo.ParcEmissao);
-            AdicionaErro(TipoArquivo.Comissao);
+            CriarCancelamento(true, true, OperadoraEnum.POMPEIA, "11", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
 
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento,false);
+            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento,false);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
-            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoFG06);
-            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.ReprovadoFG06);
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarEsperandoErro(arquivoComissaoCancelamento, CodigoStage.ReprovadoNegocioSemDependencia);
 
 
         }
@@ -134,6 +127,70 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         }
 
+        [TestMethod]
+        public void SAP_5951()
+        {
+            InicioTesteFG06("5951", "SAP-5950:FG06 - POMPEIA - PARC ñ enviado e CMS sucesso - Canc = 10", OperadoraEnum.LASA);
 
+            CriarEmissaoCompleta();
+
+            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+
+            SalvarArquivo(arquivoParcCancelamento);
+
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+
+            ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
+
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoFG10);
+
+        }
+
+        [TestMethod]
+        public void SAP_5953()
+        {
+
+            InicioTesteFG06("5953", "FG06 - SOFTBOX - PARC rejeitado e CMS ñ enviado - Canc=10", OperadoraEnum.TIM);
+
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
+
+            CriarEmissaoCompleta();
+
+            CriarCancelamento(true, false, OperadoraEnum.POMPEIA, "11", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+
+            SalvarArquivo(arquivoParcCancelamento);
+
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento, false);
+
+            ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
+
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoNegocioSemDependencia);
+
+
+        }
+
+        [TestMethod]
+        public void SAP_5954()
+        {
+
+            InicioTesteFG06("5954", "FG06 - SOFTBOX - PARC ñ enviado e CMS rejeitado - Canc = 11", OperadoraEnum.TIM);
+
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
+            CriarEmissaoCompleta();
+
+            CriarCancelamento(true, false, OperadoraEnum.POMPEIA, "11", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+
+            SalvarArquivo(arquivoParcCancelamento);
+
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento, false);
+
+            ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
+
+            ValidarEsperandoErro(arquivoParcCancelamento, CodigoStage.ReprovadoNegocioSemDependencia);
+
+
+        }
     }
 }

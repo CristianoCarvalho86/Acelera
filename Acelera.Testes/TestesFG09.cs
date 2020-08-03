@@ -54,6 +54,8 @@ namespace Acelera.Testes
             CriarNovoContrato(0);
             AlterarLinha(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(operadora));
 
+            AlterarLinha(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, ObterValorHeader("CD_TPA")));
+
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");

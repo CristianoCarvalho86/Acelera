@@ -219,10 +219,10 @@ namespace Acelera.Testes.ConjuntoArquivos
             var dados = new TabelaParametrosData(logger);
             for (int i = 0; i < arquivo.Linhas.Count; i++)
             {
-                var cobertura = new TabelaParametrosData(logger).ObterCoberturaSimples(arquivo.ObterLinhaHeader()["CD_TPA"]);
-                arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
-                arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
-                arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
+                //var cobertura = new TabelaParametrosData(logger).ObterCoberturaSimples(arquivo.ObterLinhaHeader()["CD_TPA"]);
+                //arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
+                //arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
+                //arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
 
                 var corretor = ParametrosBanco.ObterCdCorretorETipoComissao(Operadora);
                 arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", corretor.Key);

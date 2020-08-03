@@ -143,7 +143,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             {
                 if (!esperaSucesso && fg == FGs.FG02)
                 {
-                    ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(false));
+                    ExecutarEValidarEsperandoErro(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(false));
                     break;
                 }
 
@@ -162,6 +162,8 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 else if (fg == FGs.FG09)
                     ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
                         .Concat(TestesFG09.ObterProceduresFG09(arquivo.tipoArquivo)).ToList());
+
+                ValidarTeste();
             }
         }
 
