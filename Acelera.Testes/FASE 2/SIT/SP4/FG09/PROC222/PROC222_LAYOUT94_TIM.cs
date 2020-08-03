@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             AlterarCobertura(false);
 
             SalvarArquivo();
-            //EnviarParaOds(arquivo);
+            EnviarParaOds(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior

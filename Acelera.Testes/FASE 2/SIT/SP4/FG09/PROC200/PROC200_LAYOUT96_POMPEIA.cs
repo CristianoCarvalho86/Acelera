@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true, 2);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela,true);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
             SalvarArquivo();
@@ -111,7 +111,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela,true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), 0));
             SalvarArquivo();
 
@@ -129,16 +129,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, true);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela,true);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
-            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
+            arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
             SalvarArquivo();
             var arquivoParcela = arquivo.Clone();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela,true);
-            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"), -1));
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoodsComissao.SomarLinhasDoArquivo("VL_COMISSAO"),0));
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
