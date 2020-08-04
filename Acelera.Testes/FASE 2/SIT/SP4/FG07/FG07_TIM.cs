@@ -14,7 +14,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6164()
         {
-            InicioTesteFG07("6164", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.TIM);
+            IniciarTeste("6164", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6165()
         {
-            InicioTesteFG07("6165", " SAP-6165:FG07 - Tim - Capa e Emissão em XML diferentes - Comissão P - Novo cliente", OperadoraEnum.TIM);
+            IniciarTeste("6165", " SAP-6165:FG07 - Tim - Capa e Emissão em XML diferentes - Comissão P - Novo cliente", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
             SalvaExecutaEValidaFG07(true, false);
@@ -43,7 +43,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6166()
         {
-            InicioTesteFG07("6166", "SAP-6166:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.TIM, false);
+            IniciarTeste("6166", "SAP-6166:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.TIM, false);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6167()
         {
-            InicioTesteFG07("6167", "SAP-6167:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.TIM);
+            IniciarTeste("6167", "SAP-6167:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
@@ -71,7 +71,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6168()
         {
-            InicioTesteFG07("6168", " SAP-6168:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.TIM);
+            IniciarTeste("6168", " SAP-6168:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6169()
         {
-            InicioTesteFG07("6169", "SAP-6169:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.TIM);
+            IniciarTeste("6169", "SAP-6169:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
@@ -113,7 +113,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6170()
         {
-            InicioTesteFG07("6170", "SAP-6170:FG07 - Tim - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.TIM);
+            IniciarTeste("6170", "SAP-6170:FG07 - Tim - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6171()
         {
-            InicioTesteFG07("6171", "Tim - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.TIM);
+            IniciarTeste("6171", "Tim - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
@@ -158,7 +158,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6172()
         {
-            InicioTesteFG07("6172", "SAP-6172:FG07 - Tim - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.TIM);
+            IniciarTeste("6172", "SAP-6172:FG07 - Tim - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.TIM);
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
