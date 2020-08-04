@@ -37,7 +37,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
+            ExecutarEValidarAteFg02(arquivo, "162");
+
+            ExecutarEValidarApenasFg09(arquivo, "196");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
 
         }
 
@@ -56,11 +60,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
+            ExecutarEValidarAteFg02(arquivo, "162");
+
+            ExecutarEValidarApenasFg09(arquivo, "196");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
 
         }
 
@@ -99,7 +107,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 40));
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
+            ExecutarEValidarAteFg02(arquivo, "162");
+
+            ExecutarEValidarApenasFg09(arquivo, "196");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "196", 1);
 
         }
 

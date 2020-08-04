@@ -111,7 +111,7 @@ namespace Acelera.Testes
             if(alterarVersaoHeader)
                 AlterarHeader("VERSAO", "9.6");
             if(enviarParaOds)
-                EnviarParaOds(arquivo);
+                EnviarParaOds(arquivo, false);
             return arquivo.Clone();
         }
 

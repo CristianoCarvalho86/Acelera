@@ -127,8 +127,10 @@ namespace Acelera.Testes
 
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
 
-            var linhas = ValidarStages(CodigoStage.AprovadoNaFG01);
+
+            var linhas = ValidarStages(CodigoStage.AprovadoNaFG01_2);
             ValidarTeste();
 
             //remover//

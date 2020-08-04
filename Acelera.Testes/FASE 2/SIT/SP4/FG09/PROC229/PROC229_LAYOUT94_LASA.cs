@@ -28,11 +28,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC229
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "01");
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "01"));
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "229", 1);
+            ExecutarEValidarAteFg02(arquivo, "223");
+
+            ExecutarEValidarApenasFg09(arquivo, "229");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "229", 1);
 
         }
 

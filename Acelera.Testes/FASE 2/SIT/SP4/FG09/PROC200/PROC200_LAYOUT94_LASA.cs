@@ -102,7 +102,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
             var arquivoodsParcela = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, false, 1);
 
             //Sinistro referente a cancelamento
-            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela);
+            var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela);
             SalvarArquivo();
