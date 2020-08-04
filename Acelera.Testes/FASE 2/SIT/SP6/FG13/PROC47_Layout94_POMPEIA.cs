@@ -17,7 +17,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
         [TestCategory("Com Critica")]
         public void SAP_9574()
         {
-           
+            IniciarTeste("9574", "", OperadoraEnum.POMPEIA);
+
+            SalvaExecutaEValida(true);
+
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "NR_PARCELA", "2");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
+
+            SalvarArquivo();
+
+
+
         }
 
     }
