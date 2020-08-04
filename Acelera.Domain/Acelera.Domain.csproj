@@ -102,6 +102,7 @@
     <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Extensions\DocumentationExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\LinhaTabelaExtensions.cs" />
     <Compile Include="Extensions\ListaExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Layouts\9_3\Arquivo_Layout_9_3_Cliente.cs" />

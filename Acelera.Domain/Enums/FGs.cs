@@ -25,10 +25,16 @@ namespace Acelera.Domain.Enums
         FG05,
         [Description("FGR_06")]
         FG06,
+        [Description("FGR_07")]
+        FG07,
+        [Description("FGR_07_1")]
+        FG07_1,
         [Description("FGR_09")]
         FG09,
         [Description("FGR_10")]
-        FG10
+        FG10,
+        [Description("FGR_13")]
+        FG13
     }
     public enum FG00_Tarefas
     {
@@ -160,8 +166,20 @@ namespace Acelera.Domain.Enums
 
     public enum FG07_Tarefas
     {
-        [Description("FGR_07_TRINCA_EMISSAO")]
-        Trinca
+        [Description("FGR_07_CARGA_XML_APL01")]
+        APL01,
+        [Description("FGR_07_CARGA_XML_CMS01")]
+        CMS01,
+        [Description("FGR_07_CARGA_XML_COB01")]
+        COB01,
+        [Description("FGR_07_CARGA_XML_ITAUTO01")]
+        ITAUTO01,
+        [Description("FGR_07_CARGA_XML_PARC01")]
+        PARC01,
+        [Description("FGR_07_ATUALIZA_STATUS_STG_8004")]
+        ATUALIZA_STATUS,
+        [Description("FGR_07_1")]
+        FGR_07_1,
     }
 
     public enum FG09_Tarefas

@@ -51,7 +51,7 @@ namespace Acelera.Testes.Validadores
                 if (tabela == TabelasOIMEnum.OIM_APL01)
                     campoConsulta = "id_arquivo";
 
-                where = ObterWhereCamposChaves(linhaDaStage, tabela.ObterCamposChaves());
+                where = linhaDaStage.ObterWhereCamposChaves(tabela.ObterCamposChaves());
                 retorno = DataAccess.ConsultaUnica($"SELECT {campoConsulta} FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
                 if (string.IsNullOrEmpty(retorno))
                     erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
@@ -139,19 +139,6 @@ namespace Acelera.Testes.Validadores
             foreach (var campo in camposChaves)
             {
                 where += $"{campo} = '{node[campo].InnerText}' AND";
-            }
-            return where.Substring(0, where.Length - 3);
-        }
-
-        private string ObterWhereCamposChaves(ILinhaTabela linha, string[] camposChaves)
-        {
-            var where = "";
-            var campoAjustado = "";
-            foreach (var campo in camposChaves)
-            {
-                if (campo == "vl_premio")
-                    campoAjustado = "VL_PREMIO_LIQUIDO";
-                where += $"{campoAjustado} = '{linha.ObterPorColuna(campoAjustado.ToUpper()).ValorFormatado}' AND";
             }
             return where.Substring(0, where.Length - 3);
         }

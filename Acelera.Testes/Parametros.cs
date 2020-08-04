@@ -152,6 +152,37 @@ namespace Acelera.Testes
             }
             set { _connectionStringHana = value; }
         }
+        
+        private static string _connectionStringOIM;
+        public static string connectionStringOIM
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_connectionStringOIM))
+                {
+                    _connectionStringOIM = ConfigurationManager.AppSettings.Get("ConnectionStringOIM");
+                    if (string.IsNullOrEmpty(_connectionStringOIM))
+                        throw new Exception("CONNECTION STRINGO DO OIM NAO ENCONTRADA");
+                }
+                return _connectionStringOIM;
+            }
+            set { _connectionStringOIM = value; }
+        }
+        private static string _connectionStringSGS;
+        public static string connectionStringSGS
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_connectionStringSGS))
+                {
+                    _connectionStringSGS = ConfigurationManager.AppSettings.Get("ConnectionStringSGS");
+                    if (string.IsNullOrEmpty(_connectionStringSGS))
+                        throw new Exception("CONNECTION STRING DO SGS NAO ENCONTRADA");
+                }
+                return _connectionStringSGS;
+            }
+            set { _connectionStringSGS = value; }
+        }
 
         
 
