@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
         {
             IniciarTeste("9574", "", OperadoraEnum.POMPEIA);
 
-            SalvaExecutaEValida(true);
+            SalvaExecutaEValidaTrinca(true);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
 
             SalvarArquivo();
 
-
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
