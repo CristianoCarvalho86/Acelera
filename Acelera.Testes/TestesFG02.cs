@@ -165,6 +165,11 @@ namespace Acelera.Testes
             return ValidarStages(arquivo, deveHaverRegistro, (int)codigoEsperado);
         }
 
+        public void ExecutarEValidarAteFG02()
+        {
+
+        }
+
         public virtual IList<ILinhaTabela> ExecutarEValidarEsperandoErro(Arquivo arquivo, FGs fG, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
         {
             this.arquivo = arquivo;
