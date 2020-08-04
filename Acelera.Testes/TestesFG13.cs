@@ -24,7 +24,7 @@ namespace Acelera.Testes
 
         protected void ExecutarEValidarAteFG13(Arquivo arquivo, CodigoStage codigoEsperado, string mensagemNaTabelaDeRetorno = "")
         {
-
+            ExecutarEValidarAteFg02(arquivo, mensagemNaTabelaDeRetorno);
         }
     }
 }

@@ -116,6 +116,12 @@ namespace Acelera.Testes
             Validar(codigoEsperadoStage, erroEsperadoNaTabelaDeRetorno, qtdErrosNaTabelaDeRetorno);
         }
 
+        protected void ExecutarEValidarAteFg05(Arquivo arquivo, string mensagemErroNaTabelaDeRetorno = "")
+        {
+            this.arquivo = arquivo;
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia, mensagemErroNaTabelaDeRetorno);
+        }
+
         protected void Validar(CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno, int qtdErrosNaTabelaDeRetorno)
         {
             ValidarLogProcessamento(true);
