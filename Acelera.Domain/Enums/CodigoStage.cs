@@ -26,7 +26,11 @@ namespace Acelera.Domain.Enums
         AprovadoFG10 = 1010,
         ReprovadoFG10 = 1020,
         AprovadoFG07 = 710,
+        AprovadoFG07_1 = 711,
+        ReprovadoFG07_1 = 712,
         AprovadoNaFG09 = 910,
-        ReprovadoNaFG09 = 920
+        ReprovadoNaFG09 = 920,
+        AprovadoNaFG13 = 1310,
+        ReprovadoNaFG13 = 1320
     }
 }

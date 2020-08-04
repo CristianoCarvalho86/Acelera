@@ -74,6 +74,14 @@ namespace Acelera.Domain.Extensions
 
         }
 
+        public static bool ValidarValorUnico(this DataTable dataTable, string campoDaValidacao, string valorEsperado)
+        {
+            foreach (DataRow row in dataTable.Rows)
+                if (row[campoDaValidacao].ToString() != valorEsperado)
+                    return false;
+            return true;
+        }   
+
     }
 }
 

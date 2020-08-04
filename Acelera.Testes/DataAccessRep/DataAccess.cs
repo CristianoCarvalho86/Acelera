@@ -214,7 +214,15 @@ namespace Acelera.Testes.DataAccessRep
             if (dbEnum == DBEnum.Hana)
                 return DBHelperHana.Instance;
             else if (dbEnum == DBEnum.SqlServer)
+            {
+                DBHelperSQLServer.Instance.SetConnection(Parametros.connectionStringSGS);
                 return DBHelperSQLServer.Instance;
+            }
+            else if (dbEnum == DBEnum.SqlServerOIM)
+            {
+                DBHelperSQLServer.Instance.SetConnection(Parametros.connectionStringOIM);
+                return DBHelperSQLServer.Instance;
+            }
             throw new Exception("BANCO NAO PARAMETRIZADO");
         }
 

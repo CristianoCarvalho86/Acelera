@@ -83,11 +83,6 @@ namespace Acelera.Testes
 
         }
 
-        protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
-        {
-            IgualarCamposQueExistirem(linhaParc, linhaComissao);
-        }
-
         public void EnviarParaOds(Arquivo arquivo, bool executaFGs = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNaFG01)
         {
 
@@ -97,7 +92,7 @@ namespace Acelera.Testes
                 SalvarArquivo();
                 return;
             }
-                
+
 
             if (executaFGs)
             {
@@ -133,6 +128,11 @@ namespace Acelera.Testes
                 foreach (var linha in linhas)
                     ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
 
+        }
+
+        protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
+        {
+            IgualarCamposQueExistirem(linhaParc, linhaComissao);
         }
 
         public override void FinalizarAlteracaoArquivo()

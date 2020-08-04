@@ -9,6 +9,7 @@ namespace Acelera.Domain.Enums
     public enum DBEnum
     {
         Hana,
-        SqlServer
+        SqlServer,
+        SqlServerOIM,
     }
 }

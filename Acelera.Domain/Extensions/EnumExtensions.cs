@@ -320,10 +320,16 @@ namespace Acelera.Domain.Extensions
                     return sucesso ? CodigoStage.AprovadoNegocioComDependencia : CodigoStage.ReprovadoNegocioComDependencia;
                 case FGs.FG06:
                     return sucesso ? CodigoStage.AprovadoFG06 : CodigoStage.ReprovadoFG06;
+                case FGs.FG07:
+                    return sucesso ? CodigoStage.AprovadoFG07 : throw new Exception("CODIGO NAO EXISTE") ;
+                case FGs.FG07_1:
+                    return sucesso ? CodigoStage.AprovadoFG07_1 : CodigoStage.ReprovadoFG07_1;
                 case FGs.FG09:
                     return sucesso ? CodigoStage.AprovadoNaFG09 : CodigoStage.ReprovadoNaFG09;
                 case FGs.FG10:
-                    return sucesso ? CodigoStage.AprovadoFG10 : CodigoStage.AprovadoFG10;
+                    return sucesso ? CodigoStage.AprovadoFG10 : CodigoStage.ReprovadoFG10;
+                case FGs.FG13:
+                    return sucesso ? CodigoStage.AprovadoNaFG13 : CodigoStage.ReprovadoNaFG13;
                 default:
                     throw new Exception("Codigo nao definido para o Enum da FG." + fgCorrespondente.ObterTexto());
             }
