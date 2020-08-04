@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return ValidarStages(triplice.ArquivoParcEmissao, true, (int)codigoEsperado);
         }
 
-        protected void CriarEmissaoCompletaFG07(bool salvaCliente, bool salvaComissao = true)
+        protected void CriarEmissaoCompletaFG06(bool salvaCliente, bool salvaComissao = true)
         {
             SalvarTrinca(salvaCliente, true, salvaComissao);
             ValidarFGsAnterioresEErros();
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             ExecutarEValidarFG06EmissaoSucesso();
         }
 
-        public void InicioTesteFG07(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true)
+        public void IniciarTeste(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true)
         {
             //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
             IniciarTeste(TipoArquivo.Comissao, numeroTeste, descricao);
@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true, bool esperaSucesso = true)
         {
-            CriarEmissaoCompletaFG07(salvaCliente, salvaComissao);
+            CriarEmissaoCompletaFG06(salvaCliente, salvaComissao);
             var linhasStageParc = ExecutarFG07(esperaSucesso);
             var ehParcAuto = triplice.ArquivoParcEmissao.tipoArquivo == TipoArquivo.ParcEmissaoAuto;
             var idArquivo = string.Empty;
@@ -89,15 +89,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         protected IList<ILinhaTabela> ExecutarFG07(bool sucessoNaFG071)
         {
-            ChamarExecucao(FG07_Tarefas.APL01.ObterTexto());
-            ChamarExecucao(FG07_Tarefas.CMS01.ObterTexto());
-            ChamarExecucao(FG07_Tarefas.COB01.ObterTexto());
-            ChamarExecucao(FG07_Tarefas.ITAUTO01.ObterTexto());
-            ChamarExecucao(FG07_Tarefas.PARC01.ObterTexto());
-            ChamarExecucao(FG07_Tarefas.ATUALIZA_STATUS.ObterTexto());
+            ChamarExecucaoSemErro(FG07_Tarefas.APL01.ObterTexto());
+            ChamarExecucaoSemErro(FG07_Tarefas.CMS01.ObterTexto());
+            ChamarExecucaoSemErro(FG07_Tarefas.COB01.ObterTexto());
+            ChamarExecucaoSemErro(FG07_Tarefas.ITAUTO01.ObterTexto());
+            ChamarExecucaoSemErro(FG07_Tarefas.PARC01.ObterTexto());
+            ChamarExecucaoSemErro(FG07_Tarefas.ATUALIZA_STATUS.ObterTexto());
             ValidarStageSucessoFG07();
 
-            ChamarExecucao(FG07_Tarefas.FGR_07_1.ObterTexto());
+            ChamarExecucaoSemErro(FG07_Tarefas.FGR_07_1.ObterTexto());
+
+            ValidarTeste();
+
             return ValidarStageSucessoFG07_1(FGs.FG07.ObterCodigoDeSucessoOuFalha(sucessoNaFG071));
         }
 

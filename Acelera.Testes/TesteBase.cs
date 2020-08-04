@@ -185,6 +185,18 @@ namespace Acelera.Testes
             return path;
         }
 
+        protected void ChamarExecucaoSemErro(string taskName)
+        {
+            try
+            {
+                ChamarExecucao(taskName);
+            }
+            catch (Exception)
+            {
+                localDoErro += taskName + ";";
+            }
+        }
+
         protected void ChamarExecucao(string taskName)
         {
             if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
