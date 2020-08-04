@@ -66,16 +66,29 @@ namespace Acelera.Testes
 
         protected void AlteracoesPadraoDaTrinca(ITriplice triplice, bool geraCliente = true)
         {
+            //triplice.AlterarParcEComissao(0, "ID_TRANSACAO_CANC", "");
+            //triplice.AlterarParcEComissao(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));
+            //triplice.AlterarParcEComissao(0, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(triplice.ArquivoParcEmissao[0],triplice.Operadora));
+            //triplice.AlterarParcEComissao(0, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(triplice.Operadora));
+            //triplice.AlterarParcEComissao(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(triplice.Operadora));
+
+            //CriarNovoContrato(0,triplice.ArquivoParcEmissao);
+            //triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+            //triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
+            //if(geraCliente)
+            //    triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+            //else
+            //    triplice.AlterarCliente(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]));
             triplice.AlterarParcEComissao(0, "ID_TRANSACAO_CANC", "");
             triplice.AlterarParcEComissao(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));
-            triplice.AlterarParcEComissao(0, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(triplice.ArquivoParcEmissao[0],triplice.Operadora));
+            triplice.AlterarParcEComissao(0, "NR_ENDOSSO", "0");
             triplice.AlterarParcEComissao(0, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(triplice.Operadora));
-            triplice.AlterarParcEComissao(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(triplice.Operadora));
+            triplice.AlterarParcEComissao(0, "NR_SEQUENCIAL_EMISSAO", "1");
 
-            CriarNovoContrato(0,triplice.ArquivoParcEmissao);
+            triplice.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
-            if(geraCliente)
+            if (geraCliente)
                 triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
             else
                 triplice.AlterarCliente(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]));
