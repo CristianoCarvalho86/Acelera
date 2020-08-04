@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
 {
     [TestClass]
-    public class PROC47_Layout94_COOP : TestesFG05
+    public class PROC47_Layout94_POMPEI: TestesFG13
     {
         [TestMethod]
         [TestCategory("Com Critica")]
