@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
 
             SalvarArquivo();
 
-
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
 
         }
 
