@@ -38,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             AlterarHeader("VERSAO", "9.6");
             //AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValor(0, "VL_ADIC_FRACIONADO", 1));
             var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
-            AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValores(cobertura.ValorDescontoMaior, "-0.1"));
+            AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValores(cobertura.ValorDescontoMaior, "-0.02"));
             AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
             SalvarArquivo();

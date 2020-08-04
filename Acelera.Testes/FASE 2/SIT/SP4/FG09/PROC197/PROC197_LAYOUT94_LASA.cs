@@ -27,14 +27,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC197
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            RemoverLinhaComAjusteDeFooter(0);
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             //AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "197", 1);
+            ExecutarEValidarAteFg02(arquivo, "1024");
+
+            ExecutarEValidarApenasFg09(arquivo, "197");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "197", 1);
 
         }
 

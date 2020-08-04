@@ -22,6 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
         public void SAP_5311()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "5307", "FG09 - PROC45 - ");
+            AlterarCobertura(false);
 
             //Envia parc normal
             var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
@@ -32,13 +33,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
 
             RemoverTodasAsLinhas();
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
-            AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValorFormatado(0, "CD_COBERTURA"), ObterValorFormatado(0, "CD_RAMO"), out string produto));
-            AlterarLinha(0, "CD_PRODUTO", produto);
             AlterarHeader("VERSAO", "9.6");
-            AlterarCobertura(false);
+            var cobertura = dados.ObterCoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], ObterValorHeader("CD_TPA"), true);
+            AlterarLinhaSeHouver(0, "CD_RAMO", "01");
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "45", 1);
+            ExecutarEValidarAteFg02(arquivo, "107");
+
+            ExecutarEValidarApenasFg09(arquivo, "45");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "45", 1);
 
         }
 

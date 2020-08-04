@@ -32,7 +32,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC229
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "229", 1);
+            ExecutarEValidarAteFg02(arquivo, "223");
+
+            ExecutarEValidarApenasFg09(arquivo, "229");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "229", 1);
 
         }
 
