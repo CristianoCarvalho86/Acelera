@@ -94,7 +94,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             AlterarLinha(1, "NR_ENDOSSO", "0");
             AlterarLinha(1, "ID_TRANSACAO_CANC", "");
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Sinistro referente a cancelamento

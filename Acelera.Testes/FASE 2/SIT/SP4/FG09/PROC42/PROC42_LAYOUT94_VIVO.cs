@@ -37,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             AdicionarLinha(0,CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13"));
             
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods2 = arquivo.Clone();
 
             //Sinistro referente a cancelamento

@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             AlterarLinha(0, "DT_NASCIMENTO", "");
 
-            EnviarParaOds(arquivo, false);
+            EnviarParaOdsAlterandoCliente(arquivo, false);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
             var cdCliente = ObterValor(0, "CD_CLIENTE");
 
-            EnviarParaOds(arquivo, false);
+            EnviarParaOdsAlterandoCliente(arquivo, false);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();

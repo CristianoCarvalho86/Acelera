@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOdsAlterandoCliente(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOdsAlterandoCliente(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);
@@ -140,7 +140,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivoods.AlterarLinha(0, "DT_INICIO_VIGENCIA", "20200101");
             arquivoods.AlterarLinha(0, "DT_FIM_VIGENCIA", "20210101");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOdsAlterandoCliente(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SGS);

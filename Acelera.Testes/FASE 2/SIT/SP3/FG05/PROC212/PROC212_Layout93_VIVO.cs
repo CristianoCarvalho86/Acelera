@@ -170,7 +170,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -212,7 +212,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -254,7 +254,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -296,7 +296,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
@@ -338,7 +338,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();

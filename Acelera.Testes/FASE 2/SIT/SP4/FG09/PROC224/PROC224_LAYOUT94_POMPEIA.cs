@@ -37,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
 
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods2 = arquivo.Clone();
 
             //ParcEmissao referente a cancelamento
@@ -71,7 +71,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
 
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods2 = arquivo.Clone();
 
             //ParcEmissao referente a cancelamento
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
 
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods2 = arquivo.Clone();
 
             //ParcEmissao referente a cancelamento
@@ -139,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "11"));
 
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods2 = arquivo.Clone();
 
             //ParcEmissao referente a cancelamento

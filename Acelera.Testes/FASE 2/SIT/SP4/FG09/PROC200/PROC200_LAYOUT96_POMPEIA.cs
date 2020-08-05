@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC200
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA, arquivoodsParcela, true);
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
             var arquivoParcela = arquivo.Clone();
 
             ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "222", 1);

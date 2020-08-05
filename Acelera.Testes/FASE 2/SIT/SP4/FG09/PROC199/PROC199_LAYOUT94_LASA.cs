@@ -28,13 +28,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -67,13 +67,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -106,13 +106,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -145,13 +145,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -184,13 +184,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -223,13 +223,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -262,13 +262,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -301,13 +301,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -340,13 +340,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -379,13 +379,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -418,13 +418,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -457,13 +457,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
             AlterarHeader("VERSAO", "9.6");
@@ -498,13 +498,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -537,13 +537,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
             AlterarHeader("VERSAO", "9.6");
@@ -578,13 +578,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela, true, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 
@@ -617,13 +617,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
             AlterarLinha(0, "CD_RAMO", "71");
             AlterarLinha(0, "CD_PRODUTO", "71724");
 
-            EnviarParaOds(arquivoodsParcela);
+            EnviarParaOdsAlterandoCliente(arquivoodsParcela);
 
             //Sinistro referente a cancelamento
             var arquivoodsComissao = CriarEmissaoComissaoODS<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoodsParcela,"", false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
-            EnviarParaOds(arquivoodsComissao);
+            EnviarParaOdsAlterandoCliente(arquivoodsComissao);
 
             arquivo = CriarParcelaCancelamento<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.LASA, arquivoodsParcela, true);
 

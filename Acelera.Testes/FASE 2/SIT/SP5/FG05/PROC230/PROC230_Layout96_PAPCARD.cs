@@ -26,12 +26,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC230
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParcOds = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParcOds,false);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoComissaoOds = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParcOds, false);

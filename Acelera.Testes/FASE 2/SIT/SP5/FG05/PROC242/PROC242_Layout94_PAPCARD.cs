@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoOds = arquivo.Clone();
 
             LimparValidacao();

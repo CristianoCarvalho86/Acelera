@@ -16,9 +16,9 @@ namespace Acelera.Testes
             CriarEmissaoCompletaFG06(true,true);
             if (enviarParaOds)
             {
-                EnviarParaOds(triplice.ArquivoParcEmissao, false);
-                EnviarParaOds(triplice.ArquivoComissao, false);
-                EnviarParaOds(triplice.ArquivoCliente, false);
+                EnviarParaOdsAlterandoCliente(triplice.ArquivoParcEmissao, false);
+                EnviarParaOdsAlterandoCliente(triplice.ArquivoComissao, false);
+                EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente, false);
             }
         }
 

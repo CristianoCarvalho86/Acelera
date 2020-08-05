@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivoods,true);

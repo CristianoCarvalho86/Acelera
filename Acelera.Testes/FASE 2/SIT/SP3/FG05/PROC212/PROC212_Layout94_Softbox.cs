@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             arquivoods.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOdsAlterandoCliente(arquivoods);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
@@ -129,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();

@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivo.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivo, true, "PROC181");
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods1 = arquivo.Clone();
 
 
@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivo, true, "PROC181");
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods2 = arquivo.Clone();
 
             //Sinistro referente a cancelamento
@@ -86,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -101,7 +101,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -138,7 +138,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -153,7 +153,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -205,7 +205,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -242,7 +242,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -257,7 +257,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -294,7 +294,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -309,7 +309,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -346,7 +346,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -361,7 +361,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -398,7 +398,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -413,7 +413,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC181
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_Sinistro();

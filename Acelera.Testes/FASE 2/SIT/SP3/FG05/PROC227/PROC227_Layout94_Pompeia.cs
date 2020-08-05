@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC227
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             AlterarLinha(0, "DT_NASCIMENTO", "");
 
-            EnviarParaOds(arquivo, false);
+            EnviarParaOdsAlterandoCliente(arquivo, false);
             var arquivosOds = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();

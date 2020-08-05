@@ -54,14 +54,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoOds = arquivo.Clone();
             LimparValidacao();
             ConfereQtdLinhas(arquivo, 1);
 
             CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinhaComAjusteDeFooter(0);
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoOds1 = arquivo.Clone();
             LimparValidacao();
             ConfereQtdLinhas(arquivo, 1);

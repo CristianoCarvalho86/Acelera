@@ -25,14 +25,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             LimparValidacao();
 
             arquivo = arquivoParc1.Clone();
@@ -63,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
 
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -139,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -165,7 +165,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -208,7 +208,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);

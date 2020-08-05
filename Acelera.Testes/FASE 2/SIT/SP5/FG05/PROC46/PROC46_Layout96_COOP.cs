@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             LimparValidacao();
 
@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
 
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -79,7 +79,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoODS = arquivo.Clone();
 
             CriarNovaLinhaParaEmissao(arquivo);
@@ -107,7 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -158,7 +158,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);
@@ -201,7 +201,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             CriarNovaLinhaParaEmissao(arquivoods1);
             RemoverLinha(0);

@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_IOF", "50");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo, true);
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_IOF", "50");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo, true);
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -121,7 +121,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_IOF", "50");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo, true);
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -168,7 +168,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_IOF", "50");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo, true);
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -209,7 +209,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "VL_IOF", "50");
             AlterarLinha(0, "CD_CORRETOR", "7150145");
 
-            EnviarParaOds(arquivo, true);
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira

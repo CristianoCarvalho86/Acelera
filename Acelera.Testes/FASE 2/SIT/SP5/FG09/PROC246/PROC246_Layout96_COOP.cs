@@ -28,14 +28,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0, dados.ObterCoberturaPeloCodigo("00494", true));
             ConfereQtdLinhas(arquivo, 2);
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo);
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             ConfereQtdLinhas(arquivo, 2);
             LimparValidacao();
 

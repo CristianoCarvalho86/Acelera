@@ -40,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var seqEMS1 = SomarValores(arquivo.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
             var dtEmissao = ObterLinha(0).ObterCampoDoArquivo("DT_EMISSAO").ValorFormatado;
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             AlterarLinha(0, "NR_ENDOSSO", "12340000002");
             AlterarLinha(0, "DT_EMISSAO", SomarData(dtEmissao, 5));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -99,7 +99,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
             var seqEMS1 = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000002");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -152,7 +152,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
             var seqEMS1 = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -167,7 +167,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000002");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -205,7 +205,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var seqEMS = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "1");
             var seqEMS1 = SomarValores(arquivoods1.ObterValorFormatadoSeExistirCampo(0, "NR_SEQUENCIAL_EMISSAO"), "2");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -220,7 +220,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000002");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Enviar parc com msmo id cancelamento mas tipo emissao diferente
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();

@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             AlterarLinha(0, "CD_SEGURADORA", "5908");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Sinistro referente a cancelamento

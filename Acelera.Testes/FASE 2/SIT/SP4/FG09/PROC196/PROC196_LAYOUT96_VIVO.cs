@@ -87,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
 
             //AlterarHeader("VERSAO", "9.6");
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             //Sinistro referente a cancelamento

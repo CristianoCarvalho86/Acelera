@@ -28,27 +28,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("ODS_CLIENTES_LASA_C01.LASA.CLIENTE-EV-0271-20200324.TXT"));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-0272-20200228.TXT"));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("ODS_CLIENTES_SOFTBOX_C01.SOFTBOX.CLIENTE-EV-0273-20200322.TXT"));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("ODS_CLIENTES_VIVO_C01.VIVO.CLIENTE-EV-0270-20200201.TXT"));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("ODS_CLIENTES_VIVO_C01.VIVO.CLIENTE-EV-0270-20200201.TXT"));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05
             arquivo = new Arquivo_Layout_9_4_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.POMPEIA.CLIENTE-EV-0272-20200228.TXT"));
 
-            EnviarParaOds(arquivo, false);
+            EnviarParaOdsAlterandoCliente(arquivo, false);
         }
 
     }

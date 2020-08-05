@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
 
             //SetQA();
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoparc = arquivo.Clone();
 
             //SetDev();

@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
 
             AlterarLinhaParaPrimeiraEmissao(arquivo);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados);
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc = arquivo.Clone();
 
 
@@ -36,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             AlterarLinha(0, "CD_RAMO", "00");
             RemoverLinhaComAjusteDeFooter(1);
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParc);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);

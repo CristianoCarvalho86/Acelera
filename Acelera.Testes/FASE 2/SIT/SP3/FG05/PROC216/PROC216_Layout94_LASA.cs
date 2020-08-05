@@ -38,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
 
-            EnviarParaOds(arquivo, true);
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
 
-            EnviarParaOds(arquivo, true);
+            EnviarParaOdsAlterandoCliente(arquivo, true);
             var arquivoods = arquivo.Clone();
 
             //Carregar arquivo esteira
@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOdsAlterandoCliente(arquivoods);
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -157,7 +157,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOdsAlterandoCliente(arquivoods);
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             arquivoods.AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
 
-            EnviarParaOds(arquivoods);
+            EnviarParaOdsAlterandoCliente(arquivoods);
 
             //Carregar arquivo esteira
             arquivo = new Arquivo_Layout_9_4_EmsComissao();

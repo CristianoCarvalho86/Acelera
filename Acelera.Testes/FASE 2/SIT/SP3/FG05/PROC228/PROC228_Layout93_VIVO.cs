@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC228
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             arquivo.AlterarLinha(0, "SEXO", "");
 
-            EnviarParaOds(arquivo, false);
+            EnviarParaOdsAlterandoCliente(arquivo, false);
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
@@ -51,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC228
             AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
             var cdCliente = ObterValor(0, "CD_CLIENTE");
 
-            EnviarParaOds(arquivo, false);
+            EnviarParaOdsAlterandoCliente(arquivo, false);
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);

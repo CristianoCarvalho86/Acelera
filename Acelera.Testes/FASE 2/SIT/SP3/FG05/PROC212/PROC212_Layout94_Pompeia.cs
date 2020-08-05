@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
@@ -137,7 +137,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC212
             AlterarLinha(0, "VL_LMI", ObterValor(0, "VL_IS"));
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();

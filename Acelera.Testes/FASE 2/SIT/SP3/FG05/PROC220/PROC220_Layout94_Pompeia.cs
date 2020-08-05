@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
             var idCanc = arquivoods1.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
 
             //Envia Parc com id cancelamento igual id transição do anterior
@@ -97,7 +97,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             arquivoods2.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
             arquivoods2.AlterarLinha(0, "NR_ENDOSSO", "12340000001");
 
-            EnviarParaOds(arquivoods2);
+            EnviarParaOdsAlterandoCliente(arquivoods2);
 
             //enviar cobrança arquivo 1
             var arquivoods3 = arquivo = new Arquivo_Layout_9_4_OcrCobranca();
@@ -105,7 +105,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
 
             IgualarCampos(arquivoods1, arquivoods3, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA" });
 
-            EnviarParaOds(arquivoods3);
+            EnviarParaOdsAlterandoCliente(arquivoods3);
 
             //Sinistro referente a cancelamento
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();

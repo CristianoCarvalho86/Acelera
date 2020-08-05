@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC228
             var cdCliente = ObterValor(0, "CD_CLIENTE");
             arquivo.AlterarLinha(0, "SEXO", "");
 
-            EnviarParaOds(arquivo, true, "PROC228");
+            EnviarParaOdsAlterandoCliente(arquivo, true);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);

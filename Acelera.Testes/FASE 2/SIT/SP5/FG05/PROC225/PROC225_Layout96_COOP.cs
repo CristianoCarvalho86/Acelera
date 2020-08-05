@@ -51,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             IniciarTeste(TipoArquivo.ParcEmissao, "9180", "FG05 - PROC46 - ");
 

@@ -29,7 +29,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoparc = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.COOP, arquivoparc);

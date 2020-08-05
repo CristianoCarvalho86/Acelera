@@ -168,10 +168,15 @@ namespace Acelera.Testes
             else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
                 foreach (var linha in linhas)
                     ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+            
+            else if (arquivo.tipoArquivo == TipoArquivo.Comissao)
+                foreach (var linha in linhas)
+                    ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+
 
         }
 
-        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true)
+        public void EnviarParaOdsAlterandoCliente(Arquivo arquivo, bool alterarCdCliente = true)
         {
             EnviarParaOds(arquivo, true, alterarCdCliente);
         }

@@ -272,12 +272,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //triplice.Salvar(false,false,false);
 
             arquivo = triplice.ArquivoCliente;
-            EnviarParaOds(triplice.ArquivoCliente);
+            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             ExecutarEValidar(novoParc18, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(novoParc18, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
@@ -334,12 +334,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //triplice.Salvar(false,false,false);
 
             arquivo = triplice.ArquivoCliente;
-            EnviarParaOds(triplice.ArquivoCliente);
+            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
-            EnviarParaOds(novoParc18);
+            EnviarParaOdsAlterandoCliente(novoParc18);
             ExecutarEValidar(novoParc18, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(novoParc18, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
@@ -403,7 +403,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             novoParc18.RemoverExcetoEstas(0, 1);
 
             arquivo = triplice.ArquivoCliente;
-            EnviarParaOds(triplice.ArquivoCliente);
+            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
@@ -445,7 +445,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //triplice.Salvar(false,false,false);
 
             arquivo = triplice.ArquivoCliente;
-            EnviarParaOds(triplice.ArquivoCliente);
+            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
@@ -635,12 +635,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //triplice.Salvar(false,false,false);
 
             arquivo = triplice.ArquivoCliente;
-            EnviarParaOds(triplice.ArquivoCliente);
+            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
-            EnviarParaOds(novoParc18);
+            EnviarParaOdsAlterandoCliente(novoParc18);
             ExecutarEValidar(novoParc18, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(novoParc18, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 

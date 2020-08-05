@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
             arquivoods1.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
@@ -51,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             arquivoods1.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
             arquivoods1.AlterarLinha(1, "CD_MOVTO_COBRANCA", "01");
 
-            EnviarParaOds(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivoods1);
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 2, OperadoraEnum.TIM);

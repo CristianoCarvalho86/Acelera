@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC243
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo);
 
-            EnviarParaOds(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo,1);
             AlterarLinha(2, "NR_ENDOSSO", arquivo[1]["NR_ENDOSSO"]);
