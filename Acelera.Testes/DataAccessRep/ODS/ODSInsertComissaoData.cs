@@ -82,7 +82,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 co" +
             "     on cast(a.cd_corretor as int) = cast(co.cd_externo as int)" +
             "     and co.cd_tipo_parceiro_negocio = 'CO'" +
-            " where PARCSTG.cd_tipo_emissao in (1, 18)" +
+            " where PARCSTG.cd_tipo_emissao in (1, 18, 20)" +
             " group by" +
             " PARCODS.CD_PARCELA," +
             " co.cd_parceiro_negocio," +

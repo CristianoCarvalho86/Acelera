@@ -339,6 +339,7 @@ namespace Acelera.Testes
                     lista.Add("PRC_0035");
                     lista.Add("PRC_1167");
                     lista.Add("PRC_0124");
+                    lista.Add("PRC_0034");
 
                     break;
                 case TipoArquivo.Sinistro:

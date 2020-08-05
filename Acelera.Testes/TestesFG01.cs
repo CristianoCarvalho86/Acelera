@@ -53,7 +53,7 @@ namespace Acelera.Testes
                     break;
                 case TipoArquivo.LanctoComissao:
                 case TipoArquivo.OCRCobranca:
-                    lista.Add("PRC_200000");
+                    //lista.Add("PRC_200000");
                     break;
                 case TipoArquivo.Sinistro:
                     lista.Add("PRC_0008");

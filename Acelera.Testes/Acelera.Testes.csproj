@@ -187,10 +187,12 @@
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC234\PROC234_Layout96_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_PAPCARD.cs" />
-    <Compile Include="FASE 2\SIT\SP6\FG13\PROC47_Layout94_LASA.cs" />
-    <Compile Include="FASE 2\SIT\SP6\FG13\PROC47_Layout94_TIM.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_TIM.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC48\PROC48_Layout94_POMPEIA.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC48\PROC48_Layout94_LASA.cs" />
     <Compile Include="TestesFG13.cs" />
-    <Compile Include="FASE 2\SIT\SP6\FG13\PROC47_Layout94_POMPEIA.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_POMPEIA.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />
