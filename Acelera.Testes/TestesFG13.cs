@@ -16,15 +16,16 @@ namespace Acelera.Testes
             CriarEmissaoCompletaFG06(true,true);
             if (enviarParaOds)
             {
+                EnviarParaOds(triplice.ArquivoCliente, false);
                 EnviarParaOds(triplice.ArquivoParcEmissao, false);
                 EnviarParaOds(triplice.ArquivoComissao, false);
-                EnviarParaOds(triplice.ArquivoCliente, false);
             }
         }
 
         protected void ExecutarEValidarAteFG13(Arquivo arquivo, CodigoStage codigoEsperado, string mensagemNaTabelaDeRetorno = "")
         {
             ExecutarEValidarAteFg02(arquivo, mensagemNaTabelaDeRetorno);
+            ValidarTeste();
         }
     }
 }
