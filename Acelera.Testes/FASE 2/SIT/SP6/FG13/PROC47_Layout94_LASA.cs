@@ -12,18 +12,16 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
 {
     [TestClass]
-    public class PROC47_Layout94_POMPEIA: TestesFG13
+    public class PROC47_Layout94_LASA: TestesFG13
     {
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_9574()
         {
-            IniciarTeste("9574", "", OperadoraEnum.POMPEIA);
-
-            SalvaExecutaEValidaTrinca(true);
+            IniciarTeste("9574", "", OperadoraEnum.LASA);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "NR_PARCELA", "2");
