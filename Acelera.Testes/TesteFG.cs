@@ -114,8 +114,11 @@ namespace Acelera.Testes
             logger.EscreverBloco("Fim da Validação da FG01_2. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
         }
 
-        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true, string nomeProc = "")
+        public void EnviarParaOds(Arquivo arquivo, bool executaFGs = true, bool alterarCdCliente = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNaFG01_2)
         {
+
+            this.arquivo = arquivo;
+
             if (alterarCdCliente && operadora != OperadoraEnum.SGS)
             {
                 int i = 0;
@@ -123,18 +126,22 @@ namespace Acelera.Testes
                     arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
             }
 
-            SalvarArquivo();
 
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
+            if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
+            {
+                SalvarArquivo();
+                return;
+            }
 
 
-            var linhas = ValidarStages(CodigoStage.AprovadoNaFG01_2);
-            ValidarTeste();
-
-            //remover//
-            //return;
+            if (executaFGs)
+            {
+                SalvarArquivo();
+                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
+                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
+            }
+            var linhas = ValidarStages(codigoesperadostg);
 
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)
@@ -143,13 +150,9 @@ namespace Acelera.Testes
                     {
                         ODSInsertParcAutoCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                         ODSUpdateParcCancelamento.Update(logger);
-
                     }
                     else
-                    {
                         ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissaoAuto, logger);
-                    }
                 }
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
                 foreach (var linha in linhas)
@@ -158,21 +161,19 @@ namespace Acelera.Testes
                     {
                         ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                         ODSUpdateParcCancelamento.Update(logger);
-
                     }
                     else
-                    {
                         ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissao, logger);
-                    } // se não for cancelamento
                 }
             else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
                 foreach (var linha in linhas)
                     ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
 
-            else if (arquivo.tipoArquivo == TipoArquivo.Comissao)
-                foreach (var linha in linhas)
-                    ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+        }
+
+        public void EnviarParaOds(Arquivo arquivo, bool alterarCdCliente = true)
+        {
+            EnviarParaOds(arquivo, true, alterarCdCliente);
         }
 
 

@@ -98,54 +98,7 @@ namespace Acelera.Testes
 
         }
 
-        public void EnviarParaOds(Arquivo arquivo, bool executaFGs = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNaFG01)
-        {
-
-            this.arquivo = arquivo;
-            if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
-            {
-                SalvarArquivo();
-                return;
-            }
-
-
-            if (executaFGs)
-            {
-                SalvarArquivo();
-                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-                ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
-            }
-            var linhas = ValidarStages(codigoesperadostg);
-
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
-                foreach (var linha in linhas)
-                {
-                    if (new string[] { "10", "11", "9", "12", "13", "21" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                    {
-                        ODSInsertParcAutoCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSUpdateParcCancelamento.Update(logger);
-                    }
-                    else
-                        ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                }
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
-                foreach (var linha in linhas)
-                {
-                    if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
-                    {
-                        ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                        ODSUpdateParcCancelamento.Update(logger);
-                    }
-                    else
-                        ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                }
-            else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
-                foreach (var linha in linhas)
-                    ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-
-        }
-
-        protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
+         protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
         {
             IgualarCamposQueExistirem(linhaParc, linhaComissao);
         }
