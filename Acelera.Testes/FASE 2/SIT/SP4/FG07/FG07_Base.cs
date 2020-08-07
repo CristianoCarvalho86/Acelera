@@ -40,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             //Nome do arquivo - 'OIMX' + DATA DE GERAÇÃO DO ARQUIVO + ID_ARQUIVO SEM O 'EMS' + .xml
             var documento = new XmlDocument();
-            var file =  $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS", "")}";
+            var file =  $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS", "")}.xml";
             if (File.Exists(Parametros.pastaDestinoXml + file))
                 documento.Load(file);
             else if (File.Exists(Parametros.pastaDestinoXml + "_ImpOk\\" + file))
