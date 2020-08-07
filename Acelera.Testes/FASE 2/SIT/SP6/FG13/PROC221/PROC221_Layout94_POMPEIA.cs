@@ -23,16 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
 
             SalvaExecutaEValidaTrinca(true);
 
-            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
-
-            SalvarArquivo(arquivoParcCancelamento);
-            SalvarArquivo(arquivoComissaoCancelamento);
-
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
-
-            //EnviarParaOds(arquivoParcCancelamento, false, false, CodigoStage.AprovadoNaFG09);
-            //EnviarParaOds(arquivoComissaoCancelamento, false, false, CodigoStage.AprovadoNaFG09);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.POMPEIA, "10", false);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);

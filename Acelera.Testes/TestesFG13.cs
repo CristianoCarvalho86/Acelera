@@ -27,5 +27,26 @@ namespace Acelera.Testes
             ExecutarEValidarAteFg02(arquivo, mensagemNaTabelaDeRetorno);
             ValidarTeste();
         }
+
+        protected void CriarCancelamentoDaTrincaFG13(OperadoraEnum operadora, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, string cdTipoEmissao = "10", bool enviarParaOds = true)
+        {
+            CriarCancelamento(false, false, operadora, cdTipoEmissao, out arquivoParcCancelamento, out arquivoComissaoCancelamento);
+
+            SalvarArquivo(arquivoParcCancelamento);
+            SalvarArquivo(arquivoComissaoCancelamento);
+
+            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+
+            if (enviarParaOds)
+            {
+                EnviarParaOds(arquivoParcCancelamento, false, false, CodigoStage.AprovadoNaFG09);
+                EnviarParaOds(arquivoComissaoCancelamento, false, false, CodigoStage.AprovadoNaFG09);
+            }
+        }
+        protected void CriarCancelamentoDaTrincaFG13(OperadoraEnum operadora, string cdTipoEmissao = "10", bool enviarParaOds = true)
+        {
+            CriarCancelamentoDaTrincaFG13(operadora, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, cdTipoEmissao, enviarParaOds);
+        }
     }
 }
