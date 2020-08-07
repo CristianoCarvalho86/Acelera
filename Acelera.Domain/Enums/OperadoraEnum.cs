@@ -26,6 +26,8 @@ namespace Acelera.Domain.Enums
         [Description("PAPCARD")]
         PAPCARD,
         [Description("COOP")]
-        COOP
+        COOP,
+        [Description("QUEROQUERORESID")]
+        QUEROQUERO
     }
 }

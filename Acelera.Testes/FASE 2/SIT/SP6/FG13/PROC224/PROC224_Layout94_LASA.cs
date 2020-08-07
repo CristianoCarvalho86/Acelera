@@ -9,16 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
+namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
 {
     [TestClass]
-    public class PROC48_Layout94_LASA: TestesFG13
+    public class PROC224_Layout94_LASA: TestesFG13
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9601()
+        public void SAP_9750()
         {
-            IniciarTeste("9601", "", OperadoraEnum.LASA);
+            IniciarTeste("9750", "", OperadoraEnum.LASA);
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -28,9 +28,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_PARCELA"]) + 1).ToString());
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
-            AlterarLinha(0, "CD_OCORRENCIA", "18");
+            AlterarLinha(0, "CD_OCORRENCIA", "31");
             AlterarLinha(0, "DT_OCORRENCIA",SomarData(triplice.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
-            AlterarLinha(0, "VL_PREMIO_PAGO", SomarValores(triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_TOTAL"),"-1"));
+            AlterarLinha(0, "VL_PREMIO_PAGO", SomarValores(triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_TOTAL"),"0"));
 
             SalvarArquivo();
 

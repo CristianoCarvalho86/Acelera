@@ -20,7 +20,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             IniciarTeste("6154", "FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
+            //AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
             SalvaExecutaEValidaFG07();
 

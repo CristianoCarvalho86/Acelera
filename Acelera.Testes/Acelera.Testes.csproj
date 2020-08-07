@@ -75,6 +75,7 @@
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="ConjuntoArquivos\Triplice.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceQUEROQUERO.cs" />
     <Compile Include="ConjuntoArquivos\TriplicePOMPEIA.cs" />
     <Compile Include="ConjuntoArquivos\TripliceLASA.cs" />
     <Compile Include="ConjuntoArquivos\TripliceSOFTBOX.cs" />
@@ -187,10 +188,17 @@
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC234\PROC234_Layout96_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC221\PROC221_Layout94_QUEROQUERO.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC221\PROC221_Layout94_POMPEIA.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC224\PROC224_Layout94_POMPEIA.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC224\PROC224_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_TIM.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC48\PROC48_Layout94_QUEROQUERO.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC48\PROC48_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC48\PROC48_Layout94_POMPEIA.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC48\PROC48_Layout94_LASA.cs" />
+    <Compile Include="FASE 2\SIT\SP6\FG13\PROC50\PROC50_Layout94_TIM.cs" />
     <Compile Include="TestesFG13.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_POMPEIA.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />

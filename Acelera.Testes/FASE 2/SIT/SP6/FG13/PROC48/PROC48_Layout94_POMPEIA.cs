@@ -16,9 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9601()
+        public void SAP_9652()
         {
-            IniciarTeste("9601", "", OperadoraEnum.POMPEIA);
+            IniciarTeste("9652", "", OperadoraEnum.POMPEIA);
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -26,11 +26,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
-            AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_PARCELA"]) + 1).ToString());
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
+            AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[1]["NR_PARCELA"]) + 1).ToString());
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[1]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
             AlterarLinha(0, "CD_OCORRENCIA", "18");
-            AlterarLinha(0, "DT_OCORRENCIA",SomarData(triplice.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
-            AlterarLinha(0, "VL_PREMIO_PAGO", SomarValores(triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_TOTAL"),"1"));
+            AlterarLinha(0, "DT_OCORRENCIA",SomarData(triplice.ArquivoParcEmissao[1]["DT_EMISSAO"], 10));
+            AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(triplice.ArquivoParcEmissao.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1));
 
             SalvarArquivo();
 
