@@ -35,6 +35,9 @@ namespace Acelera.Domain.Layouts
 
         protected abstract string[] CamposChaves { get; }
 
+        public LinhaArquivo UltimaLinha => Linhas[Linhas.Count - 1];
+
+
         public void AtualizarNomeArquivoFinal(string nomeArquivo)
         {
             NomeArquivoOriginal = NomeArquivo;

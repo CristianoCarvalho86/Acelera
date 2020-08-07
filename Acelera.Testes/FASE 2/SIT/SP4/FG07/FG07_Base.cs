@@ -6,9 +6,11 @@ using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2.SIT.SP4.FG06;
 using Acelera.Testes.Validadores;
 using Acelera.Utils;
+using Castle.Core.Internal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         public FG07_Base()
         {
-            validadorXML = new ValidadorXML(logger);
+
         }
 
         protected void ValidarXMLComTabelasOIM(string idArquivo, bool ehParcAuto)
@@ -38,7 +40,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             //Nome do arquivo - 'OIMX' + DATA DE GERAÇÃO DO ARQUIVO + ID_ARQUIVO SEM O 'EMS' + .xml
             var documento = new XmlDocument();
-            documento.Load(Parametros.pastaDestinoXml + $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS","")}");
+            var file =  $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS", "")}";
+            if (File.Exists(Parametros.pastaDestinoXml + file))
+                documento.Load(file);
+            else if (File.Exists(Parametros.pastaDestinoXml + "_ImpOk\\" + file))
+                documento.Load(file);
+            else if (File.Exists(Parametros.pastaDestinoXml + "_ImpErro\\" + file))
+                documento.Load(file);
+            if (documento.IsNullOrEmpty())
+                ExplodeFalha("DOCUMENTO NAO ENCONTRADO.");
+
             return documento;
         }
 
@@ -72,6 +83,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             CarregarTriplice(operadora);
 
             AlteracoesPadraoDaTrinca(triplice, geraCliente);
+
+            validadorXML = new ValidadorXML(logger);
         }
 
         protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true, bool esperaSucesso = true)
@@ -80,11 +93,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             var linhasStageParc = ExecutarFG07(esperaSucesso);
             var ehParcAuto = triplice.ArquivoParcEmissao.tipoArquivo == TipoArquivo.ParcEmissaoAuto;
             var idArquivo = string.Empty;
-            foreach (var linhaStage in linhasStageParc)
+            ILinhaTabela linhaTemp;
+            foreach (ILinhaTabela linhaStage in linhasStageParc)
             {
-                validadorXML.ValidarInclusaoNasTabelas(linhaStage, "1210", ehParcAuto, out idArquivo);
+                linhaTemp = (ILinhaTabela)linhaStage.Clone();
+                InserirCpfCorretor(ref linhaTemp);
+                validadorXML.ValidarInclusaoNasTabelas(linhaTemp, "1210", ehParcAuto, out idArquivo);
             }
             ValidarXMLComTabelasOIM(idArquivo, ehParcAuto);
+        }
+
+        private void InserirCpfCorretor(ref ILinhaTabela linhaDaStage)
+        {
+            linhaDaStage.Campos.Add(new Campo("CP_CORRETOR", dados.ObterCPFDoCorretor(linhaDaStage.ObterPorColuna("CD_CORRETOR").ValorFormatado)));
         }
 
         protected IList<ILinhaTabela> ExecutarFG07(bool sucessoNaFG071)

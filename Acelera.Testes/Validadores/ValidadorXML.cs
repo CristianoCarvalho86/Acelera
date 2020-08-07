@@ -49,9 +49,9 @@ namespace Acelera.Testes.Validadores
             foreach (var tabela in listaDeTabelas)
             {
                 if (tabela == TabelasOIMEnum.OIM_APL01)
-                    campoConsulta = "id_arquivo";
+                    campoConsulta = "\"id_arquivo\"";
 
-                where = linhaDaStage.ObterWhereCamposChaves(tabela.ObterCamposChaves());
+                where = linhaDaStage.ObterWhereCamposChaves(tabela.ObterCamposChaves(),true);
                 retorno = DataAccess.ConsultaUnica($"SELECT {campoConsulta} FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
                 if (string.IsNullOrEmpty(retorno))
                     erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
@@ -62,23 +62,18 @@ namespace Acelera.Testes.Validadores
                     idArquivo = retorno;
             }
 
-            retorno = DataAccess.ConsultaUnica($"SELECT CD_STATUS FROM {Parametros.instanciaDB}.TAB_OIM_XML_CONTROLE_8003 where id_arquivo = '{idArquivo}' ", $"VALIDACAO REGISTRO INSERIDO TAB_OIM_XML_CONTROLE_8003", DBEnum.Hana, logger, false);
-            if(string.IsNullOrEmpty(retorno))
+            retorno = DataAccess.ConsultaUnica($"SELECT \"cd_status\" FROM {Parametros.instanciaDB}.TAB_OIM_XML_CONTROLE_8003 where \"id_arquivo\" = '{idArquivo}' ", $"VALIDACAO REGISTRO INSERIDO TAB_OIM_XML_CONTROLE_8003", DBEnum.Hana, logger, false);
+            if (string.IsNullOrEmpty(retorno))
+                erros += $"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', NAO ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003{Environment.NewLine}";
+            else if (retorno != cdStatusEsperado)
+                erros += $"CD_STATUS DA TABELA TAB_OIM_XML_CONTROLE_8003 NAO ERA O ESPERADO {Environment.NewLine} OBTIDO :{retorno} ; ESPERADO :{cdStatusEsperado}{Environment.NewLine}";
+            else
             {
-                logger.Erro($"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', NAO ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003");
-                return false;
+                logger.Escrever($"CD_STATUS DA TABELA TAB_OIM_XML_CONTROLE_8003 ENCONTRADO COMO O ESPERADO {Environment.NewLine} OBTIDO :{retorno} ; ESPERADO :{cdStatusEsperado}");
+                logger.Escrever($"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003 COM SUCESSO.");
             }
-            if (retorno != cdStatusEsperado)
-            {
-                logger.Erro($"CD_STATUS DA TABELA TAB_OIM_XML_CONTROLE_8003 NAO ERA O ESPERADO {Environment.NewLine} OBTIDO :{retorno} ; ESPERADO :{cdStatusEsperado}");
-                return false;
-            }
-
-            logger.Escrever($"CD_STATUS DA TABELA TAB_OIM_XML_CONTROLE_8003 ENCONTRADO COMO O ESPERADO {Environment.NewLine} OBTIDO :{retorno} ; ESPERADO :{cdStatusEsperado}");
-            logger.Escrever($"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003 COM SUCESSO.");
-
             logger.FecharBloco();
-            if(string.IsNullOrEmpty(erros))
+            if(!string.IsNullOrEmpty(erros))
             {
                 logger.Erro(erros);
                 return false;
@@ -138,7 +133,7 @@ namespace Acelera.Testes.Validadores
             var where = "";
             foreach (var campo in camposChaves)
             {
-                where += $"{campo} = '{node[campo].InnerText}' AND";
+                where += $"\"{campo}\" = '{node[campo].InnerText}' AND";
             }
             return where.Substring(0, where.Length - 3);
         }

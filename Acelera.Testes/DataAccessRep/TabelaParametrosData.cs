@@ -300,6 +300,16 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("CD_TIPO_MOVIMENTO", "CD_ATUACAO", atuacao, "TAB_PRM_TIPO_MOVIMENTO_7024");
         }
 
+        public string ObterCDSusepDoCorretor(string cdCorretor)
+        {
+                return ObterRetorno("CD_SUSEP", "CD_EXTERNO", cdCorretor, "TAB_ODS_PARCEIRO_NEGOCIO_2000", true, " CD_TIPO_PARCEIRO_NEGOCIO = 'CO' ");
+        }
+
+        public string ObterCPFDoCorretor(string cdCorretor)
+        {
+            return ObterRetorno("NR_CNPJ_CPF_RNE", "CD_EXTERNO", cdCorretor, "TAB_ODS_PARCEIRO_NEGOCIO_2000", true, " CD_TIPO_PARCEIRO_NEGOCIO = 'CO' ");
+        }
+
         public string ObterCdCorretorParaTipoRemuneracao(string cdTpa ,string cdTipoRemuneracao, bool relacionado, string[] diferenteDeCdCorretor = null)
         {
             var pnOperacaoDoTpa = ObterCdParceiroNegocioParaTPA(cdTpa);

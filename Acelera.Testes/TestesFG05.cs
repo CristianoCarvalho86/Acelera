@@ -92,13 +92,6 @@ namespace Acelera.Testes
                 }
         }
 
-        //protected override void SalvarArquivo()
-        //{
-        //    //foreach (var linha in arquivo.Linhas)
-        //    //    arquivo.AlterarLinhaSeExistirCampo(linha.Index, "CD_CLIENTE", ObterCDClienteCadastrado());
-        //    base.SalvarArquivo();
-        //}
-
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {
             base.IniciarTeste(tipo, numeroDoTeste, nomeDoTeste);

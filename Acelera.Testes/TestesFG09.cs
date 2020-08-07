@@ -64,8 +64,8 @@ namespace Acelera.Testes
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, ObterValorHeader("CD_TPA")));
 
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
-            AlterarLinha(0, "NR_ENDOSSO", "0");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(operadora));
+            AlterarLinha(0, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivo[0], operadora));
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             
             AlterarLinha(0, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(operadora));
@@ -85,10 +85,11 @@ namespace Acelera.Testes
             for (int i = 1; i < qtdParcelas; i++)
             {
                 AdicionarLinha(i, ObterLinha(0));
+
                 AlterarLinha(i, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
-                AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", (i + 1).ToString());
+                AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivo.UltimaLinha, operadora));
                 AlterarLinha(i, "NR_PARCELA",  (i + ObterValorFormatado(0, "NR_PARCELA").ObterParteNumericaDoTexto()).ToString());
-                AlterarLinha(i, "NR_ENDOSSO", GerarNumeroAleatorio(6));
+                AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(arquivo.UltimaLinha));
                 AlterarLinha(i, "ID_TRANSACAO_CANC", "");
             }
 

@@ -14,6 +14,69 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
     [TestClass]
     public class PROC196_LAYOUT94_POMPEIA : TestesFG09
     {
+
+        [TestMethod]
+        public void SAP_1111()
+        {
+            //C01.LASA.PARCEMS-EV-3780-20200423.TXT
+            //C01.LASA.PARCEMS-EV-3798-20200424.TXT
+            //C01.LASA.CLIENTE-EV-3781-20200423.TXT
+            //C01.LASA.EMSCMS-EV-3782-20200423.TXT
+            //C01.LASA.EMSCMS-EV-3800-20200424.TXT
+            
+            /*C01.LASA.PARCEMS-EV-4627-20200612.TXT
+            C01.LASA.PARCEMS-EV-4747-20200620.TXT
+            C01.LASA.CLIENTE-EV-4628-20200612.TXT
+            C01.LASA.EMSCMS-EV-4628-20200612.TXT
+            C01.LASA.EMSCMS-EV-4749-20200620.TXT*/
+            IniciarTeste(TipoArquivo.ParcEmissao, "", "Geracao de massa");
+
+            AlterarCobertura(false);
+
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            arquivo.Carregar(@"C:\Cristiano\Origem2\C01.LASA.PARCEMS-EV-4627-20200612.TXT");
+            var contrato =AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var cdCliente = GerarNumeroAleatorio(8);
+
+            foreach (var linha in arquivo.Linhas)
+                CriarNovoContrato(linha.Index, arquivo, contrato);
+            arquivo.AlterarTodasAsLinhas("CD_CLIENTE", cdCliente);
+            SalvarArquivo();
+            //ExecutarEValidarAteFg05(arquivo);
+            LimparValidacao();
+
+            arquivo.Carregar(@"C:\Cristiano\Origem2\C01.LASA.PARCEMS-EV-4747-20200620.TXT");
+            foreach (var linha in arquivo.Linhas)
+                CriarNovoContrato(linha.Index, arquivo, contrato);
+            arquivo.AlterarTodasAsLinhas("CD_CLIENTE", cdCliente);
+            SalvarArquivo();
+            //ExecutarEValidarAteFg05(arquivo);
+            LimparValidacao();
+
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(@"C:\Cristiano\Origem2\C01.LASA.CLIENTE-EV-4628-20200612.TXT");
+            arquivo.AlterarTodasAsLinhas("CD_CLIENTE", cdCliente);
+            SelecionarLinhaParaValidacao(0);
+            SalvarArquivo();
+            //ExecutarEValidarAteFg05(arquivo);
+            LimparValidacao();
+
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo.Carregar(@"C:\Cristiano\Origem2\C01.LASA.EMSCMS-EV-4628-20200612.TXT");
+            arquivo.AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+            SelecionarLinhaParaValidacao(0);
+            SalvarArquivo();
+            //ExecutarEValidarAteFg05(arquivo);
+            LimparValidacao();
+
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo.Carregar(@"C:\Cristiano\Origem2\C01.LASA.EMSCMS-EV-4749-20200620.TXT");
+            arquivo.AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+            SalvarArquivo();
+            //ExecutarEValidarAteFg05(arquivo);
+            LimparValidacao();
+        }
+
         [TestMethod]
         [TestCategory("Com Critica")]
         public void SAP_5523()

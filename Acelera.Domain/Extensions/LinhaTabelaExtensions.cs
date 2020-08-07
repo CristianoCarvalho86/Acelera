@@ -9,17 +9,20 @@ namespace Acelera.Domain.Extensions
 {
     public static class LinhaTabelaExtensions
     {
-        public static string ObterWhereCamposChaves(this ILinhaTabela linha, string[] camposChaves)
+        public static string ObterWhereCamposChaves(this ILinhaTabela linha, string[] camposChaves, bool comAspasNoCampo = false)
         {
             var where = "";
             var campoAjustado = "";
+            var aspas = comAspasNoCampo ? "\"" : "";
             foreach (var campo in camposChaves)
             {
+                campoAjustado = campo;
                 if (campo == "vl_premio")
-                    campoAjustado = "VL_PREMIO_LIQUIDO";
-                where += $"{campoAjustado} = '{linha.ObterPorColuna(campoAjustado.ToUpper()).ValorFormatado}' AND";
+                    campoAjustado = $"VL_PREMIO_LIQUIDO";
+
+                where += $"{aspas}{campo}{aspas} = '{linha.ObterPorColuna(campoAjustado).ValorFormatado}' AND ";
             }
-            return where.Substring(0, where.Length - 3);
+            return where.Substring(0, where.Length - 4);
         }
     }
 }

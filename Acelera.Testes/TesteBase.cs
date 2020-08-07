@@ -403,14 +403,17 @@ namespace Acelera.Testes
             return linhaCancelamento;
         }
 
-        public void CriarNovoContrato(int posicaoLinha, Arquivo arquivo = null)
+        public void CriarNovoContrato(int posicaoLinha, Arquivo arquivo = null, string novoContrato = "")
         {
             arquivo = arquivo == null ? this.arquivo : arquivo;
             var contrato = "";
-            if (EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo) == OperadoraEnum.PAPCARD)
+            if (!string.IsNullOrEmpty(novoContrato))
+                contrato = novoContrato;
+            else if (EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo) == OperadoraEnum.PAPCARD)
                 contrato = "759303900006209";
             else
                 contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            
             arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);

@@ -362,7 +362,7 @@ namespace Acelera.Domain.Extensions
                     return new string[] { "nr_apolice", "nr_endosso" };
 
                 case TabelasOIMEnum.OIM_CMS01:
-                    return new string[] { "nr_apolice", "nr_parcela", "cd_corretor" };
+                    return new string[] { "nr_apolice", "nr_parcela", "cp_corretor" };
                 case TabelasOIMEnum.OIM_COB01:
                     return new string[] { "nr_apolice", "vl_premio", "cd_cobertura" };
                 case TabelasOIMEnum.OIM_PARC01:

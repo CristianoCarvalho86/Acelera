@@ -112,7 +112,7 @@ namespace Acelera.Data
             catch (Exception ex)
             {
                 erro = ex.Message;
-                if (!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL"))
+                if (!ex.Message.ToUpper().Contains("WRONG NUMBER OR TYPES OF PARAMETERS IN CALL") && !ex.Message.ToUpper().Contains("PASSWORD WILL EXPIRE WITHIN FEW DAYS"))
                     throw new Exception("ERRO AO EXECUTAR : " + ex.ToString());
             }
             return 999;
