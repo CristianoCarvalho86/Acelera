@@ -13,12 +13,12 @@ namespace Acelera.Testes
     {
         protected void SalvaExecutaEValidaTrinca(bool enviarParaOds = true)
         {
-            CriarEmissaoCompletaFG06(true,true);
+            CriarEmissaoCompletaFG06(true, true);
             if (enviarParaOds)
             {
-                EnviarParaOds(triplice.ArquivoCliente, false);
-                EnviarParaOds(triplice.ArquivoParcEmissao, false);
-                EnviarParaOds(triplice.ArquivoComissao, false);
+                EnviarParaOds(triplice.ArquivoCliente, false, true, CodigoStage.AprovadoFG06);
+                EnviarParaOds(triplice.ArquivoParcEmissao, false, true, CodigoStage.AprovadoFG06);
+                EnviarParaOds(triplice.ArquivoComissao, false, true, CodigoStage.AprovadoFG06);
             }
         }
 
