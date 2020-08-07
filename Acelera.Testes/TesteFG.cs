@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Consultas;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
@@ -279,6 +280,82 @@ namespace Acelera.Testes
 
 
             logger.FimDoArquivo(numeroDoLote, operacao, Parametros.pastaLogCopia, Parametros.ModoExecucao);
+        }
+
+        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, Arquivo _arquivo = null)
+        {
+            if (_arquivo == null)
+                _arquivo = arquivo;
+            _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
+            _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
+            _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
+        }
+
+        public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        {
+            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
+            if (operadora == OperadoraEnum.TIM)
+                CriarNovaLinhaEmissaoTim(arquivoParc);
+            else
+            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
+            
+            var index = arquivoParc.Linhas.Count - 1;
+            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
+            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(arquivoParc[linhaDeReferencia]));
+            arquivoParc.AlterarLinha(index, "NR_PARCELA", arquivoParc[linhaDeReferencia]["NR_PARCELA"].ObterProximoValorInteiro());
+            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivoParc[linhaDeReferencia], operadora));
+        }
+
+        private void CriarNovaLinhaEmissaoTim(Arquivo arquivoParc)
+        {
+            arquivoParc.AdicionarLinha(ParametrosLinhaEmissao.CarregaLinhaEmissaoTIM(arquivoParc[0], arquivoParc.Linhas.Count - 1));
+            var camposASeremIgualados = arquivoParc[0].Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
+            IgualarCampos(arquivoParc[0], arquivoParc[arquivoParc.Linhas.Count - 1], camposASeremIgualados);
+        }
+
+        public void CriarNovaLinhaParaEmissaoComMesmoEndossoEParcela(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        {
+            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
+            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
+            var index = arquivoParc.Linhas.Count - 1;
+            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
+            arquivoParc.AlterarLinha(index, "NR_ENDOSSO", arquivoParc[linhaDeReferencia]["NR_ENDOSSO"]);
+            arquivoParc.AlterarLinha(index, "NR_PARCELA", arquivoParc[linhaDeReferencia]["NR_PARCELA"]);
+            arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", arquivoParc[linhaDeReferencia]["NR_SEQUENCIAL_EMISSAO"]);
+        }
+
+
+        public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        {
+            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
+            arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(operadora));
+        }
+
+        public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)
+        {
+            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
+            (triplice.ArquivoComissao.Header[0]["CD_TPA"], tipoComissao, triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
+            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", tipoComissao);
+        }
+
+        public void AdicionarNovaCoberturaNaEmissao(Arquivo arquivoParc, TabelaParametrosData dados, int posicaoLinha = 0, Cobertura cobertura = null)
+        {
+            arquivoParc.ReplicarLinha(posicaoLinha, 1);
+
+            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true) : cobertura;
+            AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
+        }
+
+        protected void AdicionarTipoComissao(Arquivo arquivo, string valorPremioLiquido, string cdTipoComissao, int posicaoLinha)
+        {
+            var valor = valorPremioLiquido.ObterValorDecimal() / 2;
+            arquivo.AlterarLinha(posicaoLinha, "VL_COMISSAO", valor.ValorFormatado());
+            arquivo.ReplicarLinha(posicaoLinha, 1);
+            arquivo.AlterarLinha(arquivo.Linhas.Count - 1, "CD_TIPO_COMISSAO", cdTipoComissao);
+            arquivo.AlterarLinha(arquivo.Linhas.Count - 1, "VL_COMISSAO", valor.ValorFormatado());
         }
     }
 }

@@ -64,5 +64,6 @@ namespace Acelera.Utils
         {
             return linhaDeReferencia["CD_SUCURSAL"] + linhaDeReferencia["CD_RAMO"] + RandomNumber.GerarNumeroAleatorio(7);
         }
+
     }
 }
