@@ -21,11 +21,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         {
             IniciarTeste("9735", "", OperadoraEnum.QUEROQUERO);
 
-            SalvaExecutaEValidaTrinca(false);
-
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(1));
+
+            SalvaExecutaEValidaTrinca(false);
 
             CriarCancelamento(false, false, OperadoraEnum.QUEROQUERO, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
 
