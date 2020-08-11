@@ -13,6 +13,7 @@ namespace Acelera.Testes
     {
         protected void SalvaExecutaEValidaTrinca(bool enviarParaOds = true)
         {
+            LimparValidacao();
             CriarEmissaoCompletaFG06(true, true);
             if (enviarParaOds)
             {
