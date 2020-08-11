@@ -293,10 +293,12 @@ namespace Acelera.Testes
                 var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
                 _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
                 
-                var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
-                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
+                //var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
+                var iof = CalcularValorIOF(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
+                _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", iof.ValorFormatado());
 
-                _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
+                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", (premioTotal - iof).ValorFormatado());
 
             }
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
@@ -330,6 +332,17 @@ namespace Acelera.Testes
 
 
             return valorTotalLiq;
+        }
+
+        public decimal CalcularValorIOF(Cobertura cobertura, decimal valorIs)
+        {
+            var valorIof = ObterValorCalculadoIOF(valorIs, cobertura);
+
+            if (cobertura.TP_APLICACAO_IOF == "PC")
+                valorIof = valorIof - (valorIof * cobertura.VL_IOF_MENOR_decimal);
+            else
+                valorIof = valorIof - cobertura.VL_IOF_MENOR_decimal;
+            return valorIof;
         }
 
         protected decimal ObterValorCalculadoIOF(decimal valorIS, Cobertura cobertura)
