@@ -290,7 +290,7 @@ namespace Acelera.Testes
 
             if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
             {
-                var premioTotal = CalcularValorPremioTotal(cobertura);
+                var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
                 _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
                 
                 var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
@@ -305,7 +305,7 @@ namespace Acelera.Testes
 
         }
 
-        public decimal CalcularValorPremioTotal(Cobertura cobertura)
+        public decimal CalcularValorPremioTotal(Cobertura cobertura, decimal vl_is)
         {
             decimal valorTotal = 0;
             valorTotal = ObterValorPremioTotalBruto(vl_is, cobertura);
@@ -415,7 +415,7 @@ namespace Acelera.Testes
         {
             arquivoParc.ReplicarLinha(posicaoLinha, 1);
 
-            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true) : cobertura;
+            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"]) : cobertura;
             AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
         }
 
