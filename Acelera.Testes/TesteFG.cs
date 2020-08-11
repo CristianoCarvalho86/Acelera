@@ -308,7 +308,7 @@ namespace Acelera.Testes
         public decimal CalcularValorPremioTotal(Cobertura cobertura)
         {
             decimal valorTotal = 0;
-            valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
+            valorTotal = ObterValorPremioTotalBruto(vl_is, cobertura);
 
             if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
                 valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
