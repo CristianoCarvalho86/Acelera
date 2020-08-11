@@ -38,12 +38,6 @@ namespace Acelera.Testes
             alterarCobertura = true;
         }
 
-        protected decimal ObterValorCalculadoIOF(decimal valorIS, Cobertura cobertura)
-        {
-            return (ObterValorPremioTotalLiquido(valorIS, cobertura) * (cobertura.ValorPercentualAlicotaIofDecimal * 100) / 100) *
-                    (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100);
-        }
-
         protected override void SalvarArquivo(bool alterarCdCliente, string nomeProc = "")
         {
             if (alterarCdCliente)
