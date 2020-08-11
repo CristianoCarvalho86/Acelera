@@ -284,11 +284,33 @@ namespace Acelera.Testes
 
         public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, Arquivo _arquivo = null)
         {
+            
+
             if (_arquivo == null)
                 _arquivo = arquivo;
+            var operadora = EnumUtils.ObterOperadoraDoArquivo(_arquivo.NomeArquivo);
+            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX) 
+
+
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
             _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
             _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
+
+            
+        }
+
+        public string CalcularValorPremioTotal()
+        {
+            decimal valorTotal = 0;
+            valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
+
+            if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
+                valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
+            //Valor do Prêmio Aceito = Valor do Prêmio calculado – (Valor do Prêmio calculado * Menor valor parametrizado)
+            else
+                valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
+
+            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
         }
 
         public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
