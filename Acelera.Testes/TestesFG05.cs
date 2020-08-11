@@ -38,18 +38,6 @@ namespace Acelera.Testes
             alterarCobertura = true;
         }
 
-        protected decimal ObterValorPremioTotalBruto(decimal valorIS, Cobertura cobertura)
-        {
-            return valorIS * cobertura.VL_PERC_DISTRIBUICAO_decimal * cobertura.VL_PERC_TAXA_SEGURO_decimal;
-            //(VL_IS * VL_PERC_TAXA_SEGURO) * VL_PERC_DISTRIBUICAO)
-        }
-
-        protected decimal ObterValorPremioTotalLiquido(decimal valorIS, Cobertura cobertura)
-        {
-            return ObterValorPremioTotalBruto(valorIS, cobertura) *
-                (((1M + (cobertura.ValorPercentualAlicotaIofDecimal * 100)) / 100) * (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100));
-        }
-
         protected decimal ObterValorCalculadoIOF(decimal valorIS, Cobertura cobertura)
         {
             return (ObterValorPremioTotalLiquido(valorIS, cobertura) * (cobertura.ValorPercentualAlicotaIofDecimal * 100) / 100) *

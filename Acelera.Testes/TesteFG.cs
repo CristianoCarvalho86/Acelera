@@ -284,22 +284,20 @@ namespace Acelera.Testes
 
         public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, Arquivo _arquivo = null)
         {
-            
-
             if (_arquivo == null)
                 _arquivo = arquivo;
             var operadora = EnumUtils.ObterOperadoraDoArquivo(_arquivo.NomeArquivo);
-            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX) 
-
+            
+            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", CalcularValorPremioTotal(cobertura));
 
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
             _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
             _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
 
-            
         }
 
-        public string CalcularValorPremioTotal()
+        public string CalcularValorPremioTotal(Cobertura cobertura)
         {
             decimal valorTotal = 0;
             valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
@@ -310,7 +308,19 @@ namespace Acelera.Testes
             else
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
 
-            AlterarLinha(0, "VL_PREMIO_TOTAL", valorTotal.ValorFormatado());
+            return valorTotal.ValorFormatado();
+        }
+
+        protected decimal ObterValorPremioTotalBruto(decimal valorIS, Cobertura cobertura)
+        {
+            return valorIS * cobertura.VL_PERC_DISTRIBUICAO_decimal * cobertura.VL_PERC_TAXA_SEGURO_decimal;
+            //(VL_IS * VL_PERC_TAXA_SEGURO) * VL_PERC_DISTRIBUICAO)
+        }
+
+        protected decimal ObterValorPremioTotalLiquido(decimal valorIS, Cobertura cobertura)
+        {
+            return ObterValorPremioTotalBruto(valorIS, cobertura) *
+                (((1M + (cobertura.ValorPercentualAlicotaIofDecimal * 100)) / 100) * (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100));
         }
 
         public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)

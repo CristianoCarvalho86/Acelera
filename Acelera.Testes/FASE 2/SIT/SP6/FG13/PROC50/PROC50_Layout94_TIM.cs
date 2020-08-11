@@ -20,10 +20,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         {
             IniciarTeste("9698", "", OperadoraEnum.TIM);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
+            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0,
+                dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[0]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"],true));
+            
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
 
-            SalvaExecutaEValidaTrinca(false);
+            SalvaExecutaEValidaTrinca(true);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
