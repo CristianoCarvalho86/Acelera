@@ -287,17 +287,25 @@ namespace Acelera.Testes
             if (_arquivo == null)
                 _arquivo = arquivo;
             var operadora = EnumUtils.ObterOperadoraDoArquivo(_arquivo.NomeArquivo);
-            
-            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
-                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", CalcularValorPremioTotal(cobertura, _arquivo.ObterValorFormatado(posicaoLinha, "VL_IS").ObterValorDecimal()));
 
+            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+            {
+                var premioTotal = CalcularValorPremioTotal(cobertura);
+                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
+                
+                var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
+                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioLiquido.ValorFormatado());
+
+                _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
+
+            }
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
             _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
             _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
 
         }
 
-        public string CalcularValorPremioTotal(Cobertura cobertura, decimal vl_is)
+        public decimal CalcularValorPremioTotal(Cobertura cobertura)
         {
             decimal valorTotal = 0;
             valorTotal = ObterValorPremioTotalBruto(vl_is, cobertura);
@@ -308,7 +316,26 @@ namespace Acelera.Testes
             else
                 valorTotal = valorTotal - cobertura.ValorPremioBrutoMenorDecimal;
 
-            return valorTotal.ValorFormatado();
+            return valorTotal;
+        }
+
+        public decimal CalcularValorPremioLiquido(Cobertura cobertura,decimal valorPremioTotal)
+        {
+            decimal valorTotalLiq = valorPremioTotal;
+
+            if (cobertura.TP_APLICACAO_PREMIO_LQ == "PC")
+                valorTotalLiq = valorTotalLiq - (valorTotalLiq * cobertura.ValorPremioLiquidoMenorDecimal);
+            else
+                valorTotalLiq = valorTotalLiq - cobertura.ValorPremioLiquidoMenorDecimal;
+
+
+            return valorTotalLiq;
+        }
+
+        protected decimal ObterValorCalculadoIOF(decimal valorIS, Cobertura cobertura)
+        {
+            return (ObterValorPremioTotalLiquido(valorIS, cobertura) * (cobertura.ValorPercentualAlicotaIofDecimal * 100) / 100) *
+                    (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100);
         }
 
         protected decimal ObterValorPremioTotalBruto(decimal valorIS, Cobertura cobertura)
