@@ -294,7 +294,7 @@ namespace Acelera.Testes
                 _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
                 
                 var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
-                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioLiquido.ValorFormatado());
+                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
 
                 _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
 
