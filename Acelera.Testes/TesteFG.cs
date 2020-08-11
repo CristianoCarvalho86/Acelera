@@ -289,7 +289,7 @@ namespace Acelera.Testes
             var operadora = EnumUtils.ObterOperadoraDoArquivo(_arquivo.NomeArquivo);
             
             if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
-                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", CalcularValorPremioTotal(cobertura));
+                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", CalcularValorPremioTotal(cobertura, _arquivo.ObterValorFormatado(posicaoLinha, "VL_IS").ObterValorDecimal()));
 
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
             _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
@@ -297,10 +297,10 @@ namespace Acelera.Testes
 
         }
 
-        public string CalcularValorPremioTotal(Cobertura cobertura)
+        public string CalcularValorPremioTotal(Cobertura cobertura, decimal vl_is)
         {
             decimal valorTotal = 0;
-            valorTotal = ObterValorPremioTotalBruto(ObterValorFormatado(0, "VL_IS").ObterValorDecimal(), cobertura);
+            valorTotal = ObterValorPremioTotalBruto(vl_is, cobertura);
 
             if (cobertura.TP_APLICACAO_PREMIO_BR == "PC")
                 valorTotal = valorTotal - (valorTotal * cobertura.ValorPremioBrutoMenorDecimal);
