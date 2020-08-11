@@ -293,12 +293,13 @@ namespace Acelera.Testes
                 var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
                 _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
                 
-                //var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
-                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
+                var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
+                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
+                
                 var iof = CalcularValorIOF(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
                 _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", iof.ValorFormatado());
 
-                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", (premioTotal - iof).ValorFormatado());
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", (premioTotal - iof).ValorFormatado());
 
             }
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
