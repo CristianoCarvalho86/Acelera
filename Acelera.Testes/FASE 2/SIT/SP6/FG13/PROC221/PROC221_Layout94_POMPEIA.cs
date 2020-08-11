@@ -23,17 +23,117 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
 
             SalvaExecutaEValidaTrinca(true);
 
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.POMPEIA, "10", true);
+
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9736()
+        {
+            IniciarTeste("9736", "", OperadoraEnum.POMPEIA);
+
+            SalvaExecutaEValidaTrinca(true);
+
             CriarCancelamentoDaTrincaFG13(OperadoraEnum.POMPEIA, "10", false);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
-            AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_PARCELA"]) + 1).ToString());
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
-            AlterarLinha(0, "CD_OCORRENCIA", "18");
-            AlterarLinha(0, "DT_OCORRENCIA",SomarData(triplice.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
-            AlterarLinha(0, "VL_PREMIO_PAGO", triplice.ArquivoParcEmissao[0]["VL_PREMIO_TOTAL"]);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9737()
+        {
+            IniciarTeste("9737", "", OperadoraEnum.POMPEIA);
+
+            //ENVIA A PRIMEIRA PARCELA PARA A ODS
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIA A SEGUNDA PARCELA PARA A ODS
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
+            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
+            triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
+            triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
+
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIAR CANCELAMENTO PARA A ODS
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.POMPEIA, "10", true);
+
+            //ENVIAR BAIXA DA PARCELA
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9738()
+        {
+            IniciarTeste("9738", "", OperadoraEnum.POMPEIA);
+
+            //ENVIA A PRIMEIRA PARCELA PARA A ODS
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIA A SEGUNDA PARCELA PARA A STG
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
+            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
+            triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
+            triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
+
+            SalvaExecutaEValidaTrinca(false);
+
+            //ENVIAR CANCELAMENTO PARA A ODS
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.POMPEIA, "10", true);
+
+            //ENVIAR BAIXA DA PARCELA
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_9739()
+        {
+            IniciarTeste("9739", "", OperadoraEnum.POMPEIA);
+
+            //ENVIA A PRIMEIRA PARCELA PARA A ODS
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIAR BAIXA DA PARCELA
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
 

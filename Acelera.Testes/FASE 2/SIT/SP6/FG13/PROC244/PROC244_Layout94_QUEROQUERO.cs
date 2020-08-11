@@ -40,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9757()
+        public void SAP_9760()
         {
             IniciarTeste("9760", "  SAP-9760:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela não baixada - 2a parcela", OperadoraEnum.TIM);
 

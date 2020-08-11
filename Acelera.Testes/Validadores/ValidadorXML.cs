@@ -38,26 +38,47 @@ namespace Acelera.Testes.Validadores
         {
             logger.AbrirBloco("VALIDANDO INCLUSAO NAS TABELAS.");
             var listaDeTabelas = EnumUtils.ObterListaComTodos<TabelasOIMEnum>();
+            var listaDeTabelasQueDevemSerPreenchidas = EnumUtils.ObterListaComTodos<TabelasOIMEnum>();
             var where = "";
             var erros = "";
             var campoConsulta = "'1'";
             idArquivo = "";
             var retorno = "";
             if (!ehParcAuto)
+            {
                 listaDeTabelas.Remove(TabelasOIMEnum.OIM_ITAUTO01);
+                listaDeTabelasQueDevemSerPreenchidas.Remove(TabelasOIMEnum.OIM_ITAUTO01);
+            }
+            if(linhaDaStage.ObterPorColuna("CD_MOVTO_COBRANCA").ValorFormatado == "03" || linhaDaStage.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal == 0M)// nao eh para encontrar
+            {
+                listaDeTabelasQueDevemSerPreenchidas.Remove(TabelasOIMEnum.OIM_PARC01);
+                listaDeTabelasQueDevemSerPreenchidas.Remove(TabelasOIMEnum.OIM_CMS01);
+            }
 
             foreach (var tabela in listaDeTabelas)
             {
                 if (tabela == TabelasOIMEnum.OIM_APL01)
                     campoConsulta = "\"id_arquivo\"";
 
+                var deveSerPreenchida = listaDeTabelasQueDevemSerPreenchidas.Contains(tabela);
+
                 where = linhaDaStage.ObterWhereCamposChaves(tabela.ObterCamposChaves(),true);
                 retorno = DataAccess.ConsultaUnica($"SELECT {campoConsulta} FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
-                if (string.IsNullOrEmpty(retorno))
-                    erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
+                if (deveSerPreenchida)
+                {
+                    if (string.IsNullOrEmpty(retorno))
+                        erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
+                    else
+                        logger.Escrever("REGISTRO ENCONTRADO NA TABELA : " + tabela.ObterTexto());
+                }
                 else
-                    logger.Escrever("REGISTRO ENCONTRADO NA TABELA : " +tabela.ObterTexto());
-                
+                {
+                    if (string.IsNullOrEmpty(retorno))
+                        logger.Escrever("REGISTRO NAO ENCONTRADO CORRETAMENTE NA TABELA : " + tabela.ObterTexto());//erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
+                    else
+                        erros += "REGISTRO, QUE NAO DEVERIA SER ENCONTRADO, ENCONTRADO NA TABELA : " + tabela.ObterTexto();
+                }
+
                 if (tabela == TabelasOIMEnum.OIM_APL01)
                     idArquivo = retorno;
             }

@@ -13,20 +13,20 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
 {
     [TestClass]
-    public class PROC221_Layout94_QUEROQUERO: TestesFG13
+    public class PROC221_Layout94_LASA: TestesFG13
     {
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9745()
+        public void SAP_9730()
         {
-            IniciarTeste("9745", "", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("9730", "", OperadoraEnum.LASA);
 
             SalvaExecutaEValidaTrinca(true);
 
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.QUEROQUERO, "10", true);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.LASA, "10", true);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.QUEROQUERO);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
 
@@ -38,16 +38,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9746()
+        public void SAP_9731()
         {
-            IniciarTeste("9746", "", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("9731", "", OperadoraEnum.LASA);
 
             SalvaExecutaEValidaTrinca(true);
 
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.QUEROQUERO, "10", false);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.LASA, "10", false);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.QUEROQUERO);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
 
@@ -59,9 +59,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9747()
+        public void SAP_9732()
         {
-            IniciarTeste("9747", "", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("9732", "", OperadoraEnum.LASA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -76,11 +76,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             SalvaExecutaEValidaTrinca(true);
 
             //ENVIAR CANCELAMENTO PARA A ODS
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.QUEROQUERO, "10", true);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.LASA, "10", true);
 
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.QUEROQUERO);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
             AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
@@ -91,9 +91,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
 
         [TestMethod]
         [TestCategory("Com Critica")]
-        public void SAP_9748()
+        public void SAP_9733()
         {
-            IniciarTeste("9748", "", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("9733", "", OperadoraEnum.LASA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -108,11 +108,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             SalvaExecutaEValidaTrinca(false);
 
             //ENVIAR CANCELAMENTO PARA A ODS
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.QUEROQUERO, "10", true);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.LASA, "10", true);
 
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.QUEROQUERO);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
             AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
@@ -123,16 +123,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
 
         [TestMethod]
         [TestCategory("Sem Critica")]
-        public void SAP_9749()
+        public void SAP_9734()
         {
-            IniciarTeste("9749", "", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("9734", "", OperadoraEnum.LASA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
 
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.QUEROQUERO);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
             AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();

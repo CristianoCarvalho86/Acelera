@@ -41,14 +41,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             //Nome do arquivo - 'OIMX' + DATA DE GERAÇÃO DO ARQUIVO + ID_ARQUIVO SEM O 'EMS' + .xml
             var documento = new XmlDocument();
             var file =  $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS", "")}.xml";
-            if (File.Exists(Parametros.pastaDestinoXml + file))
-                documento.Load(file);
-            else if (File.Exists(Parametros.pastaDestinoXml + "_ImpOk\\" + file))
-                documento.Load(file);
-            else if (File.Exists(Parametros.pastaDestinoXml + "_ImpErro\\" + file))
-                documento.Load(file);
+            var enderecosPossiveisXML = new string[] { Parametros.pastaDestinoXml + file, Parametros.pastaDestinoXml + "_ImpOk\\" + file, Parametros.pastaDestinoXml + "_ImpErro\\" + file };
+            foreach (var endereco in enderecosPossiveisXML)
+            {
+                if (File.Exists(endereco))
+                {
+                    logger.EscreverBloco("ARQUIVO ENCONTRADO NA PASTA: " + endereco);
+                    documento.Load(Parametros.pastaDestinoXml + file);
+                    break;
+                }
+            }
+            
             if (documento.IsNullOrEmpty())
-                ExplodeFalha("DOCUMENTO NAO ENCONTRADO.");
+                ExplodeFalha("DOCUMENTO NAO ENCONTRADO. CAMINHOS TESTADOS : " + enderecosPossiveisXML.ObterListaConcatenada(Environment.NewLine) );
 
             return documento;
         }
@@ -98,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             {
                 linhaTemp = (ILinhaTabela)linhaStage.Clone();
                 InserirCpfCorretor(ref linhaTemp);
-                validadorXML.ValidarInclusaoNasTabelas(linhaTemp, "1210", ehParcAuto, out idArquivo);
+                validadorXML.ValidarInclusaoNasTabelas(linhaTemp, "711", ehParcAuto, out idArquivo);
             }
             ValidarXMLComTabelasOIM(idArquivo, ehParcAuto);
         }
