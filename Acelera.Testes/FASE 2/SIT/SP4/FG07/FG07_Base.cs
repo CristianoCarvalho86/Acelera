@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
                 var arq = arquivos.SingleOrDefault(x => x.Contains($"_{idArquivo.Replace("EMS", "")}"));
                 if (!string.IsNullOrEmpty(arq))
                 {
-                    logger.EscreverBloco("ARQUIVO ENCONTRADO NA PASTA: " + endereco);
+                    logger.EscreverBloco("ARQUIVO ENCONTRADO EM: " + arq);
                     documento.Load(arq);
                     break;
                 }
