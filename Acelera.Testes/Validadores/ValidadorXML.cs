@@ -39,11 +39,11 @@ namespace Acelera.Testes.Validadores
             logger.AbrirBloco("VALIDANDO INCLUSAO NAS TABELAS.");
             var listaDeTabelas = EnumUtils.ObterListaComTodos<TabelasOIMEnum>();
             var listaDeTabelasQueDevemSerPreenchidas = EnumUtils.ObterListaComTodos<TabelasOIMEnum>();
+            var listaDeTabelasAValidar = new List<DataTable>();//Utilizada para validar campos com valores diferentes no OIM. Nao está em uso, pois alguns campos devem realmente ter valores diferentes
             var where = "";
             var erros = "";
-            var campoConsulta = "'1'";
             idArquivo = "";
-            var retorno = "";
+            DataTable tabelaRetorno;
             if (!ehParcAuto)
             {
                 listaDeTabelas.Remove(TabelasOIMEnum.OIM_ITAUTO01);
@@ -57,33 +57,33 @@ namespace Acelera.Testes.Validadores
 
             foreach (var tabela in listaDeTabelas)
             {
-                if (tabela == TabelasOIMEnum.OIM_APL01)
-                    campoConsulta = "\"id_arquivo\"";
-
                 var deveSerPreenchida = listaDeTabelasQueDevemSerPreenchidas.Contains(tabela);
 
                 where = linhaDaStage.ObterWhereCamposChaves(tabela.ObterCamposChaves(),true);
-                retorno = DataAccess.ConsultaUnica($"SELECT {campoConsulta} FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
+                tabelaRetorno = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
+                tabelaRetorno.TableName = tabela.ObterTexto();
+                listaDeTabelasAValidar.Add(tabelaRetorno.Copy());
+
                 if (deveSerPreenchida)
                 {
-                    if (string.IsNullOrEmpty(retorno))
+                    if (tabelaRetorno.Rows.Count == 0)
                         erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
                     else
                         logger.Escrever("REGISTRO ENCONTRADO NA TABELA : " + tabela.ObterTexto());
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(retorno))
+                    if (tabelaRetorno.Rows.Count == 0)
                         logger.Escrever("REGISTRO NAO ENCONTRADO CORRETAMENTE NA TABELA : " + tabela.ObterTexto());//erros += $"NENHUM REGISTRO ENCONTRADO NA TABELA: {tabela.ObterTexto()} {Environment.NewLine}";
                     else
                         erros += "REGISTRO, QUE NAO DEVERIA SER ENCONTRADO, ENCONTRADO NA TABELA : " + tabela.ObterTexto();
                 }
 
                 if (tabela == TabelasOIMEnum.OIM_APL01)
-                    idArquivo = retorno;
+                    idArquivo = tabelaRetorno.Rows[0]["id_arquivo"].ToString();
             }
 
-            retorno = DataAccess.ConsultaUnica($"SELECT \"cd_status\" FROM {Parametros.instanciaDB}.TAB_OIM_XML_CONTROLE_8003 where \"id_arquivo\" = '{idArquivo}' ", $"VALIDACAO REGISTRO INSERIDO TAB_OIM_XML_CONTROLE_8003", DBEnum.Hana, logger, false);
+            var retorno = DataAccess.ConsultaUnica($"SELECT \"cd_status\" FROM {Parametros.instanciaDB}.TAB_OIM_XML_CONTROLE_8003 where \"id_arquivo\" = '{idArquivo}' ", $"VALIDACAO REGISTRO INSERIDO TAB_OIM_XML_CONTROLE_8003", DBEnum.Hana, logger, false);
             if (string.IsNullOrEmpty(retorno))
                 erros += $"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', NAO ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003{Environment.NewLine}";
             else if (retorno != cdStatusEsperado)
@@ -94,12 +94,8 @@ namespace Acelera.Testes.Validadores
                 logger.Escrever($"ID_ARQUIVO DA TABELA TAB_OIM_APL01_5000 : '{idArquivo}', ENCONTRADO NA TABELA TAB_OIM_XML_CONTROLE_8003 COM SUCESSO.");
             }
             logger.FecharBloco();
-            if(!string.IsNullOrEmpty(erros))
-            {
-                logger.Erro(erros);
-                return false;
-            }
-            return true;
+
+            return StringUtils.ValidarTextoDeErrosEncontrados(erros,logger);
         }
 
         public bool ValidarXML(XmlDocument documentoXML, TabelasOIMEnum tabelaOIM)
@@ -114,12 +110,12 @@ namespace Acelera.Testes.Validadores
             foreach (XmlNode node in nodes)
             {
                 where = ObterWhereCamposChaves(node, camposChaves);
-                logger.Escrever("Iniciando validacao com campos chaves :" + camposChaves);
-                tabelaResultado = DataAccess.Consulta($"SELECT * FROM {tabelaOIM.ObterTexto()} where {where} ", $"VALIDACAO {nomeTag}", DBEnum.Hana, logger, false);
+                logger.Escrever("Iniciando validacao com campos chaves :" + camposChaves.ObterListaConcatenada(" ,"));
+                tabelaResultado = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabelaOIM.ObterTexto()} where {where} ", $"VALIDACAO {nomeTag}", DBEnum.Hana, logger, false);
                 if (!ValidarTabela(tabelaResultado, node))
                     return false;
             }
-            logger.Escrever("");
+            logger.Escrever($"VALIDACAO DA {tabelaOIM.ObterTexto()} EM RELACAO AO XML, COMPLETADA COM SUCESSO");
             return true;
         }
 
@@ -136,11 +132,24 @@ namespace Acelera.Testes.Validadores
                 return false;
             }
             var erros = "";
+            var textoAjustado = "";
             foreach (DataColumn column in tabela.Columns)
             {
-                if (tabela.Rows[0][column].ToString() != node[column.ColumnName].InnerText)
+                textoAjustado = tabela.Rows[0][column].ToString();
+                if (column.ColumnName.Contains("dt_") && DateTime.TryParse(textoAjustado, out DateTime dataEncontrada))
+                    textoAjustado = dataEncontrada.ToString("yyyy-MM-dd");
+                if (column.ColumnName.Contains("vl_") && decimal.TryParse(textoAjustado, out decimal valor))
+                    textoAjustado = valor.ToString().Replace(",",".");
+
+                if (node[column.ColumnName] != null && textoAjustado != node[column.ColumnName].InnerText)
                     erros += $"ERRO EM {column.ColumnName}, VALOR DO XML : {node[column.ColumnName].InnerText}, VALOR DO BANCO : {tabela.Rows[0][column].ToString()} {Environment.NewLine}";
             }
+            foreach(XmlNode element in node.ChildNodes)
+            {
+                if (!tabela.Columns.Contains(element.Name))
+                    erros += $"ERRO : A TABELA NAO CONTEM O CAMPO {element.Name} DO XML.";
+            }
+
             if(!string.IsNullOrEmpty(erros))
             {
                 logger.Erro(erros);

@@ -32,28 +32,39 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             var xmlDocument = ObterArquivoXML(idArquivo);
             var listaDeTabelas = EnumUtils.ObterListaComTodos<TabelasOIMEnum>();
+            if (!ehParcAuto)
+                listaDeTabelas.Remove(TabelasOIMEnum.OIM_ITAUTO01);
             foreach (var tabela in listaDeTabelas)
+            {
+                logger.AbrirBloco("INICIO VALIDACAO DA " + tabela.ObterTexto());
                 validadorXML.ValidarXML(xmlDocument, tabela);
+                logger.FecharBloco();
+            }
         }
 
         protected XmlDocument ObterArquivoXML(string idArquivo)
         {
             //Nome do arquivo - 'OIMX' + DATA DE GERAÇÃO DO ARQUIVO + ID_ARQUIVO SEM O 'EMS' + .xml
             var documento = new XmlDocument();
-            var file =  $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS", "")}.xml";
-            var enderecosPossiveisXML = new string[] { Parametros.pastaDestinoXml + file, Parametros.pastaDestinoXml + "_ImpOk\\" + file, Parametros.pastaDestinoXml + "_ImpErro\\" + file };
+            //var file =  $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS", "")}.xml";
+            var enderecosPossiveisXML = new string[] { Parametros.pastaDestinoXml, Parametros.pastaDestinoXml + "_ImpOk\\", Parametros.pastaDestinoXml + "_ImpErro\\" };
             foreach (var endereco in enderecosPossiveisXML)
             {
-                if (File.Exists(endereco))
+                var arquivos = Directory.GetFiles(endereco);
+                var arq = arquivos.SingleOrDefault(x => x.Contains($"_{idArquivo.Replace("EMS", "")}"));
+                if (!string.IsNullOrEmpty(arq))
                 {
                     logger.EscreverBloco("ARQUIVO ENCONTRADO NA PASTA: " + endereco);
-                    documento.Load(Parametros.pastaDestinoXml + file);
+                    documento.Load(arq);
                     break;
                 }
             }
-            
+
+
+
+
             if (documento.IsNullOrEmpty())
-                ExplodeFalha("DOCUMENTO NAO ENCONTRADO. CAMINHOS TESTADOS : " + enderecosPossiveisXML.ObterListaConcatenada(Environment.NewLine) );
+                ExplodeFalha("DOCUMENTO NAO ENCONTRADO. CAMINHOS TESTADOS : " + enderecosPossiveisXML.ObterListaConcatenada(Environment.NewLine));
 
             return documento;
         }
@@ -105,7 +116,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
                 InserirCpfCorretor(ref linhaTemp);
                 validadorXML.ValidarInclusaoNasTabelas(linhaTemp, "711", ehParcAuto, out idArquivo);
             }
+
             ValidarXMLComTabelasOIM(idArquivo, ehParcAuto);
+
+            foreach (ILinhaTabela linhaStage in linhasStageParc)
+            {
+                ValidarBancoStatusOIM(linhaStage,idArquivo);
+            }
         }
 
         private void InserirCpfCorretor(ref ILinhaTabela linhaDaStage)
@@ -130,11 +147,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return ValidarStageSucessoFG07_1(FGs.FG07.ObterCodigoDeSucessoOuFalha(sucessoNaFG071));
         }
 
-        protected void ValidarBancoStatusOIM(ILinhaTabela linhaStageParc)
+        protected void ValidarBancoStatusOIM(ILinhaTabela linhaStageParc, string idArquivo)
         {
             var dataAccessOIM = new DataAccessOIM(logger);
-            if (dataAccessOIM.ValidarRegistrosOIM(linhaStageParc))
+            if (!dataAccessOIM.ValidarRegistrosOIM(linhaStageParc))
+            {
+                dataAccessOIM.LogarErrosEncontrados(idArquivo);
                 ExplodeFalha("ERRO NA VALIDAÇÃO DOS REGISTROS DA OIM.");
+            }
         }
 
 

@@ -16,6 +16,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
     {
         [TestMethod]
         [TestCategory("Com Critica")]
+        public void SAP_9697()
+        {
+            IniciarTeste("9697", "", OperadoraEnum.TIM);
+
+            //ENVIA A PRIMEIRA PARCELA PARA A ODS
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIAR BAIXA DA PARCELA
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(triplice.ArquivoParcEmissao[0]["DT_OCORRENCIA"], 10));
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
         public void SAP_9698()
         {
             IniciarTeste("9698", "", OperadoraEnum.TIM);
@@ -30,31 +49,113 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
-            AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[1]["NR_PARCELA"]) + 1).ToString());
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[1]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
-            AlterarLinha(0, "CD_OCORRENCIA", "18");
-            AlterarLinha(0, "DT_OCORRENCIA",SomarData(triplice.ArquivoParcEmissao[1]["DT_EMISSAO"], 10));
-            AlterarLinha(0, "VL_PREMIO_PAGO", triplice.ArquivoParcEmissao[0]["VL_PREMIO_TOTAL"]);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
 
             SalvarArquivo();
 
             ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+
+            LimparValidacao();
+
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(arquivo[0]["DT_OCORRENCIA"], 20));
+
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9699()
+        {
+            IniciarTeste("9699", "", OperadoraEnum.TIM);
+
+            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 1,
+                dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[1]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
+
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(2), triplice.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1
+
+            SalvaExecutaEValidaTrinca(true);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao.ObterLinha(1), arquivo.ObterLinha(0));
-            AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[1]["NR_PARCELA"]) + 1).ToString());
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[1]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
-            AlterarLinha(0, "CD_OCORRENCIA", "18");
-            AlterarLinha(0, "DT_OCORRENCIA", SomarData(triplice.ArquivoParcEmissao[1]["DT_EMISSAO"], 20));
-            AlterarLinha(0, "VL_PREMIO_PAGO", triplice.ArquivoParcEmissao[0]["VL_PREMIO_TOTAL"]);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");
 
             SalvarArquivo();
 
             ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
 
+            LimparValidacao();
+
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(arquivo[0]["DT_OCORRENCIA"], 20));
+
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9709()
+        {
+            IniciarTeste("9709", "", OperadoraEnum.TIM);
+
+            //ENVIA A PRIMEIRA PARCELA PARA A ODS
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIAR BAIXA DA PARCELA
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(triplice.ArquivoParcEmissao[0]["DT_OCORRENCIA"], 10));
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_9700()
+        {
+            IniciarTeste("9700", "", OperadoraEnum.TIM);
+
+            //ENVIA A PRIMEIRA PARCELA PARA A ODS
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIAR BAIXA DA PARCELA
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+        }
+
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_9701()
+        {
+            IniciarTeste("9701", "", OperadoraEnum.TIM);
+
+            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 1,
+            dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[1]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
+
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(2), triplice.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1
+
+            //ENVIA A PRIMEIRA PARCELA PARA A ODS
+            SalvaExecutaEValidaTrinca(true);
+
+            //ENVIAR BAIXA DA PARCELA
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
+            SalvarArquivo();
+
+            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
         }
 
     }

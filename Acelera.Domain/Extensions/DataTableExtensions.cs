@@ -82,6 +82,36 @@ namespace Acelera.Domain.Extensions
             return true;
         }   
 
+        public static string ValidarValoresEntreLinhaDasTabelas(this IEnumerable<DataTable> tabelas, int linhaAValidar = 0)
+        {
+            string valor;
+            string erros = null;
+            foreach(DataTable tabela in tabelas)
+            {
+                foreach(DataColumn column in tabela.Columns)
+                {
+                    if (column.ColumnName == "id_reg")
+                        continue;
+
+                    valor = tabela.Rows[linhaAValidar][column].ToString();
+                    var listaDeTabelasAValidar = ObterTabelasComOCampo(tabelas, column.ColumnName);
+                    foreach(DataTable tab in listaDeTabelasAValidar)
+                    {
+                        if(tab.Rows[linhaAValidar][column.ColumnName].ToString() != valor)
+                        {
+                            erros += $"ERRO : TABELA '{tab.TableName}' COM VALOR DIFERENTE DA TABELA '{tabela.TableName}' NO CAMPO '{column.ColumnName}'{Environment.NewLine}";
+                        }
+                    }
+                }
+            }
+            return erros;
+        }
+
+        private static IEnumerable<DataTable> ObterTabelasComOCampo(IEnumerable<DataTable> tabelas, string campo)
+        {
+            return tabelas.Where(x => x.Columns.Contains(campo));
+        }
+
     }
 }
 

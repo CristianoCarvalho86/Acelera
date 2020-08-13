@@ -52,6 +52,7 @@
     <Compile Include="ParametrosRegras.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomUtils.cs" />
+    <Compile Include="StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj">
