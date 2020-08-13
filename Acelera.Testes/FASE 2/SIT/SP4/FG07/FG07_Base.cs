@@ -37,7 +37,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             foreach (var tabela in listaDeTabelas)
             {
                 logger.AbrirBloco("INICIO VALIDACAO DA " + tabela.ObterTexto());
-                validadorXML.ValidarXML(xmlDocument, tabela);
+                if (!validadorXML.ValidarXML(xmlDocument, tabela))
+                    TesteComErro();
                 logger.FecharBloco();
             }
         }

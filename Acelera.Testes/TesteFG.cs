@@ -202,13 +202,18 @@ namespace Acelera.Testes
 
         protected void ExplodeFalha(string descricao = null)
         {
-            if(!string.IsNullOrEmpty(descricao))
+            TesteComErro(descricao);
+            Assert.Fail();
+        }
+
+        protected void TesteComErro(string descricao = null)
+        {
+            if (!string.IsNullOrEmpty(descricao))
                 logger.Erro(descricao);
             sucessoDoTeste = false;
             logger.TesteComFalha();
-            Assert.Fail();
         }
-        
+
         protected bool Validar(bool obtido, bool esperado, string tituloValidacao)
         {
             logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);

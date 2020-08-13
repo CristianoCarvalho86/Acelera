@@ -147,6 +147,9 @@ namespace Acelera.Testes.Validadores
             }
             foreach(XmlNode element in node.ChildNodes)
             {
+                if (element.Name == "nm_arquivo")
+                    continue;
+
                 if (!tabela.Columns.Contains(element.Name))
                     erros += $"ERRO : A TABELA {tabela.TableName} NAO CONTEM O CAMPO {element.Name} DO XML.";
             }
