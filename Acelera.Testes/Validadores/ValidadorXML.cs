@@ -112,6 +112,7 @@ namespace Acelera.Testes.Validadores
                 where = ObterWhereCamposChaves(node, camposChaves);
                 logger.Escrever("Iniciando validacao com campos chaves :" + camposChaves.ObterListaConcatenada(" ,"));
                 tabelaResultado = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabelaOIM.ObterTexto()} where {where} ", $"VALIDACAO {nomeTag}", DBEnum.Hana, logger, false);
+                tabelaResultado.TableName = tabelaOIM.ObterTexto();
                 if (!ValidarTabela(tabelaResultado, node))
                     return false;
             }
@@ -147,15 +148,10 @@ namespace Acelera.Testes.Validadores
             foreach(XmlNode element in node.ChildNodes)
             {
                 if (!tabela.Columns.Contains(element.Name))
-                    erros += $"ERRO : A TABELA NAO CONTEM O CAMPO {element.Name} DO XML.";
+                    erros += $"ERRO : A TABELA {tabela.TableName} NAO CONTEM O CAMPO {element.Name} DO XML.";
             }
 
-            if(!string.IsNullOrEmpty(erros))
-            {
-                logger.Erro(erros);
-                return false;
-            }
-            return true;
+            return StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
         }
 
         private string ObterWhereCamposChaves(XmlNode node, string[] camposChaves)
