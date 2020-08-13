@@ -97,6 +97,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
 
             var cobertura = dados.ObterCobertura(ObterValorHeader("CD_TPA"));
             AlterarLinhaSeHouver(0, "CD_COBERTURA", cobertura.CdCobertura);
@@ -120,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1012
             AlterarCobertura(false);
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "1012");
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "1014");
         }
     }
 }

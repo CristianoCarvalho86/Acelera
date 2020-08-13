@@ -288,20 +288,20 @@ namespace Acelera.Testes
                 _arquivo = arquivo;
             var operadora = EnumUtils.ObterOperadoraDoArquivo(_arquivo.NomeArquivo);
 
-            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
-            {
-                var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
-                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
+            //if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+            //{
+            //    var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
+            //    _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
                 
-                var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
-                _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
+            //    var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
+            //    _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
                 
-                var iof = CalcularValorIOF(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
-                _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", iof.ValorFormatado());
+            //    var iof = CalcularValorIOF(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
+            //    _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", iof.ValorFormatado());
 
-                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", (premioTotal - iof).ValorFormatado());
+            //    _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
 
-            }
+            //}
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
             _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
             _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
@@ -429,7 +429,7 @@ namespace Acelera.Testes
         {
             arquivoParc.ReplicarLinha(posicaoLinha, 1);
 
-            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"]) : cobertura;
+            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true) : cobertura;
             AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
         }
 

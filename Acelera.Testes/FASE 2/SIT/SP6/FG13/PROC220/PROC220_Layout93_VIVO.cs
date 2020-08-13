@@ -21,18 +21,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC220
         {
             IniciarTeste("4607", "", OperadoraEnum.VIVO);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
-            triplice.ArquivoComissao.ReplicarLinha(0, 1);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(1));
-
-            SalvaExecutaEValidaTrinca(true);
+            SalvaExecutaEValidaTrinca(false);
 
             CriarCancelamentoDaTrincaFG13(OperadoraEnum.VIVO, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, "10", false);
 
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);
 
-            IgualarCamposQueExistirem(arquivoParcCancelamento.ObterLinha(1), arquivo.ObterLinha(0));
+            IgualarCamposQueExistirem(arquivoParcCancelamento.ObterLinha(0), arquivo.ObterLinha(0));
             AlterarLinha(0, "NR_PARCELA", (int.Parse(arquivoParcCancelamento[0]["NR_PARCELA"]) + 1).ToString());
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(arquivoParcCancelamento[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
             AlterarLinha(0, "CD_OCORRENCIA", "18");
