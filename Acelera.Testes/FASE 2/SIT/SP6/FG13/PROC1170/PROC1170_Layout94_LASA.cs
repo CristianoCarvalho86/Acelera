@@ -21,6 +21,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
             IniciarTeste("9764", "", OperadoraEnum.LASA);
 
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
+            triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_PREMIO_LIQUIDO", "23.27");
+            triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_IOF", "1.72");
+            triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_PREMIO_TOTAL", "24.99");
 
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(1));

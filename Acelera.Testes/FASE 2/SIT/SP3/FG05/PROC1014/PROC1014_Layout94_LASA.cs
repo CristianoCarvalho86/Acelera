@@ -132,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1014
             AlterarCobertura(false);
             //Salvar e executar
             SalvarArquivo();
-            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "1012");
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "1014");
         }
     }
 }

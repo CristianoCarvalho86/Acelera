@@ -35,10 +35,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             var cobertura = dados.ObterCoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], ObterValorHeader("CD_TPA"), true);
-            AlterarLinhaSeHouver(0, "CD_RAMO", "01");
+            AlterarDadosDeCobertura(0, cobertura);
             SalvarArquivo();
 
-            ExecutarEValidarAteFg02(arquivo, "107");
+            ExecutarEValidarAteFg02(arquivo);
 
             ExecutarEValidarApenasFg09(arquivo, "45");
 

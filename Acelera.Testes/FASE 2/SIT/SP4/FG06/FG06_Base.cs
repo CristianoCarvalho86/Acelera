@@ -163,7 +163,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                     ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
                         .Concat(TestesFG09.ObterProceduresFG09(arquivo.tipoArquivo)).ToList());
 
-                ValidarTeste();
+                //ValidarTeste();
             }
         }
 

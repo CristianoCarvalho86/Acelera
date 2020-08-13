@@ -18,12 +18,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP1.FG01
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "2364", "FG01 - PROC200000 - PARC_EMISSAO - Testar Plano B para PARC_EMISSAO");
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0005-20191212.txt"));
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200610.txt"));
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CONTRATO", ObterContratoPlanoB());
+            RemoverLinhasExcetoAsPrimeiras(1);
             //SALVAR O NOVO ARQUIVO ALTERADO
-            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20191212.TXT");
+            SalvarArquivo("C01.TIM.PARCEMS-EV-/*R*/-20200610.TXT");
 
             //VALIDAR NA FG00
             ValidarFGsAnteriores();

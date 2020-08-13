@@ -95,6 +95,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC1015
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
+            AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             //Alterar arquivo
             var cobertura = dados.ObterCoberturaPeloCodigo(ObterValorFormatado(0, "CD_COBERTURA"));
             var valorIof = ObterValorCalculadoIOF(decimal.Parse(ObterValor(0, "VL_IS")), cobertura);
