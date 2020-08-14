@@ -82,6 +82,13 @@ namespace Acelera.Testes
                 triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
             else
                 triplice.AlterarCliente(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, triplice.ArquivoParcEmissao.Header[0]["CD_TPA"]));
+
+
+            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_MOVTO_COBRANCA", "01");
+            var data = dados.ObterDataDoBanco();
+            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_EMISSAO", data);
+            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_INICIO_VIGENCIA", data);
+            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_FIM_VIGENCIA", SomarData(data, 365));
         }
 
          protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
