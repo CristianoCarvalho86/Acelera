@@ -19,6 +19,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
+            triplice.AlterarParcEComissao(0, "CD_MOVTO_COBRANCA", "03");
+            triplice.AlterarParcEComissao(1, "CD_MOVTO_COBRANCA", "01");
 
             SalvaExecutaEValidaFG07();
 

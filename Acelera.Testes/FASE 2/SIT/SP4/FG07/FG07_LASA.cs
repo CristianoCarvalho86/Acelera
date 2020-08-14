@@ -20,12 +20,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             IniciarTeste("6154", "FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.LASA);
 
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_MOVTO_COBRANCA", "01");
-            var data = dados.ObterDataDoBanco();
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_EMISSAO", data);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_INICIO_VIGENCIA", data);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_FIM_VIGENCIA", SomarData(data, 365));
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
+            
+            //AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
             SalvaExecutaEValidaFG07();
 
@@ -35,6 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6155()
         {
             IniciarTeste("6155", "SAP-6155:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.LASA);
+
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
 
