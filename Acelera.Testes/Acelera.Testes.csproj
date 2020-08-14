@@ -209,6 +209,7 @@
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC97\PROC97_Layout94_Softbox.cs" />
     <Compile Include="TestesFG13.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_POMPEIA.cs" />
+    <Compile Include="Validadores\ODS\ValidadorODS.cs" />
     <Compile Include="Validadores\ValidadorXML.cs" />
     <Compile Include="DataAccessRep\DataAccess.cs" />
     <Compile Include="DataAccessRep\ODS\ODSInsertClienteData.cs" />

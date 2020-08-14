@@ -13,8 +13,10 @@ namespace Acelera.Domain.Enums
         FG00,
         [Description("FGR_01")]
         FG01,
-        [Description("FGR_01")]
+        [Description("FGR_01_2")]
         FG01_2,
+        [Description("FGR_DT_EMISSAO_MES_CONTABIL_PARCELA")]
+        FGR_DT_EMISSAO_MES_CONTABIL_PARCELA,
         [Description("FGR_02")]
         FG02,
         [Description("FGR_03")]
@@ -93,7 +95,11 @@ namespace Acelera.Domain.Enums
 
     }
 
-
+    public enum FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_TAREFA
+    {
+        [Description("FGR_DT_EMISSAO_MES_CONTABIL_PARCELA")]
+        FGR_DT_EMISSAO_MES_CONTABIL_PARCELA,
+    }
     public enum FG01_1_Tarefas
     {
         [Description("FGR_01_1_SINISTRO")]

@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_EMISSAO", data);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_INICIO_VIGENCIA", data);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_FIM_VIGENCIA", SomarData(data, 365));
-            //AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
             SalvaExecutaEValidaFG07();
 

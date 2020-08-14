@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -45,6 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         protected XmlDocument ObterArquivoXML(string idArquivo)
         {
+            Thread.Sleep(5000);//ESPERANDO UM TEMPO PARA O ARQUIVO MIGRAR PARA A PASTA FINAL
             //Nome do arquivo - 'OIMX' + DATA DE GERAÇÃO DO ARQUIVO + ID_ARQUIVO SEM O 'EMS' + .xml
             var documento = new XmlDocument();
             //var file =  $"OIMX{DateTime.Now.ToString("yyyyMMdd")}{idArquivo.Replace("EMS", "")}.xml";
@@ -60,9 +62,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
                     break;
                 }
             }
-
-
-
 
             if (documento.IsNullOrEmpty())
                 ExplodeFalha("DOCUMENTO NAO ENCONTRADO. CAMINHOS TESTADOS : " + enderecosPossiveisXML.ObterListaConcatenada(Environment.NewLine));

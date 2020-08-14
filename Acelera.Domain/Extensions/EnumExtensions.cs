@@ -100,6 +100,8 @@ namespace Acelera.Domain.Extensions
                     return tipoArquivo.ObterTarefaFG01Enum().ObterTexto();
                 case FGs.FG01_2:
                     return tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto();
+                case FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA:
+                    return FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_TAREFA.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA.ObterTexto();
                 case FGs.FG02:
                     return tipoArquivo.ObterTarefaFG02Enum().ObterTexto();
                 case FGs.FG03:
@@ -313,6 +315,8 @@ namespace Acelera.Domain.Extensions
                 case FGs.FG01:
                     return sucesso ? CodigoStage.AprovadoNaFG01 : CodigoStage.RecusadoNaFG01;
                 case FGs.FG01_2:
+                    return sucesso ? CodigoStage.AprovadoNaFG01_2 : CodigoStage.RepovadoNaFG01_2;
+                case FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA:
                     return sucesso ? CodigoStage.AprovadoNaFG01_2 : CodigoStage.RepovadoNaFG01_2;
                 case FGs.FG02:
                     return sucesso ? CodigoStage.AprovadoNegocioSemDependencia : CodigoStage.ReprovadoNegocioSemDependencia;

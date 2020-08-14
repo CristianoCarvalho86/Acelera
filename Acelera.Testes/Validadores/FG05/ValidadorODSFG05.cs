@@ -26,15 +26,15 @@ namespace Acelera.Testes.Validadores.FG05
             tabelaEnum = arquivo.tipoArquivo.ObterTabelaODSEnum();
         }
 
-        public ConjuntoConsultas MontarConsulta()
-        {
-            return FabricaConsulta.MontarConsultaParaODS(tabelaEnum, arquivo);
-        }
+        //public ConjuntoConsultas MontarConsulta()
+        //{
+        //    return FabricaConsulta.MontarConsultaParaODS(tabelaEnum, arquivo);
+        //}
 
         public DataRowCollection ValidarODS()
         {
             logger.AbrirBloco("VALIDANDO EXPORTAÇÃO DE ARQUIVO PARA ODS.");
-            var table = DataAccess.Consulta(MontarConsulta().MontarConsulta(),"LINHAS DA ODS IMPORTADAS",logger);
+            var table = DataAccess.Consulta(/*MontarConsulta().MontarConsulta()*/"","LINHAS DA ODS IMPORTADAS",logger);
             logger.Escrever($"Linhas encontradas na ODS : {table.Rows.Count}");
             if (arquivo.Linhas.Count != table.Rows.Count)
                 throw new Exception("ERRO NA IMPORTAÇÃO DA ODS");

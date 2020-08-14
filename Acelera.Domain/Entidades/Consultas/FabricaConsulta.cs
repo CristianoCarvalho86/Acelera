@@ -173,60 +173,61 @@ namespace Acelera.Domain.Entidades.Consultas
             }
         }
 
-        public static ConjuntoConsultas MontarConsultaParaODS(TabelasEnum tabela, Arquivo arquivo)
-        {
-            var consultas = new ConjuntoConsultas();
-            var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
-            foreach (var linha in arquivo.Linhas)
-            {
-                var consultaDaLinha = (Consulta)consulta.Clone();
-                if (tabela == TabelasEnum.Cliente)
-                {
-                    consultaDaLinha.AdicionarConsulta("CD_CLIENTE", linha.ObterCampoDoBanco("CD_CLIENTE").Valor);
-                }
-                else if (tabela == TabelasEnum.ParcEmissao || tabela == TabelasEnum.ParcEmissaoAuto)
-                {
-                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
-                    consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
-                }
-                else if (tabela == TabelasEnum.Comissao)
-                {
-                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
-                    consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
-                    consultaDaLinha.AdicionarConsulta("CD_TIPO_COMISSAO", linha.ObterCampoDoBanco("CD_TIPO_COMISSAO").Valor);
-                }
-                else if (tabela == TabelasEnum.OCRCobranca)
-                {
-                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
-                }
-                else if (tabela == TabelasEnum.LanctoComissao)
-                {
-                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
-                    consultaDaLinha.AdicionarConsulta("CD_TIPO_COMISSAO", linha.ObterCampoDoBanco("CD_TIPO_COMISSAO").Valor);
-                }
-                else if (tabela == TabelasEnum.Sinistro)
-                {
-                    consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
-                    consultaDaLinha.AdicionarConsulta("VL_MOVIMENTO", linha.ObterCampoDoBanco("VL_MOVIMENTO").Valor);
-                    consultaDaLinha.AdicionarConsulta("NM_BENEFICIARIO", linha.ObterCampoDoBanco("NM_BENEFICIARIO").Valor);// nao tem
-                    consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
-                    consultaDaLinha.AdicionarConsulta("CD_SINISTRO", linha.ObterCampoDoBanco("CD_SINISTRO").Valor);
+        //public static void MontarConsultaParaODS(TabelasEnum tabela, Arquivo arquivo, out string[] consultas)
+        //{
+        //    consultas = new string[] { };
+        //    foreach (var linha in arquivo.Linhas)
+        //    {
+        //        var consultaDaLinha = new Consulta();
+        //        consultaDaLinha.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
+        //        consultas.Append($"SELECT * FROM");
 
-                }
-                consultas.AdicionarConsulta(consultaDaLinha);
-            }
-            throw new NotImplementedException();
-            return consultas;
-        }
+        //        if (tabela == TabelasEnum.OdsParceiroNegocio)
+        //        {
+        //            consultaDaLinha.AdicionarConsulta("CD_EXTERNO", linha.ObterCampoDoBanco("CD_CLIENTE").Valor);
+        //            consultaDaLinha.AdicionarConsulta("CD_TIPO_PARCEIRO_NEGOCIO", "CL");
+        //        }
+        //        else if (tabela == TabelasEnum.ParcEmissao || tabela == TabelasEnum.ParcEmissaoAuto)
+        //        {
+        //            consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+        //            consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
+        //        }
+        //        else if (tabela == TabelasEnum.Comissao)
+        //        {
+        //            consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+        //            consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
+        //            consultaDaLinha.AdicionarConsulta("CD_TIPO_COMISSAO", linha.ObterCampoDoBanco("CD_TIPO_COMISSAO").Valor);
+        //        }
+        //        else if (tabela == TabelasEnum.OCRCobranca)
+        //        {
+        //            consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+        //        }
+        //        else if (tabela == TabelasEnum.LanctoComissao)
+        //        {
+        //            consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", linha.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NR_PARCELA", linha.ObterCampoDoBanco("NR_PARCELA").Valor);
+        //            consultaDaLinha.AdicionarConsulta("CD_TIPO_COMISSAO", linha.ObterCampoDoBanco("CD_TIPO_COMISSAO").Valor);
+        //        }
+        //        else if (tabela == TabelasEnum.Sinistro)
+        //        {
+        //            consultaDaLinha.AdicionarConsulta("CD_CONTRATO", linha.ObterCampoDoBanco("CD_CONTRATO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("VL_MOVIMENTO", linha.ObterCampoDoBanco("VL_MOVIMENTO").Valor);
+        //            consultaDaLinha.AdicionarConsulta("NM_BENEFICIARIO", linha.ObterCampoDoBanco("NM_BENEFICIARIO").Valor);// nao tem
+        //            consultaDaLinha.AdicionarConsulta("CD_COBERTURA", linha.ObterCampoDoBanco("CD_COBERTURA").Valor);
+        //            consultaDaLinha.AdicionarConsulta("CD_SINISTRO", linha.ObterCampoDoBanco("CD_SINISTRO").Valor);
+
+        //        }
+        //        consultas.AdicionarConsulta(consultaDaLinha);
+        //    }
+        //    return consultas;
+        //}
 
     }
 }
