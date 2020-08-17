@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Layouts
 {
+    [Serializable]
     public class CampoDoArquivo : Campo
     {
         public CampoDoArquivo Clone()

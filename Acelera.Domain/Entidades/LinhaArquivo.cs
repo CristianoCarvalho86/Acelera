@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace Acelera.Domain.Layouts
 {
+    [Serializable]
     public class LinhaArquivo
     {
         public List<CampoDoArquivo> Campos { get; set; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades
 {
+    [Serializable]
     public class Campo
     {
         protected string coluna;

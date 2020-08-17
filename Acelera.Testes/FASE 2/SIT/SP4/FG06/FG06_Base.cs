@@ -132,6 +132,8 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                     ExecFgs(!ParcelaTemErro, fg, triplice.ArquivoParcEmissao);
                 if (ComissaoEnviado)
                     ExecFgs(!ComissaoTemErro, fg, triplice.ArquivoComissao);
+
+                ValidarTeste();
             }
         }
 

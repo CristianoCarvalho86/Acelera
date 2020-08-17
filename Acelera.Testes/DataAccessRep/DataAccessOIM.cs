@@ -40,6 +40,8 @@ namespace Acelera.Testes.DataAccessRep
             logger.Escrever("QUANTIDADE DE REGISTROS OBTIDOS VALIDADA COM SUCESSO");
             logger.Escrever("VALIDANDO CAMPO st_interface :");
 
+            logger.Escrever(table.ObterTextoEmLinhas());
+
             var retorno = table.ValidarValorUnico("st_interface", "A");
 
             logger.Escrever($"HOUVE ERRO NA VALIDAÇÃO: {!retorno}");
@@ -47,11 +49,16 @@ namespace Acelera.Testes.DataAccessRep
             return retorno;
         }
 
-        public void LogarErrosEncontrados(string idArquivo)
+        public bool LogarErrosEncontradosRetornandoSeHouveErro(string idArquivo)
         {
             var sql = $"select * from oim_validacoes_imp where oag_id_arquivo = '{idArquivo}'";
-            var table = DataAccess.Consulta(sql, $"", DBEnum.SqlServerOIM, logger);
-            logger.Escrever(table.ObterTextoTabular());
+            var table = DataAccess.Consulta(sql, $"", DBEnum.SqlServerOIM, logger,false);
+            if (table != null && table.Rows.Count > 0)
+            {
+                logger.Escrever(table.ObterTextoTabular());
+                return true;
+            }
+            return false;
         }
 
     }

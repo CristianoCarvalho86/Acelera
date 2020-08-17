@@ -10,7 +10,8 @@ namespace Acelera.Domain.Extensions
     {
         public static string ValorFormatado(this decimal numero)
         {
-            return numero.ToString("0.00").Replace(',', '.');
+            var t = numero.ToString("0.00000000000000");
+            return t.Remove(t.Length - 12).Replace(',', '.');
         }
     }
 }

@@ -7,11 +7,13 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Acelera.Domain.Layouts
 {
+    [Serializable]
     public abstract class Arquivo
     {
         protected string textoArquivo;
@@ -46,9 +48,26 @@ namespace Acelera.Domain.Layouts
 
         public Arquivo Clone()
         {
-            var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            //var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
 
-            return (Arquivo)inst?.Invoke(this, null);
+            //return (Arquivo)inst?.Invoke(this, null);
+
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(memoryStream, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                return (Arquivo)binaryFormatter.Deserialize(memoryStream);
+            }
+
+            //Arquivo newObject = (Arquivo)Activator.CreateInstance(this.GetType());
+
+            //foreach (var originalProp in this.GetType().GetProperties())
+            //{
+            //    originalProp.SetValue(newObject, originalProp.GetValue(this));
+            //}
+
+            //return newObject;
         }
 
         public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)

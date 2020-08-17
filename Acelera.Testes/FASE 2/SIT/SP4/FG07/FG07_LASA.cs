@@ -94,11 +94,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             //ALTERACAO COMISSAO
             AdicionarTipoComissao(triplice.ArquivoComissao, triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
 
-            triplice.ArquivoComissao.ReplicarLinha(0, 2);
+            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+            triplice.ArquivoComissao.ReplicarLinha(2, 1);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[2]);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[3]);
-            triplice.ArquivoComissao.AlterarLinha(3, "CD_TIPO_COMISSAO", "P");
 
+            triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
+            triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
 
             SalvaExecutaEValidaFG07();
 
@@ -108,14 +110,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6160()
         {
             //?
-            IniciarTeste("6160", "SAP-6160:FG07 - Lasa - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.LASA);
+            IniciarTeste("6160", "SAP-6160:FG07 - Lasa - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
             SalvaExecutaEValidaFG07();
 
+            LimparValidacao();
+
+            EnviarParaOds(triplice.ArquivoCliente, false, false,CodigoStage.AprovadoFG07);
+
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
-            triplice.ArquivoParcEmissao.RemoverLinha(0);
+            triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
             
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
 
@@ -125,7 +131,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6161()
         {
-
             IniciarTeste("6161", "SAP-6161:FG07 - Lasa - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.LASA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);

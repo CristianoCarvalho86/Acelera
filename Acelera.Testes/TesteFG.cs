@@ -293,20 +293,24 @@ namespace Acelera.Testes
                 _arquivo = arquivo;
             var operadora = EnumUtils.ObterOperadoraDoArquivo(_arquivo.NomeArquivo);
 
-            //if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
-            //{
-            //    var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
-            //    _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
-                
-            //    var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
-            //    _arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
-                
-            //    var iof = CalcularValorIOF(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
-            //    _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", iof.ValorFormatado());
+            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+            {
+                //var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
 
-            //    _arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
+                //var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
 
-            //}
+                //premioTotal = premioTotal + 1M;
+                //premioLiquido = premioLiquido + 1M;
+
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
+
+                _arquivo.AlterarLinha(1, "VL_PREMIO_LIQUIDO", "23.27");
+                _arquivo.AlterarLinha(1, "VL_IOF", "1.72");
+                _arquivo.AlterarLinha(1, "VL_PREMIO_TOTAL", "24.99");
+
+            }
             _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
             _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
             _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
@@ -382,6 +386,7 @@ namespace Acelera.Testes
             arquivoParc.AlterarLinha(index, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(arquivoParc[linhaDeReferencia]));
             arquivoParc.AlterarLinha(index, "NR_PARCELA", arquivoParc[linhaDeReferencia]["NR_PARCELA"].ObterProximoValorInteiro());
             arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivoParc[linhaDeReferencia], operadora));
+            arquivoParc.AjustarQtdLinhasNoFooter();
         }
 
         public void AjustarArquivoDeBaixaParaParcela(Arquivo arquivoParcEmissao, Arquivo arquivoCobranca, int linhaReferenciaParc, string cdOcorrencia)
@@ -434,8 +439,8 @@ namespace Acelera.Testes
         {
             arquivoParc.ReplicarLinha(posicaoLinha, 1);
 
-            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true) : cobertura;
-            AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
+            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], false) : cobertura;
+             AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
         }
 
         protected void AdicionarTipoComissao(Arquivo arquivo, string valorPremioLiquido, string cdTipoComissao, int posicaoLinha)
@@ -445,6 +450,8 @@ namespace Acelera.Testes
             arquivo.ReplicarLinha(posicaoLinha, 1);
             arquivo.AlterarLinha(arquivo.Linhas.Count - 1, "CD_TIPO_COMISSAO", cdTipoComissao);
             arquivo.AlterarLinha(arquivo.Linhas.Count - 1, "VL_COMISSAO", valor.ValorFormatado());
+            arquivo.AlterarLinha(arquivo.Linhas.Count - 1, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
+                (arquivo.Header[0]["CD_TPA"], cdTipoComissao, arquivo[arquivo.Linhas.Count - 1]["CD_COBERTURA"]));
         }
     }
 }

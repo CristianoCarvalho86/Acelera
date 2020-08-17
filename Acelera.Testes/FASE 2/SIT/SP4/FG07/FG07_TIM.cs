@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
             triplice.AlterarParcEComissao(0, "CD_MOVTO_COBRANCA", "03");
             triplice.AlterarParcEComissao(1, "CD_MOVTO_COBRANCA", "01");
+
+            var arquivoCapa = triplice.ArquivoParcEmissao.Clone();
+            arquivoCapa.RemoverLinhaComAjuste(1);
+            SalvarArquivo(arquivoCapa);
+
+            triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
+            triplice.ArquivoParcEmissao.AlterarLinha(0,"VL_LMI",arquivoCapa[0]["VL_IS"]);
+            triplice.ArquivoParcEmissao.AlterarLinha(0, "VL_IS", arquivoCapa[0]["VL_IS"]);
 
             SalvaExecutaEValidaFG07();
 

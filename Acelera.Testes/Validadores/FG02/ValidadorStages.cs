@@ -23,33 +23,40 @@ namespace Acelera.Testes.Validadores.FG02
 
         public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
         {
-            var consultaBase = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, false, ExistemLinhasNoArquivo());
-
             var consultas = new ConjuntoConsultas();
-
-            var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
-            if (alteracaoHeader != null)
-                AdicionaConsulta(consultaBase.First().Value, valoresAlteradosHeader,true);//NAO HAVERA ALTERAÇÕES NO HEADER E NAS LINHAS SIMULTANEAMENTE
-
-            if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
+            try
             {
-                var linhasAlteradas = valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
-                foreach(var linha in linhasAlteradas)
+                var consultaBase = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, false, ExistemLinhasNoArquivo());
+
+                var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
+                if (alteracaoHeader != null)
+                    AdicionaConsulta(consultaBase.First().Value, valoresAlteradosHeader, true);//NAO HAVERA ALTERAÇÕES NO HEADER E NAS LINHAS SIMULTANEAMENTE
+
+                if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
                 {
-                    var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).Where(x => x.CamposAlterados.Count > 0).FirstOrDefault();
-                    if (alteracoesPorLinha == null)
-                        continue;
-                    var consulta = consultaBase.Where(x => x.Key == alteracoesPorLinha.PosicaoDaLinha).First().Value;
-                    AdicionaConsulta(consulta, alteracoesPorLinha, true);
-                    consultas.AdicionarConsulta(consulta);
+                    var linhasAlteradas = valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
+                    foreach (var linha in linhasAlteradas)
+                    {
+                        var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).Where(x => x.CamposAlterados.Count > 0).FirstOrDefault();
+                        if (alteracoesPorLinha == null)
+                            continue;
+                        var consulta = consultaBase.Where(x => x.Key == alteracoesPorLinha.PosicaoDaLinha).First().Value;
+                        AdicionaConsulta(consulta, alteracoesPorLinha, true);
+                        consultas.AdicionarConsulta(consulta);
+                    }
+                    if (linhasAlteradas.Count() == 0)
+                        consultas.AdicionarConsulta(consultaBase.First().Value);
                 }
-            }
-            else
-            {
-                consultas.AdicionarConsulta(consultaBase.First().Value);
-            }
+                else
+                    consultas.AdicionarConsulta(consultaBase.First().Value);
 
-            consultas.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
+                consultas.AdicionarOrderBy(" ORDER BY DT_MUDANCA DESC ");
+            }
+            catch (Exception ex)
+            {
+                logger.Erro("VALIDACAO DA STAGE - " + ex.ToString());
+                throw;
+            }
 
             return consultas;
         }
@@ -64,7 +71,7 @@ namespace Acelera.Testes.Validadores.FG02
             var campos = "";
             for (int i = 0; i < Parametro.Length; i++)
             {
-                campos += $"{Parametro[i]} = '{Valores[i]}' AND ";  
+                campos += $"{Parametro[i]} = '{Valores[i]}' AND ";
             }
             campos = campos.Remove(campos.Length - 4);
             linhas = ObterLinhasParaStage($"select * FROM {Parametros.instanciaDB}.{tabelaEnum.ObterTexto()} WHERE {campos} ORDER BY {orderBy}").ToList();

@@ -168,7 +168,10 @@ namespace Acelera.Testes.DataAccessRep
                 tabela = helper.GetData(sql);
 
                 if (tabela.Rows.Count == 0 && validaResultadoUnico)
+                {
+                    logger.Erro("NENHUMA LINHA ENCONTRADA");
                     throw new Exception("NENHUMA LINHA ENCONTRADA");
+                }
 
                 logger.LogRetornoQuery(tabela, sql);
 
