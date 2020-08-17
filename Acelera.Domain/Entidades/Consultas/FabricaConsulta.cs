@@ -29,6 +29,13 @@ namespace Acelera.Domain.Entidades.Consultas
                 return consultas;
             }
 
+            if(linhas.Count() == 0)
+            {
+                var consultaDaLinha = new Consulta();
+                consultaDaLinha.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
+                return consultas;
+            }
 
             foreach (var linha in linhas)
             {
