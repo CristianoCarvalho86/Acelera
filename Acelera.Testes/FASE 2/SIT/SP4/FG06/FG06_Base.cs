@@ -180,9 +180,12 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 ComissaoTemErro ? "25" : "105");
         }
 
-        protected void ExecutarEValidarFG06EmissaoSucesso()
+        protected void ExecutarEValidarFG06EmissaoSucesso(bool validaCliente = true, bool validaComissao = true)
         {
-            ExecutarEValidarFG06(triplice, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, "", "", "");
+            var codigoStgCliente = validaCliente ? (CodigoStage?)CodigoStage.AprovadoFG06 : null;
+            var codigoStgComissao = validaComissao ? (CodigoStage?)CodigoStage.AprovadoFG06 : null;
+
+            ExecutarEValidarFG06(triplice, codigoStgCliente, CodigoStage.AprovadoFG06, codigoStgComissao, "", "", "");
         }
 
         private void ExecFgs(bool sucesso, FGs fg, Arquivo arquivo)
