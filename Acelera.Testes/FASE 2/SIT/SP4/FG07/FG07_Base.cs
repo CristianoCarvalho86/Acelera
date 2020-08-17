@@ -119,11 +119,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             var idArquivo = string.Empty;
             ILinhaTabela linhaTemp;
             var erro = false;
+            var valorPremioLiquido = linhasStageParc.GroupBy(x => x.ObterPorColuna("NR_PARCELA").ValorFormatado)
+                .Select(x => new KeyValuePair<string,decimal>(x.Key,
+                x.Sum(y => y.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal)));
+
             foreach (ILinhaTabela linhaStage in linhasStageParc)
             {
                 linhaTemp = (ILinhaTabela)linhaStage.Clone();
                 InserirCpfCorretor(ref linhaTemp);
-                if (!validadorXML.ValidarInclusaoNasTabelas(linhaTemp, "711", ehParcAuto, out idArquivo) && !erro)
+                if (!validadorXML.ValidarInclusaoNasTabelas(linhaTemp, "711", ehParcAuto,
+                    valorPremioLiquido.First(x => x.Key == linhaTemp.ObterPorColuna("NR_PARCELA").ValorFormatado).Value,
+                    out idArquivo) && !erro)
                     erro = true;
             }
 

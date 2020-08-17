@@ -18,9 +18,9 @@ namespace Acelera.Domain.Extensions
             {
                 campoAjustado = campo;
                 if (campo == "vl_premio")
-                    campoAjustado = $"VL_PREMIO_LIQUIDO";
+                    continue;
 
-                where += $"{aspas}{campo}{aspas} = '{linha.ObterPorColuna(campoAjustado).ValorFormatado}' AND ";
+                where += $" {aspas}{campo}{aspas} = '{linha.ObterPorColuna(campoAjustado).ValorFormatado}' AND ";
             }
             return where.Substring(0, where.Length - 4);
         }
