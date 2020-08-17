@@ -68,28 +68,36 @@ namespace Acelera.Testes.Validadores.FG02
 
         public bool ValidarTabela(string[] Parametro, string[] Valores, string orderBy, int? codigoEsperado, out IList<ILinhaTabela> linhas, bool aoMenosUmComCodigoEsperado = false)
         {
-            var campos = "";
-            for (int i = 0; i < Parametro.Length; i++)
+            try
             {
-                campos += $"{Parametro[i]} = '{Valores[i]}' AND ";
-            }
-            campos = campos.Remove(campos.Length - 4);
-            linhas = ObterLinhasParaStage($"select * FROM {Parametros.instanciaDB}.{tabelaEnum.ObterTexto()} WHERE {campos} ORDER BY {orderBy}").ToList();
-            AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
-            var deveHaverRegistro = codigoEsperado.HasValue ? true : false;
-            logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
-            logger.Escrever($"Foram encontrados {linhas.Count} registros.");
+                var campos = "";
+                for (int i = 0; i < Parametro.Length; i++)
+                {
+                    campos += $"{Parametro[i]} = '{Valores[i]}' AND ";
+                }
+                campos = campos.Remove(campos.Length - 4);
+                linhas = ObterLinhasParaStage($"select * FROM {Parametros.instanciaDB}.{tabelaEnum.ObterTexto()} WHERE {campos} ORDER BY {orderBy}").ToList();
+                AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
+                var deveHaverRegistro = codigoEsperado.HasValue ? true : false;
+                logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
+                logger.Escrever($"Foram encontrados {linhas.Count} registros.");
 
-            if (!ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count))
-            {
-                return false;
+                if (!ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count))
+                {
+                    return false;
+                }
+                else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
+                {
+                    return ValidaStatusProcessamento(linhas, codigoEsperado.Value);
+                }
+                return true;
             }
-            else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
+            catch (Exception ex)
             {
-                return ValidaStatusProcessamento(linhas, codigoEsperado.Value);
+                logger.Erro("ERRO EM ValidarTabela - ValidadorStage - ValidarTabela(string[] Parametro, string[] Valores, string orderBy, int? codigoEsperado, out IList<ILinhaTabela> linhas, bool aoMenosUmComCodigoEsperado = false)-" + ex.ToString());
+                throw ex;
             }
 
-            return true;
         }
 
         public bool ValidarTabela(bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmComCodigoEsperado = false)
@@ -101,21 +109,29 @@ namespace Acelera.Testes.Validadores.FG02
 
         public bool ValidarTabela(bool deveHaverRegistro, out List<ILinhaTabela> linhas, int codigoEsperado = 0, bool aoMenosUmComCodigoEsperado = false)
         {
-            linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum)).ToList();
-            AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
-            logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
-            logger.Escrever($"Foram encontrados {linhas.Count} registros.");
-
-            if (!ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count))
+            try
             {
-                return false;
-            }
-            else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
-            {
-                return ValidaStatusProcessamento(linhas, codigoEsperado);
-            }
+                linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum)).ToList();
+                AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
+                logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
+                logger.Escrever($"Foram encontrados {linhas.Count} registros.");
 
-            return true;
+                if (!ValidaQuantidadeDeLinhas(deveHaverRegistro, linhas.Count))
+                {
+                    return false;
+                }
+                else if (deveHaverRegistro)// VALIDA REGISTRO ENCONTRADO CONTEM CODIGO ESPERADO
+                {
+                    return ValidaStatusProcessamento(linhas, codigoEsperado);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.Erro("ERRO EM ValidarTabela - ValidadorStage- ValidarTabela(bool deveHaverRegistro, out List<ILinhaTabela> linhas, int codigoEsperado = 0, bool aoMenosUmComCodigoEsperado = false)" + ex.ToString());
+                throw ex;
+            }
         }
         public virtual bool ValidaQuantidadeDeLinhas(bool deveHaverRegistros, int linhasEncontradas)
         {
