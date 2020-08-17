@@ -28,7 +28,12 @@ namespace Acelera.Testes.DataAccessRep
             var countOIMHana = DataAccess.ConsultaUnica(sql, $"QUANTIDADE DE REGISTROS NA {TabelasOIMEnum.OIM_APL01.ObterTexto()}", DBEnum.Hana, logger);
 
             sql = $"SELECT \"st_interface\" AS st_interface FROM oim_apl01 WHERE {where}";
-            var table = DataAccess.Consulta(sql, $"QUANTIDADE DE REGISTROS NA {TabelasOIMEnum.OIM_APL01.ObterTexto()}", DBEnum.SqlServerOIM, logger);
+            var table = DataAccess.Consulta(sql, $"QUANTIDADE DE REGISTROS NA {TabelasOIMEnum.OIM_APL01.ObterTexto()}", DBEnum.SqlServerOIM, logger,false);
+            if(table.Rows.Count == 0)
+            {
+                logger.Escrever("ST_INTERFACE NAO ENCONTRADO NA TABELA, TENTANDO NOVAMENTE EM ALGUNS SEGUNDOS.");
+                return false;
+            }
             
             logger.Escrever($"FORAM ENCONTRADOS {countOIMHana} na tabela do {TabelasOIMEnum.OIM_APL01.ObterTexto()} - HANA");
 
