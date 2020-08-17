@@ -127,11 +127,11 @@ namespace Acelera.Testes.Validadores
                 logger.Erro("NENHUMA LINHA ENCONTRADA PARA OS DADOS DESSE NÓ NO BANCO");
                 return false;
             }
-            if (tabela.Rows.Count > 1)
-            {
-                logger.Erro("MAIS DE UMA LINHA ENCONTRADA NO BANCO PARA OS DADOS DESSE NÓ NO XML");
-                return false;
-            }
+            //if (tabela.Rows.Count > 1)
+            //{
+            //    logger.Erro("MAIS DE UMA LINHA ENCONTRADA NO BANCO PARA OS DADOS DESSE NÓ NO XML");
+            //    return false;
+            //}
             var erros = "";
             var textoAjustado = "";
             foreach (DataColumn column in tabela.Columns)
