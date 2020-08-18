@@ -84,6 +84,12 @@ namespace Acelera.Testes.DataAccessRep
             return ConsultaUnica($"SELECT COUNT(*) AS TOTAL FROM {Parametros.instanciaDB}.{tabela}",$"OBTER QUANTIDADE REGISTROS NA TABELA: {tabela}",logger);
         }
 
+        public static bool ExisteRegistro(string sql, IMyLogger logger)
+        {
+            var table = Consulta(sql, "VALIDACAO SE EXISTE REGISTRO NO BANCO",DBEnum.Hana, logger, false);
+            return table.Rows.Count != 0;
+        }
+
         public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger, bool validaResultadoUnico = true)
         {
             IDBHelper helper = ObterBanco(dbEnum);

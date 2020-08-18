@@ -66,5 +66,11 @@ namespace Acelera.Testes.DataAccessRep
             return false;
         }
 
+        public static bool ExisteRegistro(string sql, IMyLogger logger)
+        {
+            var table = DataAccess.Consulta(sql, "VALIDACAO SE EXISTE REGISTRO NO BANCO", DBEnum.SqlServerOIM, logger, false);
+            return table.Rows.Count != 0;
+        }
+
     }
 }

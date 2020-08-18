@@ -412,8 +412,16 @@ namespace Acelera.Testes
             else if (EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo) == OperadoraEnum.PAPCARD)
                 contrato = "759303900006209";
             else
-                contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
-            
+            {
+                while (true)
+                {
+                    contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+                    if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissao.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
+                       !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissaoAuto.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
+                       !DataAccessOIM.ExisteRegistro($"SELECT '1' FROM oim_apl01 where nr_doc_apolice = '{contrato}'", logger))
+                        break;
+                }
+            }
             arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
