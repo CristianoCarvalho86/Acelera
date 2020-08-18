@@ -79,7 +79,7 @@ namespace Acelera.Testes.Validadores
                         erros += "REGISTRO, QUE NAO DEVERIA SER ENCONTRADO, ENCONTRADO NA TABELA : " + tabela.ObterTexto() + Environment.NewLine;
                 }
 
-                if (tabela == TabelasOIMEnum.OIM_PARC01 && tabelaRetorno.Rows[0]["vl_premio"].ToString() != valorPremioLiquido.ToString())
+                if (tabela == TabelasOIMEnum.OIM_PARC01 && tabelaRetorno.Rows.Count > 0 && tabelaRetorno.Rows[0]["vl_premio"].ToString() != valorPremioLiquido.ToString())
                     erros += $"VALOR DO PREMIO NAO ESTA IGUAL, VALOR ESPERADO:{valorPremioLiquido} , VALOR ENCONTRADO:{tabelaRetorno.Rows[0]["vl_premio"]}{Environment.NewLine}";
 
                 if (tabela == TabelasOIMEnum.OIM_APL01)
