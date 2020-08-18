@@ -92,12 +92,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao,dados);
 
             //ALTERACAO COMISSAO
-            AdicionarTipoComissao(triplice.ArquivoComissao, triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
 
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
-            triplice.ArquivoComissao.ReplicarLinha(2, 1);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[2]);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[3]);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
+
+            AdicionarTipoComissao(triplice.ArquivoComissao, triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 1);
 
             triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
             triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
@@ -157,9 +156,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6162()
         {
 
-            IniciarTeste("6162", "SAP-6162:FG07 - Lasa - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.LASA);
+            IniciarTeste("6162", "SAP-6162:FG07 - Lasa - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
               
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
 
