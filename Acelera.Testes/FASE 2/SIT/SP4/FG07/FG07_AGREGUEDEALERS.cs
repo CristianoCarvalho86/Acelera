@@ -1,7 +1,6 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
-using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -12,18 +11,16 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 {
     [TestClass]
-    public class FG07_PITZI : FG07_Base
+    public class FG07_AGREGUEDEALERSDEALERS : FG07_Base
     {
         protected string ClienteCadastradoNoOIM => throw new Exception();
 
         [TestMethod]
         public void SAP_6154()
         {
-            IniciarTeste("6164", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.PITZI);
-
-            triplice.AlterarLayoutDaTrinca<Arquivo_Layout_9_6_Cliente, Arquivo_Layout_9_6_ParcEmissao, Arquivo_Layout_9_6_EmsComissao>();
-
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            IniciarTeste("6154", "FG07 - AGREGUEDEALERSDEALERS  - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
+            
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
             SalvaExecutaEValidaFG07();
 
@@ -32,7 +29,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6155()
         {
-            IniciarTeste("6155", "SAP-6155:FG07 - PITZI - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.PITZI);
+            IniciarTeste("6155", "SAP-6155:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
@@ -43,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6156()
         {
-            IniciarTeste("6156", "SAP-6156:FG07 - PITZI - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.PITZI,false);
+            IniciarTeste("6156", "SAP-6156:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.AGREGUEDEALERS,false);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -56,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6157()
         {
-            IniciarTeste("6157", "SAP-6157:FG07 - PITZI - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.PITZI);
+            IniciarTeste("6157", "SAP-6157:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -69,7 +66,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6158()
         {
-            IniciarTeste("6158", " SAP-6158:FG07 - PITZI - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.PITZI);
+            IniciarTeste("6158", " SAP-6158:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -86,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6159()
         {
 
-            IniciarTeste("6159", "SAP-6159:FG07 - PITZI - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.PITZI);
+            IniciarTeste("6159", "SAP-6159:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados); //COLOCAR CD_CORRETOR com C e P,
 
@@ -111,7 +108,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6160()
         {
             //?
-            IniciarTeste("6160", "SAP-6160:FG07 - PITZI - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.POMPEIA);
+            IniciarTeste("6160", "SAP-6160:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -132,7 +129,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6161()
         {
-            IniciarTeste("6161", "SAP-6161:FG07 - PITZI - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.PITZI);
+            IniciarTeste("6161", "SAP-6161:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
@@ -158,7 +155,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6162()
         {
 
-            IniciarTeste("6162", "SAP-6162:FG07 - PITZI - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
+            IniciarTeste("6162", "SAP-6162:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
               
@@ -171,43 +168,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             SalvaExecutaEValidaFG07();
 
-        }
-
-        [TestMethod]
-        public void SAP_0000()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "1108", "FG00 - PROC101 - No arquivo OCR_COBRANCA repetir 1x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
-
-            //CARREGAR O ARQUIVO BASE
-            arquivo = new Arquivo_Layout_9_3_Cliente();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-702-20190320.txt"));
-            SalvarArquivo(arquivo);
-
-
-            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1844-20200206.txt"));
-
-            arquivo.SelecionarLinhas("CD_CONTRATO", "7231000082501");
-            CriarNovoContrato(0);
-
-            var contrato = arquivo[0]["CD_CONTRATO"];
-            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
-            AlterarTodasAsLinhas("NR_APOLICE", contrato);
-            AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
-            AjustarQtdLinFooter();
-
-            SalvarArquivo(arquivo);
-
-
-            arquivo = new Arquivo_Layout_9_3_EmsComissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1845-20200206.txt"));
-
-            arquivo.SelecionarLinhas("CD_CONTRATO", "7231000082501");
-            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
-
-            AjustarQtdLinFooter();
-
-            SalvarArquivo(arquivo);
         }
 
     }

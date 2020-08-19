@@ -68,7 +68,7 @@ namespace Acelera.Testes
                 triplice = new TriplicePITZI(1, logger, ref valoresAlteradosBody);
         }
 
-        protected void AlteracoesPadraoDaTrinca(ITriplice triplice, bool geraCliente = true)
+        protected void AlteracoesPadraoDaTrinca(ITriplice triplice, bool geraCliente = true, bool geraArquivoCapa = true)
         {
             triplice.AlterarParcEComissao(0, "ID_TRANSACAO_CANC", "");
             triplice.AlterarParcEComissao(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));
@@ -91,6 +91,27 @@ namespace Acelera.Testes
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_EMISSAO", data);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_INICIO_VIGENCIA", data);
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_FIM_VIGENCIA", SomarData(data, 365));
+
+            if(ParametrosRegrasEmissao.OperadorasComCapa.Contains(triplice.Operadora))
+            {
+                CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
+                AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
+                triplice.AlterarParcEComissao(0, "CD_MOVTO_COBRANCA", "03");
+                triplice.AlterarParcEComissao(1, "CD_MOVTO_COBRANCA", "01");
+
+                triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_LMI", triplice.ArquivoParcEmissao[0]["VL_IS"]);
+                triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_IS", triplice.ArquivoParcEmissao[0]["VL_IS"]);
+                if (geraArquivoCapa)
+                {
+                    var arquivoCapa = triplice.ArquivoParcEmissao.Clone();
+                    arquivoCapa.RemoverLinhaComAjuste(1);
+                    SalvarArquivo(arquivoCapa);
+                }
+
+                triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
+
+            }
+
         }
 
          protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
