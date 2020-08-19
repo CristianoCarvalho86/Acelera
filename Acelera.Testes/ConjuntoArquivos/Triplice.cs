@@ -223,11 +223,82 @@ namespace Acelera.Testes.ConjuntoArquivos
                 //arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
                 //arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
                 //arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
+                //var corretor = ParametrosBanco.ObterCdCorretorETipoComissao(Operadora);
+                //arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", corretor.Key);
+                //arquivo.AlterarLinhaSeExistirCampo(i, "CD_TIPO_COMISSAO", corretor.Value);
 
-                var corretor = ParametrosBanco.ObterCdCorretorETipoComissao(Operadora);
-                arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", corretor.Key);
-                arquivo.AlterarLinhaSeExistirCampo(i, "CD_TIPO_COMISSAO", corretor.Value);
             }
+        }
+
+        public void AlterarLayoutDaTrinca<TCliente,TParc,TComissao>() where TCliente : Arquivo, new() where TParc : Arquivo, new() where TComissao : Arquivo, new()
+        {
+            var arquivo = ArquivoCliente;
+            AlterarLayout<TCliente>(ref arquivo);
+            ArquivoCliente = arquivo.Clone();
+
+            arquivo = ArquivoParcEmissao;
+            AlterarLayout<TParc>(ref arquivo);
+            ArquivoParcEmissao = arquivo.Clone();
+
+            arquivo = ArquivoComissao;
+            AlterarLayout<TComissao>(ref arquivo);
+            ArquivoComissao = arquivo.Clone();
+        }
+
+        private void AlterarLayout<T>(ref Arquivo _arquivo) where T : Arquivo, new()
+        {
+            logger.AbrirBloco($"ALTERANDO LAYOUT DE {_arquivo.GetType().Name} para {typeof(T)}");
+            var novoArquivo = new T();
+            novoArquivo.Linhas = new List<LinhaArquivo>();
+            novoArquivo.Header = new List<LinhaArquivo>();
+            novoArquivo.Footer = new List<LinhaArquivo>();
+            novoArquivo.AtualizarNomeArquivoFinal(_arquivo.NomeArquivo);
+
+            novoArquivo.Header.Add(_arquivo.Header[0].Clone());
+            novoArquivo.Footer.Add(_arquivo.Footer[0].Clone());
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
+                novoArquivo.AdicionarLinha(novoArquivo.CriarLinhaVazia(i));
+
+            novoArquivo.AjustarQtdLinhasNoFooter();
+            IgualarCamposQueExistirem(_arquivo, novoArquivo);
+
+            novoArquivo.AlterarHeader("VERSAO", novoArquivo.TextoVersaoHeader);
+
+            logger.FecharBloco();
+            _arquivo = novoArquivo;
+        }
+
+        public void IgualarCamposQueExistirem(Arquivo arquivoOrigem, Arquivo arquivoDestino)
+        {
+            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
+
+            if (arquivoOrigem.Linhas.Count != arquivoDestino.Linhas.Count)
+                throw new Exception("ARQUIVOS COM QUANTIDADE DE LINHAS DIFERENTES.");
+
+            var nomeCampo = string.Empty;
+            foreach (var linha in arquivoOrigem.Linhas)
+                foreach (var campo in arquivoOrigem.CamposDoBody)
+                {
+                    nomeCampo = campo;
+                    if (campo == "NR_SEQ_EMISSAO")
+                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
+
+                    if (!arquivoDestino.CamposDoBody.Contains(nomeCampo))
+                        continue;
+
+                    arquivoDestino.AlterarLinha(linha.Index, nomeCampo, arquivoOrigem.ObterLinha(linha.Index).ObterCampoDoArquivo(nomeCampo).ValorFormatado);
+                }
+        }
+
+        public void IgualarCamposQueExistirem(LinhaArquivo linhaOrigem, LinhaArquivo linhaDestino)
+        {
+            logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
+            var nomeCampo = string.Empty;
+            foreach (var campo in linhaOrigem.Campos)
+            {
+                linhaDestino.ObterCampoSeExistir(campo.ColunaArquivo)?.AlterarValor(linhaOrigem[campo.ColunaArquivo]);
+            }
+            logger.FecharBloco();
         }
 
     }

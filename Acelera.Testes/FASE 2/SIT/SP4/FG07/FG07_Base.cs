@@ -2,6 +2,7 @@
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts._9_6;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2.SIT.SP4.FG06;
 using Acelera.Testes.Validadores;
@@ -174,7 +175,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             var dataAccessOIM = new DataAccessOIM(logger);
             var resultadoOIM = dataAccessOIM.ValidarRegistrosOIM(linhaStageParc);
             var count = 0;
-            while (!resultadoOIM)
+            while (!resultadoOIM && count < 5)
             {
                 if (count >= 5)
                     break;
@@ -184,13 +185,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
                 else
                 {
                     count++;
+                    logger.Escrever($"TENTATIVA : {count}");
+                    logger.Escrever("ERRO ENCONTRADO POREM NENHUM ERRO LOGADO NA TABELA oim_validacoes_imp: INICIANDO NOVA TENTATIVA.");
                     resultadoOIM = dataAccessOIM.ValidarRegistrosOIM(linhaStageParc);
                     Thread.Sleep(5000);
+
                 }
             }
         }
-
-
-
     }
 }

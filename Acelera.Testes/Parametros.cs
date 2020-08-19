@@ -48,6 +48,18 @@ namespace Acelera.Testes
             }
         }
 
+        public static bool logDataBaseResults
+        {
+            get
+            {
+                var temp = ConfigurationManager.AppSettings.Get("LogDataBaseResults");
+                if (string.IsNullOrEmpty(temp))
+                    throw new Exception("LogDataBaseResults nao definido");
+
+                return Convert.ToBoolean(temp);
+            }
+        }
+
         public static string pastaDestinoXml
         {
             get

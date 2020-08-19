@@ -64,7 +64,7 @@ namespace Acelera.Testes
             //if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
             //    logger = new Mock<IMyLogger>().Object;
             //else
-            logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo);
+            logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo,Parametros.logStackTrace,Parametros.logDataBaseResults);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
             dados = new TabelaParametrosData(logger);
         }

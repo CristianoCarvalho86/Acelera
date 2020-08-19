@@ -64,6 +64,8 @@ namespace Acelera.Testes
                 triplice = new TripliceTIM(1, logger, ref valoresAlteradosBody);
             else if (operadora == OperadoraEnum.QUEROQUERO)
                 triplice = new TripliceQUEROQUERO(1, logger, ref valoresAlteradosBody);
+            else if (operadora == OperadoraEnum.PITZI)
+                triplice = new TriplicePITZI(1, logger, ref valoresAlteradosBody);
         }
 
         protected void AlteracoesPadraoDaTrinca(ITriplice triplice, bool geraCliente = true)
