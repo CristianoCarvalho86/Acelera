@@ -60,6 +60,11 @@ namespace Acelera.Testes.Validadores
                 var deveSerPreenchida = listaDeTabelasQueDevemSerPreenchidas.Contains(tabela);
 
                 where = linhaDaStage.ObterWhereCamposChaves(tabela.ObterCamposChaves(),true);
+
+                if (tabela != TabelasOIMEnum.OIM_APL01)
+                    where += $" AND \"id_arquivo\" = '{idArquivo}'";
+
+
                 tabelaRetorno = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} where {where} ", $"VALIDACAO REGISTRO INSERIDO {tabela.ObterTexto()}",DBEnum.Hana, logger,false);
                 tabelaRetorno.TableName = tabela.ObterTexto();
                 listaDeTabelasAValidar.Add(tabelaRetorno.Copy());

@@ -90,6 +90,11 @@ namespace Acelera.Testes.DataAccessRep
             return table.Rows.Count != 0;
         }
 
+        public static bool ExisteRegistro(string tabela, string campoBusca, string valorBusca, IMyLogger logger)
+        {
+            return ExisteRegistro($"SELECT '1' from {Parametros.instanciaDB}.{tabela} where {campoBusca} = '{valorBusca}' ", logger);
+        }
+
         public static string ConsultaUnica(string sql, string parametroBuscado, DBEnum dbEnum , IMyLogger logger, bool validaResultadoUnico = true)
         {
             IDBHelper helper = ObterBanco(dbEnum);

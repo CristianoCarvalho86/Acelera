@@ -35,6 +35,19 @@ namespace Acelera.Testes
                 return origem;
             }
         }
+
+        public static bool logStackTrace
+        {
+            get
+            {
+                var temp = ConfigurationManager.AppSettings.Get("LogStackTrace");
+                if(string.IsNullOrEmpty(temp))
+                    throw new Exception("LogStackTrace nao definido");
+
+                return Convert.ToBoolean(temp);
+            }
+        }
+
         public static string pastaDestinoXml
         {
             get
