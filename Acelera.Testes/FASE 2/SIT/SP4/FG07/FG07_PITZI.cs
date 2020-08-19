@@ -173,5 +173,42 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         }
 
+        [TestMethod]
+        public void SAP_0000()
+        {
+            IniciarTeste(TipoArquivo.Cliente, "1108", "FG00 - PROC101 - No arquivo OCR_COBRANCA repetir 1x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-702-20190320.txt"));
+            SalvarArquivo(arquivo);
+
+
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1844-20200206.txt"));
+
+            arquivo.SelecionarLinhas("CD_CONTRATO", "7231000082501");
+            CriarNovoContrato(0);
+
+            var contrato = arquivo[0]["CD_CONTRATO"];
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+            AlterarTodasAsLinhas("NR_APOLICE", contrato);
+            AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
+            AjustarQtdLinFooter();
+
+            SalvarArquivo(arquivo);
+
+
+            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1845-20200206.txt"));
+
+            arquivo.SelecionarLinhas("CD_CONTRATO", "7231000082501");
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+
+            AjustarQtdLinFooter();
+
+            SalvarArquivo(arquivo);
+        }
+
     }
 }
