@@ -11,6 +11,7 @@ namespace Acelera.Domain.Entidades.Tabelas
     {
         public override TabelasEnum TabelaReferente => TabelasEnum.ControleArquivo;
 
+
         protected override void CarregarCampos()
         {
             AddCampo("NM_ARQUIVO_TPA");
