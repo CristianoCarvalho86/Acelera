@@ -29,6 +29,8 @@ namespace Acelera.Domain.Entidades.Interfaces
 
         void Salvar(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true);
 
+        void AlterarLayoutDaTrinca<TCliente, TParc, TComissao>() where TCliente : Arquivo, new() where TParc : Arquivo, new() where TComissao : Arquivo, new();
+
         void IgualarArquivos();
 
     }
