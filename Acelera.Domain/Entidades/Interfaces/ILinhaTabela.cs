@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acelera.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Acelera.Domain.Entidades.Interfaces
 {
     public interface ILinhaTabela : ICloneable
     {
+        TabelasEnum TabelaReferente { get; }
         List<Campo> Campos { get; set; }
         string ObterNomeTabela();
 
