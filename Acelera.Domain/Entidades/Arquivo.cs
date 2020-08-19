@@ -476,6 +476,8 @@ namespace Acelera.Domain.Layouts
         public void SelecionarLinhas(string nomeCampo, string valorFormatado)
         {
             Linhas = Linhas.Where(x => x.ObterCampoDoArquivo(nomeCampo).ValorFormatado == valorFormatado).ToList() ;
+
+            ReIndexar();
         }
 
         public LinhaArquivo SelecionarPrimeiraLinhaEncontrada(IList<KeyValuePair<string, string>> valoresDosCampos)
