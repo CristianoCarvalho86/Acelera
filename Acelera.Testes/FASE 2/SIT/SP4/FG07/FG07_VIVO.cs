@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
+using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6154()
         {
             IniciarTeste("6154", "FG07 - VIVO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.VIVO);
-            
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
             SalvaExecutaEValidaFG07();
 
@@ -40,7 +41,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6156()
         {
-            IniciarTeste("6156", "SAP-6156:FG07 - VIVO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.VIVO,false);
+            IniciarTeste("6156", "SAP-6156:FG07 - VIVO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.VIVO, false);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -57,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
-            AdicionarTipoComissao(triplice.ArquivoComissao,triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"],"P",0);
+            AdicionarTipoComissao(triplice.ArquivoComissao, triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
 
             SalvaExecutaEValidaFG07();
 
@@ -71,7 +72,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
-            
+
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
 
@@ -88,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados); //COLOCAR CD_CORRETOR com C e P,
 
             //ALTERACAO PARCELA
-            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao,dados);
+            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
 
             //ALTERACAO COMISSAO
 
@@ -116,11 +117,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             LimparValidacao();
 
-            EnviarParaOds(triplice.ArquivoCliente, false, false,CodigoStage.AprovadoFG07);
+            EnviarParaOds(triplice.ArquivoCliente, false, false, CodigoStage.AprovadoFG07);
 
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
             triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
-            
+
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
 
             SalvaExecutaEValidaFG07(false);
@@ -133,13 +134,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
-            
+
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
 
             SalvaExecutaEValidaFG07();
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao,0);
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 1);
             triplice.ArquivoParcEmissao.RemoverLinha(0);
             triplice.ArquivoParcEmissao.RemoverLinha(1);
@@ -158,7 +159,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             IniciarTeste("6162", "SAP-6162:FG07 - VIVO - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
-              
+
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
 
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
@@ -168,6 +169,43 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             SalvaExecutaEValidaFG07();
 
+        }
+
+        [TestMethod]
+        public void SAP_0000()
+        {
+            IniciarTeste(TipoArquivo.Cliente, "1108", "FG00 - PROC101 - No arquivo OCR_COBRANCA repetir 1x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_3_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-702-20190320.txt"));
+            SalvarArquivo(arquivo);
+
+
+            arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1844-20200206.txt"));
+
+            arquivo.SelecionarLinhas("CD_CONTRATO", "7231000082501");
+            CriarNovoContrato(0);
+
+            var contrato = arquivo[0]["CD_CONTRATO"];
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+            AlterarTodasAsLinhas("NR_APOLICE", contrato);
+            AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
+            AjustarQtdLinFooter();
+
+            SalvarArquivo(arquivo);
+            
+
+            arquivo = new Arquivo_Layout_9_3_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1845-20200206.txt"));
+
+            arquivo.SelecionarLinhas("CD_CONTRATO", "7231000082501");
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+
+            AjustarQtdLinFooter();
+
+            SalvarArquivo(arquivo);
         }
 
     }
