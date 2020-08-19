@@ -109,10 +109,13 @@ namespace Acelera.Testes.DataAccessRep
                 logger.Escrever("Consulta Realizada :" + sql);
                 resultado = helper.ObterResultadoUnico(sql, validaResultadoUnico);
 
+                if (string.IsNullOrEmpty(resultado))
+                {
+                    logger.Escrever("NENHUM REGISTRO ENCONTRADO.");
 
-                if (validaResultadoUnico && string.IsNullOrEmpty(resultado))
-                    throw new Exception("Resultado nao encontrado");
-
+                    if (validaResultadoUnico)
+                        throw new Exception("Resultado nao encontrado");
+                }
                 logger.Escrever($"Parametro Buscado encontrado: {resultado}");
 
                 logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, parametroBuscado);
@@ -178,10 +181,15 @@ namespace Acelera.Testes.DataAccessRep
 
                 tabela = helper.GetData(sql);
 
-                if (tabela.Rows.Count == 0 && validaResultadoUnico)
+                if (tabela.Rows.Count == 0)
                 {
-                    logger.Erro("NENHUMA LINHA ENCONTRADA");
-                    throw new Exception("NENHUMA LINHA ENCONTRADA");
+                    logger.Escrever("NENHUM REGISTRO ENCONTRADO.");
+
+                    if (validaResultadoUnico)
+                    {
+                        logger.Erro("NENHUMA LINHA ENCONTRADA");
+                        throw new Exception("NENHUMA LINHA ENCONTRADA");
+                    }
                 }
 
                 logger.LogRetornoQuery(tabela, sql);
