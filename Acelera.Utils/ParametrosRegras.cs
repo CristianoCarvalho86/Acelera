@@ -11,11 +11,13 @@ namespace Acelera.Utils
 {
     public static class ParametrosRegrasEmissao
     {
+        public static OperadoraEnum[] OperadorasComCapa => new OperadoraEnum[] { OperadoraEnum.TIM, OperadoraEnum.PITZI, OperadoraEnum.AGREGUE };
+
         public static string CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.PAPCARD)
                 return "20";
-            else if (operadora == OperadoraEnum.TIM)
+            else if (OperadorasComCapa.Contains(operadora))
                 return "18";
             else //if (operadora == OperadoraEnum.VIVO || operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX || operadora == OperadoraEnum.POMPEIA)
                 return "1";
@@ -23,7 +25,7 @@ namespace Acelera.Utils
         }
         public static string CarregaTipoEmissaoParaSegundaLinhaDaEmissao(OperadoraEnum operadora)
         {
-            if (operadora == OperadoraEnum.TIM || operadora == OperadoraEnum.PAPCARD)
+            if (OperadorasComCapa.Contains(operadora) || operadora == OperadoraEnum.PAPCARD)
                 return "20";
             else
                 return "1";
@@ -31,7 +33,7 @@ namespace Acelera.Utils
         }
         public static string CarregaPrimeiroNrParcela(OperadoraEnum operadora)
         {
-            if (operadora == OperadoraEnum.TIM)
+            if (OperadorasComCapa.Contains(operadora))
                 return "0";
             else
                 return "1";

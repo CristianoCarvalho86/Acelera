@@ -75,6 +75,8 @@
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="ConjuntoArquivos\Triplice.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceAGREGUEDEALERS.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceAGREGUE.cs" />
     <Compile Include="ConjuntoArquivos\TriplicePITZI.cs" />
     <Compile Include="ConjuntoArquivos\TripliceQUEROQUERO.cs" />
     <Compile Include="ConjuntoArquivos\TriplicePOMPEIA.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="ConjuntoArquivos\TripliceVIVO.cs" />
     <Compile Include="DataAccessRep\DataAccessOIM.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC22\PROC22_Layout94_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG07\FG07_AGREGUEDEALERS.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_QUEROQUERO.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_POMPEIA.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_VIVO.cs" />

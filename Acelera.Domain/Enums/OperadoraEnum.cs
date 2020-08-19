@@ -28,6 +28,10 @@ namespace Acelera.Domain.Enums
         [Description("COOP")]
         COOP,
         [Description("QUEROQUERORESID")]
-        QUEROQUERO
+        QUEROQUERO,
+        [Description("AGREGUE")]
+        AGREGUE,
+        [Description("AGREGUEDEALERS")]
+        AGREGUEDEALERS
     }
 }

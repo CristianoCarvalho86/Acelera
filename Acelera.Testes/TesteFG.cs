@@ -378,6 +378,8 @@ namespace Acelera.Testes
             var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
             if (operadora == OperadoraEnum.TIM)
                 CriarNovaLinhaEmissaoTim(arquivoParc);
+            else if (operadora == OperadoraEnum.PITZI)
+                CriarNovaLinhaEmissaoPitzi(arquivoParc);
             else
             arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
             
@@ -403,6 +405,13 @@ namespace Acelera.Testes
         private void CriarNovaLinhaEmissaoTim(Arquivo arquivoParc)
         {
             arquivoParc.AdicionarLinha(ParametrosLinhaEmissao.CarregaLinhaEmissaoTIM(arquivoParc[0], arquivoParc.Linhas.Count - 1));
+            var camposASeremIgualados = arquivoParc[0].Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
+            IgualarCampos(arquivoParc[0], arquivoParc[arquivoParc.Linhas.Count - 1], camposASeremIgualados);
+        }
+
+        private void CriarNovaLinhaEmissaoPitzi(Arquivo arquivoParc)
+        {
+            arquivoParc.AdicionarLinha(ParametrosLinhaEmissao.CarregaLinhaEmissaoPITZI(arquivoParc[0], arquivoParc.Linhas.Count - 1));
             var camposASeremIgualados = arquivoParc[0].Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
             IgualarCampos(arquivoParc[0], arquivoParc[arquivoParc.Linhas.Count - 1], camposASeremIgualados);
         }
