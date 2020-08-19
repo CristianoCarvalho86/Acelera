@@ -6,6 +6,7 @@ using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG02.PrioridadeB.PROC11
+{ 
     [TestClass]
     public class PROC11_Layout94_PAPCARD : TestesFG02
     {

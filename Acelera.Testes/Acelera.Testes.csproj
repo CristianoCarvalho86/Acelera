@@ -84,6 +84,7 @@
     <Compile Include="ConjuntoArquivos\TripliceVIVO.cs" />
     <Compile Include="DataAccessRep\DataAccessOIM.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC22\PROC22_Layout94_SGS.cs" />
+    <Compile Include="FASE 2\SIT\SP4\FG07\FG07_PITZI.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG00\PROC100_Layout94_PITZI.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG00\PROC100_Layout96_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG00\PROC100_Layout96_COOP.cs" />
