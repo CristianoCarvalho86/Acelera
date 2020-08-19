@@ -19,9 +19,13 @@ namespace Acelera.Logger
         private StreamWriter writer;
         private string TextoFimArquivo;
         private bool sucessoExecucao;
+        private bool logStackTrace;
+        private bool logDataBaseResults;
         public string NomeArquivo => path + nomeArquivoLog;
-        public MyLogger(string _path, string nomeArquivo)
+        public MyLogger(string _path, string nomeArquivo, bool logStackTrace, bool logDataBaseResults)
         {
+            this.logStackTrace = logStackTrace;
+            this.logDataBaseResults = logDataBaseResults;
             path = _path;
             nomeArquivoLog = nomeArquivo;
             writer = File.CreateText(path + nomeArquivoLog);
@@ -80,7 +84,8 @@ namespace Acelera.Logger
         {
             StackTrace st = new StackTrace();
             Escrever($"Houve um erro: {descricao}");
-            Escrever($"STACK TRACE : " + st.ToString());
+            if(logStackTrace)
+                Escrever($"STACK TRACE : " + st.ToString());
         }
 
         public void Erro(Exception ex)
@@ -96,6 +101,9 @@ namespace Acelera.Logger
 
         public void LogRetornoQuery(DataTable retorno, string consulta)
         {
+            if (!logDataBaseResults)
+                return;
+
             EscreverNoFimDoArquivo($"Consulta Realizada : " + consulta);
             EscreverNoFimDoArquivo($"Retorno do Banco :");
             if (retorno.Rows.Count == 0)
