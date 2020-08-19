@@ -75,6 +75,7 @@
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="ConjuntoArquivos\Triplice.cs" />
+    <Compile Include="ConjuntoArquivos\TriplicePITZI.cs" />
     <Compile Include="ConjuntoArquivos\TripliceQUEROQUERO.cs" />
     <Compile Include="ConjuntoArquivos\TriplicePOMPEIA.cs" />
     <Compile Include="ConjuntoArquivos\TripliceLASA.cs" />
