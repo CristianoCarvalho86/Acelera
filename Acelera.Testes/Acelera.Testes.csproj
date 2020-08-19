@@ -116,6 +116,10 @@
     <Compile Include="FASE 2\SIT\SP5\FG00\PROC95_Layout94_PITZI.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG00\PROC95_Layout96_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG00\PROC95_Layout96_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG02\PrioridadeB\PROC11\PROC11_Layout94_COOP.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG02\PrioridadeB\PROC11\PROC11_Layout94_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG02\PrioridadeB\PROC11\PROC11_Layout94_PITZI.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG02\PrioridadeB\PROC13\PROC13_Layout94_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG02\PROC250_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG02\PROC250_Layout94_PITZI.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG02\PROC250_Layout94_LASA.cs" />
