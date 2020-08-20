@@ -1,9 +1,12 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,6 +17,23 @@ namespace Acelera.Testes
     [TestClass]
     public class Teste1
     {
+
+        [TestMethod]
+        public void GeraTeste()
+        {
+            var listaOperacoesNovas = new string[] {OperadoraEnum.COOP.ObterTexto(), OperadoraEnum.PAPCARD.ObterTexto(), OperadoraEnum.PITZI.ObterTexto() };
+            var arquivosDeTestes = Directory.GetFiles(@"C:\Cristiano\Projetos\Acelera\Acelera.Testes\FASE 2\SIT\SP2\FG02").Where(x => x.Contains(OperadoraEnum.POMPEIA.ObterTexto()));
+            var destino = @"C:\Cristiano\Projetos\Acelera\Acelera.Testes\FASE 2\SIT\SP5\FG02\";
+            var oldNamespace = "Acelera.Testes.FASE_2.SIT.SP2.FG02";
+            var newNamespace = "Acelera.Testes.FASE_2.SIT.SP5.FG02";
+            foreach (var arquivo in arquivosDeTestes)
+            {
+                foreach (var operacao in listaOperacoesNovas)
+                    File.WriteAllText(destino + arquivo.Split('\\').Last().Replace(OperadoraEnum.POMPEIA.ObterTexto(), operacao),
+                        File.ReadAllText(arquivo).Replace(OperadoraEnum.POMPEIA.ObterTexto(), operacao).Replace(oldNamespace,newNamespace));
+            }
+
+        }
 
         [TestMethod]
         public void TesteCPF_Criacao()
