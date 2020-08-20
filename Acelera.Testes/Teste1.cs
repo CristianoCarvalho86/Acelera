@@ -22,15 +22,16 @@ namespace Acelera.Testes
         public void GeraTeste()
         {
             var listaOperacoesNovas = new string[] {OperadoraEnum.COOP.ObterTexto(), OperadoraEnum.PAPCARD.ObterTexto(), OperadoraEnum.PITZI.ObterTexto() };
-            var arquivosDeTestes = Directory.GetFiles(@"C:\Cristiano\Projetos\Acelera\Acelera.Testes\FASE 2\SIT\SP2\FG02").Where(x => x.Contains(OperadoraEnum.POMPEIA.ObterTexto()));
+            var arquivosDeTestes = Directory.GetFiles(@"C:\Cristiano\Projetos\Acelera\Acelera.Testes\FASE 2\SIT\SP2\FG02").Where(x => x.ToUpper().Contains(OperadoraEnum.POMPEIA.ObterTexto()));
             var destino = @"C:\Cristiano\Projetos\Acelera\Acelera.Testes\FASE 2\SIT\SP5\FG02\";
             var oldNamespace = "Acelera.Testes.FASE_2.SIT.SP2.FG02";
             var newNamespace = "Acelera.Testes.FASE_2.SIT.SP5.FG02";
             foreach (var arquivo in arquivosDeTestes)
             {
                 foreach (var operacao in listaOperacoesNovas)
-                    File.WriteAllText(destino + arquivo.Split('\\').Last().Replace(OperadoraEnum.POMPEIA.ObterTexto(), operacao),
-                        File.ReadAllText(arquivo).Replace(OperadoraEnum.POMPEIA.ObterTexto(), operacao).Replace(oldNamespace,newNamespace));
+                    File.WriteAllText(destino + arquivo.Split('\\').Last().Replace(OperadoraEnum.POMPEIA.ObterTexto(), operacao).Replace("Pompeia", operacao).Replace("pompeia", operacao),
+                        File.ReadAllText(arquivo).Replace(OperadoraEnum.POMPEIA.ObterTexto(), operacao).Replace("Pompeia", operacao).Replace("pompeia", operacao)
+                        .Replace(oldNamespace,newNamespace));
             }
 
         }

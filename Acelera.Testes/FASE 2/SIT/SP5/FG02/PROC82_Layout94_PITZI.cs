@@ -1,0 +1,83 @@
+using Acelera.Domain.Entidades.Stages;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts._9_4;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
+{
+    [TestClass]
+    public class PROC82_Layout94_PITZI : TestesFG02
+    {
+
+        /// <summary>
+        /// Replicar linha e informar CD_MOVIMENTO = 3 nas duas linhas
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_2860_SINISTRO_DT_AVISO_inv()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "2860", "FG02 - PROC82 - Replicar linha e informar CD_MOVIMENTO = 3 nas duas linhas");
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.PITZI.SINISTRO-EV-0001-20200211.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            AlterarLinha(0, "CD_MOVIMENTO", "3");
+
+            AlterarLinha(1, "CD_MOVIMENTO", "3");
+            AlterarLinha(1, "CD_SINISTRO", "717720025000051");
+            AlterarLinha(1, "CD_AVISO", ObterValorFormatado(0, "CD_AVISO"));
+
+            RemoverLinhasExcetoAsPrimeiras(2);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo();
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG02
+            ValidarLogProcessamento(true);
+            ValidarStages(CodigoStage.ReprovadoNegocioSemDependencia);
+            ValidarTabelaDeRetorno(1, "82");
+            ValidarTeste();
+
+        }
+
+        /// <summary>
+        /// Replicar linha e informar Cd_MOVIMENTO diferentes
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_2861_SINISTRO_semcritica()
+        {
+            IniciarTeste(TipoArquivo.Sinistro, "2861", "FG02 - PROC82 - Replicar linha e informar Cd_MOVIMENTO diferentes");
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            arquivo.Carregar(ObterArquivoOrigem("C01.PITZI.SINISTRO-EV-0001-20191223.txt"));
+
+            //ALTERAR O VALOR SELECIONADO
+            SelecionarLinhaParaValidacao(0);
+
+            //SALVAR O NOVO ARQUIVO ALTERADO
+            SalvarArquivo($"C01.PITZI.SINISTRO-EV-/*R*/-20191223.txt");
+
+            //VALIDAR FG's ANTERIORES
+            ValidarFGsAnteriores();
+
+            //Executar FG02
+            ChamarExecucao(FG02_Tarefas.Sinistro.ObterTexto());
+
+            //VALIDAR NA FG01
+            ValidarLogProcessamento(true);
+            ValidarTabelaDeRetorno(true, "82");
+            ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
+            ValidarTeste();
+
+        }
+
+    }
+}
