@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 {
     [TestClass]
-    public class PROC1091_Layout94_Pomepeia : TestesFG02
+    public class PROC1091_Layout94_PAPCARD : TestesFG02
     {
         /// <summary>
         /// Informar VL_LMI maior que VL_IS (0.01)

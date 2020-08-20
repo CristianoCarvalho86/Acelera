@@ -37,6 +37,27 @@ namespace Acelera.Testes
         }
 
         [TestMethod]
+        public void Busca()
+        {
+            var arquivosTim = Directory.GetFiles(Parametros.pastaOrigem).Where(x => x.Contains("TIM"));
+            Arquivo_Layout_9_4_ParcEmissao arquivo1;
+            IList<KeyValuePair<string, string>> contratoRamo = new List<KeyValuePair<string, string>>();
+            KeyValuePair<string, string> temp;
+            foreach (var arquivoTim in arquivosTim)
+            {
+                arquivo1 = new Arquivo_Layout_9_4_ParcEmissao();
+                arquivo1.Carregar(arquivoTim);
+                foreach(var linha in arquivo1.Linhas)
+                {
+                    if (contratoRamo.Any(x => x.Key == linha["CD_CONTRATO"] && x.Value != linha["CD_RAMO"]))
+                        throw new Exception("CONTRATO ENCONTRADO COM MAIS DE UM CD_RAMO");
+                    else
+                        contratoRamo.Add(new KeyValuePair<string, string>(linha["CD_CONTRATO"], linha["CD_RAMO"]));
+                }
+            }
+        }
+
+        [TestMethod]
         public void TesteCPF_Criacao()
         {
             var arquivo = new Arquivo_Layout_9_4_ParcEmissao();
