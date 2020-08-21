@@ -45,7 +45,6 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " DT_CANCELAMENTO, " +
             " CD_STATUS_APOLICE, " +
             " CD_STATUS_PARCELA, " +
-            " ID_TRANSACAO_CANC, " +
             " CD_PARCELA_CANCELAMENTO," +
             " NM_ARQUIVO_TPA," +
             " NR_APOLICE_ORIGINAL," +
@@ -106,7 +105,6 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " '' AS DT_CANCELAMENTO," +
             " '' AS CD_STATUS_APOLICE," +
             " '' AS CD_STATUS_PARCELA," +
-            " ID_TRANSACAO_CANC," +
             " null AS CD_PARCELA_CANCELAMENTO," +
             " a.NM_ARQUIVO_TPA," +
             " NR_APOLICE_ORIGINAL," +
@@ -178,7 +176,6 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " cast(CD_MOEDA as int)," +
             " CD_MOVTO_COBRANCA," +
             " CD_TIPO_EMISSAO," +
-            " ID_TRANSACAO_CANC," +
             " a.NM_ARQUIVO_TPA," +
             " NR_APOLICE_ORIGINAL," +
             " NR_DOCUMENTO," +

@@ -17,6 +17,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" CD_PARCELA, "+
             $" ID_COBERTURA, "+
             $" ID_TRANSACAO, " +
+            $" ID_TRANSACAO_CANC, " +
             $" CD_ITEM , "+
             $" CD_MOEDA ,"+
             $" VL_ADIC_FRACIONAMENTO,"+
@@ -39,6 +40,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" CD_PARCELA, "+
             $" cob.id_cobertura as ID_COBERTURA, "+
             $" stg.ID_TRANSACAO, " +
+            $" stg.ID_TRANSACAO_CANC, " +
             $" CD_ITEM,"+
             $" stg.CD_MOEDA, "+
             $" stg.VL_ADIC_FRACIONADO AS VL_ADIC_FRACIONAMENTO,"+
