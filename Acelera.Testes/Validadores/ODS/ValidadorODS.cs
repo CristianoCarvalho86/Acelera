@@ -104,6 +104,26 @@ namespace Acelera.Testes.Validadores.ODS
             return existe;
         }
 
+        private bool ValidaSinistro(ILinhaTabela linhaStage)
+        {
+            bool existe = true;
+            var cdParcela = "";
+            cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado);
+            if (string.IsNullOrEmpty(cdParcela))
+            {
+                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
+                return false;
+            }
+
+            ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, ref existe);
+
+            ValidaExistencia(TabelasEnum.OdsItemAuto, "CD_PARCELA", cdParcela, ref existe);
+
+            ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_PARCELA", cdParcela, ref existe);
+
+            return existe;
+        }
+
         private bool ValidaComissao(ILinhaTabela linhaStage)
         {
             bool existe = true;
@@ -120,7 +140,7 @@ namespace Acelera.Testes.Validadores.ODS
                 logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsComissao.ObterTexto()}");
                 return false;
             }
-            ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_PARCELA", cdParcela, ref existe);
+            ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, ref existe);
 
             return existe;
         }
