@@ -18,5 +18,6 @@ namespace Acelera.Testes.ConjuntoArquivos
         }
 
         public override OperadoraEnum Operadora => OperadoraEnum.SOFTBOX;
+        public override bool EhParcAuto => false;
     }
 }

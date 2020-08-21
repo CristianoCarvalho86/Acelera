@@ -15,6 +15,7 @@ namespace Acelera.Domain.Entidades.Interfaces
         Arquivo ArquivoComissao { get; }
 
         OperadoraEnum Operadora { get; }
+        bool EhParcAuto { get; }
         int QuantidadeInicialCliente { get; }
         string PastaOrigem { get; }
 

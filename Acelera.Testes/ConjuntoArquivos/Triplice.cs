@@ -25,6 +25,9 @@ namespace Acelera.Testes.ConjuntoArquivos
         public int QuantidadeInicialCliente { get; protected set; }
         public string PastaOrigem { get; protected set; }
         public string PastaDestino { get; protected set; }
+
+        public abstract bool EhParcAuto { get; }
+
         private ControleNomeArquivo controleNomeArquivo;
         private AlteracoesArquivo valoresAlteradosBody;
 

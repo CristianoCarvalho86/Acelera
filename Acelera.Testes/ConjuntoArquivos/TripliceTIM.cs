@@ -18,5 +18,6 @@ namespace Acelera.Testes.ConjuntoArquivos
         }
 
         public override OperadoraEnum Operadora => OperadoraEnum.TIM;
+        public override bool EhParcAuto => false;
     }
 }
