@@ -634,23 +634,23 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
                 arquivo.AlterarLinhaSeExistirCampo(i, "NR_APOLICE", novoContrato);
 
 
-                if (operadora == OperadoraEnum.VIVO)
+                if (arquivo.Operadora == OperadoraEnum.VIVO)
                 {
                     arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7239711");
                     tipoCorretor = "C";
                     //triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "C");
                 }
-                else if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+                else if (arquivo.Operadora == OperadoraEnum.LASA || arquivo.Operadora == OperadoraEnum.SOFTBOX)
                 {
                     arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7150145");
                     tipoCorretor = "P";
                 }
-                else if (operadora == OperadoraEnum.POMPEIA)
+                else if (arquivo.Operadora == OperadoraEnum.POMPEIA)
                 {
                     arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7150166");
                     tipoCorretor = "P";
                 }
-                else if(operadora == OperadoraEnum.TIM)
+                else if(arquivo.Operadora == OperadoraEnum.TIM)
                 {
                     arquivo.AlterarLinhaSeExistirCampo(i, "CD_CORRETOR", "7950129"/*dados.ObterCdCorretorParaTipoRemuneracao()*/);
                     tipoCorretor = "C";

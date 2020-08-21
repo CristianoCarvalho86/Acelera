@@ -39,11 +39,31 @@ namespace Acelera.Domain.Layouts
 
         public LinhaArquivo UltimaLinha => Linhas[Linhas.Count - 1];
 
-
+        private OperadoraEnum? _operadora;
+        public OperadoraEnum Operadora { 
+            get 
+            {
+                if(!_operadora.HasValue)
+                    _operadora = ObterOperadoraDoArquivo(NomeArquivo);
+                return _operadora.Value;
+            } 
+        }
+  
         public void AtualizarNomeArquivoFinal(string nomeArquivo)
         {
             NomeArquivoOriginal = NomeArquivo;
             NomeArquivo = nomeArquivo;
+        }
+
+        private OperadoraEnum ObterOperadoraDoArquivo(string nomeArquivo)
+        {
+            var lista = Enum.GetValues(typeof(OperadoraEnum)).Cast<OperadoraEnum>().ToList(); 
+            foreach (var operadora in lista)
+            {
+                if (nomeArquivo.Contains(operadora.ObterTexto()))
+                    return operadora;
+            }
+            throw new Exception("OPERACAO NAO ENCONTRADA NO NOME DO ARQUIVO : " + nomeArquivo);
         }
 
         public Arquivo Clone()
@@ -374,7 +394,7 @@ namespace Acelera.Domain.Layouts
             var count = 0;
             foreach (var l in linhas)
             {
-                linha = new LinhaArquivo(count);
+                linha = new LinhaArquivo(count,Operadora);
                 CarregaCamposDoLayout(linha);
                 linha.CarregaTexto(l);
                 linhasPreenchidas.Add(linha);
@@ -389,7 +409,7 @@ namespace Acelera.Domain.Layouts
             var count = 0;
             foreach (var linha in linhas)
             {
-                var header = new LinhaArquivo(count);
+                var header = new LinhaArquivo(count, Operadora);
                 header.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
                 header.Campos.Add(new CampoDoArquivo("NM_ARQ", 30));
                 header.Campos.Add(new CampoDoArquivo("DT_ARQ", 10));
@@ -420,7 +440,7 @@ namespace Acelera.Domain.Layouts
             var count = 0;
             foreach (var linha in linhas)
             {
-                var footer = new LinhaArquivo(count);
+                var footer = new LinhaArquivo(count, Operadora);
                 footer.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
                 footer.Campos.Add(new CampoDoArquivo("NM_ARQ", 30));
                 footer.Campos.Add(new CampoDoArquivo("QT_LIN", 6));
@@ -512,7 +532,7 @@ namespace Acelera.Domain.Layouts
 
         public LinhaArquivo CriarLinhaVazia(int index)
         {
-            var novaLinha = new LinhaArquivo(index);
+            var novaLinha = new LinhaArquivo(index, Operadora);
             CarregaCamposDoLayout(novaLinha);
             novaLinha.CarregaTexto("".PadRight(700, ' '));
             return novaLinha;

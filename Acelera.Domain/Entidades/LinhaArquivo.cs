@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Acelera.Domain.Enums;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace Acelera.Domain.Layouts
     public class LinhaArquivo
     {
         public List<CampoDoArquivo> Campos { get; set; }
+
+        public OperadoraEnum OperadoraDoArquivo { get;private set; }
+
         public int Index { get; set; }
 
         public Guid Id { get; set; }
@@ -18,11 +22,12 @@ namespace Acelera.Domain.Layouts
             get => ObterCampoDoArquivo(nomeCampo).ValorFormatado;
         }
 
-        public LinhaArquivo(int index)
+        public LinhaArquivo(int index, OperadoraEnum operadora)
         {
             Campos = new List<CampoDoArquivo>();
             Index = index;
             Id = Guid.NewGuid();
+            OperadoraDoArquivo = operadora;
         }
 
 
@@ -86,7 +91,7 @@ namespace Acelera.Domain.Layouts
 
         public LinhaArquivo Clone()
         {
-            var linha = new LinhaArquivo(Index);
+            var linha = new LinhaArquivo(Index,OperadoraDoArquivo);
             foreach (var c in Campos)
                 linha.Campos.Add(c.Clone());
             linha.Id = Guid.NewGuid();

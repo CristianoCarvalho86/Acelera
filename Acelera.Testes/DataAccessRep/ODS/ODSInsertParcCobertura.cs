@@ -16,6 +16,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             return $" insert into {Parametros.instanciaDB}.TAB_ODS_COBERTURA_2005( "+
             $" CD_PARCELA, "+
             $" ID_COBERTURA, "+
+            $" ID_TRANSACAO, " +
             $" CD_ITEM , "+
             $" CD_MOEDA ,"+
             $" VL_ADIC_FRACIONAMENTO,"+
@@ -37,6 +38,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" select "+
             $" CD_PARCELA, "+
             $" cob.id_cobertura as ID_COBERTURA, "+
+            $" stg.ID_TRANSACAO, " +
             $" CD_ITEM,"+
             $" stg.CD_MOEDA, "+
             $" stg.VL_ADIC_FRACIONADO AS VL_ADIC_FRACIONAMENTO,"+

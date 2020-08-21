@@ -44,7 +44,7 @@ namespace Acelera.Testes
             {
                 var i = 0;
                 foreach (var linha in arquivo.Linhas)
-                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
+                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(arquivo.Operadora));
             }
 
 

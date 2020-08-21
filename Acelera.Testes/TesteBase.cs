@@ -43,7 +43,8 @@ namespace Acelera.Testes
         protected string pathOrigem;
         protected bool AoMenosUmComCodigoEsperado = false;
         protected TipoArquivo tipoArquivoTeste { get; set; }
-        protected OperadoraEnum operadora => EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo);
+
+        protected OperadoraEnum operacaoDoTeste { get; set; }
 
         public TesteBase()
         {
@@ -121,7 +122,7 @@ namespace Acelera.Testes
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
             arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
             logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
-
+            operacaoDoTeste = operadora;
             logger.FecharBloco();
         }
 
@@ -395,7 +396,7 @@ namespace Acelera.Testes
             linhaCancelamento.ObterCampoDoArquivo("CD_TIPO_EMISSAO").AlterarValor(cdTipoEmissao);
             linhaCancelamento.ObterCampoDoArquivo("NR_PARCELA").AlterarValor((linhaCancelamento.ObterValorInteiro("NR_PARCELA")).ToString());
             linhaCancelamento.ObterCampoDoArquivo("NR_ENDOSSO").AlterarValor(ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(linhaCancelamento));
-            nrSequencialEmissao = string.IsNullOrEmpty(nrSequencialEmissao) ? ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(linhaArquivoEmissao,operadora).ToString() : nrSequencialEmissao;
+            nrSequencialEmissao = string.IsNullOrEmpty(nrSequencialEmissao) ? ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(linhaArquivoEmissao, linhaArquivoEmissao.OperadoraDoArquivo).ToString() : nrSequencialEmissao;
             linhaCancelamento.ObterCampoDoArquivo("NR_SEQUENCIAL_EMISSAO").AlterarValor(nrSequencialEmissao);
             linhaCancelamento.ObterCampoDoArquivo("CD_MOVTO_COBRANCA").AlterarValor(cdMovtoCobranca);
 
@@ -409,7 +410,7 @@ namespace Acelera.Testes
             var contrato = "";
             if (!string.IsNullOrEmpty(novoContrato))
                 contrato = novoContrato;
-            else if (EnumUtils.ObterOperadoraDoArquivo(arquivo.NomeArquivo) == OperadoraEnum.PAPCARD)
+            else if (arquivo.Operadora == OperadoraEnum.PAPCARD)
                 contrato = "759303900006209";
             else
             {

@@ -39,7 +39,7 @@ namespace Acelera.Testes
         [TestMethod]
         public void Busca()
         {
-            var arquivosTim = Directory.GetFiles(Parametros.pastaOrigem).Where(x => x.Contains("TIM"));
+            var arquivosTim = Directory.GetFiles(Parametros.pastaOrigem).Where(x => x.Contains("POMPEIA") && x.Contains("PARCEMS"));
             Arquivo_Layout_9_4_ParcEmissao arquivo1;
             IList<KeyValuePair<string, string>> contratoRamo = new List<KeyValuePair<string, string>>();
             KeyValuePair<string, string> temp;
