@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             IniciarTeste("6164", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.PITZI);
 
-            triplice.AlterarLayoutDaTrinca<Arquivo_Layout_9_6_Cliente, Arquivo_Layout_9_6_ParcEmissao, Arquivo_Layout_9_6_EmsComissao>();
+            //triplice.AlterarLayoutDaTrinca<Arquivo_Layout_9_6_Cliente, Arquivo_Layout_9_6_ParcEmissao, Arquivo_Layout_9_6_EmsComissao>();
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
