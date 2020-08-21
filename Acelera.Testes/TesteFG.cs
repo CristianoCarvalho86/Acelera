@@ -35,7 +35,7 @@ namespace Acelera.Testes
 
             var proceduresEsperadas = proceduresASeremExecutadas;
 
-            if (operadora != OperadoraEnum.LASA && operadora != OperadoraEnum.SOFTBOX)
+            if (operacaoDoTeste != OperadoraEnum.LASA && operacaoDoTeste != OperadoraEnum.SOFTBOX)
             {
                 proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterParteNumericaDoTexto() < 1000 || x.ObterParteNumericaDoTexto() == 200000).ToList();
             }
@@ -78,9 +78,9 @@ namespace Acelera.Testes
             }
         }
 
-        public abstract void ValidarTabelaDeRetorno(Arquivo arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
+        public abstract void ValidarTabelaDeRetorno(Arquivo arquivo,bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
 
-        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo, bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
+        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return null;
@@ -110,8 +110,8 @@ namespace Acelera.Testes
         {
             logger.EscreverBloco("Inicio da Validação da FG01_2.");
             ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
-            ValidarStages(CodigoStage.AprovadoNaFG01_2, false, arquivo);
-            ValidarTabelaDeRetorno(arquivo, false);
+            ValidarStages(CodigoStage.AprovadoNaFG01_2,false, arquivo);
+            ValidarTabelaDeRetorno(arquivo,false);
             logger.EscreverBloco("Fim da Validação da FG01_2. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
         }
 
@@ -120,11 +120,11 @@ namespace Acelera.Testes
 
             this.arquivo = arquivo;
 
-            if (alterarCdCliente && operadora != OperadoraEnum.SGS)
+            if (alterarCdCliente && arquivo.Operadora != OperadoraEnum.SGS)
             {
                 int i = 0;
                 foreach (var linha in arquivo.Linhas)
-                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(operadora));
+                    arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(arquivo.Operadora));
             }
 
 
@@ -155,6 +155,7 @@ namespace Acelera.Testes
                     else
                     {
                         ODSInsertParcAuto.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissaoAuto, logger);
                     }
                 }
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
@@ -168,12 +169,13 @@ namespace Acelera.Testes
                     else
                     {
                         ODSInsertParcData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado,TabelasEnum.ParcEmissao, logger);
                     }
                 }
             else if (arquivo.tipoArquivo == TipoArquivo.Cliente)
                 foreach (var linha in linhas)
                     ODSInsertClienteData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-
+            
             else if (arquivo.tipoArquivo == TipoArquivo.Comissao)
                 foreach (var linha in linhas)
                     ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
@@ -191,7 +193,7 @@ namespace Acelera.Testes
         {
             arquivo = arquivo == null ? this.arquivo : arquivo;
             AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
-            var linhas = ValidarStages(arquivo, true, (int)codigo);
+            var linhas = ValidarStages(arquivo,true, (int)codigo);
             AoMenosUmComCodigoEsperado = false;
             return linhas;
         }
@@ -295,7 +297,7 @@ namespace Acelera.Testes
         {
             if (_arquivo == null)
                 _arquivo = arquivo;
-            var operadora = EnumUtils.ObterOperadoraDoArquivo(_arquivo.NomeArquivo);
+            var operadora = _arquivo.Operadora;
 
             if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
             {
@@ -335,7 +337,7 @@ namespace Acelera.Testes
             return valorTotal;
         }
 
-        public decimal CalcularValorPremioLiquido(Cobertura cobertura, decimal valorPremioTotal)
+        public decimal CalcularValorPremioLiquido(Cobertura cobertura,decimal valorPremioTotal)
         {
             decimal valorTotalLiq = valorPremioTotal;
 
@@ -379,14 +381,14 @@ namespace Acelera.Testes
 
         public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
+            var operadora = arquivoParc.Operadora;
             if (operadora == OperadoraEnum.TIM)
                 CriarNovaLinhaEmissaoTim(arquivoParc);
             else if (operadora == OperadoraEnum.PITZI)
                 CriarNovaLinhaEmissaoPitzi(arquivoParc);
             else
-                arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
-
+            arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
+            
             var index = arquivoParc.Linhas.Count - 1;
             arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
             arquivoParc.AlterarLinha(index, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(arquivoParc[linhaDeReferencia]));
@@ -397,10 +399,9 @@ namespace Acelera.Testes
 
         public void AjustarArquivoDeBaixaParaParcela(Arquivo arquivoParcEmissao, Arquivo arquivoCobranca, int linhaReferenciaParc, string cdOcorrencia)
         {
-            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParcEmissao.NomeArquivo);
             IgualarCamposQueExistirem(arquivoParcEmissao, arquivo);
             arquivoCobranca.AlterarLinha(0, "NR_PARCELA", arquivoParcEmissao[linhaReferenciaParc]["NR_PARCELA"]);
-            arquivoCobranca.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivoParcEmissao[linhaReferenciaParc], operadora));
+            arquivoCobranca.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivoParcEmissao[linhaReferenciaParc], arquivoParcEmissao.Operadora));
             arquivoCobranca.AlterarLinha(0, "CD_OCORRENCIA", cdOcorrencia);
             arquivoCobranca.AlterarLinha(0, "DT_OCORRENCIA", SomarData(arquivoParcEmissao[linhaReferenciaParc]["DT_EMISSAO"], 10));
             arquivoCobranca.AlterarLinha(0, "VL_PREMIO_PAGO", arquivoParcEmissao[linhaReferenciaParc]["VL_PREMIO_TOTAL"]);
@@ -423,9 +424,8 @@ namespace Acelera.Testes
         public void CriarNovaLinhaParaEmissaoComMesmoEndossoEParcela(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
             arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
-            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
             var index = arquivoParc.Linhas.Count - 1;
-            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(operadora));
+            arquivoParc.AlterarLinha(index, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaSegundaLinhaDaEmissao(arquivoParc.Operadora));
             arquivoParc.AlterarLinha(index, "NR_ENDOSSO", arquivoParc[linhaDeReferencia]["NR_ENDOSSO"]);
             arquivoParc.AlterarLinha(index, "NR_PARCELA", arquivoParc[linhaDeReferencia]["NR_PARCELA"]);
             arquivoParc.AlterarLinha(index, "NR_SEQUENCIAL_EMISSAO", arquivoParc[linhaDeReferencia]["NR_SEQUENCIAL_EMISSAO"]);
@@ -434,11 +434,10 @@ namespace Acelera.Testes
 
         public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            var operadora = EnumUtils.ObterOperadoraDoArquivo(arquivoParc.NomeArquivo);
-            arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(operadora));
-            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], operadora));
-            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(operadora));
-            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(arquivoParc.Operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], arquivoParc.Operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(arquivoParc.Operadora));
+            arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(arquivoParc.Operadora));
         }
 
         public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)
@@ -451,8 +450,8 @@ namespace Acelera.Testes
         public void AdicionarNovaCoberturaNaEmissao(Arquivo arquivoParc, TabelaParametrosData dados, int posicaoLinha = 0, Cobertura cobertura = null)
         {
             arquivoParc.ReplicarLinha(posicaoLinha, 1);
-
-            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], false) : cobertura;
+            var cdRamo = arquivoParc.Operadora == OperadoraEnum.TIM ? arquivoParc[arquivoParc.Linhas.Count - 1]["CD_RAMO"] : "";
+            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], false, cdRamo) : cobertura;
             AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
         }
 
