@@ -47,6 +47,36 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
         }
 
         [TestMethod]
+        [TestCategory("Com Critica")]
+        public void SAP_5313()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "5313", "FG09 - PROC45 - ");
+            AlterarCobertura(false);
+
+            //Envia parc normal
+            var arquivoods = CriarEmissaoODS<Arquivo_Layout_9_4_ParcEmissao>(OperadoraEnum.POMPEIA);
+
+            //Sinistro referente a cancelamento
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
+
+            RemoverTodasAsLinhas();
+            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AlterarHeader("VERSAO", "9.6");
+            var cobertura = dados.ObterCoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], ObterValorHeader("CD_TPA"), true);
+            AlterarDadosDeCobertura(0, cobertura);
+            AlterarLinha(0, "CD_RAMO", "88");
+            SalvarArquivo();
+
+            ExecutarEValidarAteFg02(arquivo);
+
+            ExecutarEValidarApenasFg09(arquivo, "45");
+
+            //ExecutarEValidar(CodigoStage.ReprovadoNaFG09, "45", 1);
+
+        }
+
+        [TestMethod]
         [TestCategory("Sem Critica")]
         public void SAP_5314()
         {
