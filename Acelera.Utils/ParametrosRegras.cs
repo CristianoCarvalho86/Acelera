@@ -13,6 +13,8 @@ namespace Acelera.Utils
     {
         public static OperadoraEnum[] OperadorasComCapa => new OperadoraEnum[] { OperadoraEnum.TIM, OperadoraEnum.PITZI, OperadoraEnum.AGREGUE };
 
+        public static OperadoraEnum[] OperadorasParcAuto => new OperadoraEnum[] { OperadoraEnum.VIVO };
+
         public static string CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.PAPCARD)

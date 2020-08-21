@@ -18,5 +18,6 @@ namespace Acelera.Testes.ConjuntoArquivos
         }
 
         public override OperadoraEnum Operadora => OperadoraEnum.AGREGUEDEALERS;
+        public override bool EhParcAuto => false;
     }
 }

@@ -19,5 +19,6 @@ namespace Acelera.Testes.ConjuntoArquivos
         }
 
         public override OperadoraEnum Operadora => OperadoraEnum.VIVO;
+        public override bool EhParcAuto => true;
     }
 }

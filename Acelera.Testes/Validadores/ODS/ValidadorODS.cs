@@ -39,6 +39,14 @@ namespace Acelera.Testes.Validadores.ODS
             {
                 return ValidaComissao(linhaStage);
             }
+            else if (linhaStage.TabelaReferente == TabelasEnum.Sinistro)
+            {
+                return ValidaSinistro(linhaStage);
+            }
+            else if (linhaStage.TabelaReferente == TabelasEnum.OCRCobranca)
+            {
+                return ValidaSinistro(linhaStage);
+            }
             return false;
         }
 
@@ -68,8 +76,7 @@ namespace Acelera.Testes.Validadores.ODS
         private bool ValidaParcela(ILinhaTabela linhaStage)
         {
             bool existe = true;
-            var cdParcela = "";
-            cdParcela = DataAccess.ConsultaUnica($"SELECT CD_PARCELA FROM {TabelasEnum.OdsParcela} WHERE CD_CONTRATO = '{linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado}'", false);
+            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado);
             if (string.IsNullOrEmpty(cdParcela))
             {
                 logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
@@ -107,19 +114,21 @@ namespace Acelera.Testes.Validadores.ODS
         private bool ValidaSinistro(ILinhaTabela linhaStage)
         {
             bool existe = true;
-            var cdParcela = "";
-            cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado);
-            if (string.IsNullOrEmpty(cdParcela))
+            var cdAvisoSinistro = ObterCdAvisoSinistro(linhaStage.ObterPorColuna("CD_SINISTRO").ValorFormatado);
+            if (string.IsNullOrEmpty(cdAvisoSinistro))
             {
-                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
+                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsSinistro.ObterTexto()}");
                 return false;
             }
+            ValidaExistencia(TabelasEnum.OdsMovimentoSinistro, "CD_AVISO_SINISTRO", cdAvisoSinistro, ref existe);
 
-            ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, ref existe);
+            return existe;
+        }
 
-            ValidaExistencia(TabelasEnum.OdsItemAuto, "CD_PARCELA", cdParcela, ref existe);
-
-            ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_PARCELA", cdParcela, ref existe);
+        private bool ValidaOCRCobranca(ILinhaTabela linhaStage)
+        {
+            bool existe = true;
+            ValidaExistencia(TabelasEnum.OdsParcela, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_SINISTRO").ValorFormatado, ref existe);
 
             return existe;
         }
@@ -148,6 +157,11 @@ namespace Acelera.Testes.Validadores.ODS
         private string ObterCdParcela(string cdContrato)
         {
             return DataAccess.ConsultaUnica($"SELECT CD_PARCELA FROM {TabelasEnum.OdsParcela} WHERE CD_CONTRATO = '{cdContrato}'", false);
+        }
+
+        private string ObterCdAvisoSinistro(string cdSinistro)
+        {
+            return DataAccess.ConsultaUnica($"SELECT CD_AVISO_SINISTRO FROM {TabelasEnum.OdsSinistro} WHERE CD_SINISTRO = '{cdSinistro}'", false);
         }
 
         private string ObterCdComissao(string cdParcela)

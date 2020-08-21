@@ -122,7 +122,12 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
         public void ValidarFGsAnterioresEErros()
         {
-            var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG02, FGs.FG05 };
+            FGs[] listaFgs;
+            if (!triplice.EhParcAuto)
+                listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG02, FGs.FG05 };
+            else
+                listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG02, FGs.FG05 };
+
 
             foreach (var fg in listaFgs)
             {
