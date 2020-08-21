@@ -40,13 +40,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         [TestMethod]
         public void SAP_6156()
         {
-            IniciarTeste("6156", "SAP-6156:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.AGREGUEDEALERS,false);
+            IniciarTeste("6156", "SAP-6156:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
-            triplice.AlterarCliente(0, "CD_CLIENTE", ClienteCadastradoNoOIM);
-
-            SalvaExecutaEValidaFG07(false);
+            SalvaExecutaEValidaFG07();
 
         }
 

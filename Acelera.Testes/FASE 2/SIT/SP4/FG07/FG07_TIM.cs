@@ -183,5 +183,51 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             SalvaExecutaEValidaFG07();
         }
+
+        [TestMethod]
+        public void SAP_0000()
+        {
+            IniciarTeste(TipoArquivo.Cliente, "1108", "FG00 - PROC101 - No arquivo OCR_COBRANCA repetir 1x o registro do Trailler, onde o TIPO REGISTRO é igual a 9. Não repetir Header");
+
+            //CARREGAR O ARQUIVO BASE
+            arquivo = new Arquivo_Layout_9_4_Cliente();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.CLIENTE-EV-0001-20200415.txt"));
+            SalvarArquivo(arquivo);
+
+
+            arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200616.txt"));
+
+            CriarNovoContrato(0);
+
+            var contrato = arquivo[0]["CD_CONTRATO"];
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+            AlterarTodasAsLinhas("NR_APOLICE", contrato);
+            AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
+            AjustarQtdLinFooter();
+
+            SalvarArquivo(arquivo);
+
+            arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200615.txt"));
+
+            CriarNovoContrato(0);
+
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+            AlterarTodasAsLinhas("NR_APOLICE", contrato);
+            AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
+            AjustarQtdLinFooter();
+
+            SalvarArquivo(arquivo);
+
+            arquivo = new Arquivo_Layout_9_4_EmsComissao();
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.EMSCMS-EV-0002-20200615.txt"));
+
+            AlterarTodasAsLinhas("CD_CONTRATO", contrato);
+
+            AjustarQtdLinFooter();
+
+            SalvarArquivo(arquivo);
+        }
     }
 }
