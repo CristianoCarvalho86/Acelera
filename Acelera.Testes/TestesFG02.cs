@@ -178,6 +178,8 @@ namespace Acelera.Testes
 
             ExecutarEValidar(arquivo, FGs.FG02, FGs.FG02.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(mensagemErroNaTabelaDeRetorno)), mensagemErroNaTabelaDeRetorno);
             ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo)).ToList());
+
+            ValidarTeste();
         }
 
         public virtual IList<ILinhaTabela> ExecutarEValidarEsperandoErro(Arquivo arquivo, FGs fG, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
