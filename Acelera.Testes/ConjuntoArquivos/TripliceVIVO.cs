@@ -11,9 +11,10 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.ConjuntoArquivos
 {
+    [Serializable]
     public class TripliceVIVO : Triplice<Arquivo_Layout_9_3_Cliente, Arquivo_Layout_9_3_ParcEmissaoAuto, Arquivo_Layout_9_3_EmsComissao>
     {
-        public TripliceVIVO(int quantidadeCliente, IMyLogger logger, ref AlteracoesArquivo alteracoesArquivo) : base(quantidadeCliente, logger, ref alteracoesArquivo)
+        public TripliceVIVO(int quantidadeCliente, IMyLogger logger) : base(quantidadeCliente, logger)
         {
 
         }

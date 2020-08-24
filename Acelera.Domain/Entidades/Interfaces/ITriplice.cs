@@ -34,5 +34,7 @@ namespace Acelera.Domain.Entidades.Interfaces
 
         void IgualarArquivos();
 
+        ITriplice Clone();
+
     }
 }

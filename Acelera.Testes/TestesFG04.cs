@@ -42,9 +42,9 @@ namespace Acelera.Testes
         public virtual void CarregarTriplice(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
-                triplice = new TripliceLASA(1, logger, ref valoresAlteradosBody);
+                triplice = new TripliceLASA(1, logger);
             else if (operadora == OperadoraEnum.SOFTBOX)
-                triplice = new TripliceSoftbox(1, logger, ref valoresAlteradosBody);
+                triplice = new TripliceSoftbox(1, logger);
             else
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
@@ -164,7 +164,7 @@ namespace Acelera.Testes
         public void ExecutarEValidarFG04Comissao(string cdContrato, string nomeArquivo, CodigoStage codigoStage)
         {
             ChamarExecucao(FG04_Tarefas.Comissao.ObterTexto());
-            var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
+            var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null);
             if (!validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA" }, new string[] { cdContrato, nomeArquivo },
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao))
                 ExplodeFalha("ERRO NA VALIDACAO DA STAGE COMISSAO APOS EXECUCAO DA FG04");
@@ -173,7 +173,7 @@ namespace Acelera.Testes
         public void ExecutarEValidarStageComissao(string cdContrato, string nomeArquivo,FGs fgAExecutar, CodigoStage codigoStage)
         {
             ChamarExecucao(TipoArquivo.Comissao.ObterTarefaDaFG(fgAExecutar));
-            var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null, null, null);
+            var validador = new ValidadorStages(TabelasEnum.Comissao, "", logger, null);
             if (!validador.ValidarTabela(new string[] { "CD_CONTRATO", "NM_ARQUIVO_TPA" }, new string[] { cdContrato, nomeArquivo },
                 "DT_MUDANCA DESC", (int)codigoStage, out resultadoStageComissao))
                 ExplodeFalha($"ERRO NA VALIDACAO DA STAGE COMISSAO APOS EXECUCAO DA {fgAExecutar.ObterTexto()}");

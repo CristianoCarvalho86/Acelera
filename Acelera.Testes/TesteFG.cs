@@ -78,7 +78,7 @@ namespace Acelera.Testes
             }
         }
 
-        public abstract void ValidarTabelaDeRetorno(Arquivo arquivo,bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
+        public abstract void ValidarTabelaDeRetorno(Arquivo _arquivo,bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
 
         public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo ,bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
         {
@@ -89,8 +89,7 @@ namespace Acelera.Testes
             try
             {
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{arquivo.tipoArquivo.ObterTabelaStageEnum().ObterTexto()}");
-                var validador = new ValidadorStages(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger,
-                    valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter);
+                var validador = new ValidadorStages(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger, _arquivo);
 
 
                 if (validador.ValidarTabela(deveHaverRegistro, out linhasEncontradas, codigoEsperado, aoMenosUmCodigoEsperado))

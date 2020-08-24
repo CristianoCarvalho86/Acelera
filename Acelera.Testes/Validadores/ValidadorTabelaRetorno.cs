@@ -4,6 +4,7 @@ using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.TabelaRetorno;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
 using System;
@@ -16,17 +17,17 @@ namespace Acelera.Testes.Validadores
 {
     public class ValidadorTabelaRetorno : ValidadorTabela
     {
-        public ValidadorTabelaRetorno(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter) 
-            : base(tabelaEnum, nomeArquivo, logger, valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter)
+        public ValidadorTabelaRetorno(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, Arquivo arquivo) 
+            : base(tabelaEnum, nomeArquivo, logger, arquivo)
         {
         }
 
-        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela, Arquivo arquivo)
         {
-            var consultaBase = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
+            var consultaBase = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, arquivo.valoresAlteradosBody);
             var consultas = new ConjuntoConsultas();
 
-            if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
+            if (arquivo.valoresAlteradosBody != null && arquivo.valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
             {
                 var linhasAlteradas = consultaBase.Select(x => x.Key).Distinct().ToList();
                 foreach (var linha in linhasAlteradas)
@@ -54,7 +55,7 @@ namespace Acelera.Testes.Validadores
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
-            var consulta = MontarConsulta(tabelaEnum);
+            var consulta = MontarConsulta(tabelaEnum,arquivo);
 
             List<ILinhaTabela> linhasEncontradas;
             linhasEncontradas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();

@@ -3,6 +3,7 @@ using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -15,29 +16,29 @@ namespace Acelera.Testes.Validadores.FG02
     public class ValidadorStages : ValidadorTabela
     {
         protected bool AoMenosUmComCodigoEsperado = false;
-        public ValidadorStages(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter)
-        : base(tabelaEnum, nomeArquivo, logger, valoresAlteradosBody, valoresAlteradosHeader, valoresAlteradosFooter)
+        public ValidadorStages(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, Arquivo arquivo)
+        : base(tabelaEnum, nomeArquivo, logger, arquivo)
         {
 
         }
 
-        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela, Arquivo arquivo)
         {
             var consultas = new ConjuntoConsultas();
             try
             {
-                var consultaBase = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, valoresAlteradosBody, false, ExistemLinhasNoArquivo());
+                var consultaBase = FabricaConsulta.MontarConsultaParaStage(tabela, nomeArquivo, arquivo.valoresAlteradosBody, false, ExistemLinhasNoArquivo());
 
-                var alteracaoHeader = valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
+                var alteracaoHeader = arquivo.valoresAlteradosHeader?.Alteracoes?.FirstOrDefault()?.CamposAlterados.Where(x => x.ColunaArquivo == "CD_TPA").FirstOrDefault();
                 if (alteracaoHeader != null)
-                    AdicionaConsulta(consultaBase.First().Value, valoresAlteradosHeader, true);//NAO HAVERA ALTERAÇÕES NO HEADER E NAS LINHAS SIMULTANEAMENTE
+                    AdicionaConsulta(consultaBase.First().Value, arquivo.valoresAlteradosHeader, true);//NAO HAVERA ALTERAÇÕES NO HEADER E NAS LINHAS SIMULTANEAMENTE
 
-                if (valoresAlteradosBody != null && valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
+                if (arquivo.valoresAlteradosBody != null && arquivo.valoresAlteradosBody.ExisteAlteracaoValidaParaOArquivo(nomeArquivo))
                 {
-                    var linhasAlteradas = valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
+                    var linhasAlteradas = arquivo.valoresAlteradosBody.LinhasAlteradasPorArquivo(nomeArquivo);
                     foreach (var linha in linhasAlteradas)
                     {
-                        var alteracoesPorLinha = valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).Where(x => x.CamposAlterados.Count > 0).FirstOrDefault();
+                        var alteracoesPorLinha = arquivo.valoresAlteradosBody.AlteracoesPorLinha(linha.Key, linha.Value).Where(x => x.CamposAlterados.Count > 0).FirstOrDefault();
                         if (alteracoesPorLinha == null)
                             continue;
                         var consulta = consultaBase.Where(x => x.Key == alteracoesPorLinha.PosicaoDaLinha).First().Value;
@@ -111,7 +112,7 @@ namespace Acelera.Testes.Validadores.FG02
         {
             try
             {
-                linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum)).ToList();
+                linhas = ObterLinhasParaStage(MontarConsulta(tabelaEnum,arquivo)).ToList();
                 AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
                 logger.Escrever($"Deve encontrar registros na tabela {tabelaEnum.ObterTexto()} : {deveHaverRegistro}");
                 logger.Escrever($"Foram encontrados {linhas.Count} registros.");
