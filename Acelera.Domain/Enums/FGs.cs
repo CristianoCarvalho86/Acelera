@@ -33,6 +33,8 @@ namespace Acelera.Domain.Enums
         FG07,
         [Description("FGR_07_1")]
         FG07_1,
+        [Description("FGR_08")]
+        FG08,
         [Description("FGR_09")]
         FG09,
         [Description("FGR_10")]
@@ -190,6 +192,12 @@ namespace Acelera.Domain.Enums
         ATUALIZA_STATUS,
         [Description("FGR_07_1")]
         FGR_07_1,
+    }
+
+    public enum FG08_Tarefas
+    {
+        [Description("PRC_ENCADEA_FGR_08")]
+        FGR_08,
     }
 
     public enum FG09_Tarefas

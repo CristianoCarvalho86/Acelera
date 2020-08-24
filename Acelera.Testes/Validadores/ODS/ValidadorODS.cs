@@ -18,147 +18,140 @@ namespace Acelera.Testes.Validadores.ODS
     public class ValidadorODS
     {
         private IMyLogger logger;
-        public ValidadorODS(IMyLogger logger)
+        public ValidadorODS(ref IMyLogger logger)
         {
             this.logger = logger;
         }
 
-        public bool RegistroEstaNaOds(ILinhaTabela linhaStage)
+        public bool RegistroEstaNaOds(ILinhaTabela linhaStage, bool deveHaverRegistro = true)
         {
-            switch(linhaStage.TabelaReferente)
+            logger.Escrever("DEVE ENCONTRAR REGISTROS NA ODS: " + deveHaverRegistro.ToString());
+            var erros = "";
+            switch (linhaStage.TabelaReferente)
             {
                 case TabelasEnum.Cliente:
-                    return ValidaCliente(linhaStage);
+                    ValidaCliente(linhaStage, deveHaverRegistro, ref erros);
+                    break;
                 case TabelasEnum.ParcEmissao:
-                    return ValidaParcela(linhaStage);
+                    ValidaParcela(linhaStage, deveHaverRegistro, ref erros);
+                    break;
                 case TabelasEnum.ParcEmissaoAuto:
-                    return ValidaParcAuto(linhaStage);
+                    ValidaParcAuto(linhaStage, deveHaverRegistro, ref erros);
+                    break;
                 case TabelasEnum.Comissao:
-                    return ValidaComissao(linhaStage);
+                    ValidaComissao(linhaStage, deveHaverRegistro, ref erros);
+                    break;
                 case TabelasEnum.Sinistro:
-                    return ValidaSinistro(linhaStage);
+                    ValidaSinistro(linhaStage, deveHaverRegistro, ref erros);
+                    break;
                 case TabelasEnum.OCRCobranca:
-                    return ValidaOCRCobranca(linhaStage);
-
+                    ValidaOCRCobranca(linhaStage, deveHaverRegistro, ref erros);
+                    break;
+                default:
+                    logger.Erro($"RegistroEstaNaOds - {linhaStage.TabelaReferente} - TABELA NAO ENCONTRADA");
+                    throw new Exception("RegistroEstaNaOds - TABELA NAO ENCONTRADA");
             }
-            logger.Erro("RegistroEstaNaOds - TABELA NAO ENCONTRADA");
-            throw new Exception("RegistroEstaNaOds - TABELA NAO ENCONTRADA");
+
+            return StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
         }
 
-        private bool ValidaCliente(ILinhaTabela linhaStage)
+        private void ValidaCliente(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            string erros = "";
             DataRow row;
-            var cdParceiroNegocio = "";
-            row = ValidaExistencia(TabelasEnum.OdsParceiroNegocio, "CD_EXTERNO", linhaStage.ObterPorColuna("CD_CLIENTE").ValorFormatado);
+            row = ValidaExistencia(TabelasEnum.OdsParceiroNegocio, "CD_EXTERNO", linhaStage.ObterPorColuna("CD_CLIENTE").ValorFormatado, deveHaverRegistro, ref erros);
 
-            if (row == null)
+            if (row == null && deveHaverRegistro)
             {
-                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParceiroNegocio.ObterTexto()}");
-                return false;
+                erros += $"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParceiroNegocio.ObterTexto()}{Environment.NewLine}";
+                return;
             }
+            else if (row != null && !deveHaverRegistro)
+                erros += $"REGISTRO ERRONEAMENTE ENCONTRADO EM : {TabelasEnum.OdsParceiroNegocio.ObterTexto()}{Environment.NewLine}";
             else
-                logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsParceiroNegocio.ObterTexto()}");
+                logger.Escrever($"REGISTRO CORRETAMENTE ENCONTRADO EM : {TabelasEnum.OdsParceiroNegocio.ObterTexto()}");
 
-            cdParceiroNegocio = row["CD_PARCEIRO_NEGOCIO"].ToString();
+            var cdParceiroNegocio = row["CD_PARCEIRO_NEGOCIO"].ToString();
 
-            ValidarCamposDeNomeSemelhantes(row, linhaStage,ref erros);
+            ValidarCamposDeNomeSemelhantes(row, linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsTelefone, "CD_PARCEIRO_NEGOCIO", cdParceiroNegocio),linhaStage,ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsTelefone, "CD_PARCEIRO_NEGOCIO", cdParceiroNegocio, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsEndereco, "CD_PARCEIRO_NEGOCIO", cdParceiroNegocio), linhaStage ,ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsEndereco, "CD_PARCEIRO_NEGOCIO", cdParceiroNegocio, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
-            return StringUtils.ValidarTextoDeErrosEncontrados(erros,logger);
+
         }
 
-        private bool ValidaParcela(ILinhaTabela linhaStage)
+        private void ValidaParcela(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var cdParcela = "";
-            var erros = "";
-
-            cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado,linhaStage);
+            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro, ref erros);
             if (cdParcela == null)
-                return false;
+                return;
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela),linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
             //VERIFICAR COMO VALIDAR
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "descobrir campo", "DESCOBRIR CAMPO"), linhaStage, ref erros);
-
-            return StringUtils.ValidarTextoDeErrosEncontrados(erros,logger);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "descobrir campo", "DESCOBRIR CAMPO", deveHaverRegistro, ref erros), linhaStage, ref erros);
         }
 
-        private bool ValidaParcAuto(ILinhaTabela linhaStage)
+        private void ValidaParcAuto(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var erros = "";
-            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado,linhaStage);
+            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro, ref erros);
             if (cdParcela == null)
             {
-                return false;
+                return;
             }
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela), linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsItemAuto, "CD_PARCELA", cdParcela),linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsItemAuto, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_PARCELA", cdParcela),linhaStage, ref erros);
-
-            return StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
         }
 
-        private bool ValidaSinistro(ILinhaTabela linhaStage)
+        private void ValidaSinistro(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var erros = "";
-            var cdAvisoSinistro = ObterCdAvisoSinistro(linhaStage.ObterPorColuna("CD_SINISTRO").ValorFormatado,linhaStage);
+            var cdAvisoSinistro = ObterCdAvisoSinistro(linhaStage.ObterPorColuna("CD_SINISTRO").ValorFormatado, linhaStage, deveHaverRegistro, ref erros);
             if (string.IsNullOrEmpty(cdAvisoSinistro))
             {
-                return false;
+                return;
             }
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsMovimentoSinistro, "CD_AVISO_SINISTRO", cdAvisoSinistro),linhaStage, ref erros);
-
-            return StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsMovimentoSinistro, "CD_AVISO_SINISTRO", cdAvisoSinistro, deveHaverRegistro, ref erros),
+                linhaStage, ref erros);
         }
 
-        private bool ValidaOCRCobranca(ILinhaTabela linhaStage)
+        private void ValidaOCRCobranca(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var erros = "";
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsParcela, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado),linhaStage, ref erros);
-
-            return StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsParcela, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, deveHaverRegistro, ref erros)
+                , linhaStage, ref erros);
         }
 
-        private bool ValidaComissao(ILinhaTabela linhaStage)
+        private void ValidaComissao(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var erros = "";
-            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage);
+            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro, ref erros);
             if (string.IsNullOrEmpty(cdParcela))
             {
-                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
-                return false;
+                erros += $"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}{Environment.NewLine}";
+                return;
             }
-            var cdComissao = ObterCdComissao(cdParcela,linhaStage);
+            var cdComissao = ObterCdComissao(cdParcela, linhaStage, deveHaverRegistro, ref erros);
             if (string.IsNullOrEmpty(cdComissao))
             {
-                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsComissao.ObterTexto()}");
-                return false;
+                erros += $"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsComissao.ObterTexto()}{Environment.NewLine}";
+                return;
             }
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao),linhaStage, ref erros);
-
-            return StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
         }
 
-        private string ObterCdParcela(string cdContrato, ILinhaTabela linhaStage)
+        private string ObterCdParcela(string cdContrato, ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var row = ValidaExistencia(TabelasEnum.OdsParceiroNegocio, "CD_CONTRATO", cdContrato);
+            var row = ValidaExistencia(TabelasEnum.OdsParcela, "CD_CONTRATO", cdContrato, deveHaverRegistro, ref erros);
             if (row == null)
             {
-                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
                 return null;
             }
             logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
 
-            var erros = "";
             ValidarCamposDeNomeSemelhantes(row, linhaStage, ref erros);
             StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
 
@@ -166,50 +159,48 @@ namespace Acelera.Testes.Validadores.ODS
 
         }
 
-        private string ObterCdAvisoSinistro(string cdSinistro, ILinhaTabela linhaStage)
+        private string ObterCdAvisoSinistro(string cdSinistro, ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var row = ValidaExistencia(TabelasEnum.OdsSinistro, "CD_SINISTRO", cdSinistro);
+            var row = ValidaExistencia(TabelasEnum.OdsSinistro, "CD_SINISTRO", cdSinistro, deveHaverRegistro, ref erros);
             if (row == null)
             {
-                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsSinistro.ObterTexto()}");
                 return null;
             }
             logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsSinistro.ObterTexto()}");
 
-            var erros = "";
             ValidarCamposDeNomeSemelhantes(row, linhaStage, ref erros);
             StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
 
             return row["CD_AVISO_SINISTRO"].ToString();
         }
 
-        private string ObterCdComissao(string cdParcela, ILinhaTabela linhaStage)
+        private string ObterCdComissao(string cdParcela, ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            //return DataAccess.ConsultaUnica($"SELECT CD_PARCELA FROM {TabelasEnum.OdsComissao} WHERE CD_PARCELA = '{cdParcela}'", false);
-            var row = ValidaExistencia(TabelasEnum.OdsComissao, "CD_PARCELA", cdParcela);
+            var row = ValidaExistencia(TabelasEnum.OdsComissao, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros);
             if (row == null)
             {
-                logger.Escrever($"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsSinistro.ObterTexto()}");
                 return null;
             }
             logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsSinistro.ObterTexto()}");
 
-            var erros = "";
             ValidarCamposDeNomeSemelhantes(row, linhaStage, ref erros);
             StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
 
             return row["CD_COMISSAO"].ToString();
         }
 
-        private DataRow ValidaExistencia(TabelasEnum tabela, string campo, string valor)
+        private DataRow ValidaExistencia(TabelasEnum tabela, string campo, string valor, bool deveHaverRegistro, ref string erros)
         {
             var table = DataAccess.Consulta($"SELECT * FROM {tabela.ObterTexto()} WHERE {campo} = '{valor}'", campo, logger);
-            if (table.Rows.Count == 0)
+            if (table.Rows.Count == 0 && deveHaverRegistro)
             {
+                erros += $"REGISTRO NAO ENCONTRADO EM {tabela.ObterTexto()}{Environment.NewLine}";
                 return null;
             }
-            else
-                logger.Escrever($"REGISTRO ENCONTRADO EM : {tabela.ObterTexto()}");
+            else if (table.Rows.Count > 0 && !deveHaverRegistro)
+                erros += $"REGISTRO ENCONTRADO EM : {tabela.ObterTexto()}{Environment.NewLine}";
+            else if (table.Rows.Count > 1)
+                erros += $"MAIS DE UM REGISTRO ENCONTRADO EM : {tabela.ObterTexto()}. QUANTIDADE DE REGISTROS ENCONTRADOS: {table.Rows.Count}{Environment.NewLine}";
 
             return table.Rows[0];
         }
@@ -218,7 +209,7 @@ namespace Acelera.Testes.Validadores.ODS
         {
             if (row == null)
             {
-                erros += "NENHUM REGISTRO PARA VALIDAÇÃO";
+                return;
             }
             foreach (var campo in linhaStage.Campos)
             {
