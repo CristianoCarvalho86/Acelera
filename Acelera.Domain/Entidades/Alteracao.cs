@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades
 {
+    [Serializable]
     public class AlteracoesArquivo
     {
         public List<Alteracao> Alteracoes { get; set; }
@@ -47,6 +48,7 @@ namespace Acelera.Domain.Entidades
         }
     }
 
+    [Serializable]
     public class Alteracao
     {
         public LinhaArquivo LinhaAlterada { get; set; }
