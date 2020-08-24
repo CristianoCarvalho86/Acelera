@@ -37,22 +37,22 @@ namespace Acelera.Testes
             {
                 AjustarEntradaErros(ref descricaoErroSeHouver);
                 var consulta = new Consulta();
-                consulta.AdicionarConsulta("NM__arquivo_TPA", _arquivo.NomeArquivo);
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", _arquivo.NomeArquivo);
                 var lista = DataAccess.ChamarConsultaAoBanco<LinhaControleArquivo>(new ConjuntoConsultas(consulta), logger);
 
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:Controle_arquivo");
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
 
                 var falha = false;
 
                 if (lista.Count == 0)
                 {
-                    logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"_arquivo nao encontrado na {TabelasEnum.ControleArquivo.ObterTexto()}");
+                    logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"arquivo nao encontrado na {TabelasEnum.ControleArquivo.ObterTexto()}");
                     ExplodeFalha();
                 }
 
                 if (lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E"))
                 {
-                    logger.EscreverBloco("Foram encontrados erros na tabela Controle_arquivo. (ST_STATUS = 'E')");
+                    logger.EscreverBloco("Foram encontrados erros na tabela ControleArquivo. (ST_STATUS = 'E')");
                     falha = true;
                 }
 
@@ -68,15 +68,15 @@ namespace Acelera.Testes
                 }
 
                 foreach (var descricao in descricaoErroSeHouver)
-                    if (!Validar(lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()), true, $"Buscando Erro - {descricao} - em {TabelasEnum.Controle_arquivo.ObterTexto()}:"))
+                    if (!Validar(lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()), true, $"Buscando Erro - {descricao} - em {TabelasEnum.ControleArquivo.ObterTexto()}:"))
                         ExplodeFalha();
 
 
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:Controle_arquivo");
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
             }
             catch (Exception ex)
             {
-                TratarErro($"FG00: Validação da Controle_arquivo");
+                TratarErro($"FG00: Validação da ControleArquivo");
             }
         }
 
