@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -39,6 +40,10 @@ namespace Acelera.Domain.Layouts
 
         public LinhaArquivo UltimaLinha => Linhas[Linhas.Count - 1];
 
+        public AlteracoesArquivo valoresAlteradosBody { get; set; }
+        public AlteracoesArquivo valoresAlteradosHeader { get; set; }
+        public AlteracoesArquivo valoresAlteradosFooter { get; set; }
+
         private OperadoraEnum? _operadora;
         public OperadoraEnum Operadora { 
             get 
@@ -66,11 +71,19 @@ namespace Acelera.Domain.Layouts
             throw new Exception("OPERACAO NAO ENCONTRADA NO NOME DO ARQUIVO : " + nomeArquivo);
         }
 
+        public Arquivo()
+        {
+            valoresAlteradosBody = new AlteracoesArquivo();
+            valoresAlteradosFooter = new AlteracoesArquivo();
+            valoresAlteradosHeader = new AlteracoesArquivo();
+        }
+
         public Arquivo Clone()
         {
-            //var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
 
-            //return (Arquivo)inst?.Invoke(this, null);
+
+            //var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            //var a = (Arquivo)inst?.Invoke(this, null);
 
             using (MemoryStream memoryStream = new MemoryStream())
             {

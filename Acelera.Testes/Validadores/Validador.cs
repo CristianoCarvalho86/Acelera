@@ -4,6 +4,7 @@ using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
 using System;
@@ -19,17 +20,14 @@ namespace Acelera.Testes.Validadores
         protected TabelasEnum tabelaEnum;
         protected IMyLogger logger;
         protected string nomeArquivo;
-        protected AlteracoesArquivo valoresAlteradosBody;
-        protected AlteracoesArquivo valoresAlteradosHeader;
-        protected AlteracoesArquivo valoresAlteradosFooter;
-        public ValidadorTabela(TabelasEnum tabelasEnum, string nomeArquivo, IMyLogger logger, AlteracoesArquivo valoresAlteradosBody, AlteracoesArquivo valoresAlteradosHeader, AlteracoesArquivo valoresAlteradosFooter)
+        protected Arquivo arquivo;
+
+        public ValidadorTabela(TabelasEnum tabelasEnum, string nomeArquivo, IMyLogger logger, Arquivo arquivo)
         {
             this.tabelaEnum = tabelasEnum;
             this.nomeArquivo = nomeArquivo;
             this.logger = logger;
-            this.valoresAlteradosBody = valoresAlteradosBody;
-            this.valoresAlteradosHeader = valoresAlteradosHeader;
-            this.valoresAlteradosFooter = valoresAlteradosFooter;
+            this.arquivo = arquivo;
         }
         protected void AjustarEntradaErros(ref string[] erros)
         {
@@ -120,7 +118,6 @@ namespace Acelera.Testes.Validadores
             }
 
             return true;
-
         }
 
         protected IList<ILinhaTabela> ObterLinhasParaStage(ConjuntoConsultas consultas)
@@ -173,39 +170,39 @@ namespace Acelera.Testes.Validadores
 
         protected int ObterQtdRegistrosDuplicadosDoBody()
         {
-            if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0 && valoresAlteradosBody.Alteracoes.First().RepeticoesLinha > 1)
-                return valoresAlteradosBody.Alteracoes.First().RepeticoesLinha - 1;
+            if (arquivo.valoresAlteradosBody != null && arquivo.valoresAlteradosBody.Alteracoes.Count > 0 && arquivo.valoresAlteradosBody.Alteracoes.First().RepeticoesLinha > 1)
+                return arquivo.valoresAlteradosBody.Alteracoes.First().RepeticoesLinha - 1;
             return 1;
         }
 
         protected int ObterQtdRegistrosDuplicadosHeaderAndFooter()
         {
             var qtd = 0;
-            if (valoresAlteradosHeader != null && valoresAlteradosHeader.Alteracoes.Count > 0 && valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha > 1)
-                qtd += valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha;
-            if (valoresAlteradosFooter != null && valoresAlteradosFooter.Alteracoes.Count > 0 && valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha > 1)
-                qtd += valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha;
+            if (arquivo.valoresAlteradosHeader != null && arquivo.valoresAlteradosHeader.Alteracoes.Count > 0 && arquivo.valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha > 1)
+                qtd += arquivo.valoresAlteradosHeader.Alteracoes.First().RepeticoesLinha;
+            if (arquivo.valoresAlteradosFooter != null && arquivo.valoresAlteradosFooter.Alteracoes.Count > 0 && arquivo.valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha > 1)
+                qtd += arquivo.valoresAlteradosFooter.Alteracoes.First().RepeticoesLinha;
             return qtd;
         }
 
         protected bool ExisteAlteracaoHeaderOuFooter()
         {
-            if ((valoresAlteradosHeader != null && valoresAlteradosHeader.Alteracoes.Count > 0) ||
-                (valoresAlteradosFooter != null && valoresAlteradosFooter.Alteracoes.Count > 0) ||
-                (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0 &&
-                (valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter || valoresAlteradosBody.Alteracoes.First().NomeArquivoAlterado)))
+            if ((arquivo.valoresAlteradosHeader != null && arquivo.valoresAlteradosHeader.Alteracoes.Count > 0) ||
+                (arquivo.valoresAlteradosFooter != null && arquivo.valoresAlteradosFooter.Alteracoes.Count > 0) ||
+                (arquivo.valoresAlteradosBody != null && arquivo.valoresAlteradosBody.Alteracoes.Count > 0 &&
+                (arquivo.valoresAlteradosBody.Alteracoes.First().SemHeaderOuFooter || arquivo.valoresAlteradosBody.Alteracoes.First().NomeArquivoAlterado)))
                 return true;
             return false;
         }
 
         protected bool ExistemLinhasNoArquivo()
         {
-            if (valoresAlteradosBody != null && valoresAlteradosBody.Alteracoes.Count > 0)
+            if (arquivo.Linhas.Count > 0)
                 return true;
             return false;
         }
 
-        public abstract ConjuntoConsultas MontarConsulta(TabelasEnum tabela);
+        public abstract ConjuntoConsultas MontarConsulta(TabelasEnum tabela, Arquivo arquivo);
 
         public abstract void TratarConsulta(Consulta consulta);
 

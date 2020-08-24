@@ -9,7 +9,9 @@ using Acelera.Testes.DataAccessRep;
 using Acelera.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,13 +31,11 @@ namespace Acelera.Testes.ConjuntoArquivos
         public abstract bool EhParcAuto { get; }
 
         private ControleNomeArquivo controleNomeArquivo;
-        private AlteracoesArquivo valoresAlteradosBody;
 
         private IMyLogger logger;
 
-        public Triplice(int quantidadeCliente, IMyLogger logger, ref AlteracoesArquivo valoresAlteradosBody)
+        public Triplice(int quantidadeCliente, IMyLogger logger)
         {
-            this.valoresAlteradosBody = valoresAlteradosBody;
             controleNomeArquivo = ControleNomeArquivo.Instancia;
             ArquivoCliente = new T1();
             ArquivoParcEmissao = new T2();
@@ -209,7 +209,7 @@ namespace Acelera.Testes.ConjuntoArquivos
             arquivo.Salvar(PastaDestino + nomeArquivo);
             arquivo.AtualizarNomeArquivoFinal(nomeArquivo);
             logger.FecharBloco();
-            valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, nomeArquivo);
+            arquivo.valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, nomeArquivo);
         }
 
         protected string CarregarIdtransacao(LinhaArquivo linha)
@@ -304,5 +304,15 @@ namespace Acelera.Testes.ConjuntoArquivos
             logger.FecharBloco();
         }
 
+        public ITriplice Clone()
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(memoryStream, this);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                return (ITriplice)binaryFormatter.Deserialize(memoryStream);
+            }
+        }
     }
 }

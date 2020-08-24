@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.ConjuntoArquivos
 {
+    [Serializable]
     public class TripliceLASA : Triplice<Arquivo_Layout_9_4_Cliente, Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>
     {
-        public TripliceLASA(int quantidadeCliente, IMyLogger logger, ref AlteracoesArquivo alteracoesArquivo) : base(quantidadeCliente, logger, ref alteracoesArquivo)
+        public TripliceLASA(int quantidadeCliente, IMyLogger logger) : base(quantidadeCliente, logger)
         {
 
         }

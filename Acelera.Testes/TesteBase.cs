@@ -78,18 +78,18 @@ namespace Acelera.Testes
             SalvarArquivo(nomeArquivo, true);
         }
 
-        protected virtual void SalvarArquivo(Arquivo arquivo)
+        protected virtual void SalvarArquivo(Arquivo _arquivo)
         {
-            this.arquivo = arquivo;
-            var array = arquivo.NomeArquivo.Split('-');
+            var array = _arquivo.NomeArquivo.Split('-');
             array[2] = "/*R*/";
-            SalvarArquivo(array.ToList().ObterListaConcatenada("-"), true);
+            SalvarArquivo(array.ToList().ObterListaConcatenada("-"), true, _arquivo);
         }
 
 
-        protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true)
+        protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true, Arquivo _arquivo = null)
         {
-            var nomeOriginalArquivo = arquivo.NomeArquivo;
+            _arquivo = _arquivo != null ? _arquivo : this.arquivo;
+            var nomeOriginalArquivo = _arquivo.NomeArquivo;
             if (!_nomeArquivo.Contains("/*R*/"))
             {
                 //nomeArquivo = _nomeArquivo.Replace("-","_") + "_" + nomeArquivo;// inclusao do nome da proc
@@ -100,20 +100,18 @@ namespace Acelera.Testes
             //_nomeArquivo = nomeDoTeste.Replace("-", "_") + _nomeArquivo;
             FinalizarAlteracaoArquivo();
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
+                _arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
+                _arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
 
-            valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, arquivo.NomeArquivo);
+            _arquivo.valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, _arquivo.NomeArquivo);
         }
 
         protected void LimparValidacao()
         {
-            valoresAlteradosBody = new AlteracoesArquivo();
-            valoresAlteradosHeader = new AlteracoesArquivo();
-            valoresAlteradosFooter = new AlteracoesArquivo();
+
         }
 
         protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)

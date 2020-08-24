@@ -94,9 +94,9 @@ namespace Acelera.Testes
             ValidarTabelaDeRetornoFG00(false, false,arquivo, codigosDeErroEsperados);
         }
 
-        public void ValidarTabelaDeRetornoFG00(bool naoDeveEncontrar = false ,bool validaQuantidadeErros = false, Arquivo arquivo = null, params string[] codigosDeErroEsperados)
+        public void ValidarTabelaDeRetornoFG00(bool naoDeveEncontrar = false ,bool validaQuantidadeErros = false, Arquivo _arquivo = null, params string[] codigosDeErroEsperados)
         {
-            arquivo = arquivo == null ? this.arquivo : arquivo;
+            _arquivo = _arquivo == null ? this.arquivo : _arquivo;
 
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -104,8 +104,7 @@ namespace Acelera.Testes
             try { 
             AjustarEntradaErros(ref codigosDeErroEsperados);
             logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-            var validador = new ValidadorTabelaRetorno(arquivo.tipoArquivo.ObterTabelaStageEnum(),arquivo.NomeArquivo,logger,
-                valoresAlteradosBody,valoresAlteradosHeader,valoresAlteradosFooter);
+            var validador = new ValidadorTabelaRetorno(_arquivo.tipoArquivo.ObterTabelaStageEnum(),_arquivo.NomeArquivo,logger,_arquivo);
             
             if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrar, validaQuantidadeErros,codigosDeErroEsperados))
                 logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");

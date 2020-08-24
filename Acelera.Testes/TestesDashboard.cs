@@ -17,7 +17,7 @@ namespace Acelera.Testes
         [TestMethod]
         public void Teste1()
         {
-            TripliceLASA triplice = new TripliceLASA(1, logger,ref valoresAlteradosBody);
+            TripliceLASA triplice = new TripliceLASA(1, logger);
             var cdCliente = triplice.ArquivoCliente.ObterValorFormatadoSeExistirCampo(0, "CD_CLIENTE");
             triplice.AlterarParcEComissao(0, "CD_CLIENTE", cdCliente);
             //triplice.AlterarParcEComissao(0, "CD_TIPO_EMISSAO", "1");
