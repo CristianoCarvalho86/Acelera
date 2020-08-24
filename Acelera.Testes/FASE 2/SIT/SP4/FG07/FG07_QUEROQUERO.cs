@@ -16,9 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         protected string ClienteCadastradoNoOIM => throw new Exception();
 
         [TestMethod]
-        public void SAP_9798()
+        public void SAP_6154()
         {
-            IniciarTeste("9798", "FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("6154", "FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.QUEROQUERO);
             
             AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
@@ -27,9 +27,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9799()
+        public void SAP_6155()
         {
-            IniciarTeste("9799", "SAP-6155:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("6155", "SAP-6155:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.QUEROQUERO);
 
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
@@ -38,9 +38,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         }
         [TestMethod]
-        public void SAP_9800()
+        public void SAP_6156()
         {
-            IniciarTeste("9800", "SAP-6156:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("6156", "SAP-6156:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.QUEROQUERO);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -49,9 +49,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9801()
+        public void SAP_6157()
         {
-            IniciarTeste("9801", "SAP-6157:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("6157", "SAP-6157:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.QUEROQUERO);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -62,9 +62,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9802()
+        public void SAP_6158()
         {
-            IniciarTeste("9802", " SAP-6158:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("6158", " SAP-6158:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.QUEROQUERO);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -78,10 +78,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9803()
+        public void SAP_6159()
         {
 
-            IniciarTeste("9803", "SAP-6159:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("6159", "SAP-6159:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.QUEROQUERO);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados); //COLOCAR CD_CORRETOR com C e P,
 
@@ -103,10 +103,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9804()
+        public void SAP_6160()
         {
             //?
-            IniciarTeste("9804", "SAP-6160:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.POMPEIA, false);
+            IniciarTeste("6160", "SAP-6160:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.POMPEIA, false);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -125,9 +125,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9805()
+        public void SAP_6161()
         {
-            IniciarTeste("9805", "SAP-6161:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.QUEROQUERO);
+            IniciarTeste("6161", "SAP-6161:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.QUEROQUERO);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
@@ -150,10 +150,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9806()
+        public void SAP_6162()
         {
 
-            IniciarTeste("9806", "SAP-6162:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
+            IniciarTeste("6162", "SAP-6162:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
               

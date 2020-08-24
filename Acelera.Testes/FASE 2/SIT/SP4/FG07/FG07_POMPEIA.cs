@@ -16,9 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         protected string ClienteCadastradoNoOIM => throw new Exception();
 
         [TestMethod]
-        public void SAP_9818()
+        public void SAP_6154()
         {
-            IniciarTeste("9818", "FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.POMPEIA);
+            IniciarTeste("6154", "FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.POMPEIA);
 
             
             AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
@@ -28,9 +28,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9819()
+        public void SAP_6155()
         {
-            IniciarTeste("9819", "SAP-6155:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.POMPEIA);
+            IniciarTeste("6155", "SAP-6155:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.POMPEIA);
 
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
@@ -39,9 +39,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         }
         [TestMethod]
-        public void SAP_9820()
+        public void SAP_6156()
         {
-            IniciarTeste("9820", "SAP-6156:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.POMPEIA);
+            IniciarTeste("6156", "SAP-6156:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -50,9 +50,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9821()
+        public void SAP_6157()
         {
-            IniciarTeste("9821", "SAP-6157:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.POMPEIA);
+            IniciarTeste("6157", "SAP-6157:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -63,9 +63,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9822()
+        public void SAP_6158()
         {
-            IniciarTeste("9822", " SAP-6158:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.POMPEIA);
+            IniciarTeste("6158", " SAP-6158:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -79,10 +79,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9823()
+        public void SAP_6159()
         {
 
-            IniciarTeste("9823", "SAP-6159:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.POMPEIA);
+            IniciarTeste("6159", "SAP-6159:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados); //COLOCAR CD_CORRETOR com C e P,
 
@@ -104,10 +104,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9824()
+        public void SAP_6160()
         {
             //?
-            IniciarTeste("9824", "SAP-6160:FG07 - POMPEIA - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.POMPEIA);
+            IniciarTeste("6160", "SAP-6160:FG07 - POMPEIA - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -126,9 +126,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9825()
+        public void SAP_6161()
         {
-            IniciarTeste("9825", "SAP-6161:FG07 - POMPEIA - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.POMPEIA);
+            IniciarTeste("6161", "SAP-6161:FG07 - POMPEIA - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
@@ -151,10 +151,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_9826()
+        public void SAP_6162()
         {
 
-            IniciarTeste("9826", "SAP-6162:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
+            IniciarTeste("6162", "SAP-6162:FG07 - POMPEIA - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
               
