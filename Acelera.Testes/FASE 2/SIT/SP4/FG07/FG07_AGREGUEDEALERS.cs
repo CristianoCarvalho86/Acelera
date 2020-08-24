@@ -16,9 +16,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         protected string ClienteCadastradoNoOIM => throw new Exception();
 
         [TestMethod]
-        public void SAP_6154()
+        public void SAP_9808()
         {
-            IniciarTeste("6154", "FG07 - AGREGUEDEALERSDEALERS  - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9808", "FG07 - AGREGUEDEALERSDEALERS  - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
             
             AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
@@ -27,9 +27,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_6155()
+        public void SAP_9809()
         {
-            IniciarTeste("6155", "SAP-6155:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9809", "SAP-6155:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
@@ -38,9 +38,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
         }
         [TestMethod]
-        public void SAP_6156()
+        public void SAP_9810()
         {
-            IniciarTeste("6156", "SAP-6156:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9810", "SAP-6156:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Cli cadastrado", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -49,9 +49,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_6157()
+        public void SAP_9811()
         {
-            IniciarTeste("6157", "SAP-6157:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9811", "SAP-6157:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -62,9 +62,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_6158()
+        public void SAP_9812()
         {
-            IniciarTeste("6158", " SAP-6158:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9812", " SAP-6158:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -78,10 +78,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_6159()
+        public void SAP_9813()
         {
 
-            IniciarTeste("6159", "SAP-6159:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9813", "SAP-6159:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1a parcela - 2 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados); //COLOCAR CD_CORRETOR com C e P,
 
@@ -103,10 +103,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_6160()
+        public void SAP_9814()
         {
             //?
-            IniciarTeste("6160", "SAP-6160:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9814", "SAP-6160:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
@@ -125,9 +125,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_6161()
+        public void SAP_9815()
         {
-            IniciarTeste("6161", "SAP-6161:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9815", "SAP-6161:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
@@ -150,10 +150,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
 
         [TestMethod]
-        public void SAP_6162()
+        public void SAP_9816()
         {
 
-            IniciarTeste("6162", "SAP-6162:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.AGREGUEDEALERS);
+            IniciarTeste("9816", "SAP-6162:FG07 - AGREGUEDEALERS - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.AGREGUEDEALERS);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
               
