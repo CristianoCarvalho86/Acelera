@@ -23,55 +23,60 @@ namespace Acelera.Testes
     public abstract class TestesFG00 : TesteFG
     {
         protected override string NomeFG => "FG00";
+
         public void ValidarControleArquivo(params string[] descricaoErroSeHouver)
+        {
+            ValidarControleArquivo(this.arquivo, descricaoErroSeHouver);
+        }
+        public void ValidarControleArquivo(Arquivo _arquivo, params string[] descricaoErroSeHouver)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             try
-            { 
-            AjustarEntradaErros(ref descricaoErroSeHouver);
-            var consulta = new Consulta();
-            consulta.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
-            var lista = DataAccess.ChamarConsultaAoBanco<LinhaControleArquivo>(new ConjuntoConsultas(consulta), logger);
-
-            logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
-
-            var falha = false;
-
-            if (lista.Count == 0)
             {
-                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"Arquivo nao encontrado na {TabelasEnum.ControleArquivo.ObterTexto()}");
-                ExplodeFalha();
-            }
+                AjustarEntradaErros(ref descricaoErroSeHouver);
+                var consulta = new Consulta();
+                consulta.AdicionarConsulta("NM__arquivo_TPA", _arquivo.NomeArquivo);
+                var lista = DataAccess.ChamarConsultaAoBanco<LinhaControleArquivo>(new ConjuntoConsultas(consulta), logger);
 
-            if(lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E"))
-            {
-                logger.EscreverBloco("Foram encontrados erros na tabela ControleArquivo. (ST_STATUS = 'E')");
-                falha = true;
-            }
+                logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:Controle_arquivo");
 
-            if (falha && descricaoErroSeHouver.Length == 0)
-            {
-                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, "NAO ERAM ESPERADAS FALHAS NO TESTE");
-                ExplodeFalha();
-            }
-            else if (!falha && descricaoErroSeHouver.Length > 0)
-            {
-                logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"AS FALHAS ESPERADAS NAO FORAM ENCONTRADAS : {descricaoErroSeHouver.ToList().ObterListaConcatenada(",")}");
-                ExplodeFalha();
-            }
+                var falha = false;
 
-            foreach (var descricao in descricaoErroSeHouver)
-                if (!Validar(lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()), true, $"Buscando Erro - {descricao} - em {TabelasEnum.ControleArquivo.ObterTexto()}:"))
+                if (lista.Count == 0)
+                {
+                    logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"_arquivo nao encontrado na {TabelasEnum.ControleArquivo.ObterTexto()}");
                     ExplodeFalha();
+                }
+
+                if (lista.Any(x => x.ObterPorColuna("ST_STATUS").Valor == "E"))
+                {
+                    logger.EscreverBloco("Foram encontrados erros na tabela Controle_arquivo. (ST_STATUS = 'E')");
+                    falha = true;
+                }
+
+                if (falha && descricaoErroSeHouver.Length == 0)
+                {
+                    logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, "NAO ERAM ESPERADAS FALHAS NO TESTE");
+                    ExplodeFalha();
+                }
+                else if (!falha && descricaoErroSeHouver.Length > 0)
+                {
+                    logger.ErroNaOperacao(OperacaoEnum.ValidarResultado, $"AS FALHAS ESPERADAS NAO FORAM ENCONTRADAS : {descricaoErroSeHouver.ToList().ObterListaConcatenada(",")}");
+                    ExplodeFalha();
+                }
+
+                foreach (var descricao in descricaoErroSeHouver)
+                    if (!Validar(lista.Any(x => x.ObterPorColuna("DS_ERRO").Valor.ToUpper() == descricao.ToUpper()), true, $"Buscando Erro - {descricao} - em {TabelasEnum.Controle_arquivo.ObterTexto()}:"))
+                        ExplodeFalha();
 
 
-            logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:ControleArquivo");
+                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:Controle_arquivo");
             }
             catch (Exception ex)
             {
-                TratarErro($"FG00: Validação da ControleArquivo");
+                TratarErro($"FG00: Validação da Controle_arquivo");
             }
         }
 
@@ -91,7 +96,7 @@ namespace Acelera.Testes
         }
         public void ValidarTabelaDeRetorno(Arquivo arquivo, params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetornoFG00(false, false,arquivo, codigosDeErroEsperados);
+            ValidarTabelaDeRetornoFG00(false, false, arquivo, codigosDeErroEsperados);
         }
 
         public void ValidarTabelaDeRetornoFG00(bool naoDeveEncontrar = false ,bool validaQuantidadeErros = false, Arquivo arquivo = null, params string[] codigosDeErroEsperados)
@@ -114,7 +119,7 @@ namespace Acelera.Testes
             }
             catch (Exception ex)
             {
-                TratarErro("FG00: Validação da Tabela de Retorno - "+ex.Message);
+                TratarErro("FG00: Validação da Tabela de Retorno - " + ex.Message);
             }
         }
 
@@ -125,9 +130,9 @@ namespace Acelera.Testes
         }
 
         [Obsolete]
-        public void ValidarStages<T>(Arquivo arquivo ,TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
+        public void ValidarStages<T>(Arquivo arquivo, TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
         {
-            ValidarStages(arquivo,deveHaverRegistro, codigoEsperado);
+            ValidarStages(arquivo, deveHaverRegistro, codigoEsperado);
         }
 
         public static IList<string> ObterProceduresFG00()

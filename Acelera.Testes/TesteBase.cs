@@ -192,7 +192,7 @@ namespace Acelera.Testes
             {
                 ChamarExecucao(taskName);
             }
-            catch (Exception)
+            catch
             {
                 localDoErro += taskName + ";";
             }

@@ -274,15 +274,17 @@ namespace Acelera.Domain.Extensions
 
         public static FG06_Tarefas ObterTarefaFG06Enum(this TipoArquivo tipoArquivo)
         {
-
             return FG06_Tarefas.Trinca;
-
         }
 
         public static FG10_Tarefas ObterTarefaFG10Enum(this TipoArquivo tipoArquivo)
         {
-
             return FG10_Tarefas.TrincaCancelamento;
+        }
+
+        public static FG08_Tarefas ObterTarefaFG08Enum(this TipoArquivo tipoArquivo)
+        {
+            return FG08_Tarefas.FGR_08;
         }
 
         public static FG09_Tarefas ObterTarefaFG09Enum(this TipoArquivo tipoArquivo)
@@ -331,6 +333,8 @@ namespace Acelera.Domain.Extensions
                     return sucesso ? CodigoStage.AprovadoFG07 : throw new Exception("CODIGO NAO EXISTE") ;
                 case FGs.FG07_1:
                     return sucesso ? CodigoStage.AprovadoFG07_1 : CodigoStage.ReprovadoFG07_1;
+                case FGs.FG08:
+                    return sucesso ? CodigoStage.AprovadoNaFG08 : CodigoStage.ReprovadoNaFG08;
                 case FGs.FG09:
                     return sucesso ? CodigoStage.AprovadoNaFG09 : CodigoStage.ReprovadoNaFG09;
                 case FGs.FG10:
