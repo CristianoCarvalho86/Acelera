@@ -145,12 +145,13 @@ namespace Acelera.Testes
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }
 
-        public override void FinalizarAlteracaoArquivo()
+        public override void FinalizarAlteracaoArquivo(Arquivo _arquivo = null)
         {
-            if (arquivo.tipoArquivo != TipoArquivo.ParcEmissao && arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
+            _arquivo = _arquivo != null ? _arquivo : arquivo;
+            if (_arquivo.tipoArquivo != TipoArquivo.ParcEmissao && _arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
                 return;
 
-            Parallel.ForEach(arquivo.Linhas, linha => { AlterarLinha(linha.Index, "ID_TRANSACAO", CarregarIdtransacao(linha)); });
+            Parallel.ForEach(_arquivo.Linhas, linha => { AlterarLinha(linha.Index, "ID_TRANSACAO", CarregarIdtransacao(linha)); });
         }
 
         public virtual IList<ILinhaTabela> ExecutarEValidar(Arquivo arquivo, FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)

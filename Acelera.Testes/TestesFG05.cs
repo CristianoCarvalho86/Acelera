@@ -51,10 +51,10 @@ namespace Acelera.Testes
             base.SalvarArquivo(nomeProc);
         }
 
-        public override void FinalizarAlteracaoArquivo()
+        public override void FinalizarAlteracaoArquivo(Arquivo _arquivo)
         {
-            Parametrizacoes();
-            base.FinalizarAlteracaoArquivo();
+            Parametrizacoes(_arquivo);
+            base.FinalizarAlteracaoArquivo(_arquivo);
         }
 
         protected void AlterarCobertura(bool alterar)
@@ -62,15 +62,15 @@ namespace Acelera.Testes
             alterarCobertura = alterar;
         }
 
-        private void Parametrizacoes()
+        private void Parametrizacoes(Arquivo _arquivo)
         {
             if (alterarCobertura)
-                for (int i = 0; i < arquivo.Linhas.Count; i++)
+                for (int i = 0; i < _arquivo.Linhas.Count; i++)
                 {
                     var cobertura = dados.ObterCoberturaSimples(ObterValorHeader("CD_TPA"));
-                    AlterarLinhaSeHouver(i, "CD_COBERTURA", cobertura.CdCobertura);
-                    AlterarLinhaSeHouver(i, "CD_RAMO", cobertura.CdRamo);
-                    AlterarLinhaSeHouver(i, "CD_PRODUTO", cobertura.CdProduto);
+                    _arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
+                    _arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
+                    _arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
                 }
         }
 

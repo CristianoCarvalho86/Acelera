@@ -123,9 +123,9 @@ namespace Acelera.Testes
             IgualarCamposQueExistirem(linhaParc, linhaComissao);
         }
 
-        public override void FinalizarAlteracaoArquivo()
+        public override void FinalizarAlteracaoArquivo(Arquivo _arquivo)
         {
-            base.FinalizarAlteracaoArquivo();
+            base.FinalizarAlteracaoArquivo(_arquivo);
         }
 
         protected override void SalvarArquivo()

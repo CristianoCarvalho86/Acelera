@@ -384,7 +384,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public virtual void FinalizarAlteracaoArquivo()
+        public virtual void FinalizarAlteracaoArquivo(Arquivo _arquivo)
         {
 
         }
