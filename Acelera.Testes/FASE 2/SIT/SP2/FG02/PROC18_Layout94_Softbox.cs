@@ -92,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.FG02
             AlterarLinha(6, "NR_APOLICE", "012345678901234567");
 
             //SALVAR O NOVO ARQUIVO ALTERADO
-            arquivo.Salvar(ObterArquivoDestino($"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.txt"));
+            arquivo.Salvar(ObterArquivoDestino(arquivo,$"C01.SOFTBOX.PARCEMS-EV-/*R*/-20200323.txt"));
 
             //VALIDAR FG's ANTERIORES
             ValidarFGsAnteriores();

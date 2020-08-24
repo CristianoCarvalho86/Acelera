@@ -1,4 +1,6 @@
 ﻿using Acelera.Domain.Entidades.Interfaces;
+using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using System;

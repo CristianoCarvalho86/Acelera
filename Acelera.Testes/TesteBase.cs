@@ -100,7 +100,7 @@ namespace Acelera.Testes
             //_nomeArquivo = nomeDoTeste.Replace("-", "_") + _nomeArquivo;
             FinalizarAlteracaoArquivo(_arquivo);
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                _arquivo.Salvar(ObterArquivoDestino(_nomeArquivo, AlterarNomeArquivo));
+                _arquivo.Salvar(ObterArquivoDestino(_arquivo, _nomeArquivo, AlterarNomeArquivo));
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 _arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
@@ -129,20 +129,20 @@ namespace Acelera.Testes
             throw new NotImplementedException();
         }
 
-        protected string ObterArquivoDestino(string _nomeArquivo, bool AlterarNomeArquivo = true)
+        protected string ObterArquivoDestino(Arquivo _arquivo, string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
-            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(arquivo.tipoArquivo);
+            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(_arquivo.tipoArquivo);
             numeroDoLote = numeroArquivoNovo;
             if (AlterarNomeArquivo)
             {
                 _nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
-                if (arquivo.Header.Count > 0)
-                    arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
+                if (_arquivo.Header.Count > 0)
+                    _arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
             }
 
             var path = Parametros.pastaDestino + _nomeArquivo;
 
-            arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
+            _arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
