@@ -111,7 +111,7 @@ namespace Acelera.Testes
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetorno(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger, _arquivo);
+                var validador = new ValidadorTabelaRetorno(_arquivo.NomeArquivo, logger, _arquivo);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
@@ -124,10 +124,10 @@ namespace Acelera.Testes
             }
         }
 
-        public void ValidarStages(bool deveEncontrarRegistro, int codigoEsperado = 0, Arquivo arquivo = null)
+        public IList<ILinhaTabela> ValidarStages(bool deveEncontrarRegistro, int codigoEsperado = 0,Arquivo _arquivo = null)
         {
-            arquivo = arquivo == null ? this.arquivo : arquivo;
-            ValidarStages(arquivo, deveEncontrarRegistro, codigoEsperado);
+            SetarArquivoEmUso(ref _arquivo);
+            return ValidarStages(_arquivo, deveEncontrarRegistro, codigoEsperado);
         }
 
         [Obsolete]

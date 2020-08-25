@@ -17,8 +17,8 @@ namespace Acelera.Testes.Validadores
 {
     public class ValidadorTabelaRetorno : ValidadorTabela
     {
-        public ValidadorTabelaRetorno(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, Arquivo arquivo) 
-            : base(tabelaEnum, nomeArquivo, logger, arquivo)
+        public ValidadorTabelaRetorno(string nomeArquivo, IMyLogger logger, Arquivo arquivo)
+            : base(TabelasEnum.TabelaRetorno, nomeArquivo, logger, arquivo)
         {
         }
 
@@ -51,11 +51,19 @@ namespace Acelera.Testes.Validadores
             throw new NotImplementedException();
         }
 
+        public IList<ILinhaTabela> RetornarRegistrosDaTabelaDeRetorno()
+        {
+            var consulta = MontarConsulta(tabelaEnum, arquivo);
+
+            return DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+
+        }
+
         public bool ValidarTabela(TabelasEnum tabela, bool naoDeveEncontrar, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
-            var consulta = MontarConsulta(tabelaEnum,arquivo);
+            var consulta = MontarConsulta(tabelaEnum, arquivo);
 
             List<ILinhaTabela> linhasEncontradas;
             linhasEncontradas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
