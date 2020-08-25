@@ -18,22 +18,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             IniciarTeste("6164", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.TIM);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
-            triplice.AlterarParcEComissao(0, "CD_MOVTO_COBRANCA", "03");
-            triplice.AlterarParcEComissao(1, "CD_MOVTO_COBRANCA", "01");
-
-            var arquivoCapa = triplice.ArquivoParcEmissao.Clone();
-            arquivoCapa.RemoverLinhaComAjuste(1);
-            SalvarArquivo(arquivoCapa);
-
-            triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
-            triplice.ArquivoParcEmissao.AlterarLinha(0,"VL_LMI",arquivoCapa[0]["VL_IS"]);
-            triplice.ArquivoParcEmissao.AlterarLinha(0, "VL_IS", arquivoCapa[0]["VL_IS"]);
 
             SalvaExecutaEValidaFG07();
 
         }
+
+
         [TestMethod]
         public void SAP_6165()
         {
