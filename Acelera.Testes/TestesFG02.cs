@@ -151,7 +151,7 @@ namespace Acelera.Testes
             if (_arquivo.tipoArquivo != TipoArquivo.ParcEmissao && _arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
                 return;
 
-            Parallel.ForEach(_arquivo.Linhas, linha => { AlterarLinha(linha.Index, "ID_TRANSACAO", CarregarIdtransacao(linha)); });
+            Parallel.ForEach(_arquivo.Linhas, linha => { _arquivo.AlterarLinha(linha.Index, "ID_TRANSACAO", CarregarIdtransacao(linha)); });
         }
 
         public virtual IList<ILinhaTabela> ExecutarEValidar(Arquivo arquivo, FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)

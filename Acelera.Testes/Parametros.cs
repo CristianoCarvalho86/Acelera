@@ -226,5 +226,30 @@ namespace Acelera.Testes
             }
         }
 
+        public static string PastaBatDia
+        {
+            get
+            {
+                var batDia = ConfigurationManager.AppSettings.Get("PastaBatDia");
+                if (string.IsNullOrEmpty(batDia))
+                    throw new Exception("Pasta Bat Dia nao definida");
+                if (!batDia.EndsWith("\\"))
+                    batDia += "\\";
+                return batDia;
+            }
+        }
+
+        public static string PastaBatNoite
+        {
+            get
+            {
+                var batNoite = ConfigurationManager.AppSettings.Get("PastaBatNoite");
+                if (string.IsNullOrEmpty(batNoite))
+                    throw new Exception("Pasta Bat Noite nao definida");
+                if (!batNoite.EndsWith("\\"))
+                    batNoite += "\\";
+                return batNoite;
+            }
+        }
     }
 }

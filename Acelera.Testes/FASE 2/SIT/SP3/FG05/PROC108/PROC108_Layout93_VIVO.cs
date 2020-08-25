@@ -11,7 +11,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
     {
 
         /// <summary>
-        /// Gerar arquivo cujo CD_CLIENTE não esteja cadastrado na tabela TAB_ODS_PARCEIRO_NEGOCIO_2000 com CD_TIPO_PARCEIRO_NEGOCIO=CL. Utilizar CD_EXTERNO para essa comparação
+        /// 
         /// </summary>
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC108
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "108", 1);
+            ExecutarEValidarAteFg02(arquivo, "108");
 
         }
 

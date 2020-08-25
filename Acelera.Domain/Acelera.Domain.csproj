@@ -89,6 +89,7 @@
     <Compile Include="Entidades\Tabelas\LinhaControleArquivo.cs" />
     <Compile Include="Entidades\Tabelas\LinhaLogProcessamento.cs" />
     <Compile Include="Entidades\Tabelas\Tabela.cs" />
+    <Compile Include="Enums\BatEnum.cs" />
     <Compile Include="Enums\CodigoStage.cs" />
     <Compile Include="Enums\DBEnum.cs" />
     <Compile Include="Enums\FGs.cs" />
