@@ -99,14 +99,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             ValidarTeste();
         }
 
-        public void IniciarTeste(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true)
+        public void IniciarTeste(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true, bool gerarArquivoCapa = true)
         {
             //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
             IniciarTeste(TipoArquivo.Comissao, numeroTeste, descricao);
 
             CarregarTriplice(operadora);
 
-            AlteracoesPadraoDaTrinca(triplice, geraCliente);
+            AlteracoesPadraoDaTrinca(triplice, geraCliente, gerarArquivoCapa);
 
             validadorXML = new ValidadorXML(logger);
         }
