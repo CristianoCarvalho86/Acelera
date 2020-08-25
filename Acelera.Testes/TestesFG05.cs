@@ -109,29 +109,32 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        protected virtual void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
+        protected virtual void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno, Arquivo _arquivo = null)
         {
-            ValidarFGsAnteriores();
+            SetarArquivoEmUso(ref _arquivo);
+            ValidarFGsAnteriores(_arquivo);
 
             //Executar FG05
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
+            ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG05Enum().ObterTexto());
 
-            ValidarDesconsiderandoErro(codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
+            ValidarDesconsiderandoErro(_arquivo, codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
         }
 
-        protected void ValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
+        protected void ValidarDesconsiderandoErro(Arquivo _arquivo, CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
         {
+            SetarArquivoEmUso(ref _arquivo);
             //VALIDAR NA FG05
-            ValidarLogProcessamento(true);
+            ValidarLogProcessamento(true,1, _arquivo);
             ValidarStagesSemGerarErro(codigoEsperadoStage);
             ValidarTabelaDeRetorno(true, false, new string[] { erroNaoEsperadoNaTabelaDeRetorno });
 
             ValidarTeste();
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas()
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null)
         {
-            return base.ObterProceduresASeremExecutadas().Concat(ObterProceduresFG05(arquivo.tipoArquivo)).ToList();
+            SetarArquivoEmUso(ref _arquivo);
+            return base.ObterProceduresASeremExecutadas(_arquivo).Concat(ObterProceduresFG05(_arquivo.tipoArquivo)).ToList();
         }
 
         public static IList<string> ObterProceduresFG05(TipoArquivo tipoArquivoTeste)
@@ -200,30 +203,30 @@ namespace Acelera.Testes
             return lista;
         }
 
-        public override void ValidarFGsAnteriores()
+        public override void ValidarFGsAnteriores(Arquivo _arquivo = null)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
-            base.ValidarFGsAnteriores();
+            base.ValidarFGsAnteriores(_arquivo);
 
             logger.EscreverBloco("Inicio da Validação da FG02.");
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
-            ValidarLogProcessamento(true, 1, base.ObterProceduresASeremExecutadas());
+            ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
+            ValidarLogProcessamento(_arquivo,true, 1, base.ObterProceduresASeremExecutadas());
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
-            ValidarTabelaDeRetornoFG01(arquivo);
+            ValidarTabelaDeRetornoFG01(_arquivo);
             logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             ValidarTeste();
             logger.EscreverBloco("Fim da FG02.");
         }
 
-        public void AjustaValoresParaFG02()
+        public void AjustaValoresParaFG02(Arquivo _arquivo)
         {
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+            if (_arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
             {
-                arquivo.AlterarLinha(0, "DT_EMISSAO", "20200101");
-                arquivo.AlterarLinha(0, "DT_EMISSAO_APOLICE", "20190101");
+                _arquivo.AlterarLinha(0, "DT_EMISSAO", "20200101");
+                _arquivo.AlterarLinha(0, "DT_EMISSAO_APOLICE", "20190101");
             }
 
         }

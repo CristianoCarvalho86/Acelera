@@ -85,9 +85,10 @@ namespace Acelera.Testes
             ValidarTabelaDeRetornoFG00(naoDeveEncontrar, validaQuantidadeErros, arquivo, codigosDeErroEsperados);
         }
 
-        public override void ValidarTabelaDeRetorno(Arquivo arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+
+        public override void ValidarTabelaDeRetorno(Arquivo _arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
-            ValidarTabelaDeRetornoFG00(naoDeveEncontrar, validaQuantidadeErros, arquivo, codigosDeErroEsperados);
+            ValidarTabelaDeRetornoFG00(naoDeveEncontrar, validaQuantidadeErros, _arquivo, codigosDeErroEsperados);
         }
 
         public void ValidarTabelaDeRetorno(params string[] codigosDeErroEsperados)
@@ -154,7 +155,7 @@ namespace Acelera.Testes
             return lista;
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas()
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null)
         {
             return ObterProceduresFG00();
         }

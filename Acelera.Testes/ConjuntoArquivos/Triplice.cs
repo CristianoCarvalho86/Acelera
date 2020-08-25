@@ -34,8 +34,11 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         private IMyLogger logger;
 
-        public Triplice(int quantidadeCliente, IMyLogger logger)
+        protected List<string> _arquivosSalvos;
+
+        public Triplice(int quantidadeCliente, IMyLogger logger, ref List<string> arquivosSalvos)
         {
+            _arquivosSalvos = arquivosSalvos;
             controleNomeArquivo = ControleNomeArquivo.Instancia;
             ArquivoCliente = new T1();
             ArquivoParcEmissao = new T2();
@@ -210,6 +213,7 @@ namespace Acelera.Testes.ConjuntoArquivos
             arquivo.AtualizarNomeArquivoFinal(nomeArquivo);
             logger.FecharBloco();
             arquivo.valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, nomeArquivo);
+            _arquivosSalvos.Add(nomeArquivo);
         }
 
         protected string CarregarIdtransacao(LinhaArquivo linha)
