@@ -77,32 +77,35 @@ namespace Acelera.Testes
             return lista;
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas()
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
         {
-            return TestesFG00.ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList();
+            SetarArquivoEmUso(ref _arquivo);
+            return TestesFG00.ObterProceduresFG00().Concat(ObterProceduresFG01(_arquivo.tipoArquivo)).ToList();
         }
 
-        public virtual void ValidarFGsAnteriores() 
+        public virtual void ValidarFGsAnteriores(Arquivo _arquivo = null) 
         {
+            SetarArquivoEmUso(ref _arquivo);
+
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
             logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-            this.ValidarLogProcessamento(true,1, ObterProceduresFG00());
-            this.ValidarControleArquivo();
-            this.ValidarTabelaDeRetornoFG00();
+            ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
+            this.ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00());
+            this.ValidarControleArquivo(_arquivo);
+            this.ValidarTabelaDeRetornoFG00(false,false, _arquivo);
             this.ValidarStages(CodigoStage.AprovadoNAFG00);
             logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             logger.EscreverBloco("Inicio da FG01.");
             ValidarTeste();
         }
 
-        public override void ValidarTabelaDeRetorno(Arquivo arquivo = null, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(Arquivo _arquivo = null, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
-            arquivo = arquivo == null ? this.arquivo : arquivo;
-            ValidarTabelaDeRetornoFG01(arquivo,naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados);
+            _arquivo = arquivo == null ? this.arquivo : _arquivo;
+            ValidarTabelaDeRetornoFG01(_arquivo, naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados);
         }
 
         public void ValidarTabelaDeRetornoFG01(Arquivo _arquivo ,bool naoDeveEncontrar = false,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
@@ -127,10 +130,10 @@ namespace Acelera.Testes
             }
         }
 
-        public void ValidarFG01_2(Arquivo arquivo, CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = null)
+        public void ValidarFG01_2(Arquivo _arquivo, CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = null)
         {
-            ValidarTabelaDeRetorno(erroEsperadoNaTabelaDeRetorno);
-            ValidarStages(codigoEsperadoStage);
+            ValidarTabelaDeRetorno(_arquivo,erroEsperadoNaTabelaDeRetorno);
+            ValidarStages(codigoEsperadoStage,false, _arquivo);
         }
 
         public string ObterContratoPlanoB()

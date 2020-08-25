@@ -31,27 +31,30 @@ namespace Acelera.Testes
             Validar(codigoEsperadoStage, erroEsperadoNaTabelaDeRetorno, qtdErrosNaTabelaDeRetorno);
         }
        
-        protected void ExecutarEValidarApenasFg09(Arquivo arquivo, string falhaEsperada = "")
+        protected void ExecutarEValidarApenasFg09(Arquivo _arquivo, string falhaEsperada = "")
         {
+            SetarArquivoEmUso(ref _arquivo);
             ExecutarEValidar(arquivo, FGs.FG09, FGs.FG09.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(falhaEsperada)), falhaEsperada);
-            ValidarLogProcessamento(true, 1, ObterProceduresFG00());
-            ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
-            .Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList());
+            ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00());
+            ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(_arquivo.tipoArquivo)).Concat(ObterProceduresFG02(_arquivo.tipoArquivo))
+            .Concat(ObterProceduresFG09(_arquivo.tipoArquivo)).ToList());
         }
 
-        protected override void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
+        protected override void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno, Arquivo _arquivo = null)
         {
-            ValidarFGsAnteriores();
+            SetarArquivoEmUso(ref _arquivo);
+            ValidarFGsAnteriores(_arquivo);
 
             //Executar FG09
-            ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG09Enum().ObterTexto());
+            ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG09Enum().ObterTexto());
 
-            ValidarDesconsiderandoErro(codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
+            ValidarDesconsiderandoErro(_arquivo,codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas()
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null)
         {
-            return base.ObterProceduresASeremExecutadas().Where(x => !ObterProceduresFG05(arquivo.tipoArquivo).Contains(x)).Concat(ObterProceduresFG09(arquivo.tipoArquivo)).ToList();
+            SetarArquivoEmUso(ref _arquivo);
+            return base.ObterProceduresASeremExecutadas().Where(x => !ObterProceduresFG05(_arquivo.tipoArquivo).Contains(x)).Concat(ObterProceduresFG09(_arquivo.tipoArquivo)).ToList();
         }
 
         protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false,int qtdParcelas = 1, string nrParcela = ""

@@ -53,23 +53,24 @@ namespace Acelera.Testes
         public override void CarregarTriplice(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
-                triplice = new TripliceLASA(1, logger);
+                triplice = new TripliceLASA(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.SOFTBOX)
-                triplice = new TripliceSoftbox(1, logger);
+                triplice = new TripliceSoftbox(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.POMPEIA)
-                triplice = new TriplicePOMPEIA(1, logger);
+                triplice = new TriplicePOMPEIA(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.VIVO)
-                triplice = new TripliceVIVO(1, logger);
+                triplice = new TripliceVIVO(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.TIM)
-                triplice = new TripliceTIM(1, logger);
+                triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.QUEROQUERO)
-                triplice = new TripliceQUEROQUERO(1, logger);
+                triplice = new TripliceQUEROQUERO(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.PITZI)
-                triplice = new TriplicePITZI(1, logger);
+                triplice = new TriplicePITZI(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.AGREGUE)
-                triplice = new TripliceAGREGUE(1, logger);
+                triplice = new TripliceAGREGUE(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.AGREGUEDEALERS)
-                triplice = new TripliceAGREGUEDEALERS(1, logger);
+                triplice = new TripliceAGREGUEDEALERS(1, logger, ref arquivosSalvos);
+            
         }
 
         protected void AlteracoesPadraoDaTrinca(ITriplice triplice, bool geraCliente = true, bool geraArquivoCapa = true)

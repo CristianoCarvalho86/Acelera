@@ -25,16 +25,17 @@ namespace Acelera.Testes
         {
         }
 
-        public void SelecionarLinhaParaValidacao(int posicaoLinha, bool semHeaderOuFooter = false)
+        public void SelecionarLinhaParaValidacao(int posicaoLinha, bool semHeaderOuFooter = false, Arquivo _arquivo = null)
         {
-            var linhaParaValidacao = arquivo.ObterLinha(posicaoLinha);
+            _arquivo = _arquivo == null ? arquivo : _arquivo;
+            var linhaParaValidacao = _arquivo.ObterLinha(posicaoLinha);
             logger.AbrirBloco($"Linha Selecionada para validacao : linha {posicaoLinha}");
             logger.LinhaEmBranco();
             logger.Escrever("Valores da Linha :" + linhaParaValidacao.ObterTexto());
             logger.Escrever(Environment.NewLine);
             logger.FecharBloco();
 
-            AdicionaAlteracao(arquivo.valoresAlteradosBody, linhaParaValidacao, posicaoLinha,"","",0,semHeaderOuFooter);
+            AdicionaAlteracao(_arquivo.NomeArquivo,_arquivo.valoresAlteradosBody, linhaParaValidacao, posicaoLinha,"","",0,semHeaderOuFooter);
         }
 
         public void AlterarNomeArquivo()
@@ -45,7 +46,7 @@ namespace Acelera.Testes
             logger.Escrever(Environment.NewLine);
             logger.FecharBloco();
 
-            AdicionaAlteracao(arquivo.valoresAlteradosBody, linhaParaValidacao, 0, "", "", 0, false, true);
+            AdicionaAlteracao(arquivo.NomeArquivo,arquivo.valoresAlteradosBody, linhaParaValidacao, 0, "", "", 0, false, true);
         }
 
         public LinhaArquivo ObterLinha(int posicaoLinha)
@@ -69,7 +70,7 @@ namespace Acelera.Testes
 
             var campoAlterado = linhaAlterada.ObterCampoDoBanco(campo).Coluna;
 
-            AdicionaAlteracao(arquivo.valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
+            AdicionaAlteracao(arquivo.NomeArquivo, arquivo.valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
         }
         public void AlterarLinhaSeHouver(int posicaoLinha, string campo, string valorNovo)
         {
@@ -95,7 +96,7 @@ namespace Acelera.Testes
             if (validaAlteracao)
             {
                 var campoAlterado = linhaAlterada.ObterCampoDoBanco(campo).Coluna;
-                AdicionaAlteracao(arquivo.valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
+                AdicionaAlteracao(arquivo1.NomeArquivo, arquivo1.valoresAlteradosBody, linhaAlterada, posicaoLinha, campoAlterado, valorNovo);
             }
         }
 
@@ -130,7 +131,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha de Header Atualizada :" + linhaAlterada.ObterTexto());
             logger.FecharBloco();
 
-            AdicionaAlteracao(arquivo.valoresAlteradosHeader, linhaAlterada, posicaoLinha, campo, valorNovo);
+            AdicionaAlteracao(arquivo.NomeArquivo,arquivo.valoresAlteradosHeader, linhaAlterada, posicaoLinha, campo, valorNovo);
             //SelecionarLinhaParaValidacao(0);
         }
 
@@ -145,7 +146,7 @@ namespace Acelera.Testes
             logger.Escrever("Valor Atualizado :" + linhaAlterada.ObterTexto());
             logger.FecharBloco();
 
-            AdicionaAlteracao(arquivo.valoresAlteradosFooter, linhaAlterada, posicaoLinha, campo, valorNovo);
+            AdicionaAlteracao(arquivo.NomeArquivo, arquivo.valoresAlteradosFooter, linhaAlterada, posicaoLinha, campo, valorNovo);
             SelecionarLinhaParaValidacao(0);
         }
 
@@ -189,7 +190,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaHeader(posicaoLinha).ObterTexto());
             arquivo.ReplicarHeader(quantidadeVezes, posicaoLinha);
 
-            AdicionaAlteracao(arquivo.valoresAlteradosHeader, arquivo.ObterLinhaHeader(), 0, "", "", quantidadeVezes, false);
+            AdicionaAlteracao(arquivo.NomeArquivo,arquivo.valoresAlteradosHeader, arquivo.ObterLinhaHeader(), 0, "", "", quantidadeVezes, false);
             logger.FecharBloco();
             
             SelecionarLinhaParaValidacao(0);
@@ -201,7 +202,7 @@ namespace Acelera.Testes
             logger.Escrever("Linha a ser replicada :" + arquivo.ObterLinhaFooter(posicaoLinha).ObterTexto());
             arquivo.ReplicarFooter(quantidadeVezes, posicaoLinha);
 
-            AdicionaAlteracao(arquivo.valoresAlteradosFooter, arquivo.ObterLinhaHeader(), 0, "", "", quantidadeVezes, false);
+            AdicionaAlteracao(arquivo.NomeArquivo, arquivo.valoresAlteradosFooter, arquivo.ObterLinhaHeader(), 0, "", "", quantidadeVezes, false);
             logger.FecharBloco();
             SelecionarLinhaParaValidacao(0);
         }
@@ -283,11 +284,11 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        private void AdicionaAlteracao(AlteracoesArquivo alteracoes, LinhaArquivo linhaAlterada, int posicaoLinha,
+        private void AdicionaAlteracao(string nomeArquivo,AlteracoesArquivo alteracoes, LinhaArquivo linhaAlterada, int posicaoLinha,
             string campo = "", string valor = "", int repeticoes = 0, bool semHeaderOuFooter = false , bool nomeArquivoAlterado = false)
         {
             var alteracao = new Alteracao(linhaAlterada, posicaoLinha);
-            alteracao.AdicionarAlteracao(campo, valor, arquivo.NomeArquivo);
+            alteracao.AdicionarAlteracao(campo, valor, nomeArquivo);
             alteracao.DefinirQtdRepeticoes(repeticoes);
             alteracao.DefinirSemHeaderOuFooter(semHeaderOuFooter);
             alteracao.DefinirAlteracaoNomeArquivo(nomeArquivoAlterado);

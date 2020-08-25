@@ -142,7 +142,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             }
         }
 
-        public void ValidarFGsAnterioresEErros( Arquivo arquivo, bool esperaSucesso = true)
+        public void ValidarFGsAnterioresEErros( Arquivo _arquivo, bool esperaSucesso = true)
         {
             var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2 , FGs.FG02, FGs.FG09 };
 
@@ -160,14 +160,14 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 if(fg == FGs.FG00)
                 {
                     ValidarControleArquivo();
-                    ValidarLogProcessamento(true, 1, ObterProceduresFG00());
+                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00());
                 }
                 else if(fg == FGs.FG01)
-                    ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList());
+                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList());
                 else if (fg == FGs.FG02)
-                    ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo)).ToList());
+                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo)).ToList());
                 else if (fg == FGs.FG09)
-                    ValidarLogProcessamento(true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
+                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
                         .Concat(TestesFG09.ObterProceduresFG09(arquivo.tipoArquivo)).ToList());
 
                 //ValidarTeste();

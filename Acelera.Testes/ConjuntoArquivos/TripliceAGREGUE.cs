@@ -13,7 +13,7 @@ namespace Acelera.Testes.ConjuntoArquivos
     [Serializable]
     public class TripliceAGREGUE : Triplice<Arquivo_Layout_9_4_Cliente, Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>
     {
-        public TripliceAGREGUE(int quantidadeCliente, IMyLogger logger) : base(quantidadeCliente, logger)
+        public TripliceAGREGUE(int quantidadeCliente, IMyLogger logger, ref List<string> arquivosSalvos) : base(quantidadeCliente, logger, ref arquivosSalvos)
         {
 
         }

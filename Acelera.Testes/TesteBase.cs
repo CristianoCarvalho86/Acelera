@@ -42,13 +42,16 @@ namespace Acelera.Testes
         protected string localDoErro = string.Empty;
         protected string pathOrigem;
         protected bool AoMenosUmComCodigoEsperado = false;
+        protected List<string> arquivosSalvos;
+        string idTeste = string.Empty;
         protected TipoArquivo tipoArquivoTeste { get; set; }
 
         protected OperadoraEnum operacaoDoTeste { get; set; }
 
         public TesteBase()
         {
-
+            arquivosSalvos = new List<string>();
+            idTeste = RandomNumber.GerarNumeroAleatorio(8);
         }
 
         protected string ObterArquivoOrigem(string nomeArquivo)
@@ -61,7 +64,7 @@ namespace Acelera.Testes
 
         private void CriarLog()
         {
-            var nomeArquivo = $"SAP-SP1-{numeroDoTeste}-{DateTime.Now.ToString("dd-MM")}-{operacao ?? "OPERACAO"}-{tipoArquivoTeste.ObterTexto()}-{numeroDoLote ?? "NLOTE"}.txt";
+            var nomeArquivo = $"SAP-SP1-{numeroDoTeste}-{idTeste}-{DateTime.Now.ToString("dd-MM")}-{operacao ?? "OPERACAO"}-{numeroDoLote ?? "NLOTE"}.txt";
             //if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
             //    logger = new Mock<IMyLogger>().Object;
             //else
@@ -88,14 +91,18 @@ namespace Acelera.Testes
 
         protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true, Arquivo _arquivo = null)
         {
-            _arquivo = _arquivo != null ? _arquivo : this.arquivo;
-            var nomeOriginalArquivo = _arquivo.NomeArquivo;
             if (!_nomeArquivo.Contains("/*R*/"))
             {
                 //nomeArquivo = _nomeArquivo.Replace("-","_") + "_" + nomeArquivo;// inclusao do nome da proc
-                SalvarArquivo();
+                if (_arquivo == null)
+                    SalvarArquivo();
+                else
+                    SalvarArquivo(_arquivo);
                 return;
             }
+
+            _arquivo = _arquivo != null ? _arquivo : this.arquivo;
+            var nomeOriginalArquivo = _arquivo.NomeArquivo;
 
             //_nomeArquivo = nomeDoTeste.Replace("-", "_") + _nomeArquivo;
             FinalizarAlteracaoArquivo(_arquivo);
@@ -107,6 +114,7 @@ namespace Acelera.Testes
                 ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
 
             _arquivo.valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, _arquivo.NomeArquivo);
+            arquivosSalvos.Add(_arquivo.NomeArquivo);
         }
 
         protected void LimparValidacao()

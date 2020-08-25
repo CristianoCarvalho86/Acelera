@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste1_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG06", "Teste1-FG06");
-            triplice = new TripliceVIVO(1, logger);
+            triplice = new TripliceVIVO(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.VIVO);
             triplice.Salvar();
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste2_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste2-FG06", "Teste2-FG06");
-            triplice = new TripliceLASA(1, logger);
+            triplice = new TripliceLASA(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.LASA);
             triplice.Salvar();
             ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
@@ -70,7 +70,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste3_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste3-FG06", "Teste1-FG06");
-            triplice = new TriplicePOMPEIA(1, logger);
+            triplice = new TriplicePOMPEIA(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.POMPEIA);
 
             //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
@@ -96,7 +96,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - LASA - CLI rejeitado, PARC sucesso e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste4-FG06", "Teste4-FG06");
-            triplice = new TripliceLASA(1, logger);
+            triplice = new TripliceLASA(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.LASA);
             triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");
             triplice.Salvar(true, true, false);
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - SOFTBOX - CLI rejeitado, PARC ñ enviado e CMS sucesso
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste5-FG06", "Teste1-FG06");
-            triplice = new TripliceSoftbox(1, logger);
+            triplice = new TripliceSoftbox(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.SOFTBOX);
             triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");//Rejeitar na 02
             triplice.Salvar(true, false);
@@ -189,7 +189,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI rejeitado, PARC sucesso e CMS sucesso - apenas dupla - emissão capa
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste12-FG06", "Teste12-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             //triplice.ArquivoParcEmissao.Carregar()
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
@@ -210,7 +210,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC rejeitado e CMS sucesso - apenas dupla - emissão capa
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste13-FG06", "Teste13-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
@@ -233,7 +233,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI rejeitado, PARC rejeitado e CMS sucesso - apenas dupla - emissão capa
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste14-FG06", "Teste14-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             triplice.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
@@ -255,7 +255,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI rejeitado, PARC sucesso e CMS rejeitado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste15-FG06", "Teste15-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
@@ -303,7 +303,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC ñ enviado e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste16-FG06", "Teste16-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             triplice.Salvar(true, false, false);
@@ -320,7 +320,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ////FG 06 - Cancelamento - TIM - CLI sucesso, PARC rejeitado e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste17_FG06", "Teste17_FG06");
 
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
@@ -369,7 +369,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //FG 06 - Emissão - TIM - CLI ñ sucesso, PARC rejeitado e CMS sucesso - apenas dupla
 
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste18-FG06", "Teste18-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             triplice.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
@@ -391,7 +391,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG06 - Emissão - TIM - CLI sucesso, PARC rejeitado e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste19_FG06", "Teste19_FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
@@ -428,7 +428,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC sucesso e CMS rejeitado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste15-FG06", "Teste15-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
@@ -476,7 +476,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste21_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste21-FG06", "Teste21-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             arquivo = triplice.ArquivoComissao;
@@ -501,7 +501,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste22_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste22-FG06", "Teste22-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             arquivo = triplice.ArquivoComissao;
@@ -528,7 +528,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI ñ enviado, PARC sucesso e CMS sucesso - apenas dupla
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste23-FG06", "Teste23-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             triplice.Salvar(false,true,false);
@@ -544,7 +544,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC ñ enviado e CMS sucesso
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste24-FG06", "Teste24-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
@@ -575,7 +575,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste25_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste25-FG06", "Teste25-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             triplice.Salvar(true, false);
@@ -597,7 +597,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste26_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste26-FG06", "Teste26-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             triplice.Salvar(true, true, false);
@@ -621,7 +621,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //FG 06 - Cancelamento - TIM - CLI sucesso, PARC sucesso e CMS ñ enviado
 
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste27-FG06", "Teste27-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
@@ -666,7 +666,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste28_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste27-FG06", "Teste27-FG06");
-            triplice = new TripliceTIM(1, logger);
+            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
             arquivo = triplice.ArquivoParcEmissao;
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
