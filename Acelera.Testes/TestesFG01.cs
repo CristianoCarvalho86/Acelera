@@ -117,7 +117,7 @@ namespace Acelera.Testes
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetorno(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger,_arquivo);
+                var validador = new ValidadorTabelaRetorno(_arquivo.NomeArquivo, logger,_arquivo);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno , naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");

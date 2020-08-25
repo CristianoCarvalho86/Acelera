@@ -82,7 +82,7 @@ namespace Acelera.Testes
             {
                 AjustarEntradaErros(ref codigosDeErroEsperados);
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
-                var validador = new ValidadorTabelaRetorno(_arquivo.tipoArquivo.ObterTabelaStageEnum(), _arquivo.NomeArquivo, logger,_arquivo);
+                var validador = new ValidadorTabelaRetorno(_arquivo.NomeArquivo, logger,_arquivo);
 
                 if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
@@ -129,12 +129,13 @@ namespace Acelera.Testes
             }
         }
 
-        protected void ValidarTabelaDeRetornoSemGerarErro()
+        protected void ValidarTabelaDeRetornoSemGerarErro(Arquivo _arquivo = null)
         {
+            SetarArquivoEmUso(ref _arquivo);
             var statusAtualDoTeste = sucessoDoTeste;
             try
             {
-                ValidarTabelaDeRetorno();
+                ValidarTabelaDeRetorno(_arquivo);
                 sucessoDoTeste = statusAtualDoTeste;
             }
             catch (Exception ex)

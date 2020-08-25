@@ -143,7 +143,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             if (erro)
             {
-                //ExplodeFalha("ERRO ENCONTRADO NA VALIDAÇÃO DE INCLUSAO NAS TABELAS.");
+                ExplodeFalha("ERRO ENCONTRADO NA VALIDAÇÃO DE INCLUSAO NAS TABELAS.");
             }
         }
 
