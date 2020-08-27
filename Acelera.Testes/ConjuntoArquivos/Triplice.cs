@@ -208,12 +208,14 @@ namespace Acelera.Testes.ConjuntoArquivos
             if (arquivo.Header.Count > 0)
                 arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
-            logger.Escrever($"SALVANDO ARQUIVO NOME : {PastaDestino + nomeArquivo}");
-            arquivo.Salvar(PastaDestino + nomeArquivo);
+            var arquivoGerado = PastaDestino + arquivo.tipoArquivo.ObterPastaNoDestino() + "\\" + nomeArquivo;
+
+            logger.Escrever($"SALVANDO ARQUIVO NOME : {arquivoGerado}");
+            arquivo.Salvar(arquivoGerado);
             arquivo.AtualizarNomeArquivoFinal(nomeArquivo);
             logger.FecharBloco();
             arquivo.valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, nomeArquivo);
-            _arquivosSalvos.Add(nomeArquivo);
+            _arquivosSalvos.Add(arquivoGerado);
         }
 
         protected string CarregarIdtransacao(LinhaArquivo linha)

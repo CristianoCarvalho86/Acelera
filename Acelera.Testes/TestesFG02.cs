@@ -4,6 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Validadores;
+using Acelera.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -165,6 +166,20 @@ namespace Acelera.Testes
             SelecionarLinhaParaValidacao(0,false, _arquivo);
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaDaFG(fG));
 
+            ValidarTabelaDeRetorno(_arquivo, false, true, new string[] { cdMensagemNaTabelaDeRetorno });
+
+            return ValidarStages(_arquivo, deveHaverRegistro, (int)codigoEsperado);
+        }
+
+        public virtual IList<ILinhaTabela> ExecutarEValidarBatch(Arquivo _arquivo, string batch, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
+        {
+            SelecionarLinhaParaValidacao(0, false, _arquivo);
+            CommandUtils.RunBatch(batch, out string output, out string erro);
+
+            logger.Escrever($"EXECUÇÃO DA BAT : {Environment.NewLine}{output}");
+            if(!string.IsNullOrEmpty(erro))
+                TratarErro($"CONSOLE DE EXECUÇÃO DA BAT RETORNOU UM ERRO : {erro}");
+            
             ValidarTabelaDeRetorno(_arquivo, false, true, new string[] { cdMensagemNaTabelaDeRetorno });
 
             return ValidarStages(_arquivo, deveHaverRegistro, (int)codigoEsperado);

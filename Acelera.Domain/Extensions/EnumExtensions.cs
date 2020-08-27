@@ -90,6 +90,29 @@ namespace Acelera.Domain.Extensions
             }
         }
 
+        public static string ObterPastaNoDestino(this TipoArquivo tipoArquivo)
+        {
+            switch (tipoArquivo)
+            {
+                case TipoArquivo.Cliente:
+                    return "cliente";
+                case TipoArquivo.Comissao:
+                    return "emscms";
+                case TipoArquivo.ParcEmissao:
+                    return "parcems";
+                case TipoArquivo.ParcEmissaoAuto:
+                    return "parcemsauto";
+                case TipoArquivo.Sinistro:
+                    return "sinistro";
+                case TipoArquivo.OCRCobranca:
+                    return "cobranca";
+                case TipoArquivo.LanctoComissao:
+                    return "lctcms";
+                default:
+                    throw new Exception("Destino nao definido para o Enum TipoArquivo.");
+            }
+        }
+
         public static string ObterTarefaDaFG(this TipoArquivo tipoArquivo, FGs FGdaTarefa, bool ehEmissao = true)
         {
             switch (FGdaTarefa)

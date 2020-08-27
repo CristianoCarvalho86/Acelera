@@ -36,8 +36,8 @@ namespace Acelera.Testes
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoComissaoCancelamento);
 
             if (enviarParaOds)
             {

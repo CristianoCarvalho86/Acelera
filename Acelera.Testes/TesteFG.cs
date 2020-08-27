@@ -7,6 +7,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.DataAccessRep.ODS;
+using Acelera.Testes.Validadores;
 using Acelera.Testes.Validadores.FG02;
 using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -31,6 +32,23 @@ namespace Acelera.Testes
         {
             SetarArquivoEmUso(ref _arquivo);
             ValidarLogProcessamento(_arquivo, Sucesso, vezesExecutado, ObterProceduresASeremExecutadas(_arquivo));
+        }
+
+        public bool ValidarTabelaDeRetornoVazia(Arquivo _arquivo, bool deveHaverRegistros = true)
+        {
+            var validadorTabelaDeRetorno = new ValidadorTabelaRetorno(_arquivo.NomeArquivo, logger, _arquivo);
+            var linhasDaTabelaDeRetorno = validadorTabelaDeRetorno.RetornarRegistrosDaTabelaDeRetorno();
+            if (!deveHaverRegistros && linhasDaTabelaDeRetorno.Count > 0)
+            {
+                TratarErro($"FORAM ENCONTRADOS ERROS NA TABELA DE RETORNO : {linhasDaTabelaDeRetorno.Select(x => x.ObterPorColuna("CD_MENSAGEM").ValorFormatado).ObterListaConcatenada(" ,")}");
+                return false;
+            }
+            if (deveHaverRegistros && linhasDaTabelaDeRetorno.Count == 0)
+            {
+                TratarErro($"NAO FORAM ENCONTRADOS ERROS NA TABELA DE RETORNO - ERAM ESPERADOS ERROS");
+                return false;
+            }
+            return true;
         }
 
         protected void ValidarLogProcessamento(Arquivo _arquivo, bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
@@ -271,8 +289,8 @@ namespace Acelera.Testes
             {
                 if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                 {
-                    nomeArquivoDeLog = arqSalvo.ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
-                    File.Copy(Parametros.pastaDestino + arqSalvo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
+                    nomeArquivoDeLog = arqSalvo.Split('\\').Last().ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+                    File.Copy(arqSalvo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
                     logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
                     if (File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
                     {
@@ -282,14 +300,10 @@ namespace Acelera.Testes
                 }
             }
 
-
-
             //if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(Parametros.pastaLogArquivoCopia))
             //    File.Copy(pathOrigem, Parametros.pastaLogArquivoCopia + nomeArquivoDeLog);
 
-
-
-            var op = arquivosSalvos[0].Split('.').Take(2).Reverse().First().Replace(".", "");
+            var op = arquivosSalvos[0].Split('\\').Last().Split('.').Take(2).Reverse().First().Replace(".", "");
             if (op.Length > 10)
                 op = op.Substring(0, 10);
 
