@@ -111,6 +111,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
+            SalvarTrinca(true, true, true);
+
             ExecutarEValidarFG06(triplice,CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
 
             var triplice1 = triplice.Clone();
@@ -120,7 +122,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
 
-            SalvaExecutaEValidaFG07(false);
+            SalvarTrinca(false, true, true);
+
+            ExecutarEValidarFG06(triplice, null , CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
+
+            ExecutarFG07();
+            ValidarStageSucessoFG07(true,true, triplice1);
+            ValidarStageSucessoFG07(false, true, triplice);
+            ExecutarFG07_1();
+            var linhas1 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07_1,true, true, triplice1);
+            var linhas2 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07_1, false, true, triplice);
+
+            
+
+
         }
 
         [TestMethod]
