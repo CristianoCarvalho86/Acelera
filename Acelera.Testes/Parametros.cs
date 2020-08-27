@@ -47,6 +47,18 @@ namespace Acelera.Testes
                 return Convert.ToBoolean(temp);
             }
         }
+        
+        public static bool ExecutaPelaBat
+        {
+            get
+            {
+                var temp = ConfigurationManager.AppSettings.Get("ExecutaPelaBat");
+                if(string.IsNullOrEmpty(temp))
+                    throw new Exception("ExecutaPelaBat nao definido");
+
+                return Convert.ToBoolean(temp);
+            }
+        }
 
         public static bool logDataBaseResults
         {
