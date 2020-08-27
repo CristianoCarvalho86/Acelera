@@ -111,9 +111,8 @@ namespace Acelera.Testes
                     var arquivoCapa = triplice.ArquivoParcEmissao.Clone();
                     arquivoCapa.RemoverLinhaComAjuste(1);
                     SalvarArquivo(arquivoCapa);
+                    triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
                 }
-
-                triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
 
             }
 
