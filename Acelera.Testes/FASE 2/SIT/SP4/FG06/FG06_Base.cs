@@ -122,23 +122,23 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
         public void ValidarFGsAnterioresEErros()
         {
-            if (ClienteEnviado)
-                ExecutarEValidarBatch(triplice.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Cliente.ObterTexto(), CodigoStage.AprovadoNaFG01);
-            if (ParcelaEnviado)
-            {
-                BatEnumDia bat = triplice.EhParcAuto ? BatEnumDia.ParcEmissaoAuto : BatEnumDia.ParcEmissao;
-                ExecutarEValidarBatch(triplice.ArquivoParcEmissao, Parametros.PastaBatDia + bat.ObterTexto(), CodigoStage.AprovadoNaFG01);
-            }
-            if (ComissaoEnviado)
-            {
-                ExecutarEValidarBatch(triplice.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Comissao.ObterTexto(), CodigoStage.AprovadoNaFG01);
-            }
+            //if (ClienteEnviado)
+            //    ExecutarEValidarBatch(triplice.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Cliente.ObterTexto(), CodigoStage.AprovadoNaFG01);
+            //if (ParcelaEnviado)
+            //{
+            //    BatEnumDia bat = triplice.EhParcAuto ? BatEnumDia.ParcEmissaoAuto : BatEnumDia.ParcEmissao;
+            //    ExecutarEValidarBatch(triplice.ArquivoParcEmissao, Parametros.PastaBatDia + bat.ObterTexto(), CodigoStage.AprovadoNaFG01);
+            //}
+            //if (ComissaoEnviado)
+            //{
+            //    ExecutarEValidarBatch(triplice.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Comissao.ObterTexto(), CodigoStage.AprovadoNaFG01);
+            //}
 
             FGs[] listaFgs;
             if (!triplice.EhParcAuto)
-                listaFgs = new FGs[] {FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG02, FGs.FG05 };
+                listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG02, FGs.FG05 };
             else
-                listaFgs = new FGs[] {FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG02, FGs.FG05 };
+                listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG02, FGs.FG05 };
 
             foreach (var fg in listaFgs)
             {
@@ -153,9 +153,13 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             }
         }
 
-        public void ValidarFGsAnterioresEErros( Arquivo _arquivo, bool esperaSucesso = true)
+        public void ValidarFGsAnterioresEErros_Cancelamento( Arquivo _arquivo, bool esperaSucesso = true)
         {
-            var listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2 , FGs.FG02, FGs.FG09 };
+            FGs[] listaFgs;
+            if (!triplice.EhParcAuto)
+                listaFgs = new FGs[] {FGs.FG00, FGs.FG01,FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG02, FGs.FG09 };
+            else
+                listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG02, FGs.FG09 };
 
             foreach (var fg in listaFgs)
             {

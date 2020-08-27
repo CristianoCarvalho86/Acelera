@@ -27,8 +27,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             SalvarArquivo(arquivoComissaoCancelamento);
             
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoComissaoCancelamento);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto()) ;
             
@@ -50,8 +50,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             SalvarArquivo(arquivoComissaoCancelamento);
 
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento, false);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento, false);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoComissaoCancelamento);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
@@ -72,8 +72,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento, false);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoComissaoCancelamento, false);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
@@ -97,8 +97,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             SalvarArquivo(arquivoComissaoCancelamento);
 
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento,false);
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento,false);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento,false);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoComissaoCancelamento,false);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
@@ -119,7 +119,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             SalvarArquivo(arquivoComissaoCancelamento);
 
-            ValidarFGsAnterioresEErros(arquivoComissaoCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoComissaoCancelamento);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
@@ -138,7 +138,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             SalvarArquivo(arquivoParcCancelamento);
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             SalvarArquivo(arquivoParcCancelamento);
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento, false);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento, false);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
@@ -184,7 +184,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             SalvarArquivo(arquivoParcCancelamento);
 
-            ValidarFGsAnterioresEErros(arquivoParcCancelamento, false);
+            ValidarFGsAnterioresEErros_Cancelamento(arquivoParcCancelamento, false);
 
             ChamarExecucao(FG10_Tarefas.TrincaCancelamento.ObterTexto());
 
