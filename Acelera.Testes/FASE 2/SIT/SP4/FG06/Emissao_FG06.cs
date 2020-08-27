@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void SAP_5921()
         {
             //5921:FG06 - VIVO - CLI sucesso, PARC sucesso e CMS sucesso
-            InicioTesteFG06("5927", "", OperadoraEnum.VIVO);
+            InicioTesteFG06("5927", "", OperadoraEnum.POMPEIA);
 
             CriarEmissaoCompleta();
 

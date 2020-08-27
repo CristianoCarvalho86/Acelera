@@ -107,9 +107,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             ExecutarEValidarFG06EmissaoSucesso();
 
-            EnviarParaOds(triplice.ArquivoCliente, true,false, CodigoStage.AprovadoFG06);
-            EnviarParaOds(triplice.ArquivoComissao, true,false, CodigoStage.AprovadoFG06);
-            EnviarParaOds(triplice.ArquivoParcEmissao, true,false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(triplice.ArquivoCliente, true, false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(triplice.ArquivoComissao, true, false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(triplice.ArquivoParcEmissao, true, false, CodigoStage.AprovadoFG06);
         }
 
         protected void CriarCancelamento(bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
