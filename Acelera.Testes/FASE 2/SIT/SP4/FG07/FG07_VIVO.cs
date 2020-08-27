@@ -179,8 +179,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_3_Cliente();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.CLIENTE-EV-702-20190320.txt"));
+
+            var cliente = GerarNumeroAleatorio(8);
+            AlterarLinha(0, "CD_CLIENTE", cliente);
             SalvarArquivo(arquivo);
 
+            var arquivoCliente = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1844-20200206.txt"));
@@ -192,10 +196,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AlterarTodasAsLinhas("CD_CONTRATO", contrato);
             AlterarTodasAsLinhas("NR_APOLICE", contrato);
             AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
+            AlterarTodasAsLinhas("CD_CLIENTE", cliente);
             AjustarQtdLinFooter();
 
             SalvarArquivo(arquivo);
-            
+
+            var arquivoParc = arquivo.Clone();
+
 
             arquivo = new Arquivo_Layout_9_3_EmsComissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.EMSCMS-EV-1845-20200206.txt"));
@@ -206,6 +213,35 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AjustarQtdLinFooter();
 
             SalvarArquivo(arquivo);
+
+            var arquivoComissao = arquivo.Clone();
+
+            ExecutarEValidar(arquivoCliente, FGs.FG00 , FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoCliente, FGs.FG01, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoCliente, FGs.FG01_2, FGs.FG01_2.ObterCodigoDeSucessoOuFalha(true));
+
+            ExecutarEValidar(arquivoComissao, FGs.FG00, FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoComissao, FGs.FG01, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoComissao, FGs.FG01_2, FGs.FG01_2.ObterCodigoDeSucessoOuFalha(true));
+
+            ExecutarEValidar(arquivoParc, FGs.FG00, FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoParc, FGs.FG01, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoParc, FGs.FG01_2, FGs.FG01_2.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoParc, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO.ObterCodigoDeSucessoOuFalha(true));
+
+
+            ExecutarEValidar(arquivoCliente, FGs.FG02, FGs.FG02.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoCliente, FGs.FG05, FGs.FG02.ObterCodigoDeSucessoOuFalha(true));
+
+            ExecutarEValidar(arquivoParc, FGs.FG02, FGs.FG02.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoParc, FGs.FG05, FGs.FG02.ObterCodigoDeSucessoOuFalha(true));
+
+            
+            ExecutarEValidar(arquivoComissao, FGs.FG02, FGs.FG02.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoComissao, FGs.FG05, FGs.FG02.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoComissao, FGs.FG06, FGs.FG06.ObterCodigoDeSucessoOuFalha(true));
+            ExecutarEValidar(arquivoComissao, FGs.FG07, FGs.FG07.ObterCodigoDeSucessoOuFalha(true));
+
         }
 
     }
