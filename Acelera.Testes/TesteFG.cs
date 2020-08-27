@@ -292,8 +292,8 @@ namespace Acelera.Testes
                     logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
                     if (File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
                     {
-                        File.Delete(Parametros.pastaDestino + arqSalvo);
-                        logger.EscreverBloco("Arquivo deletado : " + Parametros.pastaDestino + arqSalvo);
+                        File.Delete(arqSalvo);
+                        logger.EscreverBloco("Arquivo deletado : " + arqSalvo);
                     }
                 }
             }

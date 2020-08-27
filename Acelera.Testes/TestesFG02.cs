@@ -53,6 +53,16 @@ namespace Acelera.Testes
                 base.ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01_1_Enum().ObterTexto());
                 logger.EscreverBloco("Fim da Execução da FG01_1. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             }
+
+            var fgDTEmissao = _arquivo.NomeArquivo.Contains(TipoArquivo.ParcEmissaoAuto.ObterPrefixoOperadoraNoArquivo()) ? 
+                FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO : FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA;
+
+            logger.EscreverBloco($"Inicio da Execução da {fgDTEmissao.ObterTexto()}.");
+            ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaDaFG(fgDTEmissao));
+            base.ValidarStages(fgDTEmissao.ObterCodigoDeSucessoOuFalha(true));
+            ValidarTabelaDeRetornoFG01(_arquivo);
+            logger.EscreverBloco($"Fim da Execução da {fgDTEmissao.ObterTexto()}. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
+
             logger.EscreverBloco("Inicio da Execução da FG01_2.");
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
             base.ValidarStages(CodigoStage.AprovadoNaFG01_2);
