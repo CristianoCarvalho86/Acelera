@@ -113,6 +113,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             SalvarTrinca(true, true, true);
 
+            ValidarFGsAnterioresEErros();
             ExecutarEValidarFG06(triplice,CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
 
             var triplice1 = triplice.Clone();
@@ -124,6 +125,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             SalvarTrinca(false, true, true);
 
+            ValidarFGsAnterioresEErros();
             ExecutarEValidarFG06(triplice, null , CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
 
             ExecutarFG07();
