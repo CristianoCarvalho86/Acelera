@@ -133,7 +133,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             var linhas1 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07_1,true, true, triplice1);
             var linhas2 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07_1, false, true, triplice);
 
-            
+            ValidaXmlFG07(linhas1, false);
+            ValidaXmlFG07(linhas2, false);
 
 
         }

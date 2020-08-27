@@ -7,6 +7,8 @@ using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Layouts._9_3
 {
+    [Serializable]
+
     public class Arquivo_Layout_9_3_ParcEmissao : Arquivo
     {
         public override TipoArquivo tipoArquivo => TipoArquivo.ParcEmissao;

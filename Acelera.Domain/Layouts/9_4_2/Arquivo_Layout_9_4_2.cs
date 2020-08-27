@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Layouts._9_4_2
 {
+    [Serializable]
+
     public class Arquivo_Layout_9_4_2 : Arquivo
     {
         public override TipoArquivo tipoArquivo => TipoArquivo.Sinistro;

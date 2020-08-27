@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Layouts._9_4
 {
+    [Serializable]
     public class Arquivo_Layout_9_4_Cliente : Arquivo
     {
         public override TipoArquivo tipoArquivo => TipoArquivo.Cliente;
