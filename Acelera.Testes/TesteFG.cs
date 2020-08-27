@@ -218,7 +218,7 @@ namespace Acelera.Testes
 
         protected void AjustarEntradaErros(ref string[] erros)
         {
-            if (erros == null || (erros.Length == 1 && erros.Contains(string.Empty)))
+            if (erros == null || (erros.Length == 1 && (erros.Contains(string.Empty) || erros.Contains(null))))
                 erros = new string[] { };
 
         }
