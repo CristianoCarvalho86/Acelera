@@ -4,6 +4,7 @@ using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
+using Acelera.Testes.Repositorio;
 using Acelera.Testes.Validadores;
 using System;
 using System.Collections.Generic;
@@ -17,72 +18,7 @@ namespace Acelera.Testes
     {
         protected override string NomeFG => "FG01";
 
-        public static IList<string> ObterProceduresFG01(TipoArquivo tipoArquivoTeste)
-        {
-            var lista = new List<string>();
-            switch (tipoArquivoTeste)
-            {
-                case TipoArquivo.Cliente:
-                    lista.Add("PRC_0008");
-                    lista.Add("PRC_0041");
-                    lista.Add("PRC_0126");
-                    //lista.Add("PRC_0022"); PASSAR PRA 1_2
-                    break;
-                case TipoArquivo.ParcEmissao:
-                    lista.Add("PRC_0014");
-                    lista.Add("PRC_0015");
-                    lista.Add("PRC_0126");
-                    lista.Add("PRC_0010");
-                    //lista.Add("PRC_200000");
-                    //lista.Add("PRC_0022");
-                    break;
-
-                case TipoArquivo.ParcEmissaoAuto:
-                    lista.Add("PRC_0008");
-                    lista.Add("PRC_0014");
-                    lista.Add("PRC_0015");
-                    lista.Add("PRC_0126");
-                    lista.Add("PRC_0213");
-                    lista.Add("PRC_0010");
-                    //lista.Add("PRC_200000");
-                    //lista.Add("PRC_0022");
-                    break;
-                case TipoArquivo.Comissao:
-                    //lista.Add("PRC_0022");
-                    //lista.Add("PRC_200000");
-                    break;
-                case TipoArquivo.LanctoComissao:
-                case TipoArquivo.OCRCobranca:
-                    //lista.Add("PRC_200000");
-                    break;
-                case TipoArquivo.Sinistro:
-                    lista.Add("PRC_0008");
-                    lista.Add("PRC_0062");
-                    lista.Add("PRC_0066");
-                    lista.Add("PRC_0126");
-                    //lista.Add("PRC_200000");
-                    lista.Add("PRC_0074");
-                    //lista.Add("PRC_0022");
-                    break;
-                default:
-                    throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
-
-            }
-            lista.Add("PRC_0110");
-            lista.Add("PRC_0001");
-            lista.Add("PRC_0005");
-            lista.Add("PRC_0006");
-            lista.Add("PRC_0007");
-
-            return lista;
-        }
-
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
-        {
-            SetarArquivoEmUso(ref _arquivo);
-            return TestesFG00.ObterProceduresFG00().Concat(ObterProceduresFG01(_arquivo.tipoArquivo)).ToList();
-        }
-
+        
         public virtual void ValidarFGsAnteriores(Arquivo _arquivo = null) 
         {
             SetarArquivoEmUso(ref _arquivo);
@@ -93,7 +29,7 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-            this.ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00());
+            this.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo));
             this.ValidarControleArquivo(_arquivo);
             this.ValidarTabelaDeRetornoFG00(false,false, _arquivo);
             this.ValidarStages(CodigoStage.AprovadoNAFG00);
@@ -134,6 +70,11 @@ namespace Acelera.Testes
         {
             ValidarTabelaDeRetorno(_arquivo,erroEsperadoNaTabelaDeRetorno);
             ValidarStages(codigoEsperadoStage,false, _arquivo);
+        }
+
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        {
+            return RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo);
         }
 
         public string ObterContratoPlanoB()

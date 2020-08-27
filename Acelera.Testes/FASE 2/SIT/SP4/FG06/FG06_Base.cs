@@ -8,6 +8,7 @@ using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.Repositorio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -175,15 +176,10 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 if(fg == FGs.FG00)
                 {
                     ValidarControleArquivo();
-                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00());
                 }
-                else if(fg == FGs.FG01)
-                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).ToList());
-                else if (fg == FGs.FG02)
-                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo)).ToList());
-                else if (fg == FGs.FG09)
-                    ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(arquivo.tipoArquivo)).Concat(ObterProceduresFG02(arquivo.tipoArquivo))
-                        .Concat(TestesFG09.ObterProceduresFG09(arquivo.tipoArquivo)).ToList());
+
+                if (RepositorioProcedures.FgsQueRodamProcedures.Contains(fg))
+                    ValidarLogProcessamento(arquivo, true, 1, RepositorioProcedures.ObterProcedures(fg, arquivo.tipoArquivo));
 
                 //ValidarTeste();
             }
@@ -213,11 +209,18 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             if (sucesso || fg == FGs.FG00 || fg == FGs.FG01 || fg == FGs.FG01_2)
             {
                 ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
+                if (fg == FGs.FG00)
+                {
+                    ValidarControleArquivo();
+                }
             }
             else if (fg == FGs.FG02)
             {
                 ExecutarEValidarEsperandoErro(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(false));
             }
+            if(RepositorioProcedures.FgsQueRodamProcedures.Contains(fg))
+                ValidarLogProcessamento(arquivo, true, 1, RepositorioProcedures.ObterProcedures(fg, arquivo.tipoArquivo));
+
         }
 
         public void CarregarCancelamento(int indexLinhaArquivoEmissao, bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,

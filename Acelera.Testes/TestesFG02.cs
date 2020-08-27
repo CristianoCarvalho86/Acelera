@@ -3,6 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.Repositorio;
 using Acelera.Testes.Validadores;
 using Acelera.Utils;
 using System;
@@ -42,7 +43,7 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG01.");
             //PROCESSAR O ARQUIVO CRIADO
             base.ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
-            base.ValidarLogProcessamento(_arquivo,true, 1, base.ObterProceduresASeremExecutadas(_arquivo));
+            base.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01,_arquivo.tipoArquivo));
             base.ValidarStages(CodigoStage.AprovadoNaFG01,false, _arquivo);
             ValidarTabelaDeRetornoFG01(_arquivo);
             logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
@@ -61,12 +62,6 @@ namespace Acelera.Testes
 
             ValidarTeste();
             logger.EscreverBloco("Inicio da FG02.");
-        }
-
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null)
-        {
-            SetarArquivoEmUso(ref _arquivo);
-            return base.ObterProceduresASeremExecutadas(_arquivo).Concat(ObterProceduresFG02(_arquivo.tipoArquivo)).ToList();
         }
 
         public void ValidarTabelaDeRetorno(bool naoDeveEncontarOsErrosDefinidos, params string[] codigosDeErroEsperados)
@@ -189,15 +184,15 @@ namespace Acelera.Testes
         {
             ExecutarEValidar(_arquivo, FGs.FG00, FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
             ValidarControleArquivo();
-            ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00());
+            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo));
 
             ExecutarEValidar(_arquivo, FGs.FG01, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));
-            ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(_arquivo.tipoArquivo)).ToList());
+            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo));
 
             ExecutarEValidar(_arquivo, FGs.FG01_2, FGs.FG01_2.ObterCodigoDeSucessoOuFalha(true));
 
             ExecutarEValidar(_arquivo, FGs.FG02, FGs.FG02.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(mensagemErroNaTabelaDeRetorno)), mensagemErroNaTabelaDeRetorno);
-            ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(_arquivo.tipoArquivo)).Concat(ObterProceduresFG02(_arquivo.tipoArquivo)).ToList());
+            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo));
 
             ValidarTeste();
         }
@@ -232,181 +227,10 @@ namespace Acelera.Testes
             return linhas;
         }
 
-        #region Procedures
-        public static IList<string> ObterProceduresFG02(TipoArquivo tipoArquivoTeste)
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
         {
-            var lista = new List<string>();
-            lista.Add("PRC_0022");
-            switch (tipoArquivoTeste)
-            {
-                case TipoArquivo.Cliente:
-                    lista.Add("PRC_0035");
-                    lista.Add("PRC_1039");
-                    lista.Add("PRC_1040");
-                    lista.Add("PRC_1041");
-                    lista.Add("PRC_0267");
-
-                    break;
-                case TipoArquivo.ParcEmissao:
-                    lista.Add("PRC_0011");
-                    lista.Add("PRC_0013");
-                    lista.Add("PRC_0016");
-                    lista.Add("PRC_0018");
-                    lista.Add("PRC_0019");
-                    lista.Add("PRC_0020");
-                    lista.Add("PRC_0033");
-                    lista.Add("PRC_0035");
-                    lista.Add("PRC_0023");
-                    lista.Add("PRC_0024");
-                    lista.Add("PRC_0025");
-                    lista.Add("PRC_0026");
-                    lista.Add("PRC_0028");
-                    lista.Add("PRC_0032");
-                    lista.Add("PRC_0034");
-                    lista.Add("PRC_0107");
-                    lista.Add("PRC_0120");
-                    lista.Add("PRC_0122");
-                    lista.Add("PRC_0123");
-                    lista.Add("PRC_0127");
-                    lista.Add("PRC_0155");
-                    lista.Add("PRC_0162");
-                    lista.Add("PRC_0191");
-                    lista.Add("PRC_0215");
-                    lista.Add("PRC_0223");
-                    lista.Add("PRC_1002");
-                    lista.Add("PRC_1003");
-                    lista.Add("PRC_1024");
-                    lista.Add("PRC_1046");
-                    lista.Add("PRC_1048");
-                    lista.Add("PRC_1056");
-                    lista.Add("PRC_1065");
-                    lista.Add("PRC_1067");
-                    lista.Add("PRC_1083");
-                    //lista.Add("PRC_1091");
-                    lista.Add("PRC_1092");
-                    lista.Add("PRC_1182");
-                    lista.Add("PRC_1183");
-                    lista.Add("PRC_1184");
-
-                    break;
-
-                case TipoArquivo.ParcEmissaoAuto:
-                    lista.Add("PRC_0011");
-                    lista.Add("PRC_0013");
-                    lista.Add("PRC_0016");
-                    lista.Add("PRC_0018");
-                    lista.Add("PRC_0019");
-                    lista.Add("PRC_0020");
-                    lista.Add("PRC_0033");
-                    lista.Add("PRC_0035");
-                    lista.Add("PRC_0023");
-                    lista.Add("PRC_0024");
-                    lista.Add("PRC_0025");
-                    lista.Add("PRC_0026");
-                    lista.Add("PRC_0028");
-                    lista.Add("PRC_0032");
-                    lista.Add("PRC_0034");
-                    lista.Add("PRC_0107");
-                    lista.Add("PRC_0120");
-                    lista.Add("PRC_0122");
-                    lista.Add("PRC_0123");
-                    lista.Add("PRC_0127");
-                    lista.Add("PRC_0155");
-                    lista.Add("PRC_0162");
-                    lista.Add("PRC_0191");
-                    lista.Add("PRC_0215");
-                    lista.Add("PRC_0223");
-                    lista.Add("PRC_1002");
-                    lista.Add("PRC_1003");
-                    lista.Add("PRC_1024");
-                    lista.Add("PRC_1046");
-                    lista.Add("PRC_1048");
-                    lista.Add("PRC_1056");
-                    lista.Add("PRC_1065");
-                    lista.Add("PRC_1067");
-                    lista.Add("PRC_1083");
-                    //lista.Add("PRC_1091");
-                    lista.Add("PRC_1092");
-                    lista.Add("PRC_1182");
-                    lista.Add("PRC_1183");
-                    lista.Add("PRC_1184");
-                    break;
-                case TipoArquivo.Comissao:
-                    lista.Add("PRC_0033");
-                    lista.Add("PRC_0035");
-                    lista.Add("PRC_0024");
-                    lista.Add("PRC_0025");
-                    lista.Add("PRC_0052");
-                    lista.Add("PRC_0218");
-                    lista.Add("PRC_1048");
-                    lista.Add("PRC_0108");
-                    lista.Add("PRC_0034");
-                    //lista.Add("PRC_1049");
-                    //lista.Add("PRC_1111");
-                    break;
-
-                case TipoArquivo.LanctoComissao:
-                    lista.Add("PRC_0033");
-                    lista.Add("PRC_0035");
-                    lista.Add("PRC_0026");
-                    lista.Add("PRC_0124");
-                    lista.Add("PRC_1190");
-                    //lista.Add("PRC_1191");
-                    lista.Add("PRC_1193");
-                    break;
-                case TipoArquivo.OCRCobranca:
-                    lista.Add("PRC_0033");
-                    lista.Add("PRC_0035");
-                    lista.Add("PRC_1167");
-                    lista.Add("PRC_0124");
-                    lista.Add("PRC_0034");
-
-                    break;
-                case TipoArquivo.Sinistro:
-                    lista.Add("PRC_0033");
-                    lista.Add("PRC_0035");
-                    lista.Add("PRC_0023");
-                    lista.Add("PRC_0024");
-                    lista.Add("PRC_0025");
-                    lista.Add("PRC_0026");
-                    //lista.Add("PRC_0027");
-                    //lista.Add("PRC_0070");
-                    lista.Add("PRC_0080");
-                    //lista.Add("PRC_0081");
-                    //lista.Add("PRC_0082");
-                    lista.Add("PRC_0085");
-                    lista.Add("PRC_0086");
-                    lista.Add("PRC_0087");
-                    lista.Add("PRC_0088");
-                    //lista.Add("PRC_0107");
-                    lista.Add("PRC_0111");
-                    lista.Add("PRC_0119");
-                    lista.Add("PRC_0120");
-                    //lista.Add("PRC_0128");
-                    lista.Add("PRC_0130");
-                    lista.Add("PRC_0131");
-                    lista.Add("PRC_0132");
-                    lista.Add("PRC_0164");
-                    lista.Add("PRC_0176");
-                    lista.Add("PRC_0177");
-                    lista.Add("PRC_0178");
-                    //lista.Add("PRC_0181");
-                    lista.Add("PRC_0182");
-                    lista.Add("PRC_0184");
-                    lista.Add("PRC_0185");
-                    lista.Add("PRC_1048");
-                    //lista.Add("PRC_0129");
-                    lista.Add("PRC_0267");
-
-                    break;
-                default:
-                    throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
-
-            }
-
-            return lista;
+            return RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo);
         }
-        #endregion
 
     }
 }

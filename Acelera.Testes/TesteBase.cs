@@ -44,6 +44,8 @@ namespace Acelera.Testes
         protected bool AoMenosUmComCodigoEsperado = false;
         protected List<string> arquivosSalvos;
         string idTeste = string.Empty;
+
+        protected abstract IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo);
         protected TipoArquivo tipoArquivoTeste { get; set; }
 
         protected OperadoraEnum operacaoDoTeste { get; set; }

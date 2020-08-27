@@ -400,6 +400,7 @@
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC48\PROC48_Layout94_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC50\PROC50_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC97\PROC97_Layout94_Softbox.cs" />
+    <Compile Include="Repositorio\RepositorioProcedures.cs" />
     <Compile Include="TestesFG08.cs" />
     <Compile Include="TestesFG13.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC47\PROC47_Layout94_POMPEIA.cs" />
