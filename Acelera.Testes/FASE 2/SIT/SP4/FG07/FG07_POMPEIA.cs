@@ -111,11 +111,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
-            SalvaExecutaEValidaFG07();
+            ExecutarEValidarFG06(triplice,CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
 
-            LimparValidacao();
-
-            EnviarParaOds(triplice.ArquivoCliente, false, false,CodigoStage.AprovadoFG07);
+            var triplice1 = triplice.Clone();
 
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
             triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
