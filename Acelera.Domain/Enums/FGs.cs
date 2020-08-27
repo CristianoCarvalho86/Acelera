@@ -13,12 +13,14 @@ namespace Acelera.Domain.Enums
         FG00,
         [Description("FGR_01")]
         FG01,
-        [Description("FGR_01_2")]
-        FG01_2,
         [Description("FGR_DT_EMISSAO_MES_CONTABIL_PARCELA")]
         FGR_DT_EMISSAO_MES_CONTABIL_PARCELA,
         [Description("FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO")]
         FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO,
+        [Description("FGR_01_1")]
+        FG01_1,
+        [Description("FGR_01_2")]
+        FG01_2,
         [Description("FGR_02")]
         FG02,
         [Description("FGR_03")]

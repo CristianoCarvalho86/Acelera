@@ -81,12 +81,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
                 throw new Exception("TIPO ARQUIVO NAO DEFINIDO.");
         }
 
-        protected void SalvarTrinca(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true)
+        protected void SalvarTrinca(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true, ITriplice _triplice = null)
         {
+            _triplice = _triplice == null ? triplice : _triplice;
             ClienteEnviado = salvaCliente;
             ParcelaEnviado = salvaParcela;
             ComissaoEnviado = salvaComissao;
-            triplice.Salvar(salvaCliente, salvaParcela, salvaComissao);
+            _triplice.Salvar(salvaCliente, salvaParcela, salvaComissao);
         }
 
         public void InicioTesteFG06(string numeroTeste, string descricao, OperadoraEnum operadora)
@@ -165,9 +166,9 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
         {
             FGs[] listaFgs;
             if (!triplice.EhParcAuto)
-                listaFgs = new FGs[] {FGs.FG00, FGs.FG01,FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG02, FGs.FG09 };
+                listaFgs = new FGs[] {FGs.FG00, FGs.FG01, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG01_2, FGs.FG02, FGs.FG09 };
             else
-                listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FG01_2, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG02, FGs.FG09 };
+                listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG01_2,  FGs.FG02, FGs.FG09 };
 
             foreach (var fg in listaFgs)
             {
@@ -192,9 +193,10 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             }
         }
 
-        protected void ExecutarEValidarFG06EmissaoComErro()
+        protected void ExecutarEValidarFG06EmissaoComErro(ITriplice _triplice = null)
         {
-            ExecutarEValidarFG06(triplice,
+            _triplice = _triplice == null ? triplice : _triplice;
+            ExecutarEValidarFG06(_triplice,
                 ClienteEnviado ? ClienteTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
                 ParcelaEnviado ? ParcelaTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
                 ComissaoEnviado ? ComissaoTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
@@ -213,12 +215,12 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
         private void ExecFgs(bool sucesso, FGs fg, Arquivo arquivo)
         {
-            if (sucesso || fg == FGs.FG00 || fg == FGs.FG01 || fg == FGs.FG01_2)
+            if (sucesso || (int)fg <= (int)FGs.FG01_2)
             {
                 ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
                 if (fg == FGs.FG00)
                 {
-                    ValidarControleArquivo();
+                    ValidarControleArquivo(arquivo);
                 }
             }
             else if (fg == FGs.FG02)
