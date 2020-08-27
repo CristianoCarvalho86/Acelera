@@ -153,7 +153,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6162()
         {
 
-            IniciarTeste("6162", "SAP-6162:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
+            IniciarTeste("6162", "SAP-6162:FG07 - QUEROQUERO - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.QUEROQUERO);
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
               

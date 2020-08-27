@@ -63,7 +63,6 @@ namespace Acelera.Testes.Repositorio
             {
                 case TipoArquivo.Cliente:
                     lista.Add("PRC_0008");
-                    lista.Add("PRC_0041");
                     lista.Add("PRC_0126");
                     //lista.Add("PRC_0022"); PASSAR PRA 1_2
                     break;
@@ -129,6 +128,7 @@ namespace Acelera.Testes.Repositorio
             switch (tipoArquivoTeste)
             {
                 case TipoArquivo.Cliente:
+                    lista.Add("PRC_0041");
                     lista.Add("PRC_0035");
                     lista.Add("PRC_1039");
                     lista.Add("PRC_1040");
@@ -308,11 +308,13 @@ namespace Acelera.Testes.Repositorio
                     break;
                 case TipoArquivo.ParcEmissao:
                     //lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0027_NEG");
+                    //lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0038_INT");
                     lista.Add("PRC_0044_NEG");
                     lista.Add("PRC_0097_INT");
                     lista.Add("PRC_0212_NEG");
+                    lista.Add("PRC_0227_NEG");
+                    lista.Add("PRC_0228_NEG");
                     lista.Add("PRC_1012_NEG");
                     lista.Add("PRC_1014_NEG");
                     lista.Add("PRC_1015_NEG");
@@ -320,7 +322,7 @@ namespace Acelera.Testes.Repositorio
 
                 case TipoArquivo.ParcEmissaoAuto:
                     //lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0027_NEG");
+                    //lista.Add("PRC_0027_NEG");
                     lista.Add("PRC_0038_INT");
                     lista.Add("PRC_0044_NEG");
                     lista.Add("PRC_0097_INT");
