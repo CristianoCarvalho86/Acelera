@@ -9,6 +9,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.Repositorio;
 using Acelera.Testes.Validadores;
 using Acelera.Testes.Validadores.FG02;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -130,34 +131,16 @@ namespace Acelera.Testes
             return ValidarStages(_arquivo, deveEncontrarRegistro, codigoEsperado);
         }
 
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        {
+            return RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo);
+        }
+
         [Obsolete]
         public void ValidarStages<T>(Arquivo arquivo, TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
         {
             ValidarStages(arquivo, deveHaverRegistro, codigoEsperado);
         }
 
-        public static IList<string> ObterProceduresFG00()
-        {
-            var lista = new List<string>();
-            lista.Add("PRC_0093_IMP");
-            lista.Add("PRC_0094_IMP");
-            lista.Add("PRC_0101_IMP");
-            lista.Add("PRC_0101_IMP");
-            lista.Add("PRC_0002_IMP");
-            lista.Add("PRC_0091_IMP");
-            lista.Add("PRC_0400_IMP");
-            lista.Add("PRC_0003_IMP");
-            lista.Add("PRC_0004_IMP");
-            lista.Add("PRC_0100_IMP");
-            lista.Add("PRC_0095_IMP");
-            lista.Add("PRC_0092_IMP");
-            lista.Add("PRC_0401_IMP");
-            return lista;
-        }
-
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null)
-        {
-            return ObterProceduresFG00();
-        }
     }
 }

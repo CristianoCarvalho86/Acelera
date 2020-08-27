@@ -6,6 +6,7 @@ using Acelera.Domain.Utils;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.DataAccessRep.ODS;
 using Acelera.Testes.FASE_2;
+using Acelera.Testes.Repositorio;
 using Acelera.Testes.Validadores.FG05;
 using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -131,77 +132,6 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null)
-        {
-            SetarArquivoEmUso(ref _arquivo);
-            return base.ObterProceduresASeremExecutadas(_arquivo).Concat(ObterProceduresFG05(_arquivo.tipoArquivo)).ToList();
-        }
-
-        public static IList<string> ObterProceduresFG05(TipoArquivo tipoArquivoTeste)
-        {
-            var lista = new List<string>();
-            switch (tipoArquivoTeste)
-            {
-                case TipoArquivo.Cliente:
-                    //lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0097_INT");
-                    lista.Add("PRC_0038_INT");
-                    break;
-                case TipoArquivo.ParcEmissao:
-                    //lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0027_NEG");
-                    lista.Add("PRC_0038_INT");
-                    lista.Add("PRC_0044_NEG");
-                    lista.Add("PRC_0097_INT");
-                    lista.Add("PRC_0212_NEG");
-                    lista.Add("PRC_1012_NEG");
-                    lista.Add("PRC_1014_NEG");
-                    lista.Add("PRC_1015_NEG");
-                    break;
-
-                case TipoArquivo.ParcEmissaoAuto:
-                    //lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0027_NEG");
-                    lista.Add("PRC_0038_INT");
-                    lista.Add("PRC_0044_NEG");
-                    lista.Add("PRC_0097_INT");
-                    lista.Add("PRC_0212_NEG");
-                    lista.Add("PRC_0227_NEG");
-                    lista.Add("PRC_0228_NEG");
-                    lista.Add("PRC_1012_NEG");
-                    lista.Add("PRC_1014_NEG");
-                    lista.Add("PRC_1015_NEG");
-                    break;
-
-                case TipoArquivo.Comissao:
-                    //lista.Add("PRC_0022_NEG");
-                    lista.Add("PRC_0038_INT");
-                    lista.Add("PRC_0054_INT");
-                    lista.Add("PRC_0097_INT");
-                    //lista.Add("PRC_0108_NEG");
-                    lista.Add("PRC_0216_NEG");
-                    break;
-
-                case TipoArquivo.LanctoComissao:
-                    lista.Add("PRC_0097_INT");
-
-                    break;
-                case TipoArquivo.OCRCobranca:
-                    lista.Add("PRC_0097_INT");
-                    break;
-
-                case TipoArquivo.Sinistro:
-                    lista.Add("PRC_0027_NEG");
-                    lista.Add("PRC_0038_INT");
-                    lista.Add("PRC_0097_INT");
-                    break;
-                default:
-                    throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
-
-            }
-
-            return lista;
-        }
 
         public override void ValidarFGsAnteriores(Arquivo _arquivo = null)
         {
@@ -213,12 +143,17 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG02.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
-            ValidarLogProcessamento(_arquivo,true, 1, base.ObterProceduresASeremExecutadas());
+            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo));
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetornoFG01(_arquivo);
             logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
             ValidarTeste();
             logger.EscreverBloco("Fim da FG02.");
+        }
+
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        {
+            return RepositorioProcedures.ObterProcedures(FGs.FG05, _arquivo.tipoArquivo);
         }
 
         public void AjustaValoresParaFG02(Arquivo _arquivo)

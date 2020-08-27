@@ -22,8 +22,6 @@ namespace Acelera.Testes
     {
         protected abstract string NomeFG { get; }
 
-        protected abstract IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null);
-
         public void SetarArquivoEmUso(ref Arquivo _arquivo)
         {
             _arquivo = _arquivo == null ? arquivo : _arquivo;

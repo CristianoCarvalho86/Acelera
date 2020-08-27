@@ -6,6 +6,7 @@ using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Utils;
+using Acelera.Testes.Repositorio;
 using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -34,10 +35,9 @@ namespace Acelera.Testes
         protected void ExecutarEValidarApenasFg09(Arquivo _arquivo, string falhaEsperada = "")
         {
             SetarArquivoEmUso(ref _arquivo);
-            ExecutarEValidar(arquivo, FGs.FG09, FGs.FG09.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(falhaEsperada)), falhaEsperada);
-            ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00());
-            ValidarLogProcessamento(_arquivo,true, 1, ObterProceduresFG00().Concat(ObterProceduresFG01(_arquivo.tipoArquivo)).Concat(ObterProceduresFG02(_arquivo.tipoArquivo))
-            .Concat(ObterProceduresFG09(_arquivo.tipoArquivo)).ToList());
+            ExecutarEValidar(_arquivo, FGs.FG09, FGs.FG09.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(falhaEsperada)), falhaEsperada);
+            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG09, _arquivo.tipoArquivo));
+
         }
 
         protected override void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno, Arquivo _arquivo = null)
@@ -49,12 +49,6 @@ namespace Acelera.Testes
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG09Enum().ObterTexto());
 
             ValidarDesconsiderandoErro(_arquivo,codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
-        }
-
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo = null)
-        {
-            SetarArquivoEmUso(ref _arquivo);
-            return base.ObterProceduresASeremExecutadas().Where(x => !ObterProceduresFG05(_arquivo.tipoArquivo).Contains(x)).Concat(ObterProceduresFG09(_arquivo.tipoArquivo)).ToList();
         }
 
         protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false,int qtdParcelas = 1, string nrParcela = ""
@@ -136,65 +130,9 @@ namespace Acelera.Testes
             return arquivo;
         }
 
-        public static IList<string> ObterProceduresFG09(TipoArquivo tipoArquivoTeste)
+        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
         {
-            var lista = new List<string>();
-            switch (tipoArquivoTeste)
-            {
-                case TipoArquivo.Cliente:
-                    break;
-                case TipoArquivo.ParcEmissao:
-                    //lista.Add("PRC_0042_");
-                    lista.Add("PRC_0045_");
-                    lista.Add("PRC_0190_");
-                    lista.Add("PRC_0196_");
-                    lista.Add("PRC_0197_");
-                    //lista.Add("PRC_0199_");
-                    lista.Add("PRC_0201_");
-                    lista.Add("PRC_0206_");
-                    lista.Add("PRC_0207_");
-                    lista.Add("PRC_0208_");
-                    lista.Add("PRC_0211_");
-                    lista.Add("PRC_0222_");
-                    lista.Add("PRC_0224_");
-                    lista.Add("PRC_0229_");
-                    break;
-
-                case TipoArquivo.ParcEmissaoAuto:
-                    //lista.Add("PRC_0042_");
-                    lista.Add("PRC_0045_");
-                    lista.Add("PRC_0190_");
-                    //lista.Add("PRC_0199_");
-                    lista.Add("PRC_0196_");
-                    lista.Add("PRC_0197_");
-                    lista.Add("PRC_0201_");
-                    lista.Add("PRC_0206_");
-                    lista.Add("PRC_0207_");
-                    lista.Add("PRC_0208_");
-                    lista.Add("PRC_0211_");
-                    lista.Add("PRC_0222_");
-                    lista.Add("PRC_0224_");
-                    lista.Add("PRC_0229_");
-                    break;
-
-                case TipoArquivo.Comissao:
-                    lista.Add("PRC_0199_");
-                    lista.Add("PRC_0200_");
-                    break;
-
-                case TipoArquivo.LanctoComissao:
-                    break;
-                case TipoArquivo.OCRCobranca:
-                    break;
-
-                case TipoArquivo.Sinistro:
-                    break;
-                default:
-                    throw new Exception("TIPO ARQUIVO NAO ENCONTRADO.");
-
-            }
-
-            return lista;
+            return RepositorioProcedures.ObterProcedures(FGs.FG09, _arquivo.tipoArquivo);
         }
     }
 }

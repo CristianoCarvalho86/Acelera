@@ -23,7 +23,21 @@ namespace Acelera.Utils
             processInfo.RedirectStandardOutput = true;
 
             process = Process.Start(processInfo);
-            process.WaitForExit();
+            var inProcess = true;
+
+            var countSegundos = 0;
+            while (inProcess)
+            {
+                process.Refresh();
+                System.Threading.Thread.Sleep(1000);
+                countSegundos++;
+                if (process.HasExited || countSegundos >= 45)
+                {
+                    process.Kill();
+                    inProcess = false;
+                }
+
+            }
 
             output = process.StandardOutput.ReadToEnd();
             error = process.StandardError.ReadToEnd();
