@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Testes.ConjuntoArquivos
 {
+    [Serializable]
     public abstract class Triplice<T1, T2, T3> : ITriplice where T1 : Arquivo, new() where T2 : Arquivo, new() where T3 : Arquivo, new()
     {
         public Arquivo ArquivoCliente { get; protected set; }
