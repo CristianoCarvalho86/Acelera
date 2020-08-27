@@ -71,29 +71,32 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return documento;
         }
 
-        protected ILinhaTabela ValidarStageSucessoFG07(bool clienteEnviado = true, bool comissaoEnviada = true)
+        protected ILinhaTabela ValidarStageSucessoFG07(bool clienteEnviado = true, bool comissaoEnviada = true, ITriplice _triplice = null)
         {
-            if(clienteEnviado)
-                ValidarStages(triplice.ArquivoCliente, true, (int)CodigoStage.AprovadoFG07);
+            _triplice = _triplice == null ? triplice : _triplice;
+            if (clienteEnviado)
+                ValidarStages(_triplice.ArquivoCliente, true, (int)CodigoStage.AprovadoFG07);
             if(comissaoEnviada)
-                ValidarStages(triplice.ArquivoComissao, true, (int)CodigoStage.AprovadoFG07);
+                ValidarStages(_triplice.ArquivoComissao, true, (int)CodigoStage.AprovadoFG07);
             
-            return ValidarStages(triplice.ArquivoParcEmissao, true, (int)CodigoStage.AprovadoFG07).First();
+            return ValidarStages(_triplice.ArquivoParcEmissao, true, (int)CodigoStage.AprovadoFG07).First();
         }
 
-        protected IList<ILinhaTabela> ValidarStageSucessoFG07_1(CodigoStage codigoEsperado, bool clienteEnviado, bool comissaoEnviado)
+        protected IList<ILinhaTabela> ValidarStageSucessoFG07_1(CodigoStage codigoEsperado, bool clienteEnviado, bool comissaoEnviado, ITriplice _triplice = null)
         {
-            if(clienteEnviado)
-                ValidarStages(triplice.ArquivoCliente, true, (int)codigoEsperado);
+            _triplice = _triplice == null ? triplice : _triplice;
+            if (clienteEnviado)
+                ValidarStages(_triplice.ArquivoCliente, true, (int)codigoEsperado);
             if(comissaoEnviado)
-                ValidarStages(triplice.ArquivoComissao, true, (int)codigoEsperado);
+                ValidarStages(_triplice.ArquivoComissao, true, (int)codigoEsperado);
             
-            return ValidarStages(triplice.ArquivoParcEmissao, true, (int)codigoEsperado);
+            return ValidarStages(_triplice.ArquivoParcEmissao, true, (int)codigoEsperado);
         }
 
-        protected void CriarEmissaoCompletaFG06(bool salvaCliente, bool salvaComissao = true)
+        protected void CriarEmissaoCompletaFG06(bool salvaCliente, bool salvaComissao = true, ITriplice _triplice = null)
         {
-            SalvarTrinca(salvaCliente, true, salvaComissao);
+            _triplice = _triplice == null ? triplice : _triplice;
+            SalvarTrinca(salvaCliente, true, salvaComissao,_triplice);
             ValidarFGsAnterioresEErros();
 
             ExecutarEValidarFG06EmissaoSucesso(salvaCliente,salvaComissao);
@@ -112,17 +115,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             validadorXML = new ValidadorXML(logger);
         }
 
-        protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true, bool esperaSucesso = true)
+        protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true, bool esperaSucesso = true, ITriplice _triplice = null)
         {
+            _triplice = _triplice == null ? triplice : _triplice;
 
             CriarEmissaoCompletaFG06(salvaCliente, salvaComissao);
-            var linhasStageParc = ExecutarFG07(esperaSucesso, salvaCliente,salvaComissao);
+
+            var linhasStageParc = ExecutarValidarFG07(esperaSucesso, salvaCliente, salvaComissao);
+
             var ehParcAuto = triplice.ArquivoParcEmissao.tipoArquivo == TipoArquivo.ParcEmissaoAuto;
+            ValidaXmlFG07(linhasStageParc, ehParcAuto);
+        }
+
+        private void ValidaXmlFG07(IList<ILinhaTabela> linhasStageParc, bool ehParcAuto)
+        {
             var idArquivo = string.Empty;
             ILinhaTabela linhaTemp;
             var erro = false;
             var valorPremioLiquido = linhasStageParc.GroupBy(x => x.ObterPorColuna("NR_PARCELA").ValorFormatado)
-                .Select(x => new KeyValuePair<string,decimal>(x.Key,
+                .Select(x => new KeyValuePair<string, decimal>(x.Key,
                 x.Sum(y => y.ObterPorColuna("VL_PREMIO_LIQUIDO").ValorDecimal)));
 
             foreach (ILinhaTabela linhaStage in linhasStageParc)
@@ -139,7 +150,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             foreach (ILinhaTabela linhaStage in linhasStageParc)
             {
-                ValidarBancoStatusOIM(linhaStage,idArquivo);
+                ValidarBancoStatusOIM(linhaStage, idArquivo);
             }
 
             if (erro)
@@ -153,7 +164,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             linhaDaStage.Campos.Add(new Campo("CP_CORRETOR", dados.ObterCPFDoCorretor(linhaDaStage.ObterPorColuna("CD_CORRETOR").ValorFormatado)));
         }
 
-        protected IList<ILinhaTabela> ExecutarFG07(bool sucessoNaFG071, bool clienteEnviado = true, bool comissaoEnviado = true)
+        protected IList<ILinhaTabela> ExecutarValidarFG07(bool sucessoNaFG071, bool clienteEnviado = true, bool comissaoEnviado = true, ITriplice _triplice = null)
+        {
+            _triplice = _triplice == null ? triplice : _triplice;
+
+            ExecutarFG07();
+
+            ValidarStageSucessoFG07(clienteEnviado,comissaoEnviado, _triplice);
+
+            ExecutarFG07_1();
+
+            var linhas = ValidarStageSucessoFG07_1(FGs.FG07.ObterCodigoDeSucessoOuFalha(sucessoNaFG071), clienteEnviado, comissaoEnviado);
+            ValidarTeste();
+
+            return linhas;
+        }
+
+        protected void ExecutarFG07()
         {
             ChamarExecucaoSemErro(FG07_Tarefas.APL01.ObterTexto());
             ChamarExecucaoSemErro(FG07_Tarefas.CMS01.ObterTexto());
@@ -161,14 +188,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             ChamarExecucaoSemErro(FG07_Tarefas.ITAUTO01.ObterTexto());
             ChamarExecucaoSemErro(FG07_Tarefas.PARC01.ObterTexto());
             ChamarExecucaoSemErro(FG07_Tarefas.ATUALIZA_STATUS.ObterTexto());
-            ValidarStageSucessoFG07(clienteEnviado,comissaoEnviado);
+        }
 
+        protected void ExecutarFG07_1()
+        {
             ChamarExecucaoSemErro(FG07_Tarefas.FGR_07_1.ObterTexto());
-
-            var linhas = ValidarStageSucessoFG07_1(FGs.FG07.ObterCodigoDeSucessoOuFalha(sucessoNaFG071), clienteEnviado, comissaoEnviado);
-            ValidarTeste();
-
-            return linhas;
         }
 
         protected void ValidarBancoStatusOIM(ILinhaTabela linhaStageParc, string idArquivo)
