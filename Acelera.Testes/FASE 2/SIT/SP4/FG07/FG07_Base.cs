@@ -127,7 +127,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             ValidaXmlFG07(linhasStageParc, ehParcAuto);
         }
 
-        private void ValidaXmlFG07(IList<ILinhaTabela> linhasStageParc, bool ehParcAuto)
+        public void ValidaXmlFG07(IList<ILinhaTabela> linhasStageParc, bool ehParcAuto)
         {
             var idArquivo = string.Empty;
             ILinhaTabela linhaTemp;
