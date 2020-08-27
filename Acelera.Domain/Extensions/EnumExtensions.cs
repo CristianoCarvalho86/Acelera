@@ -348,7 +348,7 @@ namespace Acelera.Domain.Extensions
                     return sucesso ? CodigoStage.AprovadoNaFG01_2 : CodigoStage.RepovadoNaFG01_2;
                 case FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA:
                 case FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO:
-                    return sucesso ? CodigoStage.AprovadoNaFG01_2 : CodigoStage.RepovadoNaFG01_2;
+                    return sucesso ? CodigoStage.AprovadoNaFG01 : CodigoStage.RecusadoNaFG01;
                 case FGs.FG02:
                     return sucesso ? CodigoStage.AprovadoNegocioSemDependencia : CodigoStage.ReprovadoNegocioSemDependencia;
                 case FGs.FG05:
