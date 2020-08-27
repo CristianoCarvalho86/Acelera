@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Utils
 {
+    [Serializable]
     public class ControleNomeArquivo
     {
         //Sinistro:0,

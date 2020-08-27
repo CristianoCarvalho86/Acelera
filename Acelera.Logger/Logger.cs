@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Logger
 {
+    [Serializable]
     public class MyLogger : IMyLogger
     {
         private string path;
