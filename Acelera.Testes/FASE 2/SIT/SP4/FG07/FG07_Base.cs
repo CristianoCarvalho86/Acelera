@@ -20,6 +20,7 @@ using System.Xml;
 
 namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 {
+
     [TestClass]
     public class FG07_Base : FG06_Base
     {

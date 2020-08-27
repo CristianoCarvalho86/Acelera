@@ -15,21 +15,33 @@ namespace Acelera.Testes
 {
     public class TestesFG08 : FG07_Base
     {
+        private bool _operacaoSucesso = true;
+        private bool OperacaoSucesso
+        {
+            get { return _operacaoSucesso; }
+            set
+            {
+                if (!value && _operacaoSucesso)
+                    _operacaoSucesso = false;
+
+            }
+        }
         ValidadorODS validadorODS;
         public TestesFG08()
         {
             validadorODS = new ValidadorODS(ref logger);
         }
 
-        public void ExecutarEValidarFG08(bool sucesso)
+        public void ExecutarEValidarFG08(bool esperaSucesso)
         {
-
+            ExecutarFG08();
             //Validar
+            ValidarFG08(triplice, esperaSucesso);
         }
 
         protected void ExecutarFG08()
         {
-            ChamarExecucaoSemErro(FG08_Tarefas.FGR_08.ObterTexto());
+            ChamarExecucao(FG08_Tarefas.FGR_08.ObterTexto());
         }
 
         protected void ValidarFG08(ITriplice triplice, bool esperaSucesso)
@@ -40,17 +52,34 @@ namespace Acelera.Testes
 
             ValidarTeste();
 
-            var validadorTabelaDeRetorno = new ValidadorTabelaRetorno(triplice.ArquivoParcEmissao.NomeArquivo, logger, triplice.ArquivoParcEmissao);
             IList<ILinhaTabela> linhasDaTabelaDeRetorno;
+
+            var validadorTabelaDeRetorno = new ValidadorTabelaRetorno(triplice.ArquivoParcEmissao.NomeArquivo, logger, triplice.ArquivoParcEmissao);
             linhasDaTabelaDeRetorno = validadorTabelaDeRetorno.RetornarRegistrosDaTabelaDeRetorno();
+            if (esperaSucesso && linhasDaTabelaDeRetorno.Count > 0)
+                TratarErro($"FORAM ENCONTRADOS ERROS NA TABELA DE RETORNO : {linhasDaTabelaDeRetorno.Select(x => x.ObterPorColuna("CD_MENSAGEM").ValorFormatado).ObterListaConcatenada(" ,")}");
+
             foreach (var linha in linhasStageParc)
-            {
                 ValidarStInterface(esperaSucesso, linha.ObterPorColuna("NR_APOLICE").ValorFormatado, linha.ObterPorColuna("NR_ENDOSSO").ValorFormatado);
-                if(esperaSucesso && linhasDaTabelaDeRetorno.Count > 0)
-                {
-                    logger.Erro("FORAM ENCONTRADOS ERROS NA TABELA DE RETORNO : ");
-                }
-            }
+
+            //esperaSucesso eh invertido, pois em caso de sucesso nao tem registro na tabela de retorno
+            ValidarTabelaDeRetornoVazia(triplice.ArquivoCliente, !esperaSucesso);
+            ValidarTabelaDeRetornoVazia(triplice.ArquivoParcEmissao, !esperaSucesso);
+            ValidarTabelaDeRetornoVazia(triplice.ArquivoComissao, !esperaSucesso);
+
+            ValidarTeste();//Estoura os erros caso existam.
+
+            //OperacaoSucesso só pode ser negativado uma vez, nao recebe true após isso.
+            foreach (var linha in linhasStageParc)
+                OperacaoSucesso = validadorODS.RegistroEstaNaOds(linha, esperaSucesso);
+            foreach (var linha in linhasStageCliente)
+                OperacaoSucesso = validadorODS.RegistroEstaNaOds(linha, esperaSucesso);
+            foreach (var linha in linhasStageComissao)
+                OperacaoSucesso = validadorODS.RegistroEstaNaOds(linha, esperaSucesso);
+
+            if (!OperacaoSucesso)
+                ExplodeFalha();
+
         }
 
         protected bool ValidarStInterface(bool esperaSucesso, string nrApolice, string nrEndosso)

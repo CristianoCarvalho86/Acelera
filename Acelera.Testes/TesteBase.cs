@@ -81,8 +81,9 @@ namespace Acelera.Testes
             SalvarArquivo(nomeArquivo, true);
         }
 
-        protected virtual void SalvarArquivo(Arquivo _arquivo)
+        protected virtual void SalvarArquivo(Arquivo _arquivo = null)
         {
+            _arquivo = _arquivo == null ? arquivo : _arquivo;
             var array = _arquivo.NomeArquivo.Split('-');
             array[2] = "/*R*/";
             SalvarArquivo(array.ToList().ObterListaConcatenada("-"), true, _arquivo);
@@ -106,15 +107,27 @@ namespace Acelera.Testes
 
             //_nomeArquivo = nomeDoTeste.Replace("-", "_") + _nomeArquivo;
             FinalizarAlteracaoArquivo(_arquivo);
+            var enderecoArquivoSalvo = string.Empty;
             if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
-                _arquivo.Salvar(ObterArquivoDestino(_arquivo, _nomeArquivo, AlterarNomeArquivo));
+            {
+                enderecoArquivoSalvo = ObterArquivoDestino(_arquivo, _nomeArquivo, AlterarNomeArquivo);
+                _arquivo.Salvar(enderecoArquivoSalvo);
+            }
+                
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
-                _arquivo.Salvar(ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo));
+            {
+                enderecoArquivoSalvo = ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+                _arquivo.Salvar(enderecoArquivoSalvo);
+            }
+                
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
-                ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+            {
+                enderecoArquivoSalvo =ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+            }
+                
 
             _arquivo.valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, _arquivo.NomeArquivo);
-            arquivosSalvos.Add(_arquivo.NomeArquivo);
+            arquivosSalvos.Add(enderecoArquivoSalvo);
         }
 
         protected void LimparValidacao()
@@ -148,7 +161,7 @@ namespace Acelera.Testes
                     _arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
             }
 
-            var path = Parametros.pastaDestino + _nomeArquivo;
+            var path = Parametros.pastaDestino + _arquivo.tipoArquivo.ObterPastaNoDestino() + "\\" +  _nomeArquivo;
 
             _arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
 

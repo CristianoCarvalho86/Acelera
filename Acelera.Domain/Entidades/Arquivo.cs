@@ -28,6 +28,8 @@ namespace Acelera.Domain.Layouts
 
         public string EnderecoCompleto { get; private set; }
 
+        public string EnderecoCompletoArquivoSalvo { get; private set; }
+
         public IList<string> CamposDoBody => Linhas.FirstOrDefault()?.Campos?.Select(x => x.ColunaArquivo).ToList();
 
         public string NomeArquivo { get; private set; }
@@ -149,6 +151,8 @@ namespace Acelera.Domain.Layouts
             NomeArquivo = endereco.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries).Last();
 
             var file = File.CreateText(endereco);
+
+            EnderecoCompletoArquivoSalvo = endereco;
 
             foreach (var header in Header)
                 file.WriteLine(header.ObterTexto());
