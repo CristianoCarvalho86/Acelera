@@ -137,7 +137,7 @@ namespace Acelera.Testes
 
         public void EnviarParaOds(Arquivo _arquivo, bool executaFGs = true, bool alterarCdCliente = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNaFG01_2)
         {
-            if (alterarCdCliente && arquivo.Operadora != OperadoraEnum.SGS)
+            if (alterarCdCliente && _arquivo.Operadora != OperadoraEnum.SGS)
             {
                 int i = 0;
                 foreach (var linha in _arquivo.Linhas)
