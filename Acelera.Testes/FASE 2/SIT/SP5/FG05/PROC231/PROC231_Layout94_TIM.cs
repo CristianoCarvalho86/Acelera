@@ -18,14 +18,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             
 
             //Envia parc normal
-            var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
+            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.TIM, arquivo);
 
             AlterarLinha(0, "VL_COMISSAO", "100");
 
