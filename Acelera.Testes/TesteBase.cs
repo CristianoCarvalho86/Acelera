@@ -118,13 +118,13 @@ namespace Acelera.Testes
                 
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
             {
-                enderecoArquivoSalvo = ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+                enderecoArquivoSalvo = ObterArquivoDestinoApenasCriacaoOuValidacao(_arquivo,_nomeArquivo);
                 _arquivo.Salvar(enderecoArquivoSalvo);
             }
                 
             else if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasValidacao)
             {
-                enderecoArquivoSalvo =ObterArquivoDestinoApenasCriacaoOuValidacao(_nomeArquivo);
+                enderecoArquivoSalvo =ObterArquivoDestinoApenasCriacaoOuValidacao(_arquivo,_nomeArquivo);
             }
                 
 
@@ -171,7 +171,7 @@ namespace Acelera.Testes
             return path;
         }
 
-        protected string ObterArquivoDestinoApenasCriacaoOuValidacao(string _nomeArquivo)
+        protected string ObterArquivoDestinoApenasCriacaoOuValidacao(Arquivo _arquivo, string _nomeArquivo)
         {
             //this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
 
@@ -192,16 +192,16 @@ namespace Acelera.Testes
             // logger.EscreverBloco("Salvando arquivo modificado : " + path);
             // return path;
 
-            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(arquivo.tipoArquivo);
+            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(_arquivo.tipoArquivo);
             numeroDoLote = numeroArquivoNovo;
 
             _nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
-            if (arquivo.Header.Count > 0)
-                arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
+            if (_arquivo.Header.Count > 0)
+                _arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
             var path = Parametros.pastaDestino + _nomeArquivo;
 
-            arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
+            _arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
 
             logger.EscreverBloco("Salvando arquivo modificado : " + path);
             return path;
