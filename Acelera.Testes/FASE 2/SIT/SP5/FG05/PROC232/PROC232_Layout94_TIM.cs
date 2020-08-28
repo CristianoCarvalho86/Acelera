@@ -19,13 +19,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "9319", "SAP-9318:FG05 - PROC 232 - C/C - PARCELA - ID_TRANSACAO já processado - Capa");
             //Envia parc normal
-            var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
-            arquivoods1.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            arquivo.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
 
-            EnviarParaOdsAlterandoCliente(arquivoods1);
+            EnviarParaOdsAlterandoCliente(arquivo);
+
+            var arquivoods1 = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);

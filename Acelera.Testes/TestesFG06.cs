@@ -47,7 +47,7 @@ namespace Acelera.Testes
                 ValidarStages(triplice.ArquivoComissao, true, (int)codigoEsperadoStageComissao.Value);
                 ValidarTabelaDeRetorno(triplice.ArquivoComissao, false, false, new string[] { msgTabelaDeRetornoComissao });
             }
-            //ValidarTeste();
+            ValidarTeste();
         }
 
         public override void CarregarTriplice(OperadoraEnum operadora)

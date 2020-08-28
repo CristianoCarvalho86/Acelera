@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
 {
     [TestClass]
-    public class PROC192_Layout94_PITZI : TestesFG01
+    public class PROC192_Layout94_TIM : TestesFG01
     {
         [TestMethod]
         [TestCategory("Com Critica")]
@@ -21,7 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             IniciarTeste(TipoArquivo.Cliente, "", "SAP-8906:FG01 - PROC 192 - C/C - CLIENTE - Informar endereço com em branco");
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             AlterarLinha(0, "EN_ENDERECO", "");
 
@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             IniciarTeste(TipoArquivo.Cliente, "", "SAP-8907:FG01 - PROC 192 - C/C - CLIENTE - Informar endereço com um caracter");
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             AlterarLinha(0, "EN_ENDERECO", "A");
 
@@ -101,7 +101,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             IniciarTeste(TipoArquivo.Cliente, "", " SAP-8909:FG01 - PROC 192 - S/C - CLIENTE - Informar endereço com três caracterws");
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             AlterarLinha(0, "EN_ENDERECO", "AAA");
 
@@ -128,7 +128,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG01
             IniciarTeste(TipoArquivo.Cliente, "", " SAP-8909:FG01 - PROC 192 - S/C - CLIENTE - Informar endereço com três caracterws");
 
             arquivo = new Arquivo_Layout_9_4_Cliente();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PITZI);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             AlterarLinha(0, "EN_ENDERECO", "AAAA");
 

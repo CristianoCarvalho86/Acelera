@@ -20,7 +20,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             //ALTERAR O VALOR SELECIONADO
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "20");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
 
             //SALVAR O NOVO ARQUIVO ALTERADO

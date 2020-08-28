@@ -114,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             SalvarTrinca(true, true, true);
 
             ValidarFGsAnterioresEErros();
-            ExecutarEValidarFG06(triplice,CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
+            //ExecutarEValidarFG06(triplice,CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
 
             var triplice1 = triplice.Clone();
 
@@ -127,13 +127,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             ValidarFGsAnterioresEErros();
             ExecutarEValidarFG06(triplice, null , CodigoStage.AprovadoFG06, CodigoStage.AprovadoFG06, null, null, null);
+            ValidarStages(true, (int)CodigoStage.AprovadoFG06, triplice1.ArquivoCliente);
+            ValidarStages(true, (int)CodigoStage.AprovadoFG06, triplice1.ArquivoParcEmissao);
+            ValidarStages(true, (int)CodigoStage.AprovadoFG06, triplice1.ArquivoComissao);
 
             ExecutarFG07();
             ValidarStageSucessoFG07(true,true, triplice1);
             ValidarStageSucessoFG07(false, true, triplice);
             ExecutarFG07_1();
-            var linhas1 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07_1,true, true, triplice1);
-            var linhas2 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07_1, false, true, triplice);
+            var linhas1 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07,true, true, triplice1);
+            var linhas2 = ValidarStageSucessoFG07_1(CodigoStage.AprovadoFG07, false, true, triplice);
 
             ValidaXmlFG07(linhas1, false);
             ValidaXmlFG07(linhas2, false);
@@ -146,21 +149,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         {
             IniciarTeste("6161", "SAP-6161:FG07 - POMPEIA - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.POMPEIA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados);
-            
-            triplice.ArquivoComissao.ReplicarLinha(0, 1);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
-
-            SalvaExecutaEValidaFG07();
-
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao,0);
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 1);
-            triplice.ArquivoParcEmissao.RemoverLinha(0);
-            triplice.ArquivoParcEmissao.RemoverLinha(1);
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
+            triplice.ArquivoComissao.ReplicarLinha(0, 3);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[2], triplice.ArquivoComissao[2]);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[3], triplice.ArquivoComissao[3]);
 
             SalvaExecutaEValidaFG07(false);
 

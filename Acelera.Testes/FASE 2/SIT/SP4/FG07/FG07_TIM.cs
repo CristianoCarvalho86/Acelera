@@ -150,16 +150,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         public void SAP_6172()
         {
             IniciarTeste("6172", "SAP-6172:FG07 - Tim - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.TIM);
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "R", dados);
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
+            
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
 
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 1);
 
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[2], triplice.ArquivoComissao[1]);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
 
             SalvaExecutaEValidaFG07();
         }
