@@ -283,6 +283,7 @@ namespace Acelera.Testes
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = string.Empty;
 
+            if(arquivosSalvos != null && arquivosSalvos.Count > 0)
             foreach (var arqSalvo in arquivosSalvos)
             {
                 if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)

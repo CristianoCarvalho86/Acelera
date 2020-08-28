@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
+using Acelera.Domain.Layouts._9_4;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -191,5 +192,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
 
         }
+
+
     }
 }
