@@ -27,6 +27,7 @@ namespace Acelera.Testes
         [TestMethod]
         public void SAP_9999_TESTEBAT_PARC()
         {
+            IniciarTeste(TipoArquivo.ParcEmissao, "9999", "TESTE DA BAT");
             var _arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(_arquivo, 1, Domain.Enums.OperadoraEnum.LASA);
             SalvarArquivo(_arquivo);
@@ -36,6 +37,7 @@ namespace Acelera.Testes
         [TestMethod]
         public void SAP_9999_TESTEBAT_PARC_AUTO()
         {
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "9999", "TESTE DA BAT");
             var _arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
             CarregarArquivo(_arquivo, 1, Domain.Enums.OperadoraEnum.LASA);
             SalvarArquivo(_arquivo);
