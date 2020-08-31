@@ -54,14 +54,5 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
         }
 
-        [TestMethod]
-        public void SAP_9999()
-        {
-            IniciarTeste(TipoArquivo.Cliente, "9999", "9999");
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-9999-20200831.txt"));
-            arquivo.AdicionarLinha(CriarNovaLinhaCapa(arquivo[1]));
-            arquivo.Salvar(@"C:\Cristiano\Origem\C01.TIM.PARCEMS-EV-9999-20200831.txt");
-        }
     }
 }

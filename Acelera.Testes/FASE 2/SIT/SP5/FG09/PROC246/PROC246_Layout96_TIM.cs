@@ -14,15 +14,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
     public class PROC246_Layout96_TIM: TestesFG09
     {
         [TestMethod]
-        public void SAP_9507()
+        public void SAP_9512()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "", ":SAP-9507:FG09 - PROC 246 - TIM - COMISSAO - Cancelamento de comissão diferente do emitido - 2 tipos");
+            IniciarTeste(TipoArquivo.ParcEmissao, "", ":SAP-9512:FG09 - PROC 246 - TIM - COMISSAO - Cancelamento de comissão diferente do emitido - 2 tipos");
 
             AlterarCobertura(false);
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
-            CriarNovoContrato(0);
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-9999-20200831.txt"));
+            var contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"));
+            for (int i = 0; i < arquivo.Linhas.Count; i++)
+            {
+                AlterarContrato(arquivo, i,contrato);
+            }
+            //ELE CHEGA AQUI, COM 3 LINHAS SENDO UMA CAPA E 2 EMISSOES, TODAS DO MESMO CONTRATO
+
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);

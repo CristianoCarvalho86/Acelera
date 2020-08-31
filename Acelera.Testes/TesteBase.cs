@@ -437,16 +437,26 @@ namespace Acelera.Testes
             {
                 while (true)
                 {
-                    contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+                    contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"));
                     if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissao.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
                        !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissaoAuto.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
                        !DataAccessOIM.ExisteRegistro($"SELECT '1' FROM oim_apl01 where nr_doc_apolice = '{contrato}'", logger))
                         break;
                 }
             }
+            AlterarContrato(arquivo, posicaoLinha, contrato);
+        }
+
+        protected void AlterarContrato(Arquivo arquivo, int posicaoLinha, string contrato)
+        {
             arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
             arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
+        }
+
+        protected string GerarNovoContratoAleatorio(string contratoBase)
+        {
+            return AlterarUltimasPosicoes(contratoBase, GerarNumeroAleatorio(8));
         }
 
         protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
