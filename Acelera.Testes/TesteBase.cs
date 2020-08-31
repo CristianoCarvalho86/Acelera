@@ -199,7 +199,7 @@ namespace Acelera.Testes
             if (_arquivo.Header.Count > 0)
                 _arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
 
-            var path = Parametros.pastaDestino + _nomeArquivo;
+            var path = Parametros.pastaDestino + _arquivo.tipoArquivo.ObterPastaNoDestino() + _nomeArquivo;
 
             _arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
 

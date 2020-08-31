@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChaveValor.cs" />
+    <Compile Include="DataGridViewColumnSelector.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
                     for (int h = 0; h < xmlDocCTA.ChildNodes[i].ChildNodes[j].ChildNodes.Count; h++)
                     {
                         var nohXMLCTA = xmlDocCTA.ChildNodes[i].ChildNodes[j].ChildNodes[h];
-                        var nohXMLEsteira = xmlDocEsteira.ChildNodes[i].ChildNodes[j].SelectSingleNode($"//{nohXMLCTA.Name}");
+                        var nohXMLEsteira = FindChildNode(xmlDocEsteira.ChildNodes[i].ChildNodes[j].ChildNodes, nohXMLCTA.Name);
 
                         if (camposADesconsiderar.Contains(nohXMLCTA.Name))
                             continue;
@@ -124,7 +124,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
                 }
             }
 
-            logger.Escrever("ERROS ENCONTRADOS: " + erros.ToString());
+           logger.Escrever("ERROS ENCONTRADOS: " + erros.ToString());
+        }
+
+        private XmlNode FindChildNode(XmlNodeList nodes, string name)
+        {
+            foreach(XmlNode node in nodes)
+            {
+                if (node.Name == name)
+                    return node;
+            }
+            return null;
         }
     }
 }
