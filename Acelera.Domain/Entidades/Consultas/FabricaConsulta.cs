@@ -91,6 +91,12 @@ namespace Acelera.Domain.Entidades.Consultas
                     consultas.Add(new KeyValuePair<int, Consulta>(alteracao.PosicaoDaLinha, consultaDaLinha));
                 }
             }
+
+            if (consultas.Count == 0)
+            {
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", nomeArquivo);
+                consultas.Add(new KeyValuePair<int, Consulta>(0, consulta));
+            }
             return consultas;
         }
 
