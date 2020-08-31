@@ -416,7 +416,7 @@ namespace Acelera.Testes
 
         public void AjustarArquivoDeBaixaParaParcela(Arquivo arquivoParcEmissao, Arquivo arquivoCobranca, int linhaReferenciaParc, string cdOcorrencia)
         {
-            IgualarCamposQueExistirem(arquivoParcEmissao, arquivoCobranca);
+            IgualarCamposQueExistirem(arquivoParcEmissao.ObterLinha(linhaReferenciaParc), arquivoCobranca.ObterLinha(0));
             arquivoCobranca.AlterarLinha(0, "NR_PARCELA", arquivoParcEmissao[linhaReferenciaParc]["NR_PARCELA"]);
             arquivoCobranca.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivoParcEmissao[linhaReferenciaParc], arquivoParcEmissao.Operadora));
             arquivoCobranca.AlterarLinha(0, "CD_OCORRENCIA", cdOcorrencia);
