@@ -21,9 +21,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         {
             IniciarTeste("9730", "", OperadoraEnum.LASA);
 
-            SalvaExecutaEValidaTrinca(true);
+            SalvaExecutaEValidaTrinca(false);
 
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.LASA, "10", true);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.LASA, "10", false);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);

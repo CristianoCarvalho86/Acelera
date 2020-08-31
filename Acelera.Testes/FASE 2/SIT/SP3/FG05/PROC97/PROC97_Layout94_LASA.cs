@@ -56,5 +56,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC97
 
         }
 
+        [TestMethod]
+        [TestCategory("Sem Critica")]
+        public void SAP_4681()
+        {
+            IniciarTeste(TipoArquivo.OCRCobranca, "4680", "FG05 - PROC97");
+
+            arquivo = new Arquivo_Layout_9_4_OcrCobranca();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111130"));
+            RemoverLinhasExcetoAsPrimeiras(1);
+
+            SalvarArquivo();
+
+            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "97");
+
+        }
+
     }
 }
