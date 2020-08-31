@@ -56,7 +56,7 @@ namespace Acelera.Testes
 
             var proceduresEsperadas = proceduresASeremExecutadas;
 
-            if (operacaoDoTeste != OperadoraEnum.LASA && operacaoDoTeste != OperadoraEnum.SOFTBOX)
+            if (_arquivo.Operadora != OperadoraEnum.LASA && _arquivo.Operadora != OperadoraEnum.SOFTBOX)
             {
                 proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterParteNumericaDoTexto() < 1000 || x.ObterParteNumericaDoTexto() == 200000).ToList();
             }
@@ -429,6 +429,14 @@ namespace Acelera.Testes
             arquivoParc.AdicionarLinha(ParametrosLinhaEmissao.CarregaLinhaEmissaoTIM(arquivoParc[0], arquivoParc.Linhas.Count - 1));
             var camposASeremIgualados = arquivoParc[0].Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
             IgualarCampos(arquivoParc[0], arquivoParc[arquivoParc.Linhas.Count - 1], camposASeremIgualados);
+        }
+
+        public LinhaArquivo CriarNovaLinhaCapa(LinhaArquivo linhaReferencia)
+        {
+            var linhaCapa = ParametrosLinhaEmissao.CarregaLinhaCapaTIM(linhaReferencia);
+            var camposASeremIgualados = linhaReferencia.Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
+            IgualarCampos(linhaReferencia, linhaCapa, camposASeremIgualados);
+            return linhaCapa;
         }
 
         private void CriarNovaLinhaEmissaoPitzi(Arquivo arquivoParc)

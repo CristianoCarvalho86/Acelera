@@ -388,9 +388,13 @@
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC249\PROC249_Layout94_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC46\PROC46_Layout96_COOP.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG05\PROC46\PROC46_Layout94_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG09\PROC234\PROC234_Layout96_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC234\PROC234_Layout96_COOP.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG09\PROC234\PROC234_Layout96_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC234\PROC234_Layout96_PAPCARD.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_LASA.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_COOP.cs" />
+    <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP5\FG09\PROC246\PROC246_Layout96_PAPCARD.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC1170\PROC1170_Layout94_SOFTBOX.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC1170\PROC1170_Layout94_LASA.cs" />

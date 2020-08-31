@@ -46,6 +46,7 @@
             this.btnFiltro = new System.Windows.Forms.Button();
             this.panelFiltro = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnCopyText = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFooter)).BeginInit();
@@ -148,7 +149,7 @@
             // btnAddRow
             // 
             this.btnAddRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRow.Location = new System.Drawing.Point(534, 89);
+            this.btnAddRow.Location = new System.Drawing.Point(386, 89);
             this.btnAddRow.Name = "btnAddRow";
             this.btnAddRow.Size = new System.Drawing.Size(135, 32);
             this.btnAddRow.TabIndex = 8;
@@ -159,7 +160,7 @@
             // btnRemoveRow
             // 
             this.btnRemoveRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveRow.Location = new System.Drawing.Point(675, 89);
+            this.btnRemoveRow.Location = new System.Drawing.Point(527, 89);
             this.btnRemoveRow.Name = "btnRemoveRow";
             this.btnRemoveRow.Size = new System.Drawing.Size(135, 32);
             this.btnRemoveRow.TabIndex = 9;
@@ -170,7 +171,7 @@
             // btnCopiarLinha
             // 
             this.btnCopiarLinha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopiarLinha.Location = new System.Drawing.Point(816, 90);
+            this.btnCopiarLinha.Location = new System.Drawing.Point(668, 90);
             this.btnCopiarLinha.Name = "btnCopiarLinha";
             this.btnCopiarLinha.Size = new System.Drawing.Size(135, 32);
             this.btnCopiarLinha.TabIndex = 10;
@@ -217,6 +218,17 @@
             this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
+            // btnCopyText
+            // 
+            this.btnCopyText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopyText.Location = new System.Drawing.Point(809, 89);
+            this.btnCopyText.Name = "btnCopyText";
+            this.btnCopyText.Size = new System.Drawing.Size(135, 32);
+            this.btnCopyText.TabIndex = 13;
+            this.btnCopyText.Text = "Copiar Texto";
+            this.btnCopyText.UseVisualStyleBackColor = true;
+            this.btnCopyText.Click += new System.EventHandler(this.btnCopyText_Click);
+            // 
             // FrmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +237,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(956, 631);
+            this.Controls.Add(this.btnCopyText);
             this.Controls.Add(this.picLoading);
             this.Controls.Add(this.panelFiltro);
             this.Controls.Add(this.btnFiltro);
@@ -270,6 +283,7 @@
         private System.Windows.Forms.Button btnFiltro;
         private System.Windows.Forms.Panel panelFiltro;
         private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Button btnCopyText;
     }
 }
 

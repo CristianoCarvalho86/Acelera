@@ -33,6 +33,9 @@ namespace Editor
         {
             dataGridView1.MultiSelect = false;
             EstadoTelaInicial();
+            DataGridViewColumnSelector cs = new DataGridViewColumnSelector(dataGridView1);
+            cs.MaxHeight = 400;
+            cs.Width = 450;
         }
 
         private void btnCarregar_Click(object sender, EventArgs e)
@@ -260,7 +263,8 @@ namespace Editor
             btnSalvar.Visible = arquivoCarregado;
             btnAddRow.Visible = !filtroAplicado ? arquivoCarregado : filtroAplicado; ;
             btnRemoveRow.Visible = !filtroAplicado ? arquivoCarregado : filtroAplicado; ;
-            btnCopiarLinha.Visible = !filtroAplicado ? arquivoCarregado : filtroAplicado; ;
+            btnCopiarLinha.Visible = !filtroAplicado ? arquivoCarregado : filtroAplicado;
+            btnCopyText.Visible = arquivoCarregado;
             btnFiltro.Visible = arquivoCarregado;
         }
 
@@ -352,6 +356,16 @@ namespace Editor
         private string CarregarIdTransacao(LinhaArquivo linha)
         {
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
+        }
+
+        private void btnCopyText_Click(object sender, EventArgs e)
+        {
+            var indexDoGrid = dataGridView1.SelectedRows[0].Index;
+            var chaveDoArquivo = ObterChaveDoArquivo(indexDoGrid);
+
+            Clipboard.SetText(arquivo.ObterLinha(chaveDoArquivo).ObterTexto());
+
+            
         }
     }
 }
