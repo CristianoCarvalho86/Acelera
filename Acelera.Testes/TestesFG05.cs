@@ -138,6 +138,8 @@ namespace Acelera.Testes
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
 
+            SetarArquivoEmUso(ref _arquivo);
+
             base.ValidarFGsAnteriores(_arquivo);
 
             logger.EscreverBloco("Inicio da Validação da FG02.");

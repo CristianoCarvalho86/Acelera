@@ -459,6 +459,7 @@ namespace Acelera.Testes
 
         public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
+            arquivoParc.AlterarLinha(linhaDeReferencia, "ID_TRANSACAO_CANC", "");
             arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(arquivoParc.Operadora));
