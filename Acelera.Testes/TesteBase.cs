@@ -447,6 +447,14 @@ namespace Acelera.Testes
             AlterarContrato(arquivo, posicaoLinha, contrato);
         }
 
+        protected void AlterarContratoNoArquivo(Arquivo arquivo, string contrato)
+        {
+            for (int i = 0; i < arquivo.Linhas.Count; i++)
+            {
+                AlterarContrato(arquivo, i, contrato);
+            }
+        }
+
         protected void AlterarContrato(Arquivo arquivo, int posicaoLinha, string contrato)
         {
             arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
