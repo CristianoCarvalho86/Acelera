@@ -365,6 +365,18 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetorno("CD_PARCEIRO_NEGOCIO", "CD_EXTERNO", cdExterno, "TAB_ODS_PARCEIRO_NEGOCIO_2000", true, $"CD_TIPO_PARCEIRO_NEGOCIO = '{cdTipoParceiroNegocio}'");
         }
 
+        public string ObterCdClienteParceiro(bool existente, string cdTpa = "", string[] diferenteDesses = null)
+        {
+            var clausula = "CD_TIPO_PARCEIRO_NEGOCIO = 'CL'";
+            clausula = string.IsNullOrEmpty(cdTpa) ? clausula : clausula + $" AND CD_OPERACAO = '{cdTpa}'";
+            if (diferenteDesses != null)
+            {
+                foreach (var cdCliente in diferenteDesses)
+                    clausula += $" AND CD_EXTERNO <> '{cdCliente}'";
+            }
+            return ObterRetornoPadrao("CD_EXTERNO", "TAB_ODS_PARCEIRO_NEGOCIO_2000", existente, clausula, true);
+        }
+
         public string ObterCdProdutoParaTPA(string cdTpa, bool relacionado)
         {
             var cdPnOperacao = ObterCdParceiroNegocioParaTPA(cdTpa);

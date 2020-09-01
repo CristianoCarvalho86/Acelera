@@ -141,7 +141,7 @@ namespace Acelera.Testes
             {
                 int i = 0;
                 foreach (var linha in _arquivo.Linhas)
-                    _arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", ParametrosBanco.ObterCDClienteCadastrado(_arquivo.Operadora));
+                    _arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE",dados.ObterCdClienteParceiro(true, _arquivo.Header[0]["CD_TPA"]) /* ParametrosBanco.ObterCDClienteCadastrado(_arquivo.Operadora)*/);
             }
 
 
