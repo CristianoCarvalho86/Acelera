@@ -179,6 +179,9 @@ namespace Acelera.Testes
         public virtual IList<ILinhaTabela> ExecutarEValidarBatch(Arquivo _arquivo, string batch, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
         {
             SelecionarLinhaParaValidacao(0, false, _arquivo);
+
+            logger.Escrever($"CHAMADA DA BAT : {batch}");
+
             CommandUtils.RunBatch(batch, out string output, out string erro);
 
             logger.Escrever($"EXECUÇÃO DA BAT : {Environment.NewLine}{output}");

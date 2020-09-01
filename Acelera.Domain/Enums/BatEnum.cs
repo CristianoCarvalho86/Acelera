@@ -13,9 +13,9 @@ namespace Acelera.Domain.Enums
         Cliente,
         [Description("emscms\\comissao.bat")]
         Comissao,
-        [Description("baixa_comissao\\lctcms.bat")]
+        [Description("lctcms\\lctcms.bat")]
         LanctoComissao,
-        [Description("baixa_parcela\\cobranca.bat")]
+        [Description("cobranca\\cobranca.bat")]
         OCRCobranca,
         [Description("parcems\\parcela.bat")]
         ParcEmissao,
