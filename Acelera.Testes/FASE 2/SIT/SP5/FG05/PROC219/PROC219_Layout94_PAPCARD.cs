@@ -4,6 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC219
@@ -26,8 +27,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC219
 
             ReplicarLinha(0, 1);
             AlterarLinha(1, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"], new string[] { arquivo[0]["CD_CLIENTE"] }));
-            AlterarLinha(1, "NR_ENDOSSO", arquivo[0]["NR_ENDOSSO"].ObterProximoValorLong());
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", arquivo[0]["NR_SEQUENCIAL_EMISSAO"].ObterProximoValorInteiro());
+            AlterarLinha(1, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(arquivo[1]));
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivo[1],OperadoraEnum.PAPCARD));
 
             SalvarArquivo();
 

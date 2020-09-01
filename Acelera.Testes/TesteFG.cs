@@ -398,6 +398,9 @@ namespace Acelera.Testes
 
         public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
+            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
+                alterarDadosPapcard = false;
+
             var operadora = arquivoParc.Operadora;
             if (operadora == OperadoraEnum.TIM)
                 CriarNovaLinhaEmissaoTim(arquivoParc);
@@ -459,11 +462,16 @@ namespace Acelera.Testes
 
         public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
+            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
+                alterarDadosPapcard = false;
+
             arquivoParc.AlterarLinha(linhaDeReferencia, "ID_TRANSACAO_CANC", "");
             arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(arquivoParc.Operadora));
+            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
+                arquivoParc.AlterarLinha(linhaDeReferencia,"NR_DOCUMENTO",ParametrosRegrasEmissao.GerarNrDocumentoPapCard());
         }
 
         public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)

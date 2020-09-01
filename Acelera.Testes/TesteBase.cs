@@ -432,7 +432,9 @@ namespace Acelera.Testes
             if (!string.IsNullOrEmpty(novoContrato))
                 contrato = novoContrato;
             else if (arquivo.Operadora == OperadoraEnum.PAPCARD)
+            {
                 contrato = "759303900006209";
+            }
             else
             {
                 while (true)
