@@ -22,41 +22,38 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-9999-20200831.txt"));
-            var contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"));
-            for (int i = 0; i < arquivo.Linhas.Count; i++)
-            {
-                AlterarContrato(arquivo, i,contrato);
-            }
-            //ELE CHEGA AQUI, COM 3 LINHAS SENDO UMA CAPA E 2 EMISSOES, TODAS DO MESMO CONTRATO
+            CriarNovoContrato(0, arquivo, "", true);
+            AlterarTodasAsLinhas( "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"]));
 
-
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
-            ConfereQtdLinhas(arquivo, 2);
             EnviarParaOdsAlterandoCliente(arquivo);
+
             var arquivoParc1 = arquivo.Clone();
-            LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
+            RemoverLinhaComAjusteDeFooter(0);
+            RemoverLinhaComAjusteDeFooter(0);
+
             EnviarParaOdsAlterandoCliente(arquivo);
-            ConfereQtdLinhas(arquivo, 2);
-            LimparValidacao();
 
             arquivo = arquivoParc1;
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[2], "10", "02"));
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[3], "10", "02"));
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
-            ConfereQtdLinhas(arquivo, 1);
-            SelecionarLinhaParaValidacao(0);
+            RemoverLinhaComAjusteDeFooter(0);
+            RemoverLinhaComAjusteDeFooter(0);
+            ConfereQtdLinhas(arquivo, 2);
+            //SelecionarLinhaParaValidacao(0);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
             LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
+            RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
     }
 }
