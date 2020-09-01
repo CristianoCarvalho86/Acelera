@@ -22,6 +22,7 @@ namespace Acelera.Testes
             CarregarArquivo(_arquivoCliente, 1, Domain.Enums.OperadoraEnum.LASA);
             SalvarArquivo(_arquivoCliente);
             ExecutarEValidarBatch(_arquivoCliente, Parametros.PastaBatDia + BatEnumDia.Cliente.ObterTexto(), CodigoStage.AprovadoNaFG01_2);
+            ValidarTeste();
         }
 
         [TestMethod]
@@ -32,6 +33,7 @@ namespace Acelera.Testes
             CarregarArquivo(_arquivo, 1, Domain.Enums.OperadoraEnum.LASA);
             SalvarArquivo(_arquivo);
             ExecutarEValidarBatch(_arquivo, Parametros.PastaBatDia + BatEnumDia.ParcEmissao.ObterTexto(), CodigoStage.AprovadoNaFG01_2);
+            ValidarTeste();
         }
 
         [TestMethod]
@@ -39,27 +41,32 @@ namespace Acelera.Testes
         {
             IniciarTeste(TipoArquivo.ParcEmissaoAuto, "9999", "TESTE DA BAT");
             var _arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
-            CarregarArquivo(_arquivo, 1, Domain.Enums.OperadoraEnum.LASA);
+            CarregarArquivo(_arquivo, 1, Domain.Enums.OperadoraEnum.VIVO);
             SalvarArquivo(_arquivo);
             ExecutarEValidarBatch(_arquivo, Parametros.PastaBatDia + BatEnumDia.ParcEmissaoAuto.ObterTexto(), CodigoStage.AprovadoNaFG01_2);
+            ValidarTeste();
         }
 
         [TestMethod]
         public void SAP_9999_TESTEBAT_COMISSAO()
         {
+            IniciarTeste(TipoArquivo.ParcEmissaoAuto, "9999", "TESTE DA BAT");
             var _arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(_arquivo, 1, Domain.Enums.OperadoraEnum.LASA);
             SalvarArquivo(_arquivo);
             ExecutarEValidarBatch(_arquivo, Parametros.PastaBatDia + BatEnumDia.Comissao.ObterTexto(), CodigoStage.AprovadoNaFG01_2);
+            ValidarTeste();
         }
 
         [TestMethod]
         public void SAP_9999_TESTEBAT_COBRANCA()
         {
+            IniciarTeste(TipoArquivo.OCRCobranca, "9999", "TESTE DA BAT");
             var _arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(_arquivo, 1, Domain.Enums.OperadoraEnum.LASA);
             SalvarArquivo(_arquivo);
             ExecutarEValidarBatch(_arquivo, Parametros.PastaBatDia + BatEnumDia.OCRCobranca.ObterTexto(), CodigoStage.AprovadoNaFG01_2);
+            ValidarTeste();
         }
 
         [TestMethod]

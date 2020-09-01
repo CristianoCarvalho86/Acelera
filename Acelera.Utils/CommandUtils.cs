@@ -31,9 +31,10 @@ namespace Acelera.Utils
                 process.Refresh();
                 System.Threading.Thread.Sleep(1000);
                 countSegundos++;
-                if (process.HasExited || countSegundos >= 45)
+                if (process.HasExited || countSegundos >= 150)
                 {
-                    process.Kill();
+                    if(!process.HasExited)
+                        process.Kill();
                     inProcess = false;
                 }
 
