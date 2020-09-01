@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
 
             var arquivoParcela = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivoParcela);
 
             AlterarLinha(1, "CD_RAMO", "00");
 
