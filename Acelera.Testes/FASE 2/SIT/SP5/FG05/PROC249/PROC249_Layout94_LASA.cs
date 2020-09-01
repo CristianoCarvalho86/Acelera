@@ -17,7 +17,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
         [TestCategory("Com Critica")]
         public void SAP_9471()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9471:FG05 - PROC 249 - PAPCARD - PARCELA - NR_ENDOSSO já processado - Parcela 3 - Msm arquivo");
+            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9471:FG05 - PROC 249 - LASA - PARCELA - NR_ENDOSSO já processado - Parcela 3 - Msm arquivo");
             
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
