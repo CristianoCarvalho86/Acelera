@@ -425,7 +425,7 @@ namespace Acelera.Testes
             return linhaCancelamento;
         }
 
-        public void CriarNovoContrato(int posicaoLinha, Arquivo arquivo = null, string novoContrato = "")
+        public void CriarNovoContrato(int posicaoLinha, Arquivo arquivo = null, string novoContrato = "", bool colocarEmTodasAsLinhas = false)
         {
             arquivo = arquivo == null ? this.arquivo : arquivo;
             var contrato = "";
@@ -444,7 +444,10 @@ namespace Acelera.Testes
                         break;
                 }
             }
-            AlterarContrato(arquivo, posicaoLinha, contrato);
+            if (colocarEmTodasAsLinhas)
+                AlterarContratoNoArquivo(arquivo, contrato);
+            else
+                AlterarContrato(arquivo, posicaoLinha, contrato);
         }
 
         protected void AlterarContratoNoArquivo(Arquivo arquivo, string contrato)
