@@ -19,17 +19,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "9360", "SAP-9360:FG05 - PROC 233 - C/C - PARCELA - Contrato com registro rejeitado - Mesmo arquivo");
             //Envia parc normal
+            AlterarCobertura(false);
+
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-9999-20200831.txt"));
+            RemoverLinha(0);
+            RemoverLinha(0);
 
-            SalvarArquivo();
+            CriarNovoContrato(0, arquivo, "", true);
+
             var arquivoParcela = arquivo.Clone();
-
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcela);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
             AlterarLinha(1, "CD_RAMO", "00");
 
             SalvarArquivo();
