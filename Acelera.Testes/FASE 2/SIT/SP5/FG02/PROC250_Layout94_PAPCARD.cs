@@ -26,6 +26,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             AlterarLinha(0, "VL_PREMIO_TOTAL", "200");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "100");
             AlterarLinha(0, "VL_IOF", "100");
+            AlterarLinha(0, "VL_IOF", "100");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivo[0]["NR_SEQUENCIAL_EMISSAO"]);
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
+
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo();

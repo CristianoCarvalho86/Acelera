@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             CriarNovoContrato(0, arquivo, "", true);
             AlterarTodasAsLinhas( "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"]));
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOds(arquivo);
 
             var arquivoParc1 = arquivo.Clone();
 
@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOds(arquivo);
 
             arquivo = arquivoParc1;
             arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[2], "10", "02"));
