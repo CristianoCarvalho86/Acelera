@@ -23,22 +23,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            CriarNovaLinhaParaEmissao(arquivo, 0);
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
+            RemoverLinhaComAjusteDeFooter(0);
             EnviarParaOdsAlterandoCliente(arquivo);
             LimparValidacao();
 
             arquivo = arquivoParc1.Clone();
             arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02", "1"));
-            arquivo.AlterarLinha(1, "CD_ITEM", "2");
+            RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
             SalvarArquivo();
             SelecionarLinhaParaValidacao(0);
-            ValidarFGsAnteriores();
+            ExecutarEValidarAteFg02(arquivo, "33");
             //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
 
             LimparValidacao();
