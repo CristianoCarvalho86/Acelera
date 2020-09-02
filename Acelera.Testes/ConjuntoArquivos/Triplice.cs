@@ -324,5 +324,28 @@ namespace Acelera.Testes.ConjuntoArquivos
                 return (ITriplice)binaryFormatter.Deserialize(memoryStream);
             }
         }
+
+        private void AlteracoesPapCardEmissao(Arquivo _arquivo)
+        {
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
+            {
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO_EST", _arquivo[i]["NR_SEQUENCIAL_EMISSAO"]);
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", "");
+            }
+        }
+
+        protected void AlteracoesIniciaisPapcard(Arquivo _arquivo)
+        {
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
+            {
+                _arquivo.AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(_arquivo.Linhas[i]));
+                _arquivo.AlterarLinha(i, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
+                _arquivo.AlterarLinha(i, "CD_CONTRATO", "759303900006209");
+                _arquivo.AlterarLinha(i, "NR_APOLICE", "759303900006209");
+                _arquivo.AlterarLinha(i, "CD_CLIENTE", RandomNumber.GerarNumeroAleatorio(8));
+            }
+
+        }
     }
 }
