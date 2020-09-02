@@ -69,7 +69,7 @@ namespace Acelera.Utils
             return linhaDeReferencia["CD_SUCURSAL"] + linhaDeReferencia["CD_RAMO"] + RandomNumber.GerarNumeroAleatorio(7);
         }
 
-        public static string GerarNrDocumentoPapCard()
+        public static string GerarNrApolicePapCard()
         {
             return RandomNumber.GerarNumeroAleatorio(10);
         }

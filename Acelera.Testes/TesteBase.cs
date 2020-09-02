@@ -393,6 +393,10 @@ namespace Acelera.Testes
 
             logger.FecharBloco();
             _arquivo = novoArquivo;
+
+            if(_arquivo.tipoArquivo == TipoArquivo.ParcEmissao && _arquivo.Operadora == OperadoraEnum.PAPCARD)
+                AlteracoesIniciaisPapcard(arquivo);
+
         }
 
         public void CriarArquivoCancelamento(Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",

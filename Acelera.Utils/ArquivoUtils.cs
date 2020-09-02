@@ -13,7 +13,15 @@ namespace Acelera.Utils
 {
     public static class ArquivoUtils
     {
+        public static string ObterNumeroDoLote(string nomeArquivo)
+        {
+            return nomeArquivo.Split('-')[2];
+        }
 
+        public static string AlterarNumeroDoLote(string nomeArquivo)
+        {
+            return nomeArquivo.Split('-')[2];
+        }
 
     }
 }

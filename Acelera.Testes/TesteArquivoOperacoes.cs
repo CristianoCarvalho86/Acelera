@@ -21,10 +21,9 @@ namespace Acelera.Testes
     {
         protected Arquivo arquivo;
         protected IMyLogger logger;
-        protected bool alterarDadosPapcard;
         public TesteArquivoOperacoes()
         {
-            alterarDadosPapcard = true;
+
         }
 
         public void SelecionarLinhaParaValidacao(int posicaoLinha, bool semHeaderOuFooter = false, Arquivo _arquivo = null)
@@ -389,7 +388,7 @@ namespace Acelera.Testes
 
         public virtual void FinalizarAlteracaoArquivo(Arquivo _arquivo)
         {
-            if (_arquivo.Operadora == OperadoraEnum.PAPCARD && _arquivo.tipoArquivo == TipoArquivo.ParcEmissao && alterarDadosPapcard)
+            if (_arquivo.Operadora == OperadoraEnum.PAPCARD && _arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
             {
                 AlteracoesPapCardEmissao(_arquivo);
             }
@@ -399,10 +398,23 @@ namespace Acelera.Testes
         {
             for (int i = 0; i < _arquivo.Linhas.Count; i++)
             {
-                _arquivo.AlterarLinha(i, "NR_SEQ_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
-                _arquivo.AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
-                _arquivo.AlterarLinha(i, "NR_DOCUMENTO", GerarNumeroAleatorio(10));
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO_EST", _arquivo[i]["NR_SEQUENCIAL_EMISSAO"]);
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", "");
             }
+        }
+
+        protected void AlteracoesIniciaisPapcard(Arquivo _arquivo)
+        {
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
+            {
+                _arquivo.AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(_arquivo.Linhas[i]));
+                _arquivo.AlterarLinha(i, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
+                _arquivo.AlterarLinha(i, "CD_CONTRATO", "759303900006209");
+                _arquivo.AlterarLinha(i, "NR_APOLICE", "759303900006209");
+                _arquivo.AlterarLinha(i, "CD_CLIENTE", GerarNumeroAleatorio(8));
+            }
+
         }
 
         public string GerarNumeroAleatorio(int posicoes)

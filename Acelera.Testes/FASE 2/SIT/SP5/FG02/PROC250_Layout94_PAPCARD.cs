@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             AlterarLinha(0, "VL_PREMIO_TOTAL", "200");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "100");
             AlterarLinha(0, "VL_IOF", "100");
@@ -57,13 +57,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
-            CriarNovaLinhaParaEmissao(arquivo, 0);
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivo[0], "10"));
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "03");
-            AlterarLinha(1, "CD_TIPO_EMISSAO", "10");
             AlterarLinha(1, "VL_PREMIO_TOTAL", "200");
             AlterarLinha(1, "VL_PREMIO_LIQUIDO", "100");
             AlterarLinha(1, "VL_IOF", "100");
-            AlterarLinha(1, "ID_TRANSACAO_CANC", arquivo[0]["ID_TRANSACAO"]);
 
 
             //SALVAR O NOVO ARQUIVO ALTERADO

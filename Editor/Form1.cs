@@ -367,5 +367,13 @@ namespace Editor
 
             
         }
+
+        private void btnSalvarComNovoLote_Click(object sender, EventArgs e)
+        {
+            var endereco = arquivo.EnderecoCompleto.Split('\\').Last().Split('-');
+
+            //arquivo.EnderecoCompleto = 
+            btnSalvar_Click(sender, e);
+        }
     }
 }
