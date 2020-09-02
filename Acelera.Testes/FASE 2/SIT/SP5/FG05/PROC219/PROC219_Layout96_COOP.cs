@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC219
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            ReplicarLinha(0, 1);
+            CriarNovaLinhaParaEmissao(arquivo, 0);
             AlterarLinha(1, "CD_CLIENTE", dados.ObterCdClienteParceiro(true,arquivo.Header[0]["CD_TPA"], new string[] { arquivo[0]["CD_CLIENTE"] }));
 
             SalvarArquivo();
