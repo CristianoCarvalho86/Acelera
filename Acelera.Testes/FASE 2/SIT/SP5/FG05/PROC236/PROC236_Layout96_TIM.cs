@@ -28,7 +28,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             CriarNovoContrato(0,arquivo,"",true);
             var cdContrato = arquivo[0]["CD_CONTRATO"];
 
-
             SelecionarLinhaParaValidacao(0);
             //EnviarParaOds(arquivo);
             SalvarArquivo();
