@@ -388,7 +388,7 @@ namespace Acelera.Testes
 
         public virtual void FinalizarAlteracaoArquivo(Arquivo _arquivo)
         {
-            if (_arquivo.Operadora == OperadoraEnum.PAPCARD && _arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+            if (_arquivo.Operadora == OperadoraEnum.PAPCARD)
             {
                 AlteracoesPapCardEmissao(_arquivo);
             }
@@ -398,8 +398,8 @@ namespace Acelera.Testes
         {
             for (int i = 0; i < _arquivo.Linhas.Count; i++)
             {
-                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO_EST", _arquivo[i]["NR_SEQUENCIAL_EMISSAO"]);
-                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", "");
+                _arquivo.AlterarLinhaSeExistirCampo(i, "NR_SEQUENCIAL_EMISSAO_EST", _arquivo[i].ObterCampoSeExistir("NR_SEQUENCIAL_EMISSAO").ValorFormatado);
+                _arquivo.AlterarLinhaSeExistirCampo(i, "NR_SEQUENCIAL_EMISSAO", "");
             }
         }
 

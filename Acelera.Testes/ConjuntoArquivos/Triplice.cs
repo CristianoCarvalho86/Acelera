@@ -194,10 +194,13 @@ namespace Acelera.Testes.ConjuntoArquivos
             if (tipoArquivo == TipoArquivo.ParcEmissao || tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 for (int i = 0; i < arquivo.Linhas.Count; i++)
                 {
+                    var idTransacaoOld = arquivo.Linhas[i]["ID_TRANSACAO"];
                     var novoIdTransacao = CarregarIdtransacao(arquivo.Linhas[i]);
                     logger.Escrever($"ALTERANDO LINHA '{i}', Campo : ID_TRANSACAO, Valor Antigo: '{arquivo.ObterLinha(i).ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado}'" +
                         $", Valor Novo: '{novoIdTransacao}'");
                     arquivo.AlterarLinha(i, "ID_TRANSACAO", novoIdTransacao);
+
+                    arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", novoIdTransacao);
                 }
 
             var array = nomeArquivo.Split('-');
@@ -320,6 +323,29 @@ namespace Acelera.Testes.ConjuntoArquivos
                 memoryStream.Seek(0, SeekOrigin.Begin);
                 return (ITriplice)binaryFormatter.Deserialize(memoryStream);
             }
+        }
+
+        private void AlteracoesPapCardEmissao(Arquivo _arquivo)
+        {
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
+            {
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO_EST", _arquivo[i]["NR_SEQUENCIAL_EMISSAO"]);
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", "");
+            }
+        }
+
+        protected void AlteracoesIniciaisPapcard(Arquivo _arquivo)
+        {
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
+            {
+                _arquivo.AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(_arquivo.Linhas[i]));
+                _arquivo.AlterarLinha(i, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
+                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
+                _arquivo.AlterarLinha(i, "CD_CONTRATO", "759303900006209");
+                _arquivo.AlterarLinha(i, "NR_APOLICE", "759303900006209");
+                _arquivo.AlterarLinha(i, "CD_CLIENTE", RandomNumber.GerarNumeroAleatorio(8));
+            }
+
         }
     }
 }
