@@ -44,7 +44,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "249", 1);
+            SelecionarLinhaParaValidacao(0);
+            ValidarFGsAnteriores();
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "249", 1);
         }
     }
 }

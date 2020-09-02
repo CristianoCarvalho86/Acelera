@@ -462,9 +462,12 @@ namespace Acelera.Testes
 
         protected void AlterarContrato(Arquivo arquivo, int posicaoLinha, string contrato)
         {
-            arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
-            arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
-            arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
+            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+            {
+                arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
+                arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
+                arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
+            }
         }
 
         protected string GerarNovoContratoAleatorio(string contratoBase)

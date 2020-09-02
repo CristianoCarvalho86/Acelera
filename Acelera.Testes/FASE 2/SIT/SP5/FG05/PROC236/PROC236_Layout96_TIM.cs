@@ -17,21 +17,53 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
         [TestCategory("Com Critica")]
         public void SAP_9386()
         {
-            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9386:FG05 - PROC 236 - TIM - PARCELA - Registros do mesmo contrato c/ vig. Dif. - Arquivos diferentes");
+            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9386:FG05 - PROC 236 - tim - PARCELA - Registros do mesmo contrato c/ vig. Dif. - Arquivos diferentes");
             //Envia parc normal
+            AlterarCobertura(false);
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-9999-20200831.txt"));
+            RemoverLinhaComAjusteDeFooter(0);
+            RemoverLinhaComAjusteDeFooter(2);
 
-            CriarNovoContrato(0);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados);
+            CriarNovoContrato(0,arquivo,"",true);
+            var cdContrato = arquivo[0]["CD_CONTRATO"];
 
-            AlterarTodasAsLinhas("CD_TIPO_EMISSAO", "20");
+
+            SelecionarLinhaParaValidacao(0);
+            //EnviarParaOds(arquivo);
+            SalvarArquivo();
+            //SelecionarLinhaParaValidacao(0);
+            ValidarFGsAnteriores();
+
+            var cdCliente = arquivo[0]["CD_CLIENTE"];
+
+            LimparValidacao();
+
+            //recarregando o arquivo e colocando apenas a segunda cobertura
+            arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-9999-20200831.txt"));
+            RemoverLinhaComAjusteDeFooter(1);
+            RemoverLinhaComAjusteDeFooter(1);
+
+            CriarNovoContrato(0, arquivo, cdContrato, true);
+
+            arquivo.AlterarTodasAsLinhas("CD_CLIENTE", cdCliente);
+
+            //SalvarArquivo();
+
+            //ValidarFGsAnteriores();
+
+            AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivo[0]["DT_INICIO_VIGENCIA"], 30));
+            AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivo[0]["DT_FIM_VIGENCIA"], 30));
             AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivo[0]["DT_INICIO_VIGENCIA"], 30));
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivo[0]["DT_FIM_VIGENCIA"], 30));
-            AlterarCobertura(false);
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "3");
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", "4");
+
+            SelecionarLinhaParaValidacao(0);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "236", 1);
+            ValidarFGsAnteriores();
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "236", 1);
         }
     }
 }
