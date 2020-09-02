@@ -2,6 +2,7 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
+using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,9 +19,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo,0);
@@ -33,7 +33,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "219", 1);
+            //SelecionarLinhaParaValidacao(0);
+            //ValidarFGsAnteriores();
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "219", 1);
         }
 
         [TestMethod]

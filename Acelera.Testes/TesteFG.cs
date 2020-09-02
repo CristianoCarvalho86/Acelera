@@ -398,9 +398,6 @@ namespace Acelera.Testes
 
         public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
-                alterarDadosPapcard = false;
-
             var operadora = arquivoParc.Operadora;
             if (operadora == OperadoraEnum.TIM)
                 CriarNovaLinhaEmissaoTim(arquivoParc);
@@ -472,8 +469,7 @@ namespace Acelera.Testes
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(arquivoParc.Operadora));
             if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
             {
-                arquivoParc.AlterarLinha(linhaDeReferencia, "NR_DOCUMENTO", ParametrosRegrasEmissao.GerarNrDocumentoPapCard());
-                alterarDadosPapcard = false;
+                arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
             }
         }
 

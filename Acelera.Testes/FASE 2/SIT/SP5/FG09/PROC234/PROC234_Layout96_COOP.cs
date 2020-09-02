@@ -21,12 +21,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            SalvarArquivo();
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
@@ -35,12 +35,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
             RemoverLinhaComAjusteDeFooter(0);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo,true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo);
 
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
         }
     }
 }
