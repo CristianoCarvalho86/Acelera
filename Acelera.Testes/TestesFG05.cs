@@ -72,6 +72,9 @@ namespace Acelera.Testes
                     _arquivo.AlterarLinhaSeExistirCampo(i, "CD_COBERTURA", cobertura.CdCobertura);
                     _arquivo.AlterarLinhaSeExistirCampo(i, "CD_RAMO", cobertura.CdRamo);
                     _arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
+                    var cdContrato = _arquivo[i]["CD_CONTRATO"];
+                    cdContrato = cdContrato.Substring(0, 2) + cobertura.CdRamo + cdContrato.Substring(4);
+                    AlterarContrato(_arquivo, i, cdContrato);
                 }
         }
 

@@ -159,11 +159,12 @@ namespace Acelera.Testes
 
         public override void FinalizarAlteracaoArquivo(Arquivo _arquivo = null)
         {
-            _arquivo = _arquivo != null ? _arquivo : arquivo;
+            SetarArquivoEmUso(ref _arquivo);
             if (_arquivo.tipoArquivo != TipoArquivo.ParcEmissao && _arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
                 return;
 
             Parallel.ForEach(_arquivo.Linhas, linha => { _arquivo.AlterarLinha(linha.Index, "ID_TRANSACAO", CarregarIdtransacao(linha)); });
+            base.FinalizarAlteracaoArquivo(_arquivo);
         }
 
         public virtual IList<ILinhaTabela> ExecutarEValidar(Arquivo _arquivo, FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)

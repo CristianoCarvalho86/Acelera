@@ -36,7 +36,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC243
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "243", 1);
+            SelecionarLinhaParaValidacao(0);
+            ValidarFGsAnteriores();
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "243", 1);
         }
     }
 }

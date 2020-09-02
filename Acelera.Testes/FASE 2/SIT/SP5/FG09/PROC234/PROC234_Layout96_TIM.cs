@@ -20,7 +20,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
 
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
             AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
             CriarNovoContrato(0);
 
@@ -42,6 +42,39 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
 
             SalvarArquivo();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+        }
+
+        [TestMethod]
+        public void SAP_9497()
+        {
+            IniciarTeste(TipoArquivo.ParcEmissao, "", "SAP-9497:FG09 - PROC 234 - COMISSAO - Cancelamento de comissão sem emissão de comissão");
+
+            //Envia parc normal
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CriarNovoContrato(0);
+
+            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            SelecionarLinhaParaValidacao(0);
+            EnviarParaOdsAlterandoCliente(arquivo);
+            var arquivoParc1 = arquivo.Clone();
+            LimparValidacao();
+
+
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
+            RemoverLinhaComAjusteDeFooter(0);
+            SelecionarLinhaParaValidacao(0);
+            SalvarArquivo();
+
+            ValidarFGsAnteriores();
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+
+            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo, true);
+
+            SelecionarLinhaParaValidacao(0);
+            SalvarArquivo();
+            ValidarFGsAnteriores();
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
         }
     }
 }

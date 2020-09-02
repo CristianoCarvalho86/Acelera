@@ -141,7 +141,7 @@ namespace Acelera.Testes
             {
                 int i = 0;
                 foreach (var linha in _arquivo.Linhas)
-                    _arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE",dados.ObterCdClienteParceiro(true, _arquivo.Header[0]["CD_TPA"]) /* ParametrosBanco.ObterCDClienteCadastrado(_arquivo.Operadora)*/);
+                    _arquivo.AlterarLinhaSeExistirCampo(i++, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, _arquivo.Header[0]["CD_TPA"]) /* ParametrosBanco.ObterCDClienteCadastrado(_arquivo.Operadora)*/);
             }
 
 
@@ -283,21 +283,21 @@ namespace Acelera.Testes
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");
             var nomeArquivoDeLog = string.Empty;
 
-            if(arquivosSalvos != null && arquivosSalvos.Count > 0)
-            foreach (var arqSalvo in arquivosSalvos)
-            {
-                if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
+            if (arquivosSalvos != null && arquivosSalvos.Count > 0)
+                foreach (var arqSalvo in arquivosSalvos)
                 {
-                    nomeArquivoDeLog = arqSalvo.Split('\\').Last().ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
-                    File.Copy(arqSalvo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
-                    logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
-                    if (File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
+                    if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                     {
-                        File.Delete(arqSalvo);
-                        logger.EscreverBloco("Arquivo deletado : " + arqSalvo);
+                        nomeArquivoDeLog = arqSalvo.Split('\\').Last().ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
+                        File.Copy(arqSalvo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
+                        logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
+                        if (File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
+                        {
+                            File.Delete(arqSalvo);
+                            logger.EscreverBloco("Arquivo deletado : " + arqSalvo);
+                        }
                     }
                 }
-            }
 
             //if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo && !string.IsNullOrEmpty(Parametros.pastaLogArquivoCopia))
             //    File.Copy(pathOrigem, Parametros.pastaLogArquivoCopia + nomeArquivoDeLog);
@@ -398,6 +398,9 @@ namespace Acelera.Testes
 
         public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
+            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
+                alterarDadosPapcard = false;
+
             var operadora = arquivoParc.Operadora;
             if (operadora == OperadoraEnum.TIM)
                 CriarNovaLinhaEmissaoTim(arquivoParc);
@@ -459,11 +462,19 @@ namespace Acelera.Testes
 
         public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            arquivoParc.AlterarLinha(linhaDeReferencia, "ID_TRANSACAO_CANC", "");
+            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
+
+
+                arquivoParc.AlterarLinha(linhaDeReferencia, "ID_TRANSACAO_CANC", "");
             arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(arquivoParc.Operadora));
+            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
+            {
+                arquivoParc.AlterarLinha(linhaDeReferencia, "NR_DOCUMENTO", ParametrosRegrasEmissao.GerarNrDocumentoPapCard());
+                alterarDadosPapcard = false;
+            }
         }
 
         public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)

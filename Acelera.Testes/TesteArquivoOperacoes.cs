@@ -21,8 +21,10 @@ namespace Acelera.Testes
     {
         protected Arquivo arquivo;
         protected IMyLogger logger;
+        protected bool alterarDadosPapcard;
         public TesteArquivoOperacoes()
         {
+            alterarDadosPapcard = true;
         }
 
         public void SelecionarLinhaParaValidacao(int posicaoLinha, bool semHeaderOuFooter = false, Arquivo _arquivo = null)
@@ -387,7 +389,20 @@ namespace Acelera.Testes
 
         public virtual void FinalizarAlteracaoArquivo(Arquivo _arquivo)
         {
+            if (_arquivo.Operadora == OperadoraEnum.PAPCARD && _arquivo.tipoArquivo == TipoArquivo.ParcEmissao && alterarDadosPapcard)
+            {
+                AlteracoesPapCardEmissao(_arquivo);
+            }
+        }
 
+        private void AlteracoesPapCardEmissao(Arquivo _arquivo)
+        {
+            for (int i = 0; i < _arquivo.Linhas.Count; i++)
+            {
+                _arquivo.AlterarLinha(i, "NR_SEQ_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
+                _arquivo.AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
+                _arquivo.AlterarLinha(i, "NR_DOCUMENTO", GerarNumeroAleatorio(10));
+            }
         }
 
         public string GerarNumeroAleatorio(int posicoes)
