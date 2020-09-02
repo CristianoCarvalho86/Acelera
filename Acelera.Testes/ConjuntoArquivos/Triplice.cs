@@ -194,10 +194,13 @@ namespace Acelera.Testes.ConjuntoArquivos
             if (tipoArquivo == TipoArquivo.ParcEmissao || tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 for (int i = 0; i < arquivo.Linhas.Count; i++)
                 {
+                    var idTransacaoOld = arquivo.Linhas[i]["ID_TRANSACAO"];
                     var novoIdTransacao = CarregarIdtransacao(arquivo.Linhas[i]);
                     logger.Escrever($"ALTERANDO LINHA '{i}', Campo : ID_TRANSACAO, Valor Antigo: '{arquivo.ObterLinha(i).ObterCampoDoArquivo("ID_TRANSACAO").ValorFormatado}'" +
                         $", Valor Novo: '{novoIdTransacao}'");
                     arquivo.AlterarLinha(i, "ID_TRANSACAO", novoIdTransacao);
+
+                    arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", novoIdTransacao);
                 }
 
             var array = nomeArquivo.Split('-');
