@@ -25,10 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC219
 
             CriarNovoContrato(0);
 
-            ReplicarLinha(0, 1);
-            AlterarLinha(1, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"], new string[] { arquivo[0]["CD_CLIENTE"] }));
-            AlterarLinha(1, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(arquivo[1]));
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivo[1],OperadoraEnum.PAPCARD));
+            CriarNovaLinhaParaEmissao(arquivo, 0);
+            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
 
             SalvarArquivo();
 
