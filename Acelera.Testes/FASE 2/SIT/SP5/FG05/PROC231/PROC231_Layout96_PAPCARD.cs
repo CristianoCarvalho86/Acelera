@@ -17,25 +17,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
         public void SAP_9300()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "9300", "SAP-9300:FG05 - PROC 231 - C/C - PAPCARD - COMISSAO - Comissão para emissão = 18");
-            
+
 
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
-            CriarNovoContrato(0);
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivoods,true);
+            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.PAPCARD, arquivoods,true);
 
             AlterarLinha(0, "VL_COMISSAO", "1");
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "231", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "231", 1);
         }
     }
 }

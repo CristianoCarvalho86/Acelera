@@ -407,12 +407,17 @@ namespace Acelera.Testes
         {
             for (int i = 0; i < _arquivo.Linhas.Count; i++)
             {
-                _arquivo.AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(_arquivo.Linhas[i]));
-                _arquivo.AlterarLinha(i, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
-                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
-                _arquivo.AlterarLinha(i, "CD_CONTRATO", "759303900006209");
-                _arquivo.AlterarLinha(i, "NR_APOLICE", "759303900006209");
-                _arquivo.AlterarLinha(i, "CD_CLIENTE", GerarNumeroAleatorio(8));
+                if( _arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
+                {
+                    _arquivo.AlterarLinhaSeExistirCampo(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(_arquivo.Linhas[i]));
+                    _arquivo.AlterarLinhaSeExistirCampo(i, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
+                    _arquivo.AlterarLinhaSeExistirCampo(i, "NR_APOLICE", "759303900006209");
+                    _arquivo.AlterarLinhaSeExistirCampo(i, "CD_CLIENTE", GerarNumeroAleatorio(8));
+                }            
+                
+                _arquivo.AlterarLinhaSeExistirCampo(i, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
+                _arquivo.AlterarLinhaSeExistirCampo(i, "CD_CONTRATO", "759303900006209");
+                
             }
 
         }

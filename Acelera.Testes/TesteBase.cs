@@ -394,7 +394,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
             _arquivo = novoArquivo;
 
-            if(_arquivo.tipoArquivo == TipoArquivo.ParcEmissao && _arquivo.Operadora == OperadoraEnum.PAPCARD)
+            if(_arquivo.Operadora == OperadoraEnum.PAPCARD)
                 AlteracoesIniciaisPapcard(arquivo);
 
         }
