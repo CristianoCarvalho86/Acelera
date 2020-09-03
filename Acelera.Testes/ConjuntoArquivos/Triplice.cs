@@ -123,8 +123,15 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         private void Carregar()
         {
+            CarregarArquivos();
+            Parametrizacoes(ArquivoCliente);
+            Parametrizacoes(ArquivoParcEmissao);
+            Parametrizacoes(ArquivoComissao);
+        }
+
+        protected virtual void CarregarArquivos()
+        {
             ArquivoCliente.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Cliente, Operadora, PastaOrigem), 1, 1, QuantidadeInicialCliente);
-            ArquivoCliente.AjustarQtdLinhasNoFooter();
 
             if (Operadora == OperadoraEnum.VIVO)
                 ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissaoAuto, Operadora, PastaOrigem), 1, 1, 1);
@@ -132,11 +139,6 @@ namespace Acelera.Testes.ConjuntoArquivos
                 ArquivoParcEmissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.ParcEmissao, Operadora, PastaOrigem), 1, 1, 1);
 
             ArquivoComissao.Carregar(ArquivoOrigem.ObterArquivoAleatorio(TipoArquivo.Comissao, Operadora, PastaOrigem), 1, 1, 1);
-
-            Parametrizacoes(ArquivoCliente);
-            Parametrizacoes(ArquivoParcEmissao);
-            Parametrizacoes(ArquivoComissao);
-
         }
 
         private void CarregarCancelamento()
@@ -203,6 +205,8 @@ namespace Acelera.Testes.ConjuntoArquivos
                     arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", novoIdTransacao);
                 }
 
+            FinalizarAlteracao(arquivo);
+
             var array = nomeArquivo.Split('-');
             array[2] = "/*R*/";
             nomeArquivo = array.ToList().ObterListaConcatenada("-");
@@ -220,6 +224,11 @@ namespace Acelera.Testes.ConjuntoArquivos
             logger.FecharBloco();
             arquivo.valoresAlteradosBody.FinalizarAlteracaoArquivo(nomeOriginalArquivo, nomeArquivo);
             _arquivosSalvos.Add(arquivoGerado);
+        }
+
+        public virtual void FinalizarAlteracao(Arquivo arquivo)
+        {
+
         }
 
         protected string CarregarIdtransacao(LinhaArquivo linha)
@@ -325,27 +334,5 @@ namespace Acelera.Testes.ConjuntoArquivos
             }
         }
 
-        private void AlteracoesPapCardEmissao(Arquivo _arquivo)
-        {
-            for (int i = 0; i < _arquivo.Linhas.Count; i++)
-            {
-                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO_EST", _arquivo[i]["NR_SEQUENCIAL_EMISSAO"]);
-                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", "");
-            }
-        }
-
-        protected void AlteracoesIniciaisPapcard(Arquivo _arquivo)
-        {
-            for (int i = 0; i < _arquivo.Linhas.Count; i++)
-            {
-                _arquivo.AlterarLinha(i, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(_arquivo.Linhas[i]));
-                _arquivo.AlterarLinha(i, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
-                _arquivo.AlterarLinha(i, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(_arquivo.Linhas[i], OperadoraEnum.PAPCARD));
-                _arquivo.AlterarLinha(i, "CD_CONTRATO", "759303900006209");
-                _arquivo.AlterarLinha(i, "NR_APOLICE", "759303900006209");
-                _arquivo.AlterarLinha(i, "CD_CLIENTE", RandomNumber.GerarNumeroAleatorio(8));
-            }
-
-        }
     }
 }
