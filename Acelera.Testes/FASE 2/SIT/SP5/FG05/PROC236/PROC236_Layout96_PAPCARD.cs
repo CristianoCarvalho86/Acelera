@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             SalvarArquivo();
-            ValidarFGsAnteriores();
+            //ValidarFGsAnteriores();
 
             LimparValidacao();
             AdicionarNovaCoberturaNaEmissao(arquivo, dados);
@@ -38,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             AlterarCobertura(false);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "236", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "236", 1);
         }
     }
 }

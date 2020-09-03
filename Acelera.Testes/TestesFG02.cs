@@ -160,15 +160,17 @@ namespace Acelera.Testes
         public override void FinalizarAlteracaoArquivo(Arquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
-            if (_arquivo.tipoArquivo != TipoArquivo.ParcEmissao && _arquivo.tipoArquivo != TipoArquivo.ParcEmissaoAuto)
-                return;
+            if (_arquivo.tipoArquivo == TipoArquivo.ParcEmissao || _arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
+            {
 
-            Parallel.ForEach(_arquivo.Linhas, linha => {
-                var idTransacaoOld = linha["ID_TRANSACAO"];
-                var idTransacaoNew = CarregarIdtransacao(linha);
-                _arquivo.AlterarLinha(linha.Index, "ID_TRANSACAO", idTransacaoNew);
-                _arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", idTransacaoNew);
-            });
+                Parallel.ForEach(_arquivo.Linhas, linha =>
+                {
+                    var idTransacaoOld = linha["ID_TRANSACAO"];
+                    var idTransacaoNew = CarregarIdtransacao(linha);
+                    _arquivo.AlterarLinha(linha.Index, "ID_TRANSACAO", idTransacaoNew);
+                    _arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", idTransacaoNew);
+                });
+            }
             base.FinalizarAlteracaoArquivo(_arquivo);
         }
 

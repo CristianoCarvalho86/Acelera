@@ -21,22 +21,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            SalvarArquivo();
+
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.COOP, arquivoods);
-            AlterarHeader("VERSAO", "9.6");
 
             AlterarLinha(0, "VL_COMISSAO", "1");
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "231", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "231", 1);
         }
     }
 }
