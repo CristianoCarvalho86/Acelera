@@ -26,7 +26,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            SalvarArquivo();
+
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
@@ -35,13 +37,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
             RemoverLinhaComAjusteDeFooter(0);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
         }
     }
 }

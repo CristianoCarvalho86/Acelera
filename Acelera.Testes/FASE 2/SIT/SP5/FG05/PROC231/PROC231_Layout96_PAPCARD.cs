@@ -29,7 +29,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.PAPCARD, arquivoods,true);
+            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoods);
+            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             AlterarLinha(0, "VL_COMISSAO", "1");
 

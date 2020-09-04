@@ -27,7 +27,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            SalvarArquivo();
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods1 = arquivo.Clone();
 
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
@@ -39,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "232", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "232", 1);
         }
 
     }

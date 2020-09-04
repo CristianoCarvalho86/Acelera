@@ -26,8 +26,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC241
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            SalvarArquivo();
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoOds = arquivo.Clone();
 
             LimparValidacao();
@@ -35,11 +36,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC241
             CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinhaComAjusteDeFooter(0);
 
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", arquivoOds[0]["NR_SEQUENCIAL_EMISSAO"].ObterValorInteiroAnterior());
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", arquivoOds[0]["NR_SEQUENCIAL_EMISSAO_EST"].ObterValorInteiroAnterior());
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "241", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "241", 1);
         }
     }
 }

@@ -20,11 +20,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "03");
-            AlterarLinha(0, "CD_TIPO_EMISSAO", "7");
+            AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "VL_PREMIO_TOTAL", "200");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "100");
             AlterarLinha(0, "VL_IOF", "100");
-            AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "CD_CONTRATO", GerarNumeroAleatorio(8));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
