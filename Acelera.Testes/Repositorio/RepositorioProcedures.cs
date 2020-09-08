@@ -313,8 +313,8 @@ namespace Acelera.Testes.Repositorio
                     lista.Add("PRC_0044_NEG");
                     lista.Add("PRC_0097_INT");
                     lista.Add("PRC_0212_NEG");
-                    //lista.Add("PRC_0227_NEG");
-                    //lista.Add("PRC_0228_NEG");
+                    lista.Add("PRC_0227_NEG");
+                    lista.Add("PRC_0228_NEG");
                     lista.Add("PRC_1012_NEG");
                     lista.Add("PRC_1014_NEG");
                     lista.Add("PRC_1015_NEG");

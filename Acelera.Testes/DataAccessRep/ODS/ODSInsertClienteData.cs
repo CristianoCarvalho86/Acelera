@@ -22,7 +22,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             @" tp_pessoa as cd_tipo_pessoa, " +
             @" nm_cliente as nm_parceiro, " +
             @" nr_cnpj_cpf as nr_cnpj_cpf_rne, " +
-            @" cast(dt_nascimento as date), " +
+            @" cast(dt_nascimento as date) as dt_nascimento, " +
             @" nm_arquivo_tpa, " +
             @" cd_sexo as cd_tip_sexo, " +
             @" '' as cd_susep, " +
@@ -43,7 +43,8 @@ namespace Acelera.Testes.DataAccessRep.ODS
             @" 'POC_SAC_20200517' as nm_usuario, " +
             @" 'N' as flag_migrado, " +
             @" tp_mudanca, " +
-            @" dt_mudanca " +
+            @" dt_mudanca, "+
+            @" 'N' as fl_retorno_complementar" +
             $" from {Parametros.instanciaDB}.tab_stg_cliente_1000 a " +
             $" inner join ({dadosWhere}) b " +
             @" ON a.id_registro = b.id_registro; ";

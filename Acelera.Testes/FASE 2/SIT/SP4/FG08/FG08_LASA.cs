@@ -1,4 +1,5 @@
-﻿using Acelera.Testes.FASE_2.SIT.SP4.FG07;
+﻿using Acelera.Logger;
+using Acelera.Testes.FASE_2.SIT.SP4.FG07;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         public void SAP_9867()
         {
             numeroDoTeste = "9867";
-            FinalizaTeste = false;
+            //FinalizaTeste = false;
             testeFG07.SAP_6162();
-            FinalizaTeste = true;
+            IniciarTeste(Domain.Enums.TipoArquivo.ParcEmissao, "9867", "FGR08 - 9867");
+            //FinalizaTeste = true;
             ExecutarEValidarFG08(true);
         }
 

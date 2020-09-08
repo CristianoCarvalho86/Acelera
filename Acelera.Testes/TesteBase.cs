@@ -228,6 +228,8 @@ namespace Acelera.Testes
                 var comando = "";
                 if (taskName.Contains("FGR_01_"))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
                     comando = $"CALL {Parametros.instanciaDB}.{taskName}_SP()";
+                else if(taskName.Contains("PRC_ENCADEA_FGR_08"))
+                    comando = $"CALL HDIQAS_1.PRC_ENCADEA_FGR_08(OUT_STATUS => ?)";
                 else
                     comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
 
@@ -479,22 +481,23 @@ namespace Acelera.Testes
             return AlterarUltimasPosicoes(contratoBase, GerarNumeroAleatorio(8));
         }
 
-        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false) where T : Arquivo, new()
+        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, bool alteraTipoComissao = true) where T : Arquivo, new()
         {
             if (alterarVersaoHeader)
-                return CriarComissao<T>(operadora, arquivoParcela, "9.6");
-            return CriarComissao<T>(operadora, arquivoParcela, "");
+                return CriarComissao<T>(operadora, arquivoParcela, "9.6",alteraTipoComissao);
+            return CriarComissao<T>(operadora, arquivoParcela, "", alteraTipoComissao);
 
         }
 
-        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, string alterarVersaoHeader) where T : Arquivo, new()
+        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, string alterarVersaoHeader, bool alteraTipoComissao = true) where T : Arquivo, new()
         {
             arquivo = new T();
             CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
             IgualarCamposQueExistirem(arquivoParcela, arquivo);
 
-            foreach (var linha in arquivo.Linhas)
-                AlterarLinha(linha.Index, "CD_TIPO_COMISSAO", dados.ObterTipoRemuneracaoDoCorretor(arquivo[linha.Index]["CD_CORRETOR"], arquivo[linha.Index]["CD_COBERTURA"], arquivoParcela[linha.Index]["CD_PRODUTO"]));
+            if(alteraTipoComissao)
+                foreach (var linha in arquivo.Linhas)
+                    AlterarLinha(linha.Index, "CD_TIPO_COMISSAO", dados.ObterTipoRemuneracaoDoCorretor(arquivo[linha.Index]["CD_CORRETOR"], arquivo[linha.Index]["CD_COBERTURA"], arquivoParcela[linha.Index]["CD_PRODUTO"]));
 
             if (!string.IsNullOrEmpty(alterarVersaoHeader))
                 arquivo.AlterarHeader("VERSAO", alterarVersaoHeader);

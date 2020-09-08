@@ -4,6 +4,8 @@ using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.DataAccessRep.ODS;
 using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -101,19 +103,43 @@ namespace Acelera.Testes
         public void EnviarLoteParaODS()
         {
             logger = new Mock<IMyLogger>().Object;
-            var arquivos = Directory.GetFiles(@"C:\Cristiano\Exportacao\ODS");
+
+            var arquivos = Directory.GetFiles(@"C:\Cristiano\Exportacao\ODS").Where(x => x.Contains("PARCEMS") && x.Contains("TIM"));
             Arquivo arquivoOds;
+            var erros = "";
+            var arquivosEnviados = "";
             foreach (var arq in arquivos)
             {
                 arquivoOds = LayoutUtils.CarregarArquivo(arq);
-                arquivoOds.Salvar(Parametros.pastaDestino + arquivoOds.tipoArquivo.ObterPastaNoDestino() + "\\" + AjustarNome(arquivoOds.NomeArquivo));
+
+                var nomeAjustado = AjustarNome(arquivoOds.NomeArquivo);
+
+                if (arquivoOds.Operadora == OperadoraEnum.COOP && arquivoOds.Header[0]["VERSAO"] == "9.6")
+                    continue;
+
+                if (arquivoOds.Operadora == OperadoraEnum.PAPCARD)
+                    foreach (var linha in arquivoOds.Linhas)
+                        arquivoOds.AlterarLinha(linha.Index, "NR_SEQUENCIA_EMISSAO", linha["NR_SEQUENCIA_EMISSAO_EST"]);
+
+                //if (DataAccess.ExisteRegistro($"SELECT * FROM {Parametros.instanciaDB}.{arquivoOds.tipoArquivo.ObterTabelaStageEnum().ObterTexto()} WHERE NM_ARQUIVO_TPA = '{nomeAjustado}'", logger))
+                //    continue;
+
+                arquivoOds.Salvar(Parametros.pastaDestino + arquivoOds.tipoArquivo.ObterPastaNoDestino() + "\\" + nomeAjustado);
                 
                 ChamarExecucao(arquivoOds.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
                 ChamarExecucao(arquivoOds.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
                 //ChamarExecucao(arquivoOds.tipoArquivo.Obtertar().ObterTexto());
                 //ChamarExecucao(arquivoOds.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
 
-                EnviarParaOds(arquivoOds, false, false,CodigoStage.AprovadoNaFG01);
+                try
+                {
+                    EnviarParaOds(arquivoOds, false, false, CodigoStage.AprovadoNaFG01);
+                    arquivosEnviados += $"{nomeAjustado}{Environment.NewLine}";
+                }
+                catch(Exception ex)
+                {
+                    erros += $"ERRO NO ARQUIVO : {nomeAjustado} {Environment.NewLine} {ex.ToString()}";
+                }
             }
         }
 
