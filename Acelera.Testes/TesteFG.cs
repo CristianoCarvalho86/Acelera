@@ -21,6 +21,12 @@ namespace Acelera.Testes
     public abstract class TesteFG : TesteBase
     {
         protected abstract string NomeFG { get; }
+        protected bool FinalizaTeste { get; set; }
+
+        public TesteFG()
+        {
+            FinalizaTeste = true;
+        }
 
         public void SetarArquivoEmUso(ref Arquivo _arquivo)
         {
@@ -278,6 +284,9 @@ namespace Acelera.Testes
         [TestCleanup]
         public virtual void FimDoTeste()
         {
+            if (!FinalizaTeste)
+                return;
+
             logger.DefinirSucesso(sucessoDoTeste);
             var sucesso = sucessoDoTeste ? "SUCESSO" : "FALHA";
             logger.EscreverBloco($"RESULTADO DO TESTE {NomeFG} : {sucesso}");

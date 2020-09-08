@@ -3,7 +3,10 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Logger;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,8 +18,9 @@ using System.Threading.Tasks;
 namespace Acelera.Testes
 {
     [TestClass]
-    public class Teste1
+    public class Teste1:TestesFG02
     {
+        protected override string NomeFG => "FG";
 
         [TestMethod]
         public void GeraTeste()
@@ -93,10 +97,32 @@ namespace Acelera.Testes
 
         //}
 
+        [TestMethod]
+        public void EnviarLoteParaODS()
+        {
+            logger = new Mock<IMyLogger>().Object;
+            var arquivos = Directory.GetFiles(@"C:\Cristiano\Exportacao\ODS");
+            Arquivo arquivoOds;
+            foreach (var arq in arquivos)
+            {
+                arquivoOds = LayoutUtils.CarregarArquivo(arq);
+                arquivoOds.Salvar(Parametros.pastaDestino + arquivoOds.tipoArquivo.ObterPastaNoDestino() + "\\" + AjustarNome(arquivoOds.NomeArquivo));
+                
+                ChamarExecucao(arquivoOds.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
+                ChamarExecucao(arquivoOds.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+                //ChamarExecucao(arquivoOds.tipoArquivo.Obtertar().ObterTexto());
+                //ChamarExecucao(arquivoOds.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
 
+                EnviarParaOds(arquivoOds, false, false,CodigoStage.AprovadoNaFG01);
+            }
+        }
 
-
-
+        private string AjustarNome(string nomeArquivo)
+        {
+            var pedacosArquivo = nomeArquivo.Split('.').ToList();
+            pedacosArquivo[0] = "C01";
+            return pedacosArquivo.ObterListaConcatenada(".");
+        }
 
     }
 }

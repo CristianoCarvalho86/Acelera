@@ -75,6 +75,7 @@
     <Compile Include="Adapters\IntegracaoCMDItens.cs" />
     <Compile Include="Arquivos\TesteMultiploArquivo.cs" />
     <Compile Include="ConjuntoArquivos\Triplice.cs" />
+    <Compile Include="ConjuntoArquivos\TriplicePAPCARD.cs" />
     <Compile Include="ConjuntoArquivos\TripliceAGREGUEDEALERS.cs" />
     <Compile Include="ConjuntoArquivos\TripliceAGREGUE.cs" />
     <Compile Include="ConjuntoArquivos\TriplicePITZI.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="ConjuntoArquivos\TripliceLASA.cs" />
     <Compile Include="ConjuntoArquivos\TripliceSOFTBOX.cs" />
     <Compile Include="ConjuntoArquivos\TripliceTIM.cs" />
+    <Compile Include="ConjuntoArquivos\TripliceTIM_2coberturas.cs" />
     <Compile Include="ConjuntoArquivos\TripliceVIVO.cs" />
     <Compile Include="DataAccessRep\DataAccessOIM.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC22\PROC22_Layout94_SGS.cs" />
