@@ -22,6 +22,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             
             AlterarCdCorretorETipoComissaoDaTriplice(triplice,"C",dados);
 
+            triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "08790951727");
+            triplice.ArquivoCliente.AlterarLinha(0, "NM_CLIENTE", "Isaac Yago Lima");
+
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+
             SalvaExecutaEValidaFG07();
 
         }

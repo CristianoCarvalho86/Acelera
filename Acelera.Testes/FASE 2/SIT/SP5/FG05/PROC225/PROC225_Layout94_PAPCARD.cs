@@ -19,18 +19,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 
 
             //Envia parc normal
-            var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
-            CarregarArquivo(arquivoods1, 2, OperadoraEnum.PAPCARD);
+            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
+            CarregarArquivo(arquivo, 2, OperadoraEnum.PAPCARD);
+            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             CriarNovoContrato(0);
             var campos = new string[] 
-            { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQ_EMISSAO","TIPO_EMISSAO", "NR_ENDOSSO" };
+            { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","TIPO_EMISSAO", "NR_ENDOSSO" };
 
-            IgualarCampos(arquivoods1.ObterLinha(0), arquivoods1.ObterLinha(1), campos);
+            IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), campos);
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "219", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
 
         [TestMethod]
@@ -80,21 +81,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
-
-            LimparValidacao();
+            ExecutarEValidarAteFg02(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo, 0);
 
             var campos = new string[]
             { "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };
             IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), campos);
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", arquivo[1].ObterCampoSeExistir("NR_SEQUENCIAL_EMISSAO_EST").ValorFormatado);
 
             RemoverLinhaComAjusteDeFooter(0);
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidarAteFg02(arquivo);
         }
     }
 }

@@ -31,7 +31,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
 
             //SetQA();
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            SalvarArquivo();
+
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoparc = arquivo.Clone();
 
             //SetDev();
@@ -42,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
             SalvarArquivo();
 
             //SetQA();
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "235", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "235", 1);
         }
     }
 }

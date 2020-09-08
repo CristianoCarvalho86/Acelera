@@ -26,10 +26,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            SalvarArquivo();
+
+            //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoOds = arquivo.Clone();
 
-            LimparValidacao();
+            //LimparValidacao();
 
             CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinhaComAjusteDeFooter(0);
@@ -38,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "242", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "242", 1);
         }
     }
 }

@@ -25,7 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             CriarNovoContrato(0, arquivo, "", true);
             AlterarTodasAsLinhas( "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"]));
 
-            EnviarParaOds(arquivo);
+            SalvarArquivo();
+           // EnviarParaOds(arquivo);
 
             var arquivoParc1 = arquivo.Clone();
 
@@ -33,7 +34,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
 
-            EnviarParaOds(arquivo);
+            SalvarArquivo();
+
 
             arquivo = arquivoParc1;
             arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[2], "10", "02"));
@@ -46,14 +48,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //SelecionarLinhaParaValidacao(0);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
-            LimparValidacao();
+            //ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+           // LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
-            ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
+           // ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
         }
     }
 }

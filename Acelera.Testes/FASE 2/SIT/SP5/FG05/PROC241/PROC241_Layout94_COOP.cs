@@ -21,7 +21,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC241
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
             CriarNovoContrato(0);
-            AlterarHeader("VERSAO", "9.6");
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");

@@ -493,6 +493,7 @@ namespace Acelera.Testes
         {
             arquivo = new T();
             CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
+
             IgualarCamposQueExistirem(arquivoParcela, arquivo);
 
             if(alteraTipoComissao)

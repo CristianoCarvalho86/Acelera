@@ -983,6 +983,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\Acelera.Domain.exe.config" />
+    <None Include="bin\Debug\Acelera.Testes.dll.config" />
+    <None Include="bin\Debug\Sap.Data.Hana.v4.5.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1003,7 +1006,41 @@
       <Name>Acelera.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="bin\Debug\Acelera.Data.dll" />
+    <Content Include="bin\Debug\Acelera.Data.pdb" />
+    <Content Include="bin\Debug\Acelera.Domain.exe" />
+    <Content Include="bin\Debug\Acelera.Domain.pdb" />
+    <Content Include="bin\Debug\Acelera.Logger.dll" />
+    <Content Include="bin\Debug\Acelera.Logger.pdb" />
+    <Content Include="bin\Debug\Acelera.Testes.dll" />
+    <Content Include="bin\Debug\Acelera.Testes.pdb" />
+    <Content Include="bin\Debug\Acelera.Utils.dll" />
+    <Content Include="bin\Debug\Acelera.Utils.pdb" />
+    <Content Include="bin\Debug\Castle.Core.dll" />
+    <Content Include="bin\Debug\Castle.Core.xml" />
+    <Content Include="bin\Debug\CookComputing.XmlRpcV2.dll" />
+    <Content Include="bin\Debug\libadonetHDB32.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml" />
+    <Content Include="bin\Debug\Moq.dll" />
+    <Content Include="bin\Debug\Moq.xml" />
+    <Content Include="bin\Debug\Sap.Data.Hana.v4.5.dll" />
+    <Content Include="bin\Debug\Sap.Data.Hana.v4.5.xml" />
+    <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="bin\Debug\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\Debug\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="bin\Debug\TestLinkApi.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

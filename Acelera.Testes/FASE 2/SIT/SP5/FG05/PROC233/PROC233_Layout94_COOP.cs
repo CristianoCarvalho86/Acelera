@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "233", 1);
+            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "233", 1);
         }
 
     }
