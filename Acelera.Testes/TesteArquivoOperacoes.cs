@@ -396,6 +396,9 @@ namespace Acelera.Testes
 
         private void AlteracoesPapCardEmissao(Arquivo _arquivo)
         {
+            if (_arquivo.tipoArquivo == TipoArquivo.Comissao)
+                return;
+
             for (int i = 0; i < _arquivo.Linhas.Count; i++)
             {
                 _arquivo.AlterarLinhaSeExistirCampo(i, "NR_SEQUENCIAL_EMISSAO_EST", _arquivo[i].ObterCampoSeExistir("NR_SEQUENCIAL_EMISSAO").ValorFormatado);
