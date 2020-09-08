@@ -63,7 +63,6 @@ namespace Acelera.Domain.Entidades.Consultas
                     else if (tabela == TabelasEnum.Comissao)
                     {
                         consultaDaLinha.AdicionarConsulta("CD_CONTRATO", alteracao.LinhaAlterada.ObterCampoDoBanco("CD_CONTRATO").ValorFormatado);
-                        consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", alteracao.LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO").ValorFormatado);
                         if (nomeArquivo.Contains("PAPCARD"))
                             consultaDaLinha.AdicionarConsulta("NR_SEQUENCIAL_EMISSAO", alteracao.LinhaAlterada.ObterCampoDoBanco("NR_SEQUENCIAL_EMISSAO_EST").ValorFormatado);
                         else
