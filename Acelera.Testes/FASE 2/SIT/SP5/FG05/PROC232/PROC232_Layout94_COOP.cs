@@ -27,20 +27,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
 
             SalvarArquivo();
 
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods1 = arquivo.Clone();
             
 
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
-            AlterarHeader("VERSAO", "9.6");
             IgualarCamposQueExistirem(arquivoods1, arquivo);
             AlterarLinha(0, "CD_ITEM","12345");
 
             SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "232", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
 
     }

@@ -137,6 +137,8 @@ namespace Acelera.Testes.Repositorio
 
                     break;
                 case TipoArquivo.ParcEmissao:
+                    lista.Add("PRC_0250");
+                    lista.Add("PRC_0163");
                     lista.Add("PRC_0011");
                     lista.Add("PRC_0013");
                     lista.Add("PRC_0016");

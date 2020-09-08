@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         {
             numeroDoTeste = "9867";
             FinalizaTeste = false;
-            testeFG07.SAP_6162();
+            testeFG07.SAP_6154();
             FinalizaTeste = true;
             ExecutarEValidarFG08(true);
         }

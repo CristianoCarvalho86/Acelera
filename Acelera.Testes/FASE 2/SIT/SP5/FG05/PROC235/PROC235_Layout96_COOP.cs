@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
             AlterarCobertura(false);
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            AlterarHeader("VERSAO", "9.6");
+
             CriarNovoContrato(0);
 
             //SetDev();

@@ -21,24 +21,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC230
 
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            AlterarHeader("VERSAO", "9.6");
+
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParcOds = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.COOP, arquivoParcOds);
-            AlterarHeader("VERSAO", "9.6");
+
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoComissaoOds = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_6_EmsComissao>(OperadoraEnum.COOP, arquivoParcOds);
-            AlterarHeader("VERSAO", "9.6");
+
             AlterarLinha(0, "CD_ITEM", arquivo[0]["CD_ITEM"].ObterProximoValorInteiro());
 
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "230", 1);
+            ExecutarEValidarAteFg02(arquivo);
 
         }
     }

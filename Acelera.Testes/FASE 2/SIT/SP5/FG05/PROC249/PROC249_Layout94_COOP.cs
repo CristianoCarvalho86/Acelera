@@ -50,7 +50,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
 
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            AlterarHeader("VERSAO", "9.6");
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
@@ -74,7 +73,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
 
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "249", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
     }
 }
