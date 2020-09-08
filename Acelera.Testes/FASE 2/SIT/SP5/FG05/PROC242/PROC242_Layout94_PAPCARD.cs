@@ -25,10 +25,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
             CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            var nrseq = ObterValorFormatado(0, "NR_SEQUENCIAL_EMISSAO");
 
-            SalvarArquivo();
-
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoOds = arquivo.Clone();
 
             //LimparValidacao();
@@ -36,11 +35,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
             CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinhaComAjusteDeFooter(0);
 
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", arquivoOds[0]["NR_SEQUENCIAL_EMISSAO"]);
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", nrseq);
 
             SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "242", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
     }
 }

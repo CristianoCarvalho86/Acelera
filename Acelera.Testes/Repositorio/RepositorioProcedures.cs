@@ -223,6 +223,7 @@ namespace Acelera.Testes.Repositorio
                     lista.Add("PRC_1184");
                     break;
                 case TipoArquivo.Comissao:
+                    lista.Add("PRC_0055");
                     lista.Add("PRC_0033");
                     lista.Add("PRC_0035");
                     lista.Add("PRC_0024");
