@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9735()
         {
-            IniciarTeste("9735", "", OperadoraEnum.POMPEIA);
+            IniciarTesteFG07("9735", "", OperadoraEnum.POMPEIA);
 
             SalvaExecutaEValidaTrinca(true);
 
@@ -40,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9736()
         {
-            IniciarTeste("9736", "", OperadoraEnum.POMPEIA);
+            IniciarTesteFG07("9736", "", OperadoraEnum.POMPEIA);
 
             SalvaExecutaEValidaTrinca(true);
 
@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9737()
         {
-            IniciarTeste("9737", "", OperadoraEnum.POMPEIA);
+            IniciarTesteFG07("9737", "", OperadoraEnum.POMPEIA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9738()
         {
-            IniciarTeste("9738", "", OperadoraEnum.POMPEIA);
+            IniciarTesteFG07("9738", "", OperadoraEnum.POMPEIA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -125,7 +125,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Sem Critica")]
         public void SAP_9739()
         {
-            IniciarTeste("9739", "", OperadoraEnum.POMPEIA);
+            IniciarTesteFG07("9739", "", OperadoraEnum.POMPEIA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);

@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9740()
         {
-            IniciarTeste("9740", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9740", "", OperadoraEnum.TIM);
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -40,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9741()
         {
-            IniciarTeste("9741", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9741", "", OperadoraEnum.TIM);
 
             SalvaExecutaEValidaTrinca(true);
 
@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9742()
         {
-            IniciarTeste("9742", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9742", "", OperadoraEnum.TIM);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9743()
         {
-            IniciarTeste("9743", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9743", "", OperadoraEnum.TIM);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -125,7 +125,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Sem Critica")]
         public void SAP_9744()
         {
-            IniciarTeste("9744", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9744", "", OperadoraEnum.TIM);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);

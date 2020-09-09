@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         [TestCategory("Com Critica")]
         public void SAP_9697()
         {
-            IniciarTeste("9697", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9697", "", OperadoraEnum.TIM);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -37,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         [TestCategory("Com Critica")]
         public void SAP_9698()
         {
-            IniciarTeste("9698", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9698", "", OperadoraEnum.TIM);
 
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0,
                 dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[0]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"],true));
@@ -69,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         [TestCategory("Com Critica")]
         public void SAP_9699()
         {
-            IniciarTeste("9699", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9699", "", OperadoraEnum.TIM);
 
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 1,
                 dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[1]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
@@ -102,7 +102,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         [TestCategory("Com Critica")]
         public void SAP_9709()
         {
-            IniciarTeste("9709", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9709", "", OperadoraEnum.TIM);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -121,7 +121,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         [TestCategory("Sem Critica")]
         public void SAP_9700()
         {
-            IniciarTeste("9700", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9700", "", OperadoraEnum.TIM);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -139,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         [TestCategory("Com Critica")]
         public void SAP_9701()
         {
-            IniciarTeste("9701", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9701", "", OperadoraEnum.TIM);
 
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 1,
             dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[1]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"], true));

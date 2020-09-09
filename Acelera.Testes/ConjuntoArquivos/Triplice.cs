@@ -93,7 +93,8 @@ namespace Acelera.Testes.ConjuntoArquivos
             var valorAntigo = ArquivoCliente.ObterValorFormatadoSeExistirCampo(posicaoLinha, campoAlteracao);
             ArquivoCliente.AlterarLinhaSeExistirCampo(posicaoLinha, campoAlteracao, valorNovo);
 
-            ArquivoParcEmissao.AlterarLinhaComCampoIgualAValor(campoAlteracao, valorAntigo, campoAlteracao, valorNovo);
+            if(ArquivoParcEmissao.ExisteCampo(campoAlteracao))
+                ArquivoParcEmissao.AlterarLinhaComCampoIgualAValor(campoAlteracao, valorAntigo, campoAlteracao, valorNovo);
             logger.FecharBloco();
         }
 

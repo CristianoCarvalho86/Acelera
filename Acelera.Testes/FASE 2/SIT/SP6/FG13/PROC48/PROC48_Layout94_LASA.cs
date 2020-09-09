@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
         [TestCategory("Com Critica")]
         public void SAP_9601()
         {
-            IniciarTeste("9601", "", OperadoraEnum.LASA);
+            IniciarTesteFG07("9601", "", OperadoraEnum.LASA);
 
             SalvaExecutaEValidaTrinca(false);
 

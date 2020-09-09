@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
         [TestCategory("Com Critica")]
         public void SAP_9582()
         {
-            IniciarTeste("9582", "", OperadoraEnum.TIM);
+            IniciarTesteFG07("9582", "", OperadoraEnum.TIM);
 
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));

@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
         [TestCategory("Com Critica")]
         public void SAP_9764()
         {
-            IniciarTeste("9764", "", OperadoraEnum.LASA);
+            IniciarTesteFG07("9764", "", OperadoraEnum.LASA);
 
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
             triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_PREMIO_LIQUIDO", "23.27");

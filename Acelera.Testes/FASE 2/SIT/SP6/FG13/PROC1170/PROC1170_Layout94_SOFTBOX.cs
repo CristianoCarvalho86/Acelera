@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
         [TestCategory("Com Critica")]
         public void SAP_9778()
         {
-            IniciarTeste("9778", "", OperadoraEnum.SOFTBOX);
+            IniciarTesteFG07("9778", "", OperadoraEnum.SOFTBOX);
 
             SalvaExecutaEValidaTrinca(false);
 

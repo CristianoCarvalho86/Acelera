@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9730()
         {
-            IniciarTeste("9730", "", OperadoraEnum.LASA);
+            IniciarTesteFG07("9730", "", OperadoraEnum.LASA);
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -40,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9731()
         {
-            IniciarTeste("9731", "", OperadoraEnum.LASA);
+            IniciarTesteFG07("9731", "", OperadoraEnum.LASA);
 
             SalvaExecutaEValidaTrinca(true);
 
@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9732()
         {
-            IniciarTeste("9732", "", OperadoraEnum.LASA);
+            IniciarTesteFG07("9732", "", OperadoraEnum.LASA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Com Critica")]
         public void SAP_9733()
         {
-            IniciarTeste("9733", "", OperadoraEnum.LASA);
+            IniciarTesteFG07("9733", "", OperadoraEnum.LASA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -125,7 +125,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         [TestCategory("Sem Critica")]
         public void SAP_9734()
         {
-            IniciarTeste("9734", "", OperadoraEnum.LASA);
+            IniciarTesteFG07("9734", "", OperadoraEnum.LASA);
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);

@@ -31,8 +31,14 @@ namespace Acelera.Testes
 
         public TestesFG08()
         {
+
+        }
+
+        public void IniciarTesteFG08(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true, bool gerarArquivoCapa = false)
+        {
+            base.IniciarTesteFG07(numeroTeste, descricao, operadora, geraCliente, gerarArquivoCapa);
             validadorODS = new ValidadorODS(ref logger);
-            deleteStages = new DeleteStages(logger);
+            deleteStages = new DeleteStages(ref logger);
         }
 
         public void ExecutarEValidarFG08(bool esperaSucesso)
