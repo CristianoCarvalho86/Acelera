@@ -19,27 +19,29 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "9419", "SAP-9318:FG05 - PROC 249 - C/C - PARCELA - ID_TRANSACAO já processado - Capa");
             //Envia parc normal
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
+            arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
+            CriarNovoContrato(0);
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             SalvarArquivo(arquivo);
+            ExecutarEValidarAteFg02(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinha(0);
             AjustarQtdLinFooter();
 
             SalvarArquivo();
+            ExecutarEValidarAteFg02(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo);
-            AlterarLinha(1, "NR_SEQ_EMISSAO", arquivo[0]["NR_SEQ_EMISSAO"]);
+            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", arquivo[0]["NR_SEQUENCIAL_EMISSAO"]);
             RemoverLinha(0);
             AjustarQtdLinFooter();
 
             SalvarArquivo();
-
-            ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "249", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
 
         [TestMethod]
@@ -53,22 +55,27 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
+            SalvarArquivo();
+
+            ExecutarEValidarAteFg02(arquivo);
+
             var arquivoOds = arquivo.Clone();
             LimparValidacao();
             ConfereQtdLinhas(arquivo, 1);
 
             CriarNovaLinhaParaEmissao(arquivo);
             RemoverLinhaComAjusteDeFooter(0);
-            EnviarParaOdsAlterandoCliente(arquivo);
+
+            SalvarArquivo();
+
+            ExecutarEValidarAteFg02(arquivo);
+
             var arquivoOds1 = arquivo.Clone();
             LimparValidacao();
             ConfereQtdLinhas(arquivo, 1);
 
             CriarNovaLinhaParaEmissao(arquivo, 0);
-            AlterarLinha(1, "NR_ENDOSSO", arquivoOds1[0]["NR_ENDOSSO"]);
             AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", arquivoOds1[0]["NR_SEQUENCIAL_EMISSAO"]);
-            AlterarLinha(1, "CD_ITEM", "12345");
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
