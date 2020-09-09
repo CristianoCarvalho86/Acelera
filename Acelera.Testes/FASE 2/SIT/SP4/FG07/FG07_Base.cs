@@ -103,7 +103,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             ValidarTeste();
         }
 
-        public void IniciarTeste(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true, bool gerarArquivoCapa = false)
+        public virtual void IniciarTesteFG07(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true, bool gerarArquivoCapa = false)
         {
             //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
             IniciarTeste(TipoArquivo.Comissao, numeroTeste, descricao);

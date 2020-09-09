@@ -12,7 +12,7 @@ namespace Acelera.Testes.DataAccessRep
     public class DeleteStages
     {
         private IMyLogger _logger;
-        public DeleteStages(IMyLogger logger)
+        public DeleteStages(ref IMyLogger logger)
         {
             _logger = logger;
         }
@@ -23,9 +23,15 @@ namespace Acelera.Testes.DataAccessRep
                 _logger.Escrever($"INICIANDO DELECAO DOS REGISTROS DA STAGE '{tab.ObterTexto()}' COM CD_STATUS_PROCESSAMENTO = {(int)codigoABuscar}");
                 try
                 {
-                    int count1 = DataAccess.ObterTotalLinhas(tab.ObterTexto(), _logger);
+                    int count1 = int.Parse(DataAccess.ObterTotalLinhas(tab.ObterTexto(), _logger, $"CD_STATUS_PROCESSAMENTO = '{(int)codigoABuscar}'"));
                     DataAccess.ExecutarComando($"DELETE FROM {Parametros.instanciaDB}.{tab.ObterTexto()} where CD_STATUS_PROCESSAMENTO = '{(int)codigoABuscar}'", DBEnum.Hana, _logger);
-                    _logger.Escrever($"REGISTROS COM CODIGO {(int)codigoABuscar} APAGADOS COM SUCESSO.");
+                    int count2 = int.Parse(DataAccess.ObterTotalLinhas(tab.ObterTexto(), _logger, $"CD_STATUS_PROCESSAMENTO = '{(int)codigoABuscar}'"));
+                    if(count1 != 0 && count1 == count2)
+                    {
+                        throw new Exception("NENHUMA LINHA DELETADA");
+                    }    
+
+                    _logger.Escrever($"{count1 - count2} REGISTROS COM CODIGO {(int)codigoABuscar} APAGADOS COM SUCESSO.");
                 }
                 catch (Exception ex)
                 {

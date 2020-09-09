@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC220
         [TestCategory("Com Critica")]
         public void SAP_4607()
         {
-            IniciarTeste("4607", "", OperadoraEnum.VIVO);
+            IniciarTesteFG07("4607", "", OperadoraEnum.VIVO);
 
             SalvaExecutaEValidaTrinca(false);
 

@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
         [TestCategory("Com Critica")]
         public void SAP_9652()
         {
-            IniciarTeste("9652", "", OperadoraEnum.POMPEIA);
+            IniciarTesteFG07("9652", "", OperadoraEnum.POMPEIA);
 
             SalvaExecutaEValidaTrinca(false);
 

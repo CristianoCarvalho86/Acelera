@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
         [TestCategory("Com Critica")]
         public void SAP_9679()
         {
-            IniciarTeste("9679", "", OperadoraEnum.QUEROQUERO);
+            IniciarTesteFG07("9679", "", OperadoraEnum.QUEROQUERO);
 
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
 

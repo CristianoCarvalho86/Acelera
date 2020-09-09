@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         [TestMethod]
         public void SAP_9867()
         {
-            IniciarTeste("6162", "SAP-6162:FG07 - Lasa - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
+            IniciarTesteFG08("6162", "SAP-6162:FG07 - Lasa - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
 
             DeletarRegistrosAntigosDaStage();
 

@@ -18,7 +18,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
         [TestCategory("Com Critica")]
         public void SAP_9759()
         {
-            IniciarTeste("9759", "SAP-9759:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela não baixada - 1a parcela", OperadoraEnum.TIM);
+            IniciarTesteFG07("9759", "SAP-9759:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela não baixada - 1a parcela", OperadoraEnum.TIM);
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -42,7 +42,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
         [TestCategory("Com Critica")]
         public void SAP_9760()
         {
-            IniciarTeste("9760", "  SAP-9760:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela não baixada - 2a parcela", OperadoraEnum.TIM);
+            IniciarTesteFG07("9760", "  SAP-9760:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela não baixada - 2a parcela", OperadoraEnum.TIM);
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -88,7 +88,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
         [TestCategory("Sem Critica")]
         public void SAP_9761()
         {
-            IniciarTeste("9761", "SAP-9761:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela baixada", OperadoraEnum.TIM);
+            IniciarTesteFG07("9761", "SAP-9761:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela baixada", OperadoraEnum.TIM);
 
             SalvaExecutaEValidaTrinca(false);
 
