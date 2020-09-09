@@ -82,8 +82,6 @@ namespace Acelera.Domain.Layouts
 
         public Arquivo Clone()
         {
-
-
             //var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             //var a = (Arquivo)inst?.Invoke(this, null);
 
@@ -92,8 +90,14 @@ namespace Acelera.Domain.Layouts
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(memoryStream, this);
                 memoryStream.Seek(0, SeekOrigin.Begin);
-                return (Arquivo)binaryFormatter.Deserialize(memoryStream);
+                var arq = (Arquivo)binaryFormatter.Deserialize(memoryStream);
+                arq.valoresAlteradosBody = new AlteracoesArquivo();
+                arq.valoresAlteradosFooter = new AlteracoesArquivo();
+                arq.valoresAlteradosHeader = new AlteracoesArquivo();
+                return arq;
             }
+
+            
 
             //Arquivo newObject = (Arquivo)Activator.CreateInstance(this.GetType());
 

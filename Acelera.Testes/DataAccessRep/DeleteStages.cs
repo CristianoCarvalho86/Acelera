@@ -36,14 +36,13 @@ namespace Acelera.Testes.DataAccessRep
 
         }
 
-        public bool DeletarRegistrosTrinca(CodigoStage codigoADeletar)
+        public bool DeletarRegistrosTrinca(CodigoStage codigoADeletar, bool EhParcAuto = false)
         {
-            return DeletarRegistros(new TabelasEnum[] { TabelasEnum.Cliente, TabelasEnum.ParcEmissao, TabelasEnum.Comissao }, codigoADeletar);
+            if (EhParcAuto)
+                return DeletarRegistros(new TabelasEnum[] { TabelasEnum.Cliente, TabelasEnum.ParcEmissaoAuto, TabelasEnum.Comissao }, codigoADeletar);
+            else
+                return DeletarRegistros(new TabelasEnum[] { TabelasEnum.Cliente, TabelasEnum.ParcEmissao, TabelasEnum.Comissao }, codigoADeletar);
         }
 
-        public bool DeletarRegistrosTrincaParcAuto(CodigoStage codigoADeletar)
-        {
-            return DeletarRegistros(new TabelasEnum[] { TabelasEnum.Cliente, TabelasEnum.ParcEmissaoAuto, TabelasEnum.Comissao }, codigoADeletar);
-        }
     }
 }

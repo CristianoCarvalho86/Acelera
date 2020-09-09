@@ -27,9 +27,12 @@ namespace Acelera.Testes
             }
         }
         ValidadorODS validadorODS;
+        private DeleteStages deleteStages;
+
         public TestesFG08()
         {
             validadorODS = new ValidadorODS(ref logger);
+            deleteStages = new DeleteStages(logger);
         }
 
         public void ExecutarEValidarFG08(bool esperaSucesso)
@@ -98,6 +101,12 @@ namespace Acelera.Testes
                 return false;
             }
             return true;
+        }
+
+        protected void DeletarRegistrosAntigosDaStage()
+        {
+            if (!deleteStages.DeletarRegistrosTrinca(CodigoStage.AprovadoNaFG08, triplice.EhParcAuto))
+                ExplodeFalha($"ERRO AO DELETAR REGISTROS DA TRINCA COM CODIGO {(int)CodigoStage.AprovadoNaFG08}");
         }
 
     }

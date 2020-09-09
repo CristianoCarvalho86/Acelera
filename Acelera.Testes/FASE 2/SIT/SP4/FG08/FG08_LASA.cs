@@ -1,5 +1,6 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Logger;
+using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2.SIT.SP4.FG07;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -14,6 +15,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
     public class FG08_LASA : TestesFG08
     {
         private FG07_LASA testeFG07;
+
         public FG08_LASA()
         {
             testeFG07 = new FG07_LASA();
@@ -23,6 +25,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         public void SAP_9867()
         {
             IniciarTeste("6162", "SAP-6162:FG07 - Lasa - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
+
+            DeletarRegistrosAntigosDaStage();
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
 

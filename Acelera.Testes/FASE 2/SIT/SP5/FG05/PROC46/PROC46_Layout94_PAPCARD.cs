@@ -27,7 +27,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
-            LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
@@ -35,7 +34,6 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc1[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
 
             EnviarParaOdsAlterandoCliente(arquivo);
-            LimparValidacao();
 
             arquivo = arquivoParc1.Clone();
             arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02", ""));
