@@ -168,7 +168,8 @@ namespace Acelera.Testes
                     var idTransacaoOld = linha["ID_TRANSACAO"];
                     var idTransacaoNew = CarregarIdtransacao(linha);
                     _arquivo.AlterarLinha(linha.Index, "ID_TRANSACAO", idTransacaoNew);
-                    _arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", idTransacaoNew);
+                    //REPENSAR EM COMO UTILIZAR ISSO PARA ARQUIVOS COM EMISSAO E CANCELAMENTO JUNTOS.
+                    //_arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", idTransacaoNew);
                 });
             }
             base.FinalizarAlteracaoArquivo(_arquivo);
