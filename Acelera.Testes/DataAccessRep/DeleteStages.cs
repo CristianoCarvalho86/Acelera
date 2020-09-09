@@ -23,6 +23,7 @@ namespace Acelera.Testes.DataAccessRep
                 _logger.Escrever($"INICIANDO DELECAO DOS REGISTROS DA STAGE '{tab.ObterTexto()}' COM CD_STATUS_PROCESSAMENTO = {(int)codigoABuscar}");
                 try
                 {
+                    int count1 = DataAccess.ObterTotalLinhas(tab.ObterTexto(), _logger);
                     DataAccess.ExecutarComando($"DELETE FROM {Parametros.instanciaDB}.{tab.ObterTexto()} where CD_STATUS_PROCESSAMENTO = '{(int)codigoABuscar}'", DBEnum.Hana, _logger);
                     _logger.Escrever($"REGISTROS COM CODIGO {(int)codigoABuscar} APAGADOS COM SUCESSO.");
                 }

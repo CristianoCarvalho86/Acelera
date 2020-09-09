@@ -203,8 +203,10 @@ namespace Acelera.Testes
 
             else if (_arquivo.tipoArquivo == TipoArquivo.Comissao)
                 foreach (var linha in linhas)
+                {
                     ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-
+                    ODSInsertComissaoCoberturaData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                }
 
         }
 

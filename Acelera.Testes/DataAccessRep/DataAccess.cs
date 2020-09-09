@@ -79,9 +79,10 @@ namespace Acelera.Testes.DataAccessRep
             return ConsultaUnica(sql, string.Empty, DBEnum.Hana, logger, validaResultadoUnico);
         }
 
-        public static string ObterTotalLinhas(string tabela, IMyLogger logger)
+        public static string ObterTotalLinhas(string tabela, IMyLogger logger, string clausula = null)
         {
-            return ConsultaUnica($"SELECT COUNT(*) AS TOTAL FROM {Parametros.instanciaDB}.{tabela}",$"OBTER QUANTIDADE REGISTROS NA TABELA: {tabela}",logger);
+            clausula = string.IsNullOrEmpty(clausula) ? string.Empty : $" WHERE {clausula}";
+            return ConsultaUnica($"SELECT COUNT(*) AS TOTAL FROM {Parametros.instanciaDB}.{tabela} {clausula}",$"OBTER QUANTIDADE REGISTROS NA TABELA: {tabela}",logger);
         }
 
         public static bool ExisteRegistro(string sql, IMyLogger logger)
