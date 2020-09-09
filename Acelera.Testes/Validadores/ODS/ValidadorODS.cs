@@ -191,7 +191,7 @@ namespace Acelera.Testes.Validadores.ODS
 
         private DataRow ValidaExistencia(TabelasEnum tabela, string campo, string valor, bool deveHaverRegistro, ref string erros)
         {
-            var table = DataAccess.Consulta($"SELECT * FROM {tabela.ObterTexto()} WHERE {campo} = '{valor}'", campo, logger);
+            var table = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} WHERE {campo} = '{valor}'", campo, logger);
             if (table.Rows.Count == 0 && deveHaverRegistro)
             {
                 erros += $"REGISTRO NAO ENCONTRADO EM {tabela.ObterTexto()}{Environment.NewLine}";

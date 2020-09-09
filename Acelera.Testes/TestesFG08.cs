@@ -93,7 +93,7 @@ namespace Acelera.Testes
 
         protected bool ValidarStInterface(bool esperaSucesso, string nrApolice, string nrEndosso)
         {
-            var stInterface = DataAccess.ConsultaUnica($"SELECT \"st_interface\" FROM {TabelasOIMEnum.OIM_APL01.ObterTexto()} " +
+            var stInterface = DataAccess.ConsultaUnica($"SELECT \"st_interface\" FROM {Parametros.instanciaDB}.{TabelasOIMEnum.OIM_APL01.ObterTexto()} " +
                 $"where \"nr_apolice\" = '{nrApolice}' and \"nr_endosso\" = '{nrEndosso}'");
             var valorEsperado = esperaSucesso ? "A" : "R";
             if (string.IsNullOrEmpty(stInterface))

@@ -151,7 +151,7 @@ namespace Acelera.Testes.Validadores
                     textoAjustado = valor.ToString().Replace(",",".");
 
                 if (node[column.ColumnName] != null && textoAjustado != node[column.ColumnName].InnerText)
-                    erros += $"ERRO EM {column.ColumnName}, VALOR DO XML : {node[column.ColumnName].InnerText}, VALOR DO BANCO : {tabela.Rows[0][column].ToString()} {Environment.NewLine}";
+                    erros += $"{node.Name} - ERRO EM {column.ColumnName}, VALOR DO XML : {node[column.ColumnName].InnerText}, VALOR DO BANCO : {tabela.Rows[0][column].ToString()} {Environment.NewLine}";
             }
             foreach(XmlNode element in node.ChildNodes)
             {
@@ -170,9 +170,9 @@ namespace Acelera.Testes.Validadores
             var where = "";
             foreach (var campo in camposChaves)
             {
-                where += $"\"{campo}\" = '{node[campo].InnerText}' AND";
+                where += $"\"{campo}\" = '{node[campo].InnerText}' AND ";
             }
-            return where.Substring(0, where.Length - 3);
+            return where.Substring(0, where.Length - 4);
         }
     }
 }

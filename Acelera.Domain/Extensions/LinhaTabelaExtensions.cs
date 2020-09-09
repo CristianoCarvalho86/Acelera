@@ -19,6 +19,8 @@ namespace Acelera.Domain.Extensions
                 campoAjustado = campo;
                 if (campo == "vl_premio")
                     continue;
+                if (linha.ObterNomeTabela().Contains("STG") && campo == "nr_linha")
+                    continue;
 
                 where += $" {aspas}{campo}{aspas} = '{linha.ObterPorColuna(campoAjustado).ValorFormatado}' AND ";
             }

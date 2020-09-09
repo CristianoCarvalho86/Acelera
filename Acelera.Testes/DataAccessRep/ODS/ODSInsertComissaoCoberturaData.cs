@@ -52,7 +52,6 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 COB" +
             "     ON A.CD_COBERTURA = COB.CD_COBERTURA" +
             "     AND PARCSTG.CD_PRODUTO = COB.CD_PRODUTO" +
-            "     AND NOW() BETWEEN COB.DT_INICIO_VIGENCIA AND COB.DT_FIM_VIGENCIA" +
             " where PARCSTG.cd_tipo_emissao in (1, 18)" +
             " group by" +
             " CMSODS.CD_COMISSAO," +
