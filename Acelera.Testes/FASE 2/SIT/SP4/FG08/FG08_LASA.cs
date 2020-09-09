@@ -1,4 +1,5 @@
-﻿using Acelera.Logger;
+﻿using Acelera.Domain.Enums;
+using Acelera.Logger;
 using Acelera.Testes.FASE_2.SIT.SP4.FG07;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -21,11 +22,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         [TestMethod]
         public void SAP_9867()
         {
-            numeroDoTeste = "9867";
-            //FinalizaTeste = false;
-            testeFG07.SAP_6162();
-            IniciarTeste(Domain.Enums.TipoArquivo.ParcEmissao, "9867", "FGR08 - 9867");
-            //FinalizaTeste = true;
+            IniciarTeste("6162", "SAP-6162:FG07 - Lasa - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão P", OperadoraEnum.POMPEIA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
+
+            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
+
+            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
+            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
+
+            SalvaExecutaEValidaFG07();
+
             ExecutarEValidarFG08(true);
         }
 

@@ -43,5 +43,17 @@ namespace Acelera.Utils
             digito = digito + resto.ToString();
             return cpf + digito;
         }
+
+        public static string GerarTextoAleatorio(int qtdCaracteres)
+        {
+            var letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            var nome = "";
+            for (int i = 0; i < qtdCaracteres; i++)
+            {
+               nome += letras[RandomNumber.Between(0, letras.Length - 1)];
+            }
+            return nome;
+            
+        }
     }
 }
