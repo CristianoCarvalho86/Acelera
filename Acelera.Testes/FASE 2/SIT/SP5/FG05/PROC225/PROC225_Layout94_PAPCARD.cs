@@ -80,8 +80,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            SalvarArquivo();
-            ExecutarEValidarAteFg02(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo, 0);
 

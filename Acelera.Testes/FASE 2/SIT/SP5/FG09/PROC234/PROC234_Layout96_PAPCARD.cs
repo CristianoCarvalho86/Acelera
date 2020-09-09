@@ -26,24 +26,24 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            SalvarArquivo();
-
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
-
+            arquivo = arquivoParc1;
             arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
             RemoverLinhaComAjusteDeFooter(0);
-            SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            SalvarArquivo();
+            ExecutarEValidarAteFg02(arquivo);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc1[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
 
             SalvarArquivo();
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
     }
 }
