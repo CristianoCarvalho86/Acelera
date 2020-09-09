@@ -25,32 +25,34 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            SalvarArquivo();
-
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
-           // LimparValidacao();
+            LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc1[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
 
-            SalvarArquivo();
-
-            //EnviarParaOdsAlterandoCliente(arquivo);
-            //LimparValidacao();
+            EnviarParaOdsAlterandoCliente(arquivo);
+            LimparValidacao();
 
             arquivo = arquivoParc1.Clone();
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02", "1"));
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02", ""));
             RemoverLinhaComAjusteDeFooter(0);
+
+
             SalvarArquivo();
 
-           // ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidarAteFg02(arquivo, "127");
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", "1");
 
             SalvarArquivo();
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
 
 
@@ -59,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
         public void SAP_9180()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "9180", "FG05 - PROC46 - ");
-            
+
 
             //Envia parc normal
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();

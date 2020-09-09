@@ -31,16 +31,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             //EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods1 = arquivo.Clone();
 
-            arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
-
-            IgualarCamposQueExistirem(arquivoods1, arquivo);
-            AlterarLinha(0, "CD_ITEM","12345");
+            CriarNovaLinhaParaEmissao(arquivo, 0);
+            RemoverLinhaComAjusteDeFooter(0);
+            AlterarLinha(0, "NR_PARCELA", arquivoods1[0]["NR_PARCELA"]);
+            AlterarLinha(0, "NR_PARCELA", arquivoods1[0]["NR_PARCELA"]);
 
             SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "232", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
 
     }

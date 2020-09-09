@@ -27,22 +27,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC249
 
             SalvarArquivo();
 
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            ExecutarEValidarAteFg02(arquivo);
             var arquivoOds = arquivo.Clone();
             //LimparValidacao();
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo);
 
             CriarNovaLinhaParaEmissao(arquivo, 1);
-            AlterarLinha(2, "NR_ENDOSSO", arquivo[1]["NR_ENDOSSO"]);
             AlterarLinha(2, "NR_SEQUENCIAL_EMISSAO", arquivo[1]["NR_SEQUENCIAL_EMISSAO"]);
-            AlterarLinha(2, "CD_ITEM", "12345");
             RemoverLinhaComAjusteDeFooter(0);
             
             SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "249", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
     }
 }

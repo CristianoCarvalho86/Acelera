@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             SalvarArquivo();
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
@@ -35,12 +35,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC234
             RemoverLinhaComAjusteDeFooter(0);
             SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidarAteFg02(arquivo);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo);
 
             SalvarArquivo();
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
     }
 }

@@ -25,17 +25,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
 
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
-            SalvarArquivo();
-
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods1 = arquivo.Clone();
-            
 
-            arquivo = new Arquivo_Layout_9_6_ParcEmissao();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-
-            IgualarCamposQueExistirem(arquivoods1, arquivo);
-            AlterarLinha(0, "CD_ITEM","12345");
+            CriarNovaLinhaParaEmissao(arquivo, 0);
+            RemoverLinhaComAjusteDeFooter(0);
+            AlterarLinha(0, "NR_PARCELA", arquivoods1[0]["NR_PARCELA"]);
+            AlterarLinha(0, "NR_PARCELA", arquivoods1[0]["NR_PARCELA"]);
 
             SalvarArquivo();
 
