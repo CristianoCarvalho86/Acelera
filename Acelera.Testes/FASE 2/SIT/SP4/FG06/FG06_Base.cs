@@ -122,7 +122,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 nrSequencialEmissao, valorComissao, cdMovtoCobranca);
         }
 
-        public void ValidarFGsAnterioresEErros()
+        public void ValidarFGsAnterioresEErros(FGs executarAteFG = FGs.FG05)
         {
             IList<FGs> listaFgs = new List<FGs>();
             if (Parametros.ExecutaPelaBat)
@@ -159,6 +159,9 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                     ExecFgs(!ComissaoTemErro, fg, triplice.ArquivoComissao);
 
                 ValidarTeste();
+
+                if (fg == executarAteFG)
+                    break;
             }
         }
 

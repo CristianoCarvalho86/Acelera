@@ -1,0 +1,157 @@
+﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
+using Acelera.Domain.Layouts;
+using Acelera.Domain.Layouts._9_4;
+using Acelera.Testes.DataAccessRep;
+using Acelera.Testes.FASE_2.SIT.SP4.FG07;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Acelera.Testes.FASE_2.SIT.SP7
+{
+    [TestClass]
+    public class Sinistro_LASA_TIM : FG07_Base
+    {
+        [TestMethod]
+        public void SAP_0001()
+        {
+            InicioTesteFG06("1", "SP7 - PROC 78- LASA - SINISTRO - Importar arquivo com NR_APOLICE inexistente - CD_TIPO_MOVTO = 1", OperadoraEnum.LASA);
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+            AlterarLinha(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"]));
+            AlterarLinha(0, "CD_CONTRATO", GerarNovoContratoAleatorio(arquivo[0]["CD_CONTRATO"], true));
+            AlterarLinha(0, "NR_APOLICE", arquivo[0]["CD_CONTRATO"]);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            GerarCdSinistroEAviso(arquivo, 0);
+
+            SalvarArquivo(arquivo);
+            ExecutarEValidarAteFg02(arquivo);
+        }
+
+        [TestMethod]
+        public void SAP_0004()
+        {
+            InicioTesteFG06("4", "SP7 - PROC 78 - TIM - SINISTRO - Importar arquivo com NR_APOLICE existente - Envio em dias distintos - CD_TP_MOVTO = 1", OperadoraEnum.TIM);
+
+            SalvaExecutaEValidaTrincaFG02(true);
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            GerarCdSinistroEAviso(arquivo, 0);
+
+            SalvarArquivo(arquivo);
+            ExecutarEValidarAteFg02(arquivo);
+        }
+
+        [TestMethod]
+        public void SAP_0005()
+        {
+            InicioTesteFG06("5", "SP7 - PROC 79 - LASA - SINISTRO - Movimentar sinistro inexistente - CD_TP_MOVTO = 2 E TP_SINISTRO=01", OperadoraEnum.LASA);
+
+            SalvaExecutaEValidaTrincaFG02(true);
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            GerarCdSinistroEAviso(arquivo, 0);
+
+            SalvarArquivo(arquivo);
+            ExecutarEValidarAteFg02(arquivo);
+
+        }
+
+        [TestMethod]
+        public void SAP_0009()
+        {
+            InicioTesteFG06("9", "SP7 - PROC 82 - LASA - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=2 - ODS", OperadoraEnum.LASA);
+
+            SalvaExecutaEValidaTrincaFG02(true);
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
+
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            GerarCdSinistroEAviso(arquivo, 0);
+            EnviarParaOds(arquivo, true, false);
+
+            LimparValidacao(arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            EnviarParaOds(arquivo, true, false);
+
+            LimparValidacao(arquivo);
+            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            SalvarArquivo(arquivo);
+
+            ExecutarEValidarAteFg02(arquivo);
+
+        }
+
+        [TestMethod]
+        public void SAP_0010()
+        {
+            InicioTesteFG06("10", "SP7 - PROC 82 - TIM - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=7 - ODS", OperadoraEnum.TIM);
+
+            SalvaExecutaEValidaTrincaFG02(true);
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            GerarCdSinistroEAviso(arquivo, 0);
+            EnviarParaOds(arquivo, true, false);
+
+            LimparValidacao(arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            EnviarParaOds(arquivo, true, false);
+
+            LimparValidacao(arquivo);
+            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            SalvarArquivo(arquivo);
+
+            ExecutarEValidarAteFg02(arquivo);
+
+        }
+
+        private void GerarCdSinistroEAviso(Arquivo _arquivo, int posicaoLinha)
+        {
+            var cdSinistro = "";
+            while (true)
+            {
+                cdSinistro = AlterarUltimasPosicoes(_arquivo[posicaoLinha]["CD_SINISTRO"], GerarNumeroAleatorio(11));
+                if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.Sinistro.ObterTexto()} WHERE CD_SINISTRO = '{cdSinistro}'", logger) &&
+                   !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.OdsSinistro.ObterTexto()} WHERE CD_SINISTRO = '{cdSinistro}'", logger))
+                    break;
+            }
+            _arquivo.AlterarLinha(posicaoLinha, "CD_SINISTRO", cdSinistro );
+
+            var cdAviso = "";
+            while (true)
+            {
+                cdAviso = GerarNumeroAleatorio(8);
+                if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.Sinistro.ObterTexto()} WHERE CD_AVISO = '{cdAviso}'", logger) &&
+                   !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.OdsSinistro.ObterTexto()} WHERE CD_AVISO = '{cdAviso}'", logger))
+                    break;
+            }
+            _arquivo.AlterarLinha(posicaoLinha, "CD_AVISO", cdAviso);
+        }
+
+    }
+}

@@ -43,6 +43,7 @@ namespace Acelera.Testes
         protected string pathOrigem;
         protected bool AoMenosUmComCodigoEsperado = false;
         protected List<string> arquivosSalvos;
+        protected List<string> arquivosSalvosODS;
         string idTeste = string.Empty;
 
         protected abstract IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo);
@@ -132,9 +133,12 @@ namespace Acelera.Testes
             arquivosSalvos.Add(enderecoArquivoSalvo);
         }
 
-        protected void LimparValidacao()
+        protected void LimparValidacao(Arquivo _arquivo = null)
         {
-
+            _arquivo = _arquivo == null ? arquivo : _arquivo;
+            _arquivo.valoresAlteradosBody = new AlteracoesArquivo();
+            _arquivo.valoresAlteradosHeader = new AlteracoesArquivo();
+            _arquivo.valoresAlteradosFooter = new AlteracoesArquivo();
         }
 
         protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
@@ -443,14 +447,7 @@ namespace Acelera.Testes
             }
             else
             {
-                while (true)
-                {
-                    contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"));
-                    if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissao.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
-                       !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissaoAuto.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
-                       !DataAccessOIM.ExisteRegistro($"SELECT '1' FROM oim_apl01 where nr_doc_apolice = '{contrato}'", logger))
-                        break;
-                }
+                contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"),true);
             }
             if (colocarEmTodasAsLinhas)
                 AlterarContratoNoArquivo(arquivo, contrato);
@@ -476,9 +473,21 @@ namespace Acelera.Testes
             }
         }
 
-        protected string GerarNovoContratoAleatorio(string contratoBase)
+        protected string GerarNovoContratoAleatorio(string contratoBase, bool validaExistencia)
         {
-            return AlterarUltimasPosicoes(contratoBase, GerarNumeroAleatorio(8));
+            var contrato = "";
+            while (true)
+            {
+                contrato = AlterarUltimasPosicoes(contratoBase, GerarNumeroAleatorio(8));
+                if (!validaExistencia)
+                    break;
+
+                if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissao.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
+                   !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissaoAuto.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
+                   !DataAccessOIM.ExisteRegistro($"SELECT '1' FROM oim_apl01 where nr_doc_apolice = '{contrato}'", logger))
+                    break;
+            }
+            return contrato;
         }
 
         protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, bool alteraTipoComissao = true) where T : Arquivo, new()

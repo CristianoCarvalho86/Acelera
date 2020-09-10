@@ -93,15 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return ValidarStages(_triplice.ArquivoParcEmissao, true, (int)codigoEsperado);
         }
 
-        protected void CriarEmissaoCompletaFG06(bool salvaCliente, bool salvaComissao = true, ITriplice _triplice = null)
-        {
-            _triplice = _triplice == null ? triplice : _triplice;
-            SalvarTrinca(salvaCliente, true, salvaComissao,_triplice);
-            ValidarFGsAnterioresEErros();
 
-            ExecutarEValidarFG06EmissaoSucesso(salvaCliente,salvaComissao);
-            ValidarTeste();
-        }
 
         public virtual void IniciarTesteFG07(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true, bool gerarArquivoCapa = false)
         {
@@ -217,6 +209,45 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
                 }
             }
+        }
+
+        protected void SalvaExecutaEValidaTrinca(bool enviarParaOds = true)
+        {
+            CriarEmissaoCompletaFG06(true, true);
+            if (enviarParaOds)
+            {
+                EnviarParaOds(triplice.ArquivoCliente, false, true, CodigoStage.AprovadoFG06);
+                EnviarParaOds(triplice.ArquivoParcEmissao, false, true, CodigoStage.AprovadoFG06);
+                EnviarParaOds(triplice.ArquivoComissao, false, true, CodigoStage.AprovadoFG06);
+            }
+        }
+        protected void SalvaExecutaEValidaTrincaFG02(bool enviarParaOds = true)
+        {
+            CriarEmissaoCompletaFG02(true, true);
+            if (enviarParaOds)
+            {
+                EnviarParaOds(triplice.ArquivoCliente, false, false, CodigoStage.AprovadoNegocioSemDependencia);
+                EnviarParaOds(triplice.ArquivoParcEmissao, false, false, CodigoStage.AprovadoNegocioSemDependencia);
+                EnviarParaOds(triplice.ArquivoComissao, false, false, CodigoStage.AprovadoNegocioSemDependencia);
+            }
+        }
+
+        protected void CriarEmissaoCompletaFG06(bool salvaCliente, bool salvaComissao = true, ITriplice _triplice = null)
+        {
+            _triplice = _triplice == null ? triplice : _triplice;
+            SalvarTrinca(salvaCliente, true, salvaComissao, _triplice);
+            ValidarFGsAnterioresEErros();
+
+            ExecutarEValidarFG06EmissaoSucesso(salvaCliente, salvaComissao);
+            ValidarTeste();
+        }
+
+        protected void CriarEmissaoCompletaFG02(bool salvaCliente, bool salvaComissao = true, ITriplice _triplice = null)
+        {
+            _triplice = _triplice == null ? triplice : _triplice;
+            SalvarTrinca(salvaCliente, true, salvaComissao, _triplice);
+            ValidarFGsAnterioresEErros(FGs.FG02);
+            ValidarTeste();
         }
     }
 }
