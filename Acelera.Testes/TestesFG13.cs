@@ -11,18 +11,6 @@ namespace Acelera.Testes
 {
     public class TestesFG13 : FG07_Base
     {
-        protected void SalvaExecutaEValidaTrinca(bool enviarParaOds = true)
-        {
-            LimparValidacao();
-            CriarEmissaoCompletaFG06(true, true);
-            if (enviarParaOds)
-            {
-                EnviarParaOds(triplice.ArquivoCliente, false, true, CodigoStage.AprovadoFG06);
-                EnviarParaOds(triplice.ArquivoParcEmissao, false, true, CodigoStage.AprovadoFG06);
-                EnviarParaOds(triplice.ArquivoComissao, false, true, CodigoStage.AprovadoFG06);
-            }
-        }
-
         protected void ExecutarEValidarAteFG13(Arquivo arquivo, CodigoStage codigoEsperado, string mensagemNaTabelaDeRetorno = "")
         {
             ExecutarEValidarAteFg02(arquivo, mensagemNaTabelaDeRetorno);

@@ -141,7 +141,7 @@ namespace Acelera.Testes
             logger.EscreverBloco("Fim da Validação da FG01_2. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
         }
 
-        public void EnviarParaOds(Arquivo _arquivo, bool executaFGs = true, bool alterarCdCliente = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNaFG01_2)
+        public void EnviarParaOds(Arquivo _arquivo, bool executaFGs = true, bool alterarCdCliente = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNegocioSemDependencia)
         {
             if (alterarCdCliente && _arquivo.Operadora != OperadoraEnum.SGS)
             {
@@ -154,6 +154,7 @@ namespace Acelera.Testes
             if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
             {
                 SalvarArquivo(_arquivo);
+                arquivosSalvosODS.Add(_arquivo.EnderecoCompletoArquivoSalvo);
                 return;
             }
 
@@ -161,9 +162,12 @@ namespace Acelera.Testes
             if (executaFGs)
             {
                 SalvarArquivo(_arquivo);
+                arquivosSalvosODS.Add(_arquivo.EnderecoCompletoArquivoSalvo);
                 ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
                 ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
+                ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01_1_Enum().ObterTexto());
                 ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
+                ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
             }
             var linhas = ValidarStages(codigoesperadostg, false, _arquivo);
 
@@ -207,6 +211,8 @@ namespace Acelera.Testes
                     ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                     ODSInsertComissaoCoberturaData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                 }
+            else if (_arquivo.tipoArquivo == TipoArquivo.Sinistro)
+                    ODSInsertSinistroData.Insert(_arquivo.NomeArquivo, logger);
 
         }
 
@@ -302,7 +308,12 @@ namespace Acelera.Testes
                     if (Parametros.ModoExecucao == ModoExecucaoEnum.Completo)
                     {
                         nomeArquivoDeLog = arqSalvo.Split('\\').Last().ToUpper().Replace(".TXT", $"-Teste-{numeroDoTeste}-{NomeFG}-{sucesso}-Data-{DateTime.Now.ToString("ddMMyy_hhmm")}.TXT");
-                        File.Copy(arqSalvo, Parametros.pastaLogArquivo + nomeArquivoDeLog);
+                        var prefixo = "";
+                        if (arquivosSalvosODS.Contains(arqSalvo))
+                            prefixo = "ODS_";
+
+
+                        File.Copy(arqSalvo, Parametros.pastaLogArquivo + prefixo + nomeArquivoDeLog);
                         logger.EscreverBloco("Nome do arquivo de log criado : " + Parametros.pastaLogArquivo + nomeArquivoDeLog);
                         if (File.Exists(Parametros.pastaLogArquivo + nomeArquivoDeLog))
                         {
