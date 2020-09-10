@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC230
             var arquivoComissaoOds = arquivo.Clone();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcOds);
-            AlterarLinha(0, "CD_ITEM", arquivo[0]["CD_ITEM"].ObterProximoValorInteiro());
+            AlterarLinha(0, "CD_ITEM", "1234");
 
             SalvarArquivo();
 
