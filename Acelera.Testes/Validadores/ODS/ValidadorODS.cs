@@ -90,7 +90,8 @@ namespace Acelera.Testes.Validadores.ODS
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
             //VERIFICAR COMO VALIDAR
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "descobrir campo", "DESCOBRIR CAMPO", deveHaverRegistro, ref erros), linhaStage, ref erros);
+            var cdComissao = ObterCdComissao(cdParcela, linhaStage, true, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
         }
 
         private void ValidaParcAuto(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
@@ -213,11 +214,40 @@ namespace Acelera.Testes.Validadores.ODS
             }
             foreach (var campo in linhaStage.Campos)
             {
+                var valor = "";
                 if (row.Table.Columns.Contains(campo.Coluna))
-                    if (row[campo.Coluna].ToString() != campo.ValorFormatado)
+                {
+                    valor = campo.ValorFormatado;
+                    if (campo.Coluna == "DT_MUDANCA")
+                        continue;
+
+                    if (campo.Coluna.Contains("VL_"))
                     {
-                        erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {row[campo.Coluna].ToString()}{Environment.NewLine}";
+                        if (Convert.ToDecimal(row[campo.Coluna]) != valor.ObterValorDecimal())
+                        {
+                            erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                        }
                     }
+                    else if (campo.Coluna.Contains("DT_"))
+                    {
+                        if (valor.Length == 8)
+                        {
+                            if (new DateTime(int.Parse(valor.Substring(0, 4)), int.Parse(valor.Substring(4, 2)), int.Parse(valor.Substring(6, 2))).Date
+                            != Convert.ToDateTime(row[campo.Coluna]).Date)
+                            {
+                                erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                            }
+                        }
+                        else if (Convert.ToDateTime(valor).Date != Convert.ToDateTime(row[campo.Coluna]).Date)
+                        {
+                            erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                        }
+                    }
+                    else if (row[campo.Coluna].ToString() != valor)
+                    {
+                        erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                    }
+                }
             }
         }
     }

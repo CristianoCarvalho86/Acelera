@@ -54,6 +54,7 @@ namespace Acelera.Testes
         public TesteBase()
         {
             arquivosSalvos = new List<string>();
+            arquivosSalvosODS = new List<string>();
             idTeste = RandomNumber.GerarNumeroAleatorio(8);
         }
 
