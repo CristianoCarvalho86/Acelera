@@ -147,6 +147,8 @@ namespace Acelera.Testes.Validadores.ODS
                 return;
             }
 
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
+
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
         }
 
@@ -188,10 +190,16 @@ namespace Acelera.Testes.Validadores.ODS
 
         private string ObterCdComissao(string cdParcela, ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
+            var cdTipoComissao = "";
+            if (linhaStage.TabelaReferente == TabelasEnum.ParcEmissao || linhaStage.TabelaReferente == TabelasEnum.ParcEmissaoAuto)
+                cdTipoComissao = dados.ObterLinhaStageComissaoReferenteALinhaParcela(linhaStage).ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado;
+            else
+                cdTipoComissao = linhaStage.ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado;
+
             var table = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{TabelasEnum.OdsComissao.ObterTexto()} WHERE " +
                 $" CD_PARCELA = '{cdParcela}' AND " +
                 $" CD_PN_CORRETOR = '{dados.ObterCdPNCorretor(linhaStage.ObterPorColuna("CD_CORRETOR").ValorFormatado)}' AND" +
-                $" CD_TIPO_COMISSAO = '{linhaStage.ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado}' ", "REGISTRO ODS COMISSAO", logger);
+                $" CD_TIPO_COMISSAO = '{cdTipoComissao}' ", "REGISTRO ODS COMISSAO", logger);
             if (table == null || table.Rows.Count == 0)
             {
                 return null;
