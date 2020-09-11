@@ -25,10 +25,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC243
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo);
 
+            var parc1 = arquivo.Clone();
+            EnviarParaOdsAlterandoCliente(arquivo);
 
-            SalvarArquivo();
-            ExecutarEValidarAteFg02(arquivo);
 
+            arquivo = parc1;
             CriarNovaLinhaParaEmissao(arquivo,1);
             AlterarLinha(2, "NR_ENDOSSO", arquivo[1]["NR_ENDOSSO"]);
             RemoverLinha(0);

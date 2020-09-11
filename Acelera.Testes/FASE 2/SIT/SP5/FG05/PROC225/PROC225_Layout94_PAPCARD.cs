@@ -79,15 +79,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
 
             CriarNovoContrato(0);
             AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            var parc1 = arquivo.Clone();
 
             EnviarParaOdsAlterandoCliente(arquivo);
 
-            CriarNovaLinhaParaEmissao(arquivo, 0);
 
-            var campos = new string[]
-            { "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };
-            IgualarCampos(arquivo.ObterLinha(0), arquivo.ObterLinha(1), campos);
-            AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", arquivo[1].ObterCampoSeExistir("NR_SEQUENCIAL_EMISSAO_EST").ValorFormatado);
+            arquivo = parc1;
+            ReplicarLinhaComCorrecao(0, 1);
+
+            AlterarLinha(1, "CD_CLIENTE", dados.ObterCdClienteParceiro(false));
 
             RemoverLinhaComAjusteDeFooter(0);
 
