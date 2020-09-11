@@ -95,9 +95,9 @@ namespace Acelera.Testes
                 else
                     ExplodeFalha();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TratarErro($" Validação da Tabela Retorno");
+                TratarErro($" Validação da Tabela Retorno: {ex.ToString()}");
             }
         }
 
