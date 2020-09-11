@@ -94,6 +94,7 @@ namespace Acelera.Testes.Repositorio
                     //lista.Add("PRC_200000");
                     break;
                 case TipoArquivo.Sinistro:
+                    lista.Add("PRC_0192");
                     lista.Add("PRC_0008");
                     lista.Add("PRC_0062");
                     lista.Add("PRC_0066");

@@ -32,6 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
 
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo, false, false);
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
             AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
             EnviarParaOdsAlterandoCliente(arquivo);
             //ConfereQtdLinhas(arquivo, 2);
@@ -48,6 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
 
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo, false, false);
+            AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
             ExecutarEValidarAteFg02(arquivo);

@@ -29,17 +29,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0, dados.ObterCoberturaPeloCodigo("01433",true));
             ConfereQtdLinhas(arquivo, 2);
 
-            SalvarArquivo();
-
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             //LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
-            SalvarArquivo();
-            
-            //EnviarParaOdsAlterandoCliente(arquivo);
+            EnviarParaOdsAlterandoCliente(arquivo);
+
             ConfereQtdLinhas(arquivo, 2);
             //LimparValidacao();
 
@@ -49,16 +46,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
             SelecionarLinhaParaValidacao(0);
-            SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
-            //LimparValidacao();
+            SalvarArquivo();
+            ExecutarEValidarAteFg02(arquivo);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
     }
 }
