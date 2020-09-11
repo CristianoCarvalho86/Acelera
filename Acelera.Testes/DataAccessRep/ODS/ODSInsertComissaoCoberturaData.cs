@@ -52,7 +52,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 COB" +
             "     ON A.CD_COBERTURA = COB.CD_COBERTURA" +
             "     AND PARCSTG.CD_PRODUTO = COB.CD_PRODUTO" +
-            " where PARCSTG.cd_tipo_emissao in (1, 18)" +
+            " where PARCSTG.cd_tipo_emissao in (1, 18, 20)" +
             " group by" +
             " CMSODS.CD_COMISSAO," +
             " COB.ID_COBERTURA," +

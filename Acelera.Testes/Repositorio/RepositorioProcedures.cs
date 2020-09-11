@@ -144,7 +144,7 @@ namespace Acelera.Testes.Repositorio
                     lista.Add("PRC_0013");
                     lista.Add("PRC_0016");
                     lista.Add("PRC_0018");
-                    lista.Add("PRC_0019");
+                    //lista.Add("PRC_0019");
                     lista.Add("PRC_0020");
                     lista.Add("PRC_0033");
                     lista.Add("PRC_0035");
