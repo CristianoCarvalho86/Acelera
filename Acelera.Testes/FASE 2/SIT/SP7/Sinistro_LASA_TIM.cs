@@ -205,9 +205,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         }
 
         [TestMethod]
-        public void SAP_0010()
+        public void SAP_0018()
         {
-            InicioTesteFG06("10", "SP7 - PROC 82 - TIM - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=7 - ODS", OperadoraEnum.TIM);
+            InicioTesteFG06("18", "SP7 - PROC 82 - TIM - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=7 - ODS", OperadoraEnum.TIM);
 
             SalvaExecutaEValidaTrincaFG02(true);
 
