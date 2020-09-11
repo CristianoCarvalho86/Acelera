@@ -41,20 +41,33 @@ namespace Acelera.Testes
             get
             {
                 var temp = ConfigurationManager.AppSettings.Get("LogStackTrace");
-                if(string.IsNullOrEmpty(temp))
+                if (string.IsNullOrEmpty(temp))
                     throw new Exception("LogStackTrace nao definido");
 
                 return Convert.ToBoolean(temp);
             }
         }
-        
+
         public static bool ExecutaPelaBat
         {
             get
             {
                 var temp = ConfigurationManager.AppSettings.Get("ExecutaPelaBat");
-                if(string.IsNullOrEmpty(temp))
+                if (string.IsNullOrEmpty(temp))
                     throw new Exception("ExecutaPelaBat nao definido");
+
+                return Convert.ToBoolean(temp);
+            }
+        }
+
+
+        public static bool ValidaLogProcessamento
+        {
+            get
+            {
+                var temp = ConfigurationManager.AppSettings.Get("ValidaLogProcessamento");
+                if (string.IsNullOrEmpty(temp))
+                    throw new Exception("ValidaLogProcessamento nao definido");
 
                 return Convert.ToBoolean(temp);
             }
@@ -153,7 +166,7 @@ namespace Acelera.Testes
             {
                 var operacao = ConfigurationManager.AppSettings.Get("OperacaoTeste");
                 if (string.IsNullOrEmpty(operacao))
-                    throw new Exception("OperacaoTeste Atributo OperacaoTeste nao informado.") ;
+                    throw new Exception("OperacaoTeste Atributo OperacaoTeste nao informado.");
                 return operacao;
             }
         }
@@ -171,7 +184,7 @@ namespace Acelera.Testes
                 }
                 return _instanciaDB;
             }
-            set { _instanciaDB = value;}
+            set { _instanciaDB = value; }
         }
 
         private static string _connectionStringHana;
@@ -189,7 +202,7 @@ namespace Acelera.Testes
             }
             set { _connectionStringHana = value; }
         }
-        
+
         private static string _connectionStringOIM;
         public static string connectionStringOIM
         {
@@ -221,7 +234,7 @@ namespace Acelera.Testes
             set { _connectionStringSGS = value; }
         }
 
-        
+
 
         public static ModoExecucaoEnum ModoExecucao
         {

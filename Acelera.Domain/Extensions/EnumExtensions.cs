@@ -410,5 +410,29 @@ namespace Acelera.Domain.Extensions
                     throw new Exception("TAG NAO ENCONTRADA PARA " + tabela.ObterTexto());
             }
         }
+
+        public static TipoArquivo ObterTipoArquivo(string nomeArquivo)
+        {
+            var tipo = nomeArquivo.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries)[2].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries).First();
+            switch (tipo)
+            {
+                case "CLIENTE":
+                    return TipoArquivo.Cliente;
+                case "EMSCMS":
+                    return TipoArquivo.Comissao;
+                case "LCTCMS":
+                    return TipoArquivo.LanctoComissao;
+                case "COBRANCA":
+                    return TipoArquivo.OCRCobranca;
+                case "PARCEMS":
+                    return TipoArquivo.ParcEmissao;
+                case "PARCEMSAUTO":
+                    return TipoArquivo.ParcEmissaoAuto;
+                case "SINISTRO":
+                    return TipoArquivo.Sinistro;
+                default:
+                    throw new Exception("TIPO_ARQUIVO NAO ENCONTRADO");
+            }
+        }
     }
 }

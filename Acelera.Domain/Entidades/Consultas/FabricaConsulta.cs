@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using System;
 using System.Collections.Generic;
@@ -144,7 +145,7 @@ namespace Acelera.Domain.Entidades.Consultas
                 {
                     var consultaDaLinha = new Consulta();
                     consultaDaLinha.AdicionarConsulta("NM_ARQUIVO_TPA", linha.Key);
-                    CamposDaConsultaTabelaRetorno(consultaDaLinha, tabela, alteracao, nomeArquivo);
+                    CamposDaConsultaTabelaRetorno(consultaDaLinha, EnumExtensions.ObterTipoArquivo(nomeArquivo) , alteracao, nomeArquivo);
                     consultas.Add(new KeyValuePair<int, Consulta>(alteracao.PosicaoDaLinha, consultaDaLinha));
                 }
                 
@@ -174,14 +175,14 @@ namespace Acelera.Domain.Entidades.Consultas
         //    return consulta;
         //}
 
-        private static void CamposDaConsultaTabelaRetorno(Consulta consulta, TabelasEnum tabela, Alteracao valoresAlteradosBody, string nomeArquivo)
+        private static void CamposDaConsultaTabelaRetorno(Consulta consulta, TipoArquivo tipoArquivo, Alteracao valoresAlteradosBody, string nomeArquivo)
         {
-            if (tabela == TabelasEnum.Cliente)
+            if (tipoArquivo == TipoArquivo.Cliente)
             {
                 consulta.AdicionarConsulta("CD_CLIENTE", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("CD_CLIENTE").ValorFormatado);
                 consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
             }
-            else if (tabela == TabelasEnum.Sinistro)
+            else if (tipoArquivo == TipoArquivo.Sinistro)
             {
                 consulta.AdicionarConsulta("TP_REGISTRO", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("TIPO_REGISTRO").ValorFormatado);
                 consulta.AdicionarConsulta("NR_APOLICE", valoresAlteradosBody.LinhaAlterada.ObterCampoDoBanco("NR_APOLICE").ValorFormatado);
