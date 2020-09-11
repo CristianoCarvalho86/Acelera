@@ -29,12 +29,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0, dados.ObterCoberturaPeloCodigo("01433",true));
             ConfereQtdLinhas(arquivo, 2);
 
-            EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
+            EnviarParaOdsAlterandoCliente(arquivo);
+            var arquivoParc2 = arquivo.Clone();
             //LimparValidacao();
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc2[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
+            arquivo.AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", "");
+            arquivo.AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc2[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
+
             EnviarParaOdsAlterandoCliente(arquivo);
 
             ConfereQtdLinhas(arquivo, 2);
@@ -52,6 +58,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo.AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc2[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
+
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
             ExecutarEValidarAteFg02(arquivo);
