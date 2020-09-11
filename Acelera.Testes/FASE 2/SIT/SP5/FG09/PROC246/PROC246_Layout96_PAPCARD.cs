@@ -54,13 +54,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             SelecionarLinhaParaValidacao(0);
 
             SalvarArquivo();
+            var arquivoParccanc = arquivo.Clone();
+
             ExecutarEValidarAteFg02(arquivo);
 
             arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
             AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             arquivo.AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
-            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc2[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
+            arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParccanc[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
 
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();

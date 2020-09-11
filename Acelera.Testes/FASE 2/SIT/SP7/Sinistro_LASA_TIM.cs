@@ -44,6 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "D");
             GerarCdSinistroEAviso(arquivo, 0);
 
             SalvarArquivo(arquivo);
@@ -223,11 +224,37 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "TP_SINISTRO", "1");
-            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", GerarNumeroAleatorio(3));
+            SalvarArquivo(arquivo);
+
+            ExecutarEValidarAteFg02(arquivo);
+
+        }
+
+        [TestMethod]
+        public void SAP_0019()
+        {
+            InicioTesteFG06("19", "SP7 - PROC 194 - LASA - SINISTRO - Pagamento superior a reserva - CD_TIPO_MOVTO = 7", OperadoraEnum.TIM);
+
+            SalvaExecutaEValidaTrincaFG02(true);
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            GerarCdSinistroEAviso(arquivo, 0);
+            EnviarParaOds(arquivo, true, false);
+
+            LimparValidacao(arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "VL_MOVIMENTO", SomarValor(0, "VL_MOVIMENTO", 10));
+
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);
@@ -367,6 +394,33 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             ExecutarEValidarAteFg02(arquivo);
 
+        }
+
+        [TestMethod]
+        public void SAP_0028()
+        {
+            InicioTesteFG06("28", "sem crítica - Abertura - mesmo sinistro / sem crítica - Pagamento - mesmo sinistro", OperadoraEnum.TIM);
+
+            SalvaExecutaEValidaTrincaFG02(true);
+
+            arquivo = new Arquivo_Layout_9_4_Sinistro();
+            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+
+            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
+            GerarCdSinistroEAviso(arquivo, 0);
+
+            SalvarArquivo(arquivo);
+            ExecutarEValidarAteFg02(arquivo);
+
+            LimparValidacao(arquivo);
+            AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
+            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "DT_REGISTRO", SomarData(arquivo[0]["DT_REGISTRO"], 10));
+
+            SalvarArquivo(arquivo);
+
+            ExecutarEValidarAteFg02(arquivo);
         }
 
 
