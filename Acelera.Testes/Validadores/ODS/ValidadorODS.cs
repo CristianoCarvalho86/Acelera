@@ -83,9 +83,11 @@ namespace Acelera.Testes.Validadores.ODS
 
         private void ValidaParcela(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro, ref erros);
+            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro);
             if (cdParcela == null)
                 return;
+
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsParcela, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
@@ -96,11 +98,13 @@ namespace Acelera.Testes.Validadores.ODS
 
         private void ValidaParcAuto(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro, ref erros);
+            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro);
             if (cdParcela == null)
             {
                 return;
             }
+
+            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsParcela, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
@@ -128,7 +132,7 @@ namespace Acelera.Testes.Validadores.ODS
 
         private void ValidaComissao(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro, ref erros);
+            var cdParcela = ObterCdParcela(linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage, deveHaverRegistro);
             if (string.IsNullOrEmpty(cdParcela))
             {
                 erros += $"REGISTRO NAO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}{Environment.NewLine}";
@@ -144,19 +148,19 @@ namespace Acelera.Testes.Validadores.ODS
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
         }
 
-        private string ObterCdParcela(string cdContrato, ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
+        private string ObterCdParcela(string cdContrato, ILinhaTabela linhaStage, bool deveHaverRegistro)
         {
-            var row = ValidaExistencia(TabelasEnum.OdsParcela, "CD_CONTRATO", cdContrato, deveHaverRegistro, ref erros);
-            if (row == null)
+            var table = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{TabelasEnum.OdsParcela.ObterTexto()} WHERE " +
+                $" CD_CONTRATO = '{linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado}' AND " +
+                $" NR_SEQ_EMISSAO = '{linhaStage.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' AND" +
+                $" NR_PARCELA = '{linhaStage.ObterPorColuna("NR_PARCELA").ValorFormatado}' ","REGISTRO ODS PARCELA",logger);
+            if (table == null || table.Rows.Count == 0)
             {
                 return null;
             }
             logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
 
-            ValidarCamposDeNomeSemelhantes(row, linhaStage, ref erros);
-            StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
-
-            return row["CD_PARCELA"].ToString();
+            return table.Rows[0]["CD_PARCELA"].ToString();
 
         }
 
@@ -182,7 +186,7 @@ namespace Acelera.Testes.Validadores.ODS
             {
                 return null;
             }
-            logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsSinistro.ObterTexto()}");
+            logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsComissao.ObterTexto()}");
 
             ValidarCamposDeNomeSemelhantes(row, linhaStage, ref erros);
             StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
@@ -206,46 +210,48 @@ namespace Acelera.Testes.Validadores.ODS
             return table.Rows[0];
         }
 
-        public void ValidarCamposDeNomeSemelhantes(DataRow row, ILinhaTabela linhaStage, ref string erros)
+        public void ValidarCamposDeNomeSemelhantes(DataRow rowOds, ILinhaTabela linhaStage, ref string erros)
         {
-            if (row == null)
+            if (rowOds == null)
             {
                 return;
             }
             foreach (var campo in linhaStage.Campos)
             {
-                var valor = "";
-                if (row.Table.Columns.Contains(campo.Coluna))
+                var valorDaStage = "";
+                if (rowOds.Table.Columns.Contains(campo.Coluna))
                 {
-                    valor = campo.ValorFormatado;
-                    if (campo.Coluna == "DT_MUDANCA")
+                    valorDaStage = campo.ValorFormatado;
+                    if (campo.Coluna == "DT_MUDANCA" || campo.Coluna == "NM_ARQUIVO_TPA")
                         continue;
 
-                    if (campo.Coluna.Contains("VL_"))
+                    if (campo.Coluna.Contains("VL_") || campo.Coluna.Contains("PC_"))
                     {
-                        if (Convert.ToDecimal(row[campo.Coluna]) != valor.ObterValorDecimal())
+                        decimal.TryParse(rowOds[campo.Coluna].ToString(),out decimal dec1);
+                        decimal.TryParse(valorDaStage.Replace(".",","), out decimal dec2);
+                        if (dec1 != dec2)
                         {
-                            erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                            erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
                         }
                     }
                     else if (campo.Coluna.Contains("DT_"))
                     {
-                        if (valor.Length == 8)
+                        if (valorDaStage.Length == 8)
                         {
-                            if (new DateTime(int.Parse(valor.Substring(0, 4)), int.Parse(valor.Substring(4, 2)), int.Parse(valor.Substring(6, 2))).Date
-                            != Convert.ToDateTime(row[campo.Coluna]).Date)
+                            if (new DateTime(int.Parse(valorDaStage.Substring(0, 4)), int.Parse(valorDaStage.Substring(4, 2)), int.Parse(valorDaStage.Substring(6, 2))).Date
+                            != Convert.ToDateTime(rowOds[campo.Coluna]).Date)
                             {
-                                erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                                erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
                             }
                         }
-                        else if (Convert.ToDateTime(valor).Date != Convert.ToDateTime(row[campo.Coluna]).Date)
+                        else if (Convert.ToDateTime(valorDaStage).Date != Convert.ToDateTime(rowOds[campo.Coluna]).Date)
                         {
-                            erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                            erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
                         }
                     }
-                    else if (row[campo.Coluna].ToString() != valor)
+                    else if (rowOds[campo.Coluna].ToString() != valorDaStage)
                     {
-                        erros += $"Campo: {campo.Coluna} Na Stage = '{campo.ValorFormatado}' , valor encontrado : {valor}{Environment.NewLine}";
+                        erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
                     }
                 }
             }

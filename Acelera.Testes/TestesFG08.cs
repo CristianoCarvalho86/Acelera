@@ -39,6 +39,7 @@ namespace Acelera.Testes
             base.IniciarTesteFG07(numeroTeste, descricao, operadora, geraCliente, gerarArquivoCapa);
             validadorODS = new ValidadorODS(ref logger);
             deleteStages = new DeleteStages(ref logger);
+            DeletarRegistrosAntigosDaStage();
         }
 
         public void ExecutarEValidarFG08(bool esperaSucesso)

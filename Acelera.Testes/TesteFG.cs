@@ -57,7 +57,7 @@ namespace Acelera.Testes
 
         protected void ValidarLogProcessamento(Arquivo _arquivo, bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
         {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
+            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao || !Parametros.ValidaLogProcessamento)
                 return;
 
             var proceduresEsperadas = proceduresASeremExecutadas;
