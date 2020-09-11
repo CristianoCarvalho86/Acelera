@@ -18,8 +18,10 @@ namespace Acelera.Testes.Validadores.ODS
     public class ValidadorODS
     {
         private IMyLogger logger;
-        public ValidadorODS(ref IMyLogger logger)
+        private TabelaParametrosDataSP3 dados;
+        public ValidadorODS(TabelaParametrosDataSP3 dados,ref IMyLogger logger)
         {
+            this.dados = dados;
             this.logger = logger;
         }
 
@@ -158,6 +160,11 @@ namespace Acelera.Testes.Validadores.ODS
             {
                 return null;
             }
+            if(table.Rows.Count > 1)
+            {
+                logger.Erro($"MAIS DE UM REGISTRO ENCONTRADO: {Environment.NewLine}{table.ObterTextoTabular()}");
+            }
+
             logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsParcela.ObterTexto()}");
 
             return table.Rows[0]["CD_PARCELA"].ToString();
@@ -181,17 +188,21 @@ namespace Acelera.Testes.Validadores.ODS
 
         private string ObterCdComissao(string cdParcela, ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
         {
-            var row = ValidaExistencia(TabelasEnum.OdsComissao, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros);
-            if (row == null)
+            var table = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{TabelasEnum.OdsComissao.ObterTexto()} WHERE " +
+                $" CD_PARCELA = '{cdParcela}' AND " +
+                $" CD_PN_CORRETOR = '{dados.ObterCdPNCorretor(linhaStage.ObterPorColuna("CD_CORRETOR").ValorFormatado)}' AND" +
+                $" CD_TIPO_COMISSAO = '{linhaStage.ObterPorColuna("CD_TIPO_COMISSAO").ValorFormatado}' ", "REGISTRO ODS COMISSAO", logger);
+            if (table == null || table.Rows.Count == 0)
             {
                 return null;
             }
+            if (table.Rows.Count > 1)
+            {
+                logger.Erro($"MAIS DE UM REGISTRO ENCONTRADO: {Environment.NewLine}{table.ObterTextoTabular()}");
+            }
             logger.Escrever($"REGISTRO ENCONTRADO EM : {TabelasEnum.OdsComissao.ObterTexto()}");
 
-            ValidarCamposDeNomeSemelhantes(row, linhaStage, ref erros);
-            StringUtils.ValidarTextoDeErrosEncontrados(erros, logger);
-
-            return row["CD_COMISSAO"].ToString();
+            return table.Rows[0]["CD_COMISSAO"].ToString();
         }
 
         private DataRow ValidaExistencia(TabelasEnum tabela, string campo, string valor, bool deveHaverRegistro, ref string erros)

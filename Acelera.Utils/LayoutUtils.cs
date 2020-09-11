@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
@@ -23,7 +24,7 @@ namespace Acelera.Utils
             reader.Dispose();
 
             var fileName = new FileInfo(path).Name;
-            var tipoArquivo = ObterTipoArquivo(fileName);
+            var tipoArquivo = EnumExtensions.ObterTipoArquivo(fileName);
 
             if (header.Substring(121, 125).Contains("94.2"))
             {
@@ -94,30 +95,6 @@ namespace Acelera.Utils
                 throw new Exception("TIPO ARQUIVO NAO PARAMETRIZADO PARA O LAYOUT 9.6");
             }
             throw new Exception("LAYOUT NAO PARAMETRIZADO");
-        }
-
-        public static TipoArquivo ObterTipoArquivo(string nomeArquivo)
-        {
-            var tipo = nomeArquivo.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries)[2].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries).First();
-            switch (tipo)
-            {
-                case "CLIENTE":
-                    return TipoArquivo.Cliente;
-                case "EMSCMS":
-                    return TipoArquivo.Comissao;
-                case "LCTCMS":
-                    return TipoArquivo.LanctoComissao;
-                case "COBRANCA":
-                    return TipoArquivo.OCRCobranca;
-                case "PARCEMS":
-                    return TipoArquivo.ParcEmissao;
-                case "PARCEMSAUTO":
-                    return TipoArquivo.ParcEmissaoAuto;
-                case "SINISTRO":
-                    return TipoArquivo.Sinistro;
-                default:
-                    throw new Exception("TIPO_ARQUIVO NAO ENCONTRADO");
-            }
         }
 
     }

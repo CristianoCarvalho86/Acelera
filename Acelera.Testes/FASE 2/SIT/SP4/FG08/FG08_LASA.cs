@@ -131,8 +131,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         [TestMethod]
         public void SAP_9862()
         {
-            numeroDoTeste = "9862";
-            testeFG07.SAP_6157();
+            IniciarTesteFG08("9862", "9862 : SAP-6157:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+
+            AdicionarTipoComissao(triplice.ArquivoComissao, triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
+
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+
+            SalvaExecutaEValidaFG07();
+            
             ExecutarEValidarFG08(true);
         }
 
@@ -147,8 +155,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         [TestMethod]
         public void SAP_9860()
         {
-            numeroDoTeste = "9860";
-            testeFG07.SAP_6155();
+            IniciarTesteFG08("9860", "FG08: 9860 - SAP-6155:FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão P - Novo cliente", OperadoraEnum.LASA);
+
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
+
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+
+            SalvaExecutaEValidaFG07();
             ExecutarEValidarFG08(true);
         }
 

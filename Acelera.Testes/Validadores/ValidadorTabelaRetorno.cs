@@ -63,7 +63,7 @@ namespace Acelera.Testes.Validadores
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
-            var consulta = MontarConsulta(tabelaEnum, arquivo);
+            var consulta = MontarConsulta(tabela, arquivo);
 
             List<ILinhaTabela> linhasEncontradas;
             linhasEncontradas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();

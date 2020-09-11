@@ -37,7 +37,7 @@ namespace Acelera.Testes
         public void IniciarTesteFG08(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true, bool gerarArquivoCapa = false)
         {
             base.IniciarTesteFG07(numeroTeste, descricao, operadora, geraCliente, gerarArquivoCapa);
-            validadorODS = new ValidadorODS(ref logger);
+            validadorODS = new ValidadorODS(new TabelaParametrosDataSP3(logger),ref logger);
             deleteStages = new DeleteStages(ref logger);
             DeletarRegistrosAntigosDaStage();
         }
@@ -70,7 +70,8 @@ namespace Acelera.Testes
                 TratarErro($"FORAM ENCONTRADOS ERROS NA TABELA DE RETORNO : {linhasDaTabelaDeRetorno.Select(x => x.ObterPorColuna("CD_MENSAGEM").ValorFormatado).ObterListaConcatenada(" ,")}");
 
             foreach (var linha in linhasStageParc)
-                ValidarStInterface(esperaSucesso, linha.ObterPorColuna("NR_APOLICE").ValorFormatado, linha.ObterPorColuna("NR_ENDOSSO").ValorFormatado);
+                if (!ValidarStInterface(esperaSucesso, linha.ObterPorColuna("NR_APOLICE").ValorFormatado, linha.ObterPorColuna("NR_ENDOSSO").ValorFormatado))
+                    ExplodeFalha();
 
             //esperaSucesso eh invertido, pois em caso de sucesso nao tem registro na tabela de retorno
             ValidarTabelaDeRetornoVazia(triplice.ArquivoCliente, !esperaSucesso);
