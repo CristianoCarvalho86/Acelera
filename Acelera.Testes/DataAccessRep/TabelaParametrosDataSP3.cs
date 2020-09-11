@@ -1,4 +1,6 @@
 ﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Interfaces;
+using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -88,6 +90,16 @@ namespace Acelera.Testes.DataAccessRep
                 clausula += $" AND CD_TIPO_REMUNERACAO = '{cdTipoRemuneracao}' ";
             return DataAccess.Consulta($"SELECT VL_REMUMERACAO, TP_REMUNERACAO, CD_PN_CORRETOR, CD_TIPO_REMUNERACAO FROM {Parametros.instanciaDB}.TAB_PRM_REMUNERACAO_7013 WHERE {clausula}",
                 "BUSCANDO PARAMETRIZAÇÃO NA 7013", DBEnum.Hana, logger, false);
+        }
+
+        public LinhaComissaoStage ObterLinhaStageComissaoReferenteALinhaParcela(ILinhaTabela linhaStageParc)
+        {
+            return DataAccess.ChamarConsultaAoBanco<LinhaComissaoStage>($"SELECT * FROM {Parametros.instanciaDB}.{TabelasEnum.Comissao.ObterTexto()} WHERE " +
+                    $"CD_CORRETOR = '{linhaStageParc.ObterPorColuna("CD_CORRETOR").ValorFormatado}' AND " +
+                    $"CD_CONTRATO = '{linhaStageParc.ObterPorColuna("CD_CONTRATO").ValorFormatado}' AND " +
+                    $"NR_SEQUENCIAL_EMISSAO = '{linhaStageParc.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' AND " +
+                    //$"NR_ENDOSSO = '{linhaStageParc.ObterPorColuna("NR_ENDOSSO").ValorFormatado}' AND " +
+                    $"NR_PARCELA = '{linhaStageParc.ObterPorColuna("NR_PARCELA").ValorFormatado}'", logger).Single();
         }
 
 
