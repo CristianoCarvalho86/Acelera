@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
             SelecionarLinhaParaValidacao(0);
-
+            AlterarLinha(0, "ID_TRANSACAO_CANC", arquivoParc2[1]["ID_TRANSACAO"]);
             SalvarArquivo();
             var arquivoParccanc = arquivo.Clone();
 

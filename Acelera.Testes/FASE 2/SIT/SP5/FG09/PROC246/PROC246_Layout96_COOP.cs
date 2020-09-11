@@ -38,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //ConfereQtdLinhas(arquivo, 2);
 
             arquivo = arquivoParc1;
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
+            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[1], "10", "02"));
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);

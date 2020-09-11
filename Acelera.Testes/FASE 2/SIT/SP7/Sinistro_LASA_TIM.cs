@@ -56,6 +56,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("5", "SP7 - PROC 79 - LASA - SINISTRO - Movimentar sinistro inexistente - CD_TP_MOVTO = 2 E TP_SINISTRO=01", OperadoraEnum.LASA);
 
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -63,7 +66,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             GerarCdSinistroEAviso(arquivo, 0);
 
             SalvarArquivo(arquivo);
