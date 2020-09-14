@@ -171,7 +171,7 @@ namespace Acelera.Testes
             }
             var linhas = ValidarStages(codigoesperadostg, false, _arquivo);
 
-            //ValidarTeste();
+            ValidarTeste();
 
             if (_arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
                 foreach (var linha in linhas)
