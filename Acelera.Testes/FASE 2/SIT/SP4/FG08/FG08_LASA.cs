@@ -185,7 +185,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         public void SAP_9858()
         {
             numeroDoTeste = "9858";
-            //testeFG07.SAP_9762();     PERGUNTAR QUEM EH ESSE CARA
+            //testeFG07.SAP_9762(); 
             ExecutarEValidarFG08(true);
         }
     }
