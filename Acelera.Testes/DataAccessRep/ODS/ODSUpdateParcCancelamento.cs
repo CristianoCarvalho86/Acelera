@@ -31,19 +31,19 @@ namespace Acelera.Testes.DataAccessRep.ODS
         }
 
         public static string UpdateCmsOdsText()
-        {
-            return " update a" +
-            " set a.DT_CANCELAMENTO = b.dt_emissao," +
-            " a.CD_PARCELA_CANCELAMENTO = b.cd_parcela," +
-            " a.CD_STATUS_COMISSAO = 'CA'" +
-            $" from {Parametros.instanciaDB}.TAB_ODS_COMISSAO_2006 a" +
-            " inner" +
-            " join (select A.CD_PARCELA,id_transacao_canc, dt_emissao" +
-            $" from {Parametros.instanciaDB}.tab_ods_COMISSAO_2006 A" +
-            $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003 B" +
-            " ON A.CD_PARCELA = B.CD_PARCELA" +
-            " WHERE id_transacao_canc IS NOT NULL) b on" +
-            " a.CD_PARCELA = b.CD_PARCELA; ";
+        {                                                                                                                          
+            return "update a "+
+            $" set a.DT_CANCELAMENTO = b.dt_cancelamento, a.CD_PARCELA_CANCELAMENTO = b.cd_parcela, a.CD_STATUS_COMISSAO = 'CA'"+
+            $" from {Parametros.instanciaDB}.TAB_ODS_COMISSAO_2006 a "+
+            $" inner "+
+            $" join (select b.CD_PARCELA, b.dt_cancelamento"+
+            $" from {Parametros.instanciaDB}.tab_ods_COMISSAO_2006 A "+
+            $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003 b"+
+            $" ON A.CD_PARCELA = b.CD_PARCELA"+
+            $" and b.cd_status_parcela = 'CA'"+
+            $") b"+
+            $" on a.CD_PARCELA = b.CD_PARCELA"+
+            $" and cd_status_comissao = 'EM' ";                                                                                                
         }
 
         public static void Update(IMyLogger logger)
