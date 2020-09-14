@@ -394,6 +394,11 @@ namespace Acelera.Testes.DataAccessRep
             return ObterRetornoNotIn("ID_COBERTURA", "CD_PN_OPERACAO", cdPnOperacao, "TAB_PRM_PRD_COBERTURA_7009");
         }
 
+        public string ObterIdCoberturaParaCodigo(string cdCobertura)
+        {
+                return ObterRetorno("ID_COBERTURA", "CD_COBERTURA", cdCobertura, "TAB_PRM_PRD_COBERTURA_7009", true);
+        }
+
         public Cobertura ObterCoberturaPeloId(string idCobertura , bool simples = false)
         {
             if (int.TryParse(idCobertura, out int id))

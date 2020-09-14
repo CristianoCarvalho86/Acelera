@@ -213,18 +213,33 @@ namespace Acelera.Testes.Validadores.ODS
             return table.Rows[0]["CD_COMISSAO"].ToString();
         }
 
+        private DataRow ValidaExistenciaCobertura(TabelasEnum tabela, string campo, string valor, bool deveHaverRegistro, ILinhaTabela linhaStage, ref string erros)
+        {
+            if (linhaStage.TabelaReferente == TabelasEnum.Comissao)
+                dados.ObterLinhaStageParcelaReferenteALinhaComissao(linhaStage);
+
+            var table = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} WHERE {campo} = '{valor}'", campo, logger);
+            table.TableName = tabela.ObterTexto();
+            return ObterLinhaExistente(table, deveHaverRegistro, ref erros);
+        }
         private DataRow ValidaExistencia(TabelasEnum tabela, string campo, string valor, bool deveHaverRegistro, ref string erros)
         {
             var table = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} WHERE {campo} = '{valor}'", campo, logger);
+            table.TableName = tabela.ObterTexto();
+            return ObterLinhaExistente(table, deveHaverRegistro, ref erros);
+        }
+
+        private DataRow ObterLinhaExistente(DataTable table, bool deveHaverRegistro, ref string erros)
+        {
             if (table.Rows.Count == 0 && deveHaverRegistro)
             {
-                erros += $"REGISTRO NAO ENCONTRADO EM {tabela.ObterTexto()}{Environment.NewLine}";
+                erros += $"REGISTRO NAO ENCONTRADO EM {table.TableName}{Environment.NewLine}";
                 return null;
             }
             else if (table.Rows.Count > 0 && !deveHaverRegistro)
-                erros += $"REGISTRO ENCONTRADO EM : {tabela.ObterTexto()}{Environment.NewLine}";
+                erros += $"REGISTRO ENCONTRADO EM : {table.TableName}{Environment.NewLine}";
             else if (table.Rows.Count > 1)
-                erros += $"MAIS DE UM REGISTRO ENCONTRADO EM : {tabela.ObterTexto()}. QUANTIDADE DE REGISTROS ENCONTRADOS: {table.Rows.Count}{Environment.NewLine}";
+                erros += $"MAIS DE UM REGISTRO ENCONTRADO EM : {table.TableName}. QUANTIDADE DE REGISTROS ENCONTRADOS: {table.Rows.Count}{Environment.NewLine}";
 
             return table.Rows[0];
         }

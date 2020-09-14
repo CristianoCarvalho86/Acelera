@@ -119,6 +119,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
 
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
 
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
