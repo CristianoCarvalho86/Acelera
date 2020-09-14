@@ -231,7 +231,7 @@ namespace Acelera.Testes
             try
             {
                 var comando = "";
-                if (taskName.Contains("FGR_01_"))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
+                if (taskName.Contains("FGR_01_") && !taskName.Contains("FGR_01_2") && !taskName.Contains("FGR_01_1"))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
                     comando = $"CALL {Parametros.instanciaDB}.{taskName}_SP()";
                 else if(taskName.Contains("PRC_ENCADEA_FGR_08"))
                     comando = $"CALL HDIQAS_1.PRC_ENCADEA_FGR_08(OUT_STATUS => ?)";
