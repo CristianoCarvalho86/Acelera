@@ -91,11 +91,11 @@ namespace Acelera.Testes.Validadores.ODS
 
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsParcela, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistenciaCobertura(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, linhaStage, ref erros), linhaStage, ref erros);
 
             //VERIFICAR COMO VALIDAR
             var cdComissao = ObterCdComissao(cdParcela, linhaStage, true, ref erros);
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistenciaCobertura(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, linhaStage, ref erros), linhaStage, ref erros);
         }
 
         private void ValidaParcAuto(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
@@ -108,11 +108,12 @@ namespace Acelera.Testes.Validadores.ODS
 
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsParcela, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistenciaCobertura(TabelasEnum.OdsCobertura, "CD_PARCELA", cdParcela, deveHaverRegistro, linhaStage, ref erros), linhaStage, ref erros);
 
             ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsItemAuto, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_PARCELA", cdParcela, deveHaverRegistro, ref erros), linhaStage, ref erros);
+            var cdComissao = ObterCdComissao(cdParcela, linhaStage, true, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistenciaCobertura(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, linhaStage, ref erros), linhaStage, ref erros);
         }
 
         private void ValidaSinistro(ILinhaTabela linhaStage, bool deveHaverRegistro, ref string erros)
@@ -147,9 +148,9 @@ namespace Acelera.Testes.Validadores.ODS
                 return;
             }
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistenciaCobertura(TabelasEnum.OdsComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, linhaStage, ref erros), linhaStage, ref erros);
 
-            ValidarCamposDeNomeSemelhantes(ValidaExistencia(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, ref erros), linhaStage, ref erros);
+            ValidarCamposDeNomeSemelhantes(ValidaExistenciaCobertura(TabelasEnum.OdsCoberturaComissao, "CD_COMISSAO", cdComissao, deveHaverRegistro, linhaStage, ref erros), linhaStage, ref erros);
         }
 
         private string ObterCdParcela(string cdContrato, ILinhaTabela linhaStage, bool deveHaverRegistro)
@@ -215,10 +216,20 @@ namespace Acelera.Testes.Validadores.ODS
 
         private DataRow ValidaExistenciaCobertura(TabelasEnum tabela, string campo, string valor, bool deveHaverRegistro, ILinhaTabela linhaStage, ref string erros)
         {
-            if (linhaStage.TabelaReferente == TabelasEnum.Comissao)
-                dados.ObterLinhaStageParcelaReferenteALinhaComissao(linhaStage);
+            var idCobertura = "";
+            if (tabela == TabelasEnum.OdsCoberturaComissao || tabela == TabelasEnum.OdsCobertura)
+            {
+                if (linhaStage.TabelaReferente == TabelasEnum.Comissao)
+                    idCobertura = dados.ObterIdCoberturaParaCodigosCoberturaEProduto(linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado, dados.ObterLinhaStageParcelaReferenteALinhaComissao(linhaStage).ObterPorColuna("CD_PRODUTO").ValorFormatado);
+                else
+                    idCobertura = dados.ObterIdCoberturaParaCodigosCoberturaEProduto(linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado, linhaStage.ObterPorColuna("CD_PRODUTO").ValorFormatado);
+            }
 
-            var table = DataAccess.Consulta($"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} WHERE {campo} = '{valor}'", campo, logger);
+            var sql = $"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} WHERE {campo} = '{valor}'";
+            if(tabela == TabelasEnum.OdsCoberturaComissao || tabela == TabelasEnum.OdsCobertura)
+                sql += $" AND ID_COBERTURA = '{idCobertura}'";
+
+            var table = DataAccess.Consulta(sql, "COMISSAO", logger);
             table.TableName = tabela.ObterTexto();
             return ObterLinhaExistente(table, deveHaverRegistro, ref erros);
         }
