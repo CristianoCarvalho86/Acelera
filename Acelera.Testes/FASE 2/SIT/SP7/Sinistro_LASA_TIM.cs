@@ -296,23 +296,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         [TestMethod]
         public void SAP_0022()
         {
-            InicioTesteFG06("22", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - CD_CLIENTE -  MOVTO=2", OperadoraEnum.TIM);
+            InicioTesteFG06("22", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - CD_CLIENTE -  MOVTO=2", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
-            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(10));
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
+            AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
             
             SalvarArquivo(arquivo);
 
@@ -323,22 +330,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         [TestMethod]
         public void SAP_0023()
         {
-            InicioTesteFG06("23", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_AVISO - MOVTO=2", OperadoraEnum.TIM);
+            InicioTesteFG06("23", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_AVISO - MOVTO=2", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             AlterarLinha(0, "DT_AVISO", SomarData(arquivo[0]["DT_AVISO"], 10));
 
             SalvarArquivo(arquivo);
@@ -350,23 +363,30 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         [TestMethod]
         public void SAP_0024()
         {
-            InicioTesteFG06("24", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_OCORRENCIA - MOVTO=2", OperadoraEnum.TIM);
+            InicioTesteFG06("24", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_OCORRENCIA - MOVTO=2", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             AlterarLinha(0, "DT_OCORRENCIA", SomarData(arquivo[0]["DT_OCORRENCIA"], 10));
+            AlterarLinha(0, "DT_AVISO", SomarData(arquivo[0]["DT_OCORRENCIA"], 10));
 
             SalvarArquivo(arquivo);
 
@@ -377,22 +397,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         [TestMethod]
         public void SAP_0025()
         {
-            InicioTesteFG06("25", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_REGISTRO - MOVTO=2", OperadoraEnum.TIM);
+            InicioTesteFG06("25", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_REGISTRO - MOVTO=2", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             AlterarLinha(0, "DT_REGISTRO", SomarData(arquivo[0]["DT_REGISTRO"], 10));
 
             SalvarArquivo(arquivo);
@@ -404,22 +430,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         [TestMethod]
         public void SAP_0027()
         {
-            InicioTesteFG06("27", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - CD_ITEM - MOVTO=2", OperadoraEnum.TIM);
+            InicioTesteFG06("27", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - CD_ITEM - MOVTO=2", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
 
             SalvarArquivo(arquivo);
@@ -431,23 +463,28 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         [TestMethod]
         public void SAP_0028()
         {
-            InicioTesteFG06("28", "sem crítica - Abertura - mesmo sinistro / sem crítica - Pagamento - mesmo sinistro", OperadoraEnum.TIM);
+            InicioTesteFG06("28", "sem crítica - Abertura - mesmo sinistro / sem crítica - Pagamento - mesmo sinistro", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
-            CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
+            CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            GerarCdSinistroEAviso(arquivo, 0);
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
 
-            SalvarArquivo(arquivo);
-            ExecutarEValidarAteFg02(arquivo);
+            GerarCdSinistroEAviso(arquivo, 0);
+            EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             AlterarLinha(0, "DT_REGISTRO", SomarData(arquivo[0]["DT_REGISTRO"], 10));
 
             SalvarArquivo(arquivo);

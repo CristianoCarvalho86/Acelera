@@ -17,7 +17,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
                     $" set a.DT_CANCELAMENTO = b.dt_emissao,a.CD_PARCELA_CANCELAMENTO = b.cd_parcela,a.CD_STATUS_PARCELA = 'CA'" +
                     $" from {Parametros.instanciaDB}.tab_ods_parcela_2003 a" +
                     $" inner " +
-                    $" join TAB_ODS_COBERTURA_2005 c " +
+                    $" join {Parametros.instanciaDB}.TAB_ODS_COBERTURA_2005 c " +
                     $" on a.cd_parcela = c.cd_parcela" +
                     $" inner " +
                     $" join (select id_transacao_canc, dt_emissao, a1.cd_parcela from {Parametros.instanciaDB}.tab_ods_parcela_2003 a1 " +
