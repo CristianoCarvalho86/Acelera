@@ -45,8 +45,6 @@ namespace Acelera.Testes.DataAccessRep.ODS
 " DT_CANCELAMENTO  , " +
 " CD_STATUS_APOLICE  ,  " +
 " CD_STATUS_PARCELA  ,  " +
-" ID_TRANSACAO  , " +
-" ID_TRANSACAO_CANC  ,  " +
 " CD_PARCELA_CANCELAMENTO ," +
 " NM_ARQUIVO_TPA  ,  " +
 " NR_APOLICE_ORIGINAL  ," +
@@ -108,8 +106,6 @@ $" {Parametros.instanciaDB}.SEQ_ODS_PARCELA_2003.nextval AS CD_PARCELA," +
 " '' AS DT_CANCELAMENTO," +
 " '' AS CD_STATUS_APOLICE, " +
 " 'EM' AS CD_STATUS_PARCELA,  " +
-" ID_TRANSACAO," +
-" ID_TRANSACAO_CANC, " +
 " null AS CD_PARCELA_CANCELAMENTO,  " +
 " a.NM_ARQUIVO_TPA,  " +
 " NR_APOLICE_ORIGINAL,  " +
@@ -181,8 +177,6 @@ $" inner join {Parametros.instanciaDB}.tab_ods_parceiro_negocio_2000 co" +
 " cast(CD_MOEDA as int)," +
 " CD_MOVTO_COBRANCA, " +
 " CD_TIPO_EMISSAO," +
-" ID_TRANSACAO," +
-" ID_TRANSACAO_CANC, " +
 " a.NM_ARQUIVO_TPA,  " +
 " NR_APOLICE_ORIGINAL,  " +
 " NR_DOCUMENTO," +

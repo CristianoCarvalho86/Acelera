@@ -92,14 +92,31 @@ namespace Acelera.Testes.DataAccessRep
                 "BUSCANDO PARAMETRIZAÇÃO NA 7013", DBEnum.Hana, logger, false);
         }
 
-        public LinhaComissaoStage ObterLinhaStageComissaoReferenteALinhaParcela(ILinhaTabela linhaStageParc)
+        public ILinhaTabela ObterLinhaStageComissaoReferenteALinhaParcela(ILinhaTabela linhaStageParc)
         {
             return DataAccess.ChamarConsultaAoBanco<LinhaComissaoStage>($"SELECT * FROM {Parametros.instanciaDB}.{TabelasEnum.Comissao.ObterTexto()} WHERE " +
                     $"CD_CORRETOR = '{linhaStageParc.ObterPorColuna("CD_CORRETOR").ValorFormatado}' AND " +
                     $"CD_CONTRATO = '{linhaStageParc.ObterPorColuna("CD_CONTRATO").ValorFormatado}' AND " +
                     $"NR_SEQUENCIAL_EMISSAO = '{linhaStageParc.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' AND " +
-                    //$"NR_ENDOSSO = '{linhaStageParc.ObterPorColuna("NR_ENDOSSO").ValorFormatado}' AND " +
+                    $"CD_COBERTURA = '{linhaStageParc.ObterPorColuna("CD_COBERTURA").ValorFormatado}' AND " +
                     $"NR_PARCELA = '{linhaStageParc.ObterPorColuna("NR_PARCELA").ValorFormatado}'", logger).Single();
+        }
+
+        public ILinhaTabela ObterLinhaStageParcelaReferenteALinhaComissao(ILinhaTabela linhaStageComissao, bool ehAuto = false)
+        {
+            var tabela = ehAuto ? TabelasEnum.ParcEmissaoAuto : TabelasEnum.ParcEmissao;
+
+            var sql = $"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} WHERE " +
+                    $"CD_CORRETOR = '{linhaStageComissao.ObterPorColuna("CD_CORRETOR").ValorFormatado}' AND " +
+                    $"CD_CONTRATO = '{linhaStageComissao.ObterPorColuna("CD_CONTRATO").ValorFormatado}' AND " +
+                    $"NR_SEQUENCIAL_EMISSAO = '{linhaStageComissao.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' AND " +
+                    $"CD_COBERTURA = '{linhaStageComissao.ObterPorColuna("CD_COBERTURA").ValorFormatado}' AND " +
+                    $"NR_PARCELA = '{linhaStageComissao.ObterPorColuna("NR_PARCELA").ValorFormatado}'";
+
+            if(tabela == TabelasEnum.ParcEmissao)
+                return DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(sql, logger).Single();
+            else
+                return DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(sql, logger).Single();
         }
 
 
