@@ -80,6 +80,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("9", "SP7 - PROC 82 - LASA - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=2 - ODS", OperadoraEnum.LASA);
 
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -87,13 +90,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
             EnviarParaOds(arquivo, true, false);
 
@@ -110,6 +115,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("10", "SP7 - PROC 82 - TIM - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=7 - ODS", OperadoraEnum.TIM);
 
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -117,13 +125,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
             EnviarParaOds(arquivo, true, false);
 
@@ -140,6 +152,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("11", "SP7 - PROC 128 - LASA - SINISTRO - Enviar CD_SINISTRO que já existe na ODS - CD_TP_MOVTO=1", OperadoraEnum.LASA);
 
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
@@ -147,7 +162,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
@@ -171,12 +188,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
+
+            var cdSinistro = AlterarUltimasPosicoes(arquivo[0]["CD_SINISTRO"], GerarNumeroAleatorio(11));
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            AlterarLinha(0, "CD_SINISTRO", cdSinistro);
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);
@@ -188,9 +211,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("15", "SP7 - PROC 181 - LASA - SINISTRO - Abertura de sinistro para apólice cancelada - NR_ENDOSSO E CD_CONTRATO DE UM ENDOSSO NA ODS QUE SEJA CD_TIPO_EMISSAO 10 OU 11", OperadoraEnum.LASA);
 
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+
             SalvaExecutaEValidaTrincaFG02(true);
 
-            CriarCancelamento(false, false, OperadoraEnum.VIVO, "9", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(false, false, OperadoraEnum.LASA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
 
             EnviarParaOds(arquivoParcCancelamento);
             EnviarParaOds(arquivoComissaoCancelamento);
@@ -200,7 +226,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(arquivoParcCancelamento, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             
             SalvarArquivo(arquivo);
@@ -221,13 +249,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
@@ -250,13 +278,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "VL_MOVIMENTO", SomarValor(0, "VL_MOVIMENTO", 10));
 
             SalvarArquivo(arquivo);
@@ -277,13 +305,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_CLIENTE", GerarNumeroAleatorio(10));
             
             SalvarArquivo(arquivo);
@@ -304,13 +332,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "DT_AVISO", SomarData(arquivo[0]["DT_AVISO"], 10));
 
             SalvarArquivo(arquivo);
@@ -331,13 +359,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "DT_OCORRENCIA", SomarData(arquivo[0]["DT_OCORRENCIA"], 10));
 
             SalvarArquivo(arquivo);
@@ -358,13 +386,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "DT_REGISTRO", SomarData(arquivo[0]["DT_REGISTRO"], 10));
 
             SalvarArquivo(arquivo);
@@ -385,13 +413,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
 
             SalvarArquivo(arquivo);
@@ -419,7 +447,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
-            AlterarLinha(0, "TP_SINISTRO", "1");
+            AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "DT_REGISTRO", SomarData(arquivo[0]["DT_REGISTRO"], 10));
 
             SalvarArquivo(arquivo);
