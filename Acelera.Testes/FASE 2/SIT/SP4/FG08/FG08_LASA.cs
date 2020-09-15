@@ -184,8 +184,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         [TestMethod]
         public void SAP_9858()
         {
-            numeroDoTeste = "9858";
-            //testeFG07.SAP_9762(); 
+            //nao da pra rodar para LASA
+            IniciarTesteFG08("9858", "9762 - FG07 - Lasa - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C - Novo cliente", OperadoraEnum.LASA);
+
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+
+            triplice.AlterarParcEComissao(0, "VL_PREMIO_TOTAL", "0");
+            triplice.AlterarParcEComissao(0, "VL_PREMIO_LIQUIDO", "0");
+            triplice.AlterarParcEComissao(0, "VL_IOF", "0");
+
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+
+            SalvaExecutaEValidaFG07();
+
             ExecutarEValidarFG08(true);
         }
     }
