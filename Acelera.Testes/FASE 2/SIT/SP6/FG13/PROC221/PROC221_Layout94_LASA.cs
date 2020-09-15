@@ -21,6 +21,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         {
             IniciarTesteFG07("9730", "", OperadoraEnum.LASA);
 
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+
             SalvaExecutaEValidaTrincaFG02();
 
             CriarCancelamentoDaTrincaFG13(OperadoraEnum.LASA, "10");

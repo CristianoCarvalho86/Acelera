@@ -21,9 +21,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC220
         {
             IniciarTesteFG07("4607", "", OperadoraEnum.TIM);
 
-            SalvaExecutaEValidaTrinca(false);
+            SalvaExecutaEValidaTrincaFG02();
 
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.TIM, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, "10", false);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.TIM, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, "10", true);
 
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);

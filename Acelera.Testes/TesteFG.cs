@@ -212,7 +212,10 @@ namespace Acelera.Testes
                     ODSInsertComissaoCoberturaData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                 }
             else if (_arquivo.tipoArquivo == TipoArquivo.Sinistro)
+            {
                 ODSInsertSinistroData.Insert(_arquivo.NomeArquivo, logger);
+                ODSInsertMovimentoSinistro.Insert(_arquivo[0]["CD_AVISO"], logger);
+            }
 
             else if (_arquivo.tipoArquivo == TipoArquivo.OCRCobranca)
             {

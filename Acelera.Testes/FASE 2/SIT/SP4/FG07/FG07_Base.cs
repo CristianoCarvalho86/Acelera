@@ -223,7 +223,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
         }
         protected void SalvaExecutaEValidaTrincaFG02(bool enviarParaOds = true)
         {
-            CriarEmissaoCompletaFG02(true, true);
+             CriarEmissaoCompletaFG02(true, true);
             if (enviarParaOds)
             {
                 EnviarParaOds(triplice.ArquivoCliente, false, false, CodigoStage.AprovadoNegocioSemDependencia);
