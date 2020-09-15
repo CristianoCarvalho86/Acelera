@@ -50,7 +50,7 @@ $" {Parametros.instanciaDB}.SEQ_ODS_COMISSAO_2006.nextval AS CD_COMISSAO," +
 " max(CAST(PC_COMISSAO AS NUMERIC)) AS PC_COMISSAO," +
 " max(CAST(PC_PARTICIPACAO AS NUMERIC)) AS PC_PARTICIPACAO," +
 " A.NM_ARQUIVO_TPA," +
-" 'EM' AS 'CD_STATUS_COMISSAO'," +
+" 'EM' AS CD_STATUS_COMISSAO," +
 " 0 AS NR_SEQ_OIMX," +
 " 'EM' AS CD_ATUACAO," +
 " NULL AS CD_TIPO_LANCAMENTO," +
@@ -74,7 +74,7 @@ $" INNER JOIN {Parametros.instanciaDB}.TAB_STG_PARCELA_1001 PARCSTG" +
 "     and a.nr_parcela = PARCSTG.nr_parcela" +
 "     and a.nr_sequencial_emissao = PARCSTG.nr_sequencial_emissao" +
 "     and a.cd_cobertura = PARCSTG.cd_cobertura" +
-"     AND PARCSTG.cd_status_processamento = '610'" +
+//"     AND PARCSTG.cd_status_processamento = '610'" +
 $" INNER JOIN {Parametros.instanciaDB}.TAB_ODS_PARCELA_2003 PARCODS" +
 "     ON PARCODS.cd_contrato = PARCSTG.cd_contrato" +
 "     and PARCODS.nr_apolice = PARCSTG.nr_apolice" +

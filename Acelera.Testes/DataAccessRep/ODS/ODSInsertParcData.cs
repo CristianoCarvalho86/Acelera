@@ -22,7 +22,8 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " CD_PN_CLIENTE, " +
             " CD_PN_CORRETOR, " +
             " CD_PN_ESTIPULANTE, " +
-            " CD_CONTRATO, " +
+            " CD_CONTRATO," +
+            " CD_STATUS_PARCELA, " +
             " NR_APOLICE, " +
             " NR_SEQ_EMISSAO, " +
             " NR_SEQ_OIMX, " +
@@ -44,7 +45,6 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " DT_PAGAMENTO, " +
             " DT_CANCELAMENTO, " +
             " CD_STATUS_APOLICE, " +
-            " CD_STATUS_PARCELA, " +
             " CD_PARCELA_CANCELAMENTO," +
             " NM_ARQUIVO_TPA," +
             " NR_APOLICE_ORIGINAL," +
@@ -83,6 +83,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " co.cd_parceiro_negocio as CD_PN_CORRETOR," +
             " 1 as CD_PN_ESTIPULANTE," +
             " a.CD_CONTRATO," +
+            "'EM' AS CD_STATUS_PARCELA," +
             " a.NR_APOLICE," +
             " a.nr_sequencial_emissao as NR_SEQ_EMISSAO," +
             " 0 AS NR_SEQ_OIMX," +
@@ -104,7 +105,6 @@ namespace Acelera.Testes.DataAccessRep.ODS
             " '' AS DT_PAGAMENTO," +
             " '' AS DT_CANCELAMENTO," +
             " '' AS CD_STATUS_APOLICE," +
-            " '' AS CD_STATUS_PARCELA," +
             " null AS CD_PARCELA_CANCELAMENTO," +
             " a.NM_ARQUIVO_TPA," +
             " NR_APOLICE_ORIGINAL," +

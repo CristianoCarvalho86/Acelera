@@ -193,6 +193,7 @@ namespace Acelera.Testes
                     if (new string[] { "10", "11" }.Contains(linha.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
                     {
                         ODSInsertParcCancelamento.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertParcCobertura.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, TabelasEnum.ParcEmissao, logger);
                         ODSUpdateParcCancelamento.Update(logger);
                     }
                     else
@@ -208,8 +209,16 @@ namespace Acelera.Testes
             else if (_arquivo.tipoArquivo == TipoArquivo.Comissao)
                 foreach (var linha in linhas)
                 {
-                    ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
-                    ODSInsertComissaoCoberturaData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                    if (new string[] { "10", "11" }.Contains(dados.ObterLinhaStageParcelaReferenteALinhaComissao(linha).ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                    {
+                        ODSInsertComissaoCancelamentoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertComissaoCoberturaCancelamentoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                    }
+                    else
+                    {
+                        ODSInsertComissaoData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                        ODSInsertComissaoCoberturaData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
+                    }
                 }
             else if (_arquivo.tipoArquivo == TipoArquivo.Sinistro)
             {
