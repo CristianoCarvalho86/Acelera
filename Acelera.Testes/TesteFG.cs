@@ -212,7 +212,10 @@ namespace Acelera.Testes
                     ODSInsertComissaoCoberturaData.Insert(linha.ObterPorColuna("ID_REGISTRO").ValorFormatado, logger);
                 }
             else if (_arquivo.tipoArquivo == TipoArquivo.Sinistro)
-                    ODSInsertSinistroData.Insert(_arquivo.NomeArquivo, logger);
+                ODSInsertSinistroData.Insert(_arquivo.NomeArquivo, logger);
+
+            else if (_arquivo.tipoArquivo == TipoArquivo.OCRCobranca)
+                ODSUpdateCobrancaPaga.Update(_arquivo.NomeArquivo, logger);
 
         }
 
@@ -442,7 +445,7 @@ namespace Acelera.Testes
         {
             IgualarCamposQueExistirem(arquivoParcEmissao.ObterLinha(linhaReferenciaParc), arquivoCobranca.ObterLinha(0));
             arquivoCobranca.AlterarLinha(0, "NR_PARCELA", arquivoParcEmissao[linhaReferenciaParc]["NR_PARCELA"]);
-            arquivoCobranca.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(arquivoParcEmissao[linhaReferenciaParc], arquivoParcEmissao.Operadora));
+            arquivoCobranca.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", arquivoParcEmissao[linhaReferenciaParc]["NR_SEQUENCIAL_EMISSAO"]);
             arquivoCobranca.AlterarLinha(0, "CD_OCORRENCIA", cdOcorrencia);
             arquivoCobranca.AlterarLinha(0, "DT_OCORRENCIA", SomarData(arquivoParcEmissao[linhaReferenciaParc]["DT_EMISSAO"], 10));
             arquivoCobranca.AlterarLinha(0, "VL_PREMIO_PAGO", arquivoParcEmissao[linhaReferenciaParc]["VL_PREMIO_TOTAL"]);
