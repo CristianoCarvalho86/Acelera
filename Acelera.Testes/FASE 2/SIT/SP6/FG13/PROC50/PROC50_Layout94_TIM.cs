@@ -39,21 +39,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         {
             IniciarTesteFG07("9698", "", OperadoraEnum.TIM);
 
-            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0,
-                dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[0]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"],true));
-            
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
-
-            SalvaExecutaEValidaTrinca(true);
+            SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
 
-            SalvarArquivo();
-
-            ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
+            EnviarParaOds(arquivo);
 
             LimparValidacao();
 
