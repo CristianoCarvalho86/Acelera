@@ -70,7 +70,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC97
 
             SalvarArquivo();
 
-            ExecutarEValidarDesconsiderandoErro(CodigoStage.AprovadoNegocioComDependencia, "97");
+            ExecutarEValidarAteFg02(arquivo);
 
         }
 

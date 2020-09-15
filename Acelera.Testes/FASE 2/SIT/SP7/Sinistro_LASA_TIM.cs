@@ -213,11 +213,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            var linha = triplice.ArquivoComissao.Clone();
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             CriarCancelamento(false, false, OperadoraEnum.LASA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
 
+            IgualarCampos(linha , arquivoComissaoCancelamento, new string[] { "CD_CORRETOR", "CD_TIPO_COMISSAO" });
             EnviarParaOds(arquivoParcCancelamento);
             EnviarParaOds(arquivoComissaoCancelamento);
 

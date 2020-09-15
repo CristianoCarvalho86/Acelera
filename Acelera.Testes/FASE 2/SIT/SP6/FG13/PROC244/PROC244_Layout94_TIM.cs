@@ -50,7 +50,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
             CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
 
-            SalvaExecutaEValidaTrinca(false);
+            SalvaExecutaEValidaTrincaFG02();
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
@@ -72,7 +72,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
             triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(1);
             triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
 
-            SalvaExecutaEValidaTrinca(false);
+            SalvaExecutaEValidaTrincaFG02();
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);

@@ -20,15 +20,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
         {
             IniciarTesteFG07("9764", "", OperadoraEnum.LASA);
 
+            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+
             AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
-            triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_PREMIO_LIQUIDO", "23.27");
-            triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_IOF", "1.72");
-            triplice.ArquivoParcEmissao.AlterarLinha(1, "VL_PREMIO_TOTAL", "24.99");
 
             triplice.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(1));
 
-            SalvaExecutaEValidaTrinca(false);
+            SalvaExecutaEValidaTrincaFG02();
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
