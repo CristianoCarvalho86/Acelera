@@ -1,4 +1,5 @@
 ﻿using Acelera.Domain.Enums;
+using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,12 @@ namespace Acelera.Testes.DataAccessRep.ODS
             var sql = UpdateText(nomeArquivo);
 
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
+        }
+
+        public static bool ValidaApolicePaga(string cdContrato, IMyLogger logger)
+        {
+            return DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.OdsParcela.ObterTexto()} where NR_APOLICE = '{cdContrato}'" +
+                $" AND cd_status_parcela = 'PG' AND DT_PAGAMENTO IS NOT NULL ", logger);
         }
     }
 }
