@@ -215,7 +215,11 @@ namespace Acelera.Testes
                 ODSInsertSinistroData.Insert(_arquivo.NomeArquivo, logger);
 
             else if (_arquivo.tipoArquivo == TipoArquivo.OCRCobranca)
+            {
                 ODSUpdateCobrancaPaga.Update(_arquivo.NomeArquivo, logger);
+                if (!ODSUpdateCobrancaPaga.ValidaApolicePaga(_arquivo[0]["CD_CONTRATO"], logger))
+                    ExplodeFalha("Apólice não foi marcada como paga");
+            }
 
         }
 
