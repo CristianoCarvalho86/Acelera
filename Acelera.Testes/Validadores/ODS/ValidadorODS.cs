@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Interfaces;
+﻿using Acelera.Domain.Entidades;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -272,11 +273,34 @@ namespace Acelera.Testes.Validadores.ODS
 
                     if (campo.Coluna.Contains("VL_") || campo.Coluna.Contains("PC_"))
                     {
-                        decimal.TryParse(rowOds[campo.Coluna].ToString(),out decimal dec1);
-                        decimal.TryParse(valorDaStage.Replace(".",","), out decimal dec2);
-                        if (dec1 != dec2)
+                        decimal decStage = 0;
+                        decimal decOds = 0;
+                        if (linhaStage.TabelaReferente == TabelasEnum.ParcEmissao && rowOds.Table.TableName == TabelasEnum.OdsParcela.ObterTexto())
                         {
-                            erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
+                            decStage = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage.ObterNomeTabela());
+                            decOds = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, rowOds.Table.TableName);
+                        }
+                        else if (linhaStage.TabelaReferente == TabelasEnum.ParcEmissao &&
+                            (rowOds.Table.TableName == TabelasEnum.OdsCobertura.ObterTexto() ||
+                            rowOds.Table.TableName == TabelasEnum.OdsCoberturaComissao.ObterTexto()))
+                            continue;
+
+                        if (linhaStage.TabelaReferente == TabelasEnum.Comissao)
+                        {
+                            decStage = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage.ObterNomeTabela(),
+                                $" AND CD_COBERTURA = '{linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado}'");
+                            var idCobertura = dados.ObterIdCoberturaParaCodigosCoberturaEProduto(linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado, dados.ObterLinhaStageParcelaReferenteALinhaComissao(linhaStage).ObterPorColuna("CD_PRODUTO").ValorFormatado);
+                            if (rowOds.Table.Columns.Contains("ID_COBERTURA"))
+                                decOds = ObterSomatorio(campo.Coluna, "CD_COMISSAO", rowOds["CD_COMISSAO"].ToString(), rowOds.Table.TableName, $" AND ID_COBERTURA = '{idCobertura}'");
+                            else
+                                continue;
+                        }
+
+                        //decimal.TryParse(rowOds[campo.Coluna].ToString(),out decimal dec1);
+                        //decimal.TryParse(valorDaStage.Replace(".",","), out decimal dec2);
+                        if (decStage != decOds)
+                        {
+                            erros += MensagemErroCampo(rowOds, linhaStage, erros, campo, valorDaStage);
                         }
                     }
                     else if (campo.Coluna.Contains("DT_"))
@@ -286,20 +310,44 @@ namespace Acelera.Testes.Validadores.ODS
                             if (new DateTime(int.Parse(valorDaStage.Substring(0, 4)), int.Parse(valorDaStage.Substring(4, 2)), int.Parse(valorDaStage.Substring(6, 2))).Date
                             != Convert.ToDateTime(rowOds[campo.Coluna]).Date)
                             {
-                                erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
+                                erros += MensagemErroCampo(rowOds, linhaStage, erros, campo, valorDaStage);
                             }
                         }
                         else if (Convert.ToDateTime(valorDaStage).Date != Convert.ToDateTime(rowOds[campo.Coluna]).Date)
                         {
-                            erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
+                            erros += MensagemErroCampo(rowOds, linhaStage, erros, campo, valorDaStage);
                         }
                     }
                     else if (rowOds[campo.Coluna].ToString() != valorDaStage)
                     {
-                        erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
+                        erros += MensagemErroCampo(rowOds, linhaStage, erros, campo, valorDaStage);
                     }
                 }
             }
+        }
+
+        private static string MensagemErroCampo(DataRow rowOds, ILinhaTabela linhaStage, string erros, Campo campo, string valorDaStage)
+        {
+            erros += $"Campo: {campo.Coluna} Na Stage '{linhaStage.TabelaReferente}' = '{valorDaStage}' , valor encontrado em '{rowOds.Table.TableName}' : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
+            return erros;
+        }
+
+        private decimal ObterSomatorio(string campoBusca, string campoComparacao, string valorComparacao, string tabela, string clausula = "")
+        {
+            var sql = $"SELECT SUM(TO_DECIMAL({campoBusca})) FROM {Parametros.instanciaDB}.{tabela} WHERE {campoComparacao} = '{valorComparacao}' {clausula}";
+            var resultado = DataAccess.ConsultaUnica(sql).ObterValorDecimal();
+            logger.Escrever("CONSULTA DE SOMATORIO : "+ sql);
+            logger.Escrever($"RESULTADO DA SOMA DE '{campoBusca}' NA TABELA {tabela} : '{resultado}'");
+            return resultado;
+        }
+
+        private decimal ObterSomatorioOdsComissao(string campoBusca, string campoComparacao, string valorComparacao, string tabela)
+        {
+            var sql = $"SELECT SUM({campoBusca}) FROM {Parametros.instanciaDB}.{tabela} WHERE {campoComparacao} = '{valorComparacao}'";
+            var resultado = DataAccess.ConsultaUnica(sql).ObterValorDecimal();
+            logger.Escrever("CONSULTA DE SOMATORIO : " + sql);
+            logger.Escrever($"RESULTADO DA SOMA DE '{campoBusca}' NA TABELA {tabela} : '{resultado}'");
+            return resultado;
         }
     }
 }
