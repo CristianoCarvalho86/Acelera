@@ -279,7 +279,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             arquivo = triplice.ArquivoComissao.Clone();
             RemoverLinhasExcetoAsPrimeiras(1);
             IgualarCamposQueExistirem(arquivoParc, arquivo);
-            AlterarLinha(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
+           // AlterarLinha(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
             if (!string.IsNullOrEmpty(valorComissao))
                 AlterarLinhaSeExistirCampo(arquivo, 0, "VL_COMISSAO", valorComissao);
 
