@@ -508,7 +508,7 @@ namespace Acelera.Testes
         {
             arquivoParc.ReplicarLinha(posicaoLinha, 1);
             var cdRamo = arquivoParc.Operadora == OperadoraEnum.TIM ? arquivoParc[arquivoParc.Linhas.Count - 1]["CD_RAMO"] : "";
-            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true, cdRamo) : cobertura;
+            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true) : cobertura;
             AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
         }
 

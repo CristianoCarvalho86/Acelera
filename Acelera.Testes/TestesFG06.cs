@@ -97,9 +97,9 @@ namespace Acelera.Testes
 
             triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_MOVTO_COBRANCA", "01");
             var data = dados.ObterDataDoBanco();
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_EMISSAO", data);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_INICIO_VIGENCIA", data);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_FIM_VIGENCIA", SomarData(data, 365));
+            //triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_EMISSAO", data);
+            //triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_INICIO_VIGENCIA", data);
+            //triplice.AlterarTodasAsLinhasQueContenhamOCampo("DT_FIM_VIGENCIA", SomarData(data, 365));
 
             if(ParametrosRegrasEmissao.OperadorasComCapa.Contains(triplice.Operadora))
             {
