@@ -88,6 +88,7 @@
     <Compile Include="ConjuntoArquivos\TripliceVIVO.cs" />
     <Compile Include="DataAccessRep\DataAccessOIM.cs" />
     <Compile Include="DataAccessRep\DeleteStages.cs" />
+    <Compile Include="DataAccessRep\ODS\ODSInsertMovimentoSinistro.cs" />
     <Compile Include="DataAccessRep\ODS\ODSUpdateCobrancaPaga.cs" />
     <Compile Include="FASE 2\SIT\SP3\FG05\PROC22\PROC22_Layout94_SGS.cs" />
     <Compile Include="FASE 2\SIT\SP4\FG07\FG07_AGREGUEDEALERS.cs" />
