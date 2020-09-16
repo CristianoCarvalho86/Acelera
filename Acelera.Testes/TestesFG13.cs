@@ -32,8 +32,8 @@ namespace Acelera.Testes
 
             if (enviarParaOds)
             {
-                EnviarParaOds(arquivoParcCancelamento, false, false, CodigoStage.AprovadoNegocioSemDependencia);
-                EnviarParaOds(arquivoComissaoCancelamento, false, false, CodigoStage.AprovadoNegocioSemDependencia);
+                EnviarParaOds(arquivoParcCancelamento, false, false, CodigoStage.AprovadoNegocioSemDependencia);//CodigoStage.AprovadoNaFG09
+                EnviarParaOds(arquivoComissaoCancelamento, false, false, CodigoStage.AprovadoNegocioSemDependencia);//AprovadoNaFG09
             }
         }
         protected void CriarCancelamentoDaTrincaFG13(OperadoraEnum operadora, string cdTipoEmissao = "10", bool enviarParaOds = true)

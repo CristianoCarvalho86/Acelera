@@ -15,7 +15,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
         {
             return $"insert into {Parametros.instanciaDB}.TAB_ODS_COBERTURA_COMISSAO_2008(" +
 " CD_COMISSAO," +
-" ID_COBERTURA" +
+" ID_COBERTURA," +
 " VL_COMISSAO ," +
 " VL_BASE_CALCULO, " +
 " DT_INCLUSAO," +
@@ -65,9 +65,9 @@ $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_COBERTURA_7007 COB" +
             var detalheLinha = $" select '{idRegistro}' AS ID_REGISTRO FROM DUMMY ";
             var sql = InsertText(detalheLinha);
 
-            var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsComissao.ObterTexto(), logger);
+            var count1 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsCoberturaComissao.ObterTexto(), logger);
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
-            var count2 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsComissao.ObterTexto(), logger);
+            var count2 = DataAccess.ObterTotalLinhas(TabelasEnum.OdsCoberturaComissao.ObterTexto(), logger);
             if (count1 == count2)
             {
                 logger.Erro($"ERRO NO INSERT DA PARCELA PARA O ID_REGISTRO : '{idRegistro}' - NENHUMA LINHA INSERIDA");

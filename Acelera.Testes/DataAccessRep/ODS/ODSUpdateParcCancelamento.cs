@@ -26,7 +26,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
                     $" where id_transacao_canc is not null) b" +
                     $" on c.id_transacao = b.id_transacao_canc" +
                     $" and cd_status_parcela = 'EM'" +
-                    $" and dt_cancelamento is null " +
+                    $" and (dt_cancelamento is null OR  dt_cancelamento = '') " +
                     $" and cd_parcela_cancelamento is null;";
         }
 

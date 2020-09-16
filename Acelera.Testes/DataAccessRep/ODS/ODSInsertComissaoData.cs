@@ -104,7 +104,7 @@ namespace Acelera.Testes.DataAccessRep.ODS
             if (count1 == count2)
             {
                 logger.Erro($"ERRO NO INSERT DA PARCELA PARA O ID_REGISTRO : '{idRegistro}' - NENHUMA LINHA INSERIDA");
-                throw new Exception("NENHUMA LINHA INSERIDA NA ODS PARCELA PARA O ID_REGISTRO: " + idRegistro);
+                throw new Exception($"NENHUMA LINHA INSERIDA NA {TabelasEnum.OdsComissao.ObterTexto()} PARA O ID_REGISTRO: " + idRegistro);
             }
         }
     }

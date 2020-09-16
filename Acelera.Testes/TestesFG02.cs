@@ -205,7 +205,7 @@ namespace Acelera.Testes
         protected void ExecutarEValidarAteFg02(Arquivo _arquivo, string mensagemErroNaTabelaDeRetorno = "")
         {
             ExecutarEValidar(_arquivo, FGs.FG00, FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
-            ValidarControleArquivo();
+            ValidarControleArquivo(_arquivo);
             ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo));
 
             ExecutarEValidar(_arquivo, FGs.FG01, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));

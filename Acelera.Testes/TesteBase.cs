@@ -33,7 +33,7 @@ namespace Acelera.Testes
     {
         private DBHelperHana helper = DBHelperHana.Instance;
         protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
-        public TabelaParametrosData dados { get; private set; }
+        public TabelaParametrosDataSP3 dados { get; private set; }
         protected string numeroDoTeste;
         protected bool sucessoDoTeste;
         protected string numeroDoLote;
@@ -74,7 +74,7 @@ namespace Acelera.Testes
             //else
             logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo,Parametros.logStackTrace,Parametros.logDataBaseResults);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
-            dados = new TabelaParametrosData(logger);
+            dados = new TabelaParametrosDataSP3(logger);
         }
 
         protected virtual void SalvarArquivo()
