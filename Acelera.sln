@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acelera.Data", "Acelera.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{00542908-A0AB-46F1-82C1-15EC13EF5A29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acelera.Contratos", "Acelera.Contratos\Acelera.Contratos.csproj", "{0C0F9D0D-575B-4641-9AD8-5D2F40DA62B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{00542908-A0AB-46F1-82C1-15EC13EF5A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00542908-A0AB-46F1-82C1-15EC13EF5A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00542908-A0AB-46F1-82C1-15EC13EF5A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C0F9D0D-575B-4641-9AD8-5D2F40DA62B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0F9D0D-575B-4641-9AD8-5D2F40DA62B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0F9D0D-575B-4641-9AD8-5D2F40DA62B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0F9D0D-575B-4641-9AD8-5D2F40DA62B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

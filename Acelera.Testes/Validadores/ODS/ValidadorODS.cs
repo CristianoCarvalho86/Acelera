@@ -30,6 +30,11 @@ namespace Acelera.Testes.Validadores.ODS
         {
             logger.Escrever("DEVE ENCONTRAR REGISTROS NA ODS: " + deveHaverRegistro.ToString());
             var erros = "";
+
+            if (linhaStage.ObterPorColuna("CD_TIPO_EMISSAO") != null &&
+                ParametrosRegrasEmissao.CdTipoEmissaoCapa.ToList().Contains(linhaStage.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado))
+                return true;
+
             switch (linhaStage.TabelaReferente)
             {
                 case TabelasEnum.Cliente:
@@ -288,7 +293,7 @@ namespace Acelera.Testes.Validadores.ODS
                         if (linhaStage.TabelaReferente == TabelasEnum.Comissao)
                         {
                             decStage = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage.ObterNomeTabela(),
-                                $" AND CD_COBERTURA = '{linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado}'");
+                                $" AND CD_COBERTURA = '{linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado}' AND NR_SEQUENCIAL_EMISSAO = '{linhaStage.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' ");
                             var idCobertura = dados.ObterIdCoberturaParaCodigosCoberturaEProduto(linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado, dados.ObterLinhaStageParcelaReferenteALinhaComissao(linhaStage).ObterPorColuna("CD_PRODUTO").ValorFormatado);
                             if (rowOds.Table.Columns.Contains("ID_COBERTURA"))
                                 decOds = ObterSomatorio(campo.Coluna, "CD_COMISSAO", rowOds["CD_COMISSAO"].ToString(), rowOds.Table.TableName, $" AND ID_COBERTURA = '{idCobertura}'");
@@ -300,6 +305,8 @@ namespace Acelera.Testes.Validadores.ODS
                         //decimal.TryParse(valorDaStage.Replace(".",","), out decimal dec2);
                         if (decStage != decOds)
                         {
+                            erros += $"decStage : {decStage}";
+                            erros += $"decOds : {decOds}";
                             erros += MensagemErroCampo(rowOds, linhaStage, erros, campo, valorDaStage);
                         }
                     }

@@ -113,7 +113,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             CriarEmissaoCompletaFG06(salvaCliente, salvaComissao);
 
-            var linhasStageParc = ExecutarValidarFG07(esperaSucesso, salvaCliente, salvaComissao);
+            var linhasStageParc = ExecutarValidarFG07(esperaSucesso, salvaCliente, salvaComissao).Where(x => x.ObterPorColuna("CD_TIPO_EMISSAO") != null && !ParametrosRegrasEmissao.CdTipoEmissaoCapa.Contains(x.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado)).ToList();
 
             var ehParcAuto = triplice.ArquivoParcEmissao.tipoArquivo == TipoArquivo.ParcEmissaoAuto;
             ValidaXmlFG07(linhasStageParc, ehParcAuto);
