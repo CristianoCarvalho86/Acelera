@@ -23,7 +23,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
-            SalvaExecutaEValidaTrincaFG02(true);
+            SalvarArquivo();
+            ExecutarEValidarAteFg02(arquivo);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
