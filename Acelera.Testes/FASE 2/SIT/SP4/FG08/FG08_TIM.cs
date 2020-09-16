@@ -41,6 +41,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
 
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
 
+
             SalvaExecutaEValidaFG07();
 
             ExecutarEValidarFG08(true);

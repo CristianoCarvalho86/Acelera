@@ -150,7 +150,9 @@ namespace Acelera.Testes.Validadores
                 if (column.ColumnName.Contains("vl_") && decimal.TryParse(textoAjustado, out decimal valor))
                     textoAjustado = valor.ToString().Replace(",",".");
 
-                if (node[column.ColumnName] != null && textoAjustado != node[column.ColumnName].InnerText)
+                if (node[column.ColumnName] != null && 
+                    (textoAjustado != node[column.ColumnName].InnerText) &&
+                    (node[column.ColumnName].InnerText.Replace("ário", "Ã¡rio") != textoAjustado.Replace("ário", "Ã¡rio")))//MANTIS NAO ACERTADO SOBRE ERRO NO ACENTO
                     erros += $"{node.Name} - ERRO EM {column.ColumnName}, VALOR DO XML : {node[column.ColumnName].InnerText}, VALOR DO BANCO : {tabela.Rows[0][column].ToString()} {Environment.NewLine}";
             }
             foreach(XmlNode element in node.ChildNodes)

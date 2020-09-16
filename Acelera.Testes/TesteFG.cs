@@ -168,6 +168,8 @@ namespace Acelera.Testes
                 //ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01_1_Enum().ObterTexto());
                 ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
                 ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
+                if(_arquivo.tipoArquivo == TipoArquivo.Sinistro)
+                    ChamarExecucao("FGR_NR_ITEM_TP_ITEM_SINISTRO");
             }
             var linhas = ValidarStages(codigoesperadostg, false, _arquivo);
 
@@ -518,9 +520,17 @@ namespace Acelera.Testes
 
         public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)
         {
-            triplice.AlterarParcEComissao(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracaoECobertura
-            (triplice.ArquivoComissao.Header[0]["CD_TPA"], tipoComissao, triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]));
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_TIPO_COMISSAO", tipoComissao);
+            var cdCorretor = dados.ObterCdCorretorParaTipoRemuneracaoECobertura
+                    (triplice.ArquivoComissao.Header[0]["CD_TPA"], tipoComissao, triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]);
+            for (int i = 0; i < triplice.ArquivoParcEmissao.Linhas.Count; i++)
+            {
+                triplice.ArquivoParcEmissao.AlterarLinha(i, "CD_CORRETOR", cdCorretor);
+            }
+            for (int i = 0; i < triplice.ArquivoComissao.Linhas.Count; i++)
+            {
+                triplice.ArquivoComissao.AlterarLinha(i, "CD_CORRETOR", cdCorretor);
+                triplice.ArquivoComissao.AlterarLinha(i, "CD_TIPO_COMISSAO", tipoComissao);
+            }
         }
 
         public void AdicionarNovaCoberturaNaEmissao(Arquivo arquivoParc, TabelaParametrosData dados, int posicaoLinha = 0, Cobertura cobertura = null)
