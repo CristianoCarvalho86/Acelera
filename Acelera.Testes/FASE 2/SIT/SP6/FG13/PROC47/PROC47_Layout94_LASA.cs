@@ -2,6 +2,7 @@
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
-            SalvarArquivo();
-            ExecutarEValidarAteFg02(arquivo);
+            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+            triplice.AlterarCliente(0, "NR_CNPJ_CPF", GeneralUtils.GerarNumeroValidadorCpf(GerarNumeroAleatorio(9)));
+            triplice.AlterarCliente(0, "NM_CLIENTE", GeneralUtils.GerarTextoAleatorio(40));
+
+            SalvaExecutaEValidaTrincaFG02(false);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);

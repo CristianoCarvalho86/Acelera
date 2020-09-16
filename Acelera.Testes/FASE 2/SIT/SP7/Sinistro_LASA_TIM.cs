@@ -4,6 +4,7 @@ using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2.SIT.SP4.FG07;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -92,6 +93,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+            AlterarLinha(0, "CD_MOVIMENTO", "1");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
@@ -99,11 +102,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+            AlterarLinha(0, "CD_MOVIMENTO", "2");
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
-            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            var contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), true);
+            AlterarLinha(0, "CD_AVISO", GerarNumeroAleatorio(8));
+
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);
@@ -126,6 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_MOVIMENTO", "1");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
 
             GerarCdSinistroEAviso(arquivo, 0);
@@ -135,12 +142,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+            AlterarLinha(0, "CD_MOVIMENTO", "2");
 
-            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
-            AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            AlterarLinha(0, "CD_MOVIMENTO", "3");
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);
@@ -164,12 +171,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+            AlterarLinha(0, "CD_MOVIMENTO", "1");
 
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
+            AlterarLinha(0, "CD_MOVIMENTO", "2");
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);
@@ -190,6 +199,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+            AlterarLinha(0, "CD_MOVIMENTO", "1");
 
 
             GerarCdSinistroEAviso(arquivo, 0);
@@ -200,6 +210,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             var cdSinistro = AlterarUltimasPosicoes(arquivo[0]["CD_SINISTRO"], GerarNumeroAleatorio(11));
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
             AlterarLinha(0, "CD_SINISTRO", cdSinistro);
+            AlterarLinha(0, "CD_MOVIMENTO", "2");
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);
@@ -281,12 +292,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_MOVIMENTO", "1");
+
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             GerarCdSinistroEAviso(arquivo, 0);
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "7");
             AlterarLinha(0, "TP_SINISTRO", "01");
+            AlterarLinha(0, "CD_MOVIMENTO", "2");
+            AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+
             AlterarLinha(0, "VL_MOVIMENTO", SomarValor(0, "VL_MOVIMENTO", 10));
 
             SalvarArquivo(arquivo);
@@ -470,7 +488,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
             triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
-            SalvaExecutaEValidaTrincaFG02(true);
+            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+            triplice.AlterarCliente(0, "NR_CNPJ_CPF", GeneralUtils.GerarNumeroValidadorCpf(GerarNumeroAleatorio(9)));
+            triplice.AlterarCliente(0, "NM_CLIENTE", GeneralUtils.GerarTextoAleatorio(40));
+
+            SalvaExecutaEValidaTrinca(false);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
@@ -479,15 +501,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
+            AlterarLinha(0, "CD_MOVIMENTO", "1");
 
             GerarCdSinistroEAviso(arquivo, 0);
-            EnviarParaOds(arquivo, true, false);
+            SalvarArquivo();
+            ExecutarEValidarAteFg02(arquivo);
 
             LimparValidacao(arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
             AlterarLinha(0, "DT_REGISTRO", SomarData(arquivo[0]["DT_REGISTRO"], 10));
+            AlterarLinha(0, "CD_MOVIMENTO", "2");
+
 
             SalvarArquivo(arquivo);
 

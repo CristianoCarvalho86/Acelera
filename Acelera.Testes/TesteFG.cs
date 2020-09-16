@@ -463,7 +463,7 @@ namespace Acelera.Testes
             arquivoCobranca.AlterarLinha(0, "NR_PARCELA", arquivoParcEmissao[linhaReferenciaParc]["NR_PARCELA"]);
             arquivoCobranca.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", arquivoParcEmissao[linhaReferenciaParc]["NR_SEQUENCIAL_EMISSAO"]);
             arquivoCobranca.AlterarLinha(0, "CD_OCORRENCIA", cdOcorrencia);
-            arquivoCobranca.AlterarLinha(0, "DT_OCORRENCIA", SomarData(arquivoParcEmissao[linhaReferenciaParc]["DT_EMISSAO"], 10));
+            arquivoCobranca.AlterarLinha(0, "DT_OCORRENCIA", arquivoParcEmissao[linhaReferenciaParc]["DT_EMISSAO"]);
             arquivoCobranca.AlterarLinha(0, "VL_PREMIO_PAGO", arquivoParcEmissao[linhaReferenciaParc]["VL_PREMIO_TOTAL"]);
         }
 

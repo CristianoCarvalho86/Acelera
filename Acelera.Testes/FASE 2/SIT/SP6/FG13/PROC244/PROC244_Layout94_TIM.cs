@@ -20,17 +20,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC224
         {
             IniciarTesteFG07("9756", "SAP-9756:FG13 - PROC 244 - COBRANCA - Enviar cobrança de parcela não baixada - 1a parcela", OperadoraEnum.TIM);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
-
-            SalvaExecutaEValidaTrinca(false);
+            SalvaExecutaEValidaTrincaFG02();
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             IgualarCamposQueExistirem(triplice.ArquivoParcEmissao.ObterLinha(1), arquivo.ObterLinha(0));
-            AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_PARCELA"]) + 1).ToString());
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
+            AlterarLinha(0, "NR_PARCELA", triplice.ArquivoParcEmissao[0]["NR_PARCELA"]);
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", triplice.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]);
             AlterarLinha(0, "CD_OCORRENCIA", "31");
             AlterarLinha(0, "DT_OCORRENCIA", SomarData(triplice.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
             AlterarLinha(0, "VL_PREMIO_PAGO", SomarValores(triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_TOTAL"), "0"));

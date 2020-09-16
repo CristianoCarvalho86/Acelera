@@ -244,6 +244,11 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             var idTransacaoDoArquivoOriginal = arquivo[indexLinhaArquivoEmissao]["ID_TRANSACAO"];
             RemoverLinhasExcetoAsPrimeiras(1);
 
+            var data = dados.ObterDataDoBanco();
+            AlterarLinhaSeExistirCampo(arquivo, 0, "DT_EMISSAO", data);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "DT_EMISSAO_ORIGINAL", data);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "DT_INICIO_VIGENCIA", data);
+            AlterarLinhaSeExistirCampo(arquivo, 0, "DT_FIM_VIGENCIA", SomarData(data, 365));
             AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO_CANC", arquivo[0]["ID_TRANSACAO"]);
             AlterarLinhaSeExistirCampo(arquivo, 0, "ID_TRANSACAO", idTransacaoDoArquivoOriginal);
             AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_EMISSAO", cdTipoEmissao);

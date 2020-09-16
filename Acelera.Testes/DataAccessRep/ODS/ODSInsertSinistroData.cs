@@ -45,7 +45,16 @@ namespace Acelera.Testes.DataAccessRep.ODS
             $" INNER JOIN {Parametros.instanciaDB}.TAB_PRM_RAMO_7002 RM" +
             $" ON COB.CD_RAMO_COBERTURA = RM.CD_RAMO" +
             $" WHERE A.NM_ARQUIVO_TPA = '{nomeArquivo}' ";
+
+            var count1 = DataAccess.ObterTotalLinhas("TAB_ODS_SINISTRO_2007", logger);
             DataAccess.ExecutarComando(sql, DBEnum.Hana, logger);
+            var count2 = DataAccess.ObterTotalLinhas("TAB_ODS_SINISTRO_2007", logger);
+            if (count1 == count2)
+            {
+                logger.Erro($"ERRO NO INSERT DA PARCELA PARA O NM_ARQUIVO : '{nomeArquivo}' - NENHUMA LINHA INSERIDA");
+                throw new Exception($"NENHUMA LINHA INSERIDA NA TAB_ODS_SINISTRO_2007 PARA O NM_ARQUIVO: " +  nomeArquivo );
+            }
         }
+
     }
 }
