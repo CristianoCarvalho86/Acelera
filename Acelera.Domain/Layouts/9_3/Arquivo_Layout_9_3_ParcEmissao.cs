@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acelera.Contratos;
 using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Layouts._9_3
@@ -15,7 +16,7 @@ namespace Acelera.Domain.Layouts._9_3
 
         protected override string[] CamposChaves => new string[] { "NR_APOLICE", "NR_ENDOSSO" };
         public override string TextoVersaoHeader => "9.3";
-        protected override void CarregaCamposDoLayout(LinhaArquivo linha)
+        protected override void CarregaCamposDoLayout(ILinhaArquivo linha)
         {
             linha.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 2));
             linha.Campos.Add(new CampoDoArquivo("CD_INTERNO_RESSEGURADOR", 5));

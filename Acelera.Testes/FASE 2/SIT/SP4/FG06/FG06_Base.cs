@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Interfaces;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -95,7 +96,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
             IniciarTeste(TipoArquivo.Comissao, numeroTeste, descricao);
 
-            CarregarTriplice(operadora);
+            CarregarTrinca(operadora);
 
             AlteracoesPadraoDaTrinca(trinca);
         }
@@ -114,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         }
 
         protected void CriarCancelamento(bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
-            out Arquivo arquivoParcCriado, out Arquivo arquivoComissaoCriado,
+            out IArquivo arquivoParcCriado, out IArquivo arquivoComissaoCriado,
 bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "")
         {
             CarregarCancelamento(0, erroEmParc, erroEmComissao, operadora,
@@ -165,7 +166,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             }
         }
 
-        public void ValidarFGsAnterioresEErros_Cancelamento( Arquivo _arquivo, bool esperaSucesso = true)
+        public void ValidarFGsAnterioresEErros_Cancelamento( IArquivo _arquivo, bool esperaSucesso = true)
         {
             FGs[] listaFgs;
             if (!trinca.EhParcAuto)
@@ -216,7 +217,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             ExecutarEValidarFG06(trinca, codigoStgCliente, CodigoStage.AprovadoFG06, codigoStgComissao, "", "", "");
         }
 
-        private void ExecFgs(bool sucesso, FGs fg, Arquivo arquivo)
+        private void ExecFgs(bool sucesso, FGs fg, IArquivo arquivo)
         {
             if (sucesso || (int)fg <= (int)FGs.FG01_2)
             {
@@ -236,7 +237,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
         }
 
         public void CarregarCancelamento(int indexLinhaArquivoEmissao, bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
-            out Arquivo arquivoParcCriado,out Arquivo arquivoComissaoCriado,
+            out IArquivo arquivoParcCriado,out IArquivo arquivoComissaoCriado,
 bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "")
         {
             logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");

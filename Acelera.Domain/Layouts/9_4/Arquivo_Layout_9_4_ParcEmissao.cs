@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Acelera.Domain.Layouts._9_4
         public override TipoArquivo tipoArquivo => TipoArquivo.ParcEmissao;
         public override string TextoVersaoHeader => "9.4";
         protected override string[] CamposChaves => new string[] { "NR_APOLICE", "NR_ENDOSSO" };
-        protected override void CarregaCamposDoLayout(LinhaArquivo linha)
+        protected override void CarregaCamposDoLayout(ILinhaArquivo linha)
         {
                 linha.Campos.Add(new CampoDoArquivo("TIPO_REGISTRO", 002));
                 linha.Campos.Add(new CampoDoArquivo("CD_INTERNO_RESSEGURADOR", 005));

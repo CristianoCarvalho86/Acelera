@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts;
 using Acelera.Testes.FASE_2.SIT.SP4.FG07;
 using System;
@@ -11,13 +12,13 @@ namespace Acelera.Testes
 {
     public class TestesFG13 : FG07_Base
     {
-        protected void ExecutarEValidarAteFG13(Arquivo arquivo, CodigoStage codigoEsperado, string mensagemNaTabelaDeRetorno = "")
+        protected void ExecutarEValidarAteFG13(IArquivo arquivo, CodigoStage codigoEsperado, string mensagemNaTabelaDeRetorno = "")
         {
             ExecutarEValidarAteFg02(arquivo, mensagemNaTabelaDeRetorno);
             ValidarTeste();
         }
 
-        protected void CriarCancelamentoDaTrincaFG13(OperadoraEnum operadora, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, string cdTipoEmissao = "10", bool enviarParaOds = true)
+        protected void CriarCancelamentoDaTrincaFG13(OperadoraEnum operadora, out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento, string cdTipoEmissao = "10", bool enviarParaOds = true)
         {
             CriarCancelamento(false, false, operadora, cdTipoEmissao, out arquivoParcCancelamento, out arquivoComissaoCancelamento);
 
@@ -38,7 +39,7 @@ namespace Acelera.Testes
         }
         protected void CriarCancelamentoDaTrincaFG13(OperadoraEnum operadora, string cdTipoEmissao = "10", bool enviarParaOds = true)
         {
-            CriarCancelamentoDaTrincaFG13(operadora, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, cdTipoEmissao, enviarParaOds);
+            CriarCancelamentoDaTrincaFG13(operadora, out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento, cdTipoEmissao, enviarParaOds);
         }
     }
 }

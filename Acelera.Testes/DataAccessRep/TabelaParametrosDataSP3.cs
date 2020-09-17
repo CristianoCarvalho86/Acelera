@@ -107,7 +107,6 @@ namespace Acelera.Testes.DataAccessRep
             var tabela = ehAuto ? TabelasEnum.ParcEmissaoAuto : TabelasEnum.ParcEmissao;
 
             var sql = $"SELECT * FROM {Parametros.instanciaDB}.{tabela.ObterTexto()} WHERE " +
-                    $"CD_CORRETOR = '{linhaStageComissao.ObterPorColuna("CD_CORRETOR").ValorFormatado}' AND " +
                     $"CD_CONTRATO = '{linhaStageComissao.ObterPorColuna("CD_CONTRATO").ValorFormatado}' AND " +
                     $"NR_SEQUENCIAL_EMISSAO = '{linhaStageComissao.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' AND " +
                     $"CD_COBERTURA = '{linhaStageComissao.ObterPorColuna("CD_COBERTURA").ValorFormatado}' AND " +

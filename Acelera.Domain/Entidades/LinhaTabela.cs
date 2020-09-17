@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Consultas;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -14,11 +15,11 @@ namespace Acelera.Domain.Entidades
     public abstract class LinhaTabela : ILinhaTabela
     {
         public abstract TabelasEnum TabelaReferente { get; }
-        public List<Campo> Campos { get; set; }
+        public List<ICampo> Campos { get; set; }
 
         public LinhaTabela()
         {
-            Campos = new List<Campo>();
+            Campos = new List<ICampo>();
             CarregarCampos();
         }
 
@@ -83,7 +84,7 @@ namespace Acelera.Domain.Entidades
             return Campos.Any(x => x.Coluna.Contains(campoValor));
         }
 
-        public virtual Campo ObterPorColuna(string coluna)
+        public virtual ICampo ObterPorColuna(string coluna)
         {
             return Campos.Where(x => x.Coluna == coluna.ToUpper()).FirstOrDefault();
         }

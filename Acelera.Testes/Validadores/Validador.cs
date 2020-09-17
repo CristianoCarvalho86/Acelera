@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Stages;
@@ -20,9 +21,9 @@ namespace Acelera.Testes.Validadores
         protected TabelasEnum tabelaEnum;
         protected IMyLogger logger;
         protected string nomeArquivo;
-        protected Arquivo arquivo;
+        protected IArquivo arquivo;
 
-        public ValidadorTabela(TabelasEnum tabelasEnum, string nomeArquivo, IMyLogger logger, Arquivo arquivo)
+        public ValidadorTabela(TabelasEnum tabelasEnum, string nomeArquivo, IMyLogger logger, IArquivo arquivo)
         {
             this.tabelaEnum = tabelasEnum;
             this.nomeArquivo = nomeArquivo;
@@ -36,14 +37,14 @@ namespace Acelera.Testes.Validadores
 
         }
 
-        protected void AdicionaConsulta(Consulta consulta, AlteracoesArquivo valoresAlterados, bool ehStage)
+        protected void AdicionaConsulta(Consulta consulta, IAlteracoesArquivo valoresAlterados, bool ehStage)
         {
             if (valoresAlterados != null)
                 foreach (var alteracao in valoresAlterados.Alteracoes)
                     AdicionaConsulta(consulta, alteracao, ehStage);
         }
 
-        protected void AdicionaConsulta(Consulta consulta, Alteracao valoresAlterados, bool ehStage)
+        protected void AdicionaConsulta(Consulta consulta, IAlteracao valoresAlterados, bool ehStage)
         {
             foreach (var item in valoresAlterados.CamposAlterados)
             {
@@ -202,7 +203,7 @@ namespace Acelera.Testes.Validadores
             return false;
         }
 
-        public abstract ConjuntoConsultas MontarConsulta(TabelasEnum tabela, Arquivo arquivo);
+        public abstract ConjuntoConsultas MontarConsulta(TabelasEnum tabela, IArquivo arquivo);
 
         public abstract void TratarConsulta(Consulta consulta);
 

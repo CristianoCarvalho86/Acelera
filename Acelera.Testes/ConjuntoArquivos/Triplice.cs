@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -20,9 +21,9 @@ namespace Acelera.Testes.ConjuntoArquivos
     [Serializable]
     public abstract class Triplice<T1, T2, T3> : ITrinca where T1 : Arquivo, new() where T2 : Arquivo, new() where T3 : Arquivo, new()
     {
-        public Arquivo ArquivoCliente { get; protected set; }
-        public Arquivo ArquivoParcEmissao { get; set; }
-        public Arquivo ArquivoComissao { get; protected set; }
+        public IArquivo ArquivoCliente { get; protected set; }
+        public IArquivo ArquivoParcEmissao { get; set; }
+        public IArquivo ArquivoComissao { get; protected set; }
 
         public abstract OperadoraEnum Operadora { get; }
         public int QuantidadeInicialCliente { get; protected set; }
@@ -190,7 +191,7 @@ namespace Acelera.Testes.ConjuntoArquivos
             logger.FecharBloco();
         }
 
-        protected void SalvarArquivo(Arquivo arquivo, TipoArquivo tipoArquivo, string nomeArquivo)
+        protected void SalvarArquivo(IArquivo arquivo, TipoArquivo tipoArquivo, string nomeArquivo)
         {
             var nomeOriginalArquivo = arquivo.NomeArquivo;
             logger.AbrirBloco($"SALVANDO ARQUIVO {tipoArquivo.ObterTexto()}");
@@ -227,17 +228,17 @@ namespace Acelera.Testes.ConjuntoArquivos
             _arquivosSalvos.Add(arquivoGerado);
         }
 
-        public virtual void FinalizarAlteracao(Arquivo arquivo)
+        public virtual void FinalizarAlteracao(IArquivo arquivo)
         {
 
         }
 
-        protected string CarregarIdtransacao(LinhaArquivo linha)
+        protected string CarregarIdtransacao(ILinhaArquivo linha)
         {
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }
 
-        private void Parametrizacoes(Arquivo arquivo)
+        private void Parametrizacoes(IArquivo arquivo)
         {
             var dados = new TabelaParametrosData(logger);
             for (int i = 0; i < arquivo.Linhas.Count; i++)
@@ -253,7 +254,7 @@ namespace Acelera.Testes.ConjuntoArquivos
             }
         }
 
-        public void AlterarLayoutDaTrinca<TCliente,TParc,TComissao>() where TCliente : Arquivo, new() where TParc : Arquivo, new() where TComissao : Arquivo, new()
+        public void AlterarLayoutDaTrinca<TCliente,TParc,TComissao>() where TCliente : IArquivo, new() where TParc : IArquivo, new() where TComissao : IArquivo, new()
         {
             var arquivo = ArquivoCliente;
             AlterarLayout<TCliente>(ref arquivo);
@@ -268,13 +269,13 @@ namespace Acelera.Testes.ConjuntoArquivos
             ArquivoComissao = arquivo.Clone();
         }
 
-        private void AlterarLayout<T>(ref Arquivo _arquivo) where T : Arquivo, new()
+        private void AlterarLayout<T>(ref IArquivo _arquivo) where T : IArquivo, new()
         {
             logger.AbrirBloco($"ALTERANDO LAYOUT DE {_arquivo.GetType().Name} para {typeof(T)}");
             var novoArquivo = new T();
-            novoArquivo.Linhas = new List<LinhaArquivo>();
-            novoArquivo.Header = new List<LinhaArquivo>();
-            novoArquivo.Footer = new List<LinhaArquivo>();
+            novoArquivo.Linhas = new List<ILinhaArquivo>();
+            novoArquivo.Header = new List<ILinhaArquivo>();
+            novoArquivo.Footer = new List<ILinhaArquivo>();
             novoArquivo.AtualizarNomeArquivoFinal(_arquivo.NomeArquivo);
 
             novoArquivo.Header.Add(_arquivo.Header[0].Clone());
@@ -291,7 +292,7 @@ namespace Acelera.Testes.ConjuntoArquivos
             _arquivo = novoArquivo;
         }
 
-        public void IgualarCamposQueExistirem(Arquivo arquivoOrigem, Arquivo arquivoDestino)
+        public void IgualarCamposQueExistirem(IArquivo arquivoOrigem, IArquivo arquivoDestino)
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
 

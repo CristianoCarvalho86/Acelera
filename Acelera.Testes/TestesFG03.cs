@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.SGS;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -180,13 +181,13 @@ namespace Acelera.Testes
             SGS_dados.CarregarClienteSGS(cdCliente);
         }
 
-        public QueryContratoParaArquivo CarregarDadosDoContrato(LinhaArquivo linha)
+        public QueryContratoParaArquivo CarregarDadosDoContrato(ILinhaArquivo linha)
         {
             var contrato = SGS_dados.ObterContratoPeloCodigo(linha.ObterCampoDoArquivo("CD_CONTRATO").ValorFormatado);
             contrato.CarregaLinhaArquivo(linha);
             return contrato;
         }
-        public QueryContratoParaArquivo CarregarDadosDoContrato(LinhaArquivo linha, string cdContrato)
+        public QueryContratoParaArquivo CarregarDadosDoContrato(ILinhaArquivo linha, string cdContrato)
         {
             var contrato = SGS_dados.ObterContratoPeloCodigo(cdContrato);
             if(linha != null)
@@ -194,31 +195,31 @@ namespace Acelera.Testes
             return contrato;
         }
 
-        public void CarregarContratoPeloCodigo(string codigo, LinhaArquivo linha)
+        public void CarregarContratoPeloCodigo(string codigo, ILinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterContratoPeloCodigo(codigo);
             dadosContrato.CarregaLinhaArquivo(linha);
         }
 
-        public void CarregarContratoComUmaParcela(LinhaArquivo linha)
+        public void CarregarContratoComUmaParcela(ILinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterCodigoContratoComUmaParcela();
             dadosContrato.CarregaLinhaArquivo(linha);
         }
 
-        public QueryContratoParaArquivo CarregarContratoValido(LinhaArquivo linha)
+        public QueryContratoParaArquivo CarregarContratoValido(ILinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterContratoValido();
             dadosContrato.CarregaLinhaArquivo(linha);
             return dadosContrato;
         }
 
-        public void CarregarContratoComMultiplasParcelas(LinhaArquivo linha)
+        public void CarregarContratoComMultiplasParcelas(ILinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterCodigoContratoComMultiplasParcelas();
             dadosContrato.CarregaLinhaArquivo(linha);
         }
-        public void CarregarContratoComClienteUnico(LinhaArquivo linha1, LinhaArquivo linha2)
+        public void CarregarContratoComClienteUnico(ILinhaArquivo linha1, ILinhaArquivo linha2)
         {
             var dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComUnicoContrato()).First();
             dadosContrato.CarregaLinhaArquivo(linha1);
@@ -226,7 +227,7 @@ namespace Acelera.Testes
             dadosContrato.CarregaLinhaArquivo(linha2);
         }
 
-        public void CarregarContratoComClienteDeVariosContratos(LinhaArquivo linha1, LinhaArquivo linha2)
+        public void CarregarContratoComClienteDeVariosContratos(ILinhaArquivo linha1, ILinhaArquivo linha2)
         {
             var dadosContrato = SGS_dados.ObterContratosDoCliente(SGS_dados.ObterClienteComMultiplosContratos()).First();
             dadosContrato.CarregaLinhaArquivo(linha1);
@@ -234,7 +235,7 @@ namespace Acelera.Testes
             dadosContrato.CarregaLinhaArquivo(linha2);
         }
 
-        public void CarregarContratoCancelado(LinhaArquivo linha)
+        public void CarregarContratoCancelado(ILinhaArquivo linha)
         {
             var dadosContrato = SGS_dados.ObterContratoPeloCodigo(SGS_dados.ObterContratoCancelado().CD_CONTRATO);
             dadosContrato.CarregaLinhaArquivo(linha);
@@ -331,12 +332,12 @@ namespace Acelera.Testes
             SGS_dados.Executar();
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        protected override IList<string> ObterProceduresASeremExecutadas(IArquivo _arquivo)
         {
             return RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo);
         }
 
-        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG01, bool ValidaFG01_1, bool ValidaFG02, CodigoStage? codigoAguardadoNa01_1, Arquivo _arquivo = null)
+        public void ValidarFGsAnteriores(bool ValidaFG00, bool ValidaFG01, bool ValidaFG01_1, bool ValidaFG02, CodigoStage? codigoAguardadoNa01_1, IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
 

@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_4;
@@ -22,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(false, false, OperadoraEnum.VIVO, "9", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(false, false, OperadoraEnum.VIVO, "9", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
@@ -44,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(true, false, OperadoraEnum.VIVO, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(true, false, OperadoraEnum.VIVO, "10", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
@@ -67,7 +68,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(false, true, OperadoraEnum.POMPEIA, "13", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(false, true, OperadoraEnum.POMPEIA, "13", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
@@ -91,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(true, true, OperadoraEnum.POMPEIA, "11", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(true, true, OperadoraEnum.POMPEIA, "11", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
             SalvarArquivo(arquivoComissaoCancelamento);
@@ -115,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoComissaoCancelamento);
 
@@ -134,7 +135,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(false, false, OperadoraEnum.POMPEIA, "10", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
 
@@ -157,7 +158,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CriarEmissaoCompleta();
 
-            CriarCancelamento(true, false, OperadoraEnum.POMPEIA, "11", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(true, false, OperadoraEnum.POMPEIA, "11", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
 
@@ -180,7 +181,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(0));
             CriarEmissaoCompleta();
 
-            CriarCancelamento(true, false, OperadoraEnum.POMPEIA, "11", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(true, false, OperadoraEnum.POMPEIA, "11", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             SalvarArquivo(arquivoParcCancelamento);
 

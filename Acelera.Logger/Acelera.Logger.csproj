@@ -41,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMyLogger.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Acelera.Contratos\Acelera.Contratos.csproj">
+      <Project>{0c0f9d0d-575b-4641-9ad8-5d2f40da62b0}</Project>
+      <Name>Acelera.Contratos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj">
       <Project>{E2564765-084E-4573-973F-2E1A3BC798B9}</Project>
       <Name>Acelera.Domain</Name>

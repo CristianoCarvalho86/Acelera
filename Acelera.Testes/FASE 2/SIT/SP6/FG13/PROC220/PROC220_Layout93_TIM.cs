@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
@@ -21,12 +22,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC220
         {
             IniciarTesteFG07("4607", "", OperadoraEnum.TIM, true, true);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02();
 
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.TIM, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, "10");
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.TIM, out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento, "10");
 
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);

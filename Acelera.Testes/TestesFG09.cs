@@ -1,4 +1,5 @@
-﻿using Acelera.Data;
+﻿using Acelera.Contratos;
+using Acelera.Data;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -32,7 +33,7 @@ namespace Acelera.Testes
             Validar(codigoEsperadoStage, erroEsperadoNaTabelaDeRetorno, qtdErrosNaTabelaDeRetorno);
         }
        
-        protected void ExecutarEValidarApenasFg09(Arquivo _arquivo, string falhaEsperada = "")
+        protected void ExecutarEValidarApenasFg09(IArquivo _arquivo, string falhaEsperada = "")
         {
             SetarArquivoEmUso(ref _arquivo);
             ExecutarEValidar(_arquivo, FGs.FG09, FGs.FG09.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(falhaEsperada)), falhaEsperada);
@@ -40,7 +41,7 @@ namespace Acelera.Testes
 
         }
 
-        protected override void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno, Arquivo _arquivo = null)
+        protected override void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno, IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
             ValidarFGsAnteriores(_arquivo);
@@ -51,7 +52,7 @@ namespace Acelera.Testes
             ValidarDesconsiderandoErro(_arquivo,codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
         }
 
-        protected Arquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false,int qtdParcelas = 1, string nrParcela = ""
+        protected IArquivo CriarEmissaoODS<T>(OperadoraEnum operadora, bool alterarVersaoHeader = false,int qtdParcelas = 1, string nrParcela = ""
             ,bool enviarParaOds = true, string cdCoberturaDoCorretor = "") where T : Arquivo, new()
         {
             arquivo = new T();
@@ -98,14 +99,14 @@ namespace Acelera.Testes
             return arquivo.Clone();
         }
 
-        protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, bool enviarOds = true) where T : Arquivo, new()
+        protected IArquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, IArquivo arquivoParcela, bool alterarVersaoHeader = false, bool enviarOds = true) where T : Arquivo, new()
         {
             if (alterarVersaoHeader)
                 return CriarEmissaoComissaoODS<T>(operadora, arquivoParcela, "9.6", enviarOds);
             return CriarEmissaoComissaoODS<T>(operadora, arquivoParcela, "", enviarOds);
         }
 
-        protected Arquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, Arquivo arquivoParcela, string alterarVersaoHeader = "", bool enviarOds = true) where T : Arquivo, new()
+        protected IArquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, IArquivo arquivoParcela, string alterarVersaoHeader = "", bool enviarOds = true) where T : Arquivo, new()
         {
             arquivo = CriarComissao<T>(operadora, arquivoParcela, alterarVersaoHeader);
 
@@ -115,7 +116,7 @@ namespace Acelera.Testes
         }
 
         
-        protected Arquivo CriarParcelaCancelamento<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, string cdTipoEmissao = "10", string cdMovtoCobranca = "02", string nrSequencialEmissao = "") where T : Arquivo, new()
+        protected IArquivo CriarParcelaCancelamento<T>(OperadoraEnum operadora, IArquivo arquivoParcela, bool alterarVersaoHeader = false, string cdTipoEmissao = "10", string cdMovtoCobranca = "02", string nrSequencialEmissao = "") where T : Arquivo, new()
         {
             arquivo = new T();
             CarregarArquivo(arquivo, 1, operadora);
@@ -130,7 +131,7 @@ namespace Acelera.Testes
             return arquivo;
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        protected override IList<string> ObterProceduresASeremExecutadas(IArquivo _arquivo)
         {
             return RepositorioProcedures.ObterProcedures(FGs.FG09, _arquivo.tipoArquivo);
         }

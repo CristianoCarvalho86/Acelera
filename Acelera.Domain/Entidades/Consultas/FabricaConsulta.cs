@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using System;
@@ -11,7 +12,7 @@ namespace Acelera.Domain.Entidades.Consultas
 {
     public static class FabricaConsulta
     {
-        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaStage(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool existeAlteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
+        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaStage(TabelasEnum tabela, string nomeArquivo, IAlteracoesArquivo valoresAlteradosBody, bool existeAlteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
         {
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
@@ -112,7 +113,7 @@ namespace Acelera.Domain.Entidades.Consultas
             return consultas;
         }
 
-        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody, bool alteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
+        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, IAlteracoesArquivo valoresAlteradosBody, bool alteracaoDeHeaderOuFooter, bool existeLinhaNoArquivo)
         {
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
@@ -126,7 +127,7 @@ namespace Acelera.Domain.Entidades.Consultas
             return MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, valoresAlteradosBody);
         }
 
-        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, AlteracoesArquivo valoresAlteradosBody)
+        public static IList<KeyValuePair<int, Consulta>> MontarConsultaParaTabelaDeRetorno(TabelasEnum tabela, string nomeArquivo, IAlteracoesArquivo valoresAlteradosBody)
         {
             var consultas = new List<KeyValuePair<int, Consulta>>();
             var consulta = new Consulta();
@@ -175,7 +176,7 @@ namespace Acelera.Domain.Entidades.Consultas
         //    return consulta;
         //}
 
-        private static void CamposDaConsultaTabelaRetorno(Consulta consulta, TipoArquivo tipoArquivo, Alteracao valoresAlteradosBody, string nomeArquivo)
+        private static void CamposDaConsultaTabelaRetorno(Consulta consulta, TipoArquivo tipoArquivo, IAlteracao valoresAlteradosBody, string nomeArquivo)
         {
             if (tipoArquivo == TipoArquivo.Cliente)
             {

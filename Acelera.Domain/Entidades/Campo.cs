@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acelera.Contratos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace Acelera.Domain.Entidades
 {
     [Serializable]
-    public class Campo
+    public class Campo : ICampo
     {
         protected string coluna;
         public virtual string Coluna { get { return coluna; } set { coluna = value; } }

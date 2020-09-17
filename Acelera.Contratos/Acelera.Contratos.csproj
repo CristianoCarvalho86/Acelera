@@ -40,6 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\BatEnum.cs" />
+    <Compile Include="Enums\CodigoStage.cs" />
+    <Compile Include="Enums\DBEnum.cs" />
+    <Compile Include="Enums\FGs.cs" />
+    <Compile Include="IAlteracao.cs" />
+    <Compile Include="ICampoDoArquivo.cs" />
+    <Compile Include="Enums\ModoExecucaoEnum.cs" />
+    <Compile Include="Enums\OperacaoEnum.cs" />
+    <Compile Include="Enums\OperadoraEnum.cs" />
+    <Compile Include="Enums\TabelasEnum.cs" />
+    <Compile Include="Enums\TabelasOIMEnum.cs" />
+    <Compile Include="Enums\TipoArquivo.cs" />
+    <Compile Include="IArquivo.cs" />
+    <Compile Include="ICampo.cs" />
+    <Compile Include="IDBHelper.cs" />
+    <Compile Include="ILinhaArquivo.cs" />
+    <Compile Include="ILinhaTabela.cs" />
+    <Compile Include="IMyLogger.cs" />
+    <Compile Include="ITriplice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

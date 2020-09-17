@@ -1,4 +1,5 @@
-﻿using Acelera.Data;
+﻿using Acelera.Contratos;
+using Acelera.Data;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -505,7 +506,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivoParc.ObterLinha(0).Clone(), OperadoraEnum.TIM, "10", true, "");
         }
 
-        public void EnviarCancelamento<T, C>(LinhaArquivo linhaArquivoEmissao, OperadoraEnum operadora, string cdTipoEmissao,
+        public void EnviarCancelamento<T, C>(ILinhaArquivo linhaArquivoEmissao, OperadoraEnum operadora, string cdTipoEmissao,
             bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "") where T : Arquivo, new() where C : Arquivo, new()
         {
             logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");
@@ -556,7 +557,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             ExecutarEValidar(arquivo, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
         }
 
-        public void EnviarEmissao(Arquivo arquivoParc, Arquivo arquivoComissao, OperadoraEnum operadora, string nrParcela = "", bool alterarLayout = false, int numeroParcelas = 0, string cdTipoEmissao = "")
+        public void EnviarEmissao(IArquivo arquivoParc, IArquivo arquivoComissao, OperadoraEnum operadora, string nrParcela = "", bool alterarLayout = false, int numeroParcelas = 0, string cdTipoEmissao = "")
         {
             logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA ODS - {operadora.ObterTexto()}");
             arquivo = arquivoParc;
@@ -604,7 +605,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             arquivoComissao = arquivo.Clone();
         }
 
-        public void PrepararMassa(Arquivo arquivo, out string tipoCorretor)
+        public void PrepararMassa(IArquivo arquivo, out string tipoCorretor)
         {
             tipoCorretor = "";
             //arquivo.AlterarLinhaSeExistirCampo(0, "CD_CLIENTE", GerarNumeroAleatorio(8));

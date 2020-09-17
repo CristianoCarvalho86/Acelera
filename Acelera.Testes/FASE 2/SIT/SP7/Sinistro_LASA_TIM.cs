@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_4;
@@ -228,7 +229,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             SalvaExecutaEValidaTrincaFG02(true);
 
-            CriarCancelamento(false, false, OperadoraEnum.LASA, "10", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);
+            CriarCancelamento(false, false, OperadoraEnum.LASA, "10", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
             IgualarCampos(linha , arquivoComissaoCancelamento, new string[] { "CD_CORRETOR", "CD_TIPO_COMISSAO" });
             EnviarParaOds(arquivoParcCancelamento);
@@ -488,9 +489,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
             trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
-            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
-            triplice.AlterarCliente(0, "NR_CNPJ_CPF", GeneralUtils.GerarNumeroValidadorCpf(GerarNumeroAleatorio(9)));
-            triplice.AlterarCliente(0, "NM_CLIENTE", GeneralUtils.GerarTextoAleatorio(40));
+            trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+            trinca.AlterarCliente(0, "NR_CNPJ_CPF", GeneralUtils.GerarNumeroValidadorCpf(GerarNumeroAleatorio(9)));
+            trinca.AlterarCliente(0, "NM_CLIENTE", GeneralUtils.GerarTextoAleatorio(40));
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -521,7 +522,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         }
 
 
-        private void GerarCdSinistroEAviso(Arquivo _arquivo, int posicaoLinha)
+        private void GerarCdSinistroEAviso(IArquivo _arquivo, int posicaoLinha)
         {
             var cdSinistro = "";
             while (true)

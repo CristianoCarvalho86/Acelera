@@ -92,6 +92,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Acelera.Contratos\Acelera.Contratos.csproj">
+      <Project>{0C0F9D0D-575B-4641-9AD8-5D2F40DA62B0}</Project>
+      <Name>Acelera.Contratos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj">
       <Project>{e2564765-084e-4573-973f-2e1a3bc798b9}</Project>
       <Name>Acelera.Domain</Name>

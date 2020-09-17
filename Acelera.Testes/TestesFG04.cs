@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Interfaces;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -39,7 +40,7 @@ namespace Acelera.Testes
             dados = new TabelaParametrosDataSP3(logger);
         }
 
-        public virtual void CarregarTriplice(OperadoraEnum operadora)
+        public virtual void CarregarTrinca(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
                 trinca = new TripliceLASA(1, logger, ref arquivosSalvos);
@@ -179,7 +180,7 @@ namespace Acelera.Testes
                 ExplodeFalha($"ERRO NA VALIDACAO DA STAGE COMISSAO APOS EXECUCAO DA {fgAExecutar.ObterTexto()}");
         }
 
-        public void ValidarTabelaDeRetornoVazia(Arquivo arquivo)
+        public void ValidarTabelaDeRetornoVazia(IArquivo arquivo)
         {
             this.arquivo = arquivo;
             SelecionarLinhaParaValidacao(0);

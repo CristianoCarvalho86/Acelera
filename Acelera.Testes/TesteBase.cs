@@ -1,4 +1,5 @@
-﻿using Acelera.Data;
+﻿using Acelera.Contratos;
+using Acelera.Data;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
@@ -46,7 +47,7 @@ namespace Acelera.Testes
         protected List<string> arquivosSalvosODS;
         string idTeste = string.Empty;
 
-        protected abstract IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo);
+        protected abstract IList<string> ObterProceduresASeremExecutadas(IArquivo _arquivo);
         protected TipoArquivo tipoArquivoTeste { get; set; }
 
         protected OperadoraEnum operacaoDoTeste { get; set; }
@@ -85,7 +86,7 @@ namespace Acelera.Testes
             SalvarArquivo(nomeArquivo, true);
         }
 
-        protected virtual void SalvarArquivo(Arquivo _arquivo = null)
+        protected virtual void SalvarArquivo(IArquivo _arquivo = null)
         {
             _arquivo = _arquivo == null ? arquivo : _arquivo;
             var array = _arquivo.NomeArquivo.Split('-');
@@ -94,7 +95,7 @@ namespace Acelera.Testes
         }
 
 
-        protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true, Arquivo _arquivo = null)
+        protected void SalvarArquivo(string _nomeArquivo, bool AlterarNomeArquivo = true, IArquivo _arquivo = null)
         {
             if (!_nomeArquivo.Contains("/*R*/"))
             {
@@ -134,7 +135,7 @@ namespace Acelera.Testes
             arquivosSalvos.Add(enderecoArquivoSalvo);
         }
 
-        protected void LimparValidacao(Arquivo _arquivo = null)
+        protected void LimparValidacao(IArquivo _arquivo = null)
         {
             _arquivo = _arquivo == null ? arquivo : _arquivo;
             _arquivo.valoresAlteradosBody = new AlteracoesArquivo();
@@ -142,7 +143,7 @@ namespace Acelera.Testes
             _arquivo.valoresAlteradosFooter = new AlteracoesArquivo();
         }
 
-        protected void CarregarArquivo(Arquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
+        protected void CarregarArquivo(IArquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {
             logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
             var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
@@ -157,7 +158,7 @@ namespace Acelera.Testes
             throw new NotImplementedException();
         }
 
-        protected string ObterArquivoDestino(Arquivo _arquivo, string _nomeArquivo, bool AlterarNomeArquivo = true)
+        protected string ObterArquivoDestino(IArquivo _arquivo, string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
             var numeroArquivoNovo = controleNomeArquivo.ObtemValor(_arquivo.tipoArquivo);
             numeroDoLote = numeroArquivoNovo;
@@ -176,7 +177,7 @@ namespace Acelera.Testes
             return path;
         }
 
-        protected string ObterArquivoDestinoApenasCriacaoOuValidacao(Arquivo _arquivo, string _nomeArquivo)
+        protected string ObterArquivoDestinoApenasCriacaoOuValidacao(IArquivo _arquivo, string _nomeArquivo)
         {
             //this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
 
@@ -318,7 +319,7 @@ namespace Acelera.Testes
             return string.IsNullOrEmpty(texto) ? null : texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
         }
 
-        public void IgualarCampos(Arquivo arquivoOrigem, Arquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false, bool adicionaValidacao = true)
+        public void IgualarCampos(IArquivo arquivoOrigem, IArquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false, bool adicionaValidacao = true)
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
             var nomeCampo = string.Empty;
@@ -335,7 +336,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void IgualarCampos(LinhaArquivo linhaOrigem, LinhaArquivo linhaDestino, string[] campos)
+        public void IgualarCampos(ILinhaArquivo linhaOrigem, ILinhaArquivo linhaDestino, string[] campos)
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
             var nomeCampo = string.Empty;
@@ -346,7 +347,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void IgualarCamposQueExistirem(LinhaArquivo linhaOrigem, LinhaArquivo linhaDestino)
+        public void IgualarCamposQueExistirem(ILinhaArquivo linhaOrigem, ILinhaArquivo linhaDestino)
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
             var nomeCampo = string.Empty;
@@ -357,7 +358,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public void IgualarCamposQueExistirem(Arquivo arquivoOrigem, Arquivo arquivoDestino)
+        public void IgualarCamposQueExistirem(IArquivo arquivoOrigem, IArquivo arquivoDestino)
         {
             logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
 
@@ -379,13 +380,13 @@ namespace Acelera.Testes
                 }
         }
 
-        public void AlterarLayout<T>(ref Arquivo _arquivo) where T : Arquivo, new()
+        public void AlterarLayout<T>(ref IArquivo _arquivo) where T : Arquivo, new()
         {
             logger.AbrirBloco($"ALTERANDO LAYOUT DE {_arquivo.GetType().Name} para {typeof(T)}");
             var novoArquivo = new T();
-            novoArquivo.Linhas = new List<LinhaArquivo>();
-            novoArquivo.Header = new List<LinhaArquivo>();
-            novoArquivo.Footer = new List<LinhaArquivo>();
+            novoArquivo.Linhas = new List<ILinhaArquivo>();
+            novoArquivo.Header = new List<ILinhaArquivo>();
+            novoArquivo.Footer = new List<ILinhaArquivo>();
             novoArquivo.AtualizarNomeArquivoFinal(_arquivo.NomeArquivo);
 
             novoArquivo.Header.Add(_arquivo.Header[0].Clone());
@@ -406,7 +407,7 @@ namespace Acelera.Testes
 
         }
 
-        public void CriarArquivoCancelamento(Arquivo ArquivoEmissao, Arquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
+        public void CriarArquivoCancelamento(IArquivo ArquivoEmissao, IArquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
         string nrSequencialEmissao = "")
         {
             foreach (var linha in ArquivoEmissao.Linhas)
@@ -415,7 +416,7 @@ namespace Acelera.Testes
             }
         }
 
-        public LinhaArquivo CriarLinhaCancelamento(LinhaArquivo linhaArquivoEmissao, string cdTipoEmissao, string cdMovtoCobranca = "02",
+        public ILinhaArquivo CriarLinhaCancelamento(ILinhaArquivo linhaArquivoEmissao, string cdTipoEmissao, string cdMovtoCobranca = "02",
         string nrSequencialEmissao = "")
         {
             logger.AbrirBloco("CRIANDO LINHA DE CANCELAMENTO.");
@@ -436,7 +437,7 @@ namespace Acelera.Testes
             return linhaCancelamento;
         }
 
-        public void CriarNovoContrato(int posicaoLinha, Arquivo arquivo = null, string novoContrato = "", bool colocarEmTodasAsLinhas = false)
+        public void CriarNovoContrato(int posicaoLinha, IArquivo arquivo = null, string novoContrato = "", bool colocarEmTodasAsLinhas = false)
         {
             arquivo = arquivo == null ? this.arquivo : arquivo;
             var contrato = "";
@@ -456,7 +457,7 @@ namespace Acelera.Testes
                 AlterarContrato(arquivo, posicaoLinha, contrato);
         }
 
-        protected void AlterarContratoNoArquivo(Arquivo arquivo, string contrato)
+        protected void AlterarContratoNoArquivo(IArquivo arquivo, string contrato)
         {
             for (int i = 0; i < arquivo.Linhas.Count; i++)
             {
@@ -464,7 +465,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected void AlterarContrato(Arquivo arquivo, int posicaoLinha, string contrato)
+        protected void AlterarContrato(IArquivo arquivo, int posicaoLinha, string contrato)
         {
             if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
             {
@@ -485,13 +486,14 @@ namespace Acelera.Testes
 
                 if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissao.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
                    !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissaoAuto.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
+                   !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.OdsParcela.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
                    !DataAccessOIM.ExisteRegistro($"SELECT '1' FROM oim_apl01 where nr_doc_apolice = '{contrato}'", logger))
                     break;
             }
             return contrato;
         }
 
-        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, bool alterarVersaoHeader = false, bool alteraTipoComissao = true) where T : Arquivo, new()
+        protected IArquivo CriarComissao<T>(OperadoraEnum operadora, IArquivo arquivoParcela, bool alterarVersaoHeader = false, bool alteraTipoComissao = true) where T : Arquivo, new()
         {
             if (alterarVersaoHeader)
                 return CriarComissao<T>(operadora, arquivoParcela, "9.6",alteraTipoComissao);
@@ -499,7 +501,7 @@ namespace Acelera.Testes
 
         }
 
-        protected Arquivo CriarComissao<T>(OperadoraEnum operadora, Arquivo arquivoParcela, string alterarVersaoHeader, bool alteraTipoComissao = true) where T : Arquivo, new()
+        protected IArquivo CriarComissao<T>(OperadoraEnum operadora, IArquivo arquivoParcela, string alterarVersaoHeader, bool alteraTipoComissao = true) where T : Arquivo, new()
         {
             arquivo = new T();
             CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);

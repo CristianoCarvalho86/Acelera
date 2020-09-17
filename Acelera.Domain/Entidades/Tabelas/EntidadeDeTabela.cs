@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -100,7 +101,7 @@ namespace Acelera.Domain.Entidades.Tabelas
             return true;
         }
 
-        public void CarregaLinhaArquivo(LinhaArquivo linhaArquivo)
+        public void CarregaLinhaArquivo(ILinhaArquivo linhaArquivo)
         {
             var propriedades = this.GetType().GetProperties();
             foreach (var prop in propriedades)

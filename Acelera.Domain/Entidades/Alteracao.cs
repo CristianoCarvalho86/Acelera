@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,16 @@ using System.Threading.Tasks;
 namespace Acelera.Domain.Entidades
 {
     [Serializable]
-    public class AlteracoesArquivo
+    public class AlteracoesArquivo : IAlteracoesArquivo
     {
-        public List<Alteracao> Alteracoes { get; set; }
+        public List<IAlteracao> Alteracoes { get; set; }
 
         public AlteracoesArquivo()
         {
-            Alteracoes = new List<Alteracao>();
+            Alteracoes = new List<IAlteracao>();
         }
         
-        public void AdicionaAlteracao(Alteracao alteracao)
+        public void AdicionaAlteracao(IAlteracao alteracao)
         {
             Alteracoes.Add(alteracao);
         }
@@ -27,7 +28,7 @@ namespace Acelera.Domain.Entidades
             return Alteracoes.Any(x => x.AlteracaoNula == false && x.NomeArquivo == arquivo);
         }
 
-        public IEnumerable<Alteracao> AlteracoesPorLinha(string nomeArquivo, int linha)
+        public IEnumerable<IAlteracao> AlteracoesPorLinha(string nomeArquivo, int linha)
         {
             return Alteracoes.Where(x => x.PosicaoDaLinha == linha && x.NomeArquivo == nomeArquivo);
         }
@@ -49,10 +50,10 @@ namespace Acelera.Domain.Entidades
     }
 
     [Serializable]
-    public class Alteracao
+    public class Alteracao : IAlteracao
     {
-        public LinhaArquivo LinhaAlterada { get; set; }
-        public List<Campo> CamposAlterados { get; set; }
+        public ILinhaArquivo LinhaAlterada { get; set; }
+        public List<ICampo> CamposAlterados { get; set; }
         public int RepeticoesLinha { get; set; }
         public bool SemHeaderOuFooter { get; set; }
 
@@ -62,11 +63,11 @@ namespace Acelera.Domain.Entidades
 
         public bool AlteracaoNula { get => CamposAlterados.Count == 0; }
         public int PosicaoDaLinha { get; set; }
-        public Alteracao(LinhaArquivo linhaArquivo, int posicaoLinha)
+        public Alteracao(ILinhaArquivo linhaArquivo, int posicaoLinha)
         {
             LinhaAlterada = linhaArquivo;
             PosicaoDaLinha = posicaoLinha;
-            CamposAlterados = new List<Campo>();
+            CamposAlterados = new List<ICampo>();
             RepeticoesLinha = 0;
             SemHeaderOuFooter = false;
             NomeArquivoAlterado = false;

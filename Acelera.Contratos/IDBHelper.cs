@@ -5,7 +5,6 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-using Sap.Data.Hana;
 
 namespace Acelera.Data
 {

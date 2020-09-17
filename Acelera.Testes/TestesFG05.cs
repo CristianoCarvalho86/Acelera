@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -52,7 +53,7 @@ namespace Acelera.Testes
             base.SalvarArquivo(nomeProc);
         }
 
-        public override void FinalizarAlteracaoArquivo(Arquivo _arquivo)
+        public override void FinalizarAlteracaoArquivo(IArquivo _arquivo)
         {
             Parametrizacoes(_arquivo);
             base.FinalizarAlteracaoArquivo(_arquivo);
@@ -63,7 +64,7 @@ namespace Acelera.Testes
             alterarCobertura = alterar;
         }
 
-        private void Parametrizacoes(Arquivo _arquivo)
+        private void Parametrizacoes(IArquivo _arquivo)
         {
             if (alterarCobertura)
                 for (int i = 0; i < _arquivo.Linhas.Count; i++)
@@ -95,7 +96,7 @@ namespace Acelera.Testes
             Validar(codigoEsperadoStage, erroEsperadoNaTabelaDeRetorno, qtdErrosNaTabelaDeRetorno);
         }
 
-        protected void ExecutarEValidarAteFg05(Arquivo arquivo, string mensagemErroNaTabelaDeRetorno = "")
+        protected void ExecutarEValidarAteFg05(IArquivo arquivo, string mensagemErroNaTabelaDeRetorno = "")
         {
             this.arquivo = arquivo;
             ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia, mensagemErroNaTabelaDeRetorno);
@@ -113,7 +114,7 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        protected virtual void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno, Arquivo _arquivo = null)
+        protected virtual void ExecutarEValidarDesconsiderandoErro(CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno, IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
             ValidarFGsAnteriores(_arquivo);
@@ -124,7 +125,7 @@ namespace Acelera.Testes
             ValidarDesconsiderandoErro(_arquivo, codigoEsperadoStage, erroNaoEsperadoNaTabelaDeRetorno);
         }
 
-        protected void ValidarDesconsiderandoErro(Arquivo _arquivo, CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
+        protected void ValidarDesconsiderandoErro(IArquivo _arquivo, CodigoStage codigoEsperadoStage, string erroNaoEsperadoNaTabelaDeRetorno)
         {
             SetarArquivoEmUso(ref _arquivo);
             //VALIDAR NA FG05
@@ -136,7 +137,7 @@ namespace Acelera.Testes
         }
 
 
-        public override void ValidarFGsAnteriores(Arquivo _arquivo = null)
+        public override void ValidarFGsAnteriores(IArquivo _arquivo = null)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -156,12 +157,12 @@ namespace Acelera.Testes
             logger.EscreverBloco("Fim da FG02.");
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        protected override IList<string> ObterProceduresASeremExecutadas(IArquivo _arquivo)
         {
             return RepositorioProcedures.ObterProcedures(FGs.FG05, _arquivo.tipoArquivo);
         }
 
-        public void AjustaValoresParaFG02(Arquivo _arquivo)
+        public void AjustaValoresParaFG02(IArquivo _arquivo)
         {
             if (_arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
             {

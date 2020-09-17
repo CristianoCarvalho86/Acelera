@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ namespace Acelera.Utils
 {
     public static class ArquivoToDataTable
     {
-        public static DataTable ConvertToDataTable(IList<LinhaArquivo> LinhasDoArquivo)
+        public static DataTable ConvertToDataTable(IList<ILinhaArquivo> LinhasDoArquivo)
         {
             var dataTable = new DataTable();
             foreach(var campo in LinhasDoArquivo.First().Campos)

@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Consultas;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -15,11 +16,11 @@ namespace Acelera.Testes.Validadores.FG05
 {
     public class ValidadorODSFG05
     {
-        private Arquivo arquivo;
+        private IArquivo arquivo;
         private IMyLogger logger;
         private TabelasEnum tabelaEnum;
 
-        public ValidadorODSFG05(IMyLogger logger, Arquivo arquivo)
+        public ValidadorODSFG05(IMyLogger logger, IArquivo arquivo)
         {
             this.arquivo = arquivo;
             this.logger = logger;

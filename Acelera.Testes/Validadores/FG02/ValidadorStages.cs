@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
@@ -16,13 +17,13 @@ namespace Acelera.Testes.Validadores.FG02
     public class ValidadorStages : ValidadorTabela
     {
         protected bool AoMenosUmComCodigoEsperado = false;
-        public ValidadorStages(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, Arquivo arquivo)
+        public ValidadorStages(TabelasEnum tabelaEnum, string nomeArquivo, IMyLogger logger, IArquivo arquivo)
         : base(tabelaEnum, nomeArquivo, logger, arquivo)
         {
 
         }
 
-        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela, Arquivo arquivo)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela, IArquivo arquivo)
         {
             var consultas = new ConjuntoConsultas();
             try
