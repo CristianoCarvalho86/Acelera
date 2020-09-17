@@ -21,8 +21,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC220
         {
             IniciarTesteFG07("4607", "", OperadoraEnum.TIM, true, true);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02();
 

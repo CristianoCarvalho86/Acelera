@@ -140,13 +140,13 @@ namespace Acelera.Testes.Repositorio
 
                     break;
                 case TipoArquivo.ParcEmissao:
-                    //lista.Add("PRC_0250");
-                    //lista.Add("PRC_0163");
+                    lista.Add("PRC_0250");
+                    lista.Add("PRC_0163");
                     lista.Add("PRC_0011");
                     lista.Add("PRC_0013");
                     lista.Add("PRC_0016");
                     lista.Add("PRC_0018");
-                    lista.Add("PRC_0019");
+                    //lista.Add("PRC_0019");
                     lista.Add("PRC_0020");
                     lista.Add("PRC_0033");
                     lista.Add("PRC_0035");
@@ -226,7 +226,7 @@ namespace Acelera.Testes.Repositorio
                     lista.Add("PRC_1184");
                     break;
                 case TipoArquivo.Comissao:
-                    //lista.Add("PRC_0055");
+                    lista.Add("PRC_0055");
                     lista.Add("PRC_0033");
                     lista.Add("PRC_0035");
                     lista.Add("PRC_0024");

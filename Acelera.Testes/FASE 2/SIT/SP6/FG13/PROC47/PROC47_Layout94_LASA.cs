@@ -24,9 +24,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
             trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
-            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
-            triplice.AlterarCliente(0, "NR_CNPJ_CPF", GeneralUtils.GerarNumeroValidadorCpf(GerarNumeroAleatorio(9)));
-            triplice.AlterarCliente(0, "NM_CLIENTE", GeneralUtils.GerarTextoAleatorio(40));
+            trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
+            trinca.AlterarCliente(0, "NR_CNPJ_CPF", GeneralUtils.GerarNumeroValidadorCpf(GerarNumeroAleatorio(9)));
+            trinca.AlterarCliente(0, "NM_CLIENTE", GeneralUtils.GerarTextoAleatorio(40));
 
             SalvaExecutaEValidaTrincaFG02(false);
 
