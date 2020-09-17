@@ -24,44 +24,44 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste1_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste1-FG06", "Teste1-FG06");
-            triplice = new TripliceVIVO(1, logger, ref arquivosSalvos);
+            trinca = new TripliceVIVO(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.VIVO);
-            triplice.Salvar();
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            trinca.Salvar();
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
         }
 
         [TestMethod]
         public void Teste2_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste2-FG06", "Teste2-FG06");
-            triplice = new TripliceLASA(1, logger, ref arquivosSalvos);
+            trinca = new TripliceLASA(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.LASA);
-            triplice.Salvar();
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            trinca.Salvar();
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             //ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
             //ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
             //ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             //ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
             //ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             //ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.ReprovadoNegocioComDependencia);
         }
@@ -70,25 +70,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste3_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste3-FG06", "Teste1-FG06");
-            triplice = new TriplicePOMPEIA(1, logger, ref arquivosSalvos);
+            trinca = new TriplicePOMPEIA(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.POMPEIA);
 
             //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
-            triplice.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
-            triplice.Salvar();
+            trinca.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
+            trinca.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
+            trinca.Salvar();
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
         }
 
         [TestMethod]
@@ -96,18 +96,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - LASA - CLI rejeitado, PARC sucesso e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste4-FG06", "Teste4-FG06");
-            triplice = new TripliceLASA(1, logger, ref arquivosSalvos);
+            trinca = new TripliceLASA(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.LASA);
-            triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");
-            triplice.Salvar(true, true, false);
+            trinca.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");
+            trinca.Salvar(true, true, false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
         }
 
         [TestMethod]
@@ -115,13 +115,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - SOFTBOX - CLI rejeitado, PARC ñ enviado e CMS sucesso
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste5-FG06", "Teste1-FG06");
-            triplice = new TripliceSoftbox(1, logger, ref arquivosSalvos);
+            trinca = new TripliceSoftbox(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.SOFTBOX);
-            triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");//Rejeitar na 02
-            triplice.Salvar(true, false);
+            trinca.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");//Rejeitar na 02
+            trinca.Salvar(true, false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
 
             //NAO TESTAR O PARC, E CMS NAO RODA PARA SOFTBOX
         }
@@ -189,20 +189,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI rejeitado, PARC sucesso e CMS sucesso - apenas dupla - emissão capa
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste12-FG06", "Teste12-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             //triplice.ArquivoParcEmissao.Carregar()
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");//Rejeitar na 01
-            triplice.Salvar();
+            trinca.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");//Rejeitar na 01
+            trinca.Salvar();
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
         }
 
         [TestMethod]
@@ -210,22 +210,22 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC rejeitado e CMS sucesso - apenas dupla - emissão capa
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste13-FG06", "Teste13-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
-            triplice.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
+            trinca.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
             //triplice.ArquivoCliente.AlterarLinha(0, "SEXO", "1");//Rejeitar na 02
-            triplice.Salvar();
+            trinca.Salvar();
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
         }
 
         [TestMethod]
@@ -233,21 +233,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI rejeitado, PARC rejeitado e CMS sucesso - apenas dupla - emissão capa
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste14-FG06", "Teste14-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
-            triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");
+            trinca.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
+            trinca.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");
 
-            triplice.Salvar();
+            trinca.Salvar();
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
 
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
         }
 
         [TestMethod]
@@ -255,26 +255,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI rejeitado, PARC sucesso e CMS rejeitado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste15-FG06", "Teste15-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(triplice.ArquivoParcEmissao, novoParc, new string[] {"CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE","CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] {"CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE","CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
-            CarregarComissao("P", novoParc, triplice.ArquivoComissao,1);
+            CarregarComissao("P", novoParc, trinca.ArquivoComissao,1);
 
             var novoParc18 = novoParc.Clone();
             novoParc18.RemoverExcetoEstas(0, 1);
 
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
+            trinca.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
 
 
             //triplice.Salvar(false,false,false);
 
-            arquivo = triplice.ArquivoCliente;
-            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            arquivo = trinca.ArquivoCliente;
+            EnviarParaOdsAlterandoCliente(trinca.ArquivoCliente);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -290,10 +290,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidar(novoParc20, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(novoParc20, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            triplice.Salvar(false, false, true);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            trinca.Salvar(false, false, true);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
 
         }
@@ -303,15 +303,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC ñ enviado e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste16-FG06", "Teste16-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.Salvar(true, false, false);
+            trinca.Salvar(true, false, false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
         }
 
         [TestMethod]
@@ -320,23 +320,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ////FG 06 - Cancelamento - TIM - CLI sucesso, PARC rejeitado e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste17_FG06", "Teste17_FG06");
 
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(triplice.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
-            CarregarComissao("P", novoParc, triplice.ArquivoComissao, 1);
+            CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
             var novoParc18 = novoParc.Clone();
             novoParc18.RemoverExcetoEstas(0, 1);
 
             //triplice.Salvar(false,false,false);
 
-            arquivo = triplice.ArquivoCliente;
-            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            arquivo = trinca.ArquivoCliente;
+            EnviarParaOdsAlterandoCliente(trinca.ArquivoCliente);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
             EnviarParaOdsAlterandoCliente(novoParc18);
@@ -352,11 +352,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidar(novoParc20, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(novoParc20, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            triplice.Salvar(false, false, true);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            trinca.Salvar(false, false, true);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
 
 
@@ -369,19 +369,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //FG 06 - Emissão - TIM - CLI ñ sucesso, PARC rejeitado e CMS sucesso - apenas dupla
 
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste18-FG06", "Teste18-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
-            triplice.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");
-            triplice.Salvar();
+            trinca.ArquivoParcEmissao.AlterarLinha(0, "CD_RAMO", "00");
+            trinca.ArquivoCliente.AlterarLinha(0, "NR_CNPJ_CPF", "1111");
+            trinca.Salvar();
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, FGs.FG01, CodigoStage.RecusadoNaFG01);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
 
         }
@@ -391,21 +391,21 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG06 - Emissão - TIM - CLI sucesso, PARC rejeitado e CMS ñ enviado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste19_FG06", "Teste19_FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(triplice.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
-            CarregarComissao("P", novoParc, triplice.ArquivoComissao, 1);
+            CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
             var novoParc18 = novoParc.Clone();
             novoParc18.RemoverExcetoEstas(0, 1);
 
-            arquivo = triplice.ArquivoCliente;
-            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            arquivo = trinca.ArquivoCliente;
+            EnviarParaOdsAlterandoCliente(trinca.ArquivoCliente);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
             SalvarArquivo();
@@ -428,26 +428,26 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC sucesso e CMS rejeitado
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste15-FG06", "Teste15-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(triplice.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
-            CarregarComissao("P", novoParc, triplice.ArquivoComissao, 1);
+            CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
             var novoParc18 = novoParc.Clone();
             novoParc18.RemoverExcetoEstas(0, 1);
 
-            triplice.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
+            trinca.ArquivoComissao.AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
 
 
             //triplice.Salvar(false,false,false);
 
-            arquivo = triplice.ArquivoCliente;
-            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            arquivo = trinca.ArquivoCliente;
+            EnviarParaOdsAlterandoCliente(trinca.ArquivoCliente);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
             SalvarArquivo();
@@ -465,10 +465,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidar(novoParc20, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(novoParc20, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            triplice.Salvar(false, false, true);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            trinca.Salvar(false, false, true);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
         }
 
@@ -476,51 +476,51 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste21_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste21-FG06", "Teste21-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            arquivo = triplice.ArquivoComissao;
+            arquivo = trinca.ArquivoComissao;
             AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
 
-            triplice.Salvar(false);
+            trinca.Salvar(false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
         }
 
         [TestMethod]
         public void Teste22_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste22-FG06", "Teste22-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            arquivo = triplice.ArquivoComissao;
+            arquivo = trinca.ArquivoComissao;
             AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
 
-            triplice.Salvar(true, false);
+            trinca.Salvar(true, false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
         }
 
         [TestMethod]
@@ -528,15 +528,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI ñ enviado, PARC sucesso e CMS sucesso - apenas dupla
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste23-FG06", "Teste23-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.Salvar(false,true,false);
+            trinca.Salvar(false,true,false);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
         }
 
         [TestMethod]
@@ -544,7 +544,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             //FG 06 - Emissão - TIM - CLI sucesso, PARC ñ enviado e CMS sucesso
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste24-FG06", "Teste24-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             //triplice.ArquivoParcEmissao.AlterarLinha(0,"CD_UF_RISCO", "PP"); //Rejeitar na 01
@@ -556,63 +556,63 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //arquivo = triplice.ArquivoComissao;
             //AlterarLinha(0, "CD_RAMO", "00");//Rejeitar na 02
 
-            triplice.Salvar(false);
+            trinca.Salvar(false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
         }
 
         [TestMethod]
         public void Teste25_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste25-FG06", "Teste25-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.Salvar(true, false);
+            trinca.Salvar(true, false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
         }
 
         [TestMethod]
         public void Teste26_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste26-FG06", "Teste26-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.Salvar(true, true, false);
+            trinca.Salvar(true, true, false);
 
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, FGs.FG02, CodigoStage.ReprovadoNegocioSemDependencia);
 
-            ExecutarEValidar(triplice.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidarEsperandoErro(triplice.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
+            ExecutarEValidar(trinca.ArquivoParcEmissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidarEsperandoErro(trinca.ArquivoParcEmissao, FGs.FG01, CodigoStage.RecusadoNaFG01, true);
         }
 
         [TestMethod]
@@ -621,23 +621,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //FG 06 - Cancelamento - TIM - CLI sucesso, PARC sucesso e CMS ñ enviado
 
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste27-FG06", "Teste27-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(triplice.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
-            CarregarComissao("P", novoParc, triplice.ArquivoComissao, 1);
+            CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
             var novoParc18 = novoParc.Clone();
             novoParc18.RemoverExcetoEstas(0, 1);
 
             //triplice.Salvar(false,false,false);
 
-            arquivo = triplice.ArquivoCliente;
-            EnviarParaOdsAlterandoCliente(triplice.ArquivoCliente);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            arquivo = trinca.ArquivoCliente;
+            EnviarParaOdsAlterandoCliente(trinca.ArquivoCliente);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoCliente, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             arquivo = novoParc18;
             EnviarParaOdsAlterandoCliente(novoParc18);
@@ -653,11 +653,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             ExecutarEValidar(novoParc20, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
             ExecutarEValidar(novoParc20, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
-            triplice.Salvar(false, false, true);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
-            ExecutarEValidar(triplice.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
+            trinca.Salvar(false, false, true);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG00, CodigoStage.AprovadoNAFG00);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG01, CodigoStage.AprovadoNaFG01);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG02, CodigoStage.AprovadoNegocioSemDependencia);
+            ExecutarEValidar(trinca.ArquivoComissao, FGs.FG05, CodigoStage.AprovadoNegocioComDependencia);
 
             CarregarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(novoParc20.ObterLinha(0), false, false, OperadoraEnum.TIM, "10");
         }
@@ -666,11 +666,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         public void Teste28_FG06()
         {
             IniciarTeste(TipoArquivo.ParcEmissao, "Teste27-FG06", "Teste27-FG06");
-            triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
-            arquivo = triplice.ArquivoParcEmissao;
+            trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
+            arquivo = trinca.ArquivoParcEmissao;
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
-            triplice.Salvar(false, true, false);
+            trinca.Salvar(false, true, false);
         }
 
 
@@ -821,50 +821,50 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
         public void PrepararMassaParaTrinca(OperadoraEnum operadora, bool alterarCorretor = true)
         {
             //NA TRINCA GERAR O CLIENTE
-            triplice.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
+            trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(8));
 
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(operadora));
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(operadora));
 
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_SEQUENCIAL_EMISSAO", "1");
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_ENDOSSO", "0");
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("ID_TRANSACAO_CANC", "");
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("NR_SEQUENCIAL_EMISSAO", "1");
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("NR_ENDOSSO", "0");
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("ID_TRANSACAO_CANC", "");
 
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(operadora));
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(operadora));
 
             SetDev();
 
-            var cobertura = dados.ObterCoberturaSimples(triplice.ArquivoCliente.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_COBERTURA", cobertura.CdCobertura);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_RAMO", cobertura.CdRamoCobertura);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_PRODUTO", cobertura.CdProduto);
-            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_LMI", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "VL_IS"));
+            var cobertura = dados.ObterCoberturaSimples(trinca.ArquivoCliente.ObterLinhaHeader().ObterCampoDoArquivo("CD_TPA").ValorFormatado);
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_COBERTURA", cobertura.CdCobertura);
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_RAMO", cobertura.CdRamoCobertura);
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_PRODUTO", cobertura.CdProduto);
+            trinca.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_LMI", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "VL_IS"));
 
-            triplice.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_TOTAL", SomarValores(triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_IOF")));
-            if(triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0)
-                triplice.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", SomarValores(triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), "-0.05"));
+            trinca.ArquivoParcEmissao.AlterarTodasAsLinhas("VL_PREMIO_TOTAL", SomarValores(trinca.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), trinca.ArquivoParcEmissao.ObterValorFormatado(0, "VL_IOF")));
+            if(trinca.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0)
+                trinca.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", SomarValores(trinca.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"), "-0.05"));
             else
-                triplice.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", triplice.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"));
+                trinca.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", trinca.ArquivoParcEmissao.ObterValorFormatado(0, "VL_PREMIO_LIQUIDO"));
             if (alterarCorretor)
             {
                 if (operadora == OperadoraEnum.VIVO)
                 {
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7239711");
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "C");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7239711");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "C");
                 }
                 else if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
                 {
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7150145");
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7150145");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
                 }
                 else if (operadora == OperadoraEnum.POMPEIA)
                 {
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7150166");
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7150166");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
                 }
                 else if (operadora == OperadoraEnum.TIM)
                 {
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7950129");
-                    triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7950129");
+                    trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
                 }
                 else
                     throw new Exception("OPERACAO SEM CORRETOR CADASTRADO.");
@@ -872,10 +872,10 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             SetQA();
 
-            var novoContrato = AlterarUltimasPosicoes(triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CONTRATO", novoContrato);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_PROPOSTA", novoContrato);
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("NR_APOLICE", novoContrato);
+            var novoContrato = AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CONTRATO", novoContrato);
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("NR_PROPOSTA", novoContrato);
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("NR_APOLICE", novoContrato);
 
         }
 

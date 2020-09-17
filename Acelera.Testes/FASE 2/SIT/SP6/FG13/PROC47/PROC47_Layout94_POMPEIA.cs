@@ -25,12 +25,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
-            AlterarLinha(0, "NR_PARCELA", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_PARCELA"]) + 1).ToString());
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(triplice.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            AlterarLinha(0, "NR_PARCELA", (int.Parse(trinca.ArquivoParcEmissao[0]["NR_PARCELA"]) + 1).ToString());
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(trinca.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
             AlterarLinha(0, "CD_OCORRENCIA", "18");
-            AlterarLinha(0, "DT_OCORRENCIA",SomarData(triplice.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
-            AlterarLinha(0, "VL_PREMIO_PAGO", triplice.ArquivoParcEmissao[0]["VL_PREMIO_TOTAL"]);
+            AlterarLinha(0, "DT_OCORRENCIA",SomarData(trinca.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
+            AlterarLinha(0, "VL_PREMIO_PAGO", trinca.ArquivoParcEmissao[0]["VL_PREMIO_TOTAL"]);
 
             SalvarArquivo();
 

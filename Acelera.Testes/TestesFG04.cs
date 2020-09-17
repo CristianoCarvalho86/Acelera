@@ -15,7 +15,7 @@ namespace Acelera.Testes
 {
     public class TestesFG04 : TestesFG02
     {
-        protected ITriplice triplice;
+        protected ITrinca trinca;
 
         protected IList<ILinhaTabela> resultadoStageComissao;
 
@@ -42,9 +42,9 @@ namespace Acelera.Testes
         public virtual void CarregarTriplice(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
-                triplice = new TripliceLASA(1, logger, ref arquivosSalvos);
+                trinca = new TripliceLASA(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.SOFTBOX)
-                triplice = new TripliceSoftbox(1, logger, ref arquivosSalvos);
+                trinca = new TripliceSoftbox(1, logger, ref arquivosSalvos);
             else
                 throw new Exception("OPERACAO NAO PERMITIDA NOS TESTES DA FG04.");
         }
@@ -137,26 +137,26 @@ namespace Acelera.Testes
 
         public void ExecutarEValidarTriplice(FGs fg, CodigoStage? codigoStageCliente, CodigoStage? codigoStageParc, CodigoStage? codigoStageComissao)
         {
-            arquivo = triplice.ArquivoCliente;
+            arquivo = trinca.ArquivoCliente;
             SelecionarLinhaParaValidacao(0);
             if (codigoStageCliente.HasValue)
-                ExecutarEValidar(triplice.ArquivoCliente, fg, codigoStageCliente.Value);
+                ExecutarEValidar(trinca.ArquivoCliente, fg, codigoStageCliente.Value);
             else
-                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageCliente);
+                ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, fg, codigoStageCliente);
 
-            arquivo = triplice.ArquivoParcEmissao;
+            arquivo = trinca.ArquivoParcEmissao;
             SelecionarLinhaParaValidacao(0);
             if (codigoStageParc.HasValue)
-                resultadoStageParcela = ExecutarEValidar(triplice.ArquivoParcEmissao, fg, codigoStageParc.Value);
+                resultadoStageParcela = ExecutarEValidar(trinca.ArquivoParcEmissao, fg, codigoStageParc.Value);
             else
-                ExecutarEValidarEsperandoErro(triplice.ArquivoCliente, fg, codigoStageParc);
+                ExecutarEValidarEsperandoErro(trinca.ArquivoCliente, fg, codigoStageParc);
 
-            arquivo = triplice.ArquivoComissao;
+            arquivo = trinca.ArquivoComissao;
             SelecionarLinhaParaValidacao(0);
             if (codigoStageComissao.HasValue)
-                resultadoStageComissao = ExecutarEValidar(triplice.ArquivoComissao, fg, codigoStageComissao.Value);
+                resultadoStageComissao = ExecutarEValidar(trinca.ArquivoComissao, fg, codigoStageComissao.Value);
             else
-                ExecutarEValidarEsperandoErro(triplice.ArquivoComissao, fg, codigoStageComissao);
+                ExecutarEValidarEsperandoErro(trinca.ArquivoComissao, fg, codigoStageComissao);
 
 
         }

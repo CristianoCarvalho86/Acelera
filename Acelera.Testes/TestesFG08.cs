@@ -46,7 +46,7 @@ namespace Acelera.Testes
         {
             ExecutarFG08();
             //Validar
-            ValidarFG08(triplice, esperaSucesso);
+            ValidarFG08(trinca, esperaSucesso);
         }
 
         protected void ExecutarFG08()
@@ -54,7 +54,7 @@ namespace Acelera.Testes
             ChamarExecucao(FG08_Tarefas.FGR_08.ObterTexto());
         }
 
-        protected void ValidarFG08(ITriplice triplice, bool esperaSucesso)
+        protected void ValidarFG08(ITrinca triplice, bool esperaSucesso)
         {
             var linhasStageParc = ValidarStages(true, (int)FGs.FG08.ObterCodigoDeSucessoOuFalha(esperaSucesso), triplice.ArquivoParcEmissao);
             var linhasStageCliente = ValidarStages(true, (int)FGs.FG08.ObterCodigoDeSucessoOuFalha(esperaSucesso), triplice.ArquivoCliente);
@@ -113,7 +113,7 @@ namespace Acelera.Testes
 
         protected void DeletarRegistrosAntigosDaStage()
         {
-            if (!deleteStages.DeletarRegistrosTrinca(CodigoStage.AprovadoNaFG08, triplice.EhParcAuto))
+            if (!deleteStages.DeletarRegistrosTrinca(CodigoStage.AprovadoNaFG08, trinca.EhParcAuto))
                 ExplodeFalha($"ERRO AO DELETAR REGISTROS DA TRINCA COM CODIGO {(int)CodigoStage.AprovadoNaFG08}");
         }
 

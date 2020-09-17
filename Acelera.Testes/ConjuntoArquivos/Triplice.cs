@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace Acelera.Testes.ConjuntoArquivos
 {
     [Serializable]
-    public abstract class Triplice<T1, T2, T3> : ITriplice where T1 : Arquivo, new() where T2 : Arquivo, new() where T3 : Arquivo, new()
+    public abstract class Triplice<T1, T2, T3> : ITrinca where T1 : Arquivo, new() where T2 : Arquivo, new() where T3 : Arquivo, new()
     {
         public Arquivo ArquivoCliente { get; protected set; }
         public Arquivo ArquivoParcEmissao { get; set; }
@@ -324,14 +324,14 @@ namespace Acelera.Testes.ConjuntoArquivos
             logger.FecharBloco();
         }
 
-        public ITriplice Clone()
+        public ITrinca Clone()
         {
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(memoryStream, this);
                 memoryStream.Seek(0, SeekOrigin.Begin);
-                return (ITriplice)binaryFormatter.Deserialize(memoryStream);
+                return (ITrinca)binaryFormatter.Deserialize(memoryStream);
             }
         }
 

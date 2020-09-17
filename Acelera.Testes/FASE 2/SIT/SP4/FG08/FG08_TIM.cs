@@ -26,8 +26,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         {
             IniciarTesteFG08("9888", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.TIM, true, false);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+
+            SalvaExecutaEValidaFG07();
+
+            ExecutarEValidarFG08(true);
+        }
+
+        public void SAP_9888_1()
+        {
+            IniciarTesteFG08("9888", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.TIM, true, false);
+
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
 
             SalvaExecutaEValidaFG07();
 
@@ -39,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         {
             IniciarTesteFG08("9889"," SAP-6165:FG07 - Tim - Capa e Emissão em XML diferentes - Comissão P - Novo cliente", OperadoraEnum.TIM, true, false);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "P", dados);
 
 
             SalvaExecutaEValidaFG07();
@@ -63,9 +75,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         {
             IniciarTesteFG08("9891", "SAP-6167:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.TIM, true, false);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
 
-            AdicionarTipoComissao(triplice.ArquivoComissao, triplice.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
+            AdicionarTipoComissao(trinca.ArquivoComissao, trinca.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
 
             SalvaExecutaEValidaFG07();
 
@@ -97,17 +109,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         {
             IniciarTesteFG08("9894", "SAP-6170:FG07 - Tim - Geração XML Sucesso - Emissão 2a parcela - 1 cobertura - Comissão C", OperadoraEnum.TIM);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[0]);
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 0);
+
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[0]);
 
             SalvaExecutaEValidaFG07();
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 1);
-            triplice.ArquivoParcEmissao.RemoverLinha(0);
-            triplice.ArquivoParcEmissao.RemoverLinha(1);
+            ExecutarEValidarFG08(true);
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
+            DeletarRegistrosAntigosDaStage();
+
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 1);
+            trinca.ArquivoParcEmissao.RemoverLinha(0);
+            trinca.ArquivoParcEmissao.RemoverLinha(1);
+
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[0], trinca.ArquivoComissao[0]);
 
             SalvaExecutaEValidaFG07(false);
 
@@ -119,14 +137,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         {
             IniciarTesteFG08("9896", "SAP-6172:FG07 - Tim - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.TIM);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "P", dados);
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "P", dados);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 1);
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 1);
 
-            triplice.ArquivoComissao.ReplicarLinha(0, 1);
+            trinca.ArquivoComissao.ReplicarLinha(0, 1);
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[0], triplice.ArquivoComissao[0]);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[0], trinca.ArquivoComissao[0]);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[1]);
 
             SalvaExecutaEValidaFG07();
 

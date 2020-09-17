@@ -152,8 +152,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             InicioTesteFG06("5953", "FG06 - SOFTBOX - PARC rejeitado e CMS ñ enviado - Canc=10", OperadoraEnum.TIM);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(0));
 
             CriarEmissaoCompleta();
 
@@ -176,8 +176,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             InicioTesteFG06("5954", "FG06 - SOFTBOX - PARC ñ enviado e CMS rejeitado - Canc = 11", OperadoraEnum.TIM);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(0));
             CriarEmissaoCompleta();
 
             CriarCancelamento(true, false, OperadoraEnum.POMPEIA, "11", out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento);

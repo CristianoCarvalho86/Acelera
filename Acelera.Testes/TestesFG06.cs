@@ -22,7 +22,7 @@ namespace Acelera.Testes
     {
         protected override string NomeFG => "FG06";
 
-        protected virtual void ExecutarEValidarFG06(ITriplice triplice,
+        protected virtual void ExecutarEValidarFG06(ITrinca triplice,
             CodigoStage? codigoEsperadoStageCliente,
             CodigoStage? codigoEsperadoStageParcela,
             CodigoStage? codigoEsperadoStageComissao,
@@ -53,27 +53,27 @@ namespace Acelera.Testes
         public override void CarregarTriplice(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
-                triplice = new TripliceLASA(1, logger, ref arquivosSalvos);
+                trinca = new TripliceLASA(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.SOFTBOX)
-                triplice = new TripliceSoftbox(1, logger, ref arquivosSalvos);
+                trinca = new TripliceSoftbox(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.POMPEIA)
-                triplice = new TriplicePOMPEIA(1, logger, ref arquivosSalvos);
+                trinca = new TriplicePOMPEIA(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.VIVO)
-                triplice = new TripliceVIVO(1, logger, ref arquivosSalvos);
+                trinca = new TripliceVIVO(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.TIM)
-                triplice = new TripliceTIM(1, logger, ref arquivosSalvos);
+                trinca = new TripliceTIM(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.QUEROQUERO)
-                triplice = new TripliceQUEROQUERO(1, logger, ref arquivosSalvos);
+                trinca = new TripliceQUEROQUERO(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.PITZI)
-                triplice = new TriplicePITZI(1, logger, ref arquivosSalvos);
+                trinca = new TriplicePITZI(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.AGREGUE)
-                triplice = new TripliceAGREGUE(1, logger, ref arquivosSalvos);
+                trinca = new TripliceAGREGUE(1, logger, ref arquivosSalvos);
             else if (operadora == OperadoraEnum.AGREGUEDEALERS)
-                triplice = new TripliceAGREGUEDEALERS(1, logger, ref arquivosSalvos);
+                trinca = new TripliceAGREGUEDEALERS(1, logger, ref arquivosSalvos);
             
         }
 
-        protected void AlteracoesPadraoDaTrinca(ITriplice triplice, bool geraCliente = true, bool geraArquivoCapa = true)
+        protected void AlteracoesPadraoDaTrinca(ITrinca triplice, bool geraCliente = true, bool geraArquivoCapa = true)
         {
             triplice.AlterarParcEComissao(0, "ID_TRANSACAO_CANC", "");
             triplice.AlterarParcEComissao(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(triplice.Operadora));

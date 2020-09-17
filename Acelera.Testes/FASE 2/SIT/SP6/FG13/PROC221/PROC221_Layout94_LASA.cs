@@ -21,8 +21,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
         {
             IniciarTesteFG07("9730", "", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02();
 
@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
 
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
 
@@ -70,11 +70,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             SalvaExecutaEValidaTrinca(true);
 
             //ENVIA A SEGUNDA PARCELA PARA A ODS
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
-            triplice.ArquivoComissao.ReplicarLinha(0, 1);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
-            triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
-            triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 0);
+            trinca.ArquivoComissao.ReplicarLinha(0, 1);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[1]);
+            trinca.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
+            trinca.ArquivoComissao.RemoverLinhaComAjuste(0);
 
             SalvaExecutaEValidaTrinca(true);
 
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
 
@@ -102,11 +102,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             SalvaExecutaEValidaTrinca(true);
 
             //ENVIA A SEGUNDA PARCELA PARA A STG
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao, 0);
-            triplice.ArquivoComissao.ReplicarLinha(0, 1);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao[1], triplice.ArquivoComissao[1]);
-            triplice.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
-            triplice.ArquivoComissao.RemoverLinhaComAjuste(0);
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 0);
+            trinca.ArquivoComissao.ReplicarLinha(0, 1);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[1]);
+            trinca.ArquivoParcEmissao.RemoverLinhaComAjuste(0);
+            trinca.ArquivoComissao.RemoverLinhaComAjuste(0);
 
             SalvaExecutaEValidaTrinca(false);
 
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
 
@@ -136,7 +136,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC221
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
 
             SalvarArquivo();
 

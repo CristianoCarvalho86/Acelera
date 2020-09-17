@@ -518,7 +518,7 @@ namespace Acelera.Testes
             }
         }
 
-        public void AlterarCdCorretorETipoComissaoDaTriplice(ITriplice triplice, string tipoComissao, TabelaParametrosData dados)
+        public void AlterarCdCorretorETipoComissaoDaTrinca(ITrinca triplice, string tipoComissao, TabelaParametrosData dados)
         {
             var cdCorretor = dados.ObterCdCorretorParaTipoRemuneracaoECobertura
                     (triplice.ArquivoComissao.Header[0]["CD_TPA"], tipoComissao, triplice.ArquivoParcEmissao[0]["CD_COBERTURA"]);

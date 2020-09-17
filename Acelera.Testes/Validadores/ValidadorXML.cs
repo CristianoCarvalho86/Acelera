@@ -84,8 +84,13 @@ namespace Acelera.Testes.Validadores
                         erros += "REGISTRO, QUE NAO DEVERIA SER ENCONTRADO, ENCONTRADO NA TABELA : " + tabela.ObterTexto() + Environment.NewLine;
                 }
 
-                if (tabela == TabelasOIMEnum.OIM_PARC01 && tabelaRetorno.Rows.Count > 0 && tabelaRetorno.Rows[0]["vl_premio"].ToString() != valorPremioLiquido.ToString())
-                    erros += $"VALOR DO PREMIO NAO ESTA IGUAL, VALOR ESPERADO:{valorPremioLiquido} , VALOR ENCONTRADO:{tabelaRetorno.Rows[0]["vl_premio"]}{Environment.NewLine}";
+                decimal valorPremioEncontrado = 0M;
+                if (tabela == TabelasOIMEnum.OIM_PARC01 && tabelaRetorno.Rows.Count > 0)
+                    foreach (DataRow row in tabelaRetorno.Rows)
+                        valorPremioEncontrado += row["vl_premio"].ToString().ObterValorDecimal();
+
+                //if (tabela == TabelasOIMEnum.OIM_PARC01 && tabelaRetorno.Rows.Count > 0 && valorPremioEncontrado != valorPremioLiquido)
+                //    erros += $"VALOR DO PREMIO NAO ESTA IGUAL, VALOR ESPERADO:{valorPremioLiquido} , VALOR ENCONTRADO:{tabelaRetorno.Rows[0]["vl_premio"]}{Environment.NewLine}";
 
                 if (tabela == TabelasOIMEnum.OIM_APL01)
                     idArquivo = tabelaRetorno.Rows[0]["id_arquivo"].ToString();

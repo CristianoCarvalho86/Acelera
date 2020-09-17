@@ -46,19 +46,19 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             {
                 ClienteTemErro = true;
                 logger.Escrever("DEFINIDO : DT_NASCIMENTO = 20120416 ESPERANDO ERRO NA FG02");
-                triplice.ArquivoCliente.AlterarLinha(posicaoLinha, "DT_NASCIMENTO", "20120416");
+                trinca.ArquivoCliente.AlterarLinha(posicaoLinha, "DT_NASCIMENTO", "20120416");
             }
             else if (tipo == TipoArquivo.ParcEmissao || tipo == TipoArquivo.ParcEmissaoAuto)
             {
                 ParcelaTemErro = true;
                 logger.Escrever("DEFINIDO : CD_RAMO = 00 ESPERANDO ERRO NA FG02");
-                triplice.ArquivoParcEmissao.AlterarLinha(posicaoLinha, "CD_RAMO", "00");
+                trinca.ArquivoParcEmissao.AlterarLinha(posicaoLinha, "CD_RAMO", "00");
             }
             else if (tipo == TipoArquivo.Comissao)
             {
                 ComissaoTemErro = true;
                 logger.Escrever("DEFINIDO : CD_RAMO = 00 ESPERANDO ERRO NA FG02");
-                triplice.ArquivoComissao.AlterarLinha(posicaoLinha, "CD_RAMO", "00");
+                trinca.ArquivoComissao.AlterarLinha(posicaoLinha, "CD_RAMO", "00");
             }
             else
                 throw new Exception("TIPO ARQUIVO NAO DEFINIDO.");
@@ -81,9 +81,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
                 throw new Exception("TIPO ARQUIVO NAO DEFINIDO.");
         }
 
-        protected void SalvarTrinca(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true, ITriplice _triplice = null)
+        protected void SalvarTrinca(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true, ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
             ClienteEnviado = salvaCliente;
             ParcelaEnviado = salvaParcela;
             ComissaoEnviado = salvaComissao;
@@ -97,7 +97,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             CarregarTriplice(operadora);
 
-            AlteracoesPadraoDaTrinca(triplice);
+            AlteracoesPadraoDaTrinca(trinca);
         }
 
 
@@ -108,9 +108,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
             ExecutarEValidarFG06EmissaoSucesso();
 
-            EnviarParaOds(triplice.ArquivoCliente, true, false, CodigoStage.AprovadoFG06);
-            EnviarParaOds(triplice.ArquivoComissao, true, false, CodigoStage.AprovadoFG06);
-            EnviarParaOds(triplice.ArquivoParcEmissao, true, false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(trinca.ArquivoCliente, true, false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(trinca.ArquivoComissao, true, false, CodigoStage.AprovadoFG06);
+            EnviarParaOds(trinca.ArquivoParcEmissao, true, false, CodigoStage.AprovadoFG06);
         }
 
         protected void CriarCancelamento(bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
@@ -128,22 +128,22 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             if (Parametros.ExecutaPelaBat)
             {
                 if (ClienteEnviado)
-                    ExecutarEValidarBatch(triplice.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Cliente.ObterTexto(), CodigoStage.AprovadoNaFG01);
+                    ExecutarEValidarBatch(trinca.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Cliente.ObterTexto(), CodigoStage.AprovadoNaFG01);
                 if (ParcelaEnviado)
                 {
-                    BatEnumDia bat = triplice.EhParcAuto ? BatEnumDia.ParcEmissaoAuto : BatEnumDia.ParcEmissao;
-                    ExecutarEValidarBatch(triplice.ArquivoParcEmissao, Parametros.PastaBatDia + bat.ObterTexto(), CodigoStage.AprovadoNaFG01);
+                    BatEnumDia bat = trinca.EhParcAuto ? BatEnumDia.ParcEmissaoAuto : BatEnumDia.ParcEmissao;
+                    ExecutarEValidarBatch(trinca.ArquivoParcEmissao, Parametros.PastaBatDia + bat.ObterTexto(), CodigoStage.AprovadoNaFG01);
                 }
                 if (ComissaoEnviado)
                 {
-                    ExecutarEValidarBatch(triplice.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Comissao.ObterTexto(), CodigoStage.AprovadoNaFG01);
+                    ExecutarEValidarBatch(trinca.ArquivoCliente, Parametros.PastaBatDia + BatEnumDia.Comissao.ObterTexto(), CodigoStage.AprovadoNaFG01);
                 }
                 listaFgs.Add(FGs.FG02);
                 listaFgs.Add(FGs.FG05);
             }
             else
             {
-                if (!triplice.EhParcAuto)
+                if (!trinca.EhParcAuto)
                     listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG01_2,  FGs.FG02, FGs.FG05 };
                 else
                     listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG01_2,  FGs.FG02, FGs.FG05 };
@@ -152,11 +152,11 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             foreach (var fg in listaFgs)
             {
                 if(ClienteEnviado)
-                    ExecFgs(!ClienteTemErro, fg, triplice.ArquivoCliente);
+                    ExecFgs(!ClienteTemErro, fg, trinca.ArquivoCliente);
                 if (ParcelaEnviado)
-                    ExecFgs(!ParcelaTemErro, fg, triplice.ArquivoParcEmissao);
+                    ExecFgs(!ParcelaTemErro, fg, trinca.ArquivoParcEmissao);
                 if (ComissaoEnviado)
-                    ExecFgs(!ComissaoTemErro, fg, triplice.ArquivoComissao);
+                    ExecFgs(!ComissaoTemErro, fg, trinca.ArquivoComissao);
 
                 ValidarTeste();
 
@@ -168,7 +168,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
         public void ValidarFGsAnterioresEErros_Cancelamento( Arquivo _arquivo, bool esperaSucesso = true)
         {
             FGs[] listaFgs;
-            if (!triplice.EhParcAuto)
+            if (!trinca.EhParcAuto)
                 listaFgs = new FGs[] {FGs.FG00, FGs.FG01, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA, FGs.FG01_2, FGs.FG02, FGs.FG09 };
             else
                 listaFgs = new FGs[] { FGs.FG00, FGs.FG01, FGs.FGR_DT_EMISSAO_MES_CONTABIL_PARCELA_AUTO, FGs.FG01_2,  FGs.FG02, FGs.FG09 };
@@ -196,9 +196,9 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             }
         }
 
-        protected void ExecutarEValidarFG06EmissaoComErro(ITriplice _triplice = null)
+        protected void ExecutarEValidarFG06EmissaoComErro(ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
             ExecutarEValidarFG06(_triplice,
                 ClienteEnviado ? ClienteTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
                 ParcelaEnviado ? ParcelaTemErro ? (CodigoStage?)CodigoStage.ReprovadoNegocioSemDependencia : CodigoStage.ReprovadoFG06 : null,
@@ -213,7 +213,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             var codigoStgCliente = validaCliente ? (CodigoStage?)CodigoStage.AprovadoFG06 : null;
             var codigoStgComissao = validaComissao ? (CodigoStage?)CodigoStage.AprovadoFG06 : null;
 
-            ExecutarEValidarFG06(triplice, codigoStgCliente, CodigoStage.AprovadoFG06, codigoStgComissao, "", "", "");
+            ExecutarEValidarFG06(trinca, codigoStgCliente, CodigoStage.AprovadoFG06, codigoStgComissao, "", "", "");
         }
 
         private void ExecFgs(bool sucesso, FGs fg, Arquivo arquivo)
@@ -240,7 +240,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "")
         {
             logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");
-            arquivo = triplice.ArquivoParcEmissao.Clone();
+            arquivo = trinca.ArquivoParcEmissao.Clone();
             var idTransacaoDoArquivoOriginal = arquivo[indexLinhaArquivoEmissao]["ID_TRANSACAO"];
             RemoverLinhasExcetoAsPrimeiras(1);
 
@@ -276,7 +276,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             //COMISSAO
 
-            arquivo = triplice.ArquivoComissao.Clone();
+            arquivo = trinca.ArquivoComissao.Clone();
             RemoverLinhasExcetoAsPrimeiras(1);
             IgualarCamposQueExistirem(arquivoParc, arquivo);
            // AlterarLinha(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Domain.Entidades.Interfaces
 {
-    public interface ITriplice
+    public interface ITrinca
     {
         Arquivo ArquivoCliente { get; }
         Arquivo ArquivoParcEmissao { get; set; }
@@ -34,7 +34,7 @@ namespace Acelera.Domain.Entidades.Interfaces
 
         void IgualarArquivos();
 
-        ITriplice Clone();
+        ITrinca Clone();
 
     }
 }

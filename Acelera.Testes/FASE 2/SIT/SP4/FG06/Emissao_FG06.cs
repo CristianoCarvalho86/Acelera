@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             //5921:FG06 - VIVO - CLI sucesso, PARC sucesso e CMS sucesso
             InicioTesteFG06("5927", "", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
 
             CriarEmissaoCompleta();
 
@@ -234,11 +234,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             InicioTesteFG06("5935", "SAP-5935:FG06 - SOFTBOX - CLI ñ enviado, PARC rejeitado e CMS ñ enviado", OperadoraEnum.TIM);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7950129");
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", triplice.ArquivoParcEmissao.ObterValorFormatado(1, "VL_PREMIO_TOTAL"));
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(0));
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7950129");
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", trinca.ArquivoParcEmissao.ObterValorFormatado(1, "VL_PREMIO_TOTAL"));
 
             AdicionaErro(TipoArquivo.ParcEmissao, 0);
             AdicionaErro(TipoArquivo.ParcEmissao, 1);
@@ -255,12 +255,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             InicioTesteFG06("5936", "SAP-5936:FG06 - SOFTBOX - CLI ñ enviado, PARC sucesso e CMS rejeitado", OperadoraEnum.TIM);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao);
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7950129");
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
-            triplice.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", triplice.ArquivoParcEmissao.ObterValorFormatado(1, "VL_PREMIO_TOTAL"));
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(0));
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CORRETOR", "7950129");
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_TIPO_COMISSAO", "P");
+            trinca.AlterarTodasAsLinhasQueContenhamOCampo("VL_COMISSAO", trinca.ArquivoParcEmissao.ObterValorFormatado(1, "VL_PREMIO_TOTAL"));
 
             AdicionaErro(TipoArquivo.Comissao);
 
@@ -276,9 +276,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         {
             InicioTesteFG06("5937", "SOFTBOX - CLI sucesso, PARC ñ enviado e CMS rejeitado", OperadoraEnum.TIM);
 
-            CriarNovaLinhaParaEmissao(triplice.ArquivoParcEmissao);
+            CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao);
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(0));
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(0));
 
             AdicionaErro(TipoArquivo.Comissao);
 

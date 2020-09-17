@@ -71,9 +71,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return documento;
         }
 
-        protected ILinhaTabela ValidarStageSucessoFG07(bool clienteEnviado = true, bool comissaoEnviada = true, ITriplice _triplice = null)
+        protected ILinhaTabela ValidarStageSucessoFG07(bool clienteEnviado = true, bool comissaoEnviada = true, ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
             if (clienteEnviado)
                 ValidarStages(_triplice.ArquivoCliente, true, (int)CodigoStage.AprovadoFG07);
             if(comissaoEnviada)
@@ -82,9 +82,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             return ValidarStages(_triplice.ArquivoParcEmissao, true, (int)CodigoStage.AprovadoFG07).First();
         }
 
-        protected IList<ILinhaTabela> ValidarStageSucessoFG07_1(CodigoStage codigoEsperado, bool clienteEnviado, bool comissaoEnviado, ITriplice _triplice = null)
+        protected IList<ILinhaTabela> ValidarStageSucessoFG07_1(CodigoStage codigoEsperado, bool clienteEnviado, bool comissaoEnviado, ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
             if (clienteEnviado)
                 ValidarStages(_triplice.ArquivoCliente, true, (int)codigoEsperado);
             if(comissaoEnviado)
@@ -102,20 +102,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             CarregarTriplice(operadora);
 
-            AlteracoesPadraoDaTrinca(triplice, geraCliente, gerarArquivoCapa);
+            AlteracoesPadraoDaTrinca(trinca, geraCliente, gerarArquivoCapa);
 
             validadorXML = new ValidadorXML(logger);
         }
 
-        protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true, bool esperaSucesso = true, ITriplice _triplice = null)
+        protected void SalvaExecutaEValidaFG07(bool salvaCliente = true, bool salvaComissao = true, bool esperaSucesso = true, ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
 
             CriarEmissaoCompletaFG06(salvaCliente, salvaComissao);
 
             var linhasStageParc = ExecutarValidarFG07(esperaSucesso, salvaCliente, salvaComissao).Where(x => x.ObterPorColuna("CD_TIPO_EMISSAO") != null && !ParametrosRegrasEmissao.CdTipoEmissaoCapa.Contains(x.ObterPorColuna("CD_TIPO_EMISSAO").ValorFormatado)).ToList();
 
-            var ehParcAuto = triplice.ArquivoParcEmissao.tipoArquivo == TipoArquivo.ParcEmissaoAuto;
+            var ehParcAuto = trinca.ArquivoParcEmissao.tipoArquivo == TipoArquivo.ParcEmissaoAuto;
             ValidaXmlFG07(linhasStageParc, ehParcAuto);
         }
 
@@ -156,9 +156,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             linhaDaStage.Campos.Add(new Campo("CP_CORRETOR", dados.ObterCPFDoCorretor(linhaDaStage.ObterPorColuna("CD_CORRETOR").ValorFormatado)));
         }
 
-        protected IList<ILinhaTabela> ExecutarValidarFG07(bool sucessoNaFG071, bool clienteEnviado = true, bool comissaoEnviado = true, ITriplice _triplice = null)
+        protected IList<ILinhaTabela> ExecutarValidarFG07(bool sucessoNaFG071, bool clienteEnviado = true, bool comissaoEnviado = true, ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
 
             ExecutarFG07();
 
@@ -216,9 +216,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             CriarEmissaoCompletaFG06(true, true);
             if (enviarParaOds)
             {
-                EnviarParaOds(triplice.ArquivoCliente, false, true, CodigoStage.AprovadoFG06);
-                EnviarParaOds(triplice.ArquivoParcEmissao, false, true, CodigoStage.AprovadoFG06);
-                EnviarParaOds(triplice.ArquivoComissao, false, true, CodigoStage.AprovadoFG06);
+                EnviarParaOds(trinca.ArquivoCliente, false, true, CodigoStage.AprovadoFG06);
+                EnviarParaOds(trinca.ArquivoParcEmissao, false, true, CodigoStage.AprovadoFG06);
+                EnviarParaOds(trinca.ArquivoComissao, false, true, CodigoStage.AprovadoFG06);
             }
         }
         protected void SalvaExecutaEValidaTrincaFG02(bool enviarParaOds = true)
@@ -226,15 +226,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
              CriarEmissaoCompletaFG02(true, true);
             if (enviarParaOds)
             {
-                EnviarParaOds(triplice.ArquivoCliente, false, false, CodigoStage.AprovadoNegocioSemDependencia);
-                EnviarParaOds(triplice.ArquivoParcEmissao, false, false, CodigoStage.AprovadoNegocioSemDependencia);
-                EnviarParaOds(triplice.ArquivoComissao, false, false, CodigoStage.AprovadoNegocioSemDependencia);
+                EnviarParaOds(trinca.ArquivoCliente, false, false, CodigoStage.AprovadoNegocioSemDependencia);
+                EnviarParaOds(trinca.ArquivoParcEmissao, false, false, CodigoStage.AprovadoNegocioSemDependencia);
+                EnviarParaOds(trinca.ArquivoComissao, false, false, CodigoStage.AprovadoNegocioSemDependencia);
             }
         }
 
-        protected void CriarEmissaoCompletaFG06(bool salvaCliente, bool salvaComissao = true, ITriplice _triplice = null)
+        protected void CriarEmissaoCompletaFG06(bool salvaCliente, bool salvaComissao = true, ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
             SalvarTrinca(salvaCliente, true, salvaComissao, _triplice);
             ValidarFGsAnterioresEErros();
 
@@ -242,9 +242,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             ValidarTeste();
         }
 
-        protected void CriarEmissaoCompletaFG02(bool salvaCliente, bool salvaComissao = true, ITriplice _triplice = null)
+        protected void CriarEmissaoCompletaFG02(bool salvaCliente, bool salvaComissao = true, ITrinca _triplice = null)
         {
-            _triplice = _triplice == null ? triplice : _triplice;
+            _triplice = _triplice == null ? trinca : _triplice;
             SalvarTrinca(salvaCliente, true, salvaComissao, _triplice);
             ValidarFGsAnterioresEErros(FGs.FG02);
             ValidarTeste();

@@ -114,9 +114,9 @@ namespace Acelera.Testes.DataAccessRep
                     $"NR_PARCELA = '{linhaStageComissao.ObterPorColuna("NR_PARCELA").ValorFormatado}'";
 
             if(tabela == TabelasEnum.ParcEmissao)
-                return DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(sql, logger).Single();
+                return DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoStage>(sql, logger)?.Single();
             else
-                return DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(sql, logger).Single();
+                return DataAccess.ChamarConsultaAoBanco<LinhaParcEmissaoAutoStage>(sql, logger)?.Single();
         }
 
 

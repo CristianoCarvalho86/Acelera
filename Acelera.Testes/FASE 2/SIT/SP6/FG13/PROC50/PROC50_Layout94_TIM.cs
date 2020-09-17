@@ -26,8 +26,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
-            AlterarLinha(0, "DT_OCORRENCIA", SomarData(triplice.ArquivoParcEmissao[0]["DT_OCORRENCIA"], 10));
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(trinca.ArquivoParcEmissao[0]["DT_OCORRENCIA"], 10));
             SalvarArquivo();
 
             ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
 
             EnviarParaOds(arquivo);
 
@@ -64,18 +64,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         {
             IniciarTesteFG07("9699", "", OperadoraEnum.TIM);
 
-            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 1,
-                dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[1]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
+            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1,
+                dados.ObterCoberturaDiferenteDe(trinca.ArquivoParcEmissao[1]["CD_COBERTURA"], trinca.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(2), triplice.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(2), trinca.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1
 
             SalvaExecutaEValidaTrinca(true);
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 1, "18");
 
             SalvarArquivo();
 
@@ -103,8 +103,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 0, "18");
-            AlterarLinha(0, "DT_OCORRENCIA", SomarData(triplice.ArquivoParcEmissao[0]["DT_OCORRENCIA"], 10));
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 0, "18");
+            AlterarLinha(0, "DT_OCORRENCIA", SomarData(trinca.ArquivoParcEmissao[0]["DT_OCORRENCIA"], 10));
             SalvarArquivo();
 
             ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
             SalvarArquivo();
 
             ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);
@@ -134,10 +134,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         {
             IniciarTesteFG07("9701", "", OperadoraEnum.TIM);
 
-            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 1,
-            dados.ObterCoberturaDiferenteDe(triplice.ArquivoParcEmissao[1]["CD_COBERTURA"], triplice.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
+            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1,
+            dados.ObterCoberturaDiferenteDe(trinca.ArquivoParcEmissao[1]["CD_COBERTURA"], trinca.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
 
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(2), triplice.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(2), trinca.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1
 
             //ENVIA A PRIMEIRA PARCELA PARA A ODS
             SalvaExecutaEValidaTrinca(true);
@@ -145,7 +145,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
             //ENVIAR BAIXA DA PARCELA
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
-            AjustarArquivoDeBaixaParaParcela(triplice.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
+            AjustarArquivoDeBaixaParaParcela(trinca.ArquivoParcEmissao, arquivo, 1, "18");//Arquivo Parc TIM, primeira parcela linha 1
             SalvarArquivo();
 
             ExecutarEValidarAteFG13(arquivo, CodigoStage.AprovadoNegocioSemDependencia);

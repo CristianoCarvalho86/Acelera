@@ -20,25 +20,25 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
         {
             IniciarTesteFG07("9764", "", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
-            AdicionarNovaCoberturaNaEmissao(triplice.ArquivoParcEmissao, dados, 0);
+            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 0);
 
-            triplice.ArquivoComissao.ReplicarLinha(0, 1);
-            AtualizarLinhaDeReferenciaParaComissao(triplice.ArquivoParcEmissao.ObterLinha(1), triplice.ArquivoComissao.ObterLinha(1));
+            trinca.ArquivoComissao.ReplicarLinha(0, 1);
+            AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(1));
 
             SalvaExecutaEValidaTrincaFG02();
 
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao.ObterLinha(0), arquivo.ObterLinha(0));
-            AlterarLinha(0, "NR_PARCELA", triplice.ArquivoParcEmissao[0]["NR_PARCELA"]);
-            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", triplice.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao.ObterLinha(0), arquivo.ObterLinha(0));
+            AlterarLinha(0, "NR_PARCELA", trinca.ArquivoParcEmissao[0]["NR_PARCELA"]);
+            AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", trinca.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]);
             AlterarLinha(0, "CD_OCORRENCIA", "18");
-            AlterarLinha(0, "DT_OCORRENCIA",SomarData(triplice.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
-            AlterarLinha(0, "VL_IOF_RETIDO", SomarValores(triplice.ArquivoParcEmissao.SomarLinhasDoArquivo("VL_IOF"), -1));
+            AlterarLinha(0, "DT_OCORRENCIA",SomarData(trinca.ArquivoParcEmissao[0]["DT_EMISSAO"], 10));
+            AlterarLinha(0, "VL_IOF_RETIDO", SomarValores(trinca.ArquivoParcEmissao.SomarLinhasDoArquivo("VL_IOF"), -1));
 
             SalvarArquivo();
 

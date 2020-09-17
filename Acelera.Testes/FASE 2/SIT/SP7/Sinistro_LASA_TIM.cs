@@ -42,7 +42,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
             GerarCdSinistroEAviso(arquivo, 0);
@@ -56,15 +56,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("5", "SP7 - PROC 79 - LASA - SINISTRO - Movimentar sinistro inexistente - CD_TP_MOVTO = 2 E TP_SINISTRO=01", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -80,15 +80,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("9", "SP7 - PROC 82 - LASA - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=2 - ODS", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -115,15 +115,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("10", "SP7 - PROC 82 - TIM - SINISTRO - Enviar movimentação duplicda para sinistro - CD_TP_MOVTO=7 - ODS", OperadoraEnum.TIM);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -152,15 +152,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("11", "SP7 - PROC 128 - LASA - SINISTRO - Enviar CD_SINISTRO que já existe na ODS - CD_TP_MOVTO=1", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -186,7 +186,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -211,9 +211,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("15", "SP7 - PROC 181 - LASA - SINISTRO - Abertura de sinistro para apólice cancelada - NR_ENDOSSO E CD_CONTRATO DE UM ENDOSSO NA ODS QUE SEJA CD_TIPO_EMISSAO 10 OU 11", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
-            var linha = triplice.ArquivoComissao.Clone();
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            var linha = trinca.ArquivoComissao.Clone();
 
             SalvaExecutaEValidaTrincaFG02(true);
 
@@ -249,7 +249,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
@@ -278,7 +278,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
@@ -300,15 +300,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("22", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - CD_CLIENTE -  MOVTO=2", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -334,15 +334,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("23", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_AVISO - MOVTO=2", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -367,15 +367,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("24", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_OCORRENCIA - MOVTO=2", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -401,15 +401,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("25", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - DT_REGISTRO - MOVTO=2", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -434,15 +434,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("27", "SP7 - PROC 254 - LASA - SINISTRO - Enviar movimentação com informação divergente ao da abertura - CD_ITEM - MOVTO=2", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -467,15 +467,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
         {
             InicioTesteFG06("28", "sem crítica - Abertura - mesmo sinistro / sem crítica - Pagamento - mesmo sinistro", OperadoraEnum.LASA);
 
-            AlterarCdCorretorETipoComissaoDaTriplice(triplice, "C", dados);
-            triplice.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
+            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
             SalvaExecutaEValidaTrincaFG02(true);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(triplice.ArquivoParcEmissao, arquivo);
+            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
