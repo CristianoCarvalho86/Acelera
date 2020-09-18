@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.TabelaRetorno;
@@ -17,12 +18,12 @@ namespace Acelera.Testes.Validadores
 {
     public class ValidadorTabelaRetorno : ValidadorTabela
     {
-        public ValidadorTabelaRetorno(string nomeArquivo, IMyLogger logger, Arquivo arquivo)
+        public ValidadorTabelaRetorno(string nomeArquivo, IMyLogger logger, IArquivo arquivo)
             : base(TabelasEnum.TabelaRetorno, nomeArquivo, logger, arquivo)
         {
         }
 
-        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela, Arquivo arquivo)
+        public override ConjuntoConsultas MontarConsulta(TabelasEnum tabela, IArquivo arquivo)
         {
             var consultaBase = FabricaConsulta.MontarConsultaParaTabelaDeRetorno(tabela, nomeArquivo, arquivo.valoresAlteradosBody);
             var consultas = new ConjuntoConsultas();

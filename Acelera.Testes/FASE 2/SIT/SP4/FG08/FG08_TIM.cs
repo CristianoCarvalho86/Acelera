@@ -34,17 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
             ExecutarEValidarFG08(true);
         }
 
-        public void SAP_9888_1()
-        {
-            IniciarTesteFG08("9888", "SAP-6164:FG07 - Tim - Geração XML -- Capa e Emissão no msm XML - Comissão C - Novo cliente", OperadoraEnum.TIM, true, false);
 
-            AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
-            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
-
-            SalvaExecutaEValidaFG07();
-
-            ExecutarEValidarFG08(true);
-        }
 
         [TestMethod]
         public void SAP_9889()
@@ -73,11 +63,13 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         [TestMethod]
         public void SAP_9891()
         {
-            IniciarTesteFG08("9891", "SAP-6167:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.TIM, true, false);
+            IniciarTesteFG08("9891", "SAP-6167:FG07 - Tim - Geração XML Sucesso - Emissão 1a parcela - 1 cobertura - Comissão C e P - Novo cliente", OperadoraEnum.TIM, true, true);
 
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
 
             AdicionarTipoComissao(trinca.ArquivoComissao, trinca.ArquivoParcEmissao[0]["VL_PREMIO_LIQUIDO"], "P", 0);
+
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
 
             SalvaExecutaEValidaFG07();
 
@@ -111,6 +103,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
 
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
 
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
+
             CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 0);
 
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[0]);
@@ -135,9 +129,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG08
         [TestMethod]
         public void SAP_9896()
         {
-            IniciarTesteFG08("9896", "SAP-6172:FG07 - Tim - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.TIM);
+            IniciarTesteFG08("9896", "SAP-6172:FG07 - Tim - Geração XML Sucesso - Emissão 1 e 2 parcelas juntas - 1 cobertura - Comissão R", OperadoraEnum.TIM,true, true);
 
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "P", dados);
+            trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201010");
 
             CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 1);
 

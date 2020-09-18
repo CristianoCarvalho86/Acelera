@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acelera.Contratos;
 using Acelera.Domain.Enums;
 
 namespace Acelera.Domain.Entidades.TabelaRetorno
@@ -38,7 +39,7 @@ namespace Acelera.Domain.Entidades.TabelaRetorno
             
         }
 
-        public override Campo ObterPorColuna(string coluna)
+        public override ICampo ObterPorColuna(string coluna)
         {
             var campo = coluna;
             if (coluna == "TIPO_REGISTRO")

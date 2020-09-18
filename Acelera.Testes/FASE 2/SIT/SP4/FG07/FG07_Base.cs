@@ -100,7 +100,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             //5922:FG06 - VIVO - CLI rejeitado, PARC sucesso e CMS sucesso
             IniciarTeste(TipoArquivo.Comissao, numeroTeste, descricao);
 
-            CarregarTriplice(operadora);
+            CarregarTrinca(operadora);
 
             AlteracoesPadraoDaTrinca(trinca, geraCliente, gerarArquivoCapa);
 

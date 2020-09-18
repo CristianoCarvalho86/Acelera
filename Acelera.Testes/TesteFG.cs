@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
@@ -28,17 +29,17 @@ namespace Acelera.Testes
             FinalizaTeste = true;
         }
 
-        public void SetarArquivoEmUso(ref Arquivo _arquivo)
+        public void SetarArquivoEmUso(ref IArquivo _arquivo)
         {
             _arquivo = _arquivo == null ? arquivo : _arquivo;
         }
-        public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1, Arquivo _arquivo = null)
+        public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1, IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
             ValidarLogProcessamento(_arquivo, Sucesso, vezesExecutado, ObterProceduresASeremExecutadas(_arquivo));
         }
 
-        public bool ValidarTabelaDeRetornoVazia(Arquivo _arquivo, bool deveHaverRegistros = true)
+        public bool ValidarTabelaDeRetornoVazia(IArquivo _arquivo, bool deveHaverRegistros = true)
         {
             var validadorTabelaDeRetorno = new ValidadorTabelaRetorno(_arquivo.NomeArquivo, logger, _arquivo);
             var linhasDaTabelaDeRetorno = validadorTabelaDeRetorno.RetornarRegistrosDaTabelaDeRetorno();
@@ -55,7 +56,7 @@ namespace Acelera.Testes
             return true;
         }
 
-        protected void ValidarLogProcessamento(Arquivo _arquivo, bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
+        protected void ValidarLogProcessamento(IArquivo _arquivo, bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao || !Parametros.ValidaLogProcessamento)
                 return;
@@ -105,9 +106,9 @@ namespace Acelera.Testes
             }
         }
 
-        public abstract void ValidarTabelaDeRetorno(Arquivo _arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
+        public abstract void ValidarTabelaDeRetorno(IArquivo _arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
 
-        public virtual IList<ILinhaTabela> ValidarStages(Arquivo _arquivo, bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
+        public virtual IList<ILinhaTabela> ValidarStages(IArquivo _arquivo, bool deveHaverRegistro, int codigoEsperado = 0, bool aoMenosUmCodigoEsperado = false)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return null;
@@ -132,7 +133,7 @@ namespace Acelera.Testes
             return linhasEncontradas;
         }
 
-        public void ExecutarEValidarFG01_2(Arquivo _arquivo)
+        public void ExecutarEValidarFG01_2(IArquivo _arquivo)
         {
             logger.EscreverBloco("Inicio da Validação da FG01_2.");
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01_2Enum().ObterTexto());
@@ -141,7 +142,7 @@ namespace Acelera.Testes
             logger.EscreverBloco("Fim da Validação da FG01_2. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
         }
 
-        public void EnviarParaOds(Arquivo _arquivo, bool executaFGs = true, bool alterarCdCliente = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNegocioSemDependencia)
+        public void EnviarParaOds(IArquivo _arquivo, bool executaFGs = true, bool alterarCdCliente = true, CodigoStage codigoesperadostg = CodigoStage.AprovadoNegocioSemDependencia)
         {
             if (alterarCdCliente && _arquivo.Operadora != OperadoraEnum.SGS)
             {
@@ -240,13 +241,13 @@ namespace Acelera.Testes
 
         }
 
-        public void EnviarParaOdsAlterandoCliente(Arquivo _arquivo, bool alterarCdCliente = true)
+        public void EnviarParaOdsAlterandoCliente(IArquivo _arquivo, bool alterarCdCliente = true)
         {
             EnviarParaOds(_arquivo, true, alterarCdCliente);
         }
 
 
-        public IList<ILinhaTabela> ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false, Arquivo _arquivo = null)
+        public IList<ILinhaTabela> ValidarStages(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false, IArquivo _arquivo = null)
         {
             _arquivo = _arquivo == null ? this.arquivo : _arquivo;
             AoMenosUmComCodigoEsperado = aoMenosUmComCodigoEsperado;
@@ -295,7 +296,7 @@ namespace Acelera.Testes
             return false;
         }
 
-        public void ConfereQtdLinhas(Arquivo _arquivo, int numeroDeLinhasEsperado)
+        public void ConfereQtdLinhas(IArquivo _arquivo, int numeroDeLinhasEsperado)
         {
             if (_arquivo.Linhas.Count != numeroDeLinhasEsperado)
                 ExplodeFalha($"ERRO NA CONFERENCIA DE QTD LINHAS. ESPERADO :{numeroDeLinhasEsperado}; OBTIDO :{_arquivo.Linhas.Count}");
@@ -358,7 +359,7 @@ namespace Acelera.Testes
             logger.FimDoArquivo(numeroDoLote, op, Parametros.pastaLogCopia, Parametros.ModoExecucao);
         }
 
-        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, Arquivo _arquivo = null)
+        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, IArquivo _arquivo = null)
         {
             if (_arquivo == null)
                 _arquivo = arquivo;
@@ -444,7 +445,7 @@ namespace Acelera.Testes
                 (((1M + (cobertura.ValorPercentualAlicotaIofDecimal * 100)) / 100) * (cobertura.VL_PERC_DISTRIBUICAO_decimal * 100));
         }
 
-        public void CriarNovaLinhaParaEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        public void CriarNovaLinhaParaEmissao(IArquivo arquivoParc, int linhaDeReferencia = 0)
         {
             var operadora = arquivoParc.Operadora;
             if (operadora == OperadoraEnum.TIM)
@@ -462,7 +463,7 @@ namespace Acelera.Testes
             arquivoParc.AjustarQtdLinhasNoFooter();
         }
 
-        public void AjustarArquivoDeBaixaParaParcela(Arquivo arquivoParcEmissao, Arquivo arquivoCobranca, int linhaReferenciaParc, string cdOcorrencia)
+        public void AjustarArquivoDeBaixaParaParcela(IArquivo arquivoParcEmissao, IArquivo arquivoCobranca, int linhaReferenciaParc, string cdOcorrencia)
         {
             IgualarCamposQueExistirem(arquivoParcEmissao.ObterLinha(linhaReferenciaParc), arquivoCobranca.ObterLinha(0));
             arquivoCobranca.AlterarLinha(0, "NR_PARCELA", arquivoParcEmissao[linhaReferenciaParc]["NR_PARCELA"]);
@@ -472,14 +473,14 @@ namespace Acelera.Testes
             arquivoCobranca.AlterarLinha(0, "VL_PREMIO_PAGO", arquivoParcEmissao[linhaReferenciaParc]["VL_PREMIO_TOTAL"]);
         }
 
-        private void CriarNovaLinhaEmissaoTim(Arquivo arquivoParc)
+        private void CriarNovaLinhaEmissaoTim(IArquivo arquivoParc)
         {
             arquivoParc.AdicionarLinha(ParametrosLinhaEmissao.CarregaLinhaEmissaoTIM(arquivoParc[0], arquivoParc.Linhas.Count - 1));
             var camposASeremIgualados = arquivoParc[0].Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
             IgualarCampos(arquivoParc[0], arquivoParc[arquivoParc.Linhas.Count - 1], camposASeremIgualados);
         }
 
-        public LinhaArquivo CriarNovaLinhaCapa(LinhaArquivo linhaReferencia)
+        public ILinhaArquivo CriarNovaLinhaCapa(ILinhaArquivo linhaReferencia)
         {
             var linhaCapa = ParametrosLinhaEmissao.CarregaLinhaCapaTIM(linhaReferencia);
             var camposASeremIgualados = linhaReferencia.Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
@@ -487,14 +488,14 @@ namespace Acelera.Testes
             return linhaCapa;
         }
 
-        private void CriarNovaLinhaEmissaoPitzi(Arquivo arquivoParc)
+        private void CriarNovaLinhaEmissaoPitzi(IArquivo arquivoParc)
         {
             arquivoParc.AdicionarLinha(ParametrosLinhaEmissao.CarregaLinhaEmissaoPITZI(arquivoParc[0], arquivoParc.Linhas.Count - 1));
             var camposASeremIgualados = arquivoParc[0].Campos.Where(x => !x.ColunaArquivo.StartsWith("VL_") && x.ColunaArquivo != "CD_TIPO_EMISSAO").Select(x => x.ColunaArquivo).ToArray();
             IgualarCampos(arquivoParc[0], arquivoParc[arquivoParc.Linhas.Count - 1], camposASeremIgualados);
         }
 
-        public void CriarNovaLinhaParaEmissaoComMesmoEndossoEParcela(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        public void CriarNovaLinhaParaEmissaoComMesmoEndossoEParcela(IArquivo arquivoParc, int linhaDeReferencia = 0)
         {
             arquivoParc.AdicionarLinha(arquivoParc.ObterLinha(linhaDeReferencia).Clone());
             var index = arquivoParc.Linhas.Count - 1;
@@ -505,7 +506,7 @@ namespace Acelera.Testes
         }
 
 
-        public void AlterarLinhaParaPrimeiraEmissao(Arquivo arquivoParc, int linhaDeReferencia = 0)
+        public void AlterarLinhaParaPrimeiraEmissao(IArquivo arquivoParc, int linhaDeReferencia = 0)
         {
             if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
 
@@ -536,7 +537,7 @@ namespace Acelera.Testes
             }
         }
 
-        public void AdicionarNovaCoberturaNaEmissao(Arquivo arquivoParc, TabelaParametrosData dados, int posicaoLinha = 0, Cobertura cobertura = null)
+        public void AdicionarNovaCoberturaNaEmissao(IArquivo arquivoParc, TabelaParametrosData dados, int posicaoLinha = 0, Cobertura cobertura = null)
         {
             arquivoParc.ReplicarLinha(posicaoLinha, 1);
             var cdRamo = arquivoParc.Operadora == OperadoraEnum.TIM ? arquivoParc[arquivoParc.Linhas.Count - 1]["CD_RAMO"] : "";
@@ -544,7 +545,7 @@ namespace Acelera.Testes
             AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
         }
 
-        protected void AdicionarTipoComissao(Arquivo _arquivo, string valorPremioLiquido, string cdTipoComissao, int posicaoLinha)
+        protected void AdicionarTipoComissao(IArquivo _arquivo, string valorPremioLiquido, string cdTipoComissao, int posicaoLinha)
         {
             var valor = valorPremioLiquido.ObterValorDecimal() / 2;
             _arquivo.AlterarLinha(posicaoLinha, "VL_COMISSAO", valor.ValorFormatado());

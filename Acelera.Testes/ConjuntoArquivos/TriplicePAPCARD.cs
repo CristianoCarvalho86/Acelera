@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_4;
@@ -25,13 +26,13 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         public override bool EhParcAuto => false;
 
-        public override void FinalizarAlteracao(Arquivo arquivo)
+        public override void FinalizarAlteracao(IArquivo arquivo)
         {
             AlteracoesPapCardEmissao(arquivo);
             base.FinalizarAlteracao(arquivo);
         }
 
-        private void AlteracoesPapCardEmissao(Arquivo _arquivo)
+        private void AlteracoesPapCardEmissao(IArquivo _arquivo)
         {
             for (int i = 0; i < _arquivo.Linhas.Count; i++)
             {
@@ -40,7 +41,7 @@ namespace Acelera.Testes.ConjuntoArquivos
             }
         }
 
-        protected void AlteracoesIniciaisPapcard(Arquivo _arquivo)
+        protected void AlteracoesIniciaisPapcard(IArquivo _arquivo)
         {
             for (int i = 0; i < _arquivo.Linhas.Count; i++)
             {

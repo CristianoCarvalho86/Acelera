@@ -1,4 +1,5 @@
-﻿using Acelera.Data;
+﻿using Acelera.Contratos;
+using Acelera.Data;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -50,7 +51,7 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        public override void CarregarTriplice(OperadoraEnum operadora)
+        public override void CarregarTrinca(OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.LASA)
                 trinca = new TripliceLASA(1, logger, ref arquivosSalvos);
@@ -122,12 +123,12 @@ namespace Acelera.Testes
 
         }
 
-         protected void AtualizarLinhaDeReferenciaParaComissao(LinhaArquivo linhaParc, LinhaArquivo linhaComissao)
+         protected void AtualizarLinhaDeReferenciaParaComissao(ILinhaArquivo linhaParc, ILinhaArquivo linhaComissao)
         {
             IgualarCamposQueExistirem(linhaParc, linhaComissao);
         }
 
-        public override void FinalizarAlteracaoArquivo(Arquivo _arquivo)
+        public override void FinalizarAlteracaoArquivo(IArquivo _arquivo)
         {
             base.FinalizarAlteracaoArquivo(_arquivo);
         }

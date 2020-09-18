@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
@@ -105,7 +106,7 @@ namespace Acelera.Testes
             logger = new Mock<IMyLogger>().Object;
 
             var arquivos = Directory.GetFiles(@"C:\Cristiano\Exportacao\ODS").Where(x => x.Contains("PARCEMS") && x.Contains("TIM"));
-            Arquivo arquivoOds;
+            IArquivo arquivoOds;
             var erros = "";
             var arquivosEnviados = "";
             foreach (var arq in arquivos)

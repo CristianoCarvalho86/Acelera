@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
@@ -19,14 +20,14 @@ namespace Acelera.Testes
 {
     public class TesteArquivoOperacoes
     {
-        protected Arquivo arquivo;
+        protected IArquivo arquivo;
         protected IMyLogger logger;
         public TesteArquivoOperacoes()
         {
 
         }
 
-        public void SelecionarLinhaParaValidacao(int posicaoLinha, bool semHeaderOuFooter = false, Arquivo _arquivo = null)
+        public void SelecionarLinhaParaValidacao(int posicaoLinha, bool semHeaderOuFooter = false, IArquivo _arquivo = null)
         {
             _arquivo = _arquivo == null ? arquivo : _arquivo;
             var linhaParaValidacao = _arquivo.ObterLinha(posicaoLinha);
@@ -50,7 +51,7 @@ namespace Acelera.Testes
             AdicionaAlteracao(arquivo.NomeArquivo,arquivo.valoresAlteradosBody, linhaParaValidacao, 0, "", "", 0, false, true);
         }
 
-        public LinhaArquivo ObterLinha(int posicaoLinha)
+        public ILinhaArquivo ObterLinha(int posicaoLinha)
         {
             return arquivo.ObterLinha(posicaoLinha);
         }
@@ -80,7 +81,7 @@ namespace Acelera.Testes
         }
 
 
-        public void AlterarLinha(Arquivo arquivo1 ,int posicaoLinha, string campo, string valorNovo, bool validaAlteracao = false)
+        public void AlterarLinha(IArquivo arquivo1 ,int posicaoLinha, string campo, string valorNovo, bool validaAlteracao = false)
         {
             logger.AbrirBloco($"Alterando arquivo - Editando campo {campo} na linha {posicaoLinha}");
             logger.Escrever("Chave da Linha : " + arquivo1.MontarCamposChaveParaLog(posicaoLinha));
@@ -101,7 +102,7 @@ namespace Acelera.Testes
             }
         }
 
-        public void AlterarLinhaSeExistirCampo(Arquivo arquivo1, int posicaoLinha, string campo, string valorNovo, bool validaAlteracao = false)
+        public void AlterarLinhaSeExistirCampo(IArquivo arquivo1, int posicaoLinha, string campo, string valorNovo, bool validaAlteracao = false)
         {
             if (arquivo1.ExisteCampo(campo))
                 AlterarLinha(arquivo1, posicaoLinha, campo, valorNovo, validaAlteracao);
@@ -151,7 +152,7 @@ namespace Acelera.Testes
             SelecionarLinhaParaValidacao(0);
         }
 
-        public void AdicionarLinha(int posicaoLinha, LinhaArquivo linhaNova)
+        public void AdicionarLinha(int posicaoLinha, ILinhaArquivo linhaNova)
         {
             logger.AbrirBloco($"Alterando arquivo - Adicionando linha na posicao {posicaoLinha}");
             arquivo.AdicionarLinha(linhaNova.Clone(), posicaoLinha);
@@ -285,7 +286,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        private void AdicionaAlteracao(string nomeArquivo,AlteracoesArquivo alteracoes, LinhaArquivo linhaAlterada, int posicaoLinha,
+        private void AdicionaAlteracao(string nomeArquivo,IAlteracoesArquivo alteracoes, ILinhaArquivo linhaAlterada, int posicaoLinha,
             string campo = "", string valor = "", int repeticoes = 0, bool semHeaderOuFooter = false , bool nomeArquivoAlterado = false)
         {
             var alteracao = new Alteracao(linhaAlterada, posicaoLinha);
@@ -369,7 +370,7 @@ namespace Acelera.Testes
             return resultado;
         }
 
-        public LinhaArquivo CopiarLinha(int posicaoLinha)
+        public ILinhaArquivo CopiarLinha(int posicaoLinha)
         {
             logger.AbrirBloco("Copiando linha do arquivo.");
             var linha = arquivo.ObterLinha(posicaoLinha);
@@ -378,7 +379,7 @@ namespace Acelera.Testes
             return linha;
         }
 
-        public void InserirLinha(LinhaArquivo linha, int posicaoLinha)
+        public void InserirLinha(ILinhaArquivo linha, int posicaoLinha)
         {
             logger.AbrirBloco("Inserindo linha no arquivo.");
             logger.Escrever("Linha a ser inserida : " + linha.ObterTexto());
@@ -386,7 +387,7 @@ namespace Acelera.Testes
             logger.FecharBloco();
         }
 
-        public virtual void FinalizarAlteracaoArquivo(Arquivo _arquivo)
+        public virtual void FinalizarAlteracaoArquivo(IArquivo _arquivo)
         {
             if (_arquivo.Operadora == OperadoraEnum.PAPCARD)
             {
@@ -394,7 +395,7 @@ namespace Acelera.Testes
             }
         }
 
-        private void AlteracoesPapCardEmissao(Arquivo _arquivo)
+        private void AlteracoesPapCardEmissao(IArquivo _arquivo)
         {
             if (_arquivo.tipoArquivo == TipoArquivo.Comissao)
                 return;
@@ -406,7 +407,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected void AlteracoesIniciaisPapcard(Arquivo _arquivo)
+        protected void AlteracoesIniciaisPapcard(IArquivo _arquivo)
         {
             for (int i = 0; i < _arquivo.Linhas.Count; i++)
             {

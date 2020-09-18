@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,7 @@ namespace Acelera.Domain.Entidades.Interfaces
     public interface ILinhaTabela : ICloneable
     {
         TabelasEnum TabelaReferente { get; }
-        List<Campo> Campos { get; set; }
+        List<ICampo> Campos { get; set; }
         string ObterNomeTabela();
 
         void CarregarLinhaPeloCMD(string retornoQuery);
@@ -20,6 +21,6 @@ namespace Acelera.Domain.Entidades.Interfaces
 
         bool Validar(string campo, string valorEsperado);
 
-        Campo ObterPorColuna(string coluna);
+        ICampo ObterPorColuna(string coluna);
     }
 }

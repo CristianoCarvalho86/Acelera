@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
@@ -19,7 +20,7 @@ namespace Acelera.Testes
         protected override string NomeFG => "FG01";
 
         
-        public virtual void ValidarFGsAnteriores(Arquivo _arquivo = null) 
+        public virtual void ValidarFGsAnteriores(IArquivo _arquivo = null) 
         {
             SetarArquivoEmUso(ref _arquivo);
 
@@ -38,13 +39,13 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        public override void ValidarTabelaDeRetorno(Arquivo _arquivo = null, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(IArquivo _arquivo = null, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             _arquivo = arquivo == null ? this.arquivo : _arquivo;
             ValidarTabelaDeRetornoFG01(_arquivo, naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados);
         }
 
-        public void ValidarTabelaDeRetornoFG01(Arquivo _arquivo ,bool naoDeveEncontrar = false,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public void ValidarTabelaDeRetornoFG01(IArquivo _arquivo ,bool naoDeveEncontrar = false,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -66,13 +67,13 @@ namespace Acelera.Testes
             }
         }
 
-        public void ValidarFG01_2(Arquivo _arquivo, CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = null)
+        public void ValidarFG01_2(IArquivo _arquivo, CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = null)
         {
             ValidarTabelaDeRetorno(_arquivo,erroEsperadoNaTabelaDeRetorno);
             ValidarStages(codigoEsperadoStage,false, _arquivo);
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        protected override IList<string> ObterProceduresASeremExecutadas(IArquivo _arquivo)
         {
             return RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo);
         }

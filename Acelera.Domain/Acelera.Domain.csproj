@@ -56,8 +56,6 @@
     <Compile Include="Entidades\Cobertura.cs" />
     <Compile Include="Entidades\Consultas\Consulta.cs" />
     <Compile Include="Entidades\Consultas\FabricaConsulta.cs" />
-    <Compile Include="Entidades\Interfaces\ILinhaTabela.cs" />
-    <Compile Include="Entidades\Interfaces\ITriplice.cs" />
     <Compile Include="Entidades\JsonLayout.cs" />
     <Compile Include="Entidades\LinhaTabela.cs" />
     <Compile Include="Entidades\SGS\ClienteSGS.cs" />
@@ -89,16 +87,6 @@
     <Compile Include="Entidades\Tabelas\LinhaControleArquivo.cs" />
     <Compile Include="Entidades\Tabelas\LinhaLogProcessamento.cs" />
     <Compile Include="Entidades\Tabelas\Tabela.cs" />
-    <Compile Include="Enums\BatEnum.cs" />
-    <Compile Include="Enums\CodigoStage.cs" />
-    <Compile Include="Enums\DBEnum.cs" />
-    <Compile Include="Enums\FGs.cs" />
-    <Compile Include="Enums\ModoExecucaoEnum.cs" />
-    <Compile Include="Enums\OperacaoEnum.cs" />
-    <Compile Include="Enums\OperadoraEnum.cs" />
-    <Compile Include="Enums\TabelasEnum.cs" />
-    <Compile Include="Enums\TabelasOIMEnum.cs" />
-    <Compile Include="Enums\TipoArquivo.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
     <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Extensions\DocumentationExtensions.cs" />
@@ -142,6 +130,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Acelera.Contratos\Acelera.Contratos.csproj">
+      <Project>{0C0F9D0D-575B-4641-9AD8-5D2F40DA62B0}</Project>
+      <Name>Acelera.Contratos</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

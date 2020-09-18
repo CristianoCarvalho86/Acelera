@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Layouts;
 using Acelera.Utils;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Editor
 {
     public partial class FrmEditor : Form
     {
-        private Arquivo arquivo;
+        private IArquivo arquivo;
         private DataTable dadosDoArquivo;
         private DataTable dadosDoHeader ;
         private DataTable dadosDoFooter ;
@@ -353,7 +354,7 @@ namespace Editor
             DefinirVisibilidadeBotoes(true, false);
         }
 
-        private string CarregarIdTransacao(LinhaArquivo linha)
+        private string CarregarIdTransacao(ILinhaArquivo linha)
         {
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }

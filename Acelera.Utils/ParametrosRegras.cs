@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using System;
@@ -51,14 +52,14 @@ namespace Acelera.Utils
                 return "1";
         }
 
-        public static string CarregaProximoNumeroSequencialEmissao(LinhaArquivo linhaDeReferencia, OperadoraEnum operadora)
+        public static string CarregaProximoNumeroSequencialEmissao(ILinhaArquivo linhaDeReferencia, OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.PAPCARD)
                 return ControleNomeArquivo.Instancia.ObtemValor("SequencialPapcard");
             else
                 return (int.Parse(linhaDeReferencia["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString();
         }
-        public static string CarregaPrimeiroNumeroEndosso(LinhaArquivo linhaDeReferencia, OperadoraEnum operadora)
+        public static string CarregaPrimeiroNumeroEndosso(ILinhaArquivo linhaDeReferencia, OperadoraEnum operadora)
         {
             if (operadora == OperadoraEnum.PAPCARD)
                 return linhaDeReferencia["CD_SUCURSAL"] + linhaDeReferencia["CD_RAMO"] + RandomNumber.GerarNumeroAleatorio(7);
@@ -66,7 +67,7 @@ namespace Acelera.Utils
                 return "0";
         }
 
-        public static string CarregaProximoNumeroEndosso(LinhaArquivo linhaDeReferencia)
+        public static string CarregaProximoNumeroEndosso(ILinhaArquivo linhaDeReferencia)
         {
             return linhaDeReferencia["CD_SUCURSAL"] + linhaDeReferencia["CD_RAMO"] + RandomNumber.GerarNumeroAleatorio(7);
         }

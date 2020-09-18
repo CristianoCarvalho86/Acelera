@@ -994,6 +994,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Acelera.Contratos\Acelera.Contratos.csproj">
+      <Project>{0c0f9d0d-575b-4641-9ad8-5d2f40da62b0}</Project>
+      <Name>Acelera.Contratos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Acelera.Data\Acelera.Data.csproj">
       <Project>{D87FCB24-4A72-418F-8F43-F2212AE2FACA}</Project>
       <Name>Acelera.Data</Name>

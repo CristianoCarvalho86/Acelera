@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 namespace Acelera.Domain.Layouts
 {
     [Serializable]
-    public class CampoDoArquivo : Campo
+    public class CampoDoArquivo : Campo, ICampoDoArquivo
     {
-        public CampoDoArquivo Clone()
+        public ICampoDoArquivo Clone()
         {
             var campo = new CampoDoArquivo(ColunaArquivo, Posicoes);
             campo.NomeBanco = NomeBanco;
@@ -58,5 +59,6 @@ namespace Acelera.Domain.Layouts
                 $"ERRO AO ALTERAR ARQUIVO - CAMPO '{ColunaArquivo}' ESTOUROU O LIMITE DE POSIÇÕES. MAX: '{this.Posicoes}'");
 
         }
+
     }
 }

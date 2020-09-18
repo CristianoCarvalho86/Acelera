@@ -1,4 +1,5 @@
-﻿using Acelera.Data;
+﻿using Acelera.Contratos;
+using Acelera.Data;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -674,7 +675,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
         }
 
 
-        public Arquivo EnviarEmissao<T, C>(OperadoraEnum operadora, bool clienteEnviado = true) where T : Arquivo, new() where C : Arquivo, new()
+        public IArquivo EnviarEmissao<T, C>(OperadoraEnum operadora, bool clienteEnviado = true) where T : Arquivo, new() where C : Arquivo, new()
         {
             arquivo = new T();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
@@ -716,7 +717,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             return arquivoParc.Clone();
         }
 
-        private void CarregarComissao(string tipoComissao, Arquivo arquivoParc, Arquivo arquivoComissao, int indexLinhaParc = 0)
+        private void CarregarComissao(string tipoComissao, IArquivo arquivoParc, IArquivo arquivoComissao, int indexLinhaParc = 0)
         {
             IgualarCamposQueExistirem(arquivoParc.ObterLinha(indexLinhaParc), arquivoComissao.ObterLinha(0));
             if (arquivoParc.ObterValorFormatado(indexLinhaParc, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0M)
@@ -728,7 +729,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
                 arquivoComissao.AlterarLinhaSeExistirCampo(0, "CD_TIPO_COMISSAO", tipoComissao);
         }
 
-        public void CarregarCancelamento<T, C>(LinhaArquivo linhaArquivoEmissao, bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
+        public void CarregarCancelamento<T, C>(ILinhaArquivo linhaArquivoEmissao, bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,
 bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissao = "", string cdMovtoCobranca = "") where T : Arquivo, new() where C : Arquivo, new()
         {
             logger.Escrever($"CRIANDO ARQUIDO DE PARC_EMISSAO PARA CANCELAMENTO - {operadora.ObterTexto()}");
@@ -879,7 +880,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
         }
 
-        public void PrepararMassaParaParcela(Arquivo arquivo, OperadoraEnum operadora, out string tipoCorretor)
+        public void PrepararMassaParaParcela(IArquivo arquivo, OperadoraEnum operadora, out string tipoCorretor)
         {
             tipoCorretor = "";
 
@@ -949,7 +950,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             //DBHelperHana.Instance.SetConnection("Server=zeus.hana.prod.sa-east-1.whitney.dbaas.ondemand.com:20272;UID=CCARVALHO;PWD=Generali@10;encrypt=TRUE;");
         }
 
-        private void ValidarFG04(Arquivo _arquivo)
+        private void ValidarFG04(IArquivo _arquivo)
         {
             ExecutarEValidarFG04Comissao(_arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"),
     nomeDoArquivoParaValidacao, CodigoStage.AprovadoNAFG00);

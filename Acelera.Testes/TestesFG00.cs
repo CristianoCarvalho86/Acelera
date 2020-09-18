@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Stages;
@@ -29,7 +30,7 @@ namespace Acelera.Testes
         {
             ValidarControleArquivo(this.arquivo, descricaoErroSeHouver);
         }
-        public void ValidarControleArquivo(Arquivo _arquivo, params string[] descricaoErroSeHouver)
+        public void ValidarControleArquivo(IArquivo _arquivo, params string[] descricaoErroSeHouver)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -87,7 +88,7 @@ namespace Acelera.Testes
         }
 
 
-        public override void ValidarTabelaDeRetorno(Arquivo _arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(IArquivo _arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             ValidarTabelaDeRetornoFG00(naoDeveEncontrar, validaQuantidadeErros, _arquivo, codigosDeErroEsperados);
         }
@@ -96,12 +97,12 @@ namespace Acelera.Testes
         {
             ValidarTabelaDeRetornoFG00(false, false, arquivo, codigosDeErroEsperados);
         }
-        public void ValidarTabelaDeRetorno(Arquivo arquivo, params string[] codigosDeErroEsperados)
+        public void ValidarTabelaDeRetorno(IArquivo arquivo, params string[] codigosDeErroEsperados)
         {
             ValidarTabelaDeRetornoFG00(false, false, arquivo, codigosDeErroEsperados);
         }
 
-        public void ValidarTabelaDeRetornoFG00(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, Arquivo _arquivo = null, params string[] codigosDeErroEsperados)
+        public void ValidarTabelaDeRetornoFG00(bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, IArquivo _arquivo = null, params string[] codigosDeErroEsperados)
         {
             _arquivo = _arquivo == null ? this.arquivo : _arquivo;
 
@@ -125,19 +126,19 @@ namespace Acelera.Testes
             }
         }
 
-        public IList<ILinhaTabela> ValidarStages(bool deveEncontrarRegistro, int codigoEsperado = 0,Arquivo _arquivo = null)
+        public IList<ILinhaTabela> ValidarStages(bool deveEncontrarRegistro, int codigoEsperado = 0,IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
             return ValidarStages(_arquivo, deveEncontrarRegistro, codigoEsperado);
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        protected override IList<string> ObterProceduresASeremExecutadas(IArquivo _arquivo)
         {
             return RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo);
         }
 
         [Obsolete]
-        public void ValidarStages<T>(Arquivo arquivo, TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
+        public void ValidarStages<T>(IArquivo arquivo, TabelasEnum tabela, bool deveHaverRegistro, int codigoEsperado = 0) where T : LinhaTabela, new()
         {
             ValidarStages(arquivo, deveHaverRegistro, codigoEsperado);
         }

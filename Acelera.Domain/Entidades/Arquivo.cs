@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,12 +16,12 @@ using System.Threading.Tasks;
 namespace Acelera.Domain.Layouts
 {
     [Serializable]
-    public abstract class Arquivo
+    public abstract class Arquivo : IArquivo
     {
         protected string textoArquivo;
-        public IList<LinhaArquivo> Header { get; set; }
-        public IList<LinhaArquivo> Linhas { get; set; }
-        public IList<LinhaArquivo> Footer { get; set; }
+        public IList<ILinhaArquivo> Header { get; set; }
+        public IList<ILinhaArquivo> Linhas { get; set; }
+        public IList<ILinhaArquivo> Footer { get; set; }
 
         public abstract TipoArquivo tipoArquivo { get; }
 
@@ -40,11 +41,11 @@ namespace Acelera.Domain.Layouts
 
         protected abstract string[] CamposChaves { get; }
 
-        public LinhaArquivo UltimaLinha => Linhas[Linhas.Count - 1];
+        public ILinhaArquivo UltimaLinha => Linhas[Linhas.Count - 1];
 
-        public AlteracoesArquivo valoresAlteradosBody { get; set; }
-        public AlteracoesArquivo valoresAlteradosHeader { get; set; }
-        public AlteracoesArquivo valoresAlteradosFooter { get; set; }
+        public IAlteracoesArquivo valoresAlteradosBody { get; set; }
+        public IAlteracoesArquivo valoresAlteradosHeader { get; set; }
+        public IAlteracoesArquivo valoresAlteradosFooter { get; set; }
 
         private OperadoraEnum? _operadora;
         public OperadoraEnum Operadora { 
@@ -80,7 +81,7 @@ namespace Acelera.Domain.Layouts
             valoresAlteradosHeader = new AlteracoesArquivo();
         }
 
-        public Arquivo Clone()
+        public IArquivo Clone()
         {
             //var inst = this.GetType().GetMethod("MemberwiseClone", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             //var a = (Arquivo)inst?.Invoke(this, null);
@@ -109,7 +110,7 @@ namespace Acelera.Domain.Layouts
             //return newObject;
         }
 
-        public Arquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)
+        public IArquivo Carregar(string enderecoArquivo, int? qtdHeader = 1, int? qtdFooter = 1, int limiteDeLinhas = 0)
         {
             EnderecoCompleto = enderecoArquivo;
             LimiteDeLinhas = limiteDeLinhas;
@@ -173,13 +174,13 @@ namespace Acelera.Domain.Layouts
             Linhas = Linhas.Distinct().ToList();
         }
 
-        public virtual void AdicionaLinhaNoBody(LinhaArquivo linha)
+        public virtual void AdicionaLinhaNoBody(ILinhaArquivo linha)
         {
             Linhas.Add(linha.Clone());
             ReIndexar();
             AjustarQtdLinhasNoFooter();
         }
-        public virtual void AdicionaLinhaNoBody(IList<LinhaArquivo> linhas)
+        public virtual void AdicionaLinhaNoBody(IList<ILinhaArquivo> linhas)
         {
             foreach (var linha in linhas)
                 Linhas.Add(linha.Clone());
@@ -215,12 +216,12 @@ namespace Acelera.Domain.Layouts
             return decimal.Parse(Linhas.ToList()[posicaoLinha].ObterCampoDoArquivo(campo).ValorFormatado);
         }
 
-        public LinhaArquivo ObterLinha(int posicaoLinha)
+        public ILinhaArquivo ObterLinha(int posicaoLinha)
         {
             return Linhas.ToList()[posicaoLinha];
         }
 
-        public LinhaArquivo ObterLinha(Guid idLinha)
+        public ILinhaArquivo ObterLinha(Guid idLinha)
         {
             return Linhas.ToList().Where(x => x.Id == idLinha).First();
         }
@@ -232,12 +233,12 @@ namespace Acelera.Domain.Layouts
             return true;
         }
 
-        public IList<LinhaArquivo> ObterLinhasOndeCampoIgualAValor(string campo, string valor)
+        public IList<ILinhaArquivo> ObterLinhasOndeCampoIgualAValor(string campo, string valor)
         {
             return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(campo).ValorFormatado == valor).ToList();
         }
 
-        public IList<LinhaArquivo> ObterLinhasComValores(string[] nomeCampo, string[] valor)
+        public IList<ILinhaArquivo> ObterLinhasComValores(string[] nomeCampo, string[] valor)
         {
             Assert.AreEqual(nomeCampo.Length, valor.Length, "ERRO DE NUMERO DE PARAMETROS");
             Assert.AreEqual(nomeCampo.Length, 6, "ERRO DE NUMERO DE PARAMETROS");
@@ -250,17 +251,17 @@ namespace Acelera.Domain.Layouts
             && x.ObterCampoDoArquivo(nomeCampo[5]).ValorFormatado == valor[5]).ToList();
         }
 
-        public IList<LinhaArquivo> ObterLinhasComValores(string nomeCampo, string valorFormatado)
+        public IList<ILinhaArquivo> ObterLinhasComValores(string nomeCampo, string valorFormatado)
         {
             return Linhas.ToList().Where(x => x.ObterCampoDoArquivo(nomeCampo).ValorFormatado == valorFormatado).ToList();
         }
 
-        public LinhaArquivo ObterLinhaHeader(int posicaoLinha = 0)
+        public ILinhaArquivo ObterLinhaHeader(int posicaoLinha = 0)
         {
             return Header[posicaoLinha];
         }
 
-        public LinhaArquivo ObterLinhaFooter(int posicaoLinha = 0)
+        public ILinhaArquivo ObterLinhaFooter(int posicaoLinha = 0)
         {
             return Footer[posicaoLinha];
         }
@@ -322,7 +323,7 @@ namespace Acelera.Domain.Layouts
             return false;
         }
 
-        public void AdicionarLinha(LinhaArquivo linha, int? posicaoLinha = null)
+        public void AdicionarLinha(ILinhaArquivo linha, int? posicaoLinha = null)
         {
             if (posicaoLinha.HasValue)
                 Linhas.Insert(posicaoLinha.Value, linha);
@@ -382,7 +383,7 @@ namespace Acelera.Domain.Layouts
         }
         public void RemoverTodasLinhasDoBody()
         {
-            Linhas = new List<LinhaArquivo>();
+            Linhas = new List<ILinhaArquivo>();
             AjustarQtdLinhasNoFooter();
         }
 
@@ -406,12 +407,12 @@ namespace Acelera.Domain.Layouts
             }
         }
 
-        protected abstract void CarregaCamposDoLayout(LinhaArquivo linha);
+        protected abstract void CarregaCamposDoLayout(ILinhaArquivo linha);
 
-        protected IList<LinhaArquivo> CarregaLinhas(IEnumerable<string> linhas)
+        public IList<ILinhaArquivo> CarregaLinhas(IEnumerable<string> linhas)
         {
-            var linhasPreenchidas = new List<LinhaArquivo>();
-            LinhaArquivo linha;
+            var linhasPreenchidas = new List<ILinhaArquivo>();
+            ILinhaArquivo linha;
             var count = 0;
             foreach (var l in linhas)
             {
@@ -424,9 +425,9 @@ namespace Acelera.Domain.Layouts
             return linhasPreenchidas;
         }
 
-        protected virtual IList<LinhaArquivo> CarregaHeader(IEnumerable<string> linhas)
+        public virtual IList<ILinhaArquivo> CarregaHeader(IEnumerable<string> linhas)
         {
-            var listaHeader = new List<LinhaArquivo>();
+            var listaHeader = new List<ILinhaArquivo>();
             var count = 0;
             foreach (var linha in linhas)
             {
@@ -448,16 +449,16 @@ namespace Acelera.Domain.Layouts
             return listaHeader;
         }
 
-        private void ValidaHeader(LinhaArquivo header)
+        private void ValidaHeader(ILinhaArquivo header)
         {
             //Assert.IsTrue(new string[] { "9.3", "9.4","9.6" }.Contains(header.ObterCampoDoArquivo("VERSAO").Valor.Trim()), "FORMATAÇÃO DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
             var cdTpa = header.ObterCampoDoArquivo("CD_TPA").Valor.Trim();
             Assert.IsTrue(cdTpa.Length == 3 && int.TryParse(cdTpa, out int r), "CD_TPA DO HEADER DO ARQUIVO ORIGEM NÃO ESTÁ CORRETA");
         }
 
-        protected virtual IList<LinhaArquivo> CarregaFooter(IEnumerable<string> linhas)
+        public virtual IList<ILinhaArquivo> CarregaFooter(IEnumerable<string> linhas)
         {
-            var listaFooter = new List<LinhaArquivo>();
+            var listaFooter = new List<ILinhaArquivo>();
             var count = 0;
             foreach (var linha in linhas)
             {
@@ -473,7 +474,7 @@ namespace Acelera.Domain.Layouts
             return listaFooter;
         }
 
-        public LinhaArquivo this[int posicao]
+        public ILinhaArquivo this[int posicao]
         {
             get => ObterLinha(posicao);
         }
@@ -485,7 +486,7 @@ namespace Acelera.Domain.Layouts
         public void RemoverValoresRepetidosNoCampo(string nomeCampo)
         {
             var valoresUnicos = Linhas.Select(x => x.ObterValorFormatado(nomeCampo)).Distinct();
-            var novaLista = new List<LinhaArquivo>();
+            var novaLista = new List<ILinhaArquivo>();
             Parallel.ForEach(valoresUnicos, valor => {
                 novaLista.Add(Linhas.Where(x => x.ObterValorFormatado(nomeCampo) == valor).First());
             });
@@ -521,9 +522,9 @@ namespace Acelera.Domain.Layouts
             ReIndexar();
         }
 
-        public LinhaArquivo SelecionarPrimeiraLinhaEncontrada(IList<KeyValuePair<string, string>> valoresDosCampos)
+        public ILinhaArquivo SelecionarPrimeiraLinhaEncontrada(IList<KeyValuePair<string, string>> valoresDosCampos)
         {
-            LinhaArquivo linhaEncontrada = null;
+            ILinhaArquivo linhaEncontrada = null;
             Parallel.ForEach(Linhas, (linha, loopState) => {
                 var linhaValida = true;
                 foreach (var valorPorCampo in valoresDosCampos)
@@ -541,7 +542,7 @@ namespace Acelera.Domain.Layouts
         }
 
 
-        public IList<KeyValuePair<string, string>> ObterValoresDosCamposChaves(LinhaArquivo linha)
+        public IList<KeyValuePair<string, string>> ObterValoresDosCamposChaves(ILinhaArquivo linha)
         {
             var lista = new List<KeyValuePair<string, string>>();
             foreach (var campoChave in CamposChaves)
@@ -551,7 +552,7 @@ namespace Acelera.Domain.Layouts
             return lista;
         }
 
-        public LinhaArquivo CriarLinhaVazia(int index)
+        public ILinhaArquivo CriarLinhaVazia(int index)
         {
             var novaLinha = new LinhaArquivo(index, Operadora);
             CarregaCamposDoLayout(novaLinha);

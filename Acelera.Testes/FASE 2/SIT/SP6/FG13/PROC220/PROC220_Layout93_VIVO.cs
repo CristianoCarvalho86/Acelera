@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
@@ -23,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC220
 
             SalvaExecutaEValidaTrinca(false);
 
-            CriarCancelamentoDaTrincaFG13(OperadoraEnum.VIVO, out Arquivo arquivoParcCancelamento, out Arquivo arquivoComissaoCancelamento, "10", false);
+            CriarCancelamentoDaTrincaFG13(OperadoraEnum.VIVO, out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento, "10", false);
 
             arquivo = new Arquivo_Layout_9_3_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.VIVO);

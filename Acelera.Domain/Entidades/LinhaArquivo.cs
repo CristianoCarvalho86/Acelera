@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -7,16 +8,15 @@ using System.Linq;
 namespace Acelera.Domain.Layouts
 {
     [Serializable]
-    public class LinhaArquivo
+    public class LinhaArquivo : ILinhaArquivo
     {
-        public List<CampoDoArquivo> Campos { get; set; }
+        public List<ICampoDoArquivo> Campos { get; set; }
 
         public OperadoraEnum OperadoraDoArquivo { get;private set; }
 
         public int Index { get; set; }
 
         public Guid Id { get; set; }
-
         public string this[string nomeCampo]
         {
             get => ObterCampoDoArquivo(nomeCampo).ValorFormatado;
@@ -24,14 +24,14 @@ namespace Acelera.Domain.Layouts
 
         public LinhaArquivo(int index, OperadoraEnum operadora)
         {
-            Campos = new List<CampoDoArquivo>();
+            Campos = new List<ICampoDoArquivo>();
             Index = index;
             Id = Guid.NewGuid();
             OperadoraDoArquivo = operadora;
         }
 
 
-        public CampoDoArquivo ObterCampoDoBanco(string nomeCampo)
+        public ICampoDoArquivo ObterCampoDoBanco(string nomeCampo)
         {
             var campo = Campos.Where(x => x.Coluna.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
             if (campo == null)
@@ -40,7 +40,7 @@ namespace Acelera.Domain.Layouts
             return campo;
         }
 
-        public CampoDoArquivo ObterCampoDoArquivo(string nomeCampo)
+        public ICampoDoArquivo ObterCampoDoArquivo(string nomeCampo)
         {
             var campo = Campos.Where(x => x.ColunaArquivo.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
             Assert.IsNotNull(campo, $"CAMPO NAO ENCONTRADO : '{nomeCampo}'");
@@ -61,7 +61,7 @@ namespace Acelera.Domain.Layouts
             return campo.ValorInteiro;
         }
 
-        public CampoDoArquivo ObterCampoSeExistir(string nomeCampo)
+        public ICampoDoArquivo ObterCampoSeExistir(string nomeCampo)
         {
             var campo = Campos.Where(x => x.Coluna.ToUpper() == nomeCampo.ToUpper()).FirstOrDefault();
             if (campo == null)
@@ -89,7 +89,7 @@ namespace Acelera.Domain.Layouts
             return texto;
         }
 
-        public LinhaArquivo Clone()
+        public ILinhaArquivo Clone()
         {
             var linha = new LinhaArquivo(Index,OperadoraDoArquivo);
             foreach (var c in Campos)

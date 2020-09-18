@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Layouts;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Layouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Acelera.Utils
         private const string linhaPITZI =   "03-1   7101 5908 71   71399481020   7 -11 -1   EMS717100801052937     2     101589     1                     5807201  20200709717100801052937     2020070920200709        2020070920210708717100801052937                         71710000001         0080000001                      0.00            0.0020200709           36.86            2.72            0.00            0.00           39.58              106         2199.00         2199.00 0.00            0.00            0.004                   439.8071729     71710080105293771710000001711                                                   6    SP                                                                                                         ";
         private const string linhaTimCapa = "03   -177 03 5908   79793920010   18 4-1-1   -1EMS     797700210058838    1 0     01612                   1  215958  120200213     7977002100588382020021320200213202002132020021320220213     797700210058838                                       0                   0            0.00            0.0020200220            0.00            0.00            0.00            0.00            0.00      1.000000006            0.00          150.000.000            0.00            0.00                      0.00     77504                     7977002100588380770                                             RJ                                                                                                         ";
 
-        public static LinhaArquivo CarregaLinhaEmissaoTIM(LinhaArquivo linhaCapa, int indexDaNovaLinha)
+        public static ILinhaArquivo CarregaLinhaEmissaoTIM(ILinhaArquivo linhaCapa, int indexDaNovaLinha)
         {
             var linha = linhaCapa.Clone();
             linha.Index = indexDaNovaLinha;
@@ -22,7 +23,7 @@ namespace Acelera.Utils
             return linha;
         }
 
-        public static LinhaArquivo CarregaLinhaCapaTIM(LinhaArquivo linhaReferencia)
+        public static ILinhaArquivo CarregaLinhaCapaTIM(ILinhaArquivo linhaReferencia)
         {
             var linha = linhaReferencia.Clone();
             linha.Index = linhaReferencia.Index + 1;
@@ -30,7 +31,7 @@ namespace Acelera.Utils
             return linha;
         }
 
-        public static LinhaArquivo CarregaLinhaEmissaoAGREGUE(LinhaArquivo linhaCapa, int indexDaNovaLinha)
+        public static ILinhaArquivo CarregaLinhaEmissaoAGREGUE(ILinhaArquivo linhaCapa, int indexDaNovaLinha)
         {
             var linha = linhaCapa.Clone();
             linha.Index = indexDaNovaLinha;
@@ -38,7 +39,7 @@ namespace Acelera.Utils
             return linha;
         }
 
-        public static LinhaArquivo CarregaLinhaEmissaoPITZI(LinhaArquivo linhaCapa, int indexDaNovaLinha)
+        public static ILinhaArquivo CarregaLinhaEmissaoPITZI(ILinhaArquivo linhaCapa, int indexDaNovaLinha)
         {
             var linha = linhaCapa.Clone();
             linha.Index = indexDaNovaLinha;

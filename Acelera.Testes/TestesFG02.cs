@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.Interfaces;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -31,7 +32,7 @@ namespace Acelera.Testes
             
         }
 
-        public override void ValidarFGsAnteriores(Arquivo _arquivo = null)
+        public override void ValidarFGsAnteriores(IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
 
@@ -79,7 +80,7 @@ namespace Acelera.Testes
             ValidarTabelaDeRetorno(naoDeveEncontarOsErrosDefinidos, false, codigosDeErroEsperados);
         }
 
-        public override void ValidarTabelaDeRetorno(Arquivo _arquivo, bool naoDeveEncontrarOsErrosDefinidos,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public override void ValidarTabelaDeRetorno(IArquivo _arquivo, bool naoDeveEncontrarOsErrosDefinidos,bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
         {
             if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao)
                 return;
@@ -114,13 +115,13 @@ namespace Acelera.Testes
 
             ValidarTabelaDeRetorno(naoDeveEncontrar, true, erros);
         }
-        public new void ValidarTabelaDeRetorno(Arquivo _arquivo = null,params string[] codigosDeErroEsperados)
+        public new void ValidarTabelaDeRetorno(IArquivo _arquivo = null,params string[] codigosDeErroEsperados)
         {
             _arquivo = _arquivo == null ? arquivo : _arquivo;
             ValidarTabelaDeRetorno(_arquivo,false, false, codigosDeErroEsperados);
         }
 
-        protected void ValidarStagesSemGerarErro(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false, Arquivo _arquivo = null)
+        protected void ValidarStagesSemGerarErro(CodigoStage codigo, bool aoMenosUmComCodigoEsperado = false, IArquivo _arquivo = null)
         {
             _arquivo = _arquivo == null ? arquivo : _arquivo;
             var statusAtualDoTeste = sucessoDoTeste;
@@ -135,7 +136,7 @@ namespace Acelera.Testes
             }
         }
 
-        protected void ValidarTabelaDeRetornoSemGerarErro(Arquivo _arquivo = null)
+        protected void ValidarTabelaDeRetornoSemGerarErro(IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
             var statusAtualDoTeste = sucessoDoTeste;
@@ -152,12 +153,12 @@ namespace Acelera.Testes
         }
 
 
-        protected string CarregarIdtransacao(LinhaArquivo linha)
+        protected string CarregarIdtransacao(ILinhaArquivo linha)
         {
             return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
         }
 
-        public override void FinalizarAlteracaoArquivo(Arquivo _arquivo = null)
+        public override void FinalizarAlteracaoArquivo(IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
             if (_arquivo.tipoArquivo == TipoArquivo.ParcEmissao || _arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
@@ -175,7 +176,7 @@ namespace Acelera.Testes
             base.FinalizarAlteracaoArquivo(_arquivo);
         }
 
-        public virtual IList<ILinhaTabela> ExecutarEValidar(Arquivo _arquivo, FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
+        public virtual IList<ILinhaTabela> ExecutarEValidar(IArquivo _arquivo, FGs fG, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
         {
             SelecionarLinhaParaValidacao(0,false, _arquivo);
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaDaFG(fG));
@@ -185,7 +186,7 @@ namespace Acelera.Testes
             return ValidarStages(_arquivo, deveHaverRegistro, (int)codigoEsperado);
         }
 
-        public virtual IList<ILinhaTabela> ExecutarEValidarBatch(Arquivo _arquivo, string batch, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
+        public virtual IList<ILinhaTabela> ExecutarEValidarBatch(IArquivo _arquivo, string batch, CodigoStage codigoEsperado, string cdMensagemNaTabelaDeRetorno = "", bool deveHaverRegistro = true)
         {
             SelecionarLinhaParaValidacao(0, false, _arquivo);
 
@@ -202,7 +203,7 @@ namespace Acelera.Testes
             return ValidarStages(_arquivo, deveHaverRegistro, (int)codigoEsperado);
         }
 
-        protected void ExecutarEValidarAteFg02(Arquivo _arquivo, string mensagemErroNaTabelaDeRetorno = "")
+        protected void ExecutarEValidarAteFg02(IArquivo _arquivo, string mensagemErroNaTabelaDeRetorno = "")
         {
             ExecutarEValidar(_arquivo, FGs.FG00, FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
             ValidarControleArquivo(_arquivo);
@@ -221,7 +222,7 @@ namespace Acelera.Testes
             ValidarTeste();
         }
 
-        public virtual IList<ILinhaTabela> ExecutarEValidarEsperandoErro(Arquivo _arquivo, FGs fG, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
+        public virtual IList<ILinhaTabela> ExecutarEValidarEsperandoErro(IArquivo _arquivo, FGs fG, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
         {
             SelecionarLinhaParaValidacao(0);
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaDaFG(fG));
@@ -235,7 +236,7 @@ namespace Acelera.Testes
             return ValidarStages(_arquivo, true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
         }
 
-        public virtual IList<ILinhaTabela> ValidarEsperandoErro(Arquivo _arquivo, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
+        public virtual IList<ILinhaTabela> ValidarEsperandoErro(IArquivo _arquivo, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
         {
             SelecionarLinhaParaValidacao(0);
 
@@ -251,7 +252,7 @@ namespace Acelera.Testes
             return linhas;
         }
 
-        protected override IList<string> ObterProceduresASeremExecutadas(Arquivo _arquivo)
+        protected override IList<string> ObterProceduresASeremExecutadas(IArquivo _arquivo)
         {
             return RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo);
         }

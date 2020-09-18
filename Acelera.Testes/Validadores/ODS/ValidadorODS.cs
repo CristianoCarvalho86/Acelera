@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
@@ -278,36 +279,44 @@ namespace Acelera.Testes.Validadores.ODS
 
                     if (campo.Coluna.Contains("VL_") || campo.Coluna.Contains("PC_"))
                     {
-                        decimal decStage = 0;
-                        decimal decOds = 0;
-                        if (linhaStage.TabelaReferente == TabelasEnum.ParcEmissao && rowOds.Table.TableName == TabelasEnum.OdsParcela.ObterTexto())
-                        {
-                            decStage = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage.ObterNomeTabela());
-                            decOds = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, rowOds.Table.TableName);
-                        }
-                        else if (linhaStage.TabelaReferente == TabelasEnum.ParcEmissao &&
-                            (rowOds.Table.TableName == TabelasEnum.OdsCobertura.ObterTexto() ||
-                            rowOds.Table.TableName == TabelasEnum.OdsCoberturaComissao.ObterTexto()))
-                            continue;
+                        //decimal decStage = 0;
+                        //decimal decOds = 0;
+                        //if (linhaStage.TabelaReferente == TabelasEnum.ParcEmissao && rowOds.Table.TableName == TabelasEnum.OdsParcela.ObterTexto())
+                        //{
+                        //    decStage = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage.ObterNomeTabela());
+                        //    decOds = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, rowOds.Table.TableName);
+                        //}
+                        //else if (linhaStage.TabelaReferente == TabelasEnum.ParcEmissao &&
+                        //    (rowOds.Table.TableName == TabelasEnum.OdsCobertura.ObterTexto() ||
+                        //    rowOds.Table.TableName == TabelasEnum.OdsCoberturaComissao.ObterTexto()))
+                        //    continue;
 
-                        if (linhaStage.TabelaReferente == TabelasEnum.Comissao)
-                        {
-                            decStage = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage.ObterNomeTabela(),
-                                $" AND CD_COBERTURA = '{linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado}' AND NR_SEQUENCIAL_EMISSAO = '{linhaStage.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' ");
-                            var idCobertura = dados.ObterIdCoberturaParaCodigosCoberturaEProduto(linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado, dados.ObterLinhaStageParcelaReferenteALinhaComissao(linhaStage).ObterPorColuna("CD_PRODUTO").ValorFormatado);
-                            if (rowOds.Table.Columns.Contains("ID_COBERTURA"))
-                                decOds = ObterSomatorio(campo.Coluna, "CD_COMISSAO", rowOds["CD_COMISSAO"].ToString(), rowOds.Table.TableName, $" AND ID_COBERTURA = '{idCobertura}'");
-                            else
-                                continue;
-                        }
+                        //if (linhaStage.TabelaReferente == TabelasEnum.Comissao)
+                        //{
+                        //    decStage = ObterSomatorio(campo.Coluna, "CD_CONTRATO", linhaStage.ObterPorColuna("CD_CONTRATO").ValorFormatado, linhaStage.ObterNomeTabela(),
+                        //        $" AND CD_COBERTURA = '{linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado}' AND NR_SEQUENCIAL_EMISSAO = '{linhaStage.ObterPorColuna("NR_SEQUENCIAL_EMISSAO").ValorFormatado}' ");
+                        //    var idCobertura = dados.ObterIdCoberturaParaCodigosCoberturaEProduto(linhaStage.ObterPorColuna("CD_COBERTURA").ValorFormatado, dados.ObterLinhaStageParcelaReferenteALinhaComissao(linhaStage).ObterPorColuna("CD_PRODUTO").ValorFormatado);
+                        //    if (rowOds.Table.Columns.Contains("ID_COBERTURA"))
+                        //        decOds = ObterSomatorio(campo.Coluna, "CD_COMISSAO", rowOds["CD_COMISSAO"].ToString(), rowOds.Table.TableName, $" AND ID_COBERTURA = '{idCobertura}'");
+                        //    else
+                        //        continue;
+                        //}
 
                         //decimal.TryParse(rowOds[campo.Coluna].ToString(),out decimal dec1);
                         //decimal.TryParse(valorDaStage.Replace(".",","), out decimal dec2);
-                        if (decStage != decOds)
+                        //if (decStage != decOds)
+                        //{
+                        //    erros += $"decStage : {decStage}";
+                        //    erros += $"decOds : {decOds}";
+                        //    erros += MensagemErroCampo(rowOds, linhaStage, erros, campo, valorDaStage);
+                        //}
+
+                        decimal.TryParse(rowOds[campo.Coluna].ToString(), out decimal dec1);
+                        decimal.TryParse(valorDaStage.Replace(".", ","), out decimal dec2);
+                        if (dec1 != dec2)
                         {
-                            erros += $"decStage : {decStage}";
-                            erros += $"decOds : {decOds}";
-                            erros += MensagemErroCampo(rowOds, linhaStage, erros, campo, valorDaStage);
+                            erros += $"Campo: {campo.Coluna} Na Stage = '{valorDaStage}' , valor encontrado : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}" +
+                                $"dec1 = '{dec1}'; dec2 = '{dec2}'";
                         }
                     }
                     else if (campo.Coluna.Contains("DT_"))
@@ -333,7 +342,7 @@ namespace Acelera.Testes.Validadores.ODS
             }
         }
 
-        private static string MensagemErroCampo(DataRow rowOds, ILinhaTabela linhaStage, string erros, Campo campo, string valorDaStage)
+        private static string MensagemErroCampo(DataRow rowOds, ILinhaTabela linhaStage, string erros, ICampo campo, string valorDaStage)
         {
             erros += $"Campo: {campo.Coluna} Na Stage '{linhaStage.TabelaReferente}' = '{valorDaStage}' , valor encontrado em '{rowOds.Table.TableName}' : '{rowOds[campo.Coluna].ToString()}'{Environment.NewLine}";
             return erros;

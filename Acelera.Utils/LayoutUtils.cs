@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Layouts._9_3;
@@ -16,7 +17,7 @@ namespace Acelera.Utils
 {
     public static class LayoutUtils
     {
-        public static Arquivo CarregarArquivo(string path)
+        public static IArquivo CarregarArquivo(string path)
         {
             var reader = new StreamReader(path);
             var header = reader.ReadLine();

@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Entidades.SGS;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -33,7 +34,7 @@ namespace Acelera.Testes.DataAccessRep
             return retorno;
         }
 
-        public void CarregarSinistroDoContrato(Arquivo arquivo, string cdContrato)
+        public void CarregarSinistroDoContrato(IArquivo arquivo, string cdContrato)
         {
 
         }

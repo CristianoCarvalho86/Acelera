@@ -1,5 +1,5 @@
-﻿using Acelera.Domain.Enums;
-using Acelera.Domain.Layouts;
+﻿using Acelera.Contratos;
+using Acelera.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,9 @@ namespace Acelera.Domain.Entidades.Interfaces
 {
     public interface ITrinca
     {
-        Arquivo ArquivoCliente { get; }
-        Arquivo ArquivoParcEmissao { get; set; }
-        Arquivo ArquivoComissao { get; }
+        IArquivo ArquivoCliente { get; }
+        IArquivo ArquivoParcEmissao { get; set; }
+        IArquivo ArquivoComissao { get; }
 
         OperadoraEnum Operadora { get; }
         bool EhParcAuto { get; }
@@ -30,7 +30,7 @@ namespace Acelera.Domain.Entidades.Interfaces
 
         void Salvar(bool salvaCliente = true, bool salvaParcela = true, bool salvaComissao = true);
 
-        void AlterarLayoutDaTrinca<TCliente, TParc, TComissao>() where TCliente : Arquivo, new() where TParc : Arquivo, new() where TComissao : Arquivo, new();
+        void AlterarLayoutDaTrinca<TCliente, TParc, TComissao>() where TCliente : IArquivo, new() where TParc : IArquivo, new() where TComissao : IArquivo, new();
 
         void IgualarArquivos();
 
