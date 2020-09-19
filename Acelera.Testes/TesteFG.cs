@@ -175,6 +175,9 @@ namespace Acelera.Testes
                 if(_arquivo.tipoArquivo == TipoArquivo.Sinistro)
                     ChamarExecucao("FGR_NR_ITEM_TP_ITEM_SINISTRO");
             }
+
+            _arquivo.valoresAlteradosBody = new AlteracoesArquivo();
+            SelecionarLinhaParaValidacao(0);
             var linhas = ValidarStages(codigoesperadostg, false, _arquivo);
 
             ValidarTeste();

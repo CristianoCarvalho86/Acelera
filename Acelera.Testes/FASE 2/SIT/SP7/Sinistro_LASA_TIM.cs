@@ -110,9 +110,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
-            var contrato = contratoRegras.GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), true);
-            AlterarLinha(0, "CD_AVISO", GerarNumeroAleatorio(8));
-
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(arquivo[0]["DT_MOVIMENTO"], 10));
+            //var contrato = contratoRegras.GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), true);
+            //AlterarLinha(0, "CD_AVISO", GerarNumeroAleatorio(8));
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);
@@ -150,7 +150,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
-            AlterarLinha(0, "CD_MOVIMENTO", "3");
+            AlterarLinha(0, "DT_MOVIMENTO", SomarData(arquivo[0]["DT_MOVIMENTO"], 10));
+
             SalvarArquivo(arquivo);
 
             ExecutarEValidarAteFg02(arquivo);

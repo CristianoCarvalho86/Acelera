@@ -22,13 +22,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
             arquivo = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
 
+            
+            CriarNovoContrato(0, null, "", true);
+            AlterarCobertura(false);
             emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
             AlterarLinha(1, "CD_RAMO", "00");
 
             SalvarArquivo();
 
-            //ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "233", 1);
+            ExecutarEValidarAteFg02(arquivo);
         }
 
     }
