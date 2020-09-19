@@ -21,16 +21,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC230
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            CriarNovoContrato(0);
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParcOds = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcOds);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcOds);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoComissaoOds = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcOds);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoParcOds);
             AlterarLinha(0, "CD_ITEM", "1234");
 
             SalvarArquivo();

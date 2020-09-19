@@ -34,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "9"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "9"));
             
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "9", "02", "9"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "9", "02", "9"));
             
             //AlterarHeader("VERSAO", "9.6");
 
@@ -69,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -80,7 +80,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "02", "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "02", "5"));
             
             //AlterarHeader("VERSAO", "9.6");
 
@@ -104,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11", "02", "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11", "02", "5"));
             
             //AlterarHeader("VERSAO", "9.6");
 
@@ -139,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "12"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "12"));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -150,7 +150,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "12", "02", "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "12", "02", "5"));
             
             //AlterarHeader("VERSAO", "9.6");
 
@@ -174,7 +174,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13"));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -185,7 +185,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13", "02", "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13", "02", "5"));
             
             //AlterarHeader("VERSAO", "9.6");
 
@@ -209,7 +209,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "21"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "21"));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -220,7 +220,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "21", "02", "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "21", "02", "5"));
             
             //AlterarHeader("VERSAO", "9.6");
 
@@ -244,7 +244,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11"));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -255,7 +255,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "21", "02", "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "21", "02", "5"));
             
             //AlterarHeader("VERSAO", "9.6");
 
@@ -279,7 +279,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             //AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "11"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "11"));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -290,7 +290,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC224
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "21", "02", "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "21", "02", "5"));
             //AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();

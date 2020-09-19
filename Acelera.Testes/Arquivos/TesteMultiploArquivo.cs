@@ -1,4 +1,5 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Utils;
 using Acelera.Testes.FASE_2;

@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             arquivo.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -31,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
-            IgualarCamposQueExistirem(arquivoods1, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoods1, arquivo);
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
 
             SalvarArquivo();
@@ -48,7 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
             CriarNovaLinhaParaEmissao(arquivoods1, 0);
             arquivoods1.AlterarLinha(0, "CD_MOVTO_COBRANCA", "01");
             arquivoods1.AlterarLinha(1, "CD_MOVTO_COBRANCA", "01");
@@ -57,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 2, OperadoraEnum.TIM);
-            IgualarCamposQueExistirem(arquivoods1, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoods1, arquivo);
             AlterarLinha(1, "CD_MOVTO_COBRANCA", "02");
 
             SalvarArquivo();

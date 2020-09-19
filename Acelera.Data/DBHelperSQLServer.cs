@@ -132,5 +132,10 @@ namespace Acelera.Data
             Conn.Close();
             Conn.Dispose();
         }
+
+        public int Execute(string sql, out string erro)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

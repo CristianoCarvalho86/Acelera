@@ -22,18 +22,18 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
             AlterarCobertura(false);
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
-            CriarNovoContrato(0);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
             var cobertura = dados.ObterCobertura(arquivo.Header[0]["CD_TPA"], 0, true);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoparc = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.COOP, arquivoparc);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.COOP, arquivoparc);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], arquivo[0]["CD_RAMO"], out string produto));
 

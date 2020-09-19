@@ -2,6 +2,7 @@
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -35,11 +36,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(@"C:\Cristiano\Origem2\C01.LASA.PARCEMS-EV-4627-20200612.TXT");
-            var contrato =AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var contrato =StringUtils.AlterarUltimasPosicoes(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             var cdCliente = GerarNumeroAleatorio(8);
 
             foreach (var linha in arquivo.Linhas)
-                CriarNovoContrato(linha.Index, arquivo, contrato);
+                contratoRegras.CriarNovoContrato(linha.Index, arquivo, contrato);
             arquivo.AlterarTodasAsLinhas("CD_CLIENTE", cdCliente);
             SalvarArquivo();
             //ExecutarEValidarAteFg05(arquivo);
@@ -47,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
 
             arquivo.Carregar(@"C:\Cristiano\Origem2\C01.LASA.PARCEMS-EV-4747-20200620.TXT");
             foreach (var linha in arquivo.Linhas)
-                CriarNovoContrato(linha.Index, arquivo, contrato);
+                contratoRegras.CriarNovoContrato(linha.Index, arquivo, contrato);
             arquivo.AlterarTodasAsLinhas("CD_CLIENTE", cdCliente);
             SalvarArquivo();
             //ExecutarEValidarAteFg05(arquivo);
@@ -91,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), -10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), -10));
             AlterarHeader("VERSAO", "9.6");
@@ -116,7 +117,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 1));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 365));
 
@@ -135,7 +136,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
@@ -160,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 10));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 40));
             SalvarArquivo();
@@ -183,7 +184,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 1));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
 
@@ -207,7 +208,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC196
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "DT_INICIO_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_INICIO_VIGENCIA"), 0));
             AlterarLinha(0, "DT_FIM_VIGENCIA", SomarData(arquivoods.ObterValorFormatado(0, "DT_FIM_VIGENCIA"), 0));
 

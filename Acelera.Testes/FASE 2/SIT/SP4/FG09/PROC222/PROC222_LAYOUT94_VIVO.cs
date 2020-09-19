@@ -45,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
 
             SalvarArquivo();
 
@@ -78,7 +78,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            CriarArquivoCancelamento(arquivoods, arquivo, "10");
+            cancelamentoRegras.CriarArquivoCancelamento(arquivoods, arquivo, "10");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
 
             SalvarArquivo();
@@ -112,7 +112,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
 
             SalvarArquivo();
 
@@ -124,7 +124,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
 
             SalvarArquivo();
 
@@ -157,7 +157,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            CriarArquivoCancelamento(arquivoods, arquivo, "10");
+            cancelamentoRegras.CriarArquivoCancelamento(arquivoods, arquivo, "10");
 
             SalvarArquivo();
 

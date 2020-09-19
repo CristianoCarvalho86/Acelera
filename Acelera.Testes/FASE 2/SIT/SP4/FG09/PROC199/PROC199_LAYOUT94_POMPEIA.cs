@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -83,7 +83,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             SalvarArquivo();
@@ -122,7 +122,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             SalvarArquivo();
@@ -161,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -200,7 +200,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -239,7 +239,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             SalvarArquivo();
@@ -278,7 +278,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -317,7 +317,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -356,7 +356,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             SalvarArquivo();
@@ -395,7 +395,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -434,7 +434,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -473,7 +473,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
             SalvarArquivo();
@@ -512,7 +512,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
 
             SalvarArquivo();
@@ -554,7 +554,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
             SalvarArquivo();
@@ -593,7 +593,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "CA");
 
             SalvarArquivo();
@@ -632,7 +632,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC199
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.POMPEIA, arquivoParcela, true);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "A");
 
             SalvarArquivo();

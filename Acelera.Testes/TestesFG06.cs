@@ -82,7 +82,7 @@ namespace Acelera.Testes
             triplice.AlterarParcEComissao(0, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(triplice.Operadora));
             triplice.AlterarParcEComissao(0, "NR_SEQUENCIAL_EMISSAO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroSequencialEmissao(triplice.Operadora));
 
-            CriarNovoContrato(0, triplice.ArquivoParcEmissao);
+            contratoRegras.CriarNovoContrato(0, triplice.ArquivoParcEmissao);
             triplice.AlterarParcEComissao(0, "CD_CONTRATO", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarParcEComissao(0, "NR_APOLICE", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             triplice.AlterarParcEComissao(0, "NR_PROPOSTA", triplice.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
@@ -125,7 +125,7 @@ namespace Acelera.Testes
 
          protected void AtualizarLinhaDeReferenciaParaComissao(ILinhaArquivo linhaParc, ILinhaArquivo linhaComissao)
         {
-            IgualarCamposQueExistirem(linhaParc, linhaComissao);
+            ArquivoUtils.IgualarCamposQueExistirem(linhaParc, linhaComissao, logger);
         }
 
         public override void FinalizarAlteracaoArquivo(IArquivo _arquivo)

@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(2);
 
-            CriarNovoContrato(0,arquivo,"",true);
+            contratoRegras.CriarNovoContrato(0,arquivo,"",true);
             var cdContrato = arquivo[0]["CD_CONTRATO"];
 
             SelecionarLinhaParaValidacao(0);
@@ -43,7 +43,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             RemoverLinhaComAjusteDeFooter(1);
             RemoverLinhaComAjusteDeFooter(1);
 
-            CriarNovoContrato(0, arquivo, cdContrato, true);
+            contratoRegras.CriarNovoContrato(0, arquivo, cdContrato, true);
 
             arquivo.AlterarTodasAsLinhas("CD_CLIENTE", cdCliente);
 

@@ -5,6 +5,7 @@ using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -37,7 +38,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
             trinca.AlterarParcEComissao(0, "CD_PRODUTO", cobertura.CdProduto);
 
             trinca.AlterarParcEComissao(0, "VL_LMI", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "VL_IS"));
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -84,7 +85,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
             trinca.AlterarParcEComissao(0, "CD_RAMO", cobertura.CdRamo);
             trinca.AlterarParcEComissao(0, "CD_PRODUTO", cobertura.CdProduto);
 
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -125,7 +126,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
             //não enviar comissao
             CarregarTrinca(OperadoraEnum.SOFTBOX);
 
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -166,7 +167,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             CarregarTrinca(OperadoraEnum.SOFTBOX);
 
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -199,7 +200,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             CarregarTrinca(OperadoraEnum.SOFTBOX);
 
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -241,7 +242,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             trinca.AlterarParcEComissao(0, "CD_CORRETOR", "");
             trinca.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "C");
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -283,7 +284,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             trinca.AlterarParcEComissao(0, "CD_CORRETOR", "");
             trinca.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "P");
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -328,7 +329,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             trinca.AlterarParcEComissao(0, "CD_CORRETOR", "7150145");
             trinca.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "R");
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -368,7 +369,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             CarregarTrinca(OperadoraEnum.POMPEIA);
 
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -403,7 +404,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             CarregarTrinca(OperadoraEnum.SOFTBOX);
 
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -449,7 +450,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             trinca.AlterarParcEComissao(0, "CD_CORRETOR", "7150145");
             trinca.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "P");
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -497,7 +498,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             trinca.AlterarParcEComissao(0, "CD_CORRETOR", "7150145");
             trinca.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "P");
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));
@@ -545,7 +546,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG04
 
             trinca.AlterarParcEComissao(0, "CD_CORRETOR", "7150145");
             trinca.AlterarParcEComissao(0, "CD_TIPO_COMISSAO", "P");
-            trinca.AlterarParcEComissao(0, "CD_CONTRATO", AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            trinca.AlterarParcEComissao(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             trinca.AlterarParcEComissao(0, "NR_APOLICE", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarParcEComissao(0, "NR_PROPOSTA", trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"));
             trinca.AlterarCliente(0, "CD_CLIENTE", GerarNumeroAleatorio(7));

@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(false));
 
@@ -50,7 +50,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(true));
 
@@ -78,7 +78,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_EMISSAO", "18");
             AlterarLinha(0, "CD_SUCURSAL", dados.ObterSucursal(true));

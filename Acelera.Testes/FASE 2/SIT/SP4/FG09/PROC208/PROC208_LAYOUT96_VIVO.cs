@@ -34,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_CUSTO_APOLICE", SomarValor(0, "VL_CUSTO_APOLICE", 5));
 
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_CUSTO_APOLICE", SomarValor(0, "VL_CUSTO_APOLICE", -4));
 
@@ -82,7 +82,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_CUSTO_APOLICE", SomarValores(arquivoods1.ObterValorFormatado(0, "VL_CUSTO_APOLICE"), arquivoods1.ObterValorFormatado(1, "VL_CUSTO_APOLICE")));
 
@@ -106,7 +106,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_CUSTO_APOLICE",arquivoods1.ObterValorFormatado(1, "VL_CUSTO_APOLICE"));
 
@@ -130,7 +130,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC208
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_CUSTO_APOLICE", arquivoods1.ObterValorFormatado(0, "VL_CUSTO_APOLICE"));
 

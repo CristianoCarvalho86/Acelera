@@ -1,4 +1,6 @@
-﻿using Acelera.Domain.Entidades.SGS;
+﻿using Acelera.Domain;
+using Acelera.Domain.DataAccess;
+using Acelera.Domain.Entidades.SGS;
 using Acelera.Domain.Entidades.Stages;
 using Acelera.Domain.Enums;
 using Acelera.Logger;

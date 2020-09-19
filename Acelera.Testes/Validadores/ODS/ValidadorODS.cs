@@ -1,4 +1,6 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain;
+using Acelera.Domain.DataAccess;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
@@ -6,6 +8,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
+using Acelera.RegrasNegocio;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Utils;
 using System;
@@ -20,8 +23,8 @@ namespace Acelera.Testes.Validadores.ODS
     public class ValidadorODS
     {
         private IMyLogger logger;
-        private TabelaParametrosDataSP3 dados;
-        public ValidadorODS(TabelaParametrosDataSP3 dados,ref IMyLogger logger)
+        private DadosParametrosData dados;
+        public ValidadorODS(DadosParametrosData dados,ref IMyLogger logger)
         {
             this.dados = dados;
             this.logger = logger;

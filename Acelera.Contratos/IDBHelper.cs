@@ -20,6 +20,8 @@ namespace Acelera.Data
 
         int Execute(string sql);
 
+        int Execute(string sql, out string erro);
+
         void GeraAdapter(string sql);
 
         void End();

@@ -22,8 +22,6 @@ namespace Acelera.Testes
 
         protected IList<ILinhaTabela> resultadoStageParcela;
 
-        protected new TabelaParametrosDataSP3 dados;
-
         protected string VlRemuneracao7013;
         protected string TPRemuneracao7013;
         protected string NomeDoTeste;
@@ -37,7 +35,6 @@ namespace Acelera.Testes
         {
             NomeDoTeste = numeroDoTeste;
             base.IniciarTeste(tipo, numeroDoTeste, nomeDoTeste);
-            dados = new TabelaParametrosDataSP3(logger);
         }
 
         public virtual void CarregarTrinca(OperadoraEnum operadora)

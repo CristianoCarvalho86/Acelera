@@ -21,10 +21,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
             AlterarHeader("VERSAO", "9.6");
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo);
 
             EnviarParaOdsAlterandoCliente(arquivo);

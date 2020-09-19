@@ -3,6 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
@@ -39,7 +40,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods2 ,1 , OperadoraEnum.POMPEIA);
 
-            IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -53,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
             
-            IgualarCampos(arquivoods2, arquivo, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO","NR_PARCELA"});
+            ArquivoUtils.IgualarCampos(arquivoods2, arquivo, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO","NR_PARCELA"});
 
             SalvarArquivo();
 
@@ -90,7 +91,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods2, 1, OperadoraEnum.POMPEIA);
 
-            IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -103,7 +104,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             var arquivoods3 = arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivoods3, 1, OperadoraEnum.POMPEIA);
 
-            IgualarCampos(arquivoods1, arquivoods3, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivoods3, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA" });
 
             EnviarParaOdsAlterandoCliente(arquivoods3);
 
@@ -111,7 +112,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC220
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
-            IgualarCampos(arquivoods2, arquivo, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA" });
+            ArquivoUtils.IgualarCampos(arquivoods2, arquivo, new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA" });
 
             SalvarArquivo();
 

@@ -34,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_IOF", SomarValor(0, "VL_IOF", 5));
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
@@ -59,7 +59,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "03"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_IOF", SomarValor(0, "VL_IOF", -5));
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
@@ -84,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "03"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_IOF", SomarValores(arquivoods1.ObterValorFormatado(0, "VL_IOF"), arquivoods1.ObterValorFormatado(1, "VL_IOF")));
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
@@ -109,7 +109,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "03"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
 
@@ -133,7 +133,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC207
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10", "03"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_PREMIO_TOTAL", SomarDoisCamposDoArquivo(0, "VL_PREMIO_LIQUIDO", "VL_IOF").ValorFormatado());
 

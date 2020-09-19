@@ -21,9 +21,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC243
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo);
 
             EnviarParaOdsAlterandoCliente(arquivo);

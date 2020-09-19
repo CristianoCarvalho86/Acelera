@@ -57,7 +57,7 @@ namespace Acelera.Testes
         {
             arquivo = new T();
             CarregarArquivo(arquivo, 1, operadora);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
             AlterarLinha(0, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(operadora));
 
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, ObterValorHeader("CD_TPA")));
@@ -108,7 +108,7 @@ namespace Acelera.Testes
 
         protected IArquivo CriarEmissaoComissaoODS<T>(OperadoraEnum operadora, IArquivo arquivoParcela, string alterarVersaoHeader = "", bool enviarOds = true) where T : Arquivo, new()
         {
-            arquivo = CriarComissao<T>(operadora, arquivoParcela, alterarVersaoHeader);
+            arquivo = comissaoRegras.CriarComissao<T>(operadora, arquivoParcela, alterarVersaoHeader);
 
             if (enviarOds)
                 EnviarParaOdsAlterandoCliente(arquivo);
@@ -126,7 +126,7 @@ namespace Acelera.Testes
             foreach (var linha in arquivoParcela.Linhas)
             {
                 ultimoNrSeqUsado++;
-                AdicionarLinha(0, CriarLinhaCancelamento(arquivoParcela.ObterLinha(0), cdTipoEmissao, cdMovtoCobranca, ultimoNrSeqUsado.ToString()));
+                AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoParcela.ObterLinha(0), cdTipoEmissao, cdMovtoCobranca, ultimoNrSeqUsado.ToString()));
             }
             return arquivo;
         }

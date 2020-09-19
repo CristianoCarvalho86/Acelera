@@ -1,4 +1,5 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -24,8 +25,6 @@ namespace Acelera.Testes
     public class TestesFG05 : TestesFG02
     {
         private bool alterarCobertura;
-
-        protected TabelaParametrosDataSP3 dados { get; set; }
 
         protected IList<DataRow> linhasInseridasODS { get; set; }
 
@@ -75,14 +74,13 @@ namespace Acelera.Testes
                     _arquivo.AlterarLinhaSeExistirCampo(i, "CD_PRODUTO", cobertura.CdProduto);
                     var cdContrato = _arquivo[i]["CD_CONTRATO"];
                     cdContrato = cdContrato.Substring(0, 2) + cobertura.CdRamo + cdContrato.Substring(4);
-                    AlterarContrato(_arquivo, i, cdContrato);
+                    contratoRegras.AlterarContrato(_arquivo, i, cdContrato);
                 }
         }
 
         protected override void IniciarTeste(TipoArquivo tipo, string numeroDoTeste, string nomeDoTeste)
         {
             base.IniciarTeste(tipo, numeroDoTeste, nomeDoTeste);
-            dados = new TabelaParametrosDataSP3(logger);
         }
 
         protected virtual void ExecutarEValidar(CodigoStage codigoEsperadoStage, string erroEsperadoNaTabelaDeRetorno = "", int qtdErrosNaTabelaDeRetorno = 0)

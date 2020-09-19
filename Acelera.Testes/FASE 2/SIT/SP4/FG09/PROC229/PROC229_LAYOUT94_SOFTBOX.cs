@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC229
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "01");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "01");
 
             SalvarArquivo();
 
@@ -54,7 +54,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC229
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "03"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10", "03"));
 
             SalvarArquivo();
 
@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC229
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
 
             SalvarArquivo();
 

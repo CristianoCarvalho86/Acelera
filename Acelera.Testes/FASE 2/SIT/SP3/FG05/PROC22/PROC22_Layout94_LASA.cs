@@ -3,6 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
@@ -28,7 +29,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             var canc = SomarValor(0, "ID_TRANSACAO", 1);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -47,10 +48,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -88,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Cliente, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
             SalvarArquivo();
@@ -120,7 +121,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
             SalvarArquivo();
@@ -138,7 +139,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -157,10 +158,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -184,7 +185,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -203,17 +204,17 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "P", true));
             AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
 
@@ -233,7 +234,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -252,10 +253,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -283,7 +284,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -303,10 +304,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -332,7 +333,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -352,10 +353,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -380,7 +381,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -399,10 +400,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -427,7 +428,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -446,10 +447,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -474,7 +475,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             var seq = SomarValor(0, "NR_SEQUENCIAL_EMISSAO", 1);
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -486,7 +487,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", seq);
 
@@ -506,7 +507,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -518,7 +519,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             AlterarLinha(0, "CD_INTERNO_RESSEGURADOR", "-2");
 
@@ -538,7 +539,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             var parc = SomarValor(0, "NR_PARCELA", 1);
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -550,7 +551,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             AlterarLinha(0, "NR_PARCELA", parc);
 
@@ -570,7 +571,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "C", true));
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
 
@@ -583,7 +584,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
             SalvarArquivo();
@@ -601,7 +602,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
@@ -612,7 +613,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             AlterarLinha(0, "CD_COBERTURA", "01592");
             AlterarLinha(0, "CD_RAMO", "71");
@@ -636,7 +637,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
@@ -647,7 +648,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             AlterarLinha(0, "CD_ITEM", "1234");
 
@@ -667,7 +668,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods = arquivo.Clone();
@@ -678,9 +679,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Comissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             //Salvar e executar
             SalvarArquivo();
@@ -707,7 +708,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Cliente, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             AlterarLinha(0, "CD_CLIENTE", "98765");
 
@@ -727,7 +728,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -746,10 +747,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.ParcEmissao, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             var campos2 = new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO" };
-            IgualarCampos(arquivoods, arquivo, campos2);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos2);
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "NR_ENDOSSO", "0");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");

@@ -3,6 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
@@ -33,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20191201");
 
             SalvarArquivo(true, "PROC81_4457");
@@ -62,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20210201");
 
             SalvarArquivo();
@@ -93,7 +94,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20191201");
 
             SalvarArquivo();
@@ -125,7 +126,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20210201");
 
             SalvarArquivo();
@@ -150,7 +151,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20200201");
 
             SalvarArquivo();
@@ -177,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC81
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE" });
             AlterarLinha(0, "DT_OCORRENCIA", "20200201");
 
             SalvarArquivo();

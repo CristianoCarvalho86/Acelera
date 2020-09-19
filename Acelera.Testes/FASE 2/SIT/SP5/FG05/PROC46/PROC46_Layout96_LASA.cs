@@ -21,15 +21,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             EnviarParaOdsAlterandoCliente(arquivo);
 
             LimparValidacao();
 
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivo[0], "10", "02", "1"));
+            arquivo.AdicionarLinha(cancelamentoRegras.CriarLinhaCancelamento(arquivo[0], "10", "02", "1"));
             AlterarLinha(1, "CD_ITEM", "12345");
             RemoverLinhaComAjusteDeFooter(0);
             //NAO PRECISA COLOCAR O NR_SEQUENCIAL_EMISSAO, POIS O METODOS DE CRIAR LINHA DE CANCELAMENTO JÁ ESTÁ FAZENDO

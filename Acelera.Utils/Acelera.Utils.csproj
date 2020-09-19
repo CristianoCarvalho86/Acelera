@@ -48,6 +48,7 @@
     <Compile Include="DataTableUtils.cs" />
     <Compile Include="EnumUtils.cs" />
     <Compile Include="LayoutUtils.cs" />
+    <Compile Include="OperacoesUtils.cs" />
     <Compile Include="ParametrosBanco.cs" />
     <Compile Include="ParametrosLinhaEmissao.cs" />
     <Compile Include="ParametrosRegras.cs" />

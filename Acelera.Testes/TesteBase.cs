@@ -1,5 +1,7 @@
 ﻿using Acelera.Contratos;
 using Acelera.Data;
+using Acelera.Domain;
+using Acelera.Domain.DataAccess;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
@@ -9,6 +11,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Domain.Utils;
 using Acelera.Logger;
+using Acelera.RegrasNegocio;
 using Acelera.Testes.Adapters;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.DataAccessRep.ODS;
@@ -33,8 +36,7 @@ namespace Acelera.Testes
     public abstract class TesteBase : TesteArquivoOperacoes
     {
         private DBHelperHana helper = DBHelperHana.Instance;
-        protected ControleNomeArquivo controleNomeArquivo = ControleNomeArquivo.Instancia;
-        public TabelaParametrosDataSP3 dados { get; private set; }
+
         protected string numeroDoTeste;
         protected bool sucessoDoTeste;
         protected string numeroDoLote;
@@ -75,7 +77,12 @@ namespace Acelera.Testes
             //else
             logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo,Parametros.logStackTrace,Parametros.logDataBaseResults);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
-            dados = new TabelaParametrosDataSP3(logger);
+            dados = new DadosParametrosData(logger);
+            comissaoRegras = new ComissaoRegras(logger);
+            cancelamentoRegras = new CancelamentoRegras(logger);
+            emissaoRegras = new EmissaoRegras(logger);
+            arquivoRegras = new ArquivoRegras(logger);
+            contratoRegras = new ContratoRegras(logger);
         }
 
         protected virtual void SalvarArquivo()
@@ -145,12 +152,8 @@ namespace Acelera.Testes
 
         protected void CarregarArquivo(IArquivo arquivo, int qtdLinhas, OperadoraEnum operadora)
         {
-            logger.AbrirBloco($"INICIANDO CARREGAMENTO DE ARQUIVO DO TIPO: {arquivo.tipoArquivo.ObterTexto()} - OPERACAO: {operadora.ObterTexto()}");
-            var arquivoGerado = ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem);
-            arquivo.Carregar(arquivoGerado, 1, 1, qtdLinhas);
-            logger.Escrever("ARQUIVO GERADO " + arquivo.NomeArquivo);
+            ArquivoUtils.CarregarArquivo(arquivo, qtdLinhas, operadora, logger);
             operacaoDoTeste = operadora;
-            logger.FecharBloco();
         }
 
         protected virtual void SalvarArquivo(bool alterarCdCliente, string nomeProc = "")
@@ -160,25 +163,13 @@ namespace Acelera.Testes
 
         protected string ObterArquivoDestino(IArquivo _arquivo, string _nomeArquivo, bool AlterarNomeArquivo = true)
         {
-            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(_arquivo.tipoArquivo);
-            numeroDoLote = numeroArquivoNovo;
-            if (AlterarNomeArquivo)
-            {
-                _nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
-                if (_arquivo.Header.Count > 0)
-                    _arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
-            }
-
-            var path = Parametros.pastaDestino + _arquivo.tipoArquivo.ObterPastaNoDestino() + "\\" +  _nomeArquivo;
-
-            _arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
-
-            logger.EscreverBloco("Salvando arquivo modificado : " + path);
-            return path;
+            return arquivoRegras.ObterArquivoDestino(_arquivo,_nomeArquivo,AlterarNomeArquivo,out numeroDoLote);
         }
 
         protected string ObterArquivoDestinoApenasCriacaoOuValidacao(IArquivo _arquivo, string _nomeArquivo)
         {
+
+            return arquivoRegras.ObterArquivoDestinoApenasCriacaoOuValidacao(_arquivo, _nomeArquivo, out numeroDoLote);
             //this.nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroDoTeste).Replace(".txt", ".TXT");
 
             //if (!string.IsNullOrEmpty(_nomeArquivo))
@@ -198,19 +189,7 @@ namespace Acelera.Testes
             // logger.EscreverBloco("Salvando arquivo modificado : " + path);
             // return path;
 
-            var numeroArquivoNovo = controleNomeArquivo.ObtemValor(_arquivo.tipoArquivo);
-            numeroDoLote = numeroArquivoNovo;
 
-            _nomeArquivo = _nomeArquivo.Replace("/*R*/", numeroArquivoNovo).Replace(".txt", ".TXT");
-            if (_arquivo.Header.Count > 0)
-                _arquivo.AlterarHeader("NR_ARQ", numeroArquivoNovo);
-
-            var path = Parametros.pastaDestino + _arquivo.tipoArquivo.ObterPastaNoDestino() + _nomeArquivo;
-
-            _arquivo.AtualizarNomeArquivoFinal(_nomeArquivo);
-
-            logger.EscreverBloco("Salvando arquivo modificado : " + path);
-            return path;
         }
 
         protected void ChamarExecucaoSemErro(string taskName)
@@ -227,67 +206,35 @@ namespace Acelera.Testes
 
         protected void ChamarExecucao(string taskName)
         {
-            if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
-                return;
-            try
-            {
-                var comando = "";
-                if (taskName.Contains("FGR_01_") && !taskName.Contains("FGR_01_2") && !taskName.Contains("FGR_01_1"))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
-                    comando = $"CALL {Parametros.instanciaDB}.{taskName}_SP()";
-                else if(taskName.Contains("PRC_ENCADEA_FGR_08"))
-                    comando = $"CALL HDIQAS_1.PRC_ENCADEA_FGR_08(OUT_STATUS => ?)";
-                else
-                    comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
-
-                logger.AbrirBloco($"EXECUTANDO TAREFA : '{taskName}'");
-                logger.Escrever($"EXECUTANDO COMANDO : {comando}");
-                var retorno = helper.Execute(comando, out string erroEncontrado);
-
-                logger.EscreverBloco($"RESULTADO DA TAREFA : '{retorno}'");
-
-                if (retorno == 999)
-                    logger.Escrever("HOUVE UM ERRO DESCARTADO NA EXECUÇÃO : " + erroEncontrado);
-                logger.FecharBloco();
-            }
-            catch (Exception ex)
-            {
-                logger.Erro(ex);
+            if (!DataAccess.ChamarExecucaoHana(taskName, logger))
                 sucessoDoTeste = false;
-                throw ex;
-            }
-
         }
 
-        protected DataTable ChamarConsulta(string sql)
-        {
-            return helper.GetData(sql);
-        }
+        //protected LinhaTabela ChamarExecucaoViaCMD()
+        //{
+        //    logger.InicioOperacao(OperacaoEnum.Processar, "");
+        //    IntegracaoCMD integracao = new IntegracaoCMD();
+        //    var retorno = string.Empty;
+        //    var textoCompletoCMD = string.Empty;
+        //    LinhaTabela linhaDeValidacao = null;
+        //    try
+        //    {
+        //        integracao.AbrirCMD();
+        //        integracao.ChamarExecucao();
+        //        logger.SucessoDaOperacao(OperacaoEnum.Processar, "");
+        //        textoCompletoCMD = integracao.ObterTextoCMD();
+        //        integracao.FecharCMD();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logger.Erro(ex);
+        //        throw ex;
+        //    }
 
-        protected LinhaTabela ChamarExecucaoViaCMD()
-        {
-            logger.InicioOperacao(OperacaoEnum.Processar, "");
-            IntegracaoCMD integracao = new IntegracaoCMD();
-            var retorno = string.Empty;
-            var textoCompletoCMD = string.Empty;
-            LinhaTabela linhaDeValidacao = null;
-            try
-            {
-                integracao.AbrirCMD();
-                integracao.ChamarExecucao();
-                logger.SucessoDaOperacao(OperacaoEnum.Processar, "");
-                textoCompletoCMD = integracao.ObterTextoCMD();
-                integracao.FecharCMD();
-            }
-            catch (Exception ex)
-            {
-                logger.Erro(ex);
-                throw ex;
-            }
+        //    logger.LogRetornoCMD(textoCompletoCMD);
 
-            logger.LogRetornoCMD(textoCompletoCMD);
-
-            return linhaDeValidacao;
-        }
+        //    return linhaDeValidacao;
+        //}
 
         protected virtual void IniciarTeste(TipoArquivo tipo, string numeroDoTeste = "", string nomeDoTeste = "")
         {
@@ -312,210 +259,6 @@ namespace Acelera.Testes
         protected string[] ErrosEsperados(params string[] erros)
         {
             return erros;
-        }
-
-        protected string AlterarUltimasPosicoes(string texto, string textoASerTrocadoNoFinal)
-        {
-            return string.IsNullOrEmpty(texto) ? null : texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
-        }
-
-        public void IgualarCampos(IArquivo arquivoOrigem, IArquivo arquivoDestino, string[] campos, bool linhaUnicaNaOrigem = false, bool adicionaValidacao = true)
-        {
-            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
-            var nomeCampo = string.Empty;
-            foreach (var linha in arquivoDestino.Linhas)
-                foreach (var campo in campos)
-                {
-                    nomeCampo = campo;
-                    if (campo == "NR_SEQ_EMISSAO")
-                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
-
-                    var index = linhaUnicaNaOrigem ? 0 : linha.Index;
-                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, adicionaValidacao);
-                }
-            logger.FecharBloco();
-        }
-
-        public void IgualarCampos(ILinhaArquivo linhaOrigem, ILinhaArquivo linhaDestino, string[] campos)
-        {
-            logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
-            var nomeCampo = string.Empty;
-            foreach (var campo in campos)
-            {
-                linhaDestino.ObterCampoDoArquivo(campo).AlterarValor(linhaOrigem.ObterCampoDoArquivo(campo).ValorFormatado);
-            }
-            logger.FecharBloco();
-        }
-
-        public void IgualarCamposQueExistirem(ILinhaArquivo linhaOrigem, ILinhaArquivo linhaDestino)
-        {
-            logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
-            var nomeCampo = string.Empty;
-            foreach (var campo in linhaOrigem.Campos)
-            {
-                linhaDestino.ObterCampoSeExistir(campo.ColunaArquivo)?.AlterarValor(linhaOrigem[campo.ColunaArquivo]);
-            }
-            logger.FecharBloco();
-        }
-
-        public void IgualarCamposQueExistirem(IArquivo arquivoOrigem, IArquivo arquivoDestino)
-        {
-            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
-
-            if (arquivoOrigem.Linhas.Count != arquivoDestino.Linhas.Count)
-                throw new Exception("ARQUIVOS COM QUANTIDADE DE LINHAS DIFERENTES.");
-
-            var nomeCampo = string.Empty;
-            foreach (var linha in arquivoOrigem.Linhas)
-                foreach (var campo in arquivoOrigem.CamposDoBody)
-                {
-                    nomeCampo = campo;
-                    if (campo == "NR_SEQ_EMISSAO")
-                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
-
-                    if (!arquivoDestino.CamposDoBody.Contains(nomeCampo))
-                        continue;
-
-                    AlterarLinha(arquivoDestino, linha.Index, nomeCampo, arquivoOrigem.ObterLinha(linha.Index).ObterCampoDoArquivo(nomeCampo).ValorFormatado, true);
-                }
-        }
-
-        public void AlterarLayout<T>(ref IArquivo _arquivo) where T : Arquivo, new()
-        {
-            logger.AbrirBloco($"ALTERANDO LAYOUT DE {_arquivo.GetType().Name} para {typeof(T)}");
-            var novoArquivo = new T();
-            novoArquivo.Linhas = new List<ILinhaArquivo>();
-            novoArquivo.Header = new List<ILinhaArquivo>();
-            novoArquivo.Footer = new List<ILinhaArquivo>();
-            novoArquivo.AtualizarNomeArquivoFinal(_arquivo.NomeArquivo);
-
-            novoArquivo.Header.Add(_arquivo.Header[0].Clone());
-            novoArquivo.Footer.Add(_arquivo.Footer[0].Clone());
-            for (int i = 0; i < _arquivo.Linhas.Count; i++)
-                novoArquivo.AdicionarLinha(novoArquivo.CriarLinhaVazia(i));
-
-            novoArquivo.AjustarQtdLinhasNoFooter();
-            IgualarCamposQueExistirem(_arquivo, novoArquivo);
-
-            novoArquivo.AlterarHeader("VERSAO", novoArquivo.TextoVersaoHeader);
-
-            logger.FecharBloco();
-            _arquivo = novoArquivo;
-
-            if(_arquivo.Operadora == OperadoraEnum.PAPCARD)
-                AlteracoesIniciaisPapcard(arquivo);
-
-        }
-
-        public void CriarArquivoCancelamento(IArquivo ArquivoEmissao, IArquivo ArquivoCancelamento, string cdTipoEmissao, string cdMovtoCobranca = "02",
-        string nrSequencialEmissao = "")
-        {
-            foreach (var linha in ArquivoEmissao.Linhas)
-            {
-                ArquivoCancelamento.AdicionarLinha(CriarLinhaCancelamento(linha, cdTipoEmissao, cdMovtoCobranca, nrSequencialEmissao));
-            }
-        }
-
-        public ILinhaArquivo CriarLinhaCancelamento(ILinhaArquivo linhaArquivoEmissao, string cdTipoEmissao, string cdMovtoCobranca = "02",
-        string nrSequencialEmissao = "")
-        {
-            logger.AbrirBloco("CRIANDO LINHA DE CANCELAMENTO.");
-            logger.Escrever($"Utilizando a linha de emissao : {linhaArquivoEmissao.ObterTexto()}");
-
-            var linhaCancelamento = linhaArquivoEmissao.Clone();
-            var idTransacaoDaLinhaOriginal = linhaArquivoEmissao.ObterCampoSeExistir("ID_TRANSACAO").ValorFormatado;
-
-            linhaCancelamento.ObterCampoDoArquivo("ID_TRANSACAO_CANC").AlterarValor(idTransacaoDaLinhaOriginal);
-            linhaCancelamento.ObterCampoDoArquivo("CD_TIPO_EMISSAO").AlterarValor(cdTipoEmissao);
-            linhaCancelamento.ObterCampoDoArquivo("NR_PARCELA").AlterarValor((linhaCancelamento.ObterValorInteiro("NR_PARCELA")).ToString());
-            linhaCancelamento.ObterCampoDoArquivo("NR_ENDOSSO").AlterarValor(ParametrosRegrasEmissao.CarregaProximoNumeroEndosso(linhaCancelamento));
-            nrSequencialEmissao = string.IsNullOrEmpty(nrSequencialEmissao) ? ParametrosRegrasEmissao.CarregaProximoNumeroSequencialEmissao(linhaArquivoEmissao, linhaArquivoEmissao.OperadoraDoArquivo).ToString() : nrSequencialEmissao;
-            linhaCancelamento.ObterCampoDoArquivo("NR_SEQUENCIAL_EMISSAO").AlterarValor(nrSequencialEmissao);
-            linhaCancelamento.ObterCampoDoArquivo("CD_MOVTO_COBRANCA").AlterarValor(cdMovtoCobranca);
-
-            logger.FecharBloco();
-            return linhaCancelamento;
-        }
-
-        public void CriarNovoContrato(int posicaoLinha, IArquivo arquivo = null, string novoContrato = "", bool colocarEmTodasAsLinhas = false)
-        {
-            arquivo = arquivo == null ? this.arquivo : arquivo;
-            var contrato = "";
-            if (!string.IsNullOrEmpty(novoContrato))
-                contrato = novoContrato;
-            else if (arquivo.Operadora == OperadoraEnum.PAPCARD)
-            {
-                contrato = "759303900006209";
-            }
-            else
-            {
-                contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"),true);
-            }
-            if (colocarEmTodasAsLinhas)
-                AlterarContratoNoArquivo(arquivo, contrato);
-            else
-                AlterarContrato(arquivo, posicaoLinha, contrato);
-        }
-
-        protected void AlterarContratoNoArquivo(IArquivo arquivo, string contrato)
-        {
-            for (int i = 0; i < arquivo.Linhas.Count; i++)
-            {
-                AlterarContrato(arquivo, i, contrato);
-            }
-        }
-
-        protected void AlterarContrato(IArquivo arquivo, int posicaoLinha, string contrato)
-        {
-            if (arquivo.tipoArquivo == TipoArquivo.ParcEmissao)
-            {
-                arquivo.AlterarLinha(posicaoLinha, "CD_CONTRATO", contrato);
-                arquivo.AlterarLinha(posicaoLinha, "NR_APOLICE", contrato);
-                arquivo.AlterarLinha(posicaoLinha, "NR_PROPOSTA", contrato);
-            }
-        }
-
-        protected string GerarNovoContratoAleatorio(string contratoBase, bool validaExistencia)
-        {
-            var contrato = "";
-            while (true)
-            {
-                contrato = AlterarUltimasPosicoes(contratoBase, GerarNumeroAleatorio(8));
-                if (!validaExistencia)
-                    break;
-
-                if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissao.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
-                   !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.ParcEmissaoAuto.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
-                   !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.OdsParcela.ObterTexto()} WHERE CD_CONTRATO = '{contrato}'", logger) &&
-                   !DataAccessOIM.ExisteRegistro($"SELECT '1' FROM oim_apl01 where nr_doc_apolice = '{contrato}'", logger))
-                    break;
-            }
-            return contrato;
-        }
-
-        protected IArquivo CriarComissao<T>(OperadoraEnum operadora, IArquivo arquivoParcela, bool alterarVersaoHeader = false, bool alteraTipoComissao = true) where T : Arquivo, new()
-        {
-            if (alterarVersaoHeader)
-                return CriarComissao<T>(operadora, arquivoParcela, "9.6",alteraTipoComissao);
-            return CriarComissao<T>(operadora, arquivoParcela, "", alteraTipoComissao);
-
-        }
-
-        protected IArquivo CriarComissao<T>(OperadoraEnum operadora, IArquivo arquivoParcela, string alterarVersaoHeader, bool alteraTipoComissao = true) where T : Arquivo, new()
-        {
-            arquivo = new T();
-            CarregarArquivo(arquivo, arquivoParcela.Linhas.Count, operadora);
-
-            IgualarCamposQueExistirem(arquivoParcela, arquivo);
-
-            if(alteraTipoComissao)
-                foreach (var linha in arquivo.Linhas)
-                    AlterarLinha(linha.Index, "CD_TIPO_COMISSAO", dados.ObterTipoRemuneracaoDoCorretor(arquivo[linha.Index]["CD_CORRETOR"], arquivo[linha.Index]["CD_COBERTURA"], arquivoParcela[linha.Index]["CD_PRODUTO"]));
-
-            if (!string.IsNullOrEmpty(alterarVersaoHeader))
-                arquivo.AlterarHeader("VERSAO", alterarVersaoHeader);
-
-            return arquivo;
         }
 
     }

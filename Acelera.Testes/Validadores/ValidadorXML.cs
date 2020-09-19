@@ -1,4 +1,6 @@
-﻿using Acelera.Domain.Entidades;
+﻿using Acelera.Domain;
+using Acelera.Domain.DataAccess;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;

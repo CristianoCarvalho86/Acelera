@@ -192,7 +192,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             arquivo.Carregar(ObterArquivoOrigem("C01.VIVO.PARCEMSAUTO-EV-1844-20200206.txt"));
 
             arquivo.SelecionarLinhas("CD_CONTRATO", "7231000082501");
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
             var contrato = arquivo[0]["CD_CONTRATO"];
             AlterarTodasAsLinhas("CD_CONTRATO", contrato);

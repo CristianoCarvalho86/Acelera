@@ -23,11 +23,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
             AlterarCobertura(false);
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
             //SetDev();
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             //SetQA();
 
@@ -37,7 +37,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC235
             var arquivoparc = arquivo.Clone();
 
             //SetDev();
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoparc);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivoparc);
 
             AlterarLinha(0, "CD_RAMO",  dados.ObterRamoRelacionadoACoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], arquivo[0]["CD_RAMO"], out string produto));
 

@@ -1,4 +1,5 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Stages;

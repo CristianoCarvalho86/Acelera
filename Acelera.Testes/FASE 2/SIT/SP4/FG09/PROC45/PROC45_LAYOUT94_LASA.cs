@@ -31,7 +31,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
             AlterarLinha(0, "CD_RAMO", dados.ObterRamoRelacionadoACoberturaDiferenteDe(ObterValor(0, "CD_COBERTURA"), ObterValor(0, "CD_RAMO"), out string produto));
             AlterarLinha(0, "CD_PRODUTO", produto);
 
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);

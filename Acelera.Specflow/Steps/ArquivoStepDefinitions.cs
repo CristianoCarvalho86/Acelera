@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Acelera.Specflow.Steps
 {
-    class ArquivoStepDefinitions
+    public class ArquivoStepDefinitions
     {
     }
 }

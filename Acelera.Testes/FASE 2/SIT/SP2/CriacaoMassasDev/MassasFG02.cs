@@ -5,6 +5,7 @@ using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_4_2;
 using Acelera.Domain.Layouts._9_3;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Acelera.Utils;
 
 namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 {
@@ -287,7 +288,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
             var cdCorretor = dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "R", true, new string[] { terceiroCorretor });
             AlterarLinha(0, "CD_CORRETOR", cdCorretor);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValor(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValor(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             AlterarLinha(1, "CD_CORRETOR", dados.ObterCdCorretorParaTipoRemuneracao(ObterValorHeader("CD_TPA"), "R", true, new string[] { cdCorretor, terceiroCorretor }));
             AlterarLinha(1, "CD_CONTRATO", ObterValor(0, "CD_CONTRATO"));
@@ -296,7 +297,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP2.CriaçãoMassasDev
 
             AlterarLinha(2, "CD_CORRETOR", terceiroCorretor);
             AlterarLinha(2, "CD_TIPO_COMISSAO", "R");
-            AlterarLinha(2, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValor(2, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(2, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValor(2, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
 
             //SALVAR O NOVO ARQUIVO ALTERADO
             SalvarArquivo($"PROC52-C01.POMPEIA.EMSCMS-EV-/*R*/-20200211.TXT");

@@ -4,6 +4,7 @@ using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
@@ -21,14 +22,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo,0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo,0);
             
             CriarNovaLinhaParaEmissao(arquivo, 0);
             CriarNovaLinhaParaEmissao(arquivo, 1);
 
-            IgualarCampos(arquivo.ObterLinha(1), arquivo.ObterLinha(0), new string[]{ "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" });
+            ArquivoUtils.IgualarCampos(arquivo.ObterLinha(1), arquivo.ObterLinha(0), new string[]{ "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQUENCIAL_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" });
 
 
             SalvarArquivo();
@@ -48,7 +49,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.COOP);
 
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
             //arquivoods1.AlterarLinha(0, "CD_CD_TIPO_EMISSAO", "1");
             //arquivoods1.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
             //arquivoods1.AlterarLinha(0, "NR_ENDOSSO", "0");
@@ -63,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             var campos = new string[]
             { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "ID_TRANSACAO", "CD_COBERTURA","NR_SEQ_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };
 
-            IgualarCampos(arquivoods1.ObterLinha(0), arquivo.ObterLinha(0), campos);
+            ArquivoUtils.IgualarCampos(arquivoods1.ObterLinha(0), arquivo.ObterLinha(0), campos);
 
             SalvarArquivo();
 
@@ -81,11 +82,11 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC225
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 2, OperadoraEnum.COOP);
 
-            CriarNovoContrato(0);
-            CriarNovoContrato(1);
+            contratoRegras.CriarNovoContrato(0,arquivo);
+            contratoRegras.CriarNovoContrato(1, arquivo);
             var campos = new string[]
             { "CD_COBERTURA","NR_SEQ_EMISSAO","CD_TIPO_EMISSAO", "NR_ENDOSSO" };
-            IgualarCampos(arquivoods1.ObterLinha(0), arquivoods1.ObterLinha(1), campos);
+            ArquivoUtils.IgualarCampos(arquivoods1.ObterLinha(0), arquivoods1.ObterLinha(1), campos);
 
             SalvarArquivo();
 

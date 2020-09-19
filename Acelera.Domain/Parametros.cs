@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 
-namespace Acelera.Testes
+namespace Acelera.Domain
 {
     public static class Parametros
     {

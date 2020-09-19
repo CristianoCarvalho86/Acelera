@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13"));
             
 
             EnviarParaOdsAlterandoCliente(arquivo);
@@ -44,7 +44,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "13");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods2.ObterLinha(0), "13");
 
             SalvarArquivo();
 
@@ -67,7 +67,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
             AlterarLinha(0, "NR_PARCELA", "9");
 
             SalvarArquivo();
@@ -91,7 +91,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11");
 
             AlterarDadosDeCobertura(0, dados.ObterCoberturaDiferenteDe(arquivoods1.ObterValorFormatado(0, "CD_COBERTURA")));
 
@@ -116,7 +116,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "13");
 
             SalvarArquivo();
 
@@ -140,7 +140,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10");
 
             SalvarArquivo();
 

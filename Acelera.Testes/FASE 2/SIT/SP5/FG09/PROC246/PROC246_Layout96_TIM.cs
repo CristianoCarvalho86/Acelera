@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-9999-20200831.txt"));
-            CriarNovoContrato(0, arquivo, "", true);
+            contratoRegras.CriarNovoContrato(0, arquivo, "", true);
             AlterarTodasAsLinhas( "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"]));
 
             SalvarArquivo();
@@ -30,7 +30,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
 
             var arquivoParc1 = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
 
@@ -38,8 +38,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
 
 
             arquivo = arquivoParc1;
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[2], "10", "02"));
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[3], "10", "02"));
+            arquivo.AdicionarLinha(cancelamentoRegras.CriarLinhaCancelamento(arquivoParc1[2], "10", "02"));
+            arquivo.AdicionarLinha(cancelamentoRegras.CriarLinhaCancelamento(arquivoParc1[3], "10", "02"));
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
@@ -51,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //ExecutarEValidar(CodigoStage.AprovadoNegocioComDependencia);
            // LimparValidacao();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();

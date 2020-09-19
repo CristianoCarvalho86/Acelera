@@ -22,16 +22,16 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC230
 
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            CriarNovoContrato(0);
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParcOds = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivoParcOds,false,false);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivoParcOds,false,false);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoComissaoOds = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivoParcOds, false, false);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivoParcOds, false, false);
             AlterarLinha(0, "CD_ITEM", arquivo[0]["CD_ITEM"].ObterProximoValorInteiro());
 
             SalvarArquivo();

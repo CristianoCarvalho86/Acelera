@@ -1,5 +1,6 @@
 ﻿using Acelera.Contratos;
 using Acelera.Data;
+using Acelera.Domain;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -8,6 +9,7 @@ using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -175,7 +177,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, OperadoraEnum.SOFTBOX, Parametros.pastaOrigem), 1, 1, 1);
             ReplicarLinhaComCorrecao(0, 2);
-            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarTodasAsLinhas("CD_TIPO_COMISSAO", tipoComissao);
 
             SalvarArquivo(true);
@@ -289,7 +291,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, OperadoraEnum.LASA, Parametros.pastaOrigem), 1, 1, 1);
             ReplicarLinhaComCorrecao(0, 1);
-            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarTodasAsLinhas("CD_TIPO_COMISSAO", tipoComissao);
             AlterarHeader("VERSAO", "9.6");
             SalvarArquivo(true);
@@ -367,7 +369,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, OperadoraEnum.POMPEIA, Parametros.pastaOrigem), 1, 1, 1);
             ReplicarLinhaComCorrecao(0, 2);
-            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarTodasAsLinhas("CD_TIPO_COMISSAO", tipoComissao);
 
             SalvarArquivo(true);
@@ -433,7 +435,7 @@ Cancelamento deve ser do tipo com restituição (Cd_MOVTO_COBRANÇA=02)"
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.POMPEIA, "", true);
             arquivo = arquivoParc;
-            var contrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var contrato = StringUtils.AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             AlterarLinha(0, "CD_CONTRATO", contrato);
             AlterarLinha(0, "NR_APOLICE", contrato);
             EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.POMPEIA, "10", true);
@@ -453,7 +455,7 @@ Enviar cancelamento para apenas uma das coberturas
             var arquivoComissao = new Arquivo_Layout_9_4_EmsComissao();
             EnviarEmissao(arquivoParc, arquivoComissao, OperadoraEnum.SOFTBOX, "", false);
             arquivo = arquivoParc;
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             EnviarCancelamento<Arquivo_Layout_9_4_ParcEmissao, Arquivo_Layout_9_4_EmsComissao>(arquivo.ObterLinha(0).Clone(), OperadoraEnum.SOFTBOX, "10", false);
 
             /*
@@ -544,7 +546,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
 
             arquivo = new C();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
-            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
             if (!string.IsNullOrEmpty(valorComissao))
                 AlterarLinhaSeExistirCampo(arquivo, 0, "VL_COMISSAO", valorComissao);
@@ -591,7 +593,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
 
             arquivo = arquivoComissao;
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
-            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_COMISSAO", tipoCorretor);
             if (alterarLayout)
                 arquivo.AlterarHeader("VERSAO", "9.6");
@@ -627,7 +629,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
             SetQA();
 
 
-            var novoContrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var novoContrato = StringUtils.AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             for (int i = 0; i < arquivo.Linhas.Count; i++)
             {
                 arquivo.AlterarLinhaSeExistirCampo(i, "CD_CONTRATO", novoContrato);
@@ -679,7 +681,7 @@ Enviar cancelamento dessa parcela com Cd_MOVTO_COBRANCA=03
         public void AlterarArquivo()
         {
             logger = new Mock<IMyLogger>().Object;
-            dados = new TabelaParametrosDataSP3(logger);
+            dados = new Acelera.RegrasNegocio.DadosParametrosData(logger);
             arquivo = new Arquivo_Layout_9_3_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("TESTE10_FG09_C01.VIVO.PARCEMSAUTO-EV-0404-20200130.TXT"));
             arquivo.AlterarLinha(0,"NR_PARCELA","1");

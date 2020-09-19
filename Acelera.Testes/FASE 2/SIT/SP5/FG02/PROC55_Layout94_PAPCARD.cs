@@ -19,7 +19,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "", "Corretor com código SUSEP nulo");
             arquivo = new Arquivo_Layout_9_4_2_new_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("CO"));
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "", "Corretor com código SUSEP invalido");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("SE"));
@@ -81,7 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
             IniciarTeste(TipoArquivo.ParcEmissao, "9019", "Corretor com código SUSEP invalido");
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(0, "CD_CORRETOR", dados.ObterCDSeguradoraDoTipoParceiro("CO"));

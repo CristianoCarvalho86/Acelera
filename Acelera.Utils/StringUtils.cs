@@ -18,5 +18,10 @@ namespace Acelera.Utils
             }
             return true;
         }
+
+        public static string AlterarUltimasPosicoes(string texto, string textoASerTrocadoNoFinal)
+        {
+            return string.IsNullOrEmpty(texto) ? null : texto.Remove(texto.Length - textoASerTrocadoNoFinal.Length) + textoASerTrocadoNoFinal;
+        }
     }
 }

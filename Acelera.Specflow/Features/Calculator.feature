@@ -1,11 +1,9 @@
-﻿Feature: Calculator
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿Feature: Teste da PROCX
 
 @mytag
-Scenario: Add two numbers
-	Given the first number is 50
-	And the second number is 70
-	When the two numbers are added
-	Then the result should be 120
+Scenario: Validar ID_TRANSACAO
+	Given arquivo 'TIM' de 'Emissao' com 3 linhas
+	And ID_TRANSACAO da linha 1 = '99999'
+	When executado ate FG02
+	Then Esperado erro 'PROCX' na Tabela de Retorno
+	Then Esperado erro '120' na Tabela Stage

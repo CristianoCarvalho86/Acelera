@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.ObterValorDecimal(0,"VL_PREMIO_LIQUIDO"), 1000M));
             AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
             AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValores(arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO"), 1000M));
             AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
@@ -100,7 +100,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO").ValorFormatado());
             AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
 
@@ -126,7 +126,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", (arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO") - 1).ValorFormatado());
             AlterarLinha(0, "VL_LMI", ObterValorFormatado(0, "VL_IS"));
             AlterarCobertura(false);

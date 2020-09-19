@@ -1,4 +1,5 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;

@@ -23,10 +23,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
 
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
-            CriarNovoContrato(0);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados);
 
             SalvarArquivo();
@@ -35,15 +35,15 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
             var arquivoParc = arquivo.Clone();
 
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParc);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParc);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             AlterarLinha(0, "CD_RAMO", "00");
             RemoverLinhaComAjusteDeFooter(1);
 
             SalvarArquivo();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParc);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParc);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             RemoverLinhaComAjusteDeFooter(0);
             SalvarArquivo();
 

@@ -21,12 +21,12 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             SalvarArquivo();
             //EnviarParaOdsAlterandoCliente(arquivo);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivo);
 
             AlterarLinha(0, "VL_COMISSAO", "100");
 
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
             CriarNovaLinhaParaEmissao(arquivoods1, 0);
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
 
             AlterarLinha(0, "VL_COMISSAO", "0");
 
@@ -75,14 +75,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC231
             var arquivoods1 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
 
             arquivo = new Arquivo_Layout_9_4_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.TIM);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.TIM, arquivoods1);
 
             AlterarLinha(0, "VL_COMISSAO", "0");
 

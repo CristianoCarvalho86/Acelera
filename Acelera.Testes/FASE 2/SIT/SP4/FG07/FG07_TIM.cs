@@ -177,7 +177,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0002-20200616.txt"));
 
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
             var contrato = arquivo[0]["CD_CONTRATO"];
             AlterarTodasAsLinhas("CD_CONTRATO", contrato);
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             arquivo = new Arquivo_Layout_9_4_ParcEmissaoAuto();
             arquivo.Carregar(ObterArquivoOrigem("C01.TIM.PARCEMS-EV-0001-20200615.txt"));
 
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
             AlterarTodasAsLinhas("CD_CONTRATO", contrato);
             AlterarTodasAsLinhas("NR_APOLICE", contrato);

@@ -6,6 +6,7 @@ using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
 using Acelera.Domain.Utils;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -34,8 +35,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC211
 
             RemoverTodasAsLinhas();
             AlterarHeader("VERSAO", "9.6");
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
-            AlterarLinha(0, "ID_TRANSACAO_CANC", AlterarUltimasPosicoes(ObterValorFormatado(0, "ID_TRANSACAO_CANC"), "5"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AlterarLinha(0, "ID_TRANSACAO_CANC", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "ID_TRANSACAO_CANC"), "5"));
 
             SalvarArquivo();
 
@@ -57,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC211
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "11"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "11"));
 
             SalvarArquivo();
 

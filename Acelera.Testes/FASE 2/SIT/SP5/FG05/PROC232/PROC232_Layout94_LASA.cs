@@ -1,6 +1,7 @@
 ﻿using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoods1 = arquivo.Clone();
@@ -32,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC232
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(arquivoods1, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoods1, arquivo);
             AlterarLinha(0, "CD_ITEM","12345");
 
             SalvarArquivo();

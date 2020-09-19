@@ -21,7 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02.PrioridadeB.PROC11
             IniciarTeste(TipoArquivo.ParcEmissao, "2657", "FG02 - PROC11 - Informar no arquivo PARC_EMISSAO o campo dt_fim_vigencia 365 dias menor que o dt_inicio_vigencia");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
 
             //ALTERAR O VALOR SELECIONADO
@@ -56,7 +56,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02.PrioridadeB.PROC11
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
 
             //ALTERAR O VALOR SELECIONADO

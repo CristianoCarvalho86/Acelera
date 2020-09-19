@@ -22,7 +22,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
             AlterarLinha(1, "CD_RAMO", "00");
 

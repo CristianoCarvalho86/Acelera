@@ -1,5 +1,6 @@
 ﻿using Acelera.Contratos;
 using Acelera.Data;
+using Acelera.Domain;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -260,7 +261,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] {"CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE","CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            ArquivoUtils.IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] {"CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE","CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
             CarregarComissao("P", novoParc, trinca.ArquivoComissao,1);
 
@@ -325,7 +326,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            ArquivoUtils.IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
             CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
@@ -396,7 +397,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            ArquivoUtils.IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
             CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
@@ -433,7 +434,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            ArquivoUtils.IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
             CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
@@ -626,7 +627,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
             PrepararMassaParaTrinca(OperadoraEnum.TIM);
 
             var novoParc = new Arquivo_Layout_9_4_ParcEmissao().Carregar(ObterArquivoOrigem("ABC_C01.TIM.PARCEMS-EV-0005-20191210.txt"));
-            IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
+            ArquivoUtils.IgualarCampos(trinca.ArquivoParcEmissao, novoParc, new string[] { "CD_CORRETOR", "CD_CONTRATO", "NR_PROPOSTA", "NR_APOLICE", "CD_CLIENTE", "CD_COBERTURA", "CD_PRODUTO", "CD_RAMO" }, true, false);
 
             CarregarComissao("P", novoParc, trinca.ArquivoComissao, 1);
 
@@ -719,7 +720,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG06
 
         private void CarregarComissao(string tipoComissao, IArquivo arquivoParc, IArquivo arquivoComissao, int indexLinhaParc = 0)
         {
-            IgualarCamposQueExistirem(arquivoParc.ObterLinha(indexLinhaParc), arquivoComissao.ObterLinha(0));
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc.ObterLinha(indexLinhaParc), arquivoComissao.ObterLinha(0),logger);
             if (arquivoParc.ObterValorFormatado(indexLinhaParc, "VL_PREMIO_LIQUIDO").ObterValorDecimal() > 0M)
                 arquivoComissao.AlterarLinha(0, "VL_COMISSAO", SomarValores(arquivoParc.ObterValorFormatado(indexLinhaParc, "VL_PREMIO_LIQUIDO"), "-0.05"));
             else
@@ -780,7 +781,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             arquivo = new C();
             arquivo.Carregar(ArquivoOrigem.ObterArquivoAleatorio(arquivo.tipoArquivo, operadora, Parametros.pastaOrigem), 1, 1, 1);
-            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc, arquivo);
             AlterarLinhaSeExistirCampo(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
             if (!string.IsNullOrEmpty(valorComissao))
                 AlterarLinhaSeExistirCampo(arquivo, 0, "VL_COMISSAO", valorComissao);
@@ -873,7 +874,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             SetQA();
 
-            var novoContrato = AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var novoContrato = StringUtils.AlterarUltimasPosicoes(trinca.ArquivoParcEmissao.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             trinca.AlterarTodasAsLinhasQueContenhamOCampo("CD_CONTRATO", novoContrato);
             trinca.AlterarTodasAsLinhasQueContenhamOCampo("NR_PROPOSTA", novoContrato);
             trinca.AlterarTodasAsLinhasQueContenhamOCampo("NR_APOLICE", novoContrato);
@@ -901,7 +902,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
             SetQA();
 
 
-            var novoContrato = AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var novoContrato = StringUtils.AlterarUltimasPosicoes(arquivo.ObterValorFormatadoSeExistirCampo(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             for (int i = 0; i < arquivo.Linhas.Count; i++)
             {
                 arquivo.AlterarLinhaSeExistirCampo(i, "CD_CONTRATO", novoContrato);
@@ -966,7 +967,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
         {
             var arq = new Arquivo_Layout_9_4_ParcEmissao().Carregar("Tipo20_C01.TIM.PARCEMS-EV-0005-20191212.txt");
             arquivoTimCapa.AdicionarLinha(arq.ObterLinha(0));
-            IgualarCampos(arquivoTimCapa.ObterLinha(0), arquivoTimCapa.ObterLinha(1), new string[] { "CD_CONTRATO" });
+            ArquivoUtils.IgualarCampos(arquivoTimCapa.ObterLinha(0), arquivoTimCapa.ObterLinha(1), new string[] { "CD_CONTRATO" },logger);
         }
     }
 }

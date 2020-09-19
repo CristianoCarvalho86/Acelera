@@ -1,4 +1,6 @@
-﻿using Acelera.Domain.Enums;
+﻿using Acelera.Domain;
+using Acelera.Domain.DataAccess;
+using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
 using System;

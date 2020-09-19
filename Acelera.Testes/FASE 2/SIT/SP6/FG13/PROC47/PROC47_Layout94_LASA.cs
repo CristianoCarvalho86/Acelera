@@ -33,7 +33,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC47
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "NR_PARCELA", "2");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "2");
             AlterarLinha(0, "CD_OCORRENCIA", "18");

@@ -3,6 +3,7 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
@@ -27,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8)));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
@@ -47,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo ,1 , OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR"});
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR"});
             var idCanc = arquivoods.ObterValorFormatadoSeExistirCampo(0, "ID_TRANSACAO");
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
@@ -62,7 +63,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR"});
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA", "CD_CORRETOR"});
             AlterarLinha(0, "CD_TIPO_EMISSAO", "1");
             AlterarLinha(0, "ID_TRANSACAO_CANC", "");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "1");
@@ -106,7 +107,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods2, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -120,7 +121,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
             AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -159,7 +160,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods2, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -173,7 +174,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -212,7 +213,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             var arquivoods2 = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivoods2, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivoods2, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             arquivoods2.AlterarLinha(0, "CD_TIPO_EMISSAO", "10");
             arquivoods2.AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             arquivoods2.AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");
@@ -226,7 +227,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC44
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
+            ArquivoUtils.IgualarCampos(arquivoods1, arquivo, new string[] { "CD_CONTRATO", "NR_APOLICE", "NR_PROPOSTA" });
             AlterarLinha(0, "CD_TIPO_EMISSAO", "11");
             AlterarLinha(0, "ID_TRANSACAO_CANC", idCanc);
             AlterarLinha(0, "CD_MOVTO_COBRANCA", "02");

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.DataAccessRep
+namespace Acelera.Domain.DataAccess
 {
     public class DataAccessOIM
     {

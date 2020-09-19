@@ -22,20 +22,20 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC230
             
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
-            CriarNovoContrato(0);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParcOds = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParcOds,false);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParcOds,false);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoComissaoOds = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParcOds, false);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivoParcOds, false);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
 
             AlterarLinha(0, "CD_ITEM", arquivo[0]["CD_ITEM"].ObterProximoValorInteiro());
 

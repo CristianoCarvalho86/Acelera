@@ -22,23 +22,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.COOP);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
             
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0, dados.ObterCoberturaPeloCodigo("00494", true));
             ConfereQtdLinhas(arquivo, 2);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
 
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo, false, false);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo, false, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
             AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
             EnviarParaOdsAlterandoCliente(arquivo);
             //ConfereQtdLinhas(arquivo, 2);
 
             arquivo = arquivoParc1;
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[1], "10", "02"));
+            arquivo.AdicionarLinha(cancelamentoRegras.CriarLinhaCancelamento(arquivoParc1[1], "10", "02"));
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             ExecutarEValidarAteFg02(arquivo);
 
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo, false, false);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.COOP, arquivo, false, false);
             AlterarLinha(0, "CD_TIPO_COMISSAO", "C");
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();

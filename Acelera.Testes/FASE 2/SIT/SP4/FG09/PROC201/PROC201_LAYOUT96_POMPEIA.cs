@@ -34,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValor(0, "VL_ADIC_FRACIONADO", 1));
 
@@ -58,7 +58,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(1), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_ADIC_FRACIONADO", "9999");
 
@@ -82,7 +82,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(2), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(2), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_ADIC_FRACIONADO", "9999");
 
@@ -106,7 +106,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_ADIC_FRACIONADO", SomarValores(arquivoods1.ObterValorFormatado(0, "VL_ADIC_FRACIONADO"), arquivoods1.ObterValorFormatado(1, "VL_ADIC_FRACIONADO")));
 
@@ -130,7 +130,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC201
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
 
             SalvarArquivo();

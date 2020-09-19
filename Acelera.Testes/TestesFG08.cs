@@ -1,6 +1,9 @@
-﻿using Acelera.Domain.Entidades.Interfaces;
+﻿using Acelera.Domain;
+using Acelera.Domain.DataAccess;
+using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
+using Acelera.RegrasNegocio;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.FASE_2.SIT.SP4.FG07;
 using Acelera.Testes.Validadores;
@@ -37,7 +40,7 @@ namespace Acelera.Testes
         public void IniciarTesteFG08(string numeroTeste, string descricao, OperadoraEnum operadora, bool geraCliente = true, bool gerarArquivoCapa = false)
         {
             base.IniciarTesteFG07(numeroTeste, descricao, operadora, geraCliente, gerarArquivoCapa);
-            validadorODS = new ValidadorODS(new TabelaParametrosDataSP3(logger),ref logger);
+            validadorODS = new ValidadorODS(new DadosParametrosData(logger),ref logger);
             deleteStages = new DeleteStages(ref logger);
             DeletarRegistrosAntigosDaStage();
         }

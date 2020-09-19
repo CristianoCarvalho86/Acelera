@@ -21,10 +21,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC242
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
-            CriarNovoContrato(0);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             var nrseq = ObterValorFormatado(0, "NR_SEQUENCIAL_EMISSAO");
 
             EnviarParaOdsAlterandoCliente(arquivo);

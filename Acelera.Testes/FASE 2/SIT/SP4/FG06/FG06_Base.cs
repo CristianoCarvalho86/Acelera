@@ -1,4 +1,5 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
@@ -10,6 +11,7 @@ using Acelera.Domain.Utils;
 using Acelera.Logger;
 using Acelera.Testes.DataAccessRep;
 using Acelera.Testes.Repositorio;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -284,7 +286,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
 
             arquivo = trinca.ArquivoComissao.Clone();
             RemoverLinhasExcetoAsPrimeiras(1);
-            IgualarCamposQueExistirem(arquivoParc, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParc, arquivo);
            // AlterarLinha(arquivo, 0, "CD_TIPO_COMISSAO", operadora == OperadoraEnum.VIVO ? "C" : "P");
             if (!string.IsNullOrEmpty(valorComissao))
                 AlterarLinhaSeExistirCampo(arquivo, 0, "VL_COMISSAO", valorComissao);

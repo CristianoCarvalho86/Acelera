@@ -2,6 +2,7 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
@@ -27,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111130"));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111130"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
@@ -44,7 +45,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
             AlterarLinha(0, "VL_COMISSAO", "110");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
@@ -68,7 +69,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
@@ -85,7 +86,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
-            IgualarCampos(arquivoods, arquivo, campos, true);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
             AlterarLinha(1, "VL_COMISSAO", "60");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
@@ -113,7 +114,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), "111132"));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
@@ -130,7 +131,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
-            IgualarCampos(arquivoods, arquivo, campos, true);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "60");
             AlterarLinha(1, "VL_COMISSAO", "60");
             AlterarLinha(2, "VL_COMISSAO", "60");
@@ -160,7 +161,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
@@ -177,7 +178,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM", "CD_CORRETOR" };
-            IgualarCampos(arquivoods, arquivo, campos, true);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "40");
             AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
 
@@ -201,7 +202,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.SOFTBOX);
 
-            AlterarLinha(0, "CD_CONTRATO", AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
+            AlterarLinha(0, "CD_CONTRATO", StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(7)));
             AlterarLinha(0, "NR_APOLICE", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "NR_PROPOSTA", ObterValorFormatado(0, "CD_CONTRATO"));
             AlterarLinha(0, "VL_PREMIO_TOTAL", "100");
@@ -218,7 +219,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC216
 
             //Alterar arquivo
             var campos = new string[] { "CD_CONTRATO", "NR_SEQUENCIAL_EMISSAO", "NR_PARCELA", "CD_COBERTURA", "CD_ITEM" };
-            IgualarCampos(arquivoods, arquivo, campos, true);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos, true);
             AlterarLinha(0, "VL_COMISSAO", "20");
             AlterarLinha(1, "VL_COMISSAO", "20");
             AlterarLinha(0, "CD_CORRETOR", "7150145");

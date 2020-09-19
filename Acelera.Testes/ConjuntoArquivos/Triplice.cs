@@ -1,4 +1,5 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Enums;
@@ -240,7 +241,7 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         private void Parametrizacoes(IArquivo arquivo)
         {
-            var dados = new TabelaParametrosData(logger);
+            //var dados = new Acelera.RegrasNegocio.DadosParametrosData(logger);
             for (int i = 0; i < arquivo.Linhas.Count; i++)
             {
                 //var cobertura = new TabelaParametrosData(logger).ObterCoberturaSimples(arquivo.ObterLinhaHeader()["CD_TPA"]);
@@ -284,7 +285,7 @@ namespace Acelera.Testes.ConjuntoArquivos
                 novoArquivo.AdicionarLinha(novoArquivo.CriarLinhaVazia(i));
 
             novoArquivo.AjustarQtdLinhasNoFooter();
-            IgualarCamposQueExistirem(_arquivo, novoArquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(_arquivo, novoArquivo);
 
             novoArquivo.AlterarHeader("VERSAO", novoArquivo.TextoVersaoHeader);
 
@@ -294,35 +295,12 @@ namespace Acelera.Testes.ConjuntoArquivos
 
         public void IgualarCamposQueExistirem(IArquivo arquivoOrigem, IArquivo arquivoDestino)
         {
-            logger.AbrirBloco("IGUALANDO CAMPOS DOS ARQUIVOS:");
-
-            if (arquivoOrigem.Linhas.Count != arquivoDestino.Linhas.Count)
-                throw new Exception("ARQUIVOS COM QUANTIDADE DE LINHAS DIFERENTES.");
-
-            var nomeCampo = string.Empty;
-            foreach (var linha in arquivoOrigem.Linhas)
-                foreach (var campo in arquivoOrigem.CamposDoBody)
-                {
-                    nomeCampo = campo;
-                    if (campo == "NR_SEQ_EMISSAO")
-                        nomeCampo = "NR_SEQUENCIAL_EMISSAO";
-
-                    if (!arquivoDestino.CamposDoBody.Contains(nomeCampo))
-                        continue;
-
-                    arquivoDestino.AlterarLinha(linha.Index, nomeCampo, arquivoOrigem.ObterLinha(linha.Index).ObterCampoDoArquivo(nomeCampo).ValorFormatado);
-                }
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoOrigem,arquivoDestino);
         }
 
         public void IgualarCamposQueExistirem(LinhaArquivo linhaOrigem, LinhaArquivo linhaDestino)
         {
-            logger.AbrirBloco("IGUALANDO CAMPOS DAS LINHAS:");
-            var nomeCampo = string.Empty;
-            foreach (var campo in linhaOrigem.Campos)
-            {
-                linhaDestino.ObterCampoSeExistir(campo.ColunaArquivo)?.AlterarValor(linhaOrigem[campo.ColunaArquivo]);
-            }
-            logger.FecharBloco();
+            ArquivoUtils.IgualarCamposQueExistirem(linhaOrigem, linhaDestino,logger);
         }
 
         public ITrinca Clone()

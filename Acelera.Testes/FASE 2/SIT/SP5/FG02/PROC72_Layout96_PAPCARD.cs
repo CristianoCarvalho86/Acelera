@@ -23,7 +23,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "DT_PAGAMENTO", dados.ObterDataDoBanco());
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_4_2();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(0, "DT_PAGAMENTO", "");
@@ -81,7 +81,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_6_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "DT_PAGAMENTO", "");
@@ -109,7 +109,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02
 
             arquivo = new Arquivo_Layout_9_6_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_Sinistro>(ref arquivo);
 
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "30");
             AlterarLinha(0, "DT_PAGAMENTO", "");

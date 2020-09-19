@@ -32,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             var cobertura = dados.ObterCoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], ObterValorHeader("CD_TPA"), true);
             AlterarDadosDeCobertura(0, cobertura);
@@ -61,7 +61,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             var cobertura = dados.ObterCoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], ObterValorHeader("CD_TPA"), true);
             AlterarDadosDeCobertura(0, cobertura);
@@ -90,7 +90,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
+            cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10");
             SalvarArquivo();
 
             ExecutarEValidar(CodigoStage.AprovadoNaFG09);

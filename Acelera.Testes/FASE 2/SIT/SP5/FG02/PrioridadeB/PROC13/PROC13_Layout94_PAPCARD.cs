@@ -21,7 +21,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02.PrioridadeB.PROC13
             IniciarTeste(TipoArquivo.ParcEmissao, "2667", "FG02 - PROC13 - Informar no arquivo PARC_EMISSAO_AUTO o campo VL_IS = 0");
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "VL_IS", "0");
@@ -55,7 +55,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG02.PrioridadeB.PROC13
             //CARREGAR O ARQUIVO BASE
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
 
             //ALTERAR O VALOR SELECIONADO
             AlterarLinha(3, "VL_IS", "1");

@@ -2,6 +2,7 @@
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
             arquivo = new Arquivo_Layout_9_4_OcrCobranca();
             CarregarArquivo(arquivo, 1, OperadoraEnum.QUEROQUERO);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao.ObterLinha(0), arquivo.ObterLinha(0));
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao.ObterLinha(0), arquivo.ObterLinha(0));
             AlterarLinha(0, "NR_PARCELA", (int.Parse(trinca.ArquivoParcEmissao[0]["NR_PARCELA"]) + 1).ToString());
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", (int.Parse(trinca.ArquivoParcEmissao[0]["NR_SEQUENCIAL_EMISSAO"]) + 1).ToString());
             AlterarLinha(0, "CD_OCORRENCIA", "18");

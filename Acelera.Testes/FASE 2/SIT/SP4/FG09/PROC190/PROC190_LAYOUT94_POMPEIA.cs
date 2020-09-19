@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             //AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", SomarValor(0, "VL_PREMIO_LIQUIDO", 1));
 
@@ -52,7 +52,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", "9999");
 
@@ -76,7 +76,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(2), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(2), "10"));
             AlterarHeader("VERSAO", "9.6");
             AlterarLinha(0, "VL_ADIC_FRACIONADO", "9999");
 
@@ -100,7 +100,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", (arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO") ).ValorFormatado());
             AlterarCobertura(false);
 
@@ -124,7 +124,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC190
             CarregarArquivo(arquivo, 1, OperadoraEnum.POMPEIA);
 
             RemoverTodasAsLinhas();
-            AdicionarLinha(0,CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0,cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarLinha(0, "VL_PREMIO_LIQUIDO", (arquivoods.SomarLinhasDoArquivo("VL_PREMIO_LIQUIDO") - 1).ValorFormatado());
 
             SalvarArquivo();

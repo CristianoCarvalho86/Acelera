@@ -1,4 +1,6 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain;
+using Acelera.Domain.DataAccess;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
@@ -25,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
             AlterarLinha(0, "CD_CLIENTE", dados.ObterCdClienteParceiro(true, arquivo.Header[0]["CD_TPA"]));
-            AlterarLinha(0, "CD_CONTRATO", GerarNovoContratoAleatorio(arquivo[0]["CD_CONTRATO"], true));
+            AlterarLinha(0, "CD_CONTRATO", contratoRegras.GerarNovoContratoAleatorio(arquivo[0]["CD_CONTRATO"], true));
             AlterarLinha(0, "NR_APOLICE", arquivo[0]["CD_CONTRATO"]);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             GerarCdSinistroEAviso(arquivo, 0);
@@ -44,7 +46,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "CD_FORMA_PAGTO", "D");
             GerarCdSinistroEAviso(arquivo, 0);
@@ -66,7 +68,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "2");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -90,7 +92,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -108,7 +110,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             EnviarParaOds(arquivo, true, false);
 
             LimparValidacao(arquivo);
-            var contrato = GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), true);
+            var contrato = contratoRegras.GerarNovoContratoAleatorio(arquivo.ObterValorFormatado(0, "CD_CONTRATO"), true);
             AlterarLinha(0, "CD_AVISO", GerarNumeroAleatorio(8));
 
             SalvarArquivo(arquivo);
@@ -130,7 +132,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_MOVIMENTO", "1");
@@ -168,7 +170,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -196,7 +198,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -208,7 +210,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             LimparValidacao(arquivo);
 
-            var cdSinistro = AlterarUltimasPosicoes(arquivo[0]["CD_SINISTRO"], GerarNumeroAleatorio(11));
+            var cdSinistro = StringUtils.AlterarUltimasPosicoes(arquivo[0]["CD_SINISTRO"], GerarNumeroAleatorio(11));
             AlterarLinha(0, "CD_ITEM", GerarNumeroAleatorio(10));
             AlterarLinha(0, "CD_SINISTRO", cdSinistro);
             AlterarLinha(0, "CD_MOVIMENTO", "2");
@@ -231,14 +233,14 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
 
             CriarCancelamento(false, false, OperadoraEnum.LASA, "10", out IArquivo arquivoParcCancelamento, out IArquivo arquivoComissaoCancelamento);
 
-            IgualarCampos(linha , arquivoComissaoCancelamento, new string[] { "CD_CORRETOR", "CD_TIPO_COMISSAO" });
+            ArquivoUtils.IgualarCampos(linha , arquivoComissaoCancelamento, new string[] { "CD_CORRETOR", "CD_TIPO_COMISSAO" });
             EnviarParaOds(arquivoParcCancelamento);
             EnviarParaOds(arquivoComissaoCancelamento);
 
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(arquivoParcCancelamento, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(arquivoParcCancelamento, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -261,7 +263,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             GerarCdSinistroEAviso(arquivo, 0);
@@ -290,7 +292,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_MOVIMENTO", "1");
@@ -327,7 +329,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -361,7 +363,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -394,7 +396,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -428,7 +430,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -461,7 +463,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -498,7 +500,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             arquivo = new Arquivo_Layout_9_4_Sinistro();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
 
-            IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
+            ArquivoUtils.IgualarCamposQueExistirem(trinca.ArquivoParcEmissao, arquivo);
             AlterarLinha(0, "CD_TIPO_MOVIMENTO", "1");
             AlterarLinha(0, "TP_SINISTRO", "01");
             AlterarLinha(0, "CD_FORMA_PAGTO", "N");
@@ -527,7 +529,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP7
             var cdSinistro = "";
             while (true)
             {
-                cdSinistro = AlterarUltimasPosicoes(_arquivo[posicaoLinha]["CD_SINISTRO"], GerarNumeroAleatorio(11));
+                cdSinistro = StringUtils.AlterarUltimasPosicoes(_arquivo[posicaoLinha]["CD_SINISTRO"], GerarNumeroAleatorio(11));
                 if (!DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.Sinistro.ObterTexto()} WHERE CD_SINISTRO = '{cdSinistro}'", logger) &&
                    !DataAccess.ExisteRegistro($"SELECT '1' FROM {Parametros.instanciaDB}.{TabelasEnum.OdsSinistro.ObterTexto()} WHERE CD_SINISTRO = '{cdSinistro}'", logger))
                     break;

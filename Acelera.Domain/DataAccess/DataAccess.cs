@@ -1,11 +1,11 @@
 ﻿using Acelera.Data;
+using Acelera.Domain;
 using Acelera.Domain.Entidades;
 using Acelera.Domain.Entidades.Consultas;
 using Acelera.Domain.Entidades.Interfaces;
 using Acelera.Domain.Entidades.Tabelas;
 using Acelera.Domain.Enums;
 using Acelera.Logger;
-using Acelera.Testes.Adapters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Acelera.Testes.DataAccessRep
+namespace Acelera.Domain.DataAccess
 {
     public static class DataAccess
     {
@@ -205,32 +205,32 @@ namespace Acelera.Testes.DataAccessRep
             return tabela;
         }
 
-        [Obsolete]
-        public static IList<T> ChamarConsultaAoBancoViaCMD<T>(ConjuntoConsultas consultas, IMyLogger logger) where T : LinhaTabela, new()
-        {
-            var tabela = new Tabela<T>();
-            try
-            {
-                logger.InicioOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
-                var integracao = new IntegracaoCMD();
-                integracao.AbrirCMD();
+        //[Obsolete]
+        //public static IList<T> ChamarConsultaAoBancoViaCMD<T>(ConjuntoConsultas consultas, IMyLogger logger) where T : LinhaTabela, new()
+        //{
+        //    var tabela = new Tabela<T>();
+        //    try
+        //    {
+        //        logger.InicioOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
+        //        var integracao = new IntegracaoCMD();
+        //        integracao.AbrirCMD();
 
-                integracao.ExecutarQuery(tabela.ObterQueryParaCMD(consultas));
-                var resultado = integracao.ObterTextoCMD();
-                tabela.ObterRetornoQueryCMD(resultado);
+        //        integracao.ExecutarQuery(tabela.ObterQueryParaCMD(consultas));
+        //        var resultado = integracao.ObterTextoCMD();
+        //        tabela.ObterRetornoQueryCMD(resultado);
 
-                logger.LogRetornoCMD(resultado);
-                logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
+        //        logger.LogRetornoCMD(resultado);
+        //        logger.SucessoDaOperacao(OperacaoEnum.ConsultaBanco, tabela.ObterNomeTabela());
 
-                integracao.FecharCMD();
+        //        integracao.FecharCMD();
 
-            }
-            catch (Exception ex)
-            {
-                logger.Erro(ex);
-            }
-            return tabela.Linhas;
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logger.Erro(ex);
+        //    }
+        //    return tabela.Linhas;
+        //}
 
         private static IDBHelper ObterBanco(DBEnum dbEnum)
         {
@@ -247,6 +247,41 @@ namespace Acelera.Testes.DataAccessRep
                 return DBHelperSQLServer.Instance;
             }
             throw new Exception("BANCO NAO PARAMETRIZADO");
+        }
+
+        public static bool ChamarExecucaoHana(string taskName, IMyLogger logger)
+        {
+            IDBHelper helper = ObterBanco(DBEnum.Hana);
+
+            if (Parametros.ModoExecucao != ModoExecucaoEnum.Completo)
+                return true;
+            try
+            {
+                var comando = "";
+                if (taskName.Contains("FGR_01_") && !taskName.Contains("FGR_01_2") && !taskName.Contains("FGR_01_1"))//Temporario enquanto resolvem o problema da FG01 (Codigo vindo 150 onde nao devia)
+                    comando = $"CALL {Parametros.instanciaDB}.{taskName}_SP()";
+                else if (taskName.Contains("PRC_ENCADEA_FGR_08"))
+                    comando = $"CALL HDIQAS_1.PRC_ENCADEA_FGR_08(OUT_STATUS => ?)";
+                else
+                    comando = $"START TASK {Parametros.instanciaDB}.{taskName}";
+
+                logger.AbrirBloco($"EXECUTANDO TAREFA : '{taskName}'");
+                logger.Escrever($"EXECUTANDO COMANDO : {comando}");
+                var retorno = helper.Execute(comando, out string erroEncontrado);
+
+                logger.EscreverBloco($"RESULTADO DA TAREFA : '{retorno}'");
+
+                if (retorno == 999)
+                    logger.Escrever("HOUVE UM ERRO DESCARTADO NA EXECUÇÃO : " + erroEncontrado);
+                logger.FecharBloco();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.Erro(ex);
+                throw ex;
+            }
+
         }
 
     }

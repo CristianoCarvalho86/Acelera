@@ -22,23 +22,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.LASA);
-            CriarNovoContrato(0);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
             ConfereQtdLinhas(arquivo, 2);
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
             LimparValidacao();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivo);
             AlterarLinha(1, "CD_TIPO_COMISSAO", "P");
             EnviarParaOdsAlterandoCliente(arquivo);
             ConfereQtdLinhas(arquivo, 2);
             LimparValidacao();
 
             arquivo = arquivoParc1;
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
+            arquivo.AdicionarLinha(cancelamentoRegras.CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
@@ -48,7 +48,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);
             LimparValidacao();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_EmsComissao>(OperadoraEnum.LASA, arquivo);
             ConfereQtdLinhas(arquivo, 1);
             SalvarArquivo();
             ExecutarEValidar(CodigoStage.ReprovadoNegocioComDependencia, "46", 1);

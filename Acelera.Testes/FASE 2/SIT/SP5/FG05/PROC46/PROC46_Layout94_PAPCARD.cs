@@ -20,23 +20,23 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
-            CriarNovoContrato(0);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
 
             EnviarParaOdsAlterandoCliente(arquivo);
             var arquivoParc1 = arquivo.Clone();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc1[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
 
             EnviarParaOdsAlterandoCliente(arquivo);
 
             arquivo = arquivoParc1.Clone();
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02", ""));
+            arquivo.AdicionarLinha(cancelamentoRegras.CriarLinhaCancelamento(arquivoParc1[0], "10", "02", ""));
             RemoverLinhaComAjusteDeFooter(0);
 
 
@@ -44,8 +44,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
 
             ExecutarEValidarAteFg02(arquivo, "127");
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
             AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", "1");
 
@@ -65,7 +65,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
 
@@ -89,7 +89,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
@@ -115,7 +115,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
@@ -140,7 +140,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
@@ -166,7 +166,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
@@ -190,7 +190,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_ParcEmissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
             SalvarArquivo();
@@ -209,7 +209,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
             EnviarParaOdsAlterandoCliente(arquivoods1);
@@ -233,7 +233,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC46
             var arquivoods1 = new Arquivo_Layout_9_6_EmsComissao();
             CarregarArquivo(arquivoods1, 1, OperadoraEnum.PAPCARD);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivoods1, 0);
 
 
             SalvarArquivo();

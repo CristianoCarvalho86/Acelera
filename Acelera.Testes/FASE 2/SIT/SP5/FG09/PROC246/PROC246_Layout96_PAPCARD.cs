@@ -22,10 +22,10 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //Envia parc normal
             arquivo = new Arquivo_Layout_9_4_2_new_ParcEmissao();
             CarregarArquivo(arquivo, 1, OperadoraEnum.PAPCARD);
-            AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
-            CriarNovoContrato(0);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_ParcEmissao>(ref arquivo);
+            contratoRegras.CriarNovoContrato(0,arquivo);
 
-            AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
+            emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
             AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0, dados.ObterCoberturaPeloCodigo("01433",true));
             ConfereQtdLinhas(arquivo, 2);
 
@@ -34,8 +34,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             var arquivoParc2 = arquivo.Clone();
             //LimparValidacao();
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParc2[0]["NR_SEQUENCIAL_EMISSAO_EST"]);
             arquivo.AlterarLinha(1, "NR_SEQUENCIAL_EMISSAO", "");
@@ -47,7 +47,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             //LimparValidacao();
 
             arquivo = arquivoParc1;
-            arquivo.AdicionarLinha(CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
+            arquivo.AdicionarLinha(cancelamentoRegras.CriarLinhaCancelamento(arquivoParc1[0], "10", "02"));
             RemoverLinhaComAjusteDeFooter(0);
             RemoverLinhaComAjusteDeFooter(0);
             ConfereQtdLinhas(arquivo, 1);
@@ -58,8 +58,8 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
 
             ExecutarEValidarAteFg02(arquivo);
 
-            arquivo = CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
-            AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
+            arquivo = comissaoRegras.CriarComissao<Arquivo_Layout_9_4_2_new_EmsComissao>(OperadoraEnum.PAPCARD, arquivo);
+            arquivoRegras.AlterarLayout<Arquivo_Layout_9_6_EmsComissao>(ref arquivo);
             arquivo.AlterarLinha(0, "CD_TIPO_COMISSAO", "P");
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO", "");
             arquivo.AlterarLinha(0, "NR_SEQUENCIAL_EMISSAO_EST", arquivoParccanc[0]["NR_SEQUENCIAL_EMISSAO_EST"]);

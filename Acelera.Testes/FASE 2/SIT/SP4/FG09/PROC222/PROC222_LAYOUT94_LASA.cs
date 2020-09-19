@@ -6,6 +6,7 @@ using Acelera.Domain.Layouts._9_3;
 using Acelera.Domain.Layouts._9_4;
 using Acelera.Domain.Layouts._9_6;
 using Acelera.Domain.Utils;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             arquivo.SelecionarLinhas("CD_CONTRATO", ObterValorFormatado(0, "CD_CONTRATO"));
             arquivo.RemoverValoresRepetidosNoCampo("CD_COBERTURA");
 
-            var contrato = AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
+            var contrato = StringUtils.AlterarUltimasPosicoes(ObterValorFormatado(0, "CD_CONTRATO"), GerarNumeroAleatorio(8));
             AlterarTodasAsLinhas("CD_CONTRATO", contrato);
             AlterarTodasAsLinhas("NR_APOLICE", contrato);
             AlterarTodasAsLinhas("NR_PROPOSTA", contrato);
@@ -50,7 +51,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
 
             SalvarArquivo();
 
@@ -83,7 +84,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            CriarArquivoCancelamento(arquivoods, arquivo, "10");
+            cancelamentoRegras.CriarArquivoCancelamento(arquivoods, arquivo, "10");
             AlterarLinha(1, "CD_TIPO_EMISSAO", "11");
 
             SalvarArquivo();
@@ -117,7 +118,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
 
             SalvarArquivo();
 
@@ -129,7 +130,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            AdicionarLinha(0, CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
+            AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(1), "10"));
 
             SalvarArquivo();
 
@@ -162,7 +163,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC222
             CarregarArquivo(arquivo, 1, operacaoDoTeste);
             AlterarHeader("VERSAO", "9.6");
             RemoverTodasAsLinhas();
-            CriarArquivoCancelamento(arquivoods, arquivo, "10");
+            cancelamentoRegras.CriarArquivoCancelamento(arquivoods, arquivo, "10");
 
             SalvarArquivo();
 

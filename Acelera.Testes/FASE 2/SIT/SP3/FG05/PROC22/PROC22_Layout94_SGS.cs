@@ -2,6 +2,7 @@
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts._9_4_2;
+using Acelera.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
@@ -35,7 +36,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP3.FG05.PROC22
 
             //Alterar arquivo
             var campos = dados.ObterAtributosDoLayout(TipoArquivo.Sinistro, "9.4");
-            IgualarCampos(arquivoods, arquivo, campos);
+            ArquivoUtils.IgualarCampos(arquivoods, arquivo, campos);
 
             //Salvar e executar
             SalvarArquivo(false, "PROC22_4196");
