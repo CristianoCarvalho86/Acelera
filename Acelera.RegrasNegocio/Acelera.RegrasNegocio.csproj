@@ -49,6 +49,7 @@
     <Compile Include="DadosParametrosData.cs" />
     <Compile Include="EmissaoRegras.cs" />
     <Compile Include="ExecucaoFgsRegras.cs" />
+    <Compile Include="ParametrosRegras.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

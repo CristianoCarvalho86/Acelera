@@ -47,7 +47,6 @@
             this.panelFiltro = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnCopyText = new System.Windows.Forms.Button();
-            this.btnSalvarComNovoLote = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFooter)).BeginInit();
@@ -230,16 +229,6 @@
             this.btnCopyText.UseVisualStyleBackColor = true;
             this.btnCopyText.Click += new System.EventHandler(this.btnCopyText_Click);
             // 
-            // btnSalvarComNovoLote
-            // 
-            this.btnSalvarComNovoLote.Location = new System.Drawing.Point(816, 5);
-            this.btnSalvarComNovoLote.Name = "btnSalvarComNovoLote";
-            this.btnSalvarComNovoLote.Size = new System.Drawing.Size(126, 23);
-            this.btnSalvarComNovoLote.TabIndex = 14;
-            this.btnSalvarComNovoLote.Text = "Salvar Com Novo Lote";
-            this.btnSalvarComNovoLote.UseVisualStyleBackColor = true;
-            this.btnSalvarComNovoLote.Click += new System.EventHandler(this.btnSalvarComNovoLote_Click);
-            // 
             // FrmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,7 +237,6 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(956, 631);
-            this.Controls.Add(this.btnSalvarComNovoLote);
             this.Controls.Add(this.btnCopyText);
             this.Controls.Add(this.picLoading);
             this.Controls.Add(this.panelFiltro);
@@ -296,7 +284,6 @@
         private System.Windows.Forms.Panel panelFiltro;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnCopyText;
-        private System.Windows.Forms.Button btnSalvarComNovoLote;
     }
 }
 

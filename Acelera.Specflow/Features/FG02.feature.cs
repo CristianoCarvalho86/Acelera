@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("na linha \'1\' o \'CD_CONTRATO\' = \'5555\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 6
- testRunner.And("na linha \'1\' o \'NR_APOLICE\' = \'5555\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("na linha \'1\' o \'NR_APOLICE\' = \'55155\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 7
  testRunner.When("executado até a \'FGR_02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
