@@ -436,7 +436,6 @@
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC50\PROC50_Layout94_TIM.cs" />
     <Compile Include="FASE 2\SIT\SP6\FG13\PROC97\PROC97_Layout94_Softbox.cs" />
     <Compile Include="FASE 2\SIT\SP7\Sinistro_LASA_TIM.cs" />
-    <Compile Include="Repositorio\RepositorioProcedures.cs" />
     <Compile Include="TesteBat.cs" />
     <Compile Include="TestesFG08.cs" />
     <Compile Include="TestesFG13.cs" />
@@ -977,10 +976,7 @@
     <Compile Include="Validadores\FG00\ValidadorTabelaRetornoFG00.cs" />
     <Compile Include="Validadores\FG01\ValidadorStagesFG01.cs" />
     <Compile Include="Validadores\FG01\ValidadorTabelaRetornoFG01.cs" />
-    <Compile Include="Validadores\FG02\ValidadorStages.cs" />
-    <Compile Include="Validadores\ValidadorTabelaRetorno.cs" />
     <Compile Include="Validadores\FG05\ValidadorODSFG05.cs" />
-    <Compile Include="Validadores\Validador.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -1049,6 +1045,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
+    <Folder Include="Validadores\FG02\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -25,7 +25,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             AlterarHeader("VERSAO", "9.6");
             contratoRegras.CriarNovoContrato(0,arquivo);
             emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(arquivo, dados);
 
             AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivo[0]["DT_INICIO_VIGENCIA"], 30));
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivo[0]["DT_FIM_VIGENCIA"], 30));

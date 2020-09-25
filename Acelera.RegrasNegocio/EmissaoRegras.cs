@@ -1,4 +1,5 @@
 ﻿using Acelera.Contratos;
+using Acelera.Domain.Entidades;
 using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Logger;
@@ -71,10 +72,8 @@ namespace Acelera.RegrasNegocio
 
         public void AlterarLinhaParaPrimeiraEmissao(IArquivo arquivoParc, int linhaDeReferencia = 0)
         {
-            if (arquivoParc.Operadora == OperadoraEnum.PAPCARD)
+            arquivoParc.AlterarLinha(linhaDeReferencia, "ID_TRANSACAO_CANC", "");
 
-
-                arquivoParc.AlterarLinha(linhaDeReferencia, "ID_TRANSACAO_CANC", "");
             arquivoParc.AlterarLinha(linhaDeReferencia, "CD_TIPO_EMISSAO", ParametrosRegrasEmissao.CarregaTipoEmissaoParaPrimeiraLinhaDaEmissao(arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_ENDOSSO", ParametrosRegrasEmissao.CarregaPrimeiroNumeroEndosso(arquivoParc[linhaDeReferencia], arquivoParc.Operadora));
             arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PARCELA", ParametrosRegrasEmissao.CarregaPrimeiroNrParcela(arquivoParc.Operadora));
@@ -83,6 +82,42 @@ namespace Acelera.RegrasNegocio
             {
                 arquivoParc.AlterarLinha(linhaDeReferencia, "NR_PROPOSTA", ParametrosRegrasEmissao.GerarNrApolicePapCard());
             }
+        }
+
+        public void AdicionarNovaCoberturaNaEmissao(IArquivo arquivoParc, DadosParametrosData dados, int posicaoLinha = 0, Cobertura cobertura = null)
+        {
+            arquivoParc.ReplicarLinha(posicaoLinha, 1);
+            var cdRamo = arquivoParc.Operadora == OperadoraEnum.TIM ? arquivoParc[arquivoParc.Linhas.Count - 1]["CD_RAMO"] : "";
+            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true) : cobertura;
+            AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
+        }
+
+        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, IArquivo _arquivo)
+        {
+            var operadora = _arquivo.Operadora;
+
+            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
+            {
+                //var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
+
+                //var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
+
+                //premioTotal = premioTotal + 1M;
+                //premioLiquido = premioLiquido + 1M;
+
+                //_arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
+
+                _arquivo.AlterarLinha(1, "VL_PREMIO_LIQUIDO", "23.27");
+                _arquivo.AlterarLinha(1, "VL_IOF", "1.72");
+                _arquivo.AlterarLinha(1, "VL_PREMIO_TOTAL", "24.99");
+
+            }
+            _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
+            _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
+            _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
+
         }
 
     }

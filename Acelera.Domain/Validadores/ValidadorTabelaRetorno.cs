@@ -8,7 +8,6 @@ using Acelera.Domain.Enums;
 using Acelera.Domain.Extensions;
 using Acelera.Domain.Layouts;
 using Acelera.Logger;
-using Acelera.Testes.DataAccessRep;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,14 +60,22 @@ namespace Acelera.Testes.Validadores
 
         }
 
-        public bool ValidarTabela(TabelasEnum tabela, bool naoDeveEncontrar, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados)
+        public bool ValidarTabela(TabelasEnum tabela, bool naoDeveEncontrar, bool validaQuantidadeErros = false, bool validaTodasAsLinhas = true, params string[] codigosDeErroEsperados)
         {
             AjustarEntradaErros(ref codigosDeErroEsperados);
 
-            var consulta = MontarConsulta(tabela, arquivo);
+            ConjuntoConsultas consultas = new ConjuntoConsultas();
+            if(validaTodasAsLinhas)
+            {
+                var consulta = new Consulta();
+                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", arquivo.NomeArquivo);
+                consultas.AdicionarConsulta(consulta);
+            }
+            else
+                consultas = MontarConsulta(tabela, arquivo);
 
             List<ILinhaTabela> linhasEncontradas;
-            linhasEncontradas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consulta, logger).Select(x => (ILinhaTabela)x).ToList();
+            linhasEncontradas = DataAccess.ChamarConsultaAoBanco<LinhaTabelaRetorno>(consultas, logger).Select(x => (ILinhaTabela)x).ToList();
 
             var qtd = ObterQtdRegistrosDuplicadosHeaderAndFooter();
             if (qtd == 0)

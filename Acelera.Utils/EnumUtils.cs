@@ -15,5 +15,10 @@ namespace Acelera.Utils
         {
             return Enum.GetValues(typeof(T)).Cast<T>().ToList();
         }
+
+        public static T ObterEnumPelaDescricao<T>(string descricao) where T : Enum
+        {
+            return (T)ObterListaComTodos<T>().First(x => x.ObterTexto() == descricao);
+        }
     }
 }

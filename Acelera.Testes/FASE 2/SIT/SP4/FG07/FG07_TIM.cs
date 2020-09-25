@@ -68,7 +68,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
 
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 0);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 0);
 
             trinca.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[1]);
@@ -87,7 +87,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[0]);
 
             //ALTERACAO PARCELA
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1);
 
             //ALTERACAO COMISSAO
             AdicionarTipoComissao(trinca.ArquivoComissao, trinca.ArquivoParcEmissao[1]["VL_PREMIO_LIQUIDO"], "P", 0);
@@ -128,7 +128,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "R", dados);
             CriarNovaLinhaParaEmissao(trinca.ArquivoParcEmissao, 0);
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[0]);
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1);
 
             trinca.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[2], trinca.ArquivoComissao[1]);

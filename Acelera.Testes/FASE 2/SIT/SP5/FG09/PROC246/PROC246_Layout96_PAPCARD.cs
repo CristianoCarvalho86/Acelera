@@ -26,7 +26,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG09.PROC246
             contratoRegras.CriarNovoContrato(0,arquivo);
 
             emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo, 0);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0, dados.ObterCoberturaPeloCodigo("01433",true));
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0, dados.ObterCoberturaPeloCodigo("01433",true));
             ConfereQtdLinhas(arquivo, 2);
 
             var arquivoParc1 = arquivo.Clone();

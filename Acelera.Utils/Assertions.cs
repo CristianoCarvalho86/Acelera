@@ -28,5 +28,24 @@ namespace Acelera.Utils
             logger.Escrever($"APENAS 1 REGISTRO ENCONTRADO PARA '{nomeDaLista}' - OK.");
             return true;
         }
+
+        public static bool Validar(bool obtido, bool esperado, string tituloValidacao, IMyLogger logger)
+        {
+            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
+
+            if (esperado == obtido)
+                return true;
+            return false;
+        }
+
+        public static bool Validar(int obtido, int esperado, string tituloValidacao, IMyLogger logger)
+        {
+            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
+
+            if (esperado == obtido)
+                return true;
+            return false;
+        }
+
     }
 }

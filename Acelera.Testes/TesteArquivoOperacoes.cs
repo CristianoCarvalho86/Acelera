@@ -30,6 +30,8 @@ namespace Acelera.Testes
         protected ArquivoRegras arquivoRegras { get; set; }
         protected ContratoRegras contratoRegras { get; set; }
         protected DadosParametrosData dados { get; set; }
+
+        protected ExecucaoFgsRegras execucaoRegras { get; set; }
         public TesteArquivoOperacoes()
         {
 

@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace Acelera.Specflow.Steps
+namespace teste1.Steps
 {
     [Binding]
     public sealed class CalculatorStepDefinitions

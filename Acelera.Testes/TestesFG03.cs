@@ -350,8 +350,10 @@ namespace Acelera.Testes
                 logger.EscreverBloco("Inicio da Validação da FG00.");
                 //PROCESSAR O ARQUIVO CRIADO
                 base.ChamarExecucao(arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-                base.ValidarControleArquivo(_arquivo);
-                base.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo));
+                if (!execucaoRegras.ValidarControleArquivo(_arquivo))
+                    ExplodeFalha();
+                if (!execucaoRegras.ValidarLogProcessamento(_arquivo, true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo)))
+                    ExplodeFalha();
                 base.ValidarStages(CodigoStage.AprovadoNAFG00,false, _arquivo);
                 ValidarTabelaDeRetornoFG00(false,false, _arquivo);
                 logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
@@ -362,7 +364,8 @@ namespace Acelera.Testes
                 logger.EscreverBloco("Inicio da Validação da FG01.");
                 //PROCESSAR O ARQUIVO CRIADO
                 base.ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
-                base.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo));
+                if (!execucaoRegras.ValidarLogProcessamento(_arquivo, true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo)))
+                    ExplodeFalha();
                 base.ValidarStages(CodigoStage.AprovadoNaFG01);
                 ValidarTabelaDeRetornoFG01(_arquivo);
                 logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
@@ -380,7 +383,8 @@ namespace Acelera.Testes
             {
                 logger.EscreverBloco("Inicio da FG02.");
                 ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
-                ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo));
+                if (!execucaoRegras.ValidarLogProcessamento(_arquivo, true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo)))
+                    ExplodeFalha();
                 ValidarStagesSemGerarErro(CodigoStage.AprovadoNegocioSemDependencia);
                 ValidarTabelaDeRetornoSemGerarErro();
                 logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));

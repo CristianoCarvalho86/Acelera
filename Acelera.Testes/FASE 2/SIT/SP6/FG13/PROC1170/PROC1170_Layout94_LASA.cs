@@ -24,7 +24,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC48
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
             trinca.AlterarParcEComissao(0, "DT_VENCIMENTO", "20201011");
 
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 0);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 0);
 
             trinca.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(1), trinca.ArquivoComissao.ObterLinha(1));

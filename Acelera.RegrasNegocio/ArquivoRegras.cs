@@ -123,5 +123,26 @@ namespace Acelera.RegrasNegocio
                 _arquivo.AlterarLinhaSeExistirCampo(i, "NR_SEQUENCIAL_EMISSAO", "");
             }
         }
+
+        public void AjusteIdTransacao(IArquivo _arquivo)
+        {
+            if (_arquivo.tipoArquivo == TipoArquivo.ParcEmissao || _arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
+            {
+
+                Parallel.ForEach(_arquivo.Linhas, linha =>
+                {
+                    var idTransacaoOld = linha["ID_TRANSACAO"];
+                    var idTransacaoNew = CarregarIdtransacao(linha);
+                    _arquivo.AlterarLinha(linha.Index, "ID_TRANSACAO", idTransacaoNew);
+                    //REPENSAR EM COMO UTILIZAR ISSO PARA ARQUIVOS COM EMISSAO E CANCELAMENTO JUNTOS.
+                    //_arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", idTransacaoNew);
+                });
+            }
+        }
+
+        public string CarregarIdtransacao(ILinhaArquivo linha)
+        {
+            return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
+        }
     }
 }

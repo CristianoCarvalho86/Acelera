@@ -193,7 +193,8 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 }
 
                 if (RepositorioProcedures.FgsQueRodamProcedures.Contains(fg))
-                    ValidarLogProcessamento(arquivo, true, 1, RepositorioProcedures.ObterProcedures(fg, arquivo.tipoArquivo));
+                    if (!execucaoRegras.ValidarLogProcessamento(arquivo, true, 1, RepositorioProcedures.ObterProcedures(fg, arquivo.tipoArquivo)))
+                        ExplodeFalha();
 
                 //ValidarTeste();
             }
@@ -226,7 +227,7 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 ExecutarEValidar(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(true));
                 if (fg == FGs.FG00)
                 {
-                    ValidarControleArquivo(arquivo);
+                    execucaoRegras.ValidarControleArquivo(arquivo);
                 }
             }
             else if (fg == FGs.FG02)
@@ -234,8 +235,8 @@ bool alterarLayout = false, string nrSequencialEmissao = "", string valorComissa
                 ExecutarEValidarEsperandoErro(arquivo, fg, fg.ObterCodigoDeSucessoOuFalha(false));
             }
             if(RepositorioProcedures.FgsQueRodamProcedures.Contains(fg))
-                ValidarLogProcessamento(arquivo, true, 1, RepositorioProcedures.ObterProcedures(fg, arquivo.tipoArquivo));
-
+                if (!execucaoRegras.ValidarLogProcessamento(arquivo, true, 1, RepositorioProcedures.ObterProcedures(fg, arquivo.tipoArquivo)))
+                    ExplodeFalha();
         }
 
         public void CarregarCancelamento(int indexLinhaArquivoEmissao, bool erroEmParc, bool erroEmComissao, OperadoraEnum operadora, string cdTipoEmissao,

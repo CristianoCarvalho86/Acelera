@@ -147,7 +147,8 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG02.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG02Enum().ObterTexto());
-            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo));
+            if (execucaoRegras.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo)))
+                ExplodeFalha();
             ValidarStages(CodigoStage.AprovadoNegocioSemDependencia);
             ValidarTabelaDeRetornoFG01(_arquivo);
             logger.EscreverBloco("Fim da Validação da FG02. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));

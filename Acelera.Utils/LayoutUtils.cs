@@ -97,6 +97,27 @@ namespace Acelera.Utils
             }
             throw new Exception("LAYOUT NAO PARAMETRIZADO");
         }
+        public static IArquivo CarregarLayout(TipoArquivo tipoArquivo, OperadoraEnum operacao)
+        {
+            var operadoras94 = new OperadoraEnum[] { OperadoraEnum.LASA, OperadoraEnum.VIVO, OperadoraEnum.TIM };
+
+            if (operadoras94.Contains(operacao) && tipoArquivo == TipoArquivo.Cliente)
+            {
+                if (tipoArquivo == TipoArquivo.Cliente)
+                    return new Arquivo_Layout_9_4_Cliente();
+            }
+            else if (operadoras94.Contains(operacao) && tipoArquivo == TipoArquivo.ParcEmissao)
+            {
+                if (tipoArquivo == TipoArquivo.ParcEmissao)
+                    return new Arquivo_Layout_9_4_ParcEmissao();
+            }
+            else if (operadoras94.Contains(operacao) && tipoArquivo == TipoArquivo.Comissao)
+            {
+                if (tipoArquivo == TipoArquivo.Comissao)
+                    return new Arquivo_Layout_9_4_EmsComissao();
+            }
+            throw new Exception("LAYOUT NAO PARAMETRIZADO");
+        }
 
     }
 }

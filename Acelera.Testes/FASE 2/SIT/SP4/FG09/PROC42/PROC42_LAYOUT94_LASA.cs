@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC42
             RemoverTodasAsLinhas();
             cancelamentoRegras.CriarLinhaCancelamento(arquivoods1.ObterLinha(0), "11");
 
-            AlterarDadosDeCobertura(0, dados.ObterCoberturaDiferenteDe(arquivoods1.ObterValorFormatado(0, "CD_COBERTURA")));
+            emissaoRegras.AlterarDadosDeCobertura(0, dados.ObterCoberturaDiferenteDe(arquivoods1.ObterValorFormatado(0, "CD_COBERTURA")), arquivo);
 
             SalvarArquivo();
 

@@ -37,7 +37,8 @@ namespace Acelera.Testes
         {
             SetarArquivoEmUso(ref _arquivo);
             ExecutarEValidar(_arquivo, FGs.FG09, FGs.FG09.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(falhaEsperada)), falhaEsperada);
-            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG09, _arquivo.tipoArquivo));
+            if (!execucaoRegras.ValidarLogProcessamento(_arquivo, true, 1, RepositorioProcedures.ObterProcedures(FGs.FG09, _arquivo.tipoArquivo)))
+                ExplodeFalha();
 
         }
 

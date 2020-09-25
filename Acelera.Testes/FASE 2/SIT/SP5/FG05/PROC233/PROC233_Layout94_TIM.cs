@@ -53,7 +53,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
 
             SalvarArquivo();
 
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
             AlterarLinha(1, "CD_RAMO", "00");
             RemoverLinha(0);
             AjustarQtdLinFooter();
@@ -78,7 +78,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
             CarregarArquivo(arquivo, 1, OperadoraEnum.TIM);
             ArquivoUtils.IgualarCamposQueExistirem(arquivoParc,arquivo);
 
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(arquivo, dados, 0);
             AlterarLinha(1, "CD_RAMO", "00");
             RemoverLinha(0);
             AjustarQtdLinFooter();

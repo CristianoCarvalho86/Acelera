@@ -45,7 +45,8 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG01.");
             //PROCESSAR O ARQUIVO CRIADO
             base.ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG01Enum().ObterTexto());
-            base.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01,_arquivo.tipoArquivo));
+            if (execucaoRegras.ValidarLogProcessamento(_arquivo, true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo)))
+                ExplodeFalha();
             base.ValidarStages(CodigoStage.AprovadoNaFG01,false, _arquivo);
             ValidarTabelaDeRetornoFG01(_arquivo);
             logger.EscreverBloco("Fim da Validação da FG01. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
@@ -92,7 +93,7 @@ namespace Acelera.Testes
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
                 var validador = new ValidadorTabelaRetorno(_arquivo.NomeArquivo, logger,_arquivo);
 
-                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, codigosDeErroEsperados))
+                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno, naoDeveEncontrarOsErrosDefinidos, validaQuantidadeErros, false, codigosDeErroEsperados))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
                 else
                     ExplodeFalha();
@@ -154,26 +155,12 @@ namespace Acelera.Testes
         }
 
 
-        protected string CarregarIdtransacao(ILinhaArquivo linha)
-        {
-            return linha.ObterCampoDoArquivo("NR_APOLICE").ValorFormatado + linha.ObterCampoDoArquivo("NR_ENDOSSO").ValorFormatado + linha.ObterCampoDoArquivo("CD_RAMO").ValorFormatado + linha.ObterCampoDoArquivo("NR_PARCELA").ValorFormatado;
-        }
-
         public override void FinalizarAlteracaoArquivo(IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
-            if (_arquivo.tipoArquivo == TipoArquivo.ParcEmissao || _arquivo.tipoArquivo == TipoArquivo.ParcEmissaoAuto)
-            {
 
-                Parallel.ForEach(_arquivo.Linhas, linha =>
-                {
-                    var idTransacaoOld = linha["ID_TRANSACAO"];
-                    var idTransacaoNew = CarregarIdtransacao(linha);
-                    _arquivo.AlterarLinha(linha.Index, "ID_TRANSACAO", idTransacaoNew);
-                    //REPENSAR EM COMO UTILIZAR ISSO PARA ARQUIVOS COM EMISSAO E CANCELAMENTO JUNTOS.
-                    //_arquivo.AlterarLinhaComCampoIgualAValor("ID_TRANSACAO_CANC", idTransacaoOld, "ID_TRANSACAO_CANC", idTransacaoNew);
-                });
-            }
+            arquivoRegras.AjusteIdTransacao(_arquivo);
+
             base.FinalizarAlteracaoArquivo(_arquivo);
         }
 
@@ -207,22 +194,23 @@ namespace Acelera.Testes
         protected void ExecutarEValidarAteFg02(IArquivo _arquivo, string mensagemErroNaTabelaDeRetorno = "")
         {
             ExecutarEValidar(_arquivo, FGs.FG00, FGs.FG00.ObterCodigoDeSucessoOuFalha(true));
-            ValidarControleArquivo(_arquivo);
-            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo));
+            if (execucaoRegras.ValidarControleArquivo(_arquivo))
+                ExplodeFalha();
+            if (execucaoRegras.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo)))
+                ExplodeFalha();
 
             ExecutarEValidar(_arquivo, FGs.FG01, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));
-            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo));
-
+            if (execucaoRegras.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG01, _arquivo.tipoArquivo)))
+                ExplodeFalha();
             //ExecutarEValidar(_arquivo, FGs.FG01_1, FGs.FG01.ObterCodigoDeSucessoOuFalha(true));
 
             ExecutarEValidar(_arquivo, FGs.FG01_2, FGs.FG01_2.ObterCodigoDeSucessoOuFalha(true));
 
             ExecutarEValidar(_arquivo, FGs.FG02, FGs.FG02.ObterCodigoDeSucessoOuFalha(string.IsNullOrEmpty(mensagemErroNaTabelaDeRetorno)), mensagemErroNaTabelaDeRetorno);
-            ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo));
-
+            if (execucaoRegras.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG02, _arquivo.tipoArquivo)))
+                ExplodeFalha();
             ValidarTeste();
         }
-
         public virtual IList<ILinhaTabela> ExecutarEValidarEsperandoErro(IArquivo _arquivo, FGs fG, CodigoStage? codigoEsperado, bool aoMenosUmCodigoEsperado = false)
         {
             SelecionarLinhaParaValidacao(0);
@@ -247,7 +235,7 @@ namespace Acelera.Testes
             {
                 return ValidarStages(_arquivo, false);
             }
-            
+
             var linhas = ValidarStages(_arquivo, true, (int)codigoEsperado, aoMenosUmCodigoEsperado);
             ValidarTeste();
             return linhas;

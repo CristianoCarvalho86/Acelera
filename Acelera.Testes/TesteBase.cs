@@ -77,12 +77,6 @@ namespace Acelera.Testes
             //else
             logger = new MyLogger($"{Parametros.pastaLog}", nomeArquivo,Parametros.logStackTrace,Parametros.logDataBaseResults);
             logger.EscreverBloco($"Nome do Teste : {numeroDoTeste} {nomeDoTeste}");
-            dados = new DadosParametrosData(logger);
-            comissaoRegras = new ComissaoRegras(logger);
-            cancelamentoRegras = new CancelamentoRegras(logger);
-            emissaoRegras = new EmissaoRegras(logger);
-            arquivoRegras = new ArquivoRegras(logger);
-            contratoRegras = new ContratoRegras(logger);
         }
 
         protected virtual void SalvarArquivo()
@@ -253,6 +247,13 @@ namespace Acelera.Testes
             this.nomeDoTeste = nomeDoTeste;
             tipoArquivoTeste = tipo;
             CriarLog();
+            dados = new DadosParametrosData(logger);
+            comissaoRegras = new ComissaoRegras(logger);
+            cancelamentoRegras = new CancelamentoRegras(logger);
+            emissaoRegras = new EmissaoRegras(logger);
+            arquivoRegras = new ArquivoRegras(logger);
+            contratoRegras = new ContratoRegras(logger);
+            execucaoRegras = new ExecucaoFgsRegras(logger);
         }
 
 

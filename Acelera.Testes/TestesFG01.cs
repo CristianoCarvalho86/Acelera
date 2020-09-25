@@ -31,8 +31,8 @@ namespace Acelera.Testes
             logger.EscreverBloco("Inicio da Validação da FG00.");
             //PROCESSAR O ARQUIVO CRIADO
             ChamarExecucao(_arquivo.tipoArquivo.ObterTarefaFG00Enum().ObterTexto());
-            this.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo));
-            this.ValidarControleArquivo(_arquivo);
+            execucaoRegras.ValidarLogProcessamento(_arquivo,true, 1, RepositorioProcedures.ObterProcedures(FGs.FG00, _arquivo.tipoArquivo));
+            execucaoRegras.ValidarControleArquivo(_arquivo);
             this.ValidarTabelaDeRetornoFG00(false,false, _arquivo);
             this.ValidarStages(CodigoStage.AprovadoNAFG00);
             logger.EscreverBloco("Fim da Validação da FG00. Resultado :" + (sucessoDoTeste ? "SUCESSO" : "FALHA"));
@@ -57,7 +57,7 @@ namespace Acelera.Testes
                 logger.InicioOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
                 var validador = new ValidadorTabelaRetorno(_arquivo.NomeArquivo, logger,_arquivo);
 
-                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno , naoDeveEncontrar, validaQuantidadeErros, codigosDeErroEsperados))
+                if (validador.ValidarTabela(TabelasEnum.TabelaRetorno , naoDeveEncontrar, validaQuantidadeErros, false, codigosDeErroEsperados))
                     logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, $"Tabela:{TabelasEnum.TabelaRetorno.ObterTexto()}");
                 else
                     ExplodeFalha();

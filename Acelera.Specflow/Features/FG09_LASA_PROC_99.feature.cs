@@ -19,22 +19,22 @@ namespace Acelera.Specflow.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("FG02 - LASA", SourceFile="Features\\FG02.feature", SourceLine=0)]
-    public partial class FG02_LASAFeature
+    [TechTalk.SpecRun.FeatureAttribute("Teste da PROC_199 LASA", Description="Definição da PROC Tipo Comissao do Cancelamento deve ser igual ao da emissão;", SourceFile="Features\\FG09_LASA_PROC_99.feature", SourceLine=0)]
+    public partial class TesteDaPROC_199LASAFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "FG02.feature"
+#line 1 "FG09_LASA_PROC_99.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FG02 - LASA", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Teste da PROC_199 LASA", "Definição da PROC Tipo Comissao do Cancelamento deve ser igual ao da emissão;", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,15 +70,15 @@ namespace Acelera.Specflow.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("SAP-2702:FG01 - Proc 20 - C/C - Layout 9.4 LASA - PARC_EMISSAO - Informar CD_CONT" +
-            "RATO dif. NR_APOLICE", SourceLine=2)]
-        public virtual void SAP_2702FG01_Proc20_CC_Layout9_4LASA_PARC_EMISSAO_InformarCD_CONTRATODif_NR_APOLICE()
+        [TechTalk.SpecRun.ScenarioAttribute("SAP-6106:FG09 - PROC 199-c/C - Layout 9.4 LASA - COMISS - CD_TIPO_COMISSAO difere" +
+            "nte - C e R", SourceLine=3)]
+        public virtual void SAP_6106FG09_PROC199_CC_Layout9_4LASA_COMISS_CD_TIPO_COMISSAODiferente_CER()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SAP-2702:FG01 - Proc 20 - C/C - Layout 9.4 LASA - PARC_EMISSAO - Informar CD_CONT" +
-                    "RATO dif. NR_APOLICE", null, tagsOfScenario, argumentsOfScenario);
-#line 3
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SAP-6106:FG09 - PROC 199-c/C - Layout 9.4 LASA - COMISS - CD_TIPO_COMISSAO difere" +
+                    "nte - C e R", null, tagsOfScenario, argumentsOfScenario);
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -98,23 +98,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
- testRunner.Given("um arquivo \'LASA\' de \'ParcEmissao\', com \'1\' linhas", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 5
- testRunner.And("na linha \'1\' o \'CD_CONTRATO\' = \'5555\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("uma trinca \'LASA\' de emissao", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
- testRunner.And("na linha \'1\' o \'NR_APOLICE\' = \'5555\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("com \'TIPO_COMISSAO\' = \'C\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 7
- testRunner.When("executado até a \'FGR_02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 8
- testRunner.Then("espera-se status = \'220\' na Stage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("trinca enviada para ODS", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.Then("espera-se erro \'20\' na Tabela de Retorno", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("uma trinca \'LASA\' de cancelamento", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 10
+ testRunner.And("com \'TIPO_COMISSAO\' = \'R\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.When("trinca executada até a \'FGR_09\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.Then("espera-se status = \'920\' na Stage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.Then("espera-se erro \'199\' na Tabela de Retorno", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -25,6 +25,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Acelera.Contratos\Acelera.Contratos.csproj" />
+    <ProjectReference Include="..\Acelera.Data\Acelera.Data.csproj" />
+    <ProjectReference Include="..\Acelera.Domain\Acelera.Domain.csproj" />
+    <ProjectReference Include="..\Acelera.Logger\Acelera.Logger.csproj" />
+    <ProjectReference Include="..\Acelera.RegrasNegocio\Acelera.RegrasNegocio.csproj" />
+    <ProjectReference Include="..\Acelera.Testes\Acelera.Testes.csproj" />
+    <ProjectReference Include="..\Acelera.Utils\Acelera.Utils.csproj" />
   </ItemGroup>
 
 </Project>

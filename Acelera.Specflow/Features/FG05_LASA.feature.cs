@@ -19,22 +19,22 @@ namespace Acelera.Specflow.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("FG02 - LASA", SourceFile="Features\\FG02.feature", SourceLine=0)]
-    public partial class FG02_LASAFeature
+    [TechTalk.SpecRun.FeatureAttribute("FG05_TIM", SourceFile="Features\\FG05_LASA.feature", SourceLine=0)]
+    public partial class FG05_TIMFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "FG02.feature"
+#line 1 "FG05_LASA.feature"
 #line hidden
         
         [TechTalk.SpecRun.FeatureInitialize()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FG02 - LASA", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FG05_TIM", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,14 +70,14 @@ namespace Acelera.Specflow.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("SAP-2702:FG01 - Proc 20 - C/C - Layout 9.4 LASA - PARC_EMISSAO - Informar CD_CONT" +
-            "RATO dif. NR_APOLICE", SourceLine=2)]
-        public virtual void SAP_2702FG01_Proc20_CC_Layout9_4LASA_PARC_EMISSAO_InformarCD_CONTRATODif_NR_APOLICE()
+        [TechTalk.SpecRun.ScenarioAttribute("SAP-9225:FG05 - PROC 219 - C/C - PARCELA - Mais de um cliente para mesmo NR_APOLI" +
+            "CE", SourceLine=2)]
+        public virtual void SAP_9225FG05_PROC219_CC_PARCELA_MaisDeUmClienteParaMesmoNR_APOLICE()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SAP-2702:FG01 - Proc 20 - C/C - Layout 9.4 LASA - PARC_EMISSAO - Informar CD_CONT" +
-                    "RATO dif. NR_APOLICE", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("SAP-9225:FG05 - PROC 219 - C/C - PARCELA - Mais de um cliente para mesmo NR_APOLI" +
+                    "CE", null, tagsOfScenario, argumentsOfScenario);
 #line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -99,22 +99,37 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 4
- testRunner.Given("um arquivo \'LASA\' de \'ParcEmissao\', com \'1\' linhas", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("um arquivo \'TIM\' de \'ParcEmissao\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
- testRunner.And("na linha \'1\' o \'CD_CONTRATO\' = \'5555\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("contendo \'2\' parcelas", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 6
- testRunner.And("na linha \'1\' o \'NR_APOLICE\' = \'5555\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("na linha \'1\' o \'CD_CLIENTE\' = \'9999\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 7
- testRunner.When("executado até a \'FGR_02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("na linha \'1\' o \'CD_ITEM\' = \'1\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CD_CLIENTE",
+                            "CD_ITEM"});
+                table1.AddRow(new string[] {
+                            "9999",
+                            "1"});
+                table1.AddRow(new string[] {
+                            "9999",
+                            "2"});
 #line 8
- testRunner.Then("espera-se status = \'220\' na Stage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.When("dados no arquivo", ((string)(null)), table1, "When ");
 #line hidden
-#line 9
- testRunner.Then("espera-se erro \'20\' na Tabela de Retorno", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.When("executado até a \'FGR_05\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
+ testRunner.Then("espera-se status = \'520\' na Stage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 14
+ testRunner.Then("espera-se erro \'219\' na Tabela de Retorno", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

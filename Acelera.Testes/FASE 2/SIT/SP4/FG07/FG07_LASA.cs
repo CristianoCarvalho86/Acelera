@@ -75,7 +75,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
 
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados);
 
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 0);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 0);
             
             trinca.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[1]);
@@ -93,7 +93,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "C", dados); //COLOCAR CD_CORRETOR com C e P,
 
             //ALTERACAO PARCELA
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao,dados);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao,dados);
 
             //ALTERACAO COMISSAO
 
@@ -137,7 +137,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG07
             IniciarTesteFG07("6161", "SAP-6161:FG07 - Lasa - Geração XML Sucesso - Emissão 2a parcela - 2 cobertura - Comissão R", OperadoraEnum.LASA);
 
             AlterarCdCorretorETipoComissaoDaTrinca(trinca, "R", dados);
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados);
             
             trinca.ArquivoComissao.ReplicarLinha(0, 1);
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao[1], trinca.ArquivoComissao[1]);

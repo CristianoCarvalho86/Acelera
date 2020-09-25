@@ -27,7 +27,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC233
             contratoRegras.CriarNovoContrato(0,arquivo);
 
             emissaoRegras.AlterarLinhaParaPrimeiraEmissao(arquivo);
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(arquivo, dados);
 
             SalvarArquivo();
 

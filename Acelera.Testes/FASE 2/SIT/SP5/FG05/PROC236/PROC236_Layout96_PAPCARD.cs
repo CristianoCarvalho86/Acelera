@@ -28,7 +28,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP5.FG05.PROC236
             SalvarArquivo();
             //ValidarFGsAnteriores();
 
-            AdicionarNovaCoberturaNaEmissao(arquivo, dados);
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(arquivo, dados);
 
             AlterarLinha(1, "DT_INICIO_VIGENCIA", SomarData(arquivo[0]["DT_INICIO_VIGENCIA"], 30));
             AlterarLinha(1, "DT_FIM_VIGENCIA", SomarData(arquivo[0]["DT_FIM_VIGENCIA"], 30));

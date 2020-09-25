@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         {
             IniciarTesteFG07("9699", "", OperadoraEnum.TIM);
 
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1,
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1,
                 dados.ObterCoberturaDiferenteDe(trinca.ArquivoParcEmissao[1]["CD_COBERTURA"], trinca.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
 
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(2), trinca.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1
@@ -134,7 +134,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP6.FG13.PROC50
         {
             IniciarTesteFG07("9701", "", OperadoraEnum.TIM);
 
-            AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1,
+            emissaoRegras.AdicionarNovaCoberturaNaEmissao(trinca.ArquivoParcEmissao, dados, 1,
             dados.ObterCoberturaDiferenteDe(trinca.ArquivoParcEmissao[1]["CD_COBERTURA"], trinca.ArquivoParcEmissao.Header[0]["CD_TPA"], true));
 
             AtualizarLinhaDeReferenciaParaComissao(trinca.ArquivoParcEmissao.ObterLinha(2), trinca.ArquivoComissao.ObterLinha(1));//Arquivo Parc TIM, primeira parcela linha 1

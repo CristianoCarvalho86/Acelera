@@ -35,7 +35,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             var cobertura = dados.ObterCoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], ObterValorHeader("CD_TPA"), true);
-            AlterarDadosDeCobertura(0, cobertura);
+            emissaoRegras.AlterarDadosDeCobertura(0, cobertura, arquivo);
             SalvarArquivo();
 
             ExecutarEValidarAteFg02(arquivo);
@@ -64,7 +64,7 @@ namespace Acelera.Testes.FASE_2.SIT.SP4.FG09.PROC45
             AdicionarLinha(0, cancelamentoRegras.CriarLinhaCancelamento(arquivoods.ObterLinha(0), "10"));
             AlterarHeader("VERSAO", "9.6");
             var cobertura = dados.ObterCoberturaDiferenteDe(arquivo[0]["CD_COBERTURA"], ObterValorHeader("CD_TPA"), true);
-            AlterarDadosDeCobertura(0, cobertura);
+            emissaoRegras.AlterarDadosDeCobertura(0, cobertura,arquivo);
             AlterarLinha(0, "CD_RAMO", "88");
             SalvarArquivo();
 

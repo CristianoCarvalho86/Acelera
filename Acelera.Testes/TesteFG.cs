@@ -39,8 +39,9 @@ namespace Acelera.Testes
         public void ValidarLogProcessamento(bool Sucesso, int vezesExecutado = 1, IArquivo _arquivo = null)
         {
             SetarArquivoEmUso(ref _arquivo);
-            ValidarLogProcessamento(_arquivo, Sucesso, vezesExecutado, ObterProceduresASeremExecutadas(_arquivo));
-        }
+            if (!execucaoRegras.ValidarLogProcessamento(_arquivo, Sucesso, vezesExecutado, ObterProceduresASeremExecutadas(_arquivo)))
+                ExplodeFalha();
+        }       
 
         public bool ValidarTabelaDeRetornoVazia(IArquivo _arquivo, bool deveHaverRegistros = true)
         {
@@ -59,55 +60,6 @@ namespace Acelera.Testes
             return true;
         }
 
-        protected void ValidarLogProcessamento(IArquivo _arquivo, bool Sucesso, int vezesExecutado, IList<string> proceduresASeremExecutadas)
-        {
-            if (Parametros.ModoExecucao == ModoExecucaoEnum.ApenasCriacao || !Parametros.ValidaLogProcessamento)
-                return;
-
-            var proceduresEsperadas = proceduresASeremExecutadas;
-
-            if (_arquivo.Operadora != OperadoraEnum.LASA && _arquivo.Operadora != OperadoraEnum.SOFTBOX)
-            {
-                proceduresEsperadas = proceduresEsperadas.Where(x => x.ObterParteNumericaDoTexto() < 1000 || x.ObterParteNumericaDoTexto() == 200000).ToList();
-            }
-
-            try
-            {
-                var consulta = new Consulta();
-                consulta.AdicionarConsulta("NM_ARQUIVO_TPA", _arquivo.NomeArquivo);
-                var consultas = new ConjuntoConsultas();
-                consultas.AdicionarConsulta(consulta);
-                var lista = DataAccess.ChamarConsultaAoBanco<LinhaLogProcessamento>(consultas, logger);
-
-                logger.InicioOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
-
-                var falha = false;
-                if (!Validar(lista.Count(), proceduresEsperadas.Count * vezesExecutado, "Quantidade de Procedures executadas"))
-                    falha = true;
-                if (!falha && !Validar((lista.All(x => x.ObterPorColuna("CD_STATUS").Valor == "S")), true, "Todos os CD_STATUS sao igual a 'S'"))
-                    falha = true;
-
-
-
-                var procedureNaoEncontrada = proceduresEsperadas.Where(x => !lista.Any(z => z.ObterPorColuna("CD_PROCEDURE").Valor.Contains(x))); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
-                if (!Validar(procedureNaoEncontrada.Count() > 0, false, $"Existem PROCEDURES NAO ENCONTRADAS : {procedureNaoEncontrada.ToList().ObterListaConcatenada(" ,")}"))
-                    falha = true;
-
-                var proceduresAMais = lista.Where(x => !proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z))).ToList(); //lista.Where(x => proceduresEsperadas.Any(z => x.ObterPorColuna("CD_PROCEDURE").Valor.Contains(z)) == false);
-                if (!Validar(proceduresAMais.Count() > 0, false, $"Existem PROCEDURES EXECUTADAS A MAIS : {proceduresAMais.Select(x => x.ObterPorColuna("CD_PROCEDURE").Valor).ObterListaConcatenada(" ,")}"))
-                    falha = true;
-
-                if (Sucesso && falha || !Sucesso && !falha)
-                {
-                    ExplodeFalha();
-                }
-                logger.SucessoDaOperacao(OperacaoEnum.ValidarResultado, "Tabela:LogProcessamento");
-            }
-            catch (Exception ex)
-            {
-                TratarErro("Validação da LogProcessamento");
-            }
-        }
 
         public abstract void ValidarTabelaDeRetorno(IArquivo _arquivo, bool naoDeveEncontrar = false, bool validaQuantidadeErros = false, params string[] codigosDeErroEsperados);
 
@@ -281,23 +233,6 @@ namespace Acelera.Testes
             logger.TesteComFalha();
         }
 
-        protected bool Validar(bool obtido, bool esperado, string tituloValidacao)
-        {
-            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
-
-            if (esperado == obtido)
-                return true;
-            return false;
-        }
-
-        protected bool Validar(int obtido, int esperado, string tituloValidacao)
-        {
-            logger.EscreveValidacao(obtido.ToString(), esperado.ToString(), tituloValidacao);
-
-            if (esperado == obtido)
-                return true;
-            return false;
-        }
 
         public void ConfereQtdLinhas(IArquivo _arquivo, int numeroDeLinhasEsperado)
         {
@@ -360,36 +295,6 @@ namespace Acelera.Testes
 
 
             logger.FimDoArquivo(numeroDoLote, op, Parametros.pastaLogCopia, Parametros.ModoExecucao);
-        }
-
-        public void AlterarDadosDeCobertura(int posicaoLinha, Cobertura cobertura, IArquivo _arquivo = null)
-        {
-            if (_arquivo == null)
-                _arquivo = arquivo;
-            var operadora = _arquivo.Operadora;
-
-            if (operadora == OperadoraEnum.LASA || operadora == OperadoraEnum.SOFTBOX)
-            {
-                //var premioTotal = CalcularValorPremioTotal(cobertura, _arquivo[posicaoLinha]["VL_IS"].ObterValorDecimal());
-                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_TOTAL", premioTotal.ValorFormatado());
-
-                //var premioLiquido = CalcularValorPremioLiquido(cobertura, premioTotal);
-                //_arquivo.AlterarLinha(posicaoLinha, "VL_PREMIO_LIQUIDO", premioLiquido.ValorFormatado());
-
-                //premioTotal = premioTotal + 1M;
-                //premioLiquido = premioLiquido + 1M;
-
-                //_arquivo.AlterarLinha(posicaoLinha, "VL_IOF", (premioTotal - premioLiquido).ValorFormatado());
-
-                _arquivo.AlterarLinha(1, "VL_PREMIO_LIQUIDO", "23.27");
-                _arquivo.AlterarLinha(1, "VL_IOF", "1.72");
-                _arquivo.AlterarLinha(1, "VL_PREMIO_TOTAL", "24.99");
-
-            }
-            _arquivo.AlterarLinha(posicaoLinha, "CD_COBERTURA", cobertura.CdCobertura);
-            _arquivo.AlterarLinha(posicaoLinha, "CD_PRODUTO", cobertura.CdProduto);
-            _arquivo.AlterarLinha(posicaoLinha, "CD_RAMO", cobertura.CdRamoCobertura);
-
         }
 
         public decimal CalcularValorPremioTotal(Cobertura cobertura, decimal vl_is)
@@ -477,14 +382,6 @@ namespace Acelera.Testes
                 triplice.ArquivoComissao.AlterarLinha(i, "CD_CORRETOR", cdCorretor);
                 triplice.ArquivoComissao.AlterarLinha(i, "CD_TIPO_COMISSAO", tipoComissao);
             }
-        }
-
-        public void AdicionarNovaCoberturaNaEmissao(IArquivo arquivoParc, DadosParametrosData dados, int posicaoLinha = 0, Cobertura cobertura = null)
-        {
-            arquivoParc.ReplicarLinha(posicaoLinha, 1);
-            var cdRamo = arquivoParc.Operadora == OperadoraEnum.TIM ? arquivoParc[arquivoParc.Linhas.Count - 1]["CD_RAMO"] : "";
-            cobertura = cobertura == null ? dados.ObterCoberturaDiferenteDe(arquivoParc[arquivoParc.Linhas.Count - 1]["CD_COBERTURA"], arquivoParc.Header[0]["CD_TPA"], true) : cobertura;
-            AlterarDadosDeCobertura(arquivoParc.Linhas.Count - 1, cobertura, arquivoParc);
         }
 
         protected void AdicionarTipoComissao(IArquivo _arquivo, string valorPremioLiquido, string cdTipoComissao, int posicaoLinha)

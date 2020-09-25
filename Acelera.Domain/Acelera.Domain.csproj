@@ -125,9 +125,13 @@
     <Compile Include="Parametros.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\RepositorioProcedures.cs" />
     <Compile Include="Utils\ArquivoOrigem.cs" />
     <Compile Include="Utils\ControleCDContratoFG03.cs" />
     <Compile Include="Utils\ControleNomeArquivo.cs" />
+    <Compile Include="Validadores\Validador.cs" />
+    <Compile Include="Validadores\ValidadorStages.cs" />
+    <Compile Include="Validadores\ValidadorTabelaRetorno.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
